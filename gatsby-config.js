@@ -27,6 +27,18 @@ module.exports = {
         icon: `src/images/favicons/114.png`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Work Sans`,
+            variants: [`100`, `300`, `400`, `500`, `700`],
+            subsets: [`latin`, `cyrillic`],
+          },
+        ],
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
