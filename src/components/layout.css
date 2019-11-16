@@ -620,3 +620,59 @@ pre tt:after {
     font-size: 100%;
   }
 }
+
+/* lines */
+.line {
+  content: "";
+  position: fixed;
+  z-index: 105;
+}
+
+.line.top {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 25px;
+  background-image: url("../images/lines.svg");
+}
+
+.line.bottom {
+  left: 0;
+  top: auto;
+  bottom: 0;
+  width: 100%;
+  height: 25px;
+  background-image: url("../images/lines.svg");
+}
+
+.line.left {
+  left: 0;
+  top: 0;
+  width: 25px;
+  height: 200%;
+  background-image: url("../images/lines.svg");
+}
+
+.line.right {
+  left: auto;
+  right: 0;
+  top: 0;
+  width: 25px;
+  height: 200%;
+  background-image: url("../images/lines.svg");
+}
+
+@media (max-width: 840px) {
+  .line.bottom {
+    height: 18px;
+  }
+  .line.top {
+    height: 18px;
+  }
+  .line.right {
+    width: 18px;
+  }
+  .line.left {
+    width: 18px;
+  }
+}
