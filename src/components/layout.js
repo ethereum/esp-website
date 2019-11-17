@@ -8,8 +8,10 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
 
-import Header from "./header"
+import Nav from "./nav"
 import "./layout.css"
 
 const Layout = ({ children }) => {
@@ -25,11 +27,11 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <div class="line top"></div>
-      <div class="line bottom"></div>
-      <div class="line left"></div>
-      <div class="line right"></div>
-      <Header siteTitle={data.site.siteMetadata.title} />
+      <div className="line top"></div>
+      <div className="line bottom"></div>
+      <div className="line left"></div>
+      <div className="line right"></div>
+      <Nav />
       <div
         style={{
           margin: `0 auto`,
@@ -39,6 +41,7 @@ const Layout = ({ children }) => {
         }}
       >
         <main>{children}</main>
+        <FontAwesomeIcon icon={faChevronDown} />
         <footer>
           © {new Date().getFullYear()}, Built with
           {` `}

@@ -664,3 +664,59 @@ pre tt:after {
     width: 18px;
   }
 }
+
+/* Links */
+
+/* 5. Links */
+a {
+  color: #363636;
+  text-decoration: none;
+  opacity: 1;
+  outline: none;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #f26b38;
+}
+
+/* Navbar */
+
+.nav-shadow {
+  transition: all 1s ease 0s;
+  -moz-transition: all 1s ease 0s;
+  -webkit-transition: all 1s ease 0s;
+  -o-transition: all 1s ease 0s;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08), 0 1px 10px rgba(0, 0, 0, 0.14);
+}
+
+nav a {
+  font-size: 18px;
+  margin-right: 20px;
+  padding: 0 0 10px 0;
+  display: inline-block;
+  position: relative;
+}
+
+nav a:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #f26b38;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+.nav-links a:hover:after {
+  width: 100%;
+  left: 0;
+}
+
+@media (max-width: 840px) {
+  .nav-logo-text {
+    display: none;
+  }
+}
