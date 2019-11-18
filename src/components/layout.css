@@ -881,3 +881,32 @@ footer .footer-legal:hover {
     display: none;
   }
 }
+
+/* Buttons */
+
+.btn {
+  text-transform: uppercase;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1.5;
+  text-align: center;
+  border-radius: 20px;
+  color: #ffffff;
+  background: #e66981;
+  border: 1px solid #e66981;
+  font-size: 1.5rem;
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+  padding: 9.5px 50px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -webkit-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+}
+
+.btn:hover {
+  color: #ffffff;
+  background: #d05d73;
+}

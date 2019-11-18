@@ -39,7 +39,11 @@ const IndexPage = () => (
       </div>
       <div id="welcome">
         <h1>Welcome!</h1>
-        <p>
+        <p
+          style={{
+            lineHeight: `1.5em`,
+          }}
+        >
           The Ethereum Ecosystem Support Program exists to provide both
           financial and non-financial support to projects and entities within
           the greater Ethereum community, in order to accelerate the growth of
@@ -48,7 +52,9 @@ const IndexPage = () => (
           support. Our focus is on deploying our resources where they will have
           the biggest impact.
         </p>
-        <Link>Contact Us</Link>
+        <div style={{ marginTop: `30px`, textAlign: `center` }}>
+          <Link className="btn">Contact Us</Link>
+        </div>
       </div>
     </div>
   </Layout>
