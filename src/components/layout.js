@@ -9,13 +9,12 @@ const Layout = ({ children }) => {
   return (
     <>
       <div className="line top"></div>
-      <div className="line bottom"></div>
       <div className="line left"></div>
       <div className="line right"></div>
       {/* TODO change margin based on screen size */}
       <div
         style={{
-          margin: `25px`,
+          margin: `25px 25px 0`,
         }}
       >
         <Nav />
@@ -30,6 +29,7 @@ const Layout = ({ children }) => {
           <main>{children}</main>
         </div>
         <Footer />
+        <div className="line bottom"></div>
       </div>
     </>
   )

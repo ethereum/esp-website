@@ -4,31 +4,46 @@ import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons"
 
 const Footer = () => (
   <footer>
-    <div class="copy footer-legal">
-      © 2019 Ethereum Foundation. All rights reserved.
+    <div className="copy footer-legal">
+      © {new Date().getFullYear()} Ethereum Foundation. All rights reserved.
     </div>
-    <div class="soc">
-      <a class="copy" target="_blank" href="https://www.ethereum.org/">
+    <div className="soc">
+      <a
+        className="copy"
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.ethereum.org/"
+      >
         Ethereum.org
       </a>
       <a
-        class="copy"
+        className="copy"
         target="_blank"
+        rel="noopener noreferrer"
         href="https://www.ethereum.org/privacy-policy/"
       >
         Privacy Policy
       </a>
       <a
-        class="copy"
+        className="copy"
         target="_blank"
+        rel="noopener noreferrer"
         href="https://www.ethereum.org/cookie-policy/"
       >
         Cookie Policy
       </a>
-      <a target="_blank" href="https://twitter.com/ethereum">
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://twitter.com/ethereum"
+      >
         <FontAwesomeIcon icon={faTwitter} />
       </a>
-      <a target="_blank" href="https://github.com/ethereum">
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://github.com/ethereum"
+      >
         <FontAwesomeIcon icon={faGithub} />
       </a>
     </div>

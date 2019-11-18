@@ -33,7 +33,7 @@ module.exports = {
         fonts: [
           {
             family: `Work Sans`,
-            variants: [`100`, `300`, `400`, `500`, `700`],
+            variants: [`100`, `300`, `400`, `500`, `600`, `700`],
             subsets: [`latin`, `cyrillic`],
           },
         ],

@@ -2,6 +2,7 @@ html {
   font-family: "Work Sans", sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  font-size: 16px;
 }
 body {
   margin: 0;
@@ -231,7 +232,7 @@ h1 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-weight: bold;
+  font-weight: 500;
   text-rendering: optimizeLegibility;
   font-size: 2.25rem;
   line-height: 1.1;
@@ -246,7 +247,7 @@ h2 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-weight: bold;
+  font-weight: 500;
   text-rendering: optimizeLegibility;
   font-size: 1.62671rem;
   line-height: 1.1;
@@ -261,7 +262,7 @@ h3 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-weight: bold;
+  font-weight: 500;
   text-rendering: optimizeLegibility;
   font-size: 1.38316rem;
   line-height: 1.1;
@@ -276,9 +277,9 @@ h4 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-weight: bold;
+  font-weight: 600;
   text-rendering: optimizeLegibility;
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 1.1;
 }
 h5 {
@@ -291,9 +292,9 @@ h5 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-weight: bold;
+  font-weight: 500;
   text-rendering: optimizeLegibility;
-  font-size: 0.85028rem;
+  font-size: 1rem;
   line-height: 1.1;
 }
 h6 {
@@ -306,9 +307,9 @@ h6 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-weight: bold;
+  font-weight: 500;
   text-rendering: optimizeLegibility;
-  font-size: 0.78405rem;
+  font-size: 0.85028rem;
   line-height: 1.1;
 }
 hgroup {
@@ -626,9 +627,7 @@ pre tt:after {
 }
 
 .line.bottom {
-  left: 0;
-  top: auto;
-  bottom: 0;
+  position: relative;
   width: 100%;
   height: 25px;
   background-image: url("../images/lines.svg");
@@ -909,4 +908,23 @@ footer .footer-legal:hover {
 .btn:hover {
   color: #ffffff;
   background: #d05d73;
+}
+
+/* FAQ page */
+.question {
+  margin-bottom: 40px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid lightgray;
+}
+
+.process-img {
+  max-width: 540px;
+  margin: 40px auto;
+}
+
+@media (max-width: 480px) {
+  .process-img {
+    max-width: 100%;
+    padding: 10px 0;
+  }
 }
