@@ -800,3 +800,84 @@ nav a:after {
     top: 0px;
   }
 }
+
+/* Footer */
+
+/* Footer */
+footer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 30px;
+  background: #ffffff;
+  z-index: 100;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.6s ease 0s;
+  -moz-transition: all 0.6s ease 0s;
+  -webkit-transition: all 0.6s ease 0s;
+  -o-transition: all 0.6s ease 0s;
+}
+
+@media (max-width: 480px) {
+  footer {
+    padding: 15px;
+  }
+}
+
+footer .soc {
+  float: right;
+}
+
+footer .soc a {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 12px;
+}
+
+footer .soc a {
+  color: #999999;
+  transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -webkit-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+}
+
+footer .soc a:hover {
+  color: #f26b38;
+}
+
+@media (max-width: 840px) {
+  footer .soc {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  footer .soc a {
+    margin: 0 6px;
+  }
+}
+
+footer .copy {
+  font-size: 11px;
+  color: #999999;
+  transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -webkit-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+}
+
+footer .copy:hover {
+  color: #f26b38 !important;
+}
+
+footer .footer-legal:hover {
+  color: #999999 !important;
+}
+
+@media (max-width: 840px) {
+  footer .copy {
+    display: none;
+  }
+}

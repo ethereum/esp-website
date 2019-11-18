@@ -24,7 +24,6 @@ const Nav = () => {
         width: `100%`,
         padding: `15px 60px 5px 15px`,
         backgroundColor: `white`,
-        margin: `25px`,
         display: `flex`,
         justifyContent: `space-between`,
         alignItems: `center`,
