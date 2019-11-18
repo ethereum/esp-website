@@ -42,17 +42,21 @@ const Nav = () => {
             fixed={data.file.childImageSharp.fixed}
             alt="Ethereum Ecosystem Support Program Logo"
           />
-          <h4
+          <div
             className="nav-logo-text"
             style={{ margin: 0, marginLeft: `5px` }}
           >
             Ecosystem Support
-          </h4>
+          </div>
         </Link>
       </div>
       <div className="nav-links">
-        <Link to="/">FAQ</Link>
-        <Link to="/">Contact Us</Link>
+        <Link to="/faq" activeClassName="nav-link-active">
+          FAQ
+        </Link>
+        <Link to="/contact" activeClassName="nav-link-active">
+          Contact Us
+        </Link>
       </div>
     </nav>
   )

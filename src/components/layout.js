@@ -8,8 +8,6 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
 
 import Nav from "./nav"
 import "./layout.css"
@@ -35,13 +33,12 @@ const Layout = ({ children }) => {
       <div
         style={{
           margin: `0 auto`,
-          maxWidth: 960,
+          maxWidth: `780px`,
           padding: `0px 1.0875rem 1.45rem`,
           paddingTop: 0,
         }}
       >
         <main>{children}</main>
-        <FontAwesomeIcon icon={faChevronDown} />
         <footer>
           © {new Date().getFullYear()}, Built with
           {` `}

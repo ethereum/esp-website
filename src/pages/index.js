@@ -1,32 +1,57 @@
 import React from "react"
 import { Link } from "gatsby"
-
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
+import horzLogo from "../images/horz-logo.svg"
+import vertLogo from "../images/vert-logo.svg"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
 
-class IndexPage extends React.Component {
-  componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll)
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll)
-  }
-  render() {
-    return (
-      <Layout>
-        <SEO title="Home" />
-        <h1>Hi people</h1>
-        <p>Welcome to your new Gatsby site.</p>
-        <p>Now go build something great.</p>
-        <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-          <Image />
+const IndexPage = () => (
+  <Layout>
+    <SEO title="Home" />
+    <div>
+      <div
+        className="hero"
+        style={{
+          height: `100vh`, // TODO subtract line & nav heights
+          height: `100vh`,
+          display: `flex`,
+          flexDirection: `column`,
+          justifyContent: `center`,
+        }}
+      >
+        <div className="image">
+          <img
+            className="horz-logo"
+            src={horzLogo}
+            alt="Ecosystem Support Program Horizontal Logo"
+          />
+          <img
+            className="vert-logo"
+            src={vertLogo}
+            alt="Ecosystem Support Program Vertical Logo"
+          />
         </div>
-        <Link to="/page-2/">Go to page 2</Link>
-      </Layout>
-    )
-  }
-}
+        <Link to="/#welcome" className="hero-link">
+          <FontAwesomeIcon className="hero-icon" icon={faChevronDown} />
+        </Link>
+      </div>
+      <div id="welcome">
+        <h1>Welcome!</h1>
+        <p>
+          The Ethereum Ecosystem Support Program exists to provide both
+          financial and non-financial support to projects and entities within
+          the greater Ethereum community, in order to accelerate the growth of
+          the ecosystem. The Ecosystem Support Program is an expansion of the
+          original Ethereum Grants Program which mainly focused on financial
+          support. Our focus is on deploying our resources where they will have
+          the biggest impact.
+        </p>
+        <Link>Contact Us</Link>
+      </div>
+    </div>
+  </Layout>
+)
 
 export default IndexPage
