@@ -5,7 +5,7 @@ import SEO from "../components/seo"
 
 const ExplorePage = () => (
   <Layout>
-    <SEO title="Explore Application" />
+    <SEO title="Explore Inquiry" />
     <Airtable form="explore" />
   </Layout>
 )

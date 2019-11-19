@@ -8,7 +8,7 @@ const FAQPage = ({ data }) => {
   return (
     <Layout>
       <SEO title="FAQ" />
-      <div style={{ padding: `180px 16px 0` }}>
+      <div className="page-content">
         <div className="question">
           <h2>About the Program</h2>
           <h4>
