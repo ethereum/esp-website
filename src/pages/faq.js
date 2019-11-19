@@ -63,6 +63,15 @@ const FAQPage = ({ data }) => {
           <h2>About the Process</h2>
           <h4>Who can apply?</h4>
           <p>
+            Newcomers to Ethereum, established projects, and past grantees are
+            all welcome and encouraged to reach out. Whether you’re facing a
+            specific challenge and don’t know who to ask or where to go, or know
+            exactly what you need and hope we can help you access it, feel free
+            to submit an inquiry. The best way to find out if the Ecosystem
+            Support Program is a good fit for your project is through a two-way
+            conversation.
+          </p>
+          <p>
             <strong>What types of projects are you interested in?</strong> Some
             previous areas of focus have been 2.0 clients, state channels,
             scaling/layer 2, zero knowledge proofs and more - but we’re always

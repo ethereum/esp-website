@@ -2,7 +2,10 @@ module.exports = {
   siteMetadata: {
     title: `Ethereum Ecosystem Support Program`,
     description: `The Ethereum Ecosystem Support Program provides financial and non-financial support for projects working to accelerate the growth of Ethereum.`,
-    author: `@samajammin`,
+    author: `@ethereum`,
+    url: "https://ecosystem.support",
+    image:
+      "https://user-images.githubusercontent.com/8097623/69177629-c137a400-0abc-11ea-9bcd-da3ba03d2688.png",
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
