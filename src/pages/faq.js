@@ -5,11 +5,10 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 const FAQPage = ({ data }) => {
-  console.log({ data })
   return (
     <Layout>
       <SEO title="FAQ" />
-      <div style={{ paddingTop: `180px` }}>
+      <div style={{ padding: `180px 16px 0` }}>
         <div className="question">
           <h2>About the Program</h2>
           <h4>
@@ -24,9 +23,9 @@ const FAQPage = ({ data }) => {
             to self-sustain and thrive. Awarding grants continues to be an
             important tool for us; but impact often takes more than just money,
             so we’ve expanded the range of support we provide. Our goal is to
-            take an individual approach to each project, working together with
-            the grantee to establish realistic goals and offering support
-            targeted to facilitate those goals.
+            take an individual approach to each project, working together to
+            establish realistic goals and offering support targeted to
+            facilitate those goals.
           </p>
         </div>
         <div className="question">
@@ -79,7 +78,7 @@ const FAQPage = ({ data }) => {
           </p>
         </div>
         <div className="question">
-          <h4>What happens after an application is submitted?</h4>
+          <h4>What happens after an inquiry is submitted?</h4>
           <p>
             You’ll be assigned a guide, who will be a consistent point of
             contact to help you navigate the process. There will be an initial

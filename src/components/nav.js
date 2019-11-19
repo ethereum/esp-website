@@ -50,11 +50,11 @@ const Nav = () => {
         </Link>
       </div>
       <div className="nav-links">
+        <Link to="/" activeClassName="nav-link-active">
+          Home
+        </Link>
         <Link to="/faq" activeClassName="nav-link-active">
           FAQ
-        </Link>
-        <Link to="/contact" activeClassName="nav-link-active">
-          Contact Us
         </Link>
       </div>
     </nav>

@@ -780,13 +780,11 @@ nav a:after {
 
 .hero-icon {
   position: relative;
-  animation-name: bounce;
-  animation: mouse-anim 1s ease-out 0s infinite;
+  animation: chevron-bounce 1s ease-out 0s infinite;
   top: 0px;
 }
 
-/* Mouse Button Animations */
-@keyframes mouse-anim {
+@keyframes chevron-bounce {
   0% {
     top: 0px;
   }
@@ -799,8 +797,6 @@ nav a:after {
     top: 0px;
   }
 }
-
-/* Footer */
 
 /* Footer */
 footer {
@@ -893,11 +889,11 @@ footer .footer-legal:hover {
   color: #ffffff;
   background: #e66981;
   border: 1px solid #e66981;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   border: 1px solid transparent;
   position: relative;
   overflow: hidden;
-  padding: 9.5px 50px;
+  padding: 15px 30px;
   cursor: pointer;
   transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
@@ -910,6 +906,24 @@ footer .footer-legal:hover {
   background: #d05d73;
 }
 
+.btn-container {
+  margin: 60px 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+@media (max-width: 840px) {
+  .btn-container {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .btn {
+    margin-top: 30px;
+  }
+}
 /* Layout */
 
 .layout {
@@ -932,12 +946,12 @@ footer .footer-legal:hover {
 
 .process-img {
   max-width: 540px;
-  margin: 40px auto;
+  margin: 60px auto;
 }
 
 @media (max-width: 480px) {
   .process-img {
+    margin: 40px auto;
     max-width: 100%;
-    padding: 10px 0;
   }
 }

@@ -36,7 +36,7 @@ const IndexPage = () => (
           <FontAwesomeIcon className="hero-icon" icon={faChevronDown} />
         </Link>
       </div>
-      <div id="welcome">
+      <div id="welcome" style={{ padding: `16px` }}>
         <h1>Welcome!</h1>
         <p
           style={{
@@ -51,9 +51,17 @@ const IndexPage = () => (
           support. Our focus is on deploying our resources where they will have
           the biggest impact.
         </p>
-        <div style={{ marginTop: `30px`, textAlign: `center` }}>
-          <Link to="/contact" className="btn">
-            Contact Us
+        <h2 style={{ paddingTop: `20px` }}>Contact Us</h2>
+        <p>
+          Are you working on a specific project, or are you still exploring
+          possibilities to get involved?
+        </p>
+        <div className="btn-container">
+          <Link to="/project" className="btn btn-item">
+            Specific project
+          </Link>
+          <Link to="/explore" className="btn btn-item">
+            Exploring possibilities
           </Link>
         </div>
       </div>
