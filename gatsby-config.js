@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `Ecosystem Support Program`,
-    description: `The Ethereum Ecosystem Support Program exists to provide both financial and non-financial support to projects and entities within the greater Ethereum community, in order to accelerate the growth of the ecosystem.`,
+    title: `Ethereum Ecosystem Support Program`,
+    description: `The Ethereum Ecosystem Support Program provides financial and non-financial support for projects working to accelerate the growth of Ethereum.`,
     author: `@samajammin`,
   },
   plugins: [

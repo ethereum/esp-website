@@ -24,7 +24,6 @@ class IndexPage extends React.Component {
   }
 
   handleScroll = () => {
-    console.log(window.pageYOffset)
     if (window.pageYOffset <= 100 && !this.state.showHeroLink) {
       this.setState({ showHeroLink: true })
     }

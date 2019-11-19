@@ -29,7 +29,7 @@ const FAQPage = ({ data }) => {
           </p>
         </div>
         <div className="question">
-          <h4>What can we help with?</h4>
+          <h4>What can Ecosystem Support help with?</h4>
           <p>
             To give you an idea of what the Ecosystem Support Program can do for
             you, here is a non-exhaustive list some of the ways we have helped
@@ -63,7 +63,7 @@ const FAQPage = ({ data }) => {
           <h2>About the Process</h2>
           <h4>Who can apply?</h4>
           <p>
-            <strong>What types of projects are we interested in?</strong> Some
+            <strong>What types of projects are you interested in?</strong> Some
             previous areas of focus have been 2.0 clients, state channels,
             scaling/layer 2, zero knowledge proofs and more - but we’re always
             open to new ideas. If you think your project will make Ethereum
