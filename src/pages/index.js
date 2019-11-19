@@ -15,7 +15,6 @@ const IndexPage = () => (
         className="hero"
         style={{
           height: `100vh`, // TODO subtract line & nav heights
-          height: `100vh`,
           display: `flex`,
           flexDirection: `column`,
           justifyContent: `center`,
@@ -53,7 +52,9 @@ const IndexPage = () => (
           the biggest impact.
         </p>
         <div style={{ marginTop: `30px`, textAlign: `center` }}>
-          <Link className="btn">Contact Us</Link>
+          <Link to="/contact" className="btn">
+            Contact Us
+          </Link>
         </div>
       </div>
     </div>

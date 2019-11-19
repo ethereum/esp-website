@@ -11,18 +11,12 @@ const Layout = ({ children }) => {
       <div className="line top"></div>
       <div className="line left"></div>
       <div className="line right"></div>
-      {/* TODO change margin based on screen size */}
-      <div
-        style={{
-          margin: `25px 25px 0`,
-        }}
-      >
+      <div className="layout">
         <Nav />
         <div
           style={{
-            margin: `0 auto`,
+            margin: `0 auto 1rem`,
             maxWidth: `780px`,
-            padding: `0px 1.0875rem 1.45rem`,
             paddingTop: 0,
           }}
         >

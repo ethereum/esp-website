@@ -910,7 +910,20 @@ footer .footer-legal:hover {
   background: #d05d73;
 }
 
+/* Layout */
+
+.layout {
+  margin: 25px 25px 0;
+}
+
+@media (max-width: 840px) {
+  .layout {
+    margin: 18px 18px 0;
+  }
+}
+
 /* FAQ page */
+
 .question {
   margin-bottom: 40px;
   padding-bottom: 14px;
