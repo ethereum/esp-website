@@ -968,6 +968,7 @@ footer .footer-legal:hover {
 
 @media (max-width: 480px) {
   .page-content {
+    padding: 120px 16px 0;
     /* mobile:
     nav: 75px
     lines: 36px
