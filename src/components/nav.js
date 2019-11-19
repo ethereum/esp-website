@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import { Link } from "gatsby"
 
-const Nav = () => {
+const Nav = ({ hasShadow }) => {
   const data = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "favicons/114.png" }) {
@@ -17,6 +17,7 @@ const Nav = () => {
   `)
   return (
     <nav
+      className={hasShadow ? "nav-shadow" : ""}
       style={{
         position: `fixed`,
         zIndex: `100`,

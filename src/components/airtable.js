@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 import Loader from "../components/loader"
 import horzLogo from "../images/horz-logo.svg"
 import vertLogo from "../images/vert-logo.svg"
@@ -59,6 +60,7 @@ class Airtable extends React.Component {
             className="airtable-embed airtable-dynamic-height"
             src={formData[this.props.form].embedURL}
             frameBorder="0"
+            title={this.props.form}
             height={formHeight}
             onLoad={this.handleFormLoad}
             style={{
@@ -71,6 +73,10 @@ class Airtable extends React.Component {
       </div>
     )
   }
+}
+
+Airtable.propTypes = {
+  form: PropTypes.string.isRequired,
 }
 
 export default Airtable
