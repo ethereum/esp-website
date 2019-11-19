@@ -54,7 +54,7 @@ const Nav = ({ hasShadow }) => {
         <Link to="/" activeClassName="nav-link-active">
           Home
         </Link>
-        <Link to="/faq" activeClassName="nav-link-active">
+        <Link to="/faq/" activeClassName="nav-link-active">
           FAQ
         </Link>
       </div>

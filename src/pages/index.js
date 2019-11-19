@@ -88,10 +88,10 @@ class IndexPage extends React.Component {
               possibilities to get involved?
             </p>
             <div className="btn-container">
-              <Link to="/project" className="btn btn-item">
+              <Link to="/project/" className="btn btn-item">
                 Specific project
               </Link>
-              <Link to="/explore" className="btn btn-item">
+              <Link to="/explore/" className="btn btn-item">
                 Exploring possibilities
               </Link>
             </div>
