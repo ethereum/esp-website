@@ -30,6 +30,11 @@ class Airtable extends React.Component {
   }
 
   render() {
+    // for Gatsby build
+    if (typeof window === `undefined`) {
+      return null
+    }
+
     const formHeight =
       window.innerWidth > 480
         ? formData[this.props.form].desktopHeight
