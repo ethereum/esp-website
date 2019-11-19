@@ -95,7 +95,7 @@ const FAQPage = ({ data }) => {
             alt="Ecosystem Support Program Process"
           />
           <p>
-            <strong>How long will it take before I hear back from you?</strong>
+            <strong>How long will it take before I hear back from you?</strong>{" "}
             You should hear from us within about two weeks after you get in
             touch. If your inquiry progresses to a grant application, the
             overall process may take a few weeks to a few months depending on

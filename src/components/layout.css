@@ -778,6 +778,18 @@ nav a:after {
   margin-left: -10px;
 }
 
+.show {
+  visibility: visable;
+  opacity: 1;
+  transition: visibility 1s, opacity 1s linear;
+}
+
+.hide {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 1s, opacity 1s linear;
+}
+
 .hero-icon {
   position: relative;
   animation: chevron-bounce 1s ease-out 0s infinite;
@@ -795,6 +807,12 @@ nav a:after {
 
   100% {
     top: 0px;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-link {
+    bottom: 30px;
   }
 }
 
