@@ -107,8 +107,8 @@ const FAQPage = ({ data }) => {
             what you decide to include.
           </p>
           <p>
-            <strong>Can grants be paid out in ETH?</strong>
-            We can provide payment in ETH or Fiat currency.
+            <strong>Can grants be paid out in ETH?</strong> We can provide
+            payment in ETH or Fiat currency.
           </p>
         </div>
         <div className="helpful-links">

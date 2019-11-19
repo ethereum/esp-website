@@ -8,12 +8,12 @@ const formData = {
   project: {
     embedURL: "https://airtable.com/embed/shrYI1Wb0KlDurdfj",
     desktopHeight: 2320,
-    mobileHeight: 2690,
+    mobileHeight: 2900,
   },
   explore: {
     embedURL: "https://airtable.com/embed/shrbQqhJ28dlPmAjd",
     desktopHeight: 2240,
-    mobileHeight: 2520,
+    mobileHeight: 2700,
   },
 }
 
