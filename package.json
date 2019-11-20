@@ -1,8 +1,8 @@
 {
-  "name": "esp",
+  "name": "esp-website",
   "private": true,
   "description": "The website for ecosystem.support",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "Sam Richards <sam.richards@ethereum.org>",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
