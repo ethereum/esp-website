@@ -18,6 +18,13 @@ class Layout extends React.Component {
   // & still use staticQuery for the image loading
   componentDidMount = () => {
     window.addEventListener("scroll", this.handleScroll)
+
+    // add smooth scroll behavior for anchor links
+    // https://medium.com/@chrisfitkin/how-to-smooth-scroll-links-in-gatsby-3dc445299558
+    if (typeof window !== "undefined") {
+      // eslint-disable-next-line global-require
+      require("smooth-scroll")('a[href*="#"]')
+    }
   }
 
   componentWillUnmount = () => {
