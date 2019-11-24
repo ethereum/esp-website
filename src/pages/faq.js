@@ -1,12 +1,12 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
-import Layout from "../components/layout"
+
 import SEO from "../components/seo"
 
 const FAQPage = ({ data }) => {
   return (
-    <Layout>
+    <>
       <SEO title="FAQ" />
       <div className="page-content">
         <div className="question">
@@ -153,7 +153,7 @@ const FAQPage = ({ data }) => {
           </ul>
         </div>
       </div>
-    </Layout>
+    </>
   )
 }
 

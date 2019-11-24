@@ -1,9 +1,30 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { motion, AnimatePresence } from 'framer-motion'
 
 import Footer from "./footer"
 import Nav from "./nav"
 import "./layout.css"
+
+const duration = 0.5
+
+const variants = {
+  initial: {
+    opacity: 0,
+  },
+  enter: {
+    opacity: 1,
+    transition: {
+      duration: duration,
+      delay: duration,
+      when: 'beforeChildren',
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: { duration: duration },
+  },
+}
 
 class Layout extends React.Component {
   constructor(props) {
@@ -55,7 +76,17 @@ class Layout extends React.Component {
               paddingTop: 0,
             }}
           >
-            <main>{this.props.children}</main>
+          <AnimatePresence>
+            <motion.main
+              key={window.location.pathname}
+              variants={variants}
+              initial="initial"
+              animate="enter"
+              exit="exit"
+            >
+            {this.props.children}
+            </motion.main>
+          </AnimatePresence>
           </div>
           <Footer />
           <div className="line bottom"></div>

@@ -1,11 +1,11 @@
 import React from "react"
 import { Link } from "gatsby"
-import Layout from "../components/layout"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
+
 import SEO from "../components/seo"
 import horzLogo from "../images/horz-logo.svg"
 import vertLogo from "../images/vert-logo.svg"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
 
 class IndexPage extends React.Component {
   constructor(props) {
@@ -34,7 +34,7 @@ class IndexPage extends React.Component {
 
   render() {
     return (
-      <Layout>
+      <>
         <SEO title="Home" />
         <div>
           <div
@@ -97,7 +97,7 @@ class IndexPage extends React.Component {
             </div>
           </div>
         </div>
-      </Layout>
+      </>
     )
   }
 }
