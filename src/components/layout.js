@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from "framer-motion"
 
 import Footer from "./footer"
 import Nav from "./nav"
@@ -17,7 +17,7 @@ const variants = {
     transition: {
       duration: duration,
       delay: duration,
-      when: 'beforeChildren',
+      when: "beforeChildren",
     },
   },
   exit: {
@@ -76,17 +76,17 @@ class Layout extends React.Component {
               paddingTop: 0,
             }}
           >
-          <AnimatePresence>
-            <motion.main
-              key={window.location.pathname}
-              variants={variants}
-              initial="initial"
-              animate="enter"
-              exit="exit"
-            >
-            {this.props.children}
-            </motion.main>
-          </AnimatePresence>
+            <AnimatePresence>
+              <motion.main
+                key={window.location.pathname}
+                variants={variants}
+                initial="initial"
+                animate="enter"
+                exit="exit"
+              >
+                {this.props.children}
+              </motion.main>
+            </AnimatePresence>
           </div>
           <Footer />
           <div className="line bottom"></div>
