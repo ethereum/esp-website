@@ -13,17 +13,19 @@ const AccordianSection = ({
   // By using `AnimatePresence` to mount and unmount the contents, we can animate
   // them in and out while also only rendering the contents of open accordions
   return (
-    <>
-      <motion.header
+    <div className="accordian-section">
+      <motion.h3
+        className="accordian-header"
         initial={false}
-        animate={{ backgroundColor: isOpen ? "#FF0088" : "#0055FF" }}
+        animate={{ backgroundColor: isOpen ? "#f26b38" : "#999999" }}
         onClick={() => setExpanded(isOpen ? false : i)}
       >
         {headerText}
-      </motion.header>
+      </motion.h3>
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.section
+            className="accordian-section"
             key="content"
             initial="collapsed"
             animate="open"
@@ -37,14 +39,14 @@ const AccordianSection = ({
             <motion.div
               variants={{ collapsed: { scale: 0.8 }, open: { scale: 1 } }}
               transition={{ duration: 0.8 }}
-              className="content-placeholder"
+              className="accordian-content"
             >
               {children}
             </motion.div>
           </motion.section>
         )}
       </AnimatePresence>
-    </>
+    </div>
   )
 }
 
