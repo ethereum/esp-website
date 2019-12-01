@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 import { faMinus } from "@fortawesome/free-solid-svg-icons"
 
-const AccordianSection = ({
+const AccordionSection = ({
   i,
   expanded,
   setExpanded,
@@ -17,23 +17,23 @@ const AccordianSection = ({
   // By using `AnimatePresence` to mount and unmount the contents, we can animate
   // them in and out while also only rendering the contents of open accordions
   return (
-    <div className="accordian-section">
+    <div className="accordion-section">
       <motion.header
-        className="accordian-header"
+        className="accordion-header"
         initial={false}
         animate={{ backgroundColor: isOpen ? "#f26b38" : "#999999" }}
         whileHover={{ backgroundColor: "#f26b38" }}
         onClick={() => setExpanded(isOpen ? false : i)}
       >
         <span>
-          <FontAwesomeIcon className="accordian-icon" icon={icon} />
+          <FontAwesomeIcon className="accordion-icon" icon={icon} />
         </span>
         <span>{headerText}</span>
       </motion.header>
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.section
-            className="accordian-section"
+            className="accordion-section"
             key="content"
             initial="collapsed"
             animate="open"
@@ -47,7 +47,7 @@ const AccordianSection = ({
             <motion.div
               variants={{ collapsed: { scale: 0.8 }, open: { scale: 1 } }}
               transition={{ duration: 0.8 }}
-              className="accordian-content"
+              className="accordion-content"
             >
               {children}
             </motion.div>
@@ -58,4 +58,4 @@ const AccordianSection = ({
   )
 }
 
-export default AccordianSection
+export default AccordionSection

@@ -997,19 +997,19 @@ footer .footer-legal:hover {
   }
 }
 
-/* Accordian */
+/* Accordion */
 
-.accordian-container {
+.accordion-container {
   margin-top: 40px;
   margin-bottom: 40px;
 }
 
-.accordian-content {
+.accordion-content {
   padding: 20px;
   transform-origin: top center;
 }
 
-.accordian-header {
+.accordion-header {
   display: flex;
 
   border-radius: 10px;
@@ -1020,16 +1020,16 @@ footer .footer-legal:hover {
   font-size: 1.2rem;
 }
 
-.accordian-icon {
+.accordion-icon {
   margin-right: 16px;
 }
 
-.accordian-section {
+.accordion-section {
   overflow: hidden;
 }
 
 @media (max-width: 600px) {
-  .accordian-content {
+  .accordion-content {
     padding-left: 20px;
   }
 }

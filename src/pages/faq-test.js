@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import SEO from "../components/seo"
 import { useState } from "react"
-import AccordianSection from "../components/accordian"
+import AccordionSection from "../components/accordion"
 
 const TestPage = ({ data }) => {
   // This approach is if you only want max one section open at a time. If you want multiple
@@ -15,9 +15,9 @@ const TestPage = ({ data }) => {
       <SEO title="Thanks" />
       <div className="page-content">
         <h1>Ecosystem Support Program FAQ</h1>
-        <div className="accordian-container">
+        <div className="accordion-container">
           {/* <h2>About the Program</h2> */}
-          <AccordianSection
+          <AccordionSection
             key={0}
             i={0}
             expanded={expanded}
@@ -36,8 +36,8 @@ const TestPage = ({ data }) => {
               together to establish realistic goals and offering support
               targeted to facilitate those goals.
             </p>
-          </AccordianSection>
-          <AccordianSection
+          </AccordionSection>
+          <AccordionSection
             key={1}
             i={1}
             expanded={expanded}
@@ -76,9 +76,9 @@ const TestPage = ({ data }) => {
               looking for is not on this list, please get in touch and let us
               know what you need!
             </p>
-          </AccordianSection>
+          </AccordionSection>
           {/* <h2>About the Process</h2> */}
-          <AccordianSection
+          <AccordionSection
             key={3}
             i={3}
             expanded={expanded}
@@ -109,8 +109,8 @@ const TestPage = ({ data }) => {
               mentorship, introductions to domain experts, or facilitated
               collaborations.
             </p>
-          </AccordianSection>
-          <AccordianSection
+          </AccordionSection>
+          <AccordionSection
             key={4}
             i={4}
             expanded={expanded}
@@ -150,7 +150,7 @@ const TestPage = ({ data }) => {
               <strong>Can grants be paid out in ETH?</strong> We can provide
               payment in ETH or Fiat currency.
             </p>
-          </AccordianSection>
+          </AccordionSection>
         </div>
         <div className="helpful-links">
           <h2>Helpful links</h2>
