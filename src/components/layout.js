@@ -78,7 +78,7 @@ class Layout extends React.Component {
           >
             <AnimatePresence>
               <motion.main
-                key={window.location.pathname}
+                key={this.props.location.pathname}
                 variants={variants}
                 initial="initial"
                 animate="enter"
