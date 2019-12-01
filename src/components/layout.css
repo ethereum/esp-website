@@ -1010,11 +1010,18 @@ footer .footer-legal:hover {
 }
 
 .accordian-header {
+  display: flex;
+
   border-radius: 10px;
   color: white;
   cursor: pointer;
   padding: 20px;
   margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+.accordian-icon {
+  margin-right: 16px;
 }
 
 .accordian-section {

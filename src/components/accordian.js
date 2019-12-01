@@ -1,5 +1,8 @@
 import React from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faPlus } from "@fortawesome/free-solid-svg-icons"
+import { faMinus } from "@fortawesome/free-solid-svg-icons"
 
 const AccordianSection = ({
   i,
@@ -9,19 +12,24 @@ const AccordianSection = ({
   children,
 }) => {
   const isOpen = i === expanded
+  const icon = isOpen ? faMinus : faPlus
 
   // By using `AnimatePresence` to mount and unmount the contents, we can animate
   // them in and out while also only rendering the contents of open accordions
   return (
     <div className="accordian-section">
-      <motion.h3
+      <motion.header
         className="accordian-header"
         initial={false}
         animate={{ backgroundColor: isOpen ? "#f26b38" : "#999999" }}
+        whileHover={{ backgroundColor: "#f26b38" }}
         onClick={() => setExpanded(isOpen ? false : i)}
       >
-        {headerText}
-      </motion.h3>
+        <span>
+          <FontAwesomeIcon className="accordian-icon" icon={icon} />
+        </span>
+        <span>{headerText}</span>
+      </motion.header>
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.section

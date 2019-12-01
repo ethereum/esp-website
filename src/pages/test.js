@@ -14,8 +14,9 @@ const TestPage = ({ data }) => {
     <>
       <SEO title="Thanks" />
       <div className="page-content">
-        <h2>About the Ecosystem Support Program</h2>
+        <h1>Ecosystem Support Program FAQ</h1>
         <div className="accordian-container">
+          {/* <h2>About the Program</h2> */}
           <AccordianSection
             key={0}
             i={0}
@@ -76,6 +77,7 @@ const TestPage = ({ data }) => {
               know what you need!
             </p>
           </AccordianSection>
+          {/* <h2>About the Process</h2> */}
           <AccordianSection
             key={3}
             i={3}
