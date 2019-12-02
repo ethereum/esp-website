@@ -16,7 +16,7 @@ const TestPage = ({ data }) => {
       <div className="page-content">
         <h1>Ecosystem Support Program FAQ</h1>
         <div className="accordion-container">
-          {/* <h2>About the Program</h2> */}
+          <h2>About the Program</h2>
           <AccordionSection
             key={0}
             i={0}
@@ -77,7 +77,7 @@ const TestPage = ({ data }) => {
               know what you need!
             </p>
           </AccordionSection>
-          {/* <h2>About the Process</h2> */}
+          <h2>About the Process</h2>
           <AccordionSection
             key={3}
             i={3}
@@ -94,25 +94,39 @@ const TestPage = ({ data }) => {
               Ecosystem Support Program is a good fit for your project is
               through a two-way conversation.
             </p>
+          </AccordionSection>
+          <AccordionSection
+            key={4}
+            i={4}
+            expanded={expanded}
+            setExpanded={setExpanded}
+            headerText="What types of projects are you interested in?"
+          >
             <p>
-              <strong>What types of projects are you interested in?</strong>{" "}
               Some previous areas of focus have been 2.0 clients, state
               channels, scaling/layer 2, zero knowledge proofs and more - but
               we’re always open to new ideas. If you think your project will
               make Ethereum better for everyone, we want to hear about it!
             </p>
+          </AccordionSection>
+          <AccordionSection
+            key={5}
+            i={5}
+            expanded={expanded}
+            setExpanded={setExpanded}
+            headerText="Are you open to enterprise?"
+          >
             <p>
-              <strong>Are you open to enterprise?</strong> Of course! We are
-              happy to work with for-profit entities that are contributing to
-              the Ethereum ecosystem, although enterprise projects are likely to
-              be better suited to receive non-financial support such as
-              mentorship, introductions to domain experts, or facilitated
-              collaborations.
+              Of course! We are happy to work with for-profit entities that are
+              contributing to the Ethereum ecosystem, although enterprise
+              projects are likely to be better suited to receive non-financial
+              support such as mentorship, introductions to domain experts, or
+              facilitated collaborations.
             </p>
           </AccordionSection>
           <AccordionSection
-            key={4}
-            i={4}
+            key={6}
+            i={6}
             expanded={expanded}
             setExpanded={setExpanded}
             headerText="What happens after an inquiry is submitted?"
@@ -132,24 +146,41 @@ const TestPage = ({ data }) => {
               fluid={data.file.childImageSharp.fluid}
               alt="Ecosystem Support Program Process"
             />
+          </AccordionSection>
+          <AccordionSection
+            key={7}
+            i={7}
+            expanded={expanded}
+            setExpanded={setExpanded}
+            headerText="How long will it take before I hear back from you?"
+          >
             <p>
-              <strong>
-                How long will it take before I hear back from you?
-              </strong>{" "}
               You should hear from us within about two weeks after you get in
               touch. If your inquiry progresses to a grant application, the
               overall process may take a few weeks to a few months depending on
               the scope and complexity of your project.
             </p>
+          </AccordionSection>
+          <AccordionSection
+            key={8}
+            i={8}
+            expanded={expanded}
+            setExpanded={setExpanded}
+            headerText="Is my application confidential?"
+          >
             <p>
-              <strong>Is my application confidential?</strong> Any information
-              you provide may be shared in the peer-review process, so be
-              mindful of what you decide to include.
+              Any information you provide may be shared in the peer-review
+              process, so be mindful of what you decide to include.
             </p>
-            <p>
-              <strong>Can grants be paid out in ETH?</strong> We can provide
-              payment in ETH or Fiat currency.
-            </p>
+          </AccordionSection>
+          <AccordionSection
+            key={9}
+            i={9}
+            expanded={expanded}
+            setExpanded={setExpanded}
+            headerText="Can grants be paid out in ETH?"
+          >
+            <p>We can provide payment in ETH or Fiat currency.</p>
           </AccordionSection>
         </div>
         <div className="helpful-links">

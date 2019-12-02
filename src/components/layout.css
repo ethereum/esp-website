@@ -1011,12 +1011,11 @@ footer .footer-legal:hover {
 
 .accordion-header {
   display: flex;
-
-  border-radius: 10px;
+  border-radius: 6px;
   color: white;
   cursor: pointer;
-  padding: 20px;
-  margin-bottom: 20px;
+  padding: 16px;
+  margin-bottom: 16px;
   font-size: 1.2rem;
 }
 
