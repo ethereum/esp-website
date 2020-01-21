@@ -1,6 +1,6 @@
 {
   "name": "esp-website",
-  "private": true,
+  "private": false,
   "description": "The website for ecosystem.support",
   "version": "1.0.0",
   "author": "Sam Richards <sam.richards@ethereum.org>",
@@ -30,7 +30,8 @@
     "prettier": "^1.19.1"
   },
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "ethereum"
   ],
   "license": "MIT",
   "scripts": {
@@ -43,9 +44,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/ethereum/esp-website"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/ethereum/esp-website/issues"
   }
 }
