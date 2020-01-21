@@ -21,8 +21,6 @@ const AccordionSection = ({
       <motion.header
         className="accordion-header"
         initial={false}
-        animate={{ backgroundColor: isOpen ? "#f26b38" : "#999999" }}
-        whileHover={{ backgroundColor: "#f26b38" }}
         onClick={() => setExpanded(isOpen ? false : i)}
       >
         <span>
