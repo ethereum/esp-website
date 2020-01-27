@@ -1,35 +1,26 @@
-import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import React, { useState, useEffect } from "react"
 
 const Pinboard = () => {
-  const data = useStaticQuery(graphql`
-    query PinboardQuery {
-      records: allAirtable(
-        filter: { table: { eq: "Records" } }
-        sort: { fields: data___Title, order: DESC }
-      ) {
-        nodes {
-          data {
-            Title
-            Description
-          }
-          recordId
-        }
-      }
-    }
-  `)
+  const [pins, setPins] = useState(0) // TODO set initial state for loading pins
+  useEffect(() => {
+    fetch("/.netlify/functions/pinboard")
+      .then(response => response.json())
+      .then(result => {
+        setPins(result.data.records)
+      })
+  }, [])
 
   return (
     <>
       <h3>Pinboard</h3>
-
       <ul>
-        {data.records.nodes.map((item, i) => (
-          <li key={item.recordId}>
-            <p>{item.data.Title}</p>
-            <p>{item.data.Description}</p>
-          </li>
-        ))}
+        {pins.length &&
+          pins.map((item, i) => (
+            <li key={item.id}>
+              <p>{item.fields.Title}</p>
+              <p>{item.fields.Description}</p>
+            </li>
+          ))}
       </ul>
     </>
   )

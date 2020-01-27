@@ -3,7 +3,7 @@ import React from "react"
 import Pinboard from "../components/pinboard"
 import SEO from "../components/seo"
 
-const ProjectPage = () => (
+const EventsPage = () => (
   <>
     <SEO title="Current Events" />
     <div className="page-content">
@@ -12,4 +12,4 @@ const ProjectPage = () => (
   </>
 )
 
-export default ProjectPage
+export default EventsPage
