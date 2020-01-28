@@ -9,7 +9,9 @@
     "@fortawesome/free-brands-svg-icons": "^5.11.2",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
     "@fortawesome/react-fontawesome": "^0.1.7",
+    "analytics-node": "^3.4.0-beta.1",
     "axios": "^0.19.2",
+    "babel-plugin-styled-components": "^1.10.7",
     "framer-motion": "^1.6.17",
     "gatsby": "^2.17.11",
     "gatsby-image": "^2.2.31",
@@ -19,6 +21,7 @@
     "gatsby-plugin-prefetch-google-fonts": "^1.4.3",
     "gatsby-plugin-react-helmet": "^3.1.14",
     "gatsby-plugin-sharp": "^2.2.37",
+    "gatsby-plugin-styled-components": "^3.1.18",
     "gatsby-source-filesystem": "^2.1.36",
     "gatsby-transformer-sharp": "^2.3.3",
     "netlify-lambda": "^1.6.3",
@@ -26,7 +29,8 @@
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-helmet": "^5.2.1",
-    "smooth-scroll": "^16.1.0"
+    "smooth-scroll": "^16.1.0",
+    "styled-components": "^5.0.0"
   },
   "devDependencies": {
     "prettier": "^1.19.1"
