@@ -954,27 +954,17 @@ footer .footer-legal:hover {
   }
 }
 
+/* TODO move to styled components */
+
 /* Pages */
 
 .page-content {
-  padding: 180px 16px 0;
-  /* desktop:
-  nav: 75px
-  lines: 50px
-  footer: 27.5px
-  */
-  min-height: calc(100vh - 152.5px);
+  padding-top: 180px;
 }
 
 @media (max-width: 480px) {
   .page-content {
-    padding: 120px 16px 0;
-    /* mobile:
-    nav: 75px
-    lines: 36px
-    footer: 23px
-    */
-    min-height: calc(100vh - 104px);
+    padding-top: 120px;
   }
 }
 /* FAQ page */

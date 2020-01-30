@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { motion, AnimatePresence } from "framer-motion"
+import styled from "styled-components"
 
 import Footer from "./footer"
 import Nav from "./nav"
@@ -25,6 +26,16 @@ const variants = {
     transition: { duration: duration },
   },
 }
+
+const Main = styled(motion.main)`
+  padding-top: 75px;
+  /* lines (25px * 2) + footer (87.5px) = 137.6px */
+  min-height: calc(100vh - 137.5px);
+  @media (max-width: 480px) {
+    /* lines (18px * 2) + footer (53px) = 89px */
+    min-height: calc(100vh - 89px);
+  }
+`
 
 class Layout extends React.Component {
   constructor(props) {
@@ -69,15 +80,9 @@ class Layout extends React.Component {
         <div className="line right"></div>
         <div className="layout">
           <Nav hasShadow={this.state.hasNavShadow} />
-          <div
-            style={{
-              margin: `0 auto 1rem`,
-              maxWidth: `780px`,
-              paddingTop: 0,
-            }}
-          >
+          <div>
             <AnimatePresence>
-              <motion.main
+              <Main
                 key={this.props.location.pathname}
                 variants={variants}
                 initial="initial"
@@ -85,7 +90,7 @@ class Layout extends React.Component {
                 exit="exit"
               >
                 {this.props.children}
-              </motion.main>
+              </Main>
             </AnimatePresence>
           </div>
           <Footer />
