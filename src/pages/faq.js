@@ -13,6 +13,11 @@ const H2 = styled.h2`
   font-weight: bold;
 `
 
+const AccordionContainer = styled.div`
+  margin-top: 40px;
+  margin-bottom: 40px;
+`
+
 const FAQPage = ({ data }) => {
   // This approach is if you only want max one section open at a time. If you want multiple
   // sections to potentially be open simultaneously, they can all be given their own `useState`.
@@ -26,7 +31,7 @@ const FAQPage = ({ data }) => {
           <H1>Ecosystem Support Program FAQ</H1>
         </PageHeader>
         <PageBody>
-          <div className="accordion-container">
+          <AccordionContainer>
             <H2>About the Program</H2>
             <AccordionSection
               key={0}
@@ -193,7 +198,7 @@ const FAQPage = ({ data }) => {
             >
               <p>We can provide payment in ETH or Fiat currency.</p>
             </AccordionSection>
-          </div>
+          </AccordionContainer>
           <div className="helpful-links">
             <h2>Helpful links</h2>
             <ul>
