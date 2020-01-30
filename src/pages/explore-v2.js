@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import SEO from "../components/seo"
+import { REFERRAL_SOURCES } from "../utils/form-inputs"
 // import horzLogo from "../images/horz-logo.svg"
 // import vertLogo from "../images/vert-logo.svg"
 
@@ -204,12 +205,23 @@ class ExplorePageV2 extends React.Component {
             </Label>
             <Label>
               How did you hear about Ecosystem Support?
-              <Input
-                type="text"
+              <select
+                required
+                defaultValue={"DEFAULT"}
                 name="referralSource"
-                value={this.state.referralSource}
                 onChange={this.handleInputChange}
-              />
+              >
+                <option hidden disabled value="DEFAULT">
+                  -- select an option --
+                </option>
+                {REFERRAL_SOURCES.map((source, i) => {
+                  return (
+                    <option key={i} value={source}>
+                      {source}
+                    </option>
+                  )
+                })}
+              </select>
             </Label>
             <Label>
               Did anyone recommend that you contact Ecosystem Support? If so,
