@@ -7,7 +7,7 @@ export const PageBody = styled.div`
 `
 
 export const PageHeader = styled.div`
-  height: 150px;
+  height: 120px;
   background-image: linear-gradient(to right, #ffcf47, #c6566c);
   display: flex;
   justify-content: center;
