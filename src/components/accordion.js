@@ -5,6 +5,8 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons"
 import { faMinus } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
 
+import * as styles from "../utils/styles"
+
 const Content = styled(motion.div)`
   padding: 20px;
   transform-origin: top center;
@@ -49,12 +51,11 @@ const AccordionSection = ({
   // them in and out while also only rendering the contents of open accordions
   return (
     <Container>
-      {/* TODO move colors as variables to central file*/}
       <Header
         initial={false}
         animate={{
-          backgroundColor: isOpen ? "#eb7b51" : "#FFFFFF",
-          color: isOpen ? "#FFFFFF" : "#26293b",
+          backgroundColor: isOpen ? styles.colorDullOrange : styles.colorWhite,
+          color: isOpen ? styles.colorWhite : styles.colorDarkGray,
         }}
         onClick={() => setExpanded(isOpen ? false : i)}
       >

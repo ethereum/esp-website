@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
 
 import SEO from "../components/seo"
-import { PageBody } from "../components/SharedStyledComponents"
+import { PageBody, StyledLink } from "../components/SharedStyledComponents"
 import horzLogo from "../images/horz-logo.svg"
 import vertLogo from "../images/vert-logo.svg"
 
@@ -59,14 +59,14 @@ class IndexPage extends React.Component {
                 alt="Ecosystem Support Program Vertical Logo"
               />
             </div>
-            <Link
+            <StyledLink
               to="/#welcome"
               className={
                 "hero-link " + (this.state.showHeroLink ? "show" : "hide")
               }
             >
               <FontAwesomeIcon className="hero-icon" icon={faChevronDown} />
-            </Link>
+            </StyledLink>
           </div>
           <PageBody>
             <div id="welcome" style={{ padding: `16px` }}>

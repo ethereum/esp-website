@@ -1,12 +1,17 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import styled from "styled-components"
 
 import SEO from "../components/seo"
 import { useState } from "react"
 import AccordionSection from "../components/accordion"
-import { PageBody, PageHeader, H1 } from "../components/SharedStyledComponents"
+import {
+  PageBody,
+  PageHeader,
+  H1,
+  StyledLink,
+} from "../components/SharedStyledComponents"
 
 const H2 = styled.h2`
   font-weight: bold;
@@ -110,10 +115,10 @@ const FAQPage = ({ data }) => {
               <p>
                 We don’t accept grant applications directly through our website,
                 but rather invite interested parties to get in touch through our{" "}
-                <Link to="/project/">inquiry form</Link>. Newcomers to Ethereum,
-                established projects, and past grantees are all welcome to
-                submit an inquiry. Consider this inquiry the start of a
-                conversation, and we’ll help you decide whether applying for a
+                <StyledLink to="/project/">inquiry form</StyledLink>. Newcomers
+                to Ethereum, established projects, and past grantees are all
+                welcome to submit an inquiry. Consider this inquiry the start of
+                a conversation, and we’ll help you decide whether applying for a
                 grant or other support is the right next step for you.
               </p>
             </AccordionSection>

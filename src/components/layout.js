@@ -6,6 +6,7 @@ import styled from "styled-components"
 import Footer from "./footer"
 import Nav from "./nav"
 import "./layout.css"
+import * as styles from "../utils/styles"
 
 const duration = 0.5
 
@@ -31,7 +32,7 @@ const Main = styled(motion.main)`
   padding-top: 75px;
   /* lines (25px * 2) + footer (87.5px) = 137.6px */
   min-height: calc(100vh - 137.5px);
-  @media (max-width: 480px) {
+  @media (max-width: ${styles.screenSizeS}) {
     /* lines (18px * 2) + footer (53px) = 89px */
     min-height: calc(100vh - 89px);
   }
