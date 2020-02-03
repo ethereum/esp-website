@@ -21,6 +21,8 @@ const NavLinkMain = styled(StyledLink)`
   display: flex;
   align-items: center;
   color: black;
+  margin-right: 20px;
+  padding: 0 0 10px 0;
 `
 
 const NavLink = styled(StyledLink)`
