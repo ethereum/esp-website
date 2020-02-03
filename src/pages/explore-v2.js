@@ -1,7 +1,10 @@
 import React from "react"
 import styled from "styled-components"
 import SEO from "../components/seo"
-import { REFERRAL_SOURCES } from "../utils/form-inputs"
+import { REFERRAL_SOURCES, COUNTRIES } from "../utils/form-inputs"
+import { PageBody } from "../components/SharedStyledComponents"
+import { navigate } from "gatsby"
+import * as styles from "../utils/styles"
 // import horzLogo from "../images/horz-logo.svg"
 // import vertLogo from "../images/vert-logo.svg"
 
@@ -28,22 +31,58 @@ const Label = styled.label`
 `
 
 const Input = styled.input`
+  margin-top: 8px;
   border: 2px solid #d1d1d1;
 `
 const TextArea = styled.textarea`
+  margin-top: 8px;
   border: 2px solid #d1d1d1;
+`
+
+const Select = styled.select`
+  margin-top: 8px;
+  border: 2px solid #d1d1d1;
+  background-color: ${styles.colorWhite};
+`
+
+const Button = styled.button`
+  text-transform: uppercase;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1.5;
+  text-align: center;
+  border-radius: 20px;
+  color: #ffffff;
+  background: #e66981;
+  border: 1px solid #e66981;
+  font-size: 1.1rem;
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+  padding: 15px 30px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -webkit-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+
+  &:hover {
+    color: #ffffff;
+    background: #d05d73;
+  }
 `
 
 class ExplorePageV2 extends React.Component {
   state = {
-    nameOrProject: "",
-    profile: "",
+    projectName: "",
+    teamProfile: "",
     areaOfExpertise: "",
     whyEthereum: "",
-    recentProjectDevelopment: "",
+    recentProjectsOrDevelopments: "",
     previousWork: "",
     questions: "",
-    location: "",
+    city: "",
+    country: "",
     contactEmail: "",
     referralSource: "",
     referralName: "",
@@ -74,6 +113,7 @@ class ExplorePageV2 extends React.Component {
       .then(response => response.json())
       .then(result => {
         console.log("Inquiry Success:", { result })
+        navigate("/thanks/")
       })
       .catch(error => {
         console.error("Inquiry Error:", error)
@@ -84,7 +124,7 @@ class ExplorePageV2 extends React.Component {
     return (
       <>
         <SEO title="Explore Inquiry" />
-        <div className="page-content">
+        <PageBody>
           {/* <div className="image">
             <img
               className="horz-logo"
@@ -108,11 +148,11 @@ class ExplorePageV2 extends React.Component {
           </Header>
           <Form onSubmit={this.handleSubmit}>
             <Label>
-              Name or project
+              Project name
               <Input
                 type="text"
-                name="nameOrProject"
-                value={this.state.nameOrProject}
+                name="projectName"
+                value={this.state.projectName}
                 onChange={this.handleInputChange}
               />
             </Label>
@@ -125,8 +165,8 @@ class ExplorePageV2 extends React.Component {
                 </small>
               </div>
               <TextArea
-                name="profile"
-                value={this.state.profile}
+                name="teamProfile"
+                value={this.state.teamProfile}
                 onChange={this.handleInputChange}
               />
             </Label>
@@ -156,8 +196,8 @@ class ExplorePageV2 extends React.Component {
               What's a project or development that you were excited about
               recently?
               <TextArea
-                name="recentProjectDevelopment"
-                value={this.state.recentProjectDevelopment}
+                name="recentProjectsOrDevelopments"
+                value={this.state.recentProjectsOrDevelopments}
                 onChange={this.handleInputChange}
               />
             </Label>
@@ -184,13 +224,33 @@ class ExplorePageV2 extends React.Component {
               />
             </Label>
 
-            {/* TODO update to search dropdown? break out into city/country? or leave as text Input? */}
             <Label>
-              Where are you located?
+              What country are you located in?
+              <Select
+                required
+                defaultValue={"DEFAULT"}
+                name="country"
+                onChange={this.handleInputChange}
+              >
+                <option hidden disabled value="DEFAULT">
+                  -- select an option --
+                </option>
+                {COUNTRIES.map((source, i) => {
+                  return (
+                    <option key={i} value={source}>
+                      {source}
+                    </option>
+                  )
+                })}
+              </Select>
+            </Label>
+
+            <Label>
+              What city are you located in?
               <Input
                 type="text"
-                name="location"
-                value={this.state.location}
+                name="city"
+                value={this.state.city}
                 onChange={this.handleInputChange}
               />
             </Label>
@@ -205,7 +265,7 @@ class ExplorePageV2 extends React.Component {
             </Label>
             <Label>
               How did you hear about Ecosystem Support?
-              <select
+              <Select
                 required
                 defaultValue={"DEFAULT"}
                 name="referralSource"
@@ -221,7 +281,7 @@ class ExplorePageV2 extends React.Component {
                     </option>
                   )
                 })}
-              </select>
+              </Select>
             </Label>
             <Label>
               Did anyone recommend that you contact Ecosystem Support? If so,
@@ -234,10 +294,10 @@ class ExplorePageV2 extends React.Component {
               />
             </Label>
             <div>
-              <button type="submit">Submit</button>
+              <Button type="submit">Submit</Button>
             </div>
           </Form>
-        </div>
+        </PageBody>
       </>
     )
   }

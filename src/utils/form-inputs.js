@@ -115,7 +115,6 @@ export const COUNTRIES = [
   "Kiribati",
   "Comoros",
   "Saint Kitts and Nevis",
-  "Korea, Democratic People's Republic of",
   "Korea, Republic of",
   "Kuwait",
   "Cayman Islands",

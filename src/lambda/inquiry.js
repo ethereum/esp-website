@@ -17,22 +17,35 @@ exports.handler = async (event, context) => {
     .update(email)
     .digest("hex")
 
-  // TODO add property mappings to CRM
+  // Do not change these trait object keys
+  // They map to specific CRM fields
   analytics.identify({
     userId,
     traits: {
-      name: params.nameOrProject,
-      title: "VP of Derp",
-      email,
-      company: "Initech",
-      phone: "570-690-4150",
-      state: "California",
-      rating: "Hot",
-      city: "east greenwich",
-      postalCode: "94115",
-      country: "USA",
-      street: "19123 forest lane",
-      state: "RI",
+      Name: params.projectName,
+      Title: params.title,
+      Email: email,
+      Company: params.projectName,
+      City: params.city,
+      Country: params.country,
+      LeadSource: "Website Form",
+      // Custom fields
+      Previous_Work: params.previousWork,
+      How_did_you_hear_about_us: params.referralSource,
+      Recommenders: params.referralName,
+      Type_of_Inquiry: params.challenges
+        ? "Project"
+        : "Exploring Possibilities",
+      // Explore custom fields
+      Team_Members: params.teamProfile,
+      Area_of_Expertise: params.areaOfExpertise,
+      Why_Ethereum: params.whyEthereum,
+      Recent_Projects_or_Developments: params.recentProjectsOrDevelopments,
+      Questions: params.questions,
+      // Project custom fields
+      Description: params.projectDescription,
+      Challenges: params.challenges,
+      Impact: params.impact,
     },
     integrations: {
       Salesforce: true,
