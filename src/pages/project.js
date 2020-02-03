@@ -1,13 +1,16 @@
 import React from "react"
-import Layout from "../components/layout"
+
 import Airtable from "../components/airtable"
 import SEO from "../components/seo"
+import { PageBody } from "../components/SharedStyledComponents"
 
 const ProjectPage = () => (
-  <Layout>
+  <>
     <SEO title="Project Inquiry" />
-    <Airtable form="project" />
-  </Layout>
+    <PageBody>
+      <Airtable form="project" />
+    </PageBody>
+  </>
 )
 
 export default ProjectPage

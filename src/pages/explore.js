@@ -1,13 +1,16 @@
 import React from "react"
-import Layout from "../components/layout"
+
 import Airtable from "../components/airtable"
 import SEO from "../components/seo"
+import { PageBody } from "../components/SharedStyledComponents"
 
 const ExplorePage = () => (
-  <Layout>
+  <>
     <SEO title="Explore Inquiry" />
-    <Airtable form="explore" />
-  </Layout>
+    <PageBody>
+      <Airtable form="explore" />
+    </PageBody>
+  </>
 )
 
 export default ExplorePage

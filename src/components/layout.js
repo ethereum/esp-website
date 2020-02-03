@@ -1,9 +1,42 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { motion, AnimatePresence } from "framer-motion"
+import styled from "styled-components"
 
 import Footer from "./footer"
 import Nav from "./nav"
 import "./layout.css"
+import * as styles from "../utils/styles"
+
+const duration = 0.5
+
+const variants = {
+  initial: {
+    opacity: 0,
+  },
+  enter: {
+    opacity: 1,
+    transition: {
+      duration: duration,
+      delay: duration,
+      when: "beforeChildren",
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: { duration: duration },
+  },
+}
+
+const Main = styled(motion.main)`
+  padding-top: 75px;
+  /* lines (25px * 2) + footer (87.5px) = 137.6px */
+  min-height: calc(100vh - 137.5px);
+  @media (max-width: ${styles.screenSizeS}) {
+    /* lines (18px * 2) + footer (53px) = 89px */
+    min-height: calc(100vh - 89px);
+  }
+`
 
 class Layout extends React.Component {
   constructor(props) {
@@ -48,14 +81,18 @@ class Layout extends React.Component {
         <div className="line right"></div>
         <div className="layout">
           <Nav hasShadow={this.state.hasNavShadow} />
-          <div
-            style={{
-              margin: `0 auto 1rem`,
-              maxWidth: `780px`,
-              paddingTop: 0,
-            }}
-          >
-            <main>{this.props.children}</main>
+          <div>
+            <AnimatePresence>
+              <Main
+                key={this.props.location.pathname}
+                variants={variants}
+                initial="initial"
+                animate="enter"
+                exit="exit"
+              >
+                {this.props.children}
+              </Main>
+            </AnimatePresence>
           </div>
           <Footer />
           <div className="line bottom"></div>
