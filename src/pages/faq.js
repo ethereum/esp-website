@@ -9,9 +9,14 @@ import AccordionSection from "../components/accordion"
 import { PageBody, PageHeader, H1 } from "../components/SharedStyledComponents"
 
 const H2 = styled.h2`
-  text-align: center;
   font-weight: bold;
   padding-top: 30px;
+`
+
+const HR = styled.hr`
+  margin-bottom: 8px;
+  background: #e4e4e4;
+  height: 2px;
 `
 
 const AccordionContainer = styled.div`
@@ -22,7 +27,7 @@ const AccordionContainer = styled.div`
 const FAQPage = ({ data }) => {
   // This approach is if you only want max one section open at a time. If you want multiple
   // sections to potentially be open simultaneously, they can all be given their own `useState`.
-  const [expanded, setExpanded] = useState(0)
+  const [expanded, setExpanded] = useState(false)
 
   return (
     <>
@@ -33,7 +38,8 @@ const FAQPage = ({ data }) => {
         </PageHeader>
         <PageBody>
           <AccordionContainer>
-            <H2>About the Program</H2>
+            <H2>The Program</H2>
+            <HR />
             <AccordionSection
               key={0}
               i={0}
@@ -74,6 +80,7 @@ const FAQPage = ({ data }) => {
                 let us know what you need!
               </p>
             </AccordionSection>
+            <HR />
             <AccordionSection
               key={1}
               i={1}
@@ -90,7 +97,9 @@ const FAQPage = ({ data }) => {
                 facilitate those goals.
               </p>
             </AccordionSection>
+            <HR />
             <H2>Eligibility</H2>
+            <HR />
             <AccordionSection
               key={3}
               i={3}
@@ -108,6 +117,7 @@ const FAQPage = ({ data }) => {
                 grant or other support is the right next step for you.
               </p>
             </AccordionSection>
+            <HR />
             <AccordionSection
               key={4}
               i={4}
@@ -137,6 +147,7 @@ const FAQPage = ({ data }) => {
                 financial support.
               </p>
             </AccordionSection>
+            <HR />
             <AccordionSection
               key={5}
               i={5}
@@ -178,6 +189,7 @@ const FAQPage = ({ data }) => {
                 outside the box is encouraged!
               </p>
             </AccordionSection>
+            <HR />
             <AccordionSection
               key={6}
               i={6}
@@ -219,6 +231,7 @@ const FAQPage = ({ data }) => {
                 challenges so we can continue the conversation.
               </p>
             </AccordionSection>
+            <HR />
             <AccordionSection
               key={7}
               i={7}
@@ -236,7 +249,9 @@ const FAQPage = ({ data }) => {
                 the scope of their proposed work.
               </p>
             </AccordionSection>
+            <HR />
             <H2>Application Process</H2>
+            <HR />
             <AccordionSection
               key={8}
               i={8}
@@ -263,6 +278,7 @@ const FAQPage = ({ data }) => {
                 alt="Ecosystem Support Program Process"
               />
             </AccordionSection>
+            <HR />
             <AccordionSection
               key={9}
               i={9}
@@ -280,6 +296,7 @@ const FAQPage = ({ data }) => {
                 above).
               </p>
             </AccordionSection>
+            <HR />
             <AccordionSection
               key={10}
               i={10}
@@ -293,6 +310,7 @@ const FAQPage = ({ data }) => {
                 you want us to keep private!
               </p>
             </AccordionSection>
+            <HR />
             <AccordionSection
               key={11}
               i={11}
@@ -302,6 +320,7 @@ const FAQPage = ({ data }) => {
             >
               <p>We can provide payment in ETH, DAI, or Fiat currency.</p>
             </AccordionSection>
+            <HR />
           </AccordionContainer>
         </PageBody>
       </div>

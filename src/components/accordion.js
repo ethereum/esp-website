@@ -18,7 +18,6 @@ const Header = styled(motion.header)`
   border-radius: 4px;
   cursor: pointer;
   padding: 16px;
-  margin-bottom: 16px;
   font-size: 1.2rem;
   transition: all 0.25s ease-in-out;
 `
@@ -55,7 +54,7 @@ const AccordionSection = ({
         initial={false}
         animate={{
           backgroundColor: isOpen ? "#eb7b51" : "#FFFFFF",
-          color: isOpen ? "#FFFFFF" : "#f26b38",
+          color: isOpen ? "#FFFFFF" : "#26293b",
         }}
         onClick={() => setExpanded(isOpen ? false : i)}
       >
