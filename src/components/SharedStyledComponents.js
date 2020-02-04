@@ -98,3 +98,15 @@ export const Button = styled.button`
     background: ${styles.colorMedGray};
   }
 `
+
+export const FormHeader = styled.header`
+  max-width: 548px;
+  margin: auto;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+`
+
+export const Required = styled.span`
+  color: ${styles.colorRed};
+  font-weight: bold;
+`
