@@ -8,10 +8,7 @@ exports.handler = async function(event, context) {
     }
 
     const { SEGMENT_API_KEY } = process.env
-    if (!SEGMENT_API_KEY) {
-      return { statusCode: 500, body: "NO API KEY" }
-    }
-    const analytics = new Analytics(SEGMENT_API_KEY)
+    const analytics = new Analytics(SEGMENT_API_KEY, { flushAt: 1 })
 
     const params = JSON.parse(event.body)
     const email = params.contactEmail
@@ -59,7 +56,11 @@ exports.handler = async function(event, context) {
     // TODO return error code based on Segment?
     return {
       statusCode: 200,
-      body: JSON.stringify({ ...params, key: SEGMENT_API_KEY.length }),
+      body: JSON.stringify({
+        ...params,
+        key: SEGMENT_API_KEY.length,
+        host: analytics.host,
+      }),
     }
   } catch (err) {
     console.log(err) // output to netlify function log
