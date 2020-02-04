@@ -7,7 +7,7 @@ exports.handler = async (event, context) => {
   }
 
   const { SEGMENT_API_KEY } = process.env
-  const analytics = new Analytics(SEGMENT_API_KEY)
+  const analytics = new Analytics(SEGMENT_API_KEY, { flushAt: 1 })
 
   const params = JSON.parse(event.body)
   const email = params.contactEmail
