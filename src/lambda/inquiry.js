@@ -7,6 +7,9 @@ exports.handler = async (event, context) => {
   }
 
   const { SEGMENT_API_KEY } = process.env
+  if (!SEGMENT_API_KEY) {
+    return { statusCode: 500, body: "NO API KEY" }
+  }
   const analytics = new Analytics(SEGMENT_API_KEY, { flushAt: 1 })
 
   const params = JSON.parse(event.body)
@@ -50,9 +53,8 @@ exports.handler = async (event, context) => {
       Salesforce: true,
     },
   })
-  // TODO send Segment event?
 
-  // TODO return error code based on Segment
+  // TODO return error code based on Segment?
   return {
     statusCode: 200,
     body: JSON.stringify({ ...params }),
