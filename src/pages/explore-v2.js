@@ -30,6 +30,7 @@ const Required = styled.span`
 
 class ExplorePageV2 extends React.Component {
   state = {
+    name: "",
     projectName: "",
     teamProfile: "",
     areaOfExpertise: "",
@@ -80,7 +81,7 @@ class ExplorePageV2 extends React.Component {
   isFormValid = () => {
     let isValid = true
     const requiredFields = [
-      "projectName",
+      "name",
       "teamProfile",
       "areaOfExpertise",
       "whyEthereum",
@@ -126,9 +127,41 @@ class ExplorePageV2 extends React.Component {
           <Form onSubmit={this.handleSubmit}>
             <Label>
               <span>
-                Project name <Required>*</Required>
+                Your name <Required>*</Required>
               </span>
+              <div>
+                <small>
+                  Use whichever preferred name you would like our team to
+                  address you by.
+                </small>
+              </div>
 
+              <Input
+                type="text"
+                name="name"
+                value={this.state.name}
+                onChange={this.handleInputChange}
+              />
+            </Label>
+            <Label>
+              <span>
+                Contact email <Required>*</Required>
+              </span>
+              <Input
+                type="email"
+                name="contactEmail"
+                value={this.state.contactEmail}
+                onChange={this.handleInputChange}
+              />
+            </Label>
+            <Label>
+              <span>Project name</span>
+              <div>
+                <small>
+                  What's name of the project you’re currently working on? This
+                  is optional.
+                </small>
+              </div>
               <Input
                 type="text"
                 name="projectName"
@@ -242,17 +275,7 @@ class ExplorePageV2 extends React.Component {
                 onChange={this.handleInputChange}
               />
             </Label>
-            <Label>
-              <span>
-                Contact email <Required>*</Required>
-              </span>
-              <Input
-                type="email"
-                name="contactEmail"
-                value={this.state.contactEmail}
-                onChange={this.handleInputChange}
-              />
-            </Label>
+
             <Label>
               How did you hear about Ecosystem Support?
               <Select

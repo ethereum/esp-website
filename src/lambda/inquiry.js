@@ -22,22 +22,21 @@ exports.handler = async (event, context) => {
   analytics.identify({
     userId,
     traits: {
-      Name: params.projectName,
-      Title: params.title,
+      LastName: params.name, // Salesforce requires LastName field
       Email: email,
-      Company: params.projectName,
+      Company: params.projectName, // Salesforce requires Company field
       City: params.city,
       Country: params.country,
       LeadSource: "Website Form",
       // Custom fields
+      Team_Profile: params.teamProfile,
       Previous_Work: params.previousWork,
-      How_did_you_hear_about_us: params.referralSource,
-      Recommenders: params.referralName,
+      Referral_Source: params.referralSource,
+      Referrals: params.referralName,
       Type_of_Inquiry: params.challenges
         ? "Project"
         : "Exploring Possibilities",
       // Explore custom fields
-      Team_Members: params.teamProfile,
       Area_of_Expertise: params.areaOfExpertise,
       Why_Ethereum: params.whyEthereum,
       Recent_Projects_or_Developments: params.recentProjectsOrDevelopments,
