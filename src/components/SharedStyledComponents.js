@@ -37,3 +37,64 @@ export const StyledLink = styled(Link)`
     color: ${styles.colorRed};
   }
 `
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  background-color: #fafafa;
+  padding: 2rem 4rem;
+  border-radius: 4px;
+`
+
+export const Label = styled.label`
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+`
+
+export const Input = styled.input`
+  margin-top: 8px;
+  border: 2px solid #d1d1d1;
+`
+export const TextArea = styled.textarea`
+  margin-top: 8px;
+  border: 2px solid #d1d1d1;
+`
+
+export const Select = styled.select`
+  margin-top: 8px;
+  border: 2px solid #d1d1d1;
+  background-color: ${styles.colorWhite};
+`
+
+export const Button = styled.button`
+  text-transform: uppercase;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1.5;
+  text-align: center;
+  border-radius: 20px;
+  color: #ffffff;
+  background: #e66981;
+  border: 1px solid #e66981;
+  font-size: 1.1rem;
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+  padding: 15px 30px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -webkit-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+
+  &:hover {
+    color: #ffffff;
+    background: #d05d73;
+  }
+
+  &:disabled {
+    background: ${styles.colorMedGray};
+  }
+`

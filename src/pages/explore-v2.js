@@ -1,9 +1,17 @@
 import React from "react"
+import { navigate } from "gatsby"
 import styled from "styled-components"
 import SEO from "../components/seo"
 import { REFERRAL_SOURCES, COUNTRIES } from "../utils/form-inputs"
-import { PageBody } from "../components/SharedStyledComponents"
-import { navigate } from "gatsby"
+import {
+  PageBody,
+  Form,
+  Label,
+  Input,
+  TextArea,
+  Select,
+  Button,
+} from "../components/SharedStyledComponents"
 import * as styles from "../utils/styles"
 // import horzLogo from "../images/horz-logo.svg"
 // import vertLogo from "../images/vert-logo.svg"
@@ -15,61 +23,9 @@ const Header = styled.header`
   margin-bottom: 3rem;
 `
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  background-color: #fafafa;
-  padding: 2rem 4rem;
-  border-radius: 4px;
-`
-
-const Label = styled.label`
-  display: flex;
-  flex-direction: column;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-`
-
-const Input = styled.input`
-  margin-top: 8px;
-  border: 2px solid #d1d1d1;
-`
-const TextArea = styled.textarea`
-  margin-top: 8px;
-  border: 2px solid #d1d1d1;
-`
-
-const Select = styled.select`
-  margin-top: 8px;
-  border: 2px solid #d1d1d1;
-  background-color: ${styles.colorWhite};
-`
-
-const Button = styled.button`
-  text-transform: uppercase;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: 1.5;
-  text-align: center;
-  border-radius: 20px;
-  color: #ffffff;
-  background: #e66981;
-  border: 1px solid #e66981;
-  font-size: 1.1rem;
-  border: 1px solid transparent;
-  position: relative;
-  overflow: hidden;
-  padding: 15px 30px;
-  cursor: pointer;
-  transition: all 0.3s ease 0s;
-  -moz-transition: all 0.3s ease 0s;
-  -webkit-transition: all 0.3s ease 0s;
-  -o-transition: all 0.3s ease 0s;
-
-  &:hover {
-    color: #ffffff;
-    background: #d05d73;
-  }
+const Required = styled.span`
+  color: ${styles.colorRed};
+  font-weight: bold;
 `
 
 class ExplorePageV2 extends React.Component {
@@ -120,7 +76,28 @@ class ExplorePageV2 extends React.Component {
       })
   }
 
+  // TODO add email validation
+  isFormValid = () => {
+    let isValid = true
+    const requiredFields = [
+      "projectName",
+      "teamProfile",
+      "areaOfExpertise",
+      "whyEthereum",
+      "recentProjectsOrDevelopments",
+      "contactEmail",
+    ]
+    requiredFields.forEach(field => {
+      if (!this.state[field]) {
+        isValid = false
+      }
+    })
+    return isValid
+  }
+
   render() {
+    const isValid = this.isFormValid()
+
     return (
       <>
         <SEO title="Explore Inquiry" />
@@ -148,7 +125,10 @@ class ExplorePageV2 extends React.Component {
           </Header>
           <Form onSubmit={this.handleSubmit}>
             <Label>
-              Project name
+              <span>
+                Project name <Required>*</Required>
+              </span>
+
               <Input
                 type="text"
                 name="projectName"
@@ -157,7 +137,9 @@ class ExplorePageV2 extends React.Component {
               />
             </Label>
             <Label>
-              Profile
+              <span>
+                Profile <Required>*</Required>
+              </span>
               <div>
                 <small>
                   Tell us a little bit about yourself - whatever you think we
@@ -171,7 +153,9 @@ class ExplorePageV2 extends React.Component {
               />
             </Label>
             <Label>
-              Area of expertise
+              <span>
+                Area of expertise <Required>*</Required>
+              </span>
               <div>
                 <small>
                   What is unique about your skill set? What kinds of problems do
@@ -185,7 +169,9 @@ class ExplorePageV2 extends React.Component {
               />
             </Label>
             <Label>
-              Why Ethereum?
+              <span>
+                Why Ethereum? <Required>*</Required>
+              </span>
               <TextArea
                 name="whyEthereum"
                 value={this.state.whyEthereum}
@@ -193,8 +179,10 @@ class ExplorePageV2 extends React.Component {
               />
             </Label>
             <Label>
-              What's a project or development that you were excited about
-              recently?
+              <span>
+                What's a project or development that you were excited about
+                recently? <Required>*</Required>
+              </span>
               <TextArea
                 name="recentProjectsOrDevelopments"
                 value={this.state.recentProjectsOrDevelopments}
@@ -255,7 +243,9 @@ class ExplorePageV2 extends React.Component {
               />
             </Label>
             <Label>
-              Contact email
+              <span>
+                Contact email <Required>*</Required>
+              </span>
               <Input
                 type="email"
                 name="contactEmail"
@@ -294,7 +284,9 @@ class ExplorePageV2 extends React.Component {
               />
             </Label>
             <div>
-              <Button type="submit">Submit</Button>
+              <Button disabled={!isValid} type="submit">
+                Submit
+              </Button>
             </div>
           </Form>
         </PageBody>
