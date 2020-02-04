@@ -60,6 +60,7 @@ exports.handler = async function(event, context) {
         ...params,
         key: SEGMENT_API_KEY.length,
         host: analytics.host,
+        userId,
       }),
     }
   } catch (err) {
