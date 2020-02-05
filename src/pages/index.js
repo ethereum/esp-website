@@ -2,12 +2,24 @@ import React from "react"
 import { Link } from "gatsby"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
+import styled from "styled-components"
 
 import SEO from "../components/seo"
 import { PageBody, StyledLink } from "../components/SharedStyledComponents"
 import horzLogo from "../images/horz-logo.svg"
 import vertLogo from "../images/vert-logo.svg"
 
+const Hero = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`
+
+const Copy = styled.div`
+  padding: 16px;
+  margin-bottom: 56px;
+`
 class IndexPage extends React.Component {
   constructor(props) {
     super(props)
@@ -38,15 +50,7 @@ class IndexPage extends React.Component {
       <>
         <SEO title="Home" />
         <div>
-          <div
-            className="hero"
-            style={{
-              height: `100vh`, // TODO subtract line & nav heights
-              display: `flex`,
-              flexDirection: `column`,
-              justifyContent: `center`,
-            }}
-          >
+          <Hero>
             <div className="image">
               <img
                 className="horz-logo"
@@ -67,9 +71,9 @@ class IndexPage extends React.Component {
             >
               <FontAwesomeIcon className="hero-icon" icon={faChevronDown} />
             </StyledLink>
-          </div>
+          </Hero>
           <PageBody>
-            <div id="welcome" style={{ padding: `16px` }}>
+            <Copy id="welcome">
               <h1 style={{ paddingTop: `110px` }}>Welcome!</h1>
               <p
                 style={{
@@ -97,7 +101,7 @@ class IndexPage extends React.Component {
                   Exploring possibilities
                 </Link>
               </div>
-            </div>
+            </Copy>
           </PageBody>
         </div>
       </>

@@ -21,6 +21,7 @@ const Header = styled(motion.header)`
   cursor: pointer;
   padding: 16px;
   font-size: 1.2rem;
+  font-weight: 500;
   transition: all 0.25s ease-in-out;
 `
 const Icon = styled(FontAwesomeIcon)`
@@ -54,8 +55,8 @@ const AccordionSection = ({
       <Header
         initial={false}
         animate={{
-          backgroundColor: isOpen ? styles.colorDullOrange : styles.colorWhite,
-          color: isOpen ? styles.colorWhite : styles.colorDarkGray,
+          backgroundColor: isOpen ? styles.colorWhite : styles.colorWhite,
+          color: isOpen ? styles.colorDarkGray : styles.colorDarkGray,
         }}
         onClick={() => setExpanded(isOpen ? false : i)}
       >

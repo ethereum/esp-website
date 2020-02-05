@@ -24,11 +24,6 @@ const HR = styled.hr`
   height: 2px;
 `
 
-const AccordionContainer = styled.div`
-  margin-top: 40px;
-  margin-bottom: 40px;
-`
-
 const FAQPage = ({ data }) => {
   // This approach is if you only want max one section open at a time. If you want multiple
   // sections to potentially be open simultaneously, they can all be given their own `useState`.

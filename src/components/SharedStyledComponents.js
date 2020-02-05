@@ -5,7 +5,13 @@ import * as styles from "../utils/styles"
 export const PageBody = styled.div`
   margin: 0 auto 1rem;
   max-width: 780px;
-  padding: 0 16px;
+  padding: 40px 16px;
+`
+
+export const PageBodyWide = styled.div`
+  margin: 0 auto 1rem;
+  max-width: 960px;
+  padding: 40px 16px;
 `
 
 export const PageHeader = styled.div`
