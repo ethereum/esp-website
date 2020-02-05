@@ -7,8 +7,7 @@ import { StyledLink } from "../components/SharedStyledComponents"
 import { colorGray } from "../utils/styles"
 
 const Card = styled(Link)`
-  /* width: 100%; */
-  /* height: 232px; */
+  width: 100%;
   border-radius: 10px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
   border: solid 1px #c7c7c7;
@@ -19,9 +18,12 @@ const Card = styled(Link)`
   display: flex;
   justify-content: space-between;
 
+  transition: 0.4s ease-out;
+
   &:hover {
     cursor: pointer;
     color: black;
+    transform: translateY(-4px);
   }
 
   & > div {
@@ -51,7 +53,6 @@ const LighterText = styled.div`
 
 const DetailsLink = styled(StyledLink)`
   font-weight: bold;
-  /* text-align: right; */
 `
 
 const ProjectCard = ({ img, data }) => {
