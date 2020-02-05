@@ -5,6 +5,9 @@ export const colorWhite = "#FFFFFF"
 export const colorLightGray = "#fafafa"
 export const colorMedGray = "#bdbdbd"
 export const colorDarkGray = "#26293b"
+export const colorLightGray = "#fafafa"
+export const colorMedGray = "#bdbdbd"
+export const colorGray = "#535658"
 export const colorRed = "#E65753"
 
 // screens
