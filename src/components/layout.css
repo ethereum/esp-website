@@ -667,7 +667,7 @@ pre tt:after {
 
 /* Links */
 a {
-  color: #363636;
+  color: #f26b38;
   text-decoration: none;
   opacity: 1;
   outline: none;
@@ -675,7 +675,7 @@ a {
 
 a:hover {
   text-decoration: none;
-  color: #f26b38;
+  color: #e65753;
 }
 
 /* Navbar */
