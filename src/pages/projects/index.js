@@ -40,7 +40,6 @@ const ProjectsPage = ({ data }) => {
             </p>
           </Intro>
           {data.allMarkdownRemark.edges.map(({ node }) => {
-            debugger
             return (
               <ProjectCard
                 frontmatter={node.frontmatter}
@@ -56,9 +55,7 @@ const ProjectsPage = ({ data }) => {
 
 export const query = graphql`
   query {
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___grantYear], order: DESC }
-    ) {
+    allMarkdownRemark(sort: { fields: [frontmatter___grantYear], order: ASC }) {
       totalCount
       edges {
         node {

@@ -1,9 +1,8 @@
 import React from "react"
 import { Link } from "gatsby"
-import Img from "gatsby-image"
 import styled from "styled-components"
 
-import { StyledLink } from "../components/SharedStyledComponents"
+import { StyledLink, CardImage } from "../components/SharedStyledComponents"
 import { colorGray, colorMedGray } from "../utils/styles"
 
 const Card = styled(Link)`
@@ -28,11 +27,6 @@ const Card = styled(Link)`
   & > div {
     margin: 16px;
   }
-`
-
-const CardImage = styled(Img)`
-  flex: 0 0 200px;
-  border-radius: 10px;
 `
 
 const CardBody = styled.div`

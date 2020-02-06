@@ -1,5 +1,7 @@
 import { Link } from "gatsby"
+import Img from "gatsby-image"
 import styled from "styled-components"
+
 import * as styles from "../utils/styles"
 
 export const PageBody = styled.div`
@@ -115,4 +117,9 @@ export const FormHeader = styled.header`
 export const Required = styled.span`
   color: ${styles.colorRed};
   font-weight: bold;
+`
+
+export const CardImage = styled(Img)`
+  flex: 0 0 200px;
+  border-radius: 10px;
 `
