@@ -9,6 +9,12 @@ exports.handler = async function(event, context) {
     } = process.env
     const baseURL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}`
 
+    console.log("*****************************")
+    console.log({ event })
+    console.log("*****************************")
+    console.log({ context })
+    console.log("*****************************")
+
     const resp = await axios.get(`${baseURL}?api_key=${AIRTABLE_API_KEY}`)
 
     if (resp.status < 200 || resp.status >= 300) {

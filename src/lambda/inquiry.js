@@ -3,6 +3,12 @@ const crypto = require("crypto")
 
 exports.handler = async function(event, context) {
   try {
+    console.log("*****************************")
+    console.log({ event })
+    console.log("*****************************")
+    console.log({ context })
+    console.log("*****************************")
+
     if (event.httpMethod !== "POST") {
       return { statusCode: 405, body: "Method Not Allowed" }
     }
@@ -17,6 +23,14 @@ exports.handler = async function(event, context) {
       .createHash("md5")
       .update(email)
       .digest("hex")
+
+    console.log("*****************************")
+    console.log({ params })
+    console.log("*****************************")
+    console.log({ email })
+    console.log("*****************************")
+    console.log({ userId })
+    console.log("*****************************")
 
     // Do not change these trait object keys
     // They map to specific CRM fields
