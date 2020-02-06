@@ -1,41 +1,29 @@
-const Analytics = require("analytics-node")
-const crypto = require("crypto")
+const axios = require("axios")
 
 exports.handler = async function(event, context) {
   try {
-    console.log("*****************************")
-    console.log({ node: process.version })
-    console.log("*****************************")
-    console.log({ process })
-    console.log("*****************************")
-
     if (event.httpMethod !== "POST") {
       return { statusCode: 405, body: "Method Not Allowed" }
     }
 
     const { SEGMENT_API_KEY } = process.env
-    const analytics = new Analytics(SEGMENT_API_KEY, { flushAt: 1 })
+    const baseURL = `https://api.segment.io/v1/identify`
+
+    let keyBuff = new Buffer(`${SEGMENT_API_KEY}:`)
+    let auth = keyBuff.toString("base64")
 
     const params = JSON.parse(event.body)
     const email = params.contactEmail
 
-    const userId = crypto
-      .createHash("md5")
-      .update(email)
-      .digest("hex")
+    const emailBuff = new Buffer(email)
+    const userId = emailBuff.toString("base64")
 
-    console.log("*****************************")
-    console.log({ params })
-    console.log("*****************************")
-    console.log("*****************************")
-    console.log("before identify")
-    console.log({ analytics })
-    console.log("*****************************")
+    const instance = axios.create({
+      headers: { Authorization: `Basic ${auth}` },
+    })
 
-    // Do not change these trait object keys
-    // They map to specific CRM fields
-    analytics.identify({
-      userId,
+    const resp = await instance.post(baseURL, {
+      userId: userId,
       traits: {
         LastName: params.name, // Salesforce requires LastName field
         Email: email,
@@ -60,38 +48,21 @@ exports.handler = async function(event, context) {
         Description: params.projectDescription,
         Challenges: params.challenges,
         Impact: params.impact,
-        Key: SEGMENT_API_KEY.length,
       },
       integrations: {
         Salesforce: true,
       },
     })
 
-    console.log("*****************************")
-    console.log("after identify")
-    console.log({ analytics })
-    console.log("*****************************")
+    if (resp.status < 200 || resp.status >= 300) {
+      return { statusCode: resp.status, body: resp.statusText }
+    }
 
-    analytics.flush(function(err, batch) {
-      console.log("*****************************")
-      console.log("Flushed, and now this program can exit!")
-      console.log("*****************************")
-    })
+    const data = await resp.data
 
-    console.log("*****************************")
-    console.log("before flush")
-    console.log({ analytics })
-    console.log("*****************************")
-
-    // TODO return error code based on Segment?
     return {
       statusCode: 200,
-      body: JSON.stringify({
-        ...params,
-        key: SEGMENT_API_KEY.length,
-        host: analytics.host,
-        userId,
-      }),
+      body: JSON.stringify({ data }),
     }
   } catch (err) {
     console.log(err) // output to netlify function log
