@@ -4,10 +4,6 @@ const crypto = require("crypto")
 exports.handler = async function(event, context) {
   try {
     console.log("*****************************")
-    console.log({ event })
-    console.log("*****************************")
-    console.log({ context })
-    console.log("*****************************")
     console.log({ node: process.version })
     console.log("*****************************")
     console.log({ process })
@@ -31,9 +27,9 @@ exports.handler = async function(event, context) {
     console.log("*****************************")
     console.log({ params })
     console.log("*****************************")
-    console.log({ email })
     console.log("*****************************")
-    console.log({ userId })
+    console.log("before identify")
+    console.log({ analytics })
     console.log("*****************************")
 
     // Do not change these trait object keys
@@ -71,12 +67,20 @@ exports.handler = async function(event, context) {
       },
     })
 
+    console.log("*****************************")
+    console.log("after identify")
+    console.log({ analytics })
+    console.log("*****************************")
+
     analytics.flush(function(err, batch) {
+      console.log("*****************************")
       console.log("Flushed, and now this program can exit!")
+      console.log("*****************************")
     })
 
     console.log("*****************************")
-    console.log("SUCCESS")
+    console.log("before flush")
+    console.log({ analytics })
     console.log("*****************************")
 
     // TODO return error code based on Segment?
