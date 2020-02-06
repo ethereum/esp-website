@@ -8,6 +8,10 @@ exports.handler = async function(event, context) {
     console.log("*****************************")
     console.log({ context })
     console.log("*****************************")
+    console.log({ node: process.version })
+    console.log("*****************************")
+    console.log({ process })
+    console.log("*****************************")
 
     if (event.httpMethod !== "POST") {
       return { statusCode: 405, body: "Method Not Allowed" }
