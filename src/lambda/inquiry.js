@@ -71,6 +71,14 @@ exports.handler = async function(event, context) {
       },
     })
 
+    analytics.flush(function(err, batch) {
+      console.log("Flushed, and now this program can exit!")
+    })
+
+    console.log("*****************************")
+    console.log("SUCCESS")
+    console.log("*****************************")
+
     // TODO return error code based on Segment?
     return {
       statusCode: 200,
