@@ -36,7 +36,7 @@ const FAQPage = ({ data }) => {
 
   return (
     <>
-      <SEO title="Thanks" />
+      <SEO title="FAQ" />
       <div>
         <PageHeader>
           <H1>Ecosystem Support Program FAQ</H1>
@@ -54,13 +54,13 @@ const FAQPage = ({ data }) => {
             >
               <p>
                 To give you an idea of what the Ecosystem Support Program can do
-                for you, here is a non-exhaustive list some of the ways we have
-                helped other applicants.
+                for you, here is a non-exhaustive list of some of the ways we
+                have helped other applicants.
               </p>
               <p>We have:</p>
               <ul>
                 <li>Awarded grants</li>
-                <li>Provided feedback and direction on a project</li>
+                <li>Provided feedback and direction</li>
                 <li>
                   Facilitated collaborations with other teams and individuals
                 </li>
@@ -137,12 +137,10 @@ const FAQPage = ({ data }) => {
                 research, community building or other contributions expected to
                 have a positive impact on the ecosystem and community as a
                 whole. We are happy to work with for-profit entities that are
-                contributing to the Ethereum ecosystem, although enterprise or
-                other clearly commercial projects (including any project that
-                has recently raised or plans to raise ICO or venture investment)
-                are likely to be better suited to receive non-financial support
-                such as mentorship, introductions to domain experts, or
-                facilitated collaborations.
+                contributing to the Ethereum ecosystem, although clearly
+                commercial projects (including any project that has recently
+                raised or plans to raise ICO or venture investment) are likely
+                to be better suited to receive non-financial support.
               </p>
               <p>
                 Even if your overall project or business is not eligible for
@@ -221,7 +219,7 @@ const FAQPage = ({ data }) => {
                 </li>
                 <li>
                   Unclear project description (insufficient technical
-                  description of what are you building)
+                  description of what you are building)
                 </li>
                 <li>
                   Unclear needs/challenges (insufficient reflection on what
@@ -229,11 +227,9 @@ const FAQPage = ({ data }) => {
                 </li>
               </ul>
               <p>
-                We are not typical investors, so don’t sell us your business
-                plan - but the more detail you can provide at this stage, the
-                more likely we’ll be able to find a way to help. We need enough
-                information to understand your goals, your motivation and your
-                challenges so we can continue the conversation.
+                We need enough information to understand your goals, your
+                motivation and your challenges. The more detail you provide at
+                this stage, the more likely we’ll be able to help.
               </p>
             </AccordionSection>
             <HR />
@@ -250,7 +246,7 @@ const FAQPage = ({ data }) => {
                 individual tackling a distinct task or research problem, to
                 $200k+ for dedicated Eth 2 client teams working on a multi-year
                 timeline. Grant applicants will have the opportunity to work
-                with their guide on determining an appropriate request based on
+                with the ESP team on determining an appropriate request based on
                 the scope of their proposed work.
               </p>
             </AccordionSection>
