@@ -56,7 +56,7 @@ class ExplorePage extends React.Component {
       .then(response => response.json())
       .then(result => {
         console.log("Inquiry Success:", { result })
-        // navigate("/thanks/")
+        navigate("/thanks/")
       })
       .catch(error => {
         console.error("Inquiry Error:", error)
