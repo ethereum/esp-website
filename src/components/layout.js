@@ -2,6 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { motion, AnimatePresence } from "framer-motion"
 import styled from "styled-components"
+import { ToastProvider } from "react-toast-notifications"
 
 import Footer from "./footer"
 import Nav from "./nav"
@@ -75,7 +76,7 @@ class Layout extends React.Component {
 
   render() {
     return (
-      <>
+      <ToastProvider>
         <div className="line top"></div>
         <div className="line left"></div>
         <div className="line right"></div>
@@ -97,7 +98,7 @@ class Layout extends React.Component {
           <Footer />
           <div className="line bottom"></div>
         </div>
-      </>
+      </ToastProvider>
     )
   }
 }
