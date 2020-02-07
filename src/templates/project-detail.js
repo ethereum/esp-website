@@ -7,29 +7,49 @@ import {
   PageHeader,
   PageBodyWide,
   CardImage,
+  LighterText,
+  ButtonLink,
   H1,
 } from "../components/SharedStyledComponents"
+import { screenSizeM } from "../utils/styles"
 
 const BodyContainer = styled.div`
   display: flex;
-  /* justify-content: space-between; */
+  @media (max-width: ${screenSizeM}) {
+    flex-direction: column;
+  }
 `
 
 const ImageContainer = styled.div`
-  width: 240px;
-  /* flex: 0 0 240px; */
+  flex: 0 0 240px;
 
-  /* display: flex; */
-  /* flex-direction: column; */
+  @media (max-width: ${screenSizeM}) {
+    margin-bottom: 32px;
+  }
 `
 
 const ContentContainer = styled.div`
   width: 100%;
   margin-left: 48px;
+  @media (max-width: ${screenSizeM}) {
+    margin-left: 0;
+  }
 `
 
 const Breadcrumbs = styled.div`
   margin-bottom: 56px;
+`
+
+const Category = styled(LighterText)`
+  @media (max-width: ${screenSizeM}) {
+    text-align: center;
+  }
+`
+
+const Title = styled.h1`
+  @media (max-width: ${screenSizeM}) {
+    text-align: center;
+  }
 `
 
 const ProjectPage = ({ data }) => {
@@ -58,12 +78,18 @@ const ProjectPage = ({ data }) => {
               <h2>Status:</h2>
               <p>{frontmatter.status}</p>
               {frontmatter.latestUpdate && (
-                <a href={frontmatter.latestUpdate}>Latest update</a>
+                <ButtonLink href={frontmatter.latestUpdate}>
+                  Latest update
+                </ButtonLink>
               )}
             </ImageContainer>
             <ContentContainer>
-              <h1>{content.frontmatter.title}</h1>
-              <p>{frontmatter.category}</p>
+              <Title>{content.frontmatter.title}</Title>
+
+              <Category>
+                <p>{frontmatter.category}</p>
+              </Category>
+
               <p>{frontmatter.description}</p>
               <p>
                 Grant Received: {frontmatter.grantAmount} in{" "}

@@ -123,3 +123,63 @@ export const CardImage = styled(Img)`
   flex: 0 0 200px;
   border-radius: 10px;
 `
+
+export const LighterText = styled.div`
+  color: ${styles.colorGray};
+  font-size: 0.9rem;
+`
+
+export const Button = styled.button`
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1.5;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 4px;
+  color: ${styles.colorWhite};
+  background: ${styles.colorDullOrange};
+  border: 1px solid ${styles.colorDullOrange};
+  font-size: 1.1rem;
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+  padding: 15px 30px;
+  cursor: pointer;
+
+  &:hover {
+    background: ${styles.colorRed};
+  }
+  &:disabled {
+    background: ${styles.colorMedGray};
+  }
+`
+
+export const ButtonLink = styled.a`
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1.5;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 4px;
+  color: ${styles.colorWhite};
+  background: ${styles.colorDullOrange};
+  border: 1px solid ${styles.colorDullOrange};
+  font-size: 1.1rem;
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+  padding: 15px 30px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+
+  &:hover {
+    background: ${styles.colorRed};
+  }
+  &:disabled {
+    background: ${styles.colorMedGray};
+  }
+
+  @media (max-width: ${styles.screenSizeS}) {
+    width: 100%;
+  }
+`

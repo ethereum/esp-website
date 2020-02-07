@@ -2,7 +2,11 @@ import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
 
-import { StyledLink, CardImage } from "../components/SharedStyledComponents"
+import {
+  StyledLink,
+  CardImage,
+  LighterText,
+} from "../components/SharedStyledComponents"
 import {
   colorGray,
   colorMedGray,
@@ -76,11 +80,6 @@ const CardCategory = styled.div`
   color: ${colorGray};
   font-size: 0.9rem;
   white-space: nowrap;
-`
-
-const LighterText = styled.div`
-  color: ${colorGray};
-  font-size: 0.9rem;
 `
 
 const DetailsLink = styled(StyledLink)`
