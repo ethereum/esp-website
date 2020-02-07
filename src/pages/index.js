@@ -4,14 +4,17 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
 
 import SEO from "../components/seo"
+import Event from "../components/event"
 import {
   PageBody,
   StyledLink,
   ButtonLink,
+  H2,
+  HR,
 } from "../components/SharedStyledComponents"
 import horzLogo from "../images/horz-logo.svg"
 import vertLogo from "../images/vert-logo.svg"
-import { screenSizeM } from "../utils/styles"
+import { screenSizeM, screenSizeS } from "../utils/styles"
 
 const Hero = styled.div`
   height: 100vh;
@@ -21,8 +24,22 @@ const Hero = styled.div`
 `
 
 const Copy = styled.div`
-  padding: 16px;
   margin-bottom: 56px;
+`
+
+const Section = styled.div`
+  margin-bottom: 48px;
+`
+
+const EventContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  margin-bottom: 32px;
+
+  @media (max-width: ${screenSizeM}) {
+    flex-direction: column;
+  }
 `
 
 const ButtonContainer = styled.div`
@@ -41,6 +58,29 @@ const ButtonContainer = styled.div`
     }
   }
 `
+
+const HorizontalLogo = styled.img`
+  width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+
+  @media (max-width: ${screenSizeS}) {
+    display: none;
+  }
+`
+
+const VerticalLogo = styled.img`
+  display: none;
+
+  @media (max-width: ${screenSizeS}) {
+    width: 210px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+`
+
 class IndexPage extends React.Component {
   constructor(props) {
     super(props)
@@ -72,18 +112,14 @@ class IndexPage extends React.Component {
         <SEO title="Home" />
         <div>
           <Hero>
-            <div className="image">
-              <img
-                className="horz-logo"
-                src={horzLogo}
-                alt="Ecosystem Support Program Horizontal Logo"
-              />
-              <img
-                className="vert-logo"
-                src={vertLogo}
-                alt="Ecosystem Support Program Vertical Logo"
-              />
-            </div>
+            <HorizontalLogo
+              src={horzLogo}
+              alt="Ecosystem Support Program Horizontal Logo"
+            />
+            <VerticalLogo
+              src={vertLogo}
+              alt="Ecosystem Support Program Vertical Logo"
+            />
             <StyledLink
               to="/#welcome"
               className={
@@ -109,7 +145,36 @@ class IndexPage extends React.Component {
                 focused on financial support. Our focus is on deploying our
                 resources where they will have the biggest impact.
               </p>
-              <h2 style={{ paddingTop: `20px` }}>Contact Us</h2>
+              <Section>
+                <H2>Recent News</H2>
+                <p>
+                  Donec sed odio dui. Cum sociis natoque penatibus et magnis dis
+                  parturient montes, nascetur ridiculus mus. Sed posuere
+                  consectetur est at lobortis. Morbi leo risus, porta ac
+                  consectetur ac. Read more.
+                  <br />
+                  <a href="#">Read more.</a>
+                </p>
+                <p>
+                  Donec sed odio dui. Cum sociis natoque penatibus et magnis dis
+                  parturient montes, nascetur ridiculus mus. Sed posuere
+                  consectetur est at lobortis. Morbi leo risus, porta ac
+                  consectetur ac. Read more.
+                  <br />
+                  <a href="#">Read more.</a>
+                </p>
+              </Section>
+              <HR />
+              <Section>
+                <H2>Upcoming Events</H2>
+                <EventContainer>
+                  <Event />
+                  <Event />
+                  <Event />
+                </EventContainer>
+              </Section>
+              <HR />
+              <H2>Contact Us</H2>
               <p>
                 Are you working on a specific project, or are you still
                 exploring possibilities to get involved?

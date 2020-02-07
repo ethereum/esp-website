@@ -36,7 +36,7 @@ export const H1 = styled.h1`
 
 export const H2 = styled.h2`
   font-weight: bold;
-  padding-top: 30px;
+  padding-top: 32px;
 `
 
 export const HR = styled.hr`
