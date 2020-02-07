@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { navigate } from "gatsby"
 import { useToasts } from "react-toast-notifications"
+import Select from "react-select"
 
 import SEO from "../components/seo"
 import { REFERRAL_SOURCES, COUNTRIES } from "../utils/form-inputs"
@@ -10,11 +11,18 @@ import {
   Label,
   Input,
   TextArea,
-  Select,
   Button,
   FormHeader,
   Required,
 } from "../components/SharedStyledComponents"
+
+const countryOptions = COUNTRIES.map(country => {
+  return { value: country, label: country, name: "country" }
+})
+
+const referralSourceOptions = REFERRAL_SOURCES.map(source => {
+  return { value: source, label: source, name: "referralSource" }
+})
 
 const ProjectPage = () => {
   const [formState, setFormState] = useState({
@@ -40,6 +48,10 @@ const ProjectPage = () => {
     const value = target.value
     const name = target.name
     setFormState({ ...formState, [name]: value })
+  }
+
+  const handleSelectChange = selectedOption => {
+    setFormState({ ...formState, [selectedOption.name]: selectedOption.value })
   }
 
   const submitInquiry = () => {
@@ -217,23 +229,10 @@ const ProjectPage = () => {
               onChange={handleInputChange}
             />
           </Label>
+
           <Label>
             Where is your contact person based (country)?
-            <Select
-              required
-              defaultValue={"DEFAULT"}
-              name="country"
-              onChange={handleInputChange}
-            >
-              <option hidden disabled value="DEFAULT"></option>
-              {COUNTRIES.map((source, i) => {
-                return (
-                  <option key={i} value={source}>
-                    {source}
-                  </option>
-                )
-              })}
-            </Select>
+            <Select options={countryOptions} onChange={handleSelectChange} />
           </Label>
 
           <Label>
@@ -249,21 +248,11 @@ const ProjectPage = () => {
           <Label>
             How did you hear about Ecosystem Support?
             <Select
-              required
-              defaultValue={"DEFAULT"}
-              name="referralSource"
-              onChange={handleInputChange}
-            >
-              <option hidden disabled value="DEFAULT"></option>
-              {REFERRAL_SOURCES.map((source, i) => {
-                return (
-                  <option key={i} value={source}>
-                    {source}
-                  </option>
-                )
-              })}
-            </Select>
+              options={referralSourceOptions}
+              onChange={handleSelectChange}
+            />
           </Label>
+
           <Label>
             Did anyone recommend that you contact Ecosystem Support? If so, who?
             <Input

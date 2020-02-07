@@ -55,17 +55,17 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   margin-top: 8px;
-  border: 2px solid #d1d1d1;
+  border: 1px solid #d1d1d1; /* TODO move to styles */
+  height: 40px;
+  padding: 8px;
+  border-radius: 2px;
 `
 export const TextArea = styled.textarea`
   margin-top: 8px;
-  border: 2px solid #d1d1d1;
-`
-
-export const Select = styled.select`
-  margin-top: 8px;
-  border: 2px solid #d1d1d1;
-  background-color: ${styles.colorWhite};
+  padding: 8px;
+  border-radius: 2px;
+  height: 80px;
+  border: 1px solid #d1d1d1; /* TODO move to styles */
 `
 
 export const Button = styled.button`
@@ -75,9 +75,9 @@ export const Button = styled.button`
   line-height: 1.5;
   text-align: center;
   border-radius: 20px;
-  color: #ffffff;
-  background: #e66981;
-  border: 1px solid #e66981;
+  color: #ffffff; /* TODO move to styles */
+  background: #e66981; /* TODO move to styles */
+  border: 1px solid #e66981; /* TODO move to styles */
   font-size: 1.1rem;
   border: 1px solid transparent;
   position: relative;

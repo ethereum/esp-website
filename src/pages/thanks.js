@@ -12,8 +12,9 @@ const ThankYouPage = () => (
         <p>
           Your inquiry has been successfully submitted! The Ecosystem Support
           team will be reaching out within the next few business days with
-          detailed information. Until then, kick back and relax.
+          detailed information.
         </p>
+        <p>Until then, kick back and relax.</p>
       </PageBody>
     </div>
   </>
