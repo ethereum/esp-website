@@ -15,6 +15,11 @@ const StyledNav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  /* Display mobile nav */
+  @media (max-width: ${styles.screenSizeS}) {
+    display: none;
+  }
 `
 
 const NavLinkMain = styled(StyledLink)`
@@ -83,9 +88,6 @@ const Nav = ({ hasShadow }) => {
         </NavLinkMain>
       </div>
       <div className="nav-links">
-        <NavLink to="/" activeStyle={{ color: styles.colorOrange }}>
-          Home
-        </NavLink>
         <NavLink to="/faq/" activeStyle={{ color: styles.colorOrange }}>
           FAQ
         </NavLink>

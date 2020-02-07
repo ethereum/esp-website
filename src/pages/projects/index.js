@@ -39,9 +39,10 @@ const ProjectsPage = ({ data }) => {
               well as ongoing trajectory and remaining milestones.
             </p>
           </Intro>
-          {data.allMarkdownRemark.edges.map(({ node }) => {
+          {data.allMarkdownRemark.edges.map(({ node }, idx) => {
             return (
               <ProjectCard
+                key={idx}
                 frontmatter={node.frontmatter}
                 link={node.fields.slug}
               />

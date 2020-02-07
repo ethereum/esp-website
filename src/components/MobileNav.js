@@ -4,6 +4,7 @@ import { motion, useCycle } from "framer-motion"
 import { MenuToggle } from "./MenuToggle"
 import { Navigation } from "./Navigation"
 import styled from "styled-components"
+import { screenSizeS } from "../utils/styles"
 
 // Naive implementation - in reality would want to attach
 // a window or resize listener. Also use state/layoutEffect instead of ref/effect
@@ -61,9 +62,14 @@ const Nav = styled(motion.nav)`
   left: 0;
   bottom: 0;
   width: 100%;
+
+  /* Display desktop nav */
+  @media (min-width: ${screenSizeS}) {
+    display: none;
+  }
 `
 
-export const MobileNav = () => {
+const MobileNav = () => {
   const [isOpen, toggleOpen] = useCycle(false, true)
   const containerRef = useRef(null)
   const { height } = useDimensions(containerRef)
@@ -81,3 +87,5 @@ export const MobileNav = () => {
     </Nav>
   )
 }
+
+export default MobileNav

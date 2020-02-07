@@ -65,6 +65,6 @@ export const Navigation = ({ isOpen, toggle }) => {
 const navItems = [
   { route: "/", text: "Home" },
   { route: "/faq/", text: "FAQ" },
-  // { route: "/projects/", text: "Featured projects" },
-  { route: "/project/", text: "Submit inquiry" },
+  { route: "/projects/", text: "Featured projects" },
+  { route: "/wishlist/", text: "Wish List" },
 ]

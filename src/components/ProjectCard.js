@@ -110,7 +110,7 @@ const ProjectCard = ({ frontmatter, link }) => {
             {frontmatter.grantAmount} in {frontmatter.grantYear}
           </LighterText>
         </div>
-        <DetailsLink to="/faq/">View Details</DetailsLink>
+        <DetailsLink>View Details</DetailsLink>
       </CardGrant>
     </Card>
   )
