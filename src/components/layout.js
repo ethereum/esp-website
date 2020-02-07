@@ -5,7 +5,8 @@ import styled from "styled-components"
 import { ToastProvider } from "react-toast-notifications"
 
 import Footer from "./footer"
-import Nav from "./nav"
+// import Nav from "./nav"
+import { MobileNav } from "./MobileNav"
 import "./layout.css"
 import * as styles from "../utils/styles"
 
@@ -81,7 +82,8 @@ class Layout extends React.Component {
         <div className="line left"></div>
         <div className="line right"></div>
         <div className="layout">
-          <Nav hasShadow={this.state.hasNavShadow} />
+          {/* <Nav hasShadow={this.state.hasNavShadow} /> */}
+          <MobileNav />
           <div>
             <AnimatePresence>
               key={this.props.location.pathname}
