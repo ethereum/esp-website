@@ -9,7 +9,7 @@ import {
 } from "../components/SharedStyledComponents"
 import {
   colorGray,
-  colorMedGray,
+  colorGrayDark,
   screenSizeL,
   screenSizeM,
 } from "../utils/styles"
@@ -19,7 +19,7 @@ const Card = styled(Link)`
   width: 100%;
   border-radius: 10px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
-  border: solid 1px ${colorMedGray};
+  border: solid 1px ${colorGrayDark};
   color: black;
 
   margin-bottom: 24px;

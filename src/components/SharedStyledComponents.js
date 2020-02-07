@@ -104,8 +104,8 @@ export const Button = styled.button`
   text-align: center;
   border-radius: 4px;
   color: ${styles.colorWhite};
-  background: ${styles.colorDullOrange};
-  border: 1px solid ${styles.colorDullOrange};
+  background: ${styles.colorOrangeLight};
+  border: 1px solid ${styles.colorOrangeLight};
   font-size: 1.1rem;
   padding: 15px 30px;
   cursor: pointer;
@@ -114,7 +114,7 @@ export const Button = styled.button`
     background: ${styles.colorRed};
   }
   &:disabled {
-    background: ${styles.colorMedGray};
+    background: ${styles.colorGrayDark};
   }
 `
 
@@ -124,8 +124,8 @@ export const ButtonLink = styled(Link)`
   text-align: center;
   border-radius: 4px;
   color: ${styles.colorWhite};
-  background: ${styles.colorDullOrange};
-  border: 1px solid ${styles.colorDullOrange};
+  background: ${styles.colorOrangeLight};
+  border: 1px solid ${styles.colorOrangeLight};
   font-size: 1.1rem;
   padding: 15px 30px;
   transition: all 0.3s ease 0s;
@@ -146,8 +146,8 @@ export const ButtonExternalLink = styled.a`
   text-align: center;
   border-radius: 4px;
   color: ${styles.colorWhite};
-  background: ${styles.colorDullOrange};
-  border: 1px solid ${styles.colorDullOrange};
+  background: ${styles.colorOrangeLight};
+  border: 1px solid ${styles.colorOrangeLight};
   font-size: 1.1rem;
   padding: 15px 30px;
   transition: all 0.3s ease 0s;

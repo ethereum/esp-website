@@ -56,7 +56,7 @@ const AccordionSection = ({
         initial={false}
         animate={{
           backgroundColor: isOpen ? styles.colorWhite : styles.colorWhite,
-          color: isOpen ? styles.colorDarkGray : styles.colorDarkGray,
+          color: isOpen ? styles.colorGrayDarkest : styles.colorGrayDarkest,
         }}
         onClick={() => setExpanded(isOpen ? false : i)}
       >
