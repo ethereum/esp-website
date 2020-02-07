@@ -92,6 +92,9 @@ const Nav = ({ hasShadow }) => {
         <NavLink to="/projects/" activeStyle={{ color: styles.colorOrange }}>
           Featured Projects
         </NavLink>
+        <NavLink to="/wishlist/" activeStyle={{ color: styles.colorOrange }}>
+          Wish List
+        </NavLink>
       </div>
     </StyledNav>
   )

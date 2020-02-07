@@ -34,6 +34,17 @@ export const H1 = styled.h1`
   }
 `
 
+export const H2 = styled.h2`
+  font-weight: bold;
+  padding-top: 30px;
+`
+
+export const HR = styled.hr`
+  margin-bottom: 8px;
+  background: #e4e4e4;
+  height: 2px;
+`
+
 export const StyledLink = styled(Link)`
   color: ${styles.colorOrange};
   text-decoration: none;
