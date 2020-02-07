@@ -1,13 +1,17 @@
 import React from "react"
-import { Link } from "gatsby"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
 
 import SEO from "../components/seo"
-import { PageBody, StyledLink } from "../components/SharedStyledComponents"
+import {
+  PageBody,
+  StyledLink,
+  ButtonLink,
+} from "../components/SharedStyledComponents"
 import horzLogo from "../images/horz-logo.svg"
 import vertLogo from "../images/vert-logo.svg"
+import { screenSizeM } from "../utils/styles"
 
 const Hero = styled.div`
   height: 100vh;
@@ -19,6 +23,23 @@ const Hero = styled.div`
 const Copy = styled.div`
   padding: 16px;
   margin-bottom: 56px;
+`
+
+const ButtonContainer = styled.div`
+  margin: 60px 0;
+  display: flex;
+  justify-content: space-around;
+
+  @media (max-width: ${screenSizeM}) {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    & > * {
+      margin-top: 30px;
+    }
+  }
 `
 class IndexPage extends React.Component {
   constructor(props) {
@@ -93,14 +114,10 @@ class IndexPage extends React.Component {
                 Are you working on a specific project, or are you still
                 exploring possibilities to get involved?
               </p>
-              <div className="btn-container">
-                <Link to="/project/" className="btn btn-item">
-                  Specific project
-                </Link>
-                <Link to="/explore/" className="btn btn-item">
-                  Exploring possibilities
-                </Link>
-              </div>
+              <ButtonContainer>
+                <ButtonLink to="/project/">Specific project</ButtonLink>
+                <ButtonLink to="/explore/">Exploring possibilities</ButtonLink>
+              </ButtonContainer>
             </Copy>
           </PageBody>
         </div>

@@ -37,7 +37,6 @@ const FAQPage = ({ data }) => {
           <H1>Ecosystem Support Program FAQ</H1>
         </PageHeader>
         <PageBody>
-          <AccordionContainer>
             <H2>The Program</H2>
             <HR />
             <AccordionSection
@@ -317,7 +316,6 @@ const FAQPage = ({ data }) => {
               <p>We can provide payment in ETH, DAI, or Fiat currency.</p>
             </AccordionSection>
             <HR />
-          </AccordionContainer>
         </PageBody>
       </div>
     </>

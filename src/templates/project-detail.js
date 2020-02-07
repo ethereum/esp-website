@@ -8,7 +8,7 @@ import {
   PageBodyWide,
   CardImage,
   LighterText,
-  ButtonLink,
+  ButtonExternalLink,
   H1,
 } from "../components/SharedStyledComponents"
 import { screenSizeM } from "../utils/styles"
@@ -78,9 +78,9 @@ const ProjectPage = ({ data }) => {
               <h2>Status:</h2>
               <p>{frontmatter.status}</p>
               {frontmatter.latestUpdate && (
-                <ButtonLink href={frontmatter.latestUpdate}>
+                <ButtonExternalLink href={frontmatter.latestUpdate}>
                   Latest update
-                </ButtonLink>
+                </ButtonExternalLink>
               )}
             </ImageContainer>
             <ContentContainer>

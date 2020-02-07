@@ -76,37 +76,6 @@ export const TextArea = styled.textarea`
   border: 1px solid #d1d1d1; /* TODO move to styles */
 `
 
-export const Button = styled.button`
-  text-transform: uppercase;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: 1.5;
-  text-align: center;
-  border-radius: 20px;
-  color: #ffffff; /* TODO move to styles */
-  background: #e66981; /* TODO move to styles */
-  border: 1px solid #e66981; /* TODO move to styles */
-  font-size: 1.1rem;
-  border: 1px solid transparent;
-  position: relative;
-  overflow: hidden;
-  padding: 15px 30px;
-  cursor: pointer;
-  transition: all 0.3s ease 0s;
-  -moz-transition: all 0.3s ease 0s;
-  -webkit-transition: all 0.3s ease 0s;
-  -o-transition: all 0.3s ease 0s;
-
-  &:hover {
-    color: #ffffff;
-    background: #d05d73;
-  }
-
-  &:disabled {
-    background: ${styles.colorMedGray};
-  }
-`
-
 export const FormHeader = styled.header`
   max-width: 548px;
   margin: auto;
@@ -130,8 +99,6 @@ export const LighterText = styled.div`
 `
 
 export const Button = styled.button`
-  display: inline-block;
-  vertical-align: middle;
   line-height: 1.5;
   font-weight: bold;
   text-align: center;
@@ -140,9 +107,6 @@ export const Button = styled.button`
   background: ${styles.colorDullOrange};
   border: 1px solid ${styles.colorDullOrange};
   font-size: 1.1rem;
-  border: 1px solid transparent;
-  position: relative;
-  overflow: hidden;
   padding: 15px 30px;
   cursor: pointer;
 
@@ -154,9 +118,7 @@ export const Button = styled.button`
   }
 `
 
-export const ButtonLink = styled.a`
-  display: inline-block;
-  vertical-align: middle;
+export const ButtonLink = styled(Link)`
   line-height: 1.5;
   font-weight: bold;
   text-align: center;
@@ -165,18 +127,34 @@ export const ButtonLink = styled.a`
   background: ${styles.colorDullOrange};
   border: 1px solid ${styles.colorDullOrange};
   font-size: 1.1rem;
-  border: 1px solid transparent;
-  position: relative;
-  overflow: hidden;
   padding: 15px 30px;
-  cursor: pointer;
   transition: all 0.3s ease 0s;
 
   &:hover {
     background: ${styles.colorRed};
+    color: ${styles.colorWhite};
   }
-  &:disabled {
-    background: ${styles.colorMedGray};
+
+  @media (max-width: ${styles.screenSizeS}) {
+    width: 100%;
+  }
+`
+
+export const ButtonExternalLink = styled.a`
+  line-height: 1.5;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 4px;
+  color: ${styles.colorWhite};
+  background: ${styles.colorDullOrange};
+  border: 1px solid ${styles.colorDullOrange};
+  font-size: 1.1rem;
+  padding: 15px 30px;
+  transition: all 0.3s ease 0s;
+
+  &:hover {
+    background: ${styles.colorRed};
+    color: ${styles.colorWhite};
   }
 
   @media (max-width: ${styles.screenSizeS}) {
