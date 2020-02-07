@@ -6,10 +6,12 @@ import { PageBody } from "../components/SharedStyledComponents"
 const NotFoundPage = () => (
   <>
     <SEO title="Page not found" />
-    <PageBody>
-      <h1>NOT FOUND</h1>
-      <p>You just hit a route that doesn't exist... the sadness.</p>
-    </PageBody>
+    <div className="page-content">
+      <PageBody>
+        <h1>Page not found</h1>
+        <p>You just hit a route that doesn't exist... the sadness.</p>
+      </PageBody>
+    </div>
   </>
 )
 

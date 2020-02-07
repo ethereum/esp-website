@@ -10,10 +10,11 @@ const ThankYouPage = () => (
       <PageBody>
         <h1>Thank you!</h1>
         <p>
-          Your inquiry has been received by the Ecosystem Support team. The
-          submitted information will be read by us and we may be in touch to
-          obtain more information and to better understand your needs.
+          Your inquiry has been successfully submitted! The Ecosystem Support
+          team will be reaching out within the next few business days with
+          detailed information.
         </p>
+        <p>Until then, kick back and relax.</p>
       </PageBody>
     </div>
   </>

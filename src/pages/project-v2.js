@@ -24,19 +24,19 @@ const referralSourceOptions = REFERRAL_SOURCES.map(source => {
   return { value: source, label: source, name: "referralSource" }
 })
 
-const ExplorePageV2 = () => {
+const ProjectPageV2 = () => {
   const [formState, setFormState] = useState({
     name: "",
+    contactEmail: "",
     projectName: "",
+    projectDescription: "",
     teamProfile: "",
-    areaOfExpertise: "",
-    whyEthereum: "",
-    recentProjectsOrDevelopments: "",
+    impact: "",
+    challenges: "",
     previousWork: "",
     questions: "",
     city: "",
     country: "",
-    contactEmail: "",
     referralSource: "",
     referralName: "",
   })
@@ -88,12 +88,12 @@ const ExplorePageV2 = () => {
   const isFormValid = () => {
     let isValid = true
     const requiredFields = [
+      "projectDescription",
+      "teamProfile",
+      "impact",
+      "challenges",
       "name",
       "contactEmail",
-      "teamProfile",
-      "areaOfExpertise",
-      "whyEthereum",
-      "recentProjectsOrDevelopments",
     ]
     requiredFields.forEach(field => {
       if (!formState[field]) {
@@ -107,55 +107,21 @@ const ExplorePageV2 = () => {
 
   return (
     <>
-      <SEO title="Explore Inquiry" />
+      <SEO title="Project Inquiry" />
       <PageBody>
         <FormHeader>
-          <h1>Exploring possibilities</h1>
+          <h1>Specific Project</h1>
           <p>
-            Tell us a bit about yourself, your skills, what you're excited
-            about, and what questions you have. We only collect the following
-            information submitted below and will not use or share for any
-            purposes other than evaluation.
+            Tell us a bit about your project goals, motivations, needs,
+            challenges, and any other information you feel is pertinent for us
+            to know. You'll hear back from someone on the Ecosystem Support team
+            very soon! We only collect the following information submitted below
+            and will not use or share for any purposes other than evaluation.
           </p>
         </FormHeader>
         <Form onSubmit={handleSubmit}>
           <Label>
-            <span>
-              Your name <Required>*</Required>
-            </span>
-            <div>
-              <small>
-                Use whichever preferred name you would like our team to address
-                you by.
-              </small>
-            </div>
-
-            <Input
-              type="text"
-              name="name"
-              value={formState.name}
-              onChange={handleInputChange}
-            />
-          </Label>
-          <Label>
-            <span>
-              Contact email <Required>*</Required>
-            </span>
-            <Input
-              type="email"
-              name="contactEmail"
-              value={formState.contactEmail}
-              onChange={handleInputChange}
-            />
-          </Label>
-          <Label>
             <span>Project name</span>
-            <div>
-              <small>
-                What's name of the project you’re currently working on? This is
-                optional.
-              </small>
-            </div>
             <Input
               type="text"
               name="projectName"
@@ -165,12 +131,27 @@ const ExplorePageV2 = () => {
           </Label>
           <Label>
             <span>
-              Profile <Required>*</Required>
+              Project description <Required>*</Required>
             </span>
             <div>
               <small>
-                Tell us a little bit about yourself - whatever you think we
-                should know.
+                What are you working on? What does success look like for your
+                project? (2-3 short paragraphs)
+              </small>
+            </div>
+            <TextArea
+              name="projectDescription"
+              value={formState.projectDescription}
+              onChange={handleInputChange}
+            />
+          </Label>
+          <Label>
+            <span>
+              Team profile <Required>*</Required>
+            </span>
+            <div>
+              <small>
+                Who are the members of your team? Please write or link to bios.
               </small>
             </div>
             <TextArea
@@ -181,38 +162,34 @@ const ExplorePageV2 = () => {
           </Label>
           <Label>
             <span>
-              Area of expertise <Required>*</Required>
+              Impact <Required>*</Required>
             </span>
             <div>
               <small>
-                What is unique about your skill set? What kinds of problems do
-                you enjoy solving?
+                What key problem or need do you hope to address? How will your
+                work impact the larger Ethereum ecosystem? Who will benefit from
+                your work?
               </small>
             </div>
             <TextArea
-              name="areaOfExpertise"
-              value={formState.areaOfExpertise}
+              name="impact"
+              value={formState.impact}
               onChange={handleInputChange}
             />
           </Label>
           <Label>
             <span>
-              Why Ethereum? <Required>*</Required>
+              Needs and Challenges <Required>*</Required>
             </span>
+            <div>
+              <small>
+                What are the most significant obstacles facing your project or
+                your team right now? What are some of your most pressing needs?
+              </small>
+            </div>
             <TextArea
-              name="whyEthereum"
-              value={formState.whyEthereum}
-              onChange={handleInputChange}
-            />
-          </Label>
-          <Label>
-            <span>
-              What's a project or development that you were excited about
-              recently? <Required>*</Required>
-            </span>
-            <TextArea
-              name="recentProjectsOrDevelopments"
-              value={formState.recentProjectsOrDevelopments}
+              name="challenges"
+              value={formState.challenges}
               onChange={handleInputChange}
             />
           </Label>
@@ -231,21 +208,35 @@ const ExplorePageV2 = () => {
             />
           </Label>
           <Label>
-            What questions can we answer for you?
-            <TextArea
-              name="questions"
-              value={formState.questions}
+            <span>
+              Contact person <Required>*</Required>
+            </span>
+            <Input
+              type="text"
+              name="name"
+              value={formState.name}
+              onChange={handleInputChange}
+            />
+          </Label>
+          <Label>
+            <span>
+              Contact email <Required>*</Required>
+            </span>
+            <Input
+              type="email"
+              name="contactEmail"
+              value={formState.contactEmail}
               onChange={handleInputChange}
             />
           </Label>
 
           <Label>
-            What country are you located in?
+            Where is your contact person based (country)?
             <Select options={countryOptions} onChange={handleSelectChange} />
           </Label>
 
           <Label>
-            What city are you located in?
+            Where is your contact person based (city)?
             <Input
               type="text"
               name="city"
@@ -282,4 +273,4 @@ const ExplorePageV2 = () => {
   )
 }
 
-export default ExplorePageV2
+export default ProjectPageV2
