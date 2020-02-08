@@ -21,6 +21,7 @@ const Hero = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: -100px;
 `
 
 const Copy = styled.div`
