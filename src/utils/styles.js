@@ -9,6 +9,7 @@ export const colorGray = "#535658"
 export const colorGrayDark = "#bdbdbd"
 export const colorGrayDarkest = "#26293b"
 export const colorRed = "#E65753"
+export const colorYellow = "#fac54a"
 
 // screens
 export const screenSizeXS = "320px"

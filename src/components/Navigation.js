@@ -5,6 +5,7 @@ import styled from "styled-components"
 import Img from "gatsby-image"
 
 import MenuItem from "./MenuItem"
+import { screenSizeS } from "../utils/styles"
 
 const variants = {
   open: {
@@ -26,6 +27,11 @@ const List = styled(motion.ul)`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  /* Only display on mobile */
+  @media (min-width: ${screenSizeS}) {
+    display: none;
+  }
 `
 
 // TODO how to wrap component w/ motion?

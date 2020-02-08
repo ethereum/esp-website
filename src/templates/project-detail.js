@@ -1,6 +1,8 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import styled from "styled-components"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons"
 
 import SEO from "../components/seo"
 import {
@@ -11,7 +13,7 @@ import {
   ButtonExternalLink,
   H1,
 } from "../components/SharedStyledComponents"
-import { screenSizeM } from "../utils/styles"
+import { screenSizeM, screenSizeL, colorYellow } from "../utils/styles"
 
 const BodyContainer = styled.div`
   display: flex;
@@ -40,6 +42,21 @@ const Breadcrumbs = styled.div`
   margin-bottom: 56px;
 `
 
+const Arrow = styled.span`
+  margin-right: 16px;
+  color: ${colorYellow};
+`
+
+const Header = styled.header`
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 24px;
+  @media (max-width: ${screenSizeL}) {
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+`
+
 const Category = styled(LighterText)`
   @media (max-width: ${screenSizeM}) {
     text-align: center;
@@ -47,9 +64,33 @@ const Category = styled(LighterText)`
 `
 
 const Title = styled.h1`
-  @media (max-width: ${screenSizeM}) {
-    text-align: center;
+  margin-bottom: 0;
+  margin-right: 1rem;
+
+  @media (max-width: ${screenSizeL}) {
+    margin-bottom: 1rem;
   }
+`
+
+const DescriptionContainer = styled.div`
+  max-width: 580px;
+  display: flex;
+  justify-content: space-between;
+  @media (max-width: ${screenSizeL}) {
+    flex-direction: column;
+  }
+`
+
+const Description = styled.p`
+  margin-right: 1rem;
+  @media (min-width: ${screenSizeL}) {
+    flex: 1 0 360px;
+  }
+`
+
+const Status = styled.h2`
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
 `
 
 const ProjectPage = ({ data }) => {
@@ -64,10 +105,11 @@ const ProjectPage = ({ data }) => {
         </PageHeader>
         <PageBodyWide>
           <Breadcrumbs>
-            <Link to="/projects/">
-              <strong>{"<< "}</strong>
-              Back to the list of featured projects
-            </Link>
+            <Arrow>
+              <FontAwesomeIcon icon={faChevronLeft} />
+              <FontAwesomeIcon icon={faChevronLeft} />
+            </Arrow>
+            <Link to="/projects/">Back to featured projects list</Link>
           </Breadcrumbs>
           <BodyContainer>
             <ImageContainer>
@@ -75,7 +117,7 @@ const ProjectPage = ({ data }) => {
                 fluid={frontmatter.img.childImageSharp.fluid}
                 alt="Ecosystem Support Program Process"
               />
-              <h2>Status:</h2>
+              <Status>Status:</Status>
               <p>{frontmatter.status}</p>
               {frontmatter.latestUpdate && (
                 <ButtonExternalLink href={frontmatter.latestUpdate}>
@@ -84,17 +126,21 @@ const ProjectPage = ({ data }) => {
               )}
             </ImageContainer>
             <ContentContainer>
-              <Title>{content.frontmatter.title}</Title>
+              <Header>
+                <Title>{content.frontmatter.title}</Title>
+                <Category>
+                  <p>{frontmatter.category}</p>
+                </Category>
+              </Header>
 
-              <Category>
-                <p>{frontmatter.category}</p>
-              </Category>
-
-              <p>{frontmatter.description}</p>
-              <p>
-                Grant Received: {frontmatter.grantAmount} in{" "}
-                {frontmatter.grantYear}{" "}
-              </p>
+              <DescriptionContainer>
+                <Description>{frontmatter.description}</Description>
+                <p>
+                  <strong>Grant Received:</strong>
+                  <br />
+                  {frontmatter.grantAmount} in {frontmatter.grantYear}
+                </p>
+              </DescriptionContainer>
               <div dangerouslySetInnerHTML={{ __html: content.html }} />
             </ContentContainer>
           </BodyContainer>

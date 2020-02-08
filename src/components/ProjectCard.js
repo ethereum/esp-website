@@ -2,14 +2,12 @@ import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
 
-import {
-  StyledLink,
-  CardImage,
-  LighterText,
-} from "../components/SharedStyledComponents"
+import { CardImage, LighterText } from "../components/SharedStyledComponents"
 import {
   colorGray,
   colorGrayDark,
+  colorOrange,
+  colorRed,
   screenSizeL,
   screenSizeM,
 } from "../utils/styles"
@@ -82,8 +80,18 @@ const CardCategory = styled.div`
   white-space: nowrap;
 `
 
-const DetailsLink = styled(StyledLink)`
+const DetailsLink = styled.div`
   font-weight: bold;
+  color: ${colorOrange};
+  text-decoration: none;
+  opacity: 1;
+  outline: none;
+
+  &:hover {
+    text-decoration: none;
+    color: ${colorRed};
+  }
+
   @media (max-width: ${screenSizeM}) {
     text-align: center;
   }

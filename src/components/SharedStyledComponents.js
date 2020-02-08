@@ -110,6 +110,7 @@ export const LighterText = styled.div`
 `
 
 export const Button = styled.button`
+  display: inline-block;
   line-height: 1.5;
   font-weight: bold;
   text-align: center;
@@ -130,6 +131,7 @@ export const Button = styled.button`
 `
 
 export const ButtonLink = styled(Link)`
+  display: inline-block;
   line-height: 1.5;
   font-weight: bold;
   text-align: center;
@@ -152,6 +154,7 @@ export const ButtonLink = styled(Link)`
 `
 
 export const ButtonExternalLink = styled.a`
+  display: inline-block;
   line-height: 1.5;
   font-weight: bold;
   text-align: center;
