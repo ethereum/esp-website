@@ -13,9 +13,12 @@ import {
 } from "../components/SharedStyledComponents"
 import { colorGrayDark } from "../utils/styles"
 
-const Item = styled.blockquote`
+const Item = styled.div`
   border-left: 3px solid ${colorGrayDark};
   padding-left: 24px;
+  margin-left: 1.45rem;
+  margin-right: 1.45rem;
+  margin-bottom: 1.45rem;
 `
 
 const UL = styled.ul`
@@ -52,23 +55,60 @@ const WishlistPage = ({ data }) => {
             setExpanded={setExpanded}
             headerText="Capabilities"
           >
-            <p>
-              <Item>
-                <strong>
-                  Decentralised data storage, indexing, privacy, and associated
-                  tooling
-                </strong>
-              </Item>
-              <Item>
-                <strong>Homomorphic encryption</strong>
-              </Item>
-              <Item>
-                <strong>Secure multiparty computation</strong>
-              </Item>
-              <Item>
-                <strong>ZEXE for decentralized private computing</strong>
-              </Item>
-            </p>
+            <Item>
+              <strong>Decentralized data storage</strong>
+              <div>
+                Decentralised data storage, indexing, data privacy, and
+                associated tooling. Concentrating on tangible near term
+                use-cases like: Storage for user content; Decentralized
+                websites; Storage and retrieval of Ethereum history.
+              </div>
+            </Item>
+            <Item>
+              <strong>Communications infrastructure</strong>
+              <div>
+                Robust scalable approaches for privacy preserving communication
+                at network and messaging layers, in support of use cases
+                including decentralised applications, personal & enterprise
+                message exchange and private transactions.
+              </div>
+            </Item>
+            <Item>
+              <strong>
+                Infrastructure and standards for decentralized applications
+              </strong>
+              <div>
+                Frameworks, standards and missing infrastructure including non
+                consensus aspects which improve developer productivity and/or
+                which help fulfill the vision of decentralized applications.
+              </div>
+            </Item>
+            <Item>
+              <strong>Identity</strong>
+              <div>
+                Digital identity building blocks, standards and tooling in
+                support of applications like proof of educational credentials,
+                opt in KYC, organizational membership, voting, quadratic voting,
+                reputation ect.
+              </div>
+            </Item>
+            <Item>
+              <strong>Integration and interoperability</strong>
+              <div>
+                Integration and interoperability with other systems and
+                standards including: decentralized web and P2P protocols,
+                existing internet protocols, public & private chains, other
+                important protocols, software stacks, and hardware platforms.
+              </div>
+            </Item>
+            <Item>
+              <strong>Light clients</strong>
+              <div>
+                Eth1.x and Eth2 light client research and development and other
+                approaches to ensuring secure data availability for resource
+                constrained devices and libraries.
+              </div>
+            </Item>
           </AccordionSection>
           <HR />
           <AccordionSection
@@ -78,20 +118,30 @@ const WishlistPage = ({ data }) => {
             setExpanded={setExpanded}
             headerText="Privacy"
           >
-            <p>
-              <Item>
-                <strong>zk-s*ark/roll-up research</strong>
-              </Item>
-              <Item>
-                <strong>Homomorphic encryption</strong>
-              </Item>
-              <Item>
-                <strong>Secure multiparty computation</strong>
-              </Item>
-              <Item>
-                <strong>ZEXE for decentralized private computing</strong>
-              </Item>
-            </p>
+            <Item>
+              <strong>Communications infrastructure</strong>
+              <div>
+                Robust scalable approaches for privacy preserving communication
+                at network and messaging layers, in support of use cases
+                including decentralised applications, personal & enterprise
+                message exchange and private transactions.
+              </div>
+            </Item>
+            <Item>
+              <strong>Confidential execution</strong>
+              <div>
+                Approaches towards confidential execution and transfers
+                including s*ark/stonk/stank, Zexe, homomorphic encryption,
+                secure multiparty computation ect.
+              </div>
+            </Item>
+            <Item>
+              <strong>Cryptography</strong>
+              <div>
+                Cryptographic research, constructions, improved implementations,
+                and libraries.
+              </div>
+            </Item>
           </AccordionSection>
           <HR />
           <AccordionSection
@@ -101,37 +151,24 @@ const WishlistPage = ({ data }) => {
             setExpanded={setExpanded}
             headerText="Security"
           >
-            <p>
-              <Item>
-                <strong>Smart contract security</strong>
-                <div>
-                  Techniques for detecting and reducing vulnerabilities and
-                  risks associated with code and smart contract systems.
-                  Including but not limited to:
-                </div>
-                <UL>
-                  <li>
-                    Techniques and tools for formal verification, bounded model
-                    checking, fuzzing, static analysis, ect.
-                  </li>
-                  <li> Access control like capability-based security</li>
-                  <li> Language improvements.</li>
-                </UL>
-              </Item>
-              <Item>
-                <strong>
-                  Automatically generating a symbolic machine for an interpreted
-                  EE.
-                </strong>
-              </Item>
-              <Item>
-                <strong>Game theory security research</strong>
-                <UL>
-                  <li>Theory of open games</li>
-                  <li>Solutions to miner front running</li>
-                </UL>
-              </Item>
-            </p>
+            <Item>
+              <strong>Smart contract security</strong>
+              <div>
+                Techniques, tools and best practices for preventing, detecting
+                and mitigating vulnerabilities.
+              </div>
+            </Item>
+            <Item>
+              <strong>Game theory security research</strong>
+              <div>
+                Research into game theoretic and crypto economic aspects for
+                example, theory of open games or miner extractable value.
+              </div>
+            </Item>
+            <Item>
+              <strong>More in-depth network monitoring tools</strong>
+              <div>Network and smart contract monitoring tools.</div>
+            </Item>
           </AccordionSection>
           <HR />
           <AccordionSection
@@ -141,49 +178,19 @@ const WishlistPage = ({ data }) => {
             setExpanded={setExpanded}
             headerText="Usability"
           >
-            <p>
-              <Item>
-                <strong>Friction free onboarding</strong>
-              </Item>
-              <Item>
-                <strong>
-                  Key management, social and other key recovery mechanisms
-                </strong>
-              </Item>
-              <Item>
-                <strong>
-                  <a href="https://eips.ethereum.org/EIPS/eip-1559">EIP 1559</a>
-                </strong>
-                <div>
-                  Analysis of and analytics for real world Ethereum transactions
-                  (application usage, gas / opcode usage, missed avenues for
-                  optimization, etc) 🔥→ EIP 1559/EIP 2048
-                </div>
-              </Item>
-              <Item>
-                <strong>
-                  Analysis of and analytics for real world Ethereum transactions
-                </strong>
-              </Item>
-              <Item>
-                <strong>Usability studies</strong>
-                <div>Usability and sociological studies</div>
-              </Item>
-              <Item>
-                <strong>Light clients for resource constrained devices</strong>
-                <div>
-                  Light client protocol research and clients that can run in
-                  resource constrained devices and/or can be embedded as
-                  libraries into other software.
-                </div>
-              </Item>
-              <Item>
-                <strong>
-                  Integration/interoperability with other chains (including
-                  permissioned Ethereum chains)
-                </strong>
-              </Item>
-            </p>
+            <Item>
+              <strong>Friction reduction</strong>
+              <div>
+                Removing usability, and other barriers to adoption and use.
+              </div>
+            </Item>
+            <Item>
+              <strong>Key management</strong>
+              <div>
+                Key management improvements including, portability between
+                wallets, social and other key recovery mechanisms.
+              </div>
+            </Item>
           </AccordionSection>
           <HR />
           <AccordionSection
@@ -193,7 +200,34 @@ const WishlistPage = ({ data }) => {
             setExpanded={setExpanded}
             headerText="Developer Experience"
           >
-            <p></p>
+            <Item>
+              <strong>
+                Infrastructure and standards for decentralized applications
+              </strong>
+              <div>
+                Frameworks, standards and missing infrastructure including non
+                consensus aspects which improve developer productivity and/or
+                which help fulfill the vision of decentralized applications.
+              </div>
+            </Item>
+            <Item>
+              <strong>Tooling that improves developer experience</strong>
+              <div>
+                Tools and libraries, that improve developer experience,
+                productivity, code quality and safety.
+              </div>
+            </Item>
+            <Item>
+              <strong>Smart contract security</strong>
+              <div>
+                Techniques, tools and best practices for preventing, detecting
+                and mitigating vulnerabilities.
+              </div>
+            </Item>
+            <Item>
+              <strong>More in-depth network monitoring tools</strong>
+              <div>Network and smart contract monitoring tools.</div>
+            </Item>
           </AccordionSection>
           <HR />
           <AccordionSection
@@ -201,9 +235,32 @@ const WishlistPage = ({ data }) => {
             i={5}
             expanded={expanded}
             setExpanded={setExpanded}
-            headerText="Education"
+            headerText="Education and Community"
           >
-            <p></p>
+            <Item>
+              <strong>Educational materials</strong>
+              <div>
+                Improved documentation, tutorials and other educational material
+                especially common resources like educational toolkits which can
+                be shared between events and courses.
+              </div>
+            </Item>
+            <Item>
+              <strong>Translation of educational materials</strong>
+              <div>
+                Translation of documentation, educational material, research,
+                and specs into other languages.
+              </div>
+            </Item>
+            <Item>
+              <strong>Groups and events</strong>
+              <div>
+                Community groups and events, especially those which which grow
+                the Ethereum community in currently underrepresented regions or
+                which create links with valued aligned communities and expert
+                groups.
+              </div>
+            </Item>
           </AccordionSection>
           <HR />
           <AccordionSection
@@ -213,7 +270,21 @@ const WishlistPage = ({ data }) => {
             setExpanded={setExpanded}
             headerText="Scaling"
           >
-            <p></p>
+            <Item>
+              <strong>Cryptography</strong>
+              <div>
+                Cryptographic research, constructions, improved implementations,
+                and libraries.
+              </div>
+            </Item>
+            <Item>
+              <strong>L2 Scaling</strong>
+              <div>
+                Shared infrastructure and standards for L2 scaling solutions,
+                research into cross shard L2, as well as general L2 scaling
+                research and development of L2 scaling solutions.
+              </div>
+            </Item>
           </AccordionSection>
           <HR />
           <AccordionSection
@@ -221,9 +292,67 @@ const WishlistPage = ({ data }) => {
             i={7}
             expanded={expanded}
             setExpanded={setExpanded}
-            headerText="Crazy"
+            headerText="Eth 1.x"
           >
-            <p></p>
+            <Item>
+              <strong>
+                Research into stateless ethereum with application to both Eth
+                1.x and Eth 2
+              </strong>
+              <div>
+                Research into stateless ethereum with application to both Eth
+                1.x and Eth 2 including witnesses format, ZK witness
+                compression, accumulators, state availability, and delivery.
+              </div>
+            </Item>
+            <Item>
+              <strong>Eth 1.x optimizations and other improvements</strong>
+              <div>Optimizations and improvements to Eth 1.x</div>
+            </Item>
+          </AccordionSection>
+          <HR />
+          <AccordionSection
+            key={8}
+            i={8}
+            expanded={expanded}
+            setExpanded={setExpanded}
+            headerText="Eth 2"
+          >
+            <Item>
+              <strong>Confidential execution</strong>
+              <div>
+                Approaches towards confidential execution and transfers
+                including s*ark/stonk/stank, Zexe, homomorphic encryption,
+                secure multiparty computation ect.
+              </div>
+            </Item>
+            <Item>
+              <strong>
+                Research into stateless ethereum with application to both Eth
+                1.x and Eth 2
+              </strong>
+              <div>
+                Research into stateless ethereum with application to both Eth
+                1.x and Eth 2 including witnesses format, ZK witness
+                compression, accumulators, state availability, and delivery.
+              </div>
+            </Item>
+          </AccordionSection>
+          <HR />
+          <AccordionSection
+            key={9}
+            i={9}
+            expanded={expanded}
+            setExpanded={setExpanded}
+            headerText="Surprise Us"
+          >
+            <Item>
+              <strong>Surprise Us!</strong>
+              <div>
+                Breakthough ideas, projects, improvements, research challenges
+                we don't even know we need!
+              </div>
+            </Item>
           </AccordionSection>
           <HR />
         </PageBody>
