@@ -28,7 +28,7 @@ const Item = styled(motion.li)`
   cursor: pointer;
 `
 
-export const MenuItem = ({ item, toggle }) => {
+const MenuItem = ({ item, toggle }) => {
   return (
     <Item
       variants={variants}
@@ -42,3 +42,5 @@ export const MenuItem = ({ item, toggle }) => {
     </Item>
   )
 }
+
+export default MenuItem

@@ -1,12 +1,14 @@
-import * as React from "react"
+import React from "react"
 import { motion } from "framer-motion"
 import styled from "styled-components"
+
+import { screenSizeS } from "../utils/styles"
 
 const Path = props => (
   <motion.path
     fill="transparent"
     strokeWidth="3"
-    stroke="hsl(0, 0%, 18%)"
+    stroke="#F26B38"
     strokeLinecap="round"
     {...props}
   />
@@ -19,21 +21,15 @@ const Button = styled.button`
   -moz-user-select: none;
   -ms-user-select: none;
   cursor: pointer;
-  position: absolute;
-  top: 30px;
-  left: 25px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
   background: transparent;
-  z-index: 20;
-
-  & > * {
-    z-index: 20;
+  z-index: 200;
+  /* Only display on mobile */
+  @media (min-width: ${screenSizeS}) {
+    display: none;
   }
 `
 
-export const MenuToggle = ({ toggle }) => (
+const MenuToggle = ({ toggle }) => (
   <Button classname="menu-button" onClick={toggle}>
     <svg width="23" height="23" viewBox="0 0 23 23">
       <Path
@@ -59,3 +55,5 @@ export const MenuToggle = ({ toggle }) => (
     </svg>
   </Button>
 )
+
+export default MenuToggle

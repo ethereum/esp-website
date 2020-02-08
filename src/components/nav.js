@@ -1,11 +1,16 @@
 import React from "react"
+import { useRef } from "react"
+import { motion, useCycle } from "framer-motion"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import styled from "styled-components"
+
+import MenuToggle from "./MenuToggle"
+import Navigation from "./Navigation"
 import { StyledLink } from "./SharedStyledComponents"
 import * as styles from "../utils/styles"
 
-const StyledNav = styled.nav`
+const StyledNav = styled(motion.nav)`
   position: fixed;
   z-index: 100;
   background: #ffffff;
@@ -15,11 +20,6 @@ const StyledNav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  /* Display mobile nav */
-  @media (max-width: ${styles.screenSizeS}) {
-    display: none;
-  }
 `
 
 const NavLinkMain = styled(StyledLink)`
@@ -28,6 +28,13 @@ const NavLinkMain = styled(StyledLink)`
   color: black;
   margin-right: 20px;
   padding: 0 0 10px 0;
+`
+
+const NavLinks = styled.div`
+  /* Hide & display MenuToggle */
+  @media (max-width: ${styles.screenSizeS}) {
+    display: none;
+  }
 `
 
 const NavLink = styled(StyledLink)`
@@ -60,8 +67,39 @@ const NavLogoText = styled.div`
   margin: 0;
   margin-left: 5px;
   @media (max-width: ${styles.screenSizeM}) {
-    display: none;
+    display: flex;
+    flex-direction: column;
   }
+`
+
+// Mobile
+const sidebar = {
+  open: {
+    clipPath: `circle(1000px at 200px 0px)`,
+    transition: {
+      type: "spring",
+      stiffness: 50,
+      restDelta: 2,
+    },
+  },
+  closed: {
+    clipPath: "circle(24px at 200px 0px)",
+    transition: {
+      delay: 0.5,
+      type: "spring",
+      stiffness: 200,
+      damping: 40,
+    },
+  },
+}
+
+const Background = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: ${props => (props.isOpen ? "100%" : "0")};
+  background: ${styles.colorGrayLightest};
 `
 
 const Nav = ({ hasShadow }) => {
@@ -76,18 +114,30 @@ const Nav = ({ hasShadow }) => {
       }
     }
   `)
+
+  const [isOpen, toggleOpen] = useCycle(false, true)
+  const containerRef = useRef(null) // TODO is this needed?
+
   return (
-    <StyledNav className={hasShadow ? "nav-shadow" : ""}>
+    <StyledNav
+      className={hasShadow ? "nav-shadow" : ""}
+      initial={false}
+      animate={isOpen ? "open" : "closed"}
+      ref={containerRef}
+    >
       <div>
         <NavLinkMain to="/">
           <Img
             fixed={data.file.childImageSharp.fixed}
             alt="Ethereum Ecosystem Support Program Logo"
           />
-          <NavLogoText>Ecosystem Support</NavLogoText>
+          <NavLogoText>
+            <span>Ecosystem</span> <span>Support</span>
+          </NavLogoText>
         </NavLinkMain>
       </div>
-      <div className="nav-links">
+      {/* Desktop */}
+      <NavLinks>
         <NavLink to="/faq/" activeStyle={{ color: styles.colorOrange }}>
           FAQ
         </NavLink>
@@ -97,7 +147,11 @@ const Nav = ({ hasShadow }) => {
         <NavLink to="/wishlist/" activeStyle={{ color: styles.colorOrange }}>
           Wish List
         </NavLink>
-      </div>
+      </NavLinks>
+      {/* Mobile */}
+      <Background isOpen={isOpen} variants={sidebar} />
+      <Navigation isOpen={isOpen} toggle={() => toggleOpen()} />
+      <MenuToggle toggle={() => toggleOpen()} />
     </StyledNav>
   )
 }
