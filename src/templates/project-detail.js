@@ -2,7 +2,10 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import styled from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons"
+import {
+  faChevronLeft,
+  faExternalLinkAlt,
+} from "@fortawesome/free-solid-svg-icons"
 
 import SEO from "../components/seo"
 import {
@@ -93,6 +96,10 @@ const Status = styled.h2`
   margin-bottom: 1rem;
 `
 
+const ExternalIcon = styled(FontAwesomeIcon)`
+  margin-left: 8px;
+`
+
 const ProjectPage = ({ data }) => {
   const content = data.markdownRemark
   const { frontmatter } = content
@@ -121,7 +128,7 @@ const ProjectPage = ({ data }) => {
               <p>{frontmatter.status}</p>
               {frontmatter.latestUpdate && (
                 <ButtonExternalLink href={frontmatter.latestUpdate}>
-                  Latest update
+                  Latest update <ExternalIcon icon={faExternalLinkAlt} />
                 </ButtonExternalLink>
               )}
             </ImageContainer>

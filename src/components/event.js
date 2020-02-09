@@ -18,7 +18,7 @@ const StyledEvent = styled.div`
     max-width: 100%;
   }
 `
-
+// TODO add actual content
 const Event = () => (
   <StyledEvent>
     <Title>Event Name here</Title>
