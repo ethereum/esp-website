@@ -21,15 +21,19 @@ const Item = styled.div`
   margin-right: 1.45rem;
   margin-bottom: 1.45rem;
 `
-
-const UL = styled.ul`
-  margin-top: 8px;
-`
-
-const WishlistPage = ({ data }) => {
-  // This approach is if you only want max one section open at a time. If you want multiple
-  // sections to potentially be open simultaneously, they can all be given their own `useState`.
-  const [expanded, setExpanded] = useState(false)
+const WishlistPage = () => {
+  // TODO simplify w/ Array... couldn't get it working
+  const [expanded, setExpanded] = useState({
+    0: false,
+    1: false,
+    3: false,
+    4: false,
+    5: false,
+    6: false,
+    7: false,
+    8: false,
+    9: false,
+  })
 
   return (
     <>

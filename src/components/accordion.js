@@ -45,7 +45,7 @@ const AccordionSection = ({
   headerText,
   children,
 }) => {
-  const isOpen = i === expanded
+  const isOpen = expanded[i] === true
   const icon = isOpen ? faMinus : faPlus
 
   // By using `AnimatePresence` to mount and unmount the contents, we can animate
@@ -58,7 +58,7 @@ const AccordionSection = ({
           backgroundColor: isOpen ? styles.colorWhite : styles.colorWhite,
           color: isOpen ? styles.colorGrayDarkest : styles.colorGrayDarkest,
         }}
-        onClick={() => setExpanded(isOpen ? false : i)}
+        onClick={() => setExpanded({ ...expanded, [i]: isOpen ? false : true })}
       >
         <span>
           <Icon icon={icon} />

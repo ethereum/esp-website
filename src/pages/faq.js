@@ -16,9 +16,20 @@ import {
 } from "../components/SharedStyledComponents"
 
 const FAQPage = ({ data }) => {
-  // This approach is if you only want max one section open at a time. If you want multiple
-  // sections to potentially be open simultaneously, they can all be given their own `useState`.
-  const [expanded, setExpanded] = useState(false)
+  // TODO simplify w/ Array... couldn't get it working
+  const [expanded, setExpanded] = useState({
+    0: false,
+    1: false,
+    3: false,
+    4: false,
+    5: false,
+    6: false,
+    7: false,
+    8: false,
+    9: false,
+    10: false,
+    11: false,
+  })
 
   return (
     <>

@@ -105,7 +105,7 @@ const ProjectPage = ({ data }) => {
   const { frontmatter } = content
   return (
     <>
-      <SEO title="Uniswap" />
+      <SEO title={frontmatter.title} />
       <div>
         <PageHeader>
           <H1>Featured Projects</H1>
