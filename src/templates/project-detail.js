@@ -41,8 +41,24 @@ const ContentContainer = styled.div`
   }
 `
 
+const HideDesktop = styled.div`
+  margin-top: 1.5rem;
+  @media (min-width: ${screenSizeM}) {
+    display: none;
+  }
+`
+
+const HideMobile = styled.div`
+  @media (max-width: ${screenSizeM}) {
+    display: none;
+  }
+`
+
 const Breadcrumbs = styled.div`
   margin-bottom: 56px;
+  @media (max-width: ${screenSizeM}) {
+    margin-bottom: 32px;
+  }
 `
 
 const Arrow = styled.span`
@@ -103,6 +119,29 @@ const ExternalIcon = styled(FontAwesomeIcon)`
 const ProjectPage = ({ data }) => {
   const content = data.markdownRemark
   const { frontmatter } = content
+
+  const mainContent = () => {
+    return (
+      <>
+        <Header>
+          <Title>{content.frontmatter.title}</Title>
+          <Category>
+            <p>{frontmatter.category}</p>
+          </Category>
+        </Header>
+
+        <DescriptionContainer>
+          <Description>{frontmatter.description}</Description>
+          <p>
+            <strong>Grant Received:</strong>
+            <br />
+            {frontmatter.grantAmount} in {frontmatter.grantYear}
+          </p>
+        </DescriptionContainer>
+      </>
+    )
+  }
+
   return (
     <>
       <SEO title={frontmatter.title} />
@@ -124,6 +163,7 @@ const ProjectPage = ({ data }) => {
                 fluid={frontmatter.img.childImageSharp.fluid}
                 alt="Ecosystem Support Program Process"
               />
+              <HideDesktop>{mainContent()}</HideDesktop>
               <Status>Status:</Status>
               <p>{frontmatter.status}</p>
               {frontmatter.latestUpdate && (
@@ -133,21 +173,7 @@ const ProjectPage = ({ data }) => {
               )}
             </ImageContainer>
             <ContentContainer>
-              <Header>
-                <Title>{content.frontmatter.title}</Title>
-                <Category>
-                  <p>{frontmatter.category}</p>
-                </Category>
-              </Header>
-
-              <DescriptionContainer>
-                <Description>{frontmatter.description}</Description>
-                <p>
-                  <strong>Grant Received:</strong>
-                  <br />
-                  {frontmatter.grantAmount} in {frontmatter.grantYear}
-                </p>
-              </DescriptionContainer>
+              <HideMobile>{mainContent()}</HideMobile>
               <div dangerouslySetInnerHTML={{ __html: content.html }} />
             </ContentContainer>
           </BodyContainer>
