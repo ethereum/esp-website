@@ -6,7 +6,7 @@ description: "Optimized go-ethereum client."
 grantYear: "2018"
 grantAmount: "$25,000"
 status: "In testing, targeting March 2020 release"
-latestUpdate: ""
+latestUpdate: "https://medium.com/@akhounov/is-ethereum-state-growing-faster-now-and-ethereum-state-analytics-project-97777ab47af"
 ---
 
 **Key components:**
@@ -42,3 +42,7 @@ Since receiving a grant in late 2018, the Turbo-Geth team has experimented with 
 2019 also saw the creation of a working Ethereum State Analytics prototype, which enables extraction of lots of information from a running Turbo-Geth node – in roughly 5% of the time it would take to extract the same data from a Geth node. This data can be used to generate charts like [these](https://medium.com/@akhounov/ethereum-block-gas-limit-increase-and-state-growth-b95353153179), which can help us understand things like the effects of protocol changes on performance and user behavior.
 
 Turbo-Geth is still being tested, but is getting ready to come out of hiding – the team is targeting March 2020 for a mainnet-ready public release.
+
+**Follow along**: [Github](https://github.com/ledgerwatch/turbo-geth)
+
+Turbo-Geth is a Gitcoin CLR recipient! Contribute at [gitcoin.co/grants/224/turbo-geth](https://gitcoin.co/grants/224/turbo-geth)

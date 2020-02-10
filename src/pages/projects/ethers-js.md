@@ -1,6 +1,6 @@
 ---
 title: "ethers.js"
-img: ../../images/projects/placeholder-logo.png
+img: ../../images/projects/ethers-js.png
 category: "Developer experience"
 description: "A complete and compact JavaScript library for interacting with Ethereum."
 grantYear: "2019"
@@ -41,3 +41,5 @@ Ethers.js v5 continues to progress and will be coming out of beta soon – in th
 
 **Follow along:** [Blog](https://blog.ricmoo.com/), [Github](https://github.com/ethers-io/ethers.js),
 Twitter [@ricmoo](https://twitter.com/ricmoo), [@ethersproject](https://twitter.com/ethersproject) (low activity, advisory only)
+
+Ethers.js is a Gitcoin CLR recipient! Contribute at [gitcoin.co/grants/13/ethersjs-complete-simple-and-tiny-2](https://gitcoin.co/grants/13/ethersjs-complete-simple-and-tiny-2)

@@ -42,3 +42,5 @@ In 2019, Uniswap grew to include an [analytics site](https://uniswap.info/), a [
 In the coming year, the Uniswap team plans on releasing Uniswap V2, a new version of the protocol which expands its utility.
 
 **Follow along:** [Github](https://github.com/Uniswap), [Twitter](https://twitter.com/UniswapExchange), [Discord](https://discordapp.com/invite/Y7TF6QA), [Reddit](https://www.reddit.com/r/UniSwap/), [Blog](https://medium.com/uniswap)
+
+Uniswap is a Gitcoin CLR recipient! Contribute at [gitcoin.co/grants/48/uniswap](https://gitcoin.co/grants/48/uniswap)

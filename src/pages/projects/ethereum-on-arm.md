@@ -36,5 +36,6 @@ Eth on ARM provides plug & play images that take care of all necessary steps to 
 
 Ethereum on ARM was awarded a grant in 2019 to support continued development, including adding Geth and Parity light server support on Rockchip RK3399 and Raspberry Pi and integration of Swarm, IPFS and Whisper. Eth 2.0 support is [ramping up](https://www.reddit.com/r/ethereum/comments/epxy8l/ethereum_on_arm_ethereum_1020_ecosystem/), with a Prysm testnet already running and Lighthouse close behind.
 
-**Follow along:**
-https://twitter.com/EthereumOnARM, [32 bit images](github.com/diglos/pi-gen) and [64 bit images](https://github.com/diglos/userpatches) on GitHub (TODO ADD link)
+**Follow along:** [Twitter](https://twitter.com/EthereumOnARM), [GitHub](https://github.com/diglos)
+
+Ethereum on ARM is a Gitcoin CLR recipient! Contribute at [gitcoin.co/grants/384/ethereum-on-arm](https://gitcoin.co/grants/384/ethereum-on-arm)

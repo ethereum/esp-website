@@ -6,7 +6,7 @@ description: "A robust and scalable language for complex zkSNARK circuit design.
 grantYear: "2019"
 grantAmount: "$72,363"
 status: "Language in production since 2018, revisions in progress"
-latestUpdate: "https://iden3.io/post/iden3-introducing-new-set-tools-mastering-zksnarks"
+latestUpdate: "https://blog.iden3.io/iden3-Introducing-a-new-set-of-tools-for-mastering-zkSNARKs.html"
 ---
 
 **Key components:**
@@ -40,6 +40,4 @@ Since its initial release, circom has become a go-to tool for many projects usin
 
 A specification of Circom is being published in Q1 2020 and the new compiler is already in development.
 
-**Follow along!**
-[website, GH, blog, social etc]
-(TODO add links)
+**Follow along:** [Github](https://github.com/iden3/circom), [Blog](https://blog.iden3.io/)

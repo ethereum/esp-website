@@ -167,7 +167,11 @@ const ProjectPage = ({ data }) => {
               <Status>Status:</Status>
               <p>{frontmatter.status}</p>
               {frontmatter.latestUpdate && (
-                <ButtonExternalLink href={frontmatter.latestUpdate}>
+                <ButtonExternalLink
+                  href={frontmatter.latestUpdate}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Latest update <ExternalIcon icon={faExternalLinkAlt} />
                 </ButtonExternalLink>
               )}
