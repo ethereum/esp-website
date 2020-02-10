@@ -11,6 +11,7 @@ import {
   H1,
   H2,
   HR,
+  FakeLink,
 } from "../components/SharedStyledComponents"
 import { colorGrayDark } from "../utils/styles"
 
@@ -26,6 +27,7 @@ const WishlistPage = () => {
   const [expanded, setExpanded] = useState({
     0: false,
     1: false,
+    2: false,
     3: false,
     4: false,
     5: false,
@@ -34,6 +36,25 @@ const WishlistPage = () => {
     8: false,
     9: false,
   })
+
+  let areAnyOpen = false
+
+  Object.keys(expanded).forEach(i => {
+    if (expanded[i]) {
+      areAnyOpen = true
+    }
+  })
+
+  const toggleAll = () => {
+    const newState = {}
+    const newStateItem = areAnyOpen ? false : true
+    Object.keys(expanded).forEach(i => {
+      newState[i] = newStateItem
+    })
+    setExpanded(newState)
+  }
+
+  const toggleAllText = areAnyOpen ? "Collapse all" : "Expand all"
 
   return (
     <>
@@ -52,6 +73,9 @@ const WishlistPage = () => {
             We’re always open to new ideas - if you think your project will make
             Ethereum better for everyone,{" "}
             <Link to="/project/">we want to hear about it</Link>!
+          </p>
+          <p>
+            <FakeLink onClick={toggleAll}>{toggleAllText}</FakeLink>
           </p>
           <HR />
           <AccordionSection

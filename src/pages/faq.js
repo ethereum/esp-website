@@ -1,7 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
-import styled from "styled-components"
 
 import SEO from "../components/seo"
 import { useState } from "react"
@@ -13,6 +12,7 @@ import {
   H2,
   HR,
   StyledLink,
+  FakeLink,
 } from "../components/SharedStyledComponents"
 
 const FAQPage = ({ data }) => {
@@ -20,6 +20,7 @@ const FAQPage = ({ data }) => {
   const [expanded, setExpanded] = useState({
     0: false,
     1: false,
+    2: false,
     3: false,
     4: false,
     5: false,
@@ -31,6 +32,25 @@ const FAQPage = ({ data }) => {
     11: false,
   })
 
+  let areAnyOpen = false
+
+  Object.keys(expanded).forEach(i => {
+    if (expanded[i]) {
+      areAnyOpen = true
+    }
+  })
+
+  const toggleAll = () => {
+    const newState = {}
+    const newStateItem = areAnyOpen ? false : true
+    Object.keys(expanded).forEach(i => {
+      newState[i] = newStateItem
+    })
+    setExpanded(newState)
+  }
+
+  const toggleAllText = areAnyOpen ? "Collapse all" : "Expand all"
+
   return (
     <>
       <SEO title="FAQ" />
@@ -39,6 +59,7 @@ const FAQPage = ({ data }) => {
           <H1>Ecosystem Support Program FAQ</H1>
         </PageHeader>
         <PageBody>
+          <FakeLink onClick={toggleAll}>{toggleAllText}</FakeLink>
           <H2>The Program</H2>
           <HR />
           <AccordionSection

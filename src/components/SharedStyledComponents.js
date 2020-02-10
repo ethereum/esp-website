@@ -57,6 +57,16 @@ export const StyledLink = styled(Link)`
   }
 `
 
+export const FakeLink = styled.div`
+  cursor: pointer;
+  text-align: right;
+  color: ${styles.colorOrange};
+
+  &:hover {
+    color: ${styles.colorRed};
+  }
+`
+
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
