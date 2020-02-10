@@ -84,8 +84,8 @@ class Layout extends React.Component {
           <Nav hasShadow={this.state.hasNavShadow} />
           <div>
             <AnimatePresence>
-              key={this.props.location.pathname}
               <Main
+                key={this.props.location.pathname}
                 variants={variants}
                 initial="initial"
                 animate="enter"

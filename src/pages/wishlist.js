@@ -22,6 +22,11 @@ const Item = styled.div`
   margin-right: 1.45rem;
   margin-bottom: 1.45rem;
 `
+
+const StyledFakeLink = styled(FakeLink)`
+  margin-bottom: 1.45rem;
+`
+
 const WishlistPage = () => {
   // TODO simplify w/ Array... couldn't get it working
   const [expanded, setExpanded] = useState({
@@ -74,9 +79,7 @@ const WishlistPage = () => {
             Ethereum better for everyone,{" "}
             <Link to="/project/">we want to hear about it</Link>!
           </p>
-          <p>
-            <FakeLink onClick={toggleAll}>{toggleAllText}</FakeLink>
-          </p>
+          <StyledFakeLink onClick={toggleAll}>{toggleAllText}</StyledFakeLink>
           <HR />
           <AccordionSection
             key={0}
