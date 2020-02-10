@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import { Link } from "gatsby"
 
 import SEO from "../components/seo"
 import { useState } from "react"
@@ -45,7 +46,8 @@ const WishlistPage = ({ data }) => {
             these examples help to demonstrate the wide range of efforts we
             support, but they don’t represent the full extent of our interests.
             We’re always open to new ideas - if you think your project will make
-            Ethereum better for everyone, we want to hear about it!
+            Ethereum better for everyone,{" "}
+            <Link to="/project/">we want to hear about it</Link>!
           </p>
           <HR />
           <AccordionSection
