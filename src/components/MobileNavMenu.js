@@ -29,7 +29,7 @@ const Button = styled.button`
   }
 `
 
-const MenuToggle = ({ toggle }) => (
+const MobileNavMenu = ({ toggle }) => (
   <Button classname="menu-button" onClick={toggle}>
     <svg width="23" height="23" viewBox="0 0 23 23">
       <Path
@@ -56,4 +56,4 @@ const MenuToggle = ({ toggle }) => (
   </Button>
 )
 
-export default MenuToggle
+export default MobileNavMenu

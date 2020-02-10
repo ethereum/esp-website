@@ -1,20 +1,10 @@
 import React from "react"
 import { motion } from "framer-motion"
-import { useStaticQuery, graphql } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 import Img from "gatsby-image"
 
-import MenuItem from "./MenuItem"
 import { screenSizeS } from "../utils/styles"
-
-const variants = {
-  open: {
-    transition: { staggerChildren: 0.07, delayChildren: 0.2 },
-  },
-  closed: {
-    transition: { staggerChildren: 0.05, staggerDirection: -1 },
-  },
-}
 
 const List = styled(motion.ul)`
   margin: 0;
@@ -43,6 +33,14 @@ const Logo = styled(Img)`
   margin-bottom: 40px;
 `
 
+const Item = styled(motion.li)`
+  list-style: none;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+`
+
 const navItems = [
   { route: "/", text: "Home" },
   { route: "/faq/", text: "FAQ" },
@@ -50,7 +48,7 @@ const navItems = [
   { route: "/wishlist/", text: "Wish List" },
 ]
 
-const Navigation = ({ isOpen, toggle }) => {
+const MobileNavLinks = ({ toggle }) => {
   const data = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "favicons/114.png" }) {
@@ -64,18 +62,32 @@ const Navigation = ({ isOpen, toggle }) => {
   `)
 
   return (
-    <List variants={variants}>
-      {isOpen && (
-        <Logo
-          fixed={data.file.childImageSharp.fixed}
-          alt="Ethereum Ecosystem Support Program Logo"
-        />
-      )}
+    <List
+      initial={{ y: -300 }}
+      animate={{
+        y: 0,
+        transition: { duration: 1 },
+      }}
+      exit={{
+        y: -500,
+        transition: {
+          duration: 0.7,
+        },
+      }}
+    >
+      <Logo
+        fixed={data.file.childImageSharp.fixed}
+        alt="Ethereum Ecosystem Support Program Logo"
+      />
       {navItems.map((item, idx) => (
-        <MenuItem item={item} key={idx} toggle={toggle} />
+        <Item item={item} key={idx} onClick={toggle}>
+          <h3>
+            <Link to={item.route}>{item.text}</Link>
+          </h3>
+        </Item>
       ))}
     </List>
   )
 }
 
-export default Navigation
+export default MobileNavLinks

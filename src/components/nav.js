@@ -1,12 +1,12 @@
 import React from "react"
 import { useRef } from "react"
-import { motion, useCycle } from "framer-motion"
+import { motion, useCycle, AnimatePresence } from "framer-motion"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import styled from "styled-components"
 
-import MenuToggle from "./MenuToggle"
-import Navigation from "./Navigation"
+import MobileNavMenu from "./MobileNavMenu"
+import MobileNavLinks from "./MobileNavLinks"
 import { StyledLink } from "./SharedStyledComponents"
 import * as styles from "../utils/styles"
 
@@ -73,7 +73,7 @@ const NavLogoText = styled.div`
 `
 
 // Mobile
-const sidebar = {
+const backgroundVariants = {
   open: {
     clipPath: `circle(1000px at 200px 0px)`,
     transition: {
@@ -83,7 +83,7 @@ const sidebar = {
     },
   },
   closed: {
-    clipPath: "circle(24px at 200px 0px)",
+    clipPath: "circle(24px at 200px -10px)",
     transition: {
       delay: 0.5,
       type: "spring",
@@ -93,12 +93,12 @@ const sidebar = {
   },
 }
 
-const Background = styled(motion.div)`
+const MobileNavBackground = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
-  width: ${props => (props.isOpen ? "100%" : "0")};
+  width: 100%;
   background: ${styles.colorGrayLightest};
 `
 
@@ -121,7 +121,7 @@ const Nav = ({ hasShadow }) => {
   return (
     <StyledNav
       className={hasShadow ? "nav-shadow" : ""}
-      initial={false}
+      initial="closed"
       animate={isOpen ? "open" : "closed"}
       ref={containerRef}
     >
@@ -149,9 +149,13 @@ const Nav = ({ hasShadow }) => {
         </NavLink>
       </NavLinks>
       {/* Mobile */}
-      <Background isOpen={isOpen} variants={sidebar} />
-      <Navigation isOpen={isOpen} toggle={() => toggleOpen()} />
-      <MenuToggle toggle={() => toggleOpen()} />
+      <MobileNavBackground variants={backgroundVariants} />
+      <AnimatePresence>
+        {isOpen && (
+          <MobileNavLinks key="navigation" toggle={() => toggleOpen()} />
+        )}
+      </AnimatePresence>
+      <MobileNavMenu toggle={() => toggleOpen()} />
     </StyledNav>
   )
 }
