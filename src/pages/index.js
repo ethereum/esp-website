@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "gatsby"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
@@ -132,42 +133,39 @@ class IndexPage extends React.Component {
           </Hero>
           <PageBody>
             <Copy id="welcome">
-              <h1 style={{ paddingTop: `110px` }}>Welcome!</h1>
-              <p
-                style={{
-                  lineHeight: `1.5em`,
-                }}
-              >
-                The Ethereum Ecosystem Support Program exists to provide both
-                financial and non-financial support to projects and entities
-                within the greater Ethereum community, in order to accelerate
-                the growth of the ecosystem. The Ecosystem Support Program is an
-                expansion of the original Ethereum Grants Program which mainly
-                focused on financial support. Our focus is on deploying our
-                resources where they will have the biggest impact.
+              <h1 style={{ paddingTop: `110px`, fontWeight: `bold` }}>
+                Welcome!
+              </h1>
+              <p>
+                Ethereum Foundation's Ecosystem Support Program exists to
+                provide both financial and non-financial support to projects and
+                entities within the greater Ethereum community, in order to
+                accelerate the growth of the ecosystem. The Ecosystem Support
+                Program is an expansion of the original Ethereum Grants Program
+                which mainly focused on financial support. Our focus is on
+                deploying our resources where they will have the biggest impact.
+              </p>
+              <p>
+                If you've got a project and want to see if ESP is a good fit,{" "}
+                <Link to="/project/">get in touch</Link>!
               </p>
               <Section>
                 <H2>Recent News</H2>
                 <p>
-                  Donec sed odio dui. Cum sociis natoque penatibus et magnis dis
-                  parturient montes, nascetur ridiculus mus. Sed posuere
-                  consectetur est at lobortis. Morbi leo risus, porta ac
-                  consectetur ac. Read more.
-                  <br />
-                  <a href="#">Read more.</a>
-                </p>
-                <p>
-                  Donec sed odio dui. Cum sociis natoque penatibus et magnis dis
-                  parturient montes, nascetur ridiculus mus. Sed posuere
-                  consectetur est at lobortis. Morbi leo risus, porta ac
-                  consectetur ac. Read more.
-                  <br />
-                  <a href="#">Read more.</a>
+                  Our website has grown! You're already here, so why not look
+                  around? Get the latest news, find out which community events
+                  we'll be at, learn about some of the{" "}
+                  <Link to="/projects/">projects we've supported</Link>, and
+                  check out our <Link to="/wishlist/">wish list</Link> and
+                  expanded <Link to="/faq/">FAQ</Link>. Keep an eye out for even
+                  more additions in the coming months, and regular updates to
+                  the existing content.
                 </p>
               </Section>
               <HR />
               <Section>
                 <H2>Upcoming Events</H2>
+                <p>Find us at these community events!</p>
                 <EventContainer>
                   <Event />
                   <Event />

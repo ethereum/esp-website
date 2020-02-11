@@ -71,13 +71,12 @@ const WishlistPage = () => {
         <PageBody>
           <H2>Wish List</H2>
           <p>
-            Wondering what kinds of things ESP supports? Below you can find some
-            of the major categories we’re paying attention to right now. We hope
-            these examples help to demonstrate the wide range of efforts we
-            support, but they don’t represent the full extent of our interests.
-            We’re always open to new ideas - if you think your project will make
-            Ethereum better for everyone,{" "}
-            <Link to="/project/">we want to hear about it</Link>!
+            Here, you’ll find some of the areas where we’re actively seeking
+            applications. While these are some of the most pressing needs we see
+            in the ecosystem, the list is by no means exhaustive. We don't
+            expect to think of everything - we’re always looking for new ideas.
+            If you’re working on something that will make Ethereum better,{" "}
+            <Link to="/project/">we're here to help</Link>!
           </p>
           <StyledFakeLink onClick={toggleAll}>{toggleAllText}</StyledFakeLink>
           <HR />

@@ -34,9 +34,10 @@ const ProjectsPage = ({ data }) => {
             <p>
               This is only a small sample – we’ll highlight a few at a time and
               rotate periodically, so make sure to check back once in a while
-              for updates. We’ll tend to feature projects that are at least a
-              few months old, so that we have some results to look back on as
-              well as ongoing trajectory and remaining milestones.
+              for updates. We’ll feature projects that have had at least a few
+              months since receiving support, so that we have some results to
+              look back on as well as ongoing trajectory and remaining
+              milestones.
             </p>
           </Intro>
           {data.allMarkdownRemark.edges.map(({ node }, idx) => {
