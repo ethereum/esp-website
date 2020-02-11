@@ -2,9 +2,12 @@ import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
 
-import { CardImage, LighterText } from "../components/SharedStyledComponents"
 import {
-  colorGray,
+  CardImage,
+  LightText,
+  LighterText,
+} from "../components/SharedStyledComponents"
+import {
   colorGrayDark,
   colorOrange,
   colorRed,
@@ -36,7 +39,7 @@ const Card = styled(Link)`
   }
 
   & > div {
-    margin: 16px;
+    margin: 24px;
   }
 `
 
@@ -44,23 +47,15 @@ const CardBody = styled.div`
   flex: 1 1 300px;
 `
 
-const CardHeader = styled.header`
-  display: flex;
-  margin: 24px 0;
-
-  @media (max-width: ${screenSizeL}) {
-    flex-direction: column;
-  }
-  @media (max-width: ${screenSizeM}) {
-    text-align: center;
-  }
-`
-
 const CardTitle = styled.div`
   font-size: 1.62671rem;
   font-weight: 500;
-  margin-right: 16px;
+  margin-bottom: 8px;
   white-space: nowrap;
+
+  @media (max-width: ${screenSizeM}) {
+    text-align: center;
+  }
 
   @media (max-width: ${screenSizeL}) {
     margin-bottom: 16px;
@@ -74,10 +69,13 @@ const CardGrant = styled.div`
   justify-content: space-between;
 `
 
-const CardCategory = styled.div`
-  color: ${colorGray};
-  font-size: 0.9rem;
+const CardCategory = styled(LighterText)`
+  margin-bottom: 16px;
   white-space: nowrap;
+
+  @media (max-width: ${screenSizeM}) {
+    text-align: center;
+  }
 `
 
 const DetailsLink = styled.div`
@@ -105,18 +103,16 @@ const ProjectCard = ({ frontmatter, link }) => {
         alt="Ecosystem Support Program Process"
       />
       <CardBody>
-        <CardHeader>
-          <CardTitle>{frontmatter.title}</CardTitle>
-          <CardCategory>{frontmatter.category}</CardCategory>
-        </CardHeader>
+        <CardTitle>{frontmatter.title}</CardTitle>
+        <CardCategory>{frontmatter.category}</CardCategory>
         <div>{frontmatter.description}</div>
       </CardBody>
       <CardGrant>
         <div>
           <strong>Grant Received:</strong>
-          <LighterText>
+          <LightText>
             {frontmatter.grantAmount} in {frontmatter.grantYear}
-          </LighterText>
+          </LightText>
         </div>
         <DetailsLink>View Details</DetailsLink>
       </CardGrant>

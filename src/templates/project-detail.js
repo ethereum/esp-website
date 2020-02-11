@@ -68,12 +68,7 @@ const Arrow = styled.span`
 
 const Header = styled.header`
   display: flex;
-  align-items: baseline;
-  margin-bottom: 24px;
-  @media (max-width: ${screenSizeL}) {
-    flex-direction: column;
-    margin-bottom: 0;
-  }
+  flex-direction: column;
 `
 
 const Category = styled(LighterText)`
@@ -83,9 +78,7 @@ const Category = styled(LighterText)`
 `
 
 const Title = styled.h1`
-  margin-bottom: 0;
-  margin-right: 1rem;
-
+  margin-bottom: 8px;
   @media (max-width: ${screenSizeL}) {
     margin-bottom: 1rem;
   }

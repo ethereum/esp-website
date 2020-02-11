@@ -114,8 +114,13 @@ export const CardImage = styled(Img)`
   border-radius: 10px;
 `
 
-export const LighterText = styled.div`
+export const LightText = styled.div`
   color: ${styles.colorGray};
+  font-size: 0.9rem;
+`
+
+export const LighterText = styled.div`
+  color: ${styles.colorGrayLight};
   font-size: 0.9rem;
 `
 
