@@ -15,7 +15,7 @@ import {
 } from "../components/SharedStyledComponents"
 import horzLogo from "../images/horz-logo.svg"
 import vertLogo from "../images/vert-logo.svg"
-import { screenSizeM, screenSizeS } from "../utils/styles"
+import { screenSizeM, screenSizeS, colorGrayLight } from "../utils/styles"
 
 const Hero = styled.div`
   height: 100vh;
@@ -72,6 +72,12 @@ const VerticalLogo = styled.img`
   }
 `
 
+const Header = styled.h3`
+  text-align: center;
+  margin-top: 8px;
+  color: ${colorGrayLight};
+`
+
 class IndexPage extends React.Component {
   constructor(props) {
     super(props)
@@ -111,6 +117,7 @@ class IndexPage extends React.Component {
               src={vertLogo}
               alt="Ecosystem Support Program Vertical Logo"
             />
+            <Header>A project of Ethereum Foundation</Header>
             <StyledLink
               to="/#welcome"
               className={
@@ -145,9 +152,10 @@ class IndexPage extends React.Component {
               <Section>
                 <H2>Recent News</H2>
                 <p>
-                  Our website has grown! You're already here, so why not look
-                  around? Get the latest news, find out which community events
-                  we'll be at, learn about some of the{" "}
+                  <strong>February 11, 2020</strong>: Our website has grown!
+                  You're already here, so why not look around? Get the latest
+                  news, find out which community events we'll be at, learn about
+                  some of the{" "}
                   <Link to="/projects/">projects we've supported</Link>, and
                   check out our <Link to="/wishlist/">wishlist</Link> and
                   expanded <Link to="/faq/">FAQ</Link>. Keep an eye out for even
