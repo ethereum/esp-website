@@ -27,6 +27,10 @@ const StyledFakeLink = styled(FakeLink)`
   margin-bottom: 1.45rem;
 `
 
+const UL = styled.ul`
+  margin-top: 0.5rem;
+`
+
 const WishlistPage = () => {
   // TODO simplify w/ Array... couldn't get it working
   const [expanded, setExpanded] = useState({
@@ -90,19 +94,25 @@ const WishlistPage = () => {
             <Item>
               <strong>Decentralized data storage</strong>
               <div>
-                Decentralised data storage, indexing, data privacy, and
-                associated tooling. Concentrating on tangible near term
-                use-cases like: Storage for user content; Decentralized
-                websites; Storage and retrieval of Ethereum history.
+                Decentralized data storage, indexing, data privacy, and
+                associated tooling. Use cases including:
+                <UL>
+                  <li>Storage for user content</li>
+                  <li>Decentralized websites</li>
+                  <li>Storage and retrieval of Ethereum history</li>
+                </UL>
               </div>
             </Item>
             <Item>
               <strong>Communications infrastructure</strong>
               <div>
-                Robust scalable approaches for privacy preserving communication
-                at network and messaging layers, in support of use cases
-                including decentralised applications, personal & enterprise
-                message exchange and private transactions.
+                Privacy preserving communication at network and messaging
+                layers. Use cases including:
+                <UL>
+                  <li>Decentralized applications</li>
+                  <li>Personal & enterprise message exchange</li>
+                  <li>Private transactions</li>
+                </UL>
               </div>
             </Item>
             <Item>
@@ -110,33 +120,45 @@ const WishlistPage = () => {
                 Infrastructure and standards for decentralized applications
               </strong>
               <div>
-                Frameworks, standards and missing infrastructure including non
-                consensus aspects which improve developer productivity and/or
-                which help fulfill the vision of decentralized applications.
+                Frameworks, standards and missing infrastructure which improve
+                developer productivity, and/or help fulfill the vision of
+                decentralized applications.
               </div>
             </Item>
             <Item>
               <strong>Identity</strong>
               <div>
-                Digital identity building blocks, standards and tooling in
-                support of applications like proof of educational credentials,
-                opt in KYC, organizational membership, voting, quadratic voting,
-                reputation ect.
+                Digital identity building blocks, standards and tooling. Use
+                cases including:
+                <UL>
+                  <li>Proof of educational credentials</li>
+                  <li>Opt in KYC</li>
+                  <li>Organizational membership</li>
+                  <li>Voting/quadratic voting</li>
+                  <li>Reputation</li>
+                </UL>
               </div>
             </Item>
             <Item>
               <strong>Integration and interoperability</strong>
               <div>
                 Integration and interoperability with other systems and
-                standards including: decentralized web and P2P protocols,
-                existing internet protocols, public & private chains, other
-                important protocols, software stacks, and hardware platforms.
+                standards including:
+                <UL>
+                  <li>Decentralized web and P2P protocols</li>
+                  <li>Existing internet protocols</li>
+                  <li>Public & private chains</li>
+                  <li>
+                    Other important protocols, software stacks, and hardware
+                    platforms.
+                  </li>
+                </UL>
               </div>
             </Item>
             <Item>
               <strong>Light clients</strong>
               <div>
-                Eth1.x and Eth2 light client research and development and other
+                Eth 1.x and Eth 2 light client research and development; other
                 approaches to ensuring secure data availability for resource
                 constrained devices and libraries.
               </div>
@@ -153,18 +175,26 @@ const WishlistPage = () => {
             <Item>
               <strong>Communications infrastructure</strong>
               <div>
-                Robust scalable approaches for privacy preserving communication
-                at network and messaging layers, in support of use cases
-                including decentralised applications, personal & enterprise
-                message exchange and private transactions.
+                Privacy preserving communication at network and messaging
+                layers. Use cases including:
+                <UL>
+                  <li>Decentralized applications</li>
+                  <li>Personal & enterprise message exchange</li>
+                  <li>Private transactions</li>
+                </UL>
               </div>
             </Item>
             <Item>
               <strong>Confidential execution</strong>
               <div>
                 Approaches towards confidential execution and transfers
-                including s*ark/stonk/stank, Zexe, homomorphic encryption,
-                secure multiparty computation ect.
+                including:
+                <UL>
+                  <li>s*ark/stonk/stank</li>
+                  <li>Zexe</li>
+                  <li>Homomorphic encryption</li>
+                  <li>Secure multiparty computation</li>
+                </UL>
               </div>
             </Item>
             <Item>
@@ -213,13 +243,14 @@ const WishlistPage = () => {
             <Item>
               <strong>Friction reduction</strong>
               <div>
-                Removing usability, and other barriers to adoption and use.
+                Removing usability barriers and other impediments to adoption
+                and use.
               </div>
             </Item>
             <Item>
               <strong>Key management</strong>
               <div>
-                Key management improvements including, portability between
+                Key management improvements including portability between
                 wallets, social and other key recovery mechanisms.
               </div>
             </Item>
@@ -237,15 +268,15 @@ const WishlistPage = () => {
                 Infrastructure and standards for decentralized applications
               </strong>
               <div>
-                Frameworks, standards and missing infrastructure including non
-                consensus aspects which improve developer productivity and/or
-                which help fulfill the vision of decentralized applications.
+                Frameworks, standards and missing infrastructure which improve
+                developer productivity, and/or help fulfill the vision of
+                decentralized applications.
               </div>
             </Item>
             <Item>
-              <strong>Tooling that improves developer experience</strong>
+              <strong>Tooling to improve developer experience</strong>
               <div>
-                Tools and libraries, that improve developer experience,
+                Tools and libraries that improve developer experience,
                 productivity, code quality and safety.
               </div>
             </Item>
@@ -272,25 +303,24 @@ const WishlistPage = () => {
             <Item>
               <strong>Educational materials</strong>
               <div>
-                Improved documentation, tutorials and other educational material
-                especially common resources like educational toolkits which can
-                be shared between events and courses.
+                Improved documentation; tutorials; common resources like
+                educational toolkits that can be shared between events and
+                courses.
               </div>
             </Item>
             <Item>
-              <strong>Translation of educational materials</strong>
+              <strong>Translation</strong>
               <div>
-                Translation of documentation, educational material, research,
-                and specs into other languages.
+                Translating documentation, educational material, research, and
+                specs into other languages.
               </div>
             </Item>
             <Item>
               <strong>Groups and events</strong>
               <div>
-                Community groups and events, especially those which which grow
-                the Ethereum community in currently underrepresented regions or
-                which create links with valued aligned communities and expert
-                groups.
+                Growing the Ethereum community, especially in currently
+                underrepresented regions; creating links with valued aligned
+                communities and expert groups.
               </div>
             </Item>
           </AccordionSection>
@@ -312,9 +342,9 @@ const WishlistPage = () => {
             <Item>
               <strong>L2 Scaling</strong>
               <div>
-                Shared infrastructure and standards for L2 scaling solutions,
-                research into cross shard L2, as well as general L2 scaling
-                research and development of L2 scaling solutions.
+                Shared infrastructure and standards for L2 scaling solutions;
+                research into cross shard L2; general L2 scaling research;
+                development of L2 scaling solutions.
               </div>
             </Item>
           </AccordionSection>
@@ -327,14 +357,17 @@ const WishlistPage = () => {
             headerText="Eth 1.x"
           >
             <Item>
-              <strong>
-                Research into stateless ethereum with application to both Eth
-                1.x and Eth 2
-              </strong>
+              <strong>Stateless Ethereum</strong>
               <div>
-                Research into stateless ethereum with application to both Eth
-                1.x and Eth 2 including witnesses format, ZK witness
-                compression, accumulators, state availability, and delivery.
+                Research into stateless Ethereum with application to both Eth
+                1.x and Eth 2, including:
+                <UL>
+                  <li>Witnesses format</li>
+                  <li>ZK witness compression</li>
+                  <li>Accumulators</li>
+                  <li>State availability</li>
+                  <li>Delivery</li>
+                </UL>
               </div>
             </Item>
             <Item>
@@ -354,19 +387,27 @@ const WishlistPage = () => {
               <strong>Confidential execution</strong>
               <div>
                 Approaches towards confidential execution and transfers
-                including s*ark/stonk/stank, Zexe, homomorphic encryption,
-                secure multiparty computation ect.
+                including:
+                <UL>
+                  <li>s*ark/stonk/stank</li>
+                  <li>Zexe</li>
+                  <li>Homomorphic encryption</li>
+                  <li>Secure multiparty computation</li>
+                </UL>
               </div>
             </Item>
             <Item>
-              <strong>
-                Research into stateless ethereum with application to both Eth
-                1.x and Eth 2
-              </strong>
+              <strong>Stateless Ethereum</strong>
               <div>
-                Research into stateless ethereum with application to both Eth
-                1.x and Eth 2 including witnesses format, ZK witness
-                compression, accumulators, state availability, and delivery.
+                Research into stateless Ethereum with application to both Eth
+                1.x and Eth 2, including:
+                <UL>
+                  <li>Witnesses format</li>
+                  <li>ZK witness compression</li>
+                  <li>Accumulators</li>
+                  <li>State availability</li>
+                  <li>Delivery</li>
+                </UL>
               </div>
             </Item>
           </AccordionSection>
