@@ -5,7 +5,7 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
 
 import SEO from "../components/seo"
-import Event from "../components/event"
+import UpcomingEvents from "../components/UpcomingEvents"
 import {
   PageBody,
   StyledLink,
@@ -31,17 +31,6 @@ const Copy = styled.div`
 
 const Section = styled.div`
   margin-bottom: 48px;
-`
-
-const EventContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: 8px;
-  margin-bottom: 32px;
-
-  @media (max-width: ${screenSizeM}) {
-    flex-direction: column;
-  }
 `
 
 const ButtonContainer = styled.div`
@@ -170,11 +159,7 @@ class IndexPage extends React.Component {
               <Section>
                 <H2>Upcoming Events</H2>
                 <p>Find us at these community events!</p>
-                <EventContainer>
-                  <Event />
-                  <Event />
-                  <Event />
-                </EventContainer>
+                <UpcomingEvents />
               </Section>
               <HR />
               <H2 id="contact">Contact Us</H2>

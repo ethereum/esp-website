@@ -32,7 +32,7 @@ const Card = styled(Link)`
 
   &:hover {
     color: black;
-    transform: translateY(-4px);
+    transform: translateY(-2px);
   }
 
   & > div {
