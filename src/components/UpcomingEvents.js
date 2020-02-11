@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 
-import Event from "./Event"
+import Event from "./event"
 import { screenSizeM } from "../utils/styles"
 
 const EventsContainer = styled.div`
