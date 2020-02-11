@@ -45,7 +45,7 @@ const navItems = [
   { route: "/", text: "Home" },
   { route: "/faq/", text: "FAQ" },
   { route: "/projects/", text: "Featured projects" },
-  { route: "/wishlist/", text: "Wish List" },
+  { route: "/wishlist/", text: "Wishlist" },
 ]
 
 const MobileNavLinks = ({ toggle }) => {

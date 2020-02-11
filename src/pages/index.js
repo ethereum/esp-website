@@ -133,22 +133,26 @@ class IndexPage extends React.Component {
           </Hero>
           <PageBody>
             <Copy id="welcome">
-              <h1 style={{ paddingTop: `110px`, fontWeight: `bold` }}>
-                Welcome!
-              </h1>
-              <p>
-                Ethereum Foundation's Ecosystem Support Program exists to
-                provide both financial and non-financial support to projects and
-                entities within the greater Ethereum community, in order to
-                accelerate the growth of the ecosystem. The Ecosystem Support
-                Program is an expansion of the original Ethereum Grants Program
-                which mainly focused on financial support. Our focus is on
-                deploying our resources where they will have the biggest impact.
-              </p>
-              <p>
-                If you've got a project and want to see if ESP is a good fit,{" "}
-                <Link to="/project/">get in touch</Link>!
-              </p>
+              <Section>
+                <h1 style={{ paddingTop: `110px`, fontWeight: `bold` }}>
+                  Welcome!
+                </h1>
+                <p>
+                  Ethereum Foundation's Ecosystem Support Program exists to
+                  provide both financial and non-financial support to projects
+                  and entities within the greater Ethereum community, in order
+                  to accelerate the growth of the ecosystem. The Ecosystem
+                  Support Program is an expansion of the original Ethereum
+                  Grants Program which mainly focused on financial support. Our
+                  focus is on deploying our resources where they will have the
+                  biggest impact.
+                </p>
+                <p>
+                  If you've got a project and want to see if ESP is a good fit,{" "}
+                  <Link to="/#contact">get in touch</Link>!
+                </p>
+              </Section>
+              <HR />
               <Section>
                 <H2>Recent News</H2>
                 <p>
@@ -156,7 +160,7 @@ class IndexPage extends React.Component {
                   around? Get the latest news, find out which community events
                   we'll be at, learn about some of the{" "}
                   <Link to="/projects/">projects we've supported</Link>, and
-                  check out our <Link to="/wishlist/">wish list</Link> and
+                  check out our <Link to="/wishlist/">wishlist</Link> and
                   expanded <Link to="/faq/">FAQ</Link>. Keep an eye out for even
                   more additions in the coming months, and regular updates to
                   the existing content.
@@ -173,7 +177,7 @@ class IndexPage extends React.Component {
                 </EventContainer>
               </Section>
               <HR />
-              <H2>Contact Us</H2>
+              <H2 id="contact">Contact Us</H2>
               <p>
                 Are you working on a specific project, or are you still
                 exploring possibilities to get involved?

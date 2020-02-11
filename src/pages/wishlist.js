@@ -63,13 +63,13 @@ const WishlistPage = () => {
 
   return (
     <>
-      <SEO title="Wish List" />
+      <SEO title="Wishlist" />
       <div>
         <PageHeader>
-          <H1>Project Wish List</H1>
+          <H1>Project Wishlist</H1>
         </PageHeader>
         <PageBody>
-          <H2>Wish List</H2>
+          <H2>Wishlist</H2>
           <p>
             Here, you’ll find some of the areas where we’re actively seeking
             applications. While these are some of the most pressing needs we see
