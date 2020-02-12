@@ -50,7 +50,7 @@ const CardBody = styled.div`
 const CardTitle = styled.div`
   font-size: 1.62671rem;
   font-weight: 500;
-  margin-top: 5px;
+  margin-top: 8px;
   margin-bottom: 8px;
   white-space: nowrap;
 
