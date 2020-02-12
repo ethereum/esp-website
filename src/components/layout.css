@@ -650,7 +650,7 @@ pre tt:after {
   background-image: url("../images/lines.svg");
 }
 
-@media (max-width: 840px) {
+@media (max-width: 760px) {
   .line.bottom {
     height: 18px;
   }
@@ -856,7 +856,7 @@ footer .footer-legal:hover {
   margin: 25px 25px 0;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 760px) {
   .layout {
     margin: 18px 18px 0;
   }
