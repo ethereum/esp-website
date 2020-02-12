@@ -25,7 +25,23 @@ const UpcomingEvents = () => {
     fetch("/.netlify/functions/events")
       .then(response => response.json())
       .then(result => {
-        setEventsState({ events: result.data.records, loading: false })
+        const sortedEvents = result.data.records.sort((a, b) => {
+          try {
+            const aDay = a.fields["Dates"].slice(0, 6)
+            const aYear = a.fields["Dates"].slice(-4)
+            const aDate = new Date(`${aDay} ${aYear}`)
+
+            const bDay = b.fields["Dates"].slice(0, 6)
+            const bYear = b.fields["Dates"].slice(-4)
+            const bDate = new Date(`${bDay} ${bYear}`)
+
+            return aDate - bDate
+          } catch (e) {
+            console.error(e)
+            return 0
+          }
+        })
+        setEventsState({ events: sortedEvents, loading: false })
       })
       .catch(e => {
         console.error(e)
@@ -34,8 +50,8 @@ const UpcomingEvents = () => {
 
   return (
     <EventsContainer>
-      {eventsState.loading && <h3>Loading upcoming events...</h3>}
-      {eventsState.events.length &&
+      {eventsState.loading && <p>Loading upcoming events...</p>}
+      {eventsState.events.length > 0 &&
         eventsState.events.map((event, i) => {
           return (
             <Event
