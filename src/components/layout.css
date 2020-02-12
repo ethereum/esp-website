@@ -666,8 +666,9 @@ pre tt:after {
 }
 
 /* Links */
+
 a {
-  color: #363636;
+  color: #f26b38;
   text-decoration: none;
   opacity: 1;
   outline: none;
@@ -675,7 +676,7 @@ a {
 
 a:hover {
   text-decoration: none;
-  color: #f26b38;
+  color: #e65753;
 }
 
 /* Navbar */
@@ -689,6 +690,8 @@ a:hover {
 }
 
 /* Hero */
+
+/* TODO move to styled components */
 
 .image .horz-logo {
   width: 450px;
@@ -765,6 +768,8 @@ a:hover {
 }
 
 /* Footer */
+/* TODO move to styled components */
+
 footer {
   display: flex;
   justify-content: space-between;
@@ -843,53 +848,8 @@ footer .footer-legal:hover {
   }
 }
 
-/* Buttons */
+/* TODO move to styled components */
 
-.btn {
-  text-transform: uppercase;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: 1.5;
-  text-align: center;
-  border-radius: 20px;
-  color: #ffffff;
-  background: #e66981;
-  border: 1px solid #e66981;
-  font-size: 1.1rem;
-  border: 1px solid transparent;
-  position: relative;
-  overflow: hidden;
-  padding: 15px 30px;
-  cursor: pointer;
-  transition: all 0.3s ease 0s;
-  -moz-transition: all 0.3s ease 0s;
-  -webkit-transition: all 0.3s ease 0s;
-  -o-transition: all 0.3s ease 0s;
-}
-
-.btn:hover {
-  color: #ffffff;
-  background: #d05d73;
-}
-
-.btn-container {
-  margin: 60px 0;
-  display: flex;
-  justify-content: space-around;
-}
-
-@media (max-width: 840px) {
-  .btn-container {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-
-  .btn {
-    margin-top: 30px;
-  }
-}
 /* Layout */
 
 .layout {
@@ -901,8 +861,6 @@ footer .footer-legal:hover {
     margin: 18px 18px 0;
   }
 }
-
-/* TODO move to styled components */
 
 /* Pages */
 

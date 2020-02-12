@@ -1,11 +1,19 @@
 import { Link } from "gatsby"
+import Img from "gatsby-image"
 import styled from "styled-components"
+
 import * as styles from "../utils/styles"
 
 export const PageBody = styled.div`
   margin: 0 auto 1rem;
   max-width: 780px;
-  padding: 0 16px;
+  padding: 40px 16px;
+`
+
+export const PageBodyWide = styled.div`
+  margin: 0 auto 1rem;
+  max-width: 960px;
+  padding: 40px 16px;
 `
 
 export const PageHeader = styled.div`
@@ -26,6 +34,17 @@ export const H1 = styled.h1`
   }
 `
 
+export const H2 = styled.h2`
+  font-weight: bold;
+  padding-top: 32px;
+`
+
+export const HR = styled.hr`
+  margin-bottom: 8px;
+  background: #e4e4e4;
+  height: 2px;
+`
+
 export const StyledLink = styled(Link)`
   color: ${styles.colorOrange};
   text-decoration: none;
@@ -34,6 +53,16 @@ export const StyledLink = styled(Link)`
 
   &:hover {
     text-decoration: none;
+    color: ${styles.colorRed};
+  }
+`
+
+export const FakeLink = styled.div`
+  cursor: pointer;
+  text-align: right;
+  color: ${styles.colorOrange};
+
+  &:hover {
     color: ${styles.colorRed};
   }
 `
@@ -68,37 +97,6 @@ export const TextArea = styled.textarea`
   border: 1px solid #d1d1d1; /* TODO move to styles */
 `
 
-export const Button = styled.button`
-  text-transform: uppercase;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: 1.5;
-  text-align: center;
-  border-radius: 20px;
-  color: #ffffff; /* TODO move to styles */
-  background: #e66981; /* TODO move to styles */
-  border: 1px solid #e66981; /* TODO move to styles */
-  font-size: 1.1rem;
-  border: 1px solid transparent;
-  position: relative;
-  overflow: hidden;
-  padding: 15px 30px;
-  cursor: pointer;
-  transition: all 0.3s ease 0s;
-  -moz-transition: all 0.3s ease 0s;
-  -webkit-transition: all 0.3s ease 0s;
-  -o-transition: all 0.3s ease 0s;
-
-  &:hover {
-    color: #ffffff;
-    background: #d05d73;
-  }
-
-  &:disabled {
-    background: ${styles.colorMedGray};
-  }
-`
-
 export const FormHeader = styled.header`
   max-width: 548px;
   margin: auto;
@@ -109,4 +107,86 @@ export const FormHeader = styled.header`
 export const Required = styled.span`
   color: ${styles.colorRed};
   font-weight: bold;
+`
+
+export const CardImage = styled(Img)`
+  flex: 0 0 200px;
+  border-radius: 10px;
+`
+
+export const LightText = styled.div`
+  color: ${styles.colorGray};
+  font-size: 0.9rem;
+`
+
+export const LighterText = styled.div`
+  color: ${styles.colorGrayLight};
+  font-size: 0.9rem;
+`
+
+export const Button = styled.button`
+  display: inline-block;
+  line-height: 1.5;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 4px;
+  color: ${styles.colorWhite};
+  background: ${styles.colorOrangeLight};
+  border: 1px solid ${styles.colorOrangeLight};
+  font-size: 1.1rem;
+  padding: 15px 30px;
+  cursor: pointer;
+
+  &:hover {
+    background: ${styles.colorRed};
+  }
+  &:disabled {
+    background: ${styles.colorGrayDark};
+  }
+`
+
+export const ButtonLink = styled(Link)`
+  display: inline-block;
+  line-height: 1.5;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 4px;
+  color: ${styles.colorWhite};
+  background: ${styles.colorOrangeLight};
+  border: 1px solid ${styles.colorOrangeLight};
+  font-size: 1.1rem;
+  padding: 15px 30px;
+  transition: all 0.3s ease 0s;
+
+  &:hover {
+    background: ${styles.colorRed};
+    color: ${styles.colorWhite};
+  }
+
+  @media (max-width: ${styles.screenSizeS}) {
+    width: 100%;
+  }
+`
+
+export const ButtonExternalLink = styled.a`
+  display: inline-block;
+  line-height: 1.5;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 4px;
+  color: ${styles.colorWhite};
+  background: ${styles.colorOrangeLight};
+  border: 1px solid ${styles.colorOrangeLight};
+  font-size: 1.1rem;
+  padding: 15px 30px;
+  transition: all 0.3s ease 0s;
+
+  &:hover {
+    background: ${styles.colorRed};
+    color: ${styles.colorWhite};
+  }
+
+  @media (max-width: ${styles.screenSizeS}) {
+    width: 100%;
+  }
 `

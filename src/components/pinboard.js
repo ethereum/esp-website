@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 
+// TODO style
 const Pinboard = () => {
   const [pinboardState, setPinboardState] = useState({
     pins: [],

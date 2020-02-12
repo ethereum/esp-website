@@ -21,11 +21,12 @@ const Header = styled(motion.header)`
   cursor: pointer;
   padding: 16px;
   font-size: 1.2rem;
+  font-weight: 500;
   transition: all 0.25s ease-in-out;
 `
 const Icon = styled(FontAwesomeIcon)`
   margin-right: 16px;
-  color: #fac54a;
+  color: ${styles.colorYellow};
 `
 
 const Section = styled(motion.section)`
@@ -44,7 +45,7 @@ const AccordionSection = ({
   headerText,
   children,
 }) => {
-  const isOpen = i === expanded
+  const isOpen = expanded[i] === true
   const icon = isOpen ? faMinus : faPlus
 
   // By using `AnimatePresence` to mount and unmount the contents, we can animate
@@ -54,10 +55,10 @@ const AccordionSection = ({
       <Header
         initial={false}
         animate={{
-          backgroundColor: isOpen ? styles.colorDullOrange : styles.colorWhite,
-          color: isOpen ? styles.colorWhite : styles.colorDarkGray,
+          backgroundColor: isOpen ? styles.colorWhite : styles.colorWhite,
+          color: isOpen ? styles.colorGrayDarkest : styles.colorGrayDarkest,
         }}
-        onClick={() => setExpanded(isOpen ? false : i)}
+        onClick={() => setExpanded({ ...expanded, [i]: isOpen ? false : true })}
       >
         <span>
           <Icon icon={icon} />
