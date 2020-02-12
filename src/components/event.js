@@ -6,7 +6,7 @@ import {
   colorGrayLight,
   colorGrayDark,
   colorGrayDarkest,
-  screenSizeM,
+  screenSizeS,
 } from "../utils/styles"
 
 const Title = styled.h4`
@@ -34,9 +34,10 @@ const StyledEvent = styled.a`
   flex-direction: column;
   justify-content: space-between;
 
-  flex: 0 1 232px;
+  flex: 1 1 232px;
   padding: 16px;
   margin-bottom: 32px;
+  margin-right: 16px;
 
   cursor: pointer;
   border-radius: 10px;
@@ -49,8 +50,10 @@ const StyledEvent = styled.a`
     transform: translateY(-2px);
   }
 
-  @media (max-width: ${screenSizeM}) {
-    max-width: 100%;
+  @media (max-width: ${screenSizeS}) {
+    flex: 1 1 140px;
+    margin-right: 0px;
+    margin-bottom: 24px;
   }
 `
 const Event = ({ title, dates, url }) => (
