@@ -52,16 +52,20 @@ const UpcomingEvents = () => {
     <EventsContainer>
       {eventsState.loading && <p>Loading upcoming events...</p>}
       {eventsState.events.length > 0 &&
-        eventsState.events.map((event, i) => {
-          return (
-            <Event
-              key={i}
-              title={event.fields["Name"]}
-              dates={event.fields["Dates"]}
-              url={event.fields["Event website"]}
-            />
-          )
-        })}
+        eventsState.events
+          .filter(event => {
+            return event.fields["Name"] && event.fields["Event website"]
+          })
+          .map((event, i) => {
+            return (
+              <Event
+                key={i}
+                title={event.fields["Name"]}
+                dates={event.fields["Dates"]}
+                url={event.fields["Event website"]}
+              />
+            )
+          })}
     </EventsContainer>
   )
 }
