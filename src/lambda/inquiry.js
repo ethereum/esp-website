@@ -45,7 +45,7 @@ exports.handler = async function(event, context) {
         Recent_Projects_or_Developments: params.recentProjectsOrDevelopments,
         Questions: params.questions,
         // Project custom fields
-        Description: params.projectDescription,
+        Project_Description: params.projectDescription,
         Challenges: params.challenges,
         Impact: params.impact,
       },
