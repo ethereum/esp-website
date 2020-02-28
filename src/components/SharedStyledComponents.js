@@ -142,6 +142,7 @@ export const Button = styled.button`
   }
   &:disabled {
     background: ${styles.colorGrayDark};
+    border: 1px solid ${styles.colorGrayDark};
   }
 `
 
