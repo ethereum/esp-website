@@ -34,7 +34,7 @@ const StyledEvent = styled.a`
   flex-direction: column;
   justify-content: space-between;
 
-  flex: 1 1 232px;
+  flex: 0 1 232px;
   padding: 16px;
   margin-bottom: 32px;
   margin-right: 16px;
@@ -50,6 +50,9 @@ const StyledEvent = styled.a`
     transform: translateY(-2px);
   }
 
+  @media (max-width: 824px) {
+    flex: 0 1 324px;
+  }
   @media (max-width: ${screenSizeS}) {
     flex: 1 1 140px;
     margin-right: 0px;
