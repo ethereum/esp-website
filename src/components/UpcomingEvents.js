@@ -3,6 +3,7 @@ import styled from "styled-components"
 
 import Event from "./event"
 import { screenSizeM } from "../utils/styles"
+import { Section, HR, H2 } from "../components/SharedStyledComponents"
 
 const EventsContainer = styled.div`
   display: flex;
@@ -25,22 +26,26 @@ const UpcomingEvents = () => {
     fetch("/.netlify/functions/events")
       .then(response => response.json())
       .then(result => {
-        const sortedEvents = result.data.records.sort((a, b) => {
-          try {
-            const aDay = a.fields["Dates"].slice(0, 6)
-            const aYear = a.fields["Dates"].slice(-4)
-            const aDate = new Date(`${aDay} ${aYear}`)
+        const sortedEvents = result.data.records
+          .filter(event => {
+            return event.fields["Name"] && event.fields["Event website"]
+          })
+          .sort((a, b) => {
+            try {
+              const aDay = a.fields["Dates"].slice(0, 6)
+              const aYear = a.fields["Dates"].slice(-4)
+              const aDate = new Date(`${aDay} ${aYear}`)
 
-            const bDay = b.fields["Dates"].slice(0, 6)
-            const bYear = b.fields["Dates"].slice(-4)
-            const bDate = new Date(`${bDay} ${bYear}`)
+              const bDay = b.fields["Dates"].slice(0, 6)
+              const bYear = b.fields["Dates"].slice(-4)
+              const bDate = new Date(`${bDay} ${bYear}`)
 
-            return aDate - bDate
-          } catch (e) {
-            console.error(e)
-            return 0
-          }
-        })
+              return aDate - bDate
+            } catch (e) {
+              console.error(e)
+              return 0
+            }
+          })
         setEventsState({ events: sortedEvents, loading: false })
       })
       .catch(e => {
@@ -48,15 +53,31 @@ const UpcomingEvents = () => {
       })
   }, [])
 
+  if (eventsState.loading) {
+    return (
+      <>
+        <Section>
+          <H2>Upcoming Events</H2>
+          <EventsContainer>
+            <p>Loading events...</p>
+          </EventsContainer>
+        </Section>
+        <HR />
+      </>
+    )
+  }
+
+  if (eventsState.events.length === 0) {
+    return null
+  }
+
   return (
-    <EventsContainer>
-      {eventsState.loading && <p>Loading upcoming events...</p>}
-      {eventsState.events.length > 0 &&
-        eventsState.events
-          .filter(event => {
-            return event.fields["Name"] && event.fields["Event website"]
-          })
-          .map((event, i) => {
+    <>
+      <Section>
+        <H2>Upcoming Events</H2>
+        <p>Find us at these community events!</p>
+        <EventsContainer>
+          {eventsState.events.map((event, i) => {
             return (
               <Event
                 key={i}
@@ -66,7 +87,10 @@ const UpcomingEvents = () => {
               />
             )
           })}
-    </EventsContainer>
+        </EventsContainer>
+      </Section>
+      <HR />
+    </>
   )
 }
 

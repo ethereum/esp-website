@@ -191,3 +191,7 @@ export const ButtonExternalLink = styled.a`
     width: 100%;
   }
 `
+
+export const Section = styled.div`
+  margin-bottom: 48px;
+`

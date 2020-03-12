@@ -8,6 +8,7 @@ import SEO from "../components/seo"
 import UpcomingEvents from "../components/UpcomingEvents"
 import {
   PageBody,
+  Section,
   StyledLink,
   ButtonLink,
   H2,
@@ -27,10 +28,6 @@ const Hero = styled.div`
 
 const Copy = styled.div`
   margin-bottom: 56px;
-`
-
-const Section = styled.div`
-  margin-bottom: 48px;
 `
 
 const ButtonContainer = styled.div`
@@ -163,12 +160,7 @@ class IndexPage extends React.Component {
                 </p>
               </Section>
               <HR />
-              <Section>
-                <H2>Upcoming Events</H2>
-                <p>Find us at these community events!</p>
-                <UpcomingEvents />
-              </Section>
-              <HR />
+              <UpcomingEvents />
               <H2 id="contact">Contact Us</H2>
               <p>
                 Are you working on a specific project, or are you still
