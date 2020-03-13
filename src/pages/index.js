@@ -148,6 +148,19 @@ class IndexPage extends React.Component {
               <Section>
                 <H2>Recent News</H2>
                 <p>
+                  <strong>March 12, 2020</strong>: For the health and safety of
+                  our team, we’ll be suspending attendance at in-person events
+                  for the foreseeable future. We extend our deepest sympathy for
+                  the tough decisions faced by event organizers, who do such
+                  incredible work to bring the community together, in light of
+                  the current global situation. Meanwhile, our other operations
+                  are continuing as normal: we’re still taking applications,
+                  providing support and moving ahead with our other initiatives.
+                  We hope everyone in the community will stay safe, healthy and
+                  support each other through this difficult time. No matter who
+                  and where you are, we’re all in this together!
+                </p>
+                <p>
                   <strong>February 11, 2020</strong>: Our website has grown!
                   You're already here, so why not look around? Get the latest
                   news, find out which community events we'll be at, learn about
