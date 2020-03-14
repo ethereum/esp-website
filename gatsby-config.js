@@ -51,15 +51,9 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [
-          {
-            family: `Work Sans`,
-            variants: [`100`, `300`, `400`, `500`, `600`, `700`],
-            subsets: [`latin`, `cyrillic`],
-          },
-        ],
+        fonts: [`Work Sans\:100,300,400,500,600,700`],
       },
     },
     {
