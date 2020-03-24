@@ -31,7 +31,7 @@ exports.handler = async function(event, context) {
         City: params.city,
         Country: params.country,
         LeadSource: "Website Form",
-        LeadStatus: "New",
+        Status: "New",
         // Custom fields
         Team_Profile: params.teamProfile,
         Previous_Work: params.previousWork,
