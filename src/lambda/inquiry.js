@@ -15,6 +15,11 @@ exports.handler = async function(event, context) {
     const params = JSON.parse(event.body)
     const email = params.contactEmail
 
+    // Hack to ensure we create a unique lead every submission
+    // By default, Segment merges lead data if the email exists:
+    // https://segment.com/docs/connections/destinations/catalog/salesforce/
+    const dedupedEmail = email.replace("@", `+${Date.now()}@`)
+
     const emailBuff = new Buffer(email)
     const userId = emailBuff.toString("base64")
 
@@ -26,7 +31,7 @@ exports.handler = async function(event, context) {
       userId: userId,
       traits: {
         LastName: params.name, // Salesforce requires LastName field
-        Email: email,
+        Email: dedupedEmail,
         Company: params.projectName, // Salesforce requires Company field
         City: params.city,
         Country: params.country,
