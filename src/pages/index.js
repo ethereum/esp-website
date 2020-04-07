@@ -148,6 +148,18 @@ class IndexPage extends React.Component {
               <Section>
                 <H2>Recent News</H2>
                 <p>
+                  <strong>April 7, 2020</strong>: Check out our recent{" "}
+                  <a
+                    href="https://blog.ethereum.org/2020/04/01/ecosystem-support-program-allocation-update/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Allocation Update
+                  </a>{" "}
+                  for details on how we’ve spent our last few months and what we
+                  funded in 2019!
+                </p>
+                <p>
                   <strong>March 12, 2020</strong>: For the health and safety of
                   our team, we’ll be suspending attendance at in-person events
                   for the foreseeable future. We extend our deepest sympathy for
@@ -159,17 +171,6 @@ class IndexPage extends React.Component {
                   We hope everyone in the community will stay safe, healthy and
                   support each other through this difficult time. No matter who
                   and where you are, we’re all in this together!
-                </p>
-                <p>
-                  <strong>February 11, 2020</strong>: Our website has grown!
-                  You're already here, so why not look around? Get the latest
-                  news, find out which community events we'll be at, learn about
-                  some of the{" "}
-                  <Link to="/projects/">projects we've supported</Link>, and
-                  check out our <Link to="/wishlist/">wishlist</Link> and
-                  expanded <Link to="/faq/">FAQ</Link>. Keep an eye out for even
-                  more additions in the coming months, and regular updates to
-                  the existing content.
                 </p>
               </Section>
               <HR />
