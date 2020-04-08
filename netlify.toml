@@ -27,7 +27,3 @@
 [[redirects]]
   from = "/application.html"
   to = "/project/"
-
-[[redirects]]
-  from = "/index.html"
-  to = "/"
