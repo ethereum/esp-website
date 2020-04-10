@@ -302,12 +302,12 @@ const FAQPage = ({ data }) => {
             headerText="How long will it take before I hear back from you?"
           >
             <p>
-              You should hear from us within a few days after you get in touch.
-              If your inquiry progresses to a grant application, the overall
-              process may take a few weeks to a few months depending on the
-              scope and complexity of your project. You can help us move the
+              You should hear from us within a few days of submitting your
+              inquiry. If your inquiry progresses to a grant application, the
+              overall process may take a few weeks to a few months depending on
+              the scope and complexity of your project. You can help us move the
               process along by providing as much detail as possible in your
-              initial inquiry (see “What makes a good application” above).
+              initial inquiry (see "What makes a good application" above).
             </p>
           </AccordionSection>
           <HR />
