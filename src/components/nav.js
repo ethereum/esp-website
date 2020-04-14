@@ -63,6 +63,32 @@ const NavLink = styled(StyledLink)`
   }
 `
 
+const NavLinkExternal = styled.a`
+  color: black;
+  font-size: 18px;
+  margin-right: 20px;
+  padding: 0 0 10px 0;
+  display: inline-block;
+  position: relative;
+
+  &:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: ${styles.colorOrange};
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+  }
+  &:hover:after {
+    width: 100%;
+    left: 0;
+  }
+`
+
 const NavLogoText = styled.div`
   margin: 0;
   margin-left: 5px;
@@ -147,6 +173,13 @@ const Nav = ({ hasShadow }) => {
         <NavLink to="/wishlist/" activeStyle={{ color: styles.colorOrange }}>
           Wishlist
         </NavLink>
+        <NavLinkExternal
+          href="https://blog.ethereum.org/category/esp/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Blog
+        </NavLinkExternal>
       </NavLinks>
       {/* Mobile */}
       <MobileNavBackground variants={backgroundVariants} />

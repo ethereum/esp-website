@@ -46,6 +46,11 @@ const navItems = [
   { route: "/faq/", text: "FAQ" },
   { route: "/projects/", text: "Featured projects" },
   { route: "/wishlist/", text: "Wishlist" },
+  {
+    route: "https://blog.ethereum.org/category/esp/",
+    text: "Blog",
+    isExternal: true,
+  },
 ]
 
 const MobileNavLinks = ({ toggle }) => {
@@ -82,7 +87,12 @@ const MobileNavLinks = ({ toggle }) => {
       {navItems.map((item, idx) => (
         <Item item={item} key={idx} onClick={toggle}>
           <h3>
-            <Link to={item.route}>{item.text}</Link>
+            {!item.isExternal && <Link to={item.route}>{item.text}</Link>}
+            {item.isExternal && (
+              <a href={item.route} target="_blank" rel="noopener noreferrer">
+                {item.text}
+              </a>
+            )}
           </h3>
         </Item>
       ))}
