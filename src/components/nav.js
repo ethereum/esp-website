@@ -174,7 +174,7 @@ const Nav = ({ hasShadow }) => {
           Wishlist
         </NavLink>
         <NavLinkExternal
-          href="https://blog.ethereum.org/category/esp/"
+          href="https://blog.ethereum.org/category/ecosystem-support-program/"
           target="_blank"
           rel="noopener noreferrer"
         >

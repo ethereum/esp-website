@@ -47,7 +47,7 @@ const navItems = [
   { route: "/projects/", text: "Featured projects" },
   { route: "/wishlist/", text: "Wishlist" },
   {
-    route: "https://blog.ethereum.org/category/esp/",
+    route: "https://blog.ethereum.org/category/ecosystem-support-program/",
     text: "Blog",
     isExternal: true,
   },
