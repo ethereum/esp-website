@@ -35,7 +35,7 @@ const Footer = () => (
       <a
         target="_blank"
         rel="noopener noreferrer"
-        href="https://twitter.com/ethereum"
+        href="https://twitter.com/EF_ESP"
       >
         <FontAwesomeIcon icon={faTwitter} />
       </a>
