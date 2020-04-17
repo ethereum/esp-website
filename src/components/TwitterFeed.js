@@ -8,6 +8,7 @@ const FeedContainer = styled.div`
 `
 const Feed = styled.div`
   width: 600px;
+  -webkit-overflow-scrolling: touch;
 
   @media (max-width: ${screenSizeM}) {
     width: 100%;
