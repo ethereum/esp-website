@@ -6,6 +6,7 @@ import styled from "styled-components"
 
 import SEO from "../components/seo"
 import UpcomingEvents from "../components/UpcomingEvents"
+import NewsletterSignup from "../components/NewsletterSignup"
 import TwitterFeed from "../components/TwitterFeed"
 import {
   PageBody,
@@ -176,6 +177,10 @@ class IndexPage extends React.Component {
               </Section>
               <Section>
                 <TwitterFeed />
+              </Section>
+              <Section>
+                <H2>Sign up for updates</H2>
+                <NewsletterSignup />
               </Section>
               <HR />
               <UpcomingEvents />
