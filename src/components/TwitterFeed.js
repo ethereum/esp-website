@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
-import { screenSizeM } from "../utils/styles"
+import { screenSizeM, screenSizeIntS } from "../utils/styles"
 
 const FeedContainer = styled.div`
   display: flex;
@@ -16,12 +16,12 @@ const Feed = styled.div`
 `
 
 const TwitterFeed = () => {
-  const [height, setHeight] = useState("600")
+  const [dimensions, setDimensions] = useState({ width: "600", height: "600" })
 
   useEffect(() => {
     const clientWidth = document.documentElement.clientWidth
-    if (clientWidth < 480) {
-      setHeight("1000")
+    if (clientWidth < screenSizeIntS) {
+      setDimensions({ width: "300", height: "1000" })
     }
 
     const script = document.createElement("script")
@@ -35,7 +35,8 @@ const TwitterFeed = () => {
         <div className="twitter-embed">
           <a
             className="twitter-timeline"
-            data-height={height}
+            data-height={dimensions.height}
+            data-width={dimensions.width}
             data-chrome="nofooter noborders"
             href="https://twitter.com/EF_ESP"
           >
