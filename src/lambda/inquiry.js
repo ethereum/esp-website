@@ -57,6 +57,7 @@ exports.handler = async function(event, context) {
       },
       integrations: {
         Salesforce: true,
+        MailChimp: false, // TODO add opt-in for these forms
       },
     })
 

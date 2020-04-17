@@ -23,11 +23,11 @@ exports.handler = async function(event, context) {
     const resp = await instance.post(baseURL, {
       userId: userId,
       traits: {
-        Email: email, // TODO what fields does Mailchimp need?
-        List: "newsletter", // TODO list name?
+        email,
+        newsletter: true, // Custom audience field
       },
       integrations: {
-        Salesforce: false, // TODO create Salesforce lead?
+        Salesforce: false,
       },
     })
 
