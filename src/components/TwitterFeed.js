@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { screenSizeM } from "../utils/styles"
 
@@ -16,7 +16,14 @@ const Feed = styled.div`
 `
 
 const TwitterFeed = () => {
+  const [height, setHeight] = useState("600")
+
   useEffect(() => {
+    const clientWidth = document.documentElement.clientWidth
+    if (clientWidth < 480) {
+      setHeight("1000")
+    }
+
     const script = document.createElement("script")
     script.src = "https://platform.twitter.com/widgets.js"
     document.getElementsByClassName("twitter-embed")[0].appendChild(script)
@@ -28,8 +35,8 @@ const TwitterFeed = () => {
         <div className="twitter-embed">
           <a
             className="twitter-timeline"
-            data-height="600"
-            href="https://twitter.com/EF_ESP?ref_src=twsrc%5Etfw"
+            data-height={height}
+            href="https://twitter.com/EF_ESP"
           >
             Tweets by EF_ESP
           </a>
