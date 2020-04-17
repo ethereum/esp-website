@@ -10,6 +10,8 @@ import {
   Form,
   Label,
   Input,
+  Checkbox,
+  CheckboxInput,
   TextArea,
   Button,
   FormHeader,
@@ -39,9 +41,16 @@ const ExplorePage = () => {
     contactEmail: "",
     referralSource: "",
     referralName: "",
+    newsletter: "",
   })
 
   const { addToast } = useToasts()
+
+  const handleCheckBoxChange = event => {
+    const target = event.target
+    const name = target.name
+    setFormState({ ...formState, [name]: target.checked })
+  }
 
   const handleInputChange = event => {
     const target = event.target
@@ -84,7 +93,6 @@ const ExplorePage = () => {
     submitInquiry()
   }
 
-  // TODO add email validation
   const isFormValid = () => {
     let isValid = true
     const requiredFields = [
@@ -271,6 +279,18 @@ const ExplorePage = () => {
               onChange={handleInputChange}
             />
           </Label>
+
+          <Checkbox>
+            <CheckboxInput
+              type="checkbox"
+              name="newsletter"
+              value={formState.newsletter}
+              onChange={handleCheckBoxChange}
+            />
+            Subscribe to the ESP Newsletter? You'll hear from us every few
+            weeks, and we'll only ever contact you with ESP news.
+          </Checkbox>
+
           <div>
             <Button disabled={!isValid} type="submit">
               Submit

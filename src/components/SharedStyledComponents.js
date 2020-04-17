@@ -73,6 +73,10 @@ export const Form = styled.form`
   background-color: #fafafa;
   padding: 2rem 4rem;
   border-radius: 4px;
+
+  @media (max-width: ${styles.screenSizeS}) {
+    padding: 2rem 1rem;
+  }
 `
 
 export const Label = styled.label`
@@ -89,6 +93,16 @@ export const Input = styled.input`
   padding: 8px;
   border-radius: 2px;
 `
+
+export const Checkbox = styled(Label)`
+  flex-direction: row;
+  align-items: center;
+`
+export const CheckboxInput = styled.input`
+  margin-right: 1.5rem;
+  transform: scale(1.5);
+`
+
 export const TextArea = styled.textarea`
   margin-top: 8px;
   padding: 8px;
