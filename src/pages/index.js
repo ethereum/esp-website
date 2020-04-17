@@ -6,6 +6,7 @@ import styled from "styled-components"
 
 import SEO from "../components/seo"
 import UpcomingEvents from "../components/UpcomingEvents"
+import TwitterFeed from "../components/TwitterFeed"
 import {
   PageBody,
   Section,
@@ -172,6 +173,9 @@ class IndexPage extends React.Component {
                   support each other through this difficult time. No matter who
                   and where you are, we’re all in this together!
                 </p>
+              </Section>
+              <Section>
+                <TwitterFeed />
               </Section>
               <HR />
               <UpcomingEvents />
