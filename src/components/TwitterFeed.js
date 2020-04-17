@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import styled from "styled-components"
+import { screenSizeM } from "../utils/styles"
 
 const FeedContainer = styled.div`
   display: flex;
@@ -7,6 +8,10 @@ const FeedContainer = styled.div`
 `
 const Feed = styled.div`
   width: 600px;
+
+  @media (max-width: ${screenSizeM}) {
+    width: 100%;
+  }
 `
 
 const TwitterFeed = () => {
