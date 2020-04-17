@@ -36,6 +36,7 @@ const TwitterFeed = () => {
           <a
             className="twitter-timeline"
             data-height={height}
+            data-chrome="nofooter"
             href="https://twitter.com/EF_ESP"
           >
             Tweets by EF_ESP
