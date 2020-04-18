@@ -27,7 +27,26 @@ exports.handler = async function(event, context) {
       headers: { Authorization: `Basic ${auth}` },
     })
 
-    const resp = await instance.post(baseURL, {
+    // If subscribed, send to MailChimp
+    if (!!params.newsletter) {
+      const mailchimpResp = await instance.post(baseURL, {
+        userId: userId,
+        traits: {
+          email,
+          firstName: params.name,
+          newsletter: true,
+        },
+      })
+
+      if (mailchimpResp.status < 200 || mailchimpResp.status >= 300) {
+        return {
+          statusCode: mailchimpResp.status,
+          body: mailchimpResp.statusText,
+        }
+      }
+    }
+
+    const salesforceResp = await instance.post(baseURL, {
       userId: userId,
       traits: {
         LastName: params.name, // Salesforce requires LastName field
@@ -57,14 +76,18 @@ exports.handler = async function(event, context) {
       },
       integrations: {
         Salesforce: true,
+        MailChimp: false,
       },
     })
 
-    if (resp.status < 200 || resp.status >= 300) {
-      return { statusCode: resp.status, body: resp.statusText }
+    if (salesforceResp.status < 200 || salesforceResp.status >= 300) {
+      return {
+        statusCode: salesforceResp.status,
+        body: salesforceResp.statusText,
+      }
     }
 
-    const data = await resp.data
+    const data = await salesforceResp.data
 
     return {
       statusCode: 200,

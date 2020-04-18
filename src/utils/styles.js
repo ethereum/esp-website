@@ -1,6 +1,7 @@
 // colors
 export const colorOrange = "#F26B38"
 export const colorOrangeLight = "#eb7b51"
+export const colorOrangeLightest = "#fdfaf3"
 export const colorWhite = "#FFFFFF"
 export const colorGrayLightest = "#fafafa"
 export const colorGrayLighter = "#dddddd"
