@@ -178,7 +178,7 @@ class IndexPage extends React.Component {
               <Section>
                 <TwitterFeed />
               </Section>
-              <Section>
+              <Section id="newsletter">
                 <H2>Sign up for updates</H2>
                 <NewsletterSignup />
               </Section>

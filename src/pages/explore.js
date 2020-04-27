@@ -257,6 +257,7 @@ const ExplorePage = () => {
             <Input
               type="text"
               name="city"
+              maxLength="40"
               value={formState.city}
               onChange={handleInputChange}
             />

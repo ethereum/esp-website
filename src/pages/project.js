@@ -248,6 +248,7 @@ const ProjectPage = () => {
             <Input
               type="text"
               name="city"
+              maxLength="40"
               value={formState.city}
               onChange={handleInputChange}
             />
