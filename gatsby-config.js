@@ -64,6 +64,20 @@ module.exports = {
       },
     },
     `gatsby-plugin-sitemap`,
+    // i18n support
+    {
+      resolve: `gatsby-plugin-intl`,
+      options: {
+        // language JSON resource path
+        path: `${__dirname}/src/intl`,
+        // supported language
+        languages: [`en`],
+        // language file path
+        defaultLanguage: `en`,
+        // option to redirect to `/en/` when connecting `/`
+        redirect: true,
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
