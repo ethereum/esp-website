@@ -17,6 +17,7 @@
     "gatsby-image": "^2.2.31",
     "gatsby-plugin-google-analytics": "^2.1.28",
     "gatsby-plugin-google-fonts": "^1.0.1",
+    "gatsby-plugin-intl": "^0.3.3",
     "gatsby-plugin-manifest": "^2.2.27",
     "gatsby-plugin-offline": "^3.0.19",
     "gatsby-plugin-react-helmet": "^3.1.14",
