@@ -1,0 +1,27 @@
+{
+  "title": "Ethereum Ecosystem Support Program",
+  "description": "The Ethereum Ecosystem Support Program provides financial and non-financial support for projects working to accelerate the growth of Ethereum.",
+  "page-faq": {
+    "title": "FAQ",
+    "h1": "Ecosystem Support Program FAQ",
+    "collapse-all": "Collapse all",
+    "expand-all": "Expand all",
+    "h2-program": "The Program",
+    "h2-eligibility": "Eligibility",
+    "h2-application": "Application Process",
+    "help": {
+      "question": "What can Ecosystem Support help with?",
+      "answer-p-1": "To give you an idea of what the Ecosystem Support Program can do for you, here is a non-exhaustive list of some of the ways we have helped other applicants.",
+      "answer-p-2": "We have:",
+      "answer-li-1": "Awarded grants",
+      "answer-li-2": "Provided feedback and direction",
+      "answer-li-3": "Facilitated collaborations with other teams and individuals",
+      "answer-li-4": "Found mentors and advisors",
+      "answer-li-5": "Connected projects to community members in the same geographical area",
+      "answer-li-6": "Connected projects to others working in the same topic area",
+      "answer-li-7": "Facilitated project participation in events (hackathons, conferences, etc.) to meet the community, showcase work, and get feedback",
+      "answer-li-8": "Provided introduction to other funding programs",
+      "answer-p-3": "We are still expanding the scope of our support, so if what you’re looking for is not on this list, please get in touch and let us know what you need!"
+    }
+  }
+}

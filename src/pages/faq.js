@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
+import { FormattedMessage, injectIntl } from "gatsby-plugin-intl"
 
 import SEO from "../components/seo"
 import { useState } from "react"
@@ -15,7 +16,7 @@ import {
   FakeLink,
 } from "../components/SharedStyledComponents"
 
-const FAQPage = ({ data }) => {
+const FAQPage = ({ intl, data }) => {
   // TODO simplify w/ Array... couldn't get it working
   const [expanded, setExpanded] = useState({
     0: false,
@@ -49,57 +50,69 @@ const FAQPage = ({ data }) => {
     setExpanded(newState)
   }
 
-  const toggleAllText = areAnyOpen ? "Collapse all" : "Expand all"
+  const toggleAllText = areAnyOpen
+    ? intl.formatMessage({ id: "page-faq.collapse-all" })
+    : intl.formatMessage({ id: "page-faq.expand-all" })
 
   return (
     <>
-      <SEO title="FAQ" />
+      <SEO
+        lang={intl.locale}
+        title={intl.formatMessage({ id: "page-faq.title" })}
+      />
       <div>
         <PageHeader>
-          <H1>Ecosystem Support Program FAQ</H1>
+          <H1>
+            <FormattedMessage id="page-faq.h1" />
+          </H1>
         </PageHeader>
         <PageBody>
           <FakeLink onClick={toggleAll}>{toggleAllText}</FakeLink>
-          <H2>The Program</H2>
+          <H2>
+            <FormattedMessage id="page-faq.h2-program" />
+          </H2>
           <HR />
           <AccordionSection
             key={0}
             i={0}
             expanded={expanded}
             setExpanded={setExpanded}
-            headerText="What can Ecosystem Support help with?"
+            headerText={intl.formatMessage({ id: "page-faq.help.question" })}
           >
             <p>
-              To give you an idea of what the Ecosystem Support Program can do
-              for you, here is a non-exhaustive list of some of the ways we have
-              helped other applicants.
+              <FormattedMessage id="page-faq.help.answer-p-1" />
             </p>
-            <p>We have:</p>
+            <p>
+              <FormattedMessage id="page-faq.help.answer-p-2" />
+            </p>
             <ul>
-              <li>Awarded grants</li>
-              <li>Provided feedback and direction</li>
               <li>
-                Facilitated collaborations with other teams and individuals
-              </li>
-              <li>Found mentors and advisors</li>
-              <li>
-                Connected projects to community members in the same geographical
-                area
+                <FormattedMessage id="page-faq.help.answer-li-1" />
               </li>
               <li>
-                Connected projects to others working in the same topic area
+                <FormattedMessage id="page-faq.help.answer-li-2" />
               </li>
               <li>
-                Facilitated project participation in events (hackathons,
-                conferences, etc.) to meet the community, showcase work, and get
-                feedback
+                <FormattedMessage id="page-faq.help.answer-li-3" />
               </li>
-              <li>Provided introduction to other funding programs</li>
+              <li>
+                <FormattedMessage id="page-faq.help.answer-li-4" />
+              </li>
+              <li>
+                <FormattedMessage id="page-faq.help.answer-li-5" />
+              </li>
+              <li>
+                <FormattedMessage id="page-faq.help.answer-li-6" />
+              </li>
+              <li>
+                <FormattedMessage id="page-faq.help.answer-li-7" />
+              </li>
+              <li>
+                <FormattedMessage id="page-faq.help.answer-li-8" />
+              </li>
             </ul>
             <p>
-              We are still expanding the scope of our support, so if what you’re
-              looking for is not on this list, please get in touch and let us
-              know what you need!
+              <FormattedMessage id="page-faq.help.answer-p-3" />
             </p>
           </AccordionSection>
           <HR />
@@ -353,4 +366,4 @@ export const query = graphql`
   }
 `
 
-export default FAQPage
+export default injectIntl(FAQPage)
