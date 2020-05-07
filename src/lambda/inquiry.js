@@ -36,6 +36,9 @@ exports.handler = async function(event, context) {
           firstName: params.name,
           newsletter: true,
         },
+        integrations: {
+          Salesforce: false,
+        },
       })
 
       if (mailchimpResp.status < 200 || mailchimpResp.status >= 300) {
