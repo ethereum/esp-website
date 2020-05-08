@@ -8,7 +8,7 @@
 
 The Ethereum Ecosystem Support Program exists to provide both financial and non-financial support to projects and entities within the greater Ethereum community, in order to accelerate the growth of the ecosystem. The Ecosystem Support Program is an expansion of the original Ethereum Grants Program which mainly focused on financial support. Our focus is on deploying our resources where they will have the biggest impact.
 
-This repository holds the codebase to our website, [ecosystem.support](https://ecosystem.support)
+This repository holds the codebase to our website, [esp.ethereum.foundation](https://esp.ethereum.foundation)
 
 ## Local development
 
