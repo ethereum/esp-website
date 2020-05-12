@@ -150,6 +150,19 @@ class IndexPage extends React.Component {
               <Section>
                 <H2>Recent News</H2>
                 <p>
+                  <strong>May 12, 2020</strong>: Going forward we'll be
+                  releasing quarterly updates on financial support allocations.
+                  You can{" "}
+                  <a
+                    href="https://blog.ethereum.org/2020/05/07/ecosystem-support-program-allocation-update-q1/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    find our Q1 2020 update here
+                  </a>
+                  .
+                </p>
+                <p>
                   <strong>April 7, 2020</strong>: Check out our recent{" "}
                   <a
                     href="https://blog.ethereum.org/2020/04/01/ecosystem-support-program-allocation-update/"
@@ -160,19 +173,6 @@ class IndexPage extends React.Component {
                   </a>{" "}
                   for details on how we’ve spent our last few months and what we
                   funded in 2019!
-                </p>
-                <p>
-                  <strong>March 12, 2020</strong>: For the health and safety of
-                  our team, we’ll be suspending attendance at in-person events
-                  for the foreseeable future. We extend our deepest sympathy for
-                  the tough decisions faced by event organizers, who do such
-                  incredible work to bring the community together, in light of
-                  the current global situation. Meanwhile, our other operations
-                  are continuing as normal: we’re still taking applications,
-                  providing support and moving ahead with our other initiatives.
-                  We hope everyone in the community will stay safe, healthy and
-                  support each other through this difficult time. No matter who
-                  and where you are, we’re all in this together!
                 </p>
               </Section>
               <Section>
