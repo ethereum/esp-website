@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
+import { FormattedMessage, injectIntl } from "gatsby-plugin-intl"
 
 import SEO from "../components/seo"
 import { useState } from "react"
@@ -31,7 +32,7 @@ const UL = styled.ul`
   margin-top: 0.5rem;
 `
 
-const WishlistPage = () => {
+const WishlistPage = ({ intl }) => {
   // TODO simplify w/ Array... couldn't get it working
   const [expanded, setExpanded] = useState({
     0: false,
@@ -63,23 +64,29 @@ const WishlistPage = () => {
     setExpanded(newState)
   }
 
-  const toggleAllText = areAnyOpen ? "Collapse all" : "Expand all"
+  const toggleAllText = areAnyOpen
+    ? intl.formatMessage({ id: "page-wishlist.wishlist.collapse-all" })
+    : intl.formatMessage({ id: "page-wishlist.wishlist.expand-all" })
 
   return (
     <>
-      <SEO title="Wishlist" />
+      <SEO
+        lang={intl.locale}
+        title={intl.formatMessage({ id: "page-wishlist.title" })}
+      />
       <div>
         <PageHeader>
-          <H1>Project Wishlist</H1>
+          <H1>
+            <FormattedMessage id="page-wishlist.wishlist.h1" />
+          </H1>
         </PageHeader>
         <PageBody>
-          <H2>Wishlist</H2>
+          <H2>
+            <FormattedMessage id="page-wishlist.wishlist.h2" />
+          </H2>
           <p>
-            Here, you’ll find some of the areas where we’re actively seeking
-            applications. While these are some of the most pressing needs we see
-            in the ecosystem, the list is by no means exhaustive. We don't
-            expect to think of everything - we’re always looking for new ideas.
-            If you’re working on something that will make Ethereum better,{" "}
+            <FormattedMessage id="page-wishlist.wishlist.h2-description" />
+            {" "}
             <Link to="/project/">we're here to help</Link>!
           </p>
           <StyledFakeLink onClick={toggleAll}>{toggleAllText}</StyledFakeLink>
@@ -89,78 +96,99 @@ const WishlistPage = () => {
             i={0}
             expanded={expanded}
             setExpanded={setExpanded}
-            headerText="Capabilities"
+            headerText={intl.formatMessage({ id: "page-wishlist.wishlist.h2-capabilities.capabilities" })}
           >
             <Item>
-              <strong>Decentralized data storage</strong>
+              <strong><FormattedMessage id="page-wishlist.wishlist.h2-capabilities.storage" /></strong>
               <div>
-                Decentralized data storage, indexing, data privacy, and
-                associated tooling. Use cases including:
+                <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-p-1" />
                 <UL>
-                  <li>Storage for user content</li>
-                  <li>Decentralized websites</li>
-                  <li>Storage and retrieval of Ethereum history</li>
+                  <li><FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-1" /> </li>
+                  <li><FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-2" /></li>
+                  <li><FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-3" /></li>
                 </UL>
               </div>
             </Item>
             <Item>
-              <strong>Communications infrastructure</strong>
+              <strong><FormattedMessage id="page-wishlist.wishlist.h2-capabilities.communications" /></strong>
               <div>
-                Privacy preserving communication at network and messaging
-                layers. Use cases including:
+                <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.comm-info" />
                 <UL>
-                  <li>Decentralized applications</li>
-                  <li>Personal & enterprise message exchange</li>
-                  <li>Private transactions</li>
-                </UL>
-              </div>
-            </Item>
-            <Item>
-              <strong>
-                Infrastructure and standards for decentralized applications
-              </strong>
-              <div>
-                Frameworks, standards and missing infrastructure which improve
-                developer productivity, and/or help fulfill the vision of
-                decentralized applications.
-              </div>
-            </Item>
-            <Item>
-              <strong>Identity</strong>
-              <div>
-                Digital identity building blocks, standards and tooling. Use
-                cases including:
-                <UL>
-                  <li>Proof of educational credentials</li>
-                  <li>Opt in KYC</li>
-                  <li>Organizational membership</li>
-                  <li>Voting/quadratic voting</li>
-                  <li>Reputation</li>
-                </UL>
-              </div>
-            </Item>
-            <Item>
-              <strong>Integration and interoperability</strong>
-              <div>
-                Integration and interoperability with other systems and
-                standards including:
-                <UL>
-                  <li>Decentralized web and P2P protocols</li>
-                  <li>Existing internet protocols</li>
-                  <li>Public & private chains</li>
                   <li>
-                    Other important protocols, software stacks, and hardware
-                    platforms.
+                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-4" />
+                  </li>
+                  <li>
+                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-5" />
+                  </li>
+                  <li>
+                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-6" />
                   </li>
                 </UL>
               </div>
             </Item>
             <Item>
-              <strong>Light clients</strong>
+              <strong>
+                <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.infrastructure" />
+              </strong>
               <div>
-                Eth 1.x and Eth 2 light client research and development; other
-                approaches to ensuring secure data availability for resource
-                constrained devices and libraries.
+                <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.infra-info" />
+              </div>
+            </Item>
+            <Item>
+              <strong>
+                <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.identity" />
+              </strong>
+              <div>
+                <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.id-info" />
+                <UL>
+                  <li>
+                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-7" />
+                  </li>
+                  <li>
+                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-8" />
+                  </li>
+                  <li>
+                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-9" />
+                  </li>
+                  <li>
+                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-10" />
+                  </li>
+                  <li>
+                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-10" />
+                  </li>
+                </UL>
+              </div>
+            </Item>
+            <Item>
+              <strong>
+                <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.integration" />
+
+              </strong>
+              <div>
+                <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.integration-info" />
+
+                <UL>
+                  <li>
+                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-12" />
+                  </li>
+                  <li>
+                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-13" />
+                  </li>
+                  <li>
+                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-14" />
+                  </li>
+                  <li>
+                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-15" />
+                  </li>
+                </UL>
+              </div>
+            </Item>
+            <Item>
+              <strong>
+                <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.light-clients" />
+              </strong>
+              <div>
+                <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-d-1" />
               </div>
             </Item>
           </AccordionSection>
@@ -170,38 +198,56 @@ const WishlistPage = () => {
             i={1}
             expanded={expanded}
             setExpanded={setExpanded}
-            headerText="Privacy"
+            headerText={intl.formatMessage({ id: "page-wishlist.wishlist.h2-privacy.privacy" })}
           >
             <Item>
-              <strong>Communications infrastructure</strong>
+              <strong>
+                <FormattedMessage id="page-wishlist.wishlist.h2-privacy.communications-2" />
+              </strong>
               <div>
-                Privacy preserving communication at network and messaging
-                layers. Use cases including:
+                <FormattedMessage id="page-wishlist.wishlist.h2-privacy.comm-info-2" />
                 <UL>
-                  <li>Decentralized applications</li>
-                  <li>Personal & enterprise message exchange</li>
-                  <li>Private transactions</li>
+                  <FormattedMessage id="page-wishlist.wishlist.h2-privacy.answer-li-16" />
+                  <li>
+                    <FormattedMessage id="page-wishlist.wishlist.h2-privacy.answer-li-17" />
+                  </li>
+                  <li>
+                    <FormattedMessage id="page-wishlist.wishlist.h2-privacy.answer-li-18" />
+                  </li>
+                  <li>
+                    <FormattedMessage id="page-wishlist.wishlist.h2-privacy.answer-li-19" />
+                  </li>
                 </UL>
               </div>
             </Item>
             <Item>
-              <strong>Confidential execution</strong>
+              <strong>
+                <FormattedMessage id="page-wishlist.wishlist.h2-privacy.execution" />
+              </strong>
               <div>
-                Approaches towards confidential execution and transfers
-                including:
+                <FormattedMessage id="page-wishlist.wishlist.h2-privacy.execution-info" />
                 <UL>
-                  <li>s*ark/stonk/stank</li>
-                  <li>Zexe</li>
-                  <li>Homomorphic encryption</li>
-                  <li>Secure multiparty computation</li>
+                  <li>
+                  <FormattedMessage id="page-wishlist.wishlist.h2-privacy.answer-li-20" />
+                  </li>
+                  <li>
+                  <FormattedMessage id="page-wishlist.wishlist.h2-privacy.answer-li-21" />
+                  </li>
+                  <li>
+                  <FormattedMessage id="page-wishlist.wishlist.h2-privacy.answer-li-22" />
+                  </li>
+                  <li>
+                  <FormattedMessage id="page-wishlist.wishlist.h2-privacy.answer-li-23" />
+                  </li>
                 </UL>
               </div>
             </Item>
             <Item>
-              <strong>Cryptography</strong>
+              <strong>
+              <FormattedMessage id="page-wishlist.wishlist.h2-privacy.cryptography" />
+              </strong>
               <div>
-                Cryptographic research, constructions, improved implementations,
-                and libraries.
+              <FormattedMessage id="page-wishlist.wishlist.h2-privacy.cryptography-info" />
               </div>
             </Item>
           </AccordionSection>
@@ -211,25 +257,31 @@ const WishlistPage = () => {
             i={2}
             expanded={expanded}
             setExpanded={setExpanded}
-            headerText="Security"
+            headerText={intl.formatMessage({ id: "page-wishlist.wishlist.h2-security.security" })}
           >
             <Item>
-              <strong>Smart contract security</strong>
+              <strong>
+              <FormattedMessage id="page-wishlist.wishlist.h2-security.smart-contracts" />
+              </strong>
               <div>
-                Techniques, tools and best practices for preventing, detecting
-                and mitigating vulnerabilities.
+              <FormattedMessage id="page-wishlist.wishlist.h2-security.smart-contract-info" />                
               </div>
             </Item>
             <Item>
-              <strong>Game theory security research</strong>
+              <strong>
+              <FormattedMessage id="page-wishlist.wishlist.h2-security.game-theory" />                
+              </strong>
               <div>
-                Research into game theoretic and crypto economic aspects for
-                example, theory of open games or miner extractable value.
+              <FormattedMessage id="page-wishlist.wishlist.h2-security.game-theory-info" />                
               </div>
             </Item>
             <Item>
-              <strong>More in-depth network monitoring tools</strong>
-              <div>Network and smart contract monitoring tools.</div>
+              <strong>
+              <FormattedMessage id="page-wishlist.wishlist.h2-security.monitoring" />                
+              </strong>
+              <div>
+              <FormattedMessage id="page-wishlist.wishlist.h2-security.monitoring-info" />                
+              </div>
             </Item>
           </AccordionSection>
           <HR />
@@ -238,20 +290,22 @@ const WishlistPage = () => {
             i={3}
             expanded={expanded}
             setExpanded={setExpanded}
-            headerText="Usability"
+            headerText={intl.formatMessage({ id: "page-wishlist.wishlist.h2-usability.usability" })}
           >
             <Item>
-              <strong>Friction reduction</strong>
+              <strong>
+              <FormattedMessage id="page-wishlist.wishlist.h2-usability.friction-reduction" />                
+              </strong>
               <div>
-                Removing usability barriers and other impediments to adoption
-                and use.
+              <FormattedMessage id="page-wishlist.wishlist.h2-usability.answer-d-1" />                               
               </div>
             </Item>
             <Item>
-              <strong>Key management</strong>
+              <strong>
+              <FormattedMessage id="page-wishlist.wishlist.h2-usability.mgmt" />                               
+              </strong>
               <div>
-                Key management improvements including portability between
-                wallets, social and other key recovery mechanisms.
+              <FormattedMessage id="page-wishlist.wishlist.h2-usability.mgmt-info" />                                         
               </div>
             </Item>
           </AccordionSection>
@@ -261,35 +315,39 @@ const WishlistPage = () => {
             i={4}
             expanded={expanded}
             setExpanded={setExpanded}
-            headerText="Developer Experience"
+            headerText={intl.formatMessage({ id: "page-wishlist.wishlist.h2-dev-exp.dev-exp" })}
           >
             <Item>
               <strong>
-                Infrastructure and standards for decentralized applications
+              <FormattedMessage id="page-wishlist.wishlist.h2-dev-exp.dec-infra" />              
               </strong>
               <div>
-                Frameworks, standards and missing infrastructure which improve
-                developer productivity, and/or help fulfill the vision of
-                decentralized applications.
+              <FormattedMessage id="page-wishlist.wishlist.h2-dev-exp.dec-infra-info" />                              
               </div>
             </Item>
             <Item>
-              <strong>Tooling to improve developer experience</strong>
+              <strong>
+              <FormattedMessage id="page-wishlist.wishlist.h2-dev-exp.dec-infra-info" />                              
+              </strong>
               <div>
-                Tools and libraries that improve developer experience,
-                productivity, code quality and safety.
+              <FormattedMessage id="page-wishlist.wishlist.h2-dev-exp.tooling-info" />                                              
               </div>
             </Item>
             <Item>
-              <strong>Smart contract security</strong>
+              <strong>
+              <FormattedMessage id="page-wishlist.wishlist.h2-dev-exp.contract-security" />                                              
+              </strong>
               <div>
-                Techniques, tools and best practices for preventing, detecting
-                and mitigating vulnerabilities.
+              <FormattedMessage id="page-wishlist.wishlist.h2-dev-exp.contract-security-info" />                                                             
               </div>
             </Item>
             <Item>
-              <strong>More in-depth network monitoring tools</strong>
-              <div>Network and smart contract monitoring tools.</div>
+              <strong>
+              <FormattedMessage id="page-wishlist.wishlist.h2-dev-exp.monitoring-tools" />                                                             
+              </strong>
+              <div>
+              <FormattedMessage id="page-wishlist.wishlist.h2-dev-exp.monitoring-tools-info" />                                                             
+              </div>
             </Item>
           </AccordionSection>
           <HR />
@@ -298,29 +356,30 @@ const WishlistPage = () => {
             i={5}
             expanded={expanded}
             setExpanded={setExpanded}
-            headerText="Education and Community"
+            headerText={intl.formatMessage({ id: "page-wishlist.wishlist.h2-edu-comm.edu-comm" })}
           >
             <Item>
-              <strong>Educational materials</strong>
+              <strong>
+              <FormattedMessage id="page-wishlist.wishlist.h2-edu-comm.edu-materials" />                                                             
+              </strong>
               <div>
-                Improved documentation; tutorials; common resources like
-                educational toolkits that can be shared between events and
-                courses.
+              <FormattedMessage id="page-wishlist.wishlist.h2-edu-comm.edu-materials-info" />                                                             
               </div>
             </Item>
             <Item>
-              <strong>Translation</strong>
+              <strong>
+              <FormattedMessage id="page-wishlist.wishlist.h2-edu-comm.translation" />                                                             
+              </strong>
               <div>
-                Translating documentation, educational material, research, and
-                specs into other languages.
+              <FormattedMessage id="page-wishlist.wishlist.h2-edu-comm.translation-info" />                                                                           
               </div>
             </Item>
             <Item>
-              <strong>Groups and events</strong>
+              <strong>
+              <FormattedMessage id="page-wishlist.wishlist.h2-edu-comm.events" />                                                                           
+              </strong>
               <div>
-                Growing the Ethereum community, especially in currently
-                underrepresented regions; creating links with valued aligned
-                communities and expert groups.
+              <FormattedMessage id="page-wishlist.wishlist.h2-edu-comm.events-info" />                                                                                          
               </div>
             </Item>
           </AccordionSection>
@@ -330,21 +389,23 @@ const WishlistPage = () => {
             i={6}
             expanded={expanded}
             setExpanded={setExpanded}
-            headerText="Scaling"
+            headerText={intl.formatMessage({ id: "page-wishlist.wishlist.h2-scaling.scaling" })}
+           
           >
             <Item>
-              <strong>Cryptography</strong>
+              <strong>
+              <FormattedMessage id="page-wishlist.wishlist.h2-scaling.cryptography" />
+              </strong>
               <div>
-                Cryptographic research, constructions, improved implementations,
-                and libraries.
+              <FormattedMessage id="page-wishlist.wishlist.h2-scaling.cryptography-info" />                
               </div>
             </Item>
             <Item>
-              <strong>L2 Scaling</strong>
+              <strong>
+              <FormattedMessage id="page-wishlist.wishlist.h2-scaling.l2-scaling" />                
+              </strong>
               <div>
-                Shared infrastructure and standards for L2 scaling solutions;
-                research into cross shard L2; general L2 scaling research;
-                development of L2 scaling solutions.
+              <FormattedMessage id="page-wishlist.wishlist.h2-scaling.l2-info" />                             
               </div>
             </Item>
           </AccordionSection>
@@ -354,25 +415,41 @@ const WishlistPage = () => {
             i={7}
             expanded={expanded}
             setExpanded={setExpanded}
-            headerText="Eth 1.x"
+            headerText={intl.formatMessage({ id: "page-wishlist.wishlist.h2-eth1x.eth1x" })}
+            
           >
             <Item>
-              <strong>Stateless Ethereum</strong>
+              <strong>
+              <FormattedMessage id="page-wishlist.wishlist.h2-eth1x.stateless" />                             
+              </strong>
               <div>
-                Research into stateless Ethereum with application to both Eth
-                1.x and Eth 2, including:
+              <FormattedMessage id="page-wishlist.wishlist.h2-eth1x.stateless-info" />                                            
                 <UL>
-                  <li>Witnesses format</li>
-                  <li>ZK witness compression</li>
-                  <li>Accumulators</li>
-                  <li>State availability</li>
-                  <li>Delivery</li>
+                  <li>
+              <FormattedMessage id="page-wishlist.wishlist.h2-eth1x.answer-li-1" />                                            
+                  </li>
+                  <li>
+              <FormattedMessage id="page-wishlist.wishlist.h2-eth1x.answer-li-2" />                                            
+                  </li>
+                  <li>
+              <FormattedMessage id="page-wishlist.wishlist.h2-eth1x.answer-li-3" />                                            
+                  </li>
+                  <li>
+              <FormattedMessage id="page-wishlist.wishlist.h2-eth1x.answer-li-4" />                                            
+                  </li>
+                  <li>
+              <FormattedMessage id="page-wishlist.wishlist.h2-eth1x.answer-li-5" />                                            
+                  </li>
                 </UL>
               </div>
             </Item>
             <Item>
-              <strong>Eth 1.x optimizations and other improvements</strong>
-              <div>Optimizations and improvements to Eth 1.x</div>
+              <strong>
+              <FormattedMessage id="page-wishlist.wishlist.h2-eth1x.optimization" />                                            
+              </strong>
+              <div>
+              <FormattedMessage id="page-wishlist.wishlist.h2-eth1x.optimization-info" />                                            
+              </div>
             </Item>
           </AccordionSection>
           <HR />
@@ -381,32 +458,52 @@ const WishlistPage = () => {
             i={8}
             expanded={expanded}
             setExpanded={setExpanded}
-            headerText="Eth 2"
+            headerText={intl.formatMessage({ id: "page-wishlist.wishlist.h2-eth2.eth2" })}
           >
             <Item>
-              <strong>Confidential execution</strong>
+              <strong>
+              <FormattedMessage id="page-wishlist.wishlist.h2-eth2.confidential" />                                            
+              </strong>
               <div>
-                Approaches towards confidential execution and transfers
-                including:
+              <FormattedMessage id="page-wishlist.wishlist.h2-eth2.confidential-info" />                                                          
                 <UL>
-                  <li>s*ark/stonk/stank</li>
-                  <li>Zexe</li>
-                  <li>Homomorphic encryption</li>
-                  <li>Secure multiparty computation</li>
+                  <li>
+              <FormattedMessage id="page-wishlist.wishlist.h2-eth2.answer-li-1" />                                                          
+                  </li>
+                  <li>
+              <FormattedMessage id="page-wishlist.wishlist.h2-eth2.answer-li-2" />                                                          
+                  </li>
+                  <li>
+              <FormattedMessage id="page-wishlist.wishlist.h2-eth2.answer-li-3" />                                                          
+                  </li>
+                  <li>
+              <FormattedMessage id="page-wishlist.wishlist.h2-eth2.answer-li-4" />                                                          
+                  </li>
                 </UL>
               </div>
             </Item>
             <Item>
-              <strong>Stateless Ethereum</strong>
+              <strong>
+              <FormattedMessage id="page-wishlist.wishlist.h2-eth2.stateless-eth2" />                                                          
+              </strong>
               <div>
-                Research into stateless Ethereum with application to both Eth
-                1.x and Eth 2, including:
+              <FormattedMessage id="page-wishlist.wishlist.h2-eth2.stateless-eth2-info" />                                                          
                 <UL>
-                  <li>Witnesses format</li>
-                  <li>ZK witness compression</li>
-                  <li>Accumulators</li>
-                  <li>State availability</li>
-                  <li>Delivery</li>
+                  <li>
+              <FormattedMessage id="page-wishlist.wishlist.h2-eth2.answer-li-5" />                                                          
+                  </li>
+                  <li>
+              <FormattedMessage id="page-wishlist.wishlist.h2-eth2.answer-li-6" />                                                          
+                  </li>
+                  <li>
+              <FormattedMessage id="page-wishlist.wishlist.h2-eth2.answer-li-7" />                                                          
+                  </li>
+                  <li>
+              <FormattedMessage id="page-wishlist.wishlist.h2-eth2.answer-li-8" />                                                          
+                  </li>
+                  <li>
+              <FormattedMessage id="page-wishlist.wishlist.h2-eth2.answer-li-9" />                                                          
+                  </li>
                 </UL>
               </div>
             </Item>
@@ -417,13 +514,14 @@ const WishlistPage = () => {
             i={9}
             expanded={expanded}
             setExpanded={setExpanded}
-            headerText="Surprise Us"
+            headerText={intl.formatMessage({ id: "page-wishlist.wishlist.h2-innovate.innovate" })}
           >
             <Item>
-              <strong>Surprise Us!</strong>
+              <strong>
+              <FormattedMessage id="page-wishlist.wishlist.h2-innovate.innovate-info" />                                                          
+              </strong>
               <div>
-                Breakthough ideas, projects, improvements, research challenges
-                we don't even know we need!
+              
               </div>
             </Item>
           </AccordionSection>
@@ -434,4 +532,4 @@ const WishlistPage = () => {
   )
 }
 
-export default WishlistPage
+export default injectIntl(WishlistPage)
