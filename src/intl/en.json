@@ -79,5 +79,139 @@
       "question": "Can grants be paid out in ETH?",
       "answer-p-1": "We can provide payment in ETH, DAI, or Fiat currency."
     }
+  },
+
+  "page-wishlist": {
+    "title": "Project Wishlist",
+    "description": "The Ethereum Ecosystem Support Program provides financial and non-financial support for projects working to accelerate the growth of Ethereum.",
+    "wishlist": {
+      "h1": "Project Wishlist",
+      "collapse-all": "Collapse all",
+      "expand-all": "Expand all",
+      "h2": "Wishlist",
+      "h2-description": "Here, you’ll find some of the areas where we’re actively seeking applications. While these are some of the most pressing needs we see in the ecosystem, the list is by no means exhaustive. We don't expect to think of everything - we’re always looking for new ideas. If you’re working on something that will make Ethereum better,",
+      "h2-capabilities": {
+        "capabilities": "Capabilities",
+        "storage": "Decentralized data storage",
+        "answer-p-1": " Decentralized data storage, indexing, data privacy, and associated tooling. Use cases including:",
+        "answer-li-1": "Storage for user content",
+        "answer-li-2": "Decentralized websites",
+        "answer-li-3": "Storage and retrieval of Ethereum history",
+        "communications": "Communications infrastructure",
+        "comm-info": "Privacy preserving communication at network and messaging layers. Use cases including:",
+        "answer-li-4": "Decentralized applications",
+        "answer-li-5": "Personal & enterprise message exchange",
+        "answer-li-6": "Private transactions",
+        "infrastructure": "Infrastructure and standards for decentralized applications",
+        "infra-info": " Frameworks, standards and missing infrastructure which improve developer productivity, and/or help fulfill the vision of decentralized applications.",
+        "identity": "Identity",
+        "id-info": " Digital identity building blocks, standards and tooling. Use cases including:",
+        "answer-li-7": "Proof of educational credentials",
+        "answer-li-8": "Opt in KYC",
+        "answer-li-9": "Organizational membership",
+        "answer-li-10": "Voting/quadratic voting",
+        "answer-li-11": "Reputation",
+        "integration": "Integration and interoperability",
+        "integration-info": "  Integration and interoperability with other systems and standards including:",
+        "answer-li-12": "Decentralized web and P2P protocols",
+        "answer-li-13": "Existing internet protocols",
+        "answer-li-14": "Public & private chains",
+        "answer-li-15": "Other important protocols, software stacks, and hardware platforms.",
+        "light-clients": "Light clients",
+        "answer-d-1": "Eth 1.x and Eth 2 light client research and development; other approaches to ensuring secure data availability for resource constrained devices and libraries."
+      },
+      "h2-privacy": {
+        "privacy": "Privacy",
+        "communications-2": "Communications infrastructure",
+        "comm-info-2": "Privacy preserving communication at network and messaging layers. Use cases including:",
+        "answer-li-16": "Decentralized applications",
+        "answer-li-17": "Decentralized applications",
+        "answer-li-18": "Personal & enterprise message exchange",
+        "answer-li-19": "Private transactions",
+        "execution": "Confidential execution",
+        "execution-info": "Approaches towards confidential execution and transfers including:",
+        "answer-li-20": "s*ark/stonk/stank",
+        "answer-li-21": "Zexe",
+        "answer-li-22": "Homomorphic encryption",
+        "answer-li-23": "Secure multiparty computation",
+        "cryptography": "Cryptography",
+        "cryptography-info": "Cryptographic research, constructions, improved implementations, and libraries."
+      },
+      "h2-security": {
+        "security": "Security",
+        "smart-contracts": "Smart contract security",
+        "smart-contract-info": "Techniques, tools and best practices for preventing, detecting and mitigating vulnerabilities.",
+        "game-theory": "Game theory security research",
+        "game-theory-info": " Research into game theoretic and crypto economic aspects for example, theory of open games or miner extractable value.",
+        "monitoring": "More in-depth network monitoring tools",
+        "monitoring-info":"Network and smart contract monitoring tools." 
+      },
+      "h2-usability": {
+        "usability": "usability",
+        "friction-reduction": "Friction reduction",
+        "answer-d-1": " Removing usability barriers and other impediments to adoption and use.",
+        "mgmt": "Key management",
+        "mgmt-info": "Key management improvements including portability between wallets, social and other key recovery mechanisms."
+      },
+      "h2-dev-exp": {
+        "dev-exp": "Developer Experience",
+        "dec-infra": "Infrastructure and standards for decentralized applications",
+        "dec-infra-info": "Frameworks, standards and missing infrastructure which improve developer productivity, and/or help fulfill the vision of decentralized applications.",
+        "tooling": "Tooling to improve developer experience",
+        "tooling-info":  "Tools and libraries that improve developer experience, productivity, code quality and safety.",
+        "contract-security": "Smart contract security",
+        "contract-security-info": " Techniques, tools and best practices for preventing, detecting and mitigating vulnerabilities.",
+        "monitoring-tools": "More in-depth network monitoring tools",
+        "monitoring-tools-info": "Network and smart contract monitoring tools."
+      },
+      "h2-edu-comm": {
+        "edu-comm": "Education and Community",
+        "edu-materials": "Educational materials",
+        "edu-materials-info": " Improved documentation; tutorials; common resources like educational toolkits that can be shared between events and courses.",
+        "translation": "Translation",
+        "translation-info": "Translating documentation, educational material, research, and specs into other languages.",
+        "events": "Groups and events",
+        "events-info": "Growing the Ethereum community, especially in currently underrepresented regions; creating links with valued aligned communities and expert groups."
+      },
+      "h2-scaling": {
+        "scaling": "Scaling",
+        "cryptography": "Cryptography",
+        "cryptography-info": "Cryptographic research, constructions, improved implementations, and libraries.",
+        "l2-scaling": "L2 Scaling",
+        "l2-info": "Shared infrastructure and standards for L2 scaling solutions; research into cross shard L2; general L2 scaling research; development of L2 scaling solutions."
+      },
+      "h2-eth1x": {
+      "eth1x":"Eth 1.x",
+      "stateless": "Stateless Ethereum",
+      "stateless-info": " Research into stateless Ethereum with application to both Eth 1.x and Eth 2, including:",
+      "answer-li-1": "Witnesses format",
+      "answer-li-2": "ZK witness compression",
+      "answer-li-3": "Accumulators",
+      "answer-li-4": "State availability",
+      "answer-li-5": "Delivery",
+      "optimization":"Eth 1.x optimizations and other improvements" ,
+      "optimization-info": "Optimizations and improvements to Eth 1.x"  
+     },
+     "h2-eth2": {
+      "eth2": "Eth 2",
+      "confidential": "Confidential execution",
+      "confidential-info": " Approaches towards confidential execution and transfers including:",
+      "answer-li-1": "s*ark/stonk/stank",
+      "answer-li-2": "Zexe",
+      "answer-li-3": "Homomorphic encryption",
+      "answer-li-4": "Secure multiparty computation",
+      "stateles-eth2": "Stateless Ethereum",
+      "stateless-eth2-info": "  Research into stateless Ethereum with application to both Eth 1.x and Eth 2, including:",
+      "answer-li-5": "Witnesses format",
+      "answer-li-6": "ZK witness compression",
+      "answer-li-7": "Accumulators",
+      "answer-li-8": "State availability",
+      "answer-li-9": "Delivery"
+     },
+     "h2-innovate": {
+       "innovate": "Surprise Us!",
+     "innovate-info": "Breakthough ideas, projects, improvements, research challenges we don't even know we need!"
+  }
+}
   }
 }
