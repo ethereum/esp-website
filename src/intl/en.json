@@ -213,5 +213,37 @@
      "innovate-info": "Breakthough ideas, projects, improvements, research challenges we don't even know we need!"
   }
 }
+  },
+"page-explore": {
+  "title": "Exploring possibilities",
+  "explore": {
+    "h1": "Exploring possibilities",
+    "description": "Tell us a bit about yourself, your skills, what you're excited about, and what questions you have. We only collect the following information submitted below and will not use or share for any purposes other than evaluation.",
+    "name:": "Your name",
+    "name-guide": "Use whichever preferred name you would like our team to address you by.",
+    "contact-info": "Contact email",
+    "proj-name": "Project name",
+    "proj-info": " What's name of the project you’re currently working on? This is optional.",
+    "profile": "Profile",
+    "profile-info": " Tell us a little bit about yourself - whatever you think we should know.",
+    "expertise": "Area of expertise",
+    "expertise-info": "What is unique about your skill set? What kinds of problems do you enjoy solving?",
+    "why": "Why Ethereum?",
+    "proj-dev": "What's a project or development that you were excited about recently?",
+    "prev-work": "Previous work",
+    "link-2-work": " Please provide links to published code, research, or other documentation of what you're working on.",
+    "questions": "What questions can we answer for you?",
+    "country": "What country are you located in?",
+    "city": "What city are you located in?",
+    "support": "How did you hear about Ecosystem Support?",
+    "support-info":"Did anyone recommend that you contact Ecosystem Support? If so, who?",
+    "subscribe": "Subscribe to the ESP Newsletter? You'll hear from us every few weeks, and we'll only ever contact you with ESP news.",
+    "button": "Submit"
+
   }
 }
+  }
+
+  
+
+
