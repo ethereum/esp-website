@@ -272,6 +272,14 @@
       "h1": "Page not found",
       "errr": "You just hit a route that doesn't exist... the sadness."
     }
+  },
+  "page-thanks": {
+    "title": "Thank you!",
+    "thanks": {
+      "h1": "Thank you!",
+      "answer-p-1": "Your inquiry has been successfully submitted! The Ecosystem Support team will be reaching out within the next few business days with detailed information.",
+      "answer-p-2": "Until then, kick back and relax."
+    }
   }
 }
 
