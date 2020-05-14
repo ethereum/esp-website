@@ -2,6 +2,8 @@ import React, { useState } from "react"
 import { navigate } from "gatsby"
 import { useToasts } from "react-toast-notifications"
 import Select from "react-select"
+import { FormattedMessage, injectIntl } from "gatsby-plugin-intl"
+
 
 import SEO from "../components/seo"
 import { REFERRAL_SOURCES, COUNTRIES } from "../utils/form-inputs"
@@ -26,7 +28,7 @@ const referralSourceOptions = REFERRAL_SOURCES.map(source => {
   return { value: source, label: source, name: "referralSource" }
 })
 
-const ProjectPage = () => {
+const ProjectPage = ({ intl }) => {
   const [formState, setFormState] = useState({
     name: "",
     contactEmail: "",
@@ -118,18 +120,18 @@ const ProjectPage = () => {
       <SEO title="Project Inquiry" />
       <PageBody>
         <FormHeader>
-          <h1>Specific Project</h1>
+          <h1>
+          <FormattedMessage id="page-project.project.h1" />
+          </h1>
           <p>
-            Tell us a bit about your project goals, motivations, needs,
-            challenges, and any other information you feel is pertinent for us
-            to know. You'll hear back from someone on the Ecosystem Support team
-            very soon! We only collect the following information submitted below
-            and will not use or share for any purposes other than evaluation.
+          <FormattedMessage id="page-project.project.description" />   
           </p>
         </FormHeader>
         <Form onSubmit={handleSubmit}>
           <Label>
-            <span>Project name</span>
+            <span>
+            <FormattedMessage id="page-project.project.proj-name" />   
+            </span>
             <Input
               type="text"
               name="projectName"
@@ -143,8 +145,7 @@ const ProjectPage = () => {
             </span>
             <div>
               <small>
-                What are you working on? What does success look like for your
-                project? (2-3 short paragraphs)
+              <FormattedMessage id="page-project.project.proj-success" />   
               </small>
             </div>
             <TextArea
@@ -159,7 +160,7 @@ const ProjectPage = () => {
             </span>
             <div>
               <small>
-                Who are the members of your team? Please write or link to bios.
+              <FormattedMessage id="page-project.project.team" />   
               </small>
             </div>
             <TextArea
@@ -174,9 +175,7 @@ const ProjectPage = () => {
             </span>
             <div>
               <small>
-                What key problem or need do you hope to address? How will your
-                work impact the larger Ethereum ecosystem? Who will benefit from
-                your work?
+              <FormattedMessage id="page-project.project.proj-impact" />                   
               </small>
             </div>
             <TextArea
@@ -191,8 +190,7 @@ const ProjectPage = () => {
             </span>
             <div>
               <small>
-                What are the most significant obstacles facing your project or
-                your team right now? What are some of your most pressing needs?
+              <FormattedMessage id="page-project.project.challenges-info" />                          
               </small>
             </div>
             <TextArea
@@ -205,8 +203,7 @@ const ProjectPage = () => {
             Previous work
             <div>
               <small>
-                Please provide links to published code, research, or other
-                documentation of what you're working on.
+              <FormattedMessage id="page-project.project.link" />                                        
               </small>
             </div>
             <TextArea
@@ -239,12 +236,12 @@ const ProjectPage = () => {
           </Label>
 
           <Label>
-            Where is your contact person based (country)?
+          <FormattedMessage id="page-project.project.contact-p-country" />                                        
             <Select options={countryOptions} onChange={handleSelectChange} />
           </Label>
 
           <Label>
-            Where is your contact person based (city)?
+          <FormattedMessage id="page-project.project.contact-p-city" />                                        
             <Input
               type="text"
               name="city"
@@ -255,7 +252,7 @@ const ProjectPage = () => {
           </Label>
 
           <Label>
-            How did you hear about Ecosystem Support?
+          <FormattedMessage id="page-project.project.support" />                                        
             <Select
               options={referralSourceOptions}
               onChange={handleSelectChange}
@@ -263,7 +260,7 @@ const ProjectPage = () => {
           </Label>
 
           <Label>
-            Did anyone recommend that you contact Ecosystem Support? If so, who?
+          <FormattedMessage id="page-project.project.support-p" />                                             
             <Input
               type="text"
               name="referralName"
@@ -279,13 +276,12 @@ const ProjectPage = () => {
               value={formState.newsletter}
               onChange={handleCheckBoxChange}
             />
-            Subscribe to the ESP Newsletter? You'll hear from us every few
-            weeks, and we'll only ever contact you with ESP news.
+          <FormattedMessage id="page-project.project.subscribe" />                                               
           </Checkbox>
 
           <div>
             <Button disabled={!isValid} type="submit">
-              Submit
+          <FormattedMessage id="page-project.project.button" />                                                             
             </Button>
           </div>
         </Form>
@@ -294,4 +290,5 @@ const ProjectPage = () => {
   )
 }
 
-export default ProjectPage
+export default injectIntl(ProjectPage)
+
