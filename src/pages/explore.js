@@ -2,6 +2,8 @@ import React, { useState } from "react"
 import { navigate } from "gatsby"
 import { useToasts } from "react-toast-notifications"
 import Select from "react-select"
+import { FormattedMessage, injectIntl } from "gatsby-plugin-intl"
+
 
 import SEO from "../components/seo"
 import { REFERRAL_SOURCES, COUNTRIES } from "../utils/form-inputs"
@@ -26,7 +28,7 @@ const referralSourceOptions = REFERRAL_SOURCES.map(source => {
   return { value: source, label: source, name: "referralSource" }
 })
 
-const ExplorePage = () => {
+const ExplorePage = ({ intl }) => {
   const [formState, setFormState] = useState({
     name: "",
     projectName: "",
@@ -118,23 +120,22 @@ const ExplorePage = () => {
       <SEO title="Explore Inquiry" />
       <PageBody>
         <FormHeader>
-          <h1>Exploring possibilities</h1>
+          <h1>
+          <FormattedMessage id="page-explore.explore.h1" />
+          </h1>
           <p>
-            Tell us a bit about yourself, your skills, what you're excited
-            about, and what questions you have. We only collect the following
-            information submitted below and will not use or share for any
-            purposes other than evaluation.
+          <FormattedMessage id="page-explore.explore.description" />        
           </p>
         </FormHeader>
         <Form onSubmit={handleSubmit}>
           <Label>
-            <span>
+            <span>     
               Your name <Required>*</Required>
             </span>
             <div>
               <small>
-                Use whichever preferred name you would like our team to address
-                you by.
+          <FormattedMessage id="page-explore.explore.name-guide" />        
+               
               </small>
             </div>
 
@@ -157,11 +158,12 @@ const ExplorePage = () => {
             />
           </Label>
           <Label>
-            <span>Project name</span>
+            <span>
+          <FormattedMessage id="page-explore.explore.proj-name" />        
+            </span>
             <div>
               <small>
-                What's name of the project you’re currently working on? This is
-                optional.
+          <FormattedMessage id="page-explore.explore.proj-info" />         
               </small>
             </div>
             <Input
@@ -177,8 +179,7 @@ const ExplorePage = () => {
             </span>
             <div>
               <small>
-                Tell us a little bit about yourself - whatever you think we
-                should know.
+          <FormattedMessage id="page-explore.explore.profile-info" />               
               </small>
             </div>
             <TextArea
@@ -193,8 +194,7 @@ const ExplorePage = () => {
             </span>
             <div>
               <small>
-                What is unique about your skill set? What kinds of problems do
-                you enjoy solving?
+          <FormattedMessage id="page-explore.explore.expertise-info" />                               
               </small>
             </div>
             <TextArea
@@ -225,11 +225,10 @@ const ExplorePage = () => {
             />
           </Label>
           <Label>
-            Previous work
+          <FormattedMessage id="page-explore.explore.prev-work" />                                      
             <div>
               <small>
-                Please provide links to published code, research, or other
-                documentation of what you're working on.
+          <FormattedMessage id="page-explore.explore.link-2-work" />                                                     
               </small>
             </div>
             <TextArea
@@ -239,7 +238,7 @@ const ExplorePage = () => {
             />
           </Label>
           <Label>
-            What questions can we answer for you?
+          <FormattedMessage id="page-explore.explore.questions" />                                                                
             <TextArea
               name="questions"
               value={formState.questions}
@@ -248,12 +247,12 @@ const ExplorePage = () => {
           </Label>
 
           <Label>
-            What country are you located in?
+          <FormattedMessage id="page-explore.explore.country" />                                                                
             <Select options={countryOptions} onChange={handleSelectChange} />
           </Label>
 
           <Label>
-            What city are you located in?
+          <FormattedMessage id="page-explore.explore.city" />                                                                
             <Input
               type="text"
               name="city"
@@ -264,7 +263,7 @@ const ExplorePage = () => {
           </Label>
 
           <Label>
-            How did you hear about Ecosystem Support?
+          <FormattedMessage id="page-explore.explore.support" />                                                                
             <Select
               options={referralSourceOptions}
               onChange={handleSelectChange}
@@ -272,7 +271,7 @@ const ExplorePage = () => {
           </Label>
 
           <Label>
-            Did anyone recommend that you contact Ecosystem Support? If so, who?
+          <FormattedMessage id="page-explore.explore.support-info" />                                                                
             <Input
               type="text"
               name="referralName"
@@ -288,13 +287,12 @@ const ExplorePage = () => {
               value={formState.newsletter}
               onChange={handleCheckBoxChange}
             />
-            Subscribe to the ESP Newsletter? You'll hear from us every few
-            weeks, and we'll only ever contact you with ESP news.
+          <FormattedMessage id="page-explore.explore.subscribe" />                                                                           
           </Checkbox>
 
           <div>
             <Button disabled={!isValid} type="submit">
-              Submit
+          <FormattedMessage id="page-explore.explore.button" />                                                                               
             </Button>
           </div>
         </Form>
@@ -303,4 +301,5 @@ const ExplorePage = () => {
   )
 }
 
-export default ExplorePage
+export default injectIntl(ExplorePage)
+
