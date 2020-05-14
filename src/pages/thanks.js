@@ -2,22 +2,27 @@ import React from "react"
 
 import SEO from "../components/seo"
 import { PageBody } from "../components/SharedStyledComponents"
+import { FormattedMessage, injectIntl } from "gatsby-plugin-intl"
 
-const ThankYouPage = () => (
+
+const ThankYouPage = ({ intl }) => (
   <>
     <SEO title="Thanks" />
     <div className="page-content">
       <PageBody>
-        <h1>Thank you!</h1>
+        <h1>
+        <FormattedMessage id="page-thanks.thanks" />                                                                
+        </h1>
         <p>
-          Your inquiry has been successfully submitted! The Ecosystem Support
-          team will be reaching out within the next few business days with
-          detailed information.
+        <FormattedMessage id="page-thanks.answer-p-1" />                                                               
         </p>
-        <p>Until then, kick back and relax.</p>
+        <p>
+        <FormattedMessage id="page-thanks.answer-p-2" />                                                               
+        </p>
       </PageBody>
     </div>
   </>
 )
 
-export default ThankYouPage
+export default injectIntl(ThankYouPage)
+
