@@ -265,6 +265,13 @@
       "subscribe": "Subscribe to the ESP Newsletter? You'll hear from us every few weeks, and we'll only ever contact you with ESP news.",
       "button": "Submit"
     }
+  },
+  "page-404": {
+    "title": "Page not found",
+    "404": {
+      "h1": "Page not found",
+      "errr": "You just hit a route that doesn't exist... the sadness."
+    }
   }
 }
 
