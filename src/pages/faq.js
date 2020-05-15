@@ -139,7 +139,7 @@ const FAQPage = ({ data }) => {
           >
             <p>
               <FormattedMessage id="page-faq.eligibility.answer-p-1" />{" "}
-              <StyledLink to="/project/">inquiry form</StyledLink>
+              <StyledLink to="/project/">inquiry form</StyledLink>.{" "}
               <FormattedMessage id="page-faq.eligibility.answer-p-2" />
             </p>
           </AccordionSection>
