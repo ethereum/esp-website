@@ -288,7 +288,7 @@ const ExplorePage = () => {
               value={formState.newsletter}
               onChange={handleCheckBoxChange}
             />
-            <FormattedMessage id="page-explore.subscribe" />
+            <FormattedMessage id="subscribe" />
           </Checkbox>
 
           <div>
