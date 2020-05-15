@@ -230,8 +230,7 @@ const ProjectPage = () => {
           </Label>
           <Label>
             <span>
-              <FormattedMessage id="page-project.contact-email" />{" "}
-              <Required>*</Required>
+              <FormattedMessage id="contact-email" /> <Required>*</Required>
             </span>
             <Input
               type="email"
@@ -282,7 +281,7 @@ const ProjectPage = () => {
               value={formState.newsletter}
               onChange={handleCheckBoxChange}
             />
-            <FormattedMessage id="page-project.subscribe" />
+            <FormattedMessage id="subscribe" />
           </Checkbox>
 
           <div>

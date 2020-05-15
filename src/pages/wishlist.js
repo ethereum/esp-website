@@ -66,8 +66,8 @@ const WishlistPage = () => {
   }
 
   const toggleAllText = areAnyOpen
-    ? intl.formatMessage({ id: "page-wishlist.wishlist.collapse-all" })
-    : intl.formatMessage({ id: "page-wishlist.wishlist.expand-all" })
+    ? intl.formatMessage({ id: "page-wishlist.collapse-all" })
+    : intl.formatMessage({ id: "page-wishlist.expand-all" })
 
   return (
     <>
@@ -75,17 +75,17 @@ const WishlistPage = () => {
       <div>
         <PageHeader>
           <H1>
-            <FormattedMessage id="page-wishlist.wishlist.h1" />
+            <FormattedMessage id="page-wishlist.h1" />
           </H1>
         </PageHeader>
         <PageBody>
           <H2>
-            <FormattedMessage id="page-wishlist.wishlist.h2" />
+            <FormattedMessage id="page-wishlist.h2" />
           </H2>
           <p>
-            <FormattedMessage id="page-wishlist.wishlist.h2-description" />{" "}
+            <FormattedMessage id="page-wishlist.h2-description" />{" "}
             <Link to="/project/">
-              <FormattedMessage id="page-wishlist.wishlist.h2-description-link" />
+              <FormattedMessage id="page-wishlist.h2-description-link" />
             </Link>
             !
           </p>
@@ -97,109 +97,109 @@ const WishlistPage = () => {
             expanded={expanded}
             setExpanded={setExpanded}
             headerText={intl.formatMessage({
-              id: "page-wishlist.wishlist.h2-capabilities.capabilities",
+              id: "page-wishlist.h2-capabilities.capabilities",
             })}
           >
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.storage" />
+                <FormattedMessage id="page-wishlist.h2-capabilities.storage" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-p-1" />
+                <FormattedMessage id="page-wishlist.h2-capabilities.answer-p-1" />
                 <UL>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-1" />{" "}
+                    <FormattedMessage id="page-wishlist.h2-capabilities.answer-li-1" />{" "}
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-2" />
+                    <FormattedMessage id="page-wishlist.h2-capabilities.answer-li-2" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-3" />
+                    <FormattedMessage id="page-wishlist.h2-capabilities.answer-li-3" />
                   </li>
                 </UL>
               </div>
             </Item>
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.communications" />
+                <FormattedMessage id="page-wishlist.h2-capabilities.communications" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.comm-info" />
+                <FormattedMessage id="page-wishlist.h2-capabilities.comm-info" />
                 <UL>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-4" />
+                    <FormattedMessage id="page-wishlist.h2-capabilities.answer-li-4" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-5" />
+                    <FormattedMessage id="page-wishlist.h2-capabilities.answer-li-5" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-6" />
+                    <FormattedMessage id="page-wishlist.h2-capabilities.answer-li-6" />
                   </li>
                 </UL>
               </div>
             </Item>
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.infrastructure" />
+                <FormattedMessage id="page-wishlist.h2-capabilities.infrastructure" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.infra-info" />
+                <FormattedMessage id="page-wishlist.h2-capabilities.infra-info" />
               </div>
             </Item>
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.identity" />
+                <FormattedMessage id="page-wishlist.h2-capabilities.identity" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.id-info" />
+                <FormattedMessage id="page-wishlist.h2-capabilities.id-info" />
                 <UL>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-7" />
+                    <FormattedMessage id="page-wishlist.h2-capabilities.answer-li-7" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-8" />
+                    <FormattedMessage id="page-wishlist.h2-capabilities.answer-li-8" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-9" />
+                    <FormattedMessage id="page-wishlist.h2-capabilities.answer-li-9" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-10" />
+                    <FormattedMessage id="page-wishlist.h2-capabilities.answer-li-10" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-10" />
+                    <FormattedMessage id="page-wishlist.h2-capabilities.answer-li-10" />
                   </li>
                 </UL>
               </div>
             </Item>
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.integration" />
+                <FormattedMessage id="page-wishlist.h2-capabilities.integration" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.integration-info" />
+                <FormattedMessage id="page-wishlist.h2-capabilities.integration-info" />
 
                 <UL>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-12" />
+                    <FormattedMessage id="page-wishlist.h2-capabilities.answer-li-12" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-13" />
+                    <FormattedMessage id="page-wishlist.h2-capabilities.answer-li-13" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-14" />
+                    <FormattedMessage id="page-wishlist.h2-capabilities.answer-li-14" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-li-15" />
+                    <FormattedMessage id="page-wishlist.h2-capabilities.answer-li-15" />
                   </li>
                 </UL>
               </div>
             </Item>
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.light-clients" />
+                <FormattedMessage id="page-wishlist.h2-capabilities.light-clients" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-capabilities.answer-d-1" />
+                <FormattedMessage id="page-wishlist.h2-capabilities.answer-d-1" />
               </div>
             </Item>
           </AccordionSection>
@@ -210,57 +210,57 @@ const WishlistPage = () => {
             expanded={expanded}
             setExpanded={setExpanded}
             headerText={intl.formatMessage({
-              id: "page-wishlist.wishlist.h2-privacy.privacy",
+              id: "page-wishlist.h2-privacy.privacy",
             })}
           >
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-privacy.communications-2" />
+                <FormattedMessage id="page-wishlist.h2-privacy.communications-2" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-privacy.comm-info-2" />
+                <FormattedMessage id="page-wishlist.h2-privacy.comm-info-2" />
                 <UL>
-                  <FormattedMessage id="page-wishlist.wishlist.h2-privacy.answer-li-16" />
+                  <FormattedMessage id="page-wishlist.h2-privacy.answer-li-16" />
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-privacy.answer-li-17" />
+                    <FormattedMessage id="page-wishlist.h2-privacy.answer-li-17" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-privacy.answer-li-18" />
+                    <FormattedMessage id="page-wishlist.h2-privacy.answer-li-18" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-privacy.answer-li-19" />
+                    <FormattedMessage id="page-wishlist.h2-privacy.answer-li-19" />
                   </li>
                 </UL>
               </div>
             </Item>
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-privacy.execution" />
+                <FormattedMessage id="page-wishlist.h2-privacy.execution" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-privacy.execution-info" />
+                <FormattedMessage id="page-wishlist.h2-privacy.execution-info" />
                 <UL>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-privacy.answer-li-20" />
+                    <FormattedMessage id="page-wishlist.h2-privacy.answer-li-20" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-privacy.answer-li-21" />
+                    <FormattedMessage id="page-wishlist.h2-privacy.answer-li-21" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-privacy.answer-li-22" />
+                    <FormattedMessage id="page-wishlist.h2-privacy.answer-li-22" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-privacy.answer-li-23" />
+                    <FormattedMessage id="page-wishlist.h2-privacy.answer-li-23" />
                   </li>
                 </UL>
               </div>
             </Item>
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-privacy.cryptography" />
+                <FormattedMessage id="page-wishlist.h2-privacy.cryptography" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-privacy.cryptography-info" />
+                <FormattedMessage id="page-wishlist.h2-privacy.cryptography-info" />
               </div>
             </Item>
           </AccordionSection>
@@ -271,31 +271,31 @@ const WishlistPage = () => {
             expanded={expanded}
             setExpanded={setExpanded}
             headerText={intl.formatMessage({
-              id: "page-wishlist.wishlist.h2-security.security",
+              id: "page-wishlist.h2-security.security",
             })}
           >
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-security.smart-contracts" />
+                <FormattedMessage id="page-wishlist.h2-security.smart-contracts" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-security.smart-contract-info" />
+                <FormattedMessage id="page-wishlist.h2-security.smart-contract-info" />
               </div>
             </Item>
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-security.game-theory" />
+                <FormattedMessage id="page-wishlist.h2-security.game-theory" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-security.game-theory-info" />
+                <FormattedMessage id="page-wishlist.h2-security.game-theory-info" />
               </div>
             </Item>
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-security.monitoring" />
+                <FormattedMessage id="page-wishlist.h2-security.monitoring" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-security.monitoring-info" />
+                <FormattedMessage id="page-wishlist.h2-security.monitoring-info" />
               </div>
             </Item>
           </AccordionSection>
@@ -306,23 +306,23 @@ const WishlistPage = () => {
             expanded={expanded}
             setExpanded={setExpanded}
             headerText={intl.formatMessage({
-              id: "page-wishlist.wishlist.h2-usability.usability",
+              id: "page-wishlist.h2-usability.usability",
             })}
           >
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-usability.friction-reduction" />
+                <FormattedMessage id="page-wishlist.h2-usability.friction-reduction" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-usability.answer-d-1" />
+                <FormattedMessage id="page-wishlist.h2-usability.answer-d-1" />
               </div>
             </Item>
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-usability.mgmt" />
+                <FormattedMessage id="page-wishlist.h2-usability.mgmt" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-usability.mgmt-info" />
+                <FormattedMessage id="page-wishlist.h2-usability.mgmt-info" />
               </div>
             </Item>
           </AccordionSection>
@@ -333,39 +333,39 @@ const WishlistPage = () => {
             expanded={expanded}
             setExpanded={setExpanded}
             headerText={intl.formatMessage({
-              id: "page-wishlist.wishlist.h2-dev-exp.dev-exp",
+              id: "page-wishlist.h2-dev-exp.dev-exp",
             })}
           >
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-dev-exp.dec-infra" />
+                <FormattedMessage id="page-wishlist.h2-dev-exp.dec-infra" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-dev-exp.dec-infra-info" />
+                <FormattedMessage id="page-wishlist.h2-dev-exp.dec-infra-info" />
               </div>
             </Item>
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-dev-exp.dec-infra-info" />
+                <FormattedMessage id="page-wishlist.h2-dev-exp.dec-infra-info" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-dev-exp.tooling-info" />
+                <FormattedMessage id="page-wishlist.h2-dev-exp.tooling-info" />
               </div>
             </Item>
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-dev-exp.contract-security" />
+                <FormattedMessage id="page-wishlist.h2-dev-exp.contract-security" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-dev-exp.contract-security-info" />
+                <FormattedMessage id="page-wishlist.h2-dev-exp.contract-security-info" />
               </div>
             </Item>
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-dev-exp.monitoring-tools" />
+                <FormattedMessage id="page-wishlist.h2-dev-exp.monitoring-tools" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-dev-exp.monitoring-tools-info" />
+                <FormattedMessage id="page-wishlist.h2-dev-exp.monitoring-tools-info" />
               </div>
             </Item>
           </AccordionSection>
@@ -376,31 +376,31 @@ const WishlistPage = () => {
             expanded={expanded}
             setExpanded={setExpanded}
             headerText={intl.formatMessage({
-              id: "page-wishlist.wishlist.h2-edu-comm.edu-comm",
+              id: "page-wishlist.h2-edu-comm.edu-comm",
             })}
           >
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-edu-comm.edu-materials" />
+                <FormattedMessage id="page-wishlist.h2-edu-comm.edu-materials" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-edu-comm.edu-materials-info" />
+                <FormattedMessage id="page-wishlist.h2-edu-comm.edu-materials-info" />
               </div>
             </Item>
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-edu-comm.translation" />
+                <FormattedMessage id="page-wishlist.h2-edu-comm.translation" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-edu-comm.translation-info" />
+                <FormattedMessage id="page-wishlist.h2-edu-comm.translation-info" />
               </div>
             </Item>
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-edu-comm.events" />
+                <FormattedMessage id="page-wishlist.h2-edu-comm.events" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-edu-comm.events-info" />
+                <FormattedMessage id="page-wishlist.h2-edu-comm.events-info" />
               </div>
             </Item>
           </AccordionSection>
@@ -411,23 +411,23 @@ const WishlistPage = () => {
             expanded={expanded}
             setExpanded={setExpanded}
             headerText={intl.formatMessage({
-              id: "page-wishlist.wishlist.h2-scaling.scaling",
+              id: "page-wishlist.h2-scaling.scaling",
             })}
           >
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-scaling.cryptography" />
+                <FormattedMessage id="page-wishlist.h2-scaling.cryptography" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-scaling.cryptography-info" />
+                <FormattedMessage id="page-wishlist.h2-scaling.cryptography-info" />
               </div>
             </Item>
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-scaling.l2-scaling" />
+                <FormattedMessage id="page-wishlist.h2-scaling.l2-scaling" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-scaling.l2-info" />
+                <FormattedMessage id="page-wishlist.h2-scaling.l2-info" />
               </div>
             </Item>
           </AccordionSection>
@@ -438,40 +438,40 @@ const WishlistPage = () => {
             expanded={expanded}
             setExpanded={setExpanded}
             headerText={intl.formatMessage({
-              id: "page-wishlist.wishlist.h2-eth1x.eth1x",
+              id: "page-wishlist.h2-eth1x.eth1x",
             })}
           >
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-eth1x.stateless" />
+                <FormattedMessage id="page-wishlist.h2-eth1x.stateless" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-eth1x.stateless-info" />
+                <FormattedMessage id="page-wishlist.h2-eth1x.stateless-info" />
                 <UL>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-eth1x.answer-li-1" />
+                    <FormattedMessage id="page-wishlist.h2-eth1x.answer-li-1" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-eth1x.answer-li-2" />
+                    <FormattedMessage id="page-wishlist.h2-eth1x.answer-li-2" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-eth1x.answer-li-3" />
+                    <FormattedMessage id="page-wishlist.h2-eth1x.answer-li-3" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-eth1x.answer-li-4" />
+                    <FormattedMessage id="page-wishlist.h2-eth1x.answer-li-4" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-eth1x.answer-li-5" />
+                    <FormattedMessage id="page-wishlist.h2-eth1x.answer-li-5" />
                   </li>
                 </UL>
               </div>
             </Item>
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-eth1x.optimization" />
+                <FormattedMessage id="page-wishlist.h2-eth1x.optimization" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-eth1x.optimization-info" />
+                <FormattedMessage id="page-wishlist.h2-eth1x.optimization-info" />
               </div>
             </Item>
           </AccordionSection>
@@ -482,52 +482,52 @@ const WishlistPage = () => {
             expanded={expanded}
             setExpanded={setExpanded}
             headerText={intl.formatMessage({
-              id: "page-wishlist.wishlist.h2-eth2.eth2",
+              id: "page-wishlist.h2-eth2.eth2",
             })}
           >
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-eth2.confidential" />
+                <FormattedMessage id="page-wishlist.h2-eth2.confidential" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-eth2.confidential-info" />
+                <FormattedMessage id="page-wishlist.h2-eth2.confidential-info" />
                 <UL>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-eth2.answer-li-1" />
+                    <FormattedMessage id="page-wishlist.h2-eth2.answer-li-1" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-eth2.answer-li-2" />
+                    <FormattedMessage id="page-wishlist.h2-eth2.answer-li-2" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-eth2.answer-li-3" />
+                    <FormattedMessage id="page-wishlist.h2-eth2.answer-li-3" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-eth2.answer-li-4" />
+                    <FormattedMessage id="page-wishlist.h2-eth2.answer-li-4" />
                   </li>
                 </UL>
               </div>
             </Item>
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-eth2.stateless-eth2" />
+                <FormattedMessage id="page-wishlist.h2-eth2.stateless-eth2" />
               </strong>
               <div>
-                <FormattedMessage id="page-wishlist.wishlist.h2-eth2.stateless-eth2-info" />
+                <FormattedMessage id="page-wishlist.h2-eth2.stateless-eth2-info" />
                 <UL>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-eth2.answer-li-5" />
+                    <FormattedMessage id="page-wishlist.h2-eth2.answer-li-5" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-eth2.answer-li-6" />
+                    <FormattedMessage id="page-wishlist.h2-eth2.answer-li-6" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-eth2.answer-li-7" />
+                    <FormattedMessage id="page-wishlist.h2-eth2.answer-li-7" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-eth2.answer-li-8" />
+                    <FormattedMessage id="page-wishlist.h2-eth2.answer-li-8" />
                   </li>
                   <li>
-                    <FormattedMessage id="page-wishlist.wishlist.h2-eth2.answer-li-9" />
+                    <FormattedMessage id="page-wishlist.h2-eth2.answer-li-9" />
                   </li>
                 </UL>
               </div>
@@ -540,12 +540,12 @@ const WishlistPage = () => {
             expanded={expanded}
             setExpanded={setExpanded}
             headerText={intl.formatMessage({
-              id: "page-wishlist.wishlist.h2-innovate.innovate",
+              id: "page-wishlist.h2-innovate.innovate",
             })}
           >
             <Item>
               <strong>
-                <FormattedMessage id="page-wishlist.wishlist.h2-innovate.innovate-info" />
+                <FormattedMessage id="page-wishlist.h2-innovate.innovate-info" />
               </strong>
               <div></div>
             </Item>

@@ -10,6 +10,7 @@
   "loading-events": "Loading events",
   "newsletter-description": "Sign up to receive ESP updates to your inbox! You'll hear from us every few weeks, and we'll only ever contact you with ESP news.",
   "sign-up": "Sign up",
+  "subscribe": "Subscribe to the ESP Newsletter? You'll hear from us every few weeks, and we'll only ever contact you with ESP news.",
   "upcoming-events": "Upcoming Events",
   "view-website": "View Website",
   "page-faq": {
@@ -40,8 +41,8 @@
     },
     "eligibility": {
       "question": "Who can apply?",
-      "answer-p-1": " We don’t accept grant applications directly through our website, but rather invite interested parties to get in touch through our",
-      "answer-p-2": ". Newcomers to Ethereum, established projects, and past grantees are all welcome to submit an inquiry. Consider this inquiry the start of a conversation, and we’ll help you decide whether applying for a grant or other support is the right next step for you."
+      "answer-p-1": "We don’t accept grant applications directly through our website, but rather invite interested parties to get in touch through our",
+      "answer-p-2": "Newcomers to Ethereum, established projects, and past grantees are all welcome to submit an inquiry. Consider this inquiry the start of a conversation, and we’ll help you decide whether applying for a grant or other support is the right next step for you."
     },
     "eligibility-2": {
       "question": "Is anyone *not* eligible for the Ecosystem Support Program?",
@@ -72,11 +73,11 @@
     },
     "millions": {
       "question": "Will you give me a million dollars?",
-      "answer-p-1": " Probably not. Grant sizes vary widely depending on the scope and expected length of the project - anywhere from $5,000 USD for an individual tackling a distinct task or research problem, to $200k+ for dedicated Eth 2 client teams working on a multi-year timeline. Grant applicants will have the opportunity to work with the ESP team on determining an appropriate request based on the scope of their proposed work."
+      "answer-p-1": "Probably not. Grant sizes vary widely depending on the scope and expected length of the project - anywhere from $5,000 USD for an individual tackling a distinct task or research problem, to $200k+ for dedicated Eth 2 client teams working on a multi-year timeline. Grant applicants will have the opportunity to work with the ESP team on determining an appropriate request based on the scope of their proposed work."
     },
     "application-process": {
       "question": "What happens after an inquiry is submitted?",
-      "answer-p-1": " You’ll be assigned a guide, who will be a consistent point of contact to help you navigate the process. There will be an initial conversation and peer review to determine whether the program is a good fit for your project and what types of support might be most appropriate. If it seems like a fit, you’ll enter the next phase of formally applying for a grant, exploring other resources, or both. Whichever track(s) you embark on, your guide will be with you every step of the way. The more detail you provide in your initial inquiry, the smoother and quicker the process of determining next steps can go. See “What makes a good application” above for more on this."
+      "answer-p-1": "You’ll be assigned a guide, who will be a consistent point of contact to help you navigate the process. There will be an initial conversation and peer review to determine whether the program is a good fit for your project and what types of support might be most appropriate. If it seems like a fit, you’ll enter the next phase of formally applying for a grant, exploring other resources, or both. Whichever track(s) you embark on, your guide will be with you every step of the way. The more detail you provide in your initial inquiry, the smoother and quicker the process of determining next steps can go. See “What makes a good application” above for more on this."
     },
     "response-time": {
       "question": "How long will it take before I hear back from you?",
@@ -84,7 +85,7 @@
     },
     "confidentiality": {
       "question": "Is my application confidential?",
-      "answer-p-1": " Any information you provide may be shared in the peer-review process, so let us know in your application if there's anything you want us to keep private!"
+      "answer-p-1": "Any information you provide may be shared in the peer-review process, so let us know in your application if there's anything you want us to keep private!"
     },
     "payment": {
       "question": "Can grants be paid out in ETH?",
@@ -105,163 +106,159 @@
     "specific-project": "Specific project",
     "exploring-possibilities": "Exploring possibilities"
   },
-
   "page-wishlist": {
     "title": "Wishlist",
     "description": "The Ethereum Ecosystem Support Program provides financial and non-financial support for projects working to accelerate the growth of Ethereum.",
-    "wishlist": {
-      "h1": "Project Wishlist",
-      "collapse-all": "Collapse all",
-      "expand-all": "Expand all",
-      "h2": "Wishlist",
-      "h2-description": "Here, you’ll find some of the areas where we’re actively seeking applications. While these are some of the most pressing needs we see in the ecosystem, the list is by no means exhaustive. We don't expect to think of everything - we’re always looking for new ideas. If you’re working on something that will make Ethereum better,",
-      "h2-description-link": "we're here to help",
-      "h2-capabilities": {
-        "capabilities": "Capabilities",
-        "storage": "Decentralized data storage",
-        "answer-p-1": " Decentralized data storage, indexing, data privacy, and associated tooling. Use cases including:",
-        "answer-li-1": "Storage for user content",
-        "answer-li-2": "Decentralized websites",
-        "answer-li-3": "Storage and retrieval of Ethereum history",
-        "communications": "Communications infrastructure",
-        "comm-info": "Privacy preserving communication at network and messaging layers. Use cases including:",
-        "answer-li-4": "Decentralized applications",
-        "answer-li-5": "Personal & enterprise message exchange",
-        "answer-li-6": "Private transactions",
-        "infrastructure": "Infrastructure and standards for decentralized applications",
-        "infra-info": " Frameworks, standards and missing infrastructure which improve developer productivity, and/or help fulfill the vision of decentralized applications.",
-        "identity": "Identity",
-        "id-info": " Digital identity building blocks, standards and tooling. Use cases including:",
-        "answer-li-7": "Proof of educational credentials",
-        "answer-li-8": "Opt in KYC",
-        "answer-li-9": "Organizational membership",
-        "answer-li-10": "Voting/quadratic voting",
-        "answer-li-11": "Reputation",
-        "integration": "Integration and interoperability",
-        "integration-info": "  Integration and interoperability with other systems and standards including:",
-        "answer-li-12": "Decentralized web and P2P protocols",
-        "answer-li-13": "Existing internet protocols",
-        "answer-li-14": "Public & private chains",
-        "answer-li-15": "Other important protocols, software stacks, and hardware platforms.",
-        "light-clients": "Light clients",
-        "answer-d-1": "Eth 1.x and Eth 2 light client research and development; other approaches to ensuring secure data availability for resource constrained devices and libraries."
-      },
-      "h2-privacy": {
-        "privacy": "Privacy",
-        "communications-2": "Communications infrastructure",
-        "comm-info-2": "Privacy preserving communication at network and messaging layers. Use cases including:",
-        "answer-li-16": "Decentralized applications",
-        "answer-li-17": "Decentralized applications",
-        "answer-li-18": "Personal & enterprise message exchange",
-        "answer-li-19": "Private transactions",
-        "execution": "Confidential execution",
-        "execution-info": "Approaches towards confidential execution and transfers including:",
-        "answer-li-20": "s*ark/stonk/stank",
-        "answer-li-21": "Zexe",
-        "answer-li-22": "Homomorphic encryption",
-        "answer-li-23": "Secure multiparty computation",
-        "cryptography": "Cryptography",
-        "cryptography-info": "Cryptographic research, constructions, improved implementations, and libraries."
-      },
-      "h2-security": {
-        "security": "Security",
-        "smart-contracts": "Smart contract security",
-        "smart-contract-info": "Techniques, tools and best practices for preventing, detecting and mitigating vulnerabilities.",
-        "game-theory": "Game theory security research",
-        "game-theory-info": " Research into game theoretic and crypto economic aspects for example, theory of open games or miner extractable value.",
-        "monitoring": "More in-depth network monitoring tools",
-        "monitoring-info": "Network and smart contract monitoring tools."
-      },
-      "h2-usability": {
-        "usability": "usability",
-        "friction-reduction": "Friction reduction",
-        "answer-d-1": " Removing usability barriers and other impediments to adoption and use.",
-        "mgmt": "Key management",
-        "mgmt-info": "Key management improvements including portability between wallets, social and other key recovery mechanisms."
-      },
-      "h2-dev-exp": {
-        "dev-exp": "Developer Experience",
-        "dec-infra": "Infrastructure and standards for decentralized applications",
-        "dec-infra-info": "Frameworks, standards and missing infrastructure which improve developer productivity, and/or help fulfill the vision of decentralized applications.",
-        "tooling": "Tooling to improve developer experience",
-        "tooling-info": "Tools and libraries that improve developer experience, productivity, code quality and safety.",
-        "contract-security": "Smart contract security",
-        "contract-security-info": " Techniques, tools and best practices for preventing, detecting and mitigating vulnerabilities.",
-        "monitoring-tools": "More in-depth network monitoring tools",
-        "monitoring-tools-info": "Network and smart contract monitoring tools."
-      },
-      "h2-edu-comm": {
-        "edu-comm": "Education and Community",
-        "edu-materials": "Educational materials",
-        "edu-materials-info": " Improved documentation; tutorials; common resources like educational toolkits that can be shared between events and courses.",
-        "translation": "Translation",
-        "translation-info": "Translating documentation, educational material, research, and specs into other languages.",
-        "events": "Groups and events",
-        "events-info": "Growing the Ethereum community, especially in currently underrepresented regions; creating links with valued aligned communities and expert groups."
-      },
-      "h2-scaling": {
-        "scaling": "Scaling",
-        "cryptography": "Cryptography",
-        "cryptography-info": "Cryptographic research, constructions, improved implementations, and libraries.",
-        "l2-scaling": "L2 Scaling",
-        "l2-info": "Shared infrastructure and standards for L2 scaling solutions; research into cross shard L2; general L2 scaling research; development of L2 scaling solutions."
-      },
-      "h2-eth1x": {
-        "eth1x": "Eth 1.x",
-        "stateless": "Stateless Ethereum",
-        "stateless-info": " Research into stateless Ethereum with application to both Eth 1.x and Eth 2, including:",
-        "answer-li-1": "Witnesses format",
-        "answer-li-2": "ZK witness compression",
-        "answer-li-3": "Accumulators",
-        "answer-li-4": "State availability",
-        "answer-li-5": "Delivery",
-        "optimization": "Eth 1.x optimizations and other improvements",
-        "optimization-info": "Optimizations and improvements to Eth 1.x"
-      },
-      "h2-eth2": {
-        "eth2": "Eth 2",
-        "confidential": "Confidential execution",
-        "confidential-info": " Approaches towards confidential execution and transfers including:",
-        "answer-li-1": "s*ark/stonk/stank",
-        "answer-li-2": "Zexe",
-        "answer-li-3": "Homomorphic encryption",
-        "answer-li-4": "Secure multiparty computation",
-        "stateles-eth2": "Stateless Ethereum",
-        "stateless-eth2-info": "  Research into stateless Ethereum with application to both Eth 1.x and Eth 2, including:",
-        "answer-li-5": "Witnesses format",
-        "answer-li-6": "ZK witness compression",
-        "answer-li-7": "Accumulators",
-        "answer-li-8": "State availability",
-        "answer-li-9": "Delivery"
-      },
-      "h2-innovate": {
-        "innovate": "Surprise Us!",
-        "innovate-info": "Breakthough ideas, projects, improvements, research challenges we don't even know we need!"
-      }
+    "h1": "Project Wishlist",
+    "collapse-all": "Collapse all",
+    "expand-all": "Expand all",
+    "h2": "Wishlist",
+    "h2-description": "Here, you’ll find some of the areas where we’re actively seeking applications. While these are some of the most pressing needs we see in the ecosystem, the list is by no means exhaustive. We don't expect to think of everything - we’re always looking for new ideas. If you’re working on something that will make Ethereum better,",
+    "h2-description-link": "we're here to help",
+    "h2-capabilities": {
+      "capabilities": "Capabilities",
+      "storage": "Decentralized data storage",
+      "answer-p-1": "Decentralized data storage, indexing, data privacy, and associated tooling. Use cases including:",
+      "answer-li-1": "Storage for user content",
+      "answer-li-2": "Decentralized websites",
+      "answer-li-3": "Storage and retrieval of Ethereum history",
+      "communications": "Communications infrastructure",
+      "comm-info": "Privacy preserving communication at network and messaging layers. Use cases including:",
+      "answer-li-4": "Decentralized applications",
+      "answer-li-5": "Personal & enterprise message exchange",
+      "answer-li-6": "Private transactions",
+      "infrastructure": "Infrastructure and standards for decentralized applications",
+      "infra-info": "Frameworks, standards and missing infrastructure which improve developer productivity, and/or help fulfill the vision of decentralized applications.",
+      "identity": "Identity",
+      "id-info": "Digital identity building blocks, standards and tooling. Use cases including:",
+      "answer-li-7": "Proof of educational credentials",
+      "answer-li-8": "Opt in KYC",
+      "answer-li-9": "Organizational membership",
+      "answer-li-10": "Voting/quadratic voting",
+      "answer-li-11": "Reputation",
+      "integration": "Integration and interoperability",
+      "integration-info": "Integration and interoperability with other systems and standards including:",
+      "answer-li-12": "Decentralized web and P2P protocols",
+      "answer-li-13": "Existing internet protocols",
+      "answer-li-14": "Public & private chains",
+      "answer-li-15": "Other important protocols, software stacks, and hardware platforms.",
+      "light-clients": "Light clients",
+      "answer-d-1": "Eth 1.x and Eth 2 light client research and development; other approaches to ensuring secure data availability for resource constrained devices and libraries."
+    },
+    "h2-privacy": {
+      "privacy": "Privacy",
+      "communications-2": "Communications infrastructure",
+      "comm-info-2": "Privacy preserving communication at network and messaging layers. Use cases including:",
+      "answer-li-16": "Decentralized applications",
+      "answer-li-17": "Decentralized applications",
+      "answer-li-18": "Personal & enterprise message exchange",
+      "answer-li-19": "Private transactions",
+      "execution": "Confidential execution",
+      "execution-info": "Approaches towards confidential execution and transfers including:",
+      "answer-li-20": "s*ark/stonk/stank",
+      "answer-li-21": "Zexe",
+      "answer-li-22": "Homomorphic encryption",
+      "answer-li-23": "Secure multiparty computation",
+      "cryptography": "Cryptography",
+      "cryptography-info": "Cryptographic research, constructions, improved implementations, and libraries."
+    },
+    "h2-security": {
+      "security": "Security",
+      "smart-contracts": "Smart contract security",
+      "smart-contract-info": "Techniques, tools and best practices for preventing, detecting and mitigating vulnerabilities.",
+      "game-theory": "Game theory security research",
+      "game-theory-info": "Research into game theoretic and crypto economic aspects for example, theory of open games or miner extractable value.",
+      "monitoring": "More in-depth network monitoring tools",
+      "monitoring-info": "Network and smart contract monitoring tools."
+    },
+    "h2-usability": {
+      "usability": "usability",
+      "friction-reduction": "Friction reduction",
+      "answer-d-1": "Removing usability barriers and other impediments to adoption and use.",
+      "mgmt": "Key management",
+      "mgmt-info": "Key management improvements including portability between wallets, social and other key recovery mechanisms."
+    },
+    "h2-dev-exp": {
+      "dev-exp": "Developer Experience",
+      "dec-infra": "Infrastructure and standards for decentralized applications",
+      "dec-infra-info": "Frameworks, standards and missing infrastructure which improve developer productivity, and/or help fulfill the vision of decentralized applications.",
+      "tooling": "Tooling to improve developer experience",
+      "tooling-info": "Tools and libraries that improve developer experience, productivity, code quality and safety.",
+      "contract-security": "Smart contract security",
+      "contract-security-info": "Techniques, tools and best practices for preventing, detecting and mitigating vulnerabilities.",
+      "monitoring-tools": "More in-depth network monitoring tools",
+      "monitoring-tools-info": "Network and smart contract monitoring tools."
+    },
+    "h2-edu-comm": {
+      "edu-comm": "Education and Community",
+      "edu-materials": "Educational materials",
+      "edu-materials-info": "Improved documentation; tutorials; common resources like educational toolkits that can be shared between events and courses.",
+      "translation": "Translation",
+      "translation-info": "Translating documentation, educational material, research, and specs into other languages.",
+      "events": "Groups and events",
+      "events-info": "Growing the Ethereum community, especially in currently underrepresented regions; creating links with valued aligned communities and expert groups."
+    },
+    "h2-scaling": {
+      "scaling": "Scaling",
+      "cryptography": "Cryptography",
+      "cryptography-info": "Cryptographic research, constructions, improved implementations, and libraries.",
+      "l2-scaling": "L2 Scaling",
+      "l2-info": "Shared infrastructure and standards for L2 scaling solutions; research into cross shard L2; general L2 scaling research; development of L2 scaling solutions."
+    },
+    "h2-eth1x": {
+      "eth1x": "Eth 1.x",
+      "stateless": "Stateless Ethereum",
+      "stateless-info": "Research into stateless Ethereum with application to both Eth 1.x and Eth 2, including:",
+      "answer-li-1": "Witnesses format",
+      "answer-li-2": "ZK witness compression",
+      "answer-li-3": "Accumulators",
+      "answer-li-4": "State availability",
+      "answer-li-5": "Delivery",
+      "optimization": "Eth 1.x optimizations and other improvements",
+      "optimization-info": "Optimizations and improvements to Eth 1.x"
+    },
+    "h2-eth2": {
+      "eth2": "Eth 2",
+      "confidential": "Confidential execution",
+      "confidential-info": "Approaches towards confidential execution and transfers including:",
+      "answer-li-1": "s*ark/stonk/stank",
+      "answer-li-2": "Zexe",
+      "answer-li-3": "Homomorphic encryption",
+      "answer-li-4": "Secure multiparty computation",
+      "stateless-eth2": "Stateless Ethereum",
+      "stateless-eth2-info": "Research into stateless Ethereum with application to both Eth 1.x and Eth 2, including:",
+      "answer-li-5": "Witnesses format",
+      "answer-li-6": "ZK witness compression",
+      "answer-li-7": "Accumulators",
+      "answer-li-8": "State availability",
+      "answer-li-9": "Delivery"
+    },
+    "h2-innovate": {
+      "innovate": "Surprise Us!",
+      "innovate-info": "Breakthough ideas, projects, improvements, research challenges we don't even know we need!"
     }
   },
   "page-explore": {
     "title": "Explore Inquiry",
     "h1": "Exploring possibilities",
     "description": "Tell us a bit about yourself, your skills, what you're excited about, and what questions you have. We only collect the following information submitted below and will not use or share for any purposes other than evaluation.",
-    "name:": "Your name",
+    "name": "Your name",
     "name-guide": "Use whichever preferred name you would like our team to address you by.",
     "proj-name": "Project name",
-    "proj-info": " What's name of the project you’re currently working on? This is optional.",
+    "proj-info": "What's name of the project you’re currently working on? This is optional.",
     "profile": "Profile",
-    "profile-info": " Tell us a little bit about yourself - whatever you think we should know.",
+    "profile-info": "Tell us a little bit about yourself - whatever you think we should know.",
     "expertise": "Area of expertise",
     "expertise-info": "What is unique about your skill set? What kinds of problems do you enjoy solving?",
     "why": "Why Ethereum?",
     "proj-dev": "What's a project or development that you were excited about recently?",
     "prev-work": "Previous work",
-    "link-2-work": " Please provide links to published code, research, or other documentation of what you're working on.",
+    "link-2-work": "Please provide links to published code, research, or other documentation of what you're working on.",
     "questions": "What questions can we answer for you?",
     "country": "What country are you located in?",
     "city": "What city are you located in?",
     "support": "How did you hear about Ecosystem Support?",
     "support-info": "Did anyone recommend that you contact Ecosystem Support? If so, who?",
-    "subscribe": "Subscribe to the ESP Newsletter? You'll hear from us every few weeks, and we'll only ever contact you with ESP news.",
     "button": "Submit"
   },
   "page-project": {
@@ -284,7 +281,6 @@
     "contact-p-city": "Where is your contact person based (city)?",
     "support": "How did you hear about Ecosystem Support?",
     "support-p": "Did anyone recommend that you contact Ecosystem Support? If so, who?",
-    "subscribe": "Subscribe to the ESP Newsletter? You'll hear from us every few weeks, and we'll only ever contact you with ESP news.",
     "button": "Submit"
   },
   "page-projects": {
