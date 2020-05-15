@@ -3,6 +3,7 @@ import { Link } from "gatsby"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
+import { FormattedMessage, injectIntl } from "gatsby-plugin-intl"
 
 import SEO from "../components/seo"
 import UpcomingEvents from "../components/UpcomingEvents"
@@ -102,10 +103,11 @@ class IndexPage extends React.Component {
     }
   }
 
+  // TODO translate
   render() {
     return (
       <>
-        <SEO title="Home" />
+        <SEO title={this.props.intl.formatMessage({ id: "page-home.title" })} />
         <div>
           <Hero>
             <HorizontalLogo
@@ -201,4 +203,4 @@ class IndexPage extends React.Component {
   }
 }
 
-export default IndexPage
+export default injectIntl(IndexPage)

@@ -1,6 +1,11 @@
 {
-  "title": "Ethereum Ecosystem Support Program",
-  "description": "The Ethereum Ecosystem Support Program provides financial and non-financial support for projects working to accelerate the growth of Ethereum.",
+  "site-title": "Ethereum Ecosystem Support Program",
+  "site-description": "The Ethereum Ecosystem Support Program provides financial and non-financial support for projects working to accelerate the growth of Ethereum.",
+  "find-us": "Find us at these community events!",
+  "loading": "Loading",
+  "upcoming-events": "Upcoming Events",
+  "loading-events": "Loading events",
+  "view-website": "View Website",
   "page-faq": {
     "title": "FAQ",
     "h1": "Ecosystem Support Program FAQ",
@@ -80,9 +85,12 @@
       "answer-p-1": "We can provide payment in ETH, DAI, or Fiat currency."
     }
   },
+  "page-home": {
+    "title": "Home"
+  },
 
   "page-wishlist": {
-    "title": "Project Wishlist",
+    "title": "Wishlist",
     "description": "The Ethereum Ecosystem Support Program provides financial and non-financial support for projects working to accelerate the growth of Ethereum.",
     "wishlist": {
       "h1": "Project Wishlist",
@@ -90,6 +98,7 @@
       "expand-all": "Expand all",
       "h2": "Wishlist",
       "h2-description": "Here, you’ll find some of the areas where we’re actively seeking applications. While these are some of the most pressing needs we see in the ecosystem, the list is by no means exhaustive. We don't expect to think of everything - we’re always looking for new ideas. If you’re working on something that will make Ethereum better,",
+      "h2-description-link": "we're here to help",
       "h2-capabilities": {
         "capabilities": "Capabilities",
         "storage": "Decentralized data storage",
@@ -144,7 +153,7 @@
         "game-theory": "Game theory security research",
         "game-theory-info": " Research into game theoretic and crypto economic aspects for example, theory of open games or miner extractable value.",
         "monitoring": "More in-depth network monitoring tools",
-        "monitoring-info":"Network and smart contract monitoring tools." 
+        "monitoring-info": "Network and smart contract monitoring tools."
       },
       "h2-usability": {
         "usability": "usability",
@@ -158,7 +167,7 @@
         "dec-infra": "Infrastructure and standards for decentralized applications",
         "dec-infra-info": "Frameworks, standards and missing infrastructure which improve developer productivity, and/or help fulfill the vision of decentralized applications.",
         "tooling": "Tooling to improve developer experience",
-        "tooling-info":  "Tools and libraries that improve developer experience, productivity, code quality and safety.",
+        "tooling-info": "Tools and libraries that improve developer experience, productivity, code quality and safety.",
         "contract-security": "Smart contract security",
         "contract-security-info": " Techniques, tools and best practices for preventing, detecting and mitigating vulnerabilities.",
         "monitoring-tools": "More in-depth network monitoring tools",
@@ -181,68 +190,68 @@
         "l2-info": "Shared infrastructure and standards for L2 scaling solutions; research into cross shard L2; general L2 scaling research; development of L2 scaling solutions."
       },
       "h2-eth1x": {
-      "eth1x":"Eth 1.x",
-      "stateless": "Stateless Ethereum",
-      "stateless-info": " Research into stateless Ethereum with application to both Eth 1.x and Eth 2, including:",
-      "answer-li-1": "Witnesses format",
-      "answer-li-2": "ZK witness compression",
-      "answer-li-3": "Accumulators",
-      "answer-li-4": "State availability",
-      "answer-li-5": "Delivery",
-      "optimization":"Eth 1.x optimizations and other improvements" ,
-      "optimization-info": "Optimizations and improvements to Eth 1.x"  
-     },
-     "h2-eth2": {
-      "eth2": "Eth 2",
-      "confidential": "Confidential execution",
-      "confidential-info": " Approaches towards confidential execution and transfers including:",
-      "answer-li-1": "s*ark/stonk/stank",
-      "answer-li-2": "Zexe",
-      "answer-li-3": "Homomorphic encryption",
-      "answer-li-4": "Secure multiparty computation",
-      "stateles-eth2": "Stateless Ethereum",
-      "stateless-eth2-info": "  Research into stateless Ethereum with application to both Eth 1.x and Eth 2, including:",
-      "answer-li-5": "Witnesses format",
-      "answer-li-6": "ZK witness compression",
-      "answer-li-7": "Accumulators",
-      "answer-li-8": "State availability",
-      "answer-li-9": "Delivery"
-     },
-     "h2-innovate": {
-       "innovate": "Surprise Us!",
-     "innovate-info": "Breakthough ideas, projects, improvements, research challenges we don't even know we need!"
-  }
-}
+        "eth1x": "Eth 1.x",
+        "stateless": "Stateless Ethereum",
+        "stateless-info": " Research into stateless Ethereum with application to both Eth 1.x and Eth 2, including:",
+        "answer-li-1": "Witnesses format",
+        "answer-li-2": "ZK witness compression",
+        "answer-li-3": "Accumulators",
+        "answer-li-4": "State availability",
+        "answer-li-5": "Delivery",
+        "optimization": "Eth 1.x optimizations and other improvements",
+        "optimization-info": "Optimizations and improvements to Eth 1.x"
+      },
+      "h2-eth2": {
+        "eth2": "Eth 2",
+        "confidential": "Confidential execution",
+        "confidential-info": " Approaches towards confidential execution and transfers including:",
+        "answer-li-1": "s*ark/stonk/stank",
+        "answer-li-2": "Zexe",
+        "answer-li-3": "Homomorphic encryption",
+        "answer-li-4": "Secure multiparty computation",
+        "stateles-eth2": "Stateless Ethereum",
+        "stateless-eth2-info": "  Research into stateless Ethereum with application to both Eth 1.x and Eth 2, including:",
+        "answer-li-5": "Witnesses format",
+        "answer-li-6": "ZK witness compression",
+        "answer-li-7": "Accumulators",
+        "answer-li-8": "State availability",
+        "answer-li-9": "Delivery"
+      },
+      "h2-innovate": {
+        "innovate": "Surprise Us!",
+        "innovate-info": "Breakthough ideas, projects, improvements, research challenges we don't even know we need!"
+      }
+    }
   },
-"page-explore": {
-  "title": "Exploring possibilities",
-  "explore": {
-    "h1": "Exploring possibilities",
-    "description": "Tell us a bit about yourself, your skills, what you're excited about, and what questions you have. We only collect the following information submitted below and will not use or share for any purposes other than evaluation.",
-    "name:": "Your name",
-    "name-guide": "Use whichever preferred name you would like our team to address you by.",
-    "contact-info": "Contact email",
-    "proj-name": "Project name",
-    "proj-info": " What's name of the project you’re currently working on? This is optional.",
-    "profile": "Profile",
-    "profile-info": " Tell us a little bit about yourself - whatever you think we should know.",
-    "expertise": "Area of expertise",
-    "expertise-info": "What is unique about your skill set? What kinds of problems do you enjoy solving?",
-    "why": "Why Ethereum?",
-    "proj-dev": "What's a project or development that you were excited about recently?",
-    "prev-work": "Previous work",
-    "link-2-work": " Please provide links to published code, research, or other documentation of what you're working on.",
-    "questions": "What questions can we answer for you?",
-    "country": "What country are you located in?",
-    "city": "What city are you located in?",
-    "support": "How did you hear about Ecosystem Support?",
-    "support-info":"Did anyone recommend that you contact Ecosystem Support? If so, who?",
-    "subscribe": "Subscribe to the ESP Newsletter? You'll hear from us every few weeks, and we'll only ever contact you with ESP news.",
-    "button": "Submit"
-  }
-},
+  "page-explore": {
+    "title": "Explore Inquiry",
+    "explore": {
+      "h1": "Exploring possibilities",
+      "description": "Tell us a bit about yourself, your skills, what you're excited about, and what questions you have. We only collect the following information submitted below and will not use or share for any purposes other than evaluation.",
+      "name:": "Your name",
+      "name-guide": "Use whichever preferred name you would like our team to address you by.",
+      "contact-info": "Contact email",
+      "proj-name": "Project name",
+      "proj-info": " What's name of the project you’re currently working on? This is optional.",
+      "profile": "Profile",
+      "profile-info": " Tell us a little bit about yourself - whatever you think we should know.",
+      "expertise": "Area of expertise",
+      "expertise-info": "What is unique about your skill set? What kinds of problems do you enjoy solving?",
+      "why": "Why Ethereum?",
+      "proj-dev": "What's a project or development that you were excited about recently?",
+      "prev-work": "Previous work",
+      "link-2-work": " Please provide links to published code, research, or other documentation of what you're working on.",
+      "questions": "What questions can we answer for you?",
+      "country": "What country are you located in?",
+      "city": "What city are you located in?",
+      "support": "How did you hear about Ecosystem Support?",
+      "support-info": "Did anyone recommend that you contact Ecosystem Support? If so, who?",
+      "subscribe": "Subscribe to the ESP Newsletter? You'll hear from us every few weeks, and we'll only ever contact you with ESP news.",
+      "button": "Submit"
+    }
+  },
   "page-project": {
-    "title": "Specific Project",
+    "title": "Project Inquiry",
     "project": {
       "h1": "Specific Project",
       "description": "Tell us a bit about your project goals, motivations, needs, challenges, and any other information you feel is pertinent for us to know. You'll hear back from someone on the Ecosystem Support team very soon! We only collect the following information submitted below and will not use or share for any purposes other than evaluation.",
@@ -257,7 +266,7 @@
       "challenges-info": "What are the most significant obstacles facing your project or your team right now? What are some of your most pressing needs?",
       "links": "Please provide links to published code, research, or other documentation of what you're working on.",
       "contact-person": "Contact person",
-      "contact-email": "Contact email",    
+      "contact-email": "Contact email",
       "contact-p-country": "Where is your contact person based (country)?",
       "contact-p-city": "Where is your contact person based (city)?",
       "support": "How did you hear about Ecosystem Support?",
@@ -266,23 +275,17 @@
       "button": "Submit"
     }
   },
+  "page-projects": {
+    "title": "Featured Projects"
+  },
   "page-404": {
     "title": "Page not found",
-    "404": {
-      "h1": "Page not found",
-      "errr": "You just hit a route that doesn't exist... the sadness."
-    }
+    "body": "You just hit a route that doesn't exist... the sadness."
   },
   "page-thanks": {
-    "title": "Thank you!",
-    "thanks": {
-      "h1": "Thank you!",
-      "answer-p-1": "Your inquiry has been successfully submitted! The Ecosystem Support team will be reaching out within the next few business days with detailed information.",
-      "answer-p-2": "Until then, kick back and relax."
-    }
+    "title": "Thanks",
+    "h1": "Thank you!",
+    "p-1": "Your inquiry has been successfully submitted! The Ecosystem Support team will be reaching out within the next few business days with detailed information.",
+    "p-2": "Until then, kick back and relax."
   }
 }
-
-  
-
-

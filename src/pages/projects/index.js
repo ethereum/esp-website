@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import styled from "styled-components"
+import { FormattedMessage, injectIntl } from "gatsby-plugin-intl"
 
 import SEO from "../../components/seo"
 import ProjectCard from "../../components/ProjectCard"
@@ -15,10 +16,11 @@ const Intro = styled.div`
   margin: 24px auto 48px;
 `
 
-const ProjectsPage = ({ data }) => {
+// TODO translate
+const ProjectsPage = ({ data, intl }) => {
   return (
     <>
-      <SEO title="Featured Projects" />
+      <SEO title={intl.formatMessage({ id: "page-projects.title" })} />
       <div>
         <PageHeader>
           <H1>Featured Projects</H1>
@@ -88,4 +90,4 @@ export const query = graphql`
   }
 `
 
-export default ProjectsPage
+export default injectIntl(ProjectsPage)
