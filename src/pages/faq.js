@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
-import { FormattedMessage, injectIntl } from "gatsby-plugin-intl"
+import { FormattedMessage, useIntl } from "gatsby-plugin-intl"
 
 import SEO from "../components/seo"
 import { useState } from "react"
@@ -16,7 +16,8 @@ import {
   FakeLink,
 } from "../components/SharedStyledComponents"
 
-const FAQPage = ({ intl, data }) => {
+const FAQPage = ({ data }) => {
+  const intl = useIntl()
   // TODO simplify w/ Array... couldn't get it working
   const [expanded, setExpanded] = useState({
     0: false,
@@ -325,4 +326,4 @@ export const query = graphql`
   }
 `
 
-export default injectIntl(FAQPage)
+export default FAQPage

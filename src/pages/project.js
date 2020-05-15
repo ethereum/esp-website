@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { navigate } from "gatsby"
 import { useToasts } from "react-toast-notifications"
 import Select from "react-select"
-import { FormattedMessage, injectIntl } from "gatsby-plugin-intl"
+import { FormattedMessage, useIntl } from "gatsby-plugin-intl"
 
 import SEO from "../components/seo"
 import { REFERRAL_SOURCES, COUNTRIES } from "../utils/form-inputs"
@@ -27,7 +27,7 @@ const referralSourceOptions = REFERRAL_SOURCES.map(source => {
   return { value: source, label: source, name: "referralSource" }
 })
 
-const ProjectPage = ({ intl }) => {
+const ProjectPage = () => {
   const [formState, setFormState] = useState({
     name: "",
     contactEmail: "",
@@ -46,6 +46,7 @@ const ProjectPage = ({ intl }) => {
   })
 
   const { addToast } = useToasts()
+  const intl = useIntl()
 
   const handleCheckBoxChange = event => {
     const target = event.target
@@ -114,23 +115,22 @@ const ProjectPage = ({ intl }) => {
 
   const isValid = isFormValid()
 
-  // TODO translate labels
   return (
     <>
       <SEO title={intl.formatMessage({ id: "page-project.title" })} />
       <PageBody>
         <FormHeader>
           <h1>
-            <FormattedMessage id="page-project.project.h1" />
+            <FormattedMessage id="page-project.h1" />
           </h1>
           <p>
-            <FormattedMessage id="page-project.project.description" />
+            <FormattedMessage id="page-project.description" />
           </p>
         </FormHeader>
         <Form onSubmit={handleSubmit}>
           <Label>
             <span>
-              <FormattedMessage id="page-project.project.proj-name" />
+              <FormattedMessage id="page-project.proj-name" />
             </span>
             <Input
               type="text"
@@ -141,11 +141,12 @@ const ProjectPage = ({ intl }) => {
           </Label>
           <Label>
             <span>
-              Project description <Required>*</Required>
+              <FormattedMessage id="page-project.proj-desc" />{" "}
+              <Required>*</Required>
             </span>
             <div>
               <small>
-                <FormattedMessage id="page-project.project.proj-success" />
+                <FormattedMessage id="page-project.proj-success" />
               </small>
             </div>
             <TextArea
@@ -156,11 +157,12 @@ const ProjectPage = ({ intl }) => {
           </Label>
           <Label>
             <span>
-              Team profile <Required>*</Required>
+              <FormattedMessage id="page-project.profile" />{" "}
+              <Required>*</Required>
             </span>
             <div>
               <small>
-                <FormattedMessage id="page-project.project.team" />
+                <FormattedMessage id="page-project.team" />
               </small>
             </div>
             <TextArea
@@ -171,11 +173,12 @@ const ProjectPage = ({ intl }) => {
           </Label>
           <Label>
             <span>
-              Impact <Required>*</Required>
+              <FormattedMessage id="page-project.impact" />{" "}
+              <Required>*</Required>
             </span>
             <div>
               <small>
-                <FormattedMessage id="page-project.project.proj-impact" />
+                <FormattedMessage id="page-project.proj-impact" />
               </small>
             </div>
             <TextArea
@@ -186,11 +189,12 @@ const ProjectPage = ({ intl }) => {
           </Label>
           <Label>
             <span>
-              Needs and Challenges <Required>*</Required>
+              <FormattedMessage id="page-project.challenges" />{" "}
+              <Required>*</Required>
             </span>
             <div>
               <small>
-                <FormattedMessage id="page-project.project.challenges-info" />
+                <FormattedMessage id="page-project.challenges-info" />
               </small>
             </div>
             <TextArea
@@ -200,10 +204,10 @@ const ProjectPage = ({ intl }) => {
             />
           </Label>
           <Label>
-            Previous work
+            <FormattedMessage id="page-project.prev-work" />
             <div>
               <small>
-                <FormattedMessage id="page-project.project.link" />
+                <FormattedMessage id="page-project.prev-work-links" />
               </small>
             </div>
             <TextArea
@@ -214,7 +218,8 @@ const ProjectPage = ({ intl }) => {
           </Label>
           <Label>
             <span>
-              Contact person <Required>*</Required>
+              <FormattedMessage id="page-project.contact-person" />{" "}
+              <Required>*</Required>
             </span>
             <Input
               type="text"
@@ -225,7 +230,8 @@ const ProjectPage = ({ intl }) => {
           </Label>
           <Label>
             <span>
-              Contact email <Required>*</Required>
+              <FormattedMessage id="page-project.contact-email" />{" "}
+              <Required>*</Required>
             </span>
             <Input
               type="email"
@@ -236,12 +242,12 @@ const ProjectPage = ({ intl }) => {
           </Label>
 
           <Label>
-            <FormattedMessage id="page-project.project.contact-p-country" />
+            <FormattedMessage id="page-project.contact-p-country" />
             <Select options={countryOptions} onChange={handleSelectChange} />
           </Label>
 
           <Label>
-            <FormattedMessage id="page-project.project.contact-p-city" />
+            <FormattedMessage id="page-project.contact-p-city" />
             <Input
               type="text"
               name="city"
@@ -252,7 +258,7 @@ const ProjectPage = ({ intl }) => {
           </Label>
 
           <Label>
-            <FormattedMessage id="page-project.project.support" />
+            <FormattedMessage id="page-project.support" />
             <Select
               options={referralSourceOptions}
               onChange={handleSelectChange}
@@ -260,7 +266,7 @@ const ProjectPage = ({ intl }) => {
           </Label>
 
           <Label>
-            <FormattedMessage id="page-project.project.support-p" />
+            <FormattedMessage id="page-project.support-p" />
             <Input
               type="text"
               name="referralName"
@@ -276,12 +282,12 @@ const ProjectPage = ({ intl }) => {
               value={formState.newsletter}
               onChange={handleCheckBoxChange}
             />
-            <FormattedMessage id="page-project.project.subscribe" />
+            <FormattedMessage id="page-project.subscribe" />
           </Checkbox>
 
           <div>
             <Button disabled={!isValid} type="submit">
-              <FormattedMessage id="page-project.project.button" />
+              <FormattedMessage id="page-project.button" />
             </Button>
           </div>
         </Form>
@@ -290,4 +296,4 @@ const ProjectPage = ({ intl }) => {
   )
 }
 
-export default injectIntl(ProjectPage)
+export default ProjectPage
