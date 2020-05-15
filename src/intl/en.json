@@ -1,10 +1,15 @@
 {
   "site-title": "Ethereum Ecosystem Support Program",
   "site-description": "The Ethereum Ecosystem Support Program provides financial and non-financial support for projects working to accelerate the growth of Ethereum.",
+  "blog": "Blog",
+  "ecosystem": "Ecosystem",
+  "support": "Support",
   "find-us": "Find us at these community events!",
   "loading": "Loading",
-  "upcoming-events": "Upcoming Events",
   "loading-events": "Loading events",
+  "newsletter-description": "Sign up to receive ESP updates to your inbox! You'll hear from us every few weeks, and we'll only ever contact you with ESP news.",
+  "sign-up": "Sign up",
+  "upcoming-events": "Upcoming Events",
   "view-website": "View Website",
   "page-faq": {
     "title": "FAQ",
@@ -86,7 +91,18 @@
     }
   },
   "page-home": {
-    "title": "Home"
+    "title": "Home",
+    "header": "An Ethereum Foundation Initiative",
+    "h1": "Welcome!",
+    "p-1": "The Ecosystem Support Program exists to provide both financial and non-financial support to projects and entities within the greater Ethereum community, in order to accelerate the growth of the ecosystem. The Ecosystem Support Program is an expansion of the original Ethereum Grants Program which mainly focused on financial support. Our focus is on deploying our resources where they will have the biggest impact.",
+    "p-2": "If you've got a project and want to see if ESP is a good fit",
+    "p-2-link": "get in touch",
+    "recent-news": "Recent News",
+    "updates": "Sign up for updates",
+    "contact-us": "Contact Us",
+    "contact-us-desc": "Are you working on a specific project, or are you still exploring possibilities to get involved?",
+    "specific-project": "Specific project",
+    "exploring-possibilities": "Exploring possibilities"
   },
 
   "page-wishlist": {
@@ -276,7 +292,9 @@
     }
   },
   "page-projects": {
-    "title": "Featured Projects"
+    "title": "Featured Projects",
+    "p": "This is only a small sample – we’ll highlight a few at a time and rotate periodically, so make sure to check back once in a while for updates. We’ll feature projects that have had at least a few months since receiving support, so that we have some results to look back on as well as ongoing trajectory and remaining milestones.",
+    "description": "Get to know some of the projects that ESP is currently supporting!"
   },
   "page-404": {
     "title": "Page not found",
