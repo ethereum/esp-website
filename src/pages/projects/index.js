@@ -15,31 +15,25 @@ const Intro = styled.div`
   max-width: 600px;
   margin: 24px auto 48px;
 `
-
-// TODO translate
 const ProjectsPage = ({ data, intl }) => {
   return (
     <>
       <SEO title={intl.formatMessage({ id: "page-projects.title" })} />
       <div>
         <PageHeader>
-          <H1>Featured Projects</H1>
+          <H1>
+            <FormattedMessage id="page-projects.title" />
+          </H1>
         </PageHeader>
         <PageBodyWide>
           <Intro>
             <strong>
               <p>
-                Get to know some of the projects that ESP is currently
-                supporting!
+                <FormattedMessage id="page-projects.description" />
               </p>
             </strong>
             <p>
-              This is only a small sample – we’ll highlight a few at a time and
-              rotate periodically, so make sure to check back once in a while
-              for updates. We’ll feature projects that have had at least a few
-              months since receiving support, so that we have some results to
-              look back on as well as ongoing trajectory and remaining
-              milestones.
+              <FormattedMessage id="page-projects.p" />
             </p>
           </Intro>
           {data.allMarkdownRemark.edges.map(({ node }, idx) => {

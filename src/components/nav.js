@@ -191,6 +191,57 @@ const Nav = ({ hasShadow }) => {
       <MobileNavMenu toggle={() => toggleOpen()} />
     </StyledNav>
   )
+  // TODO translate nav
+  // https://github.com/wiziple/gatsby-plugin-intl/issues/116
+  // return (
+  //   <StyledNav
+  //     className={hasShadow ? "nav-shadow" : ""}
+  //     initial="closed"
+  //     animate={isOpen ? "open" : "closed"}
+  //     ref={containerRef}
+  //   >
+  //     <div>
+  //       <NavLinkMain to="/">
+  //         <Img
+  //           fixed={data.file.childImageSharp.fixed}
+  //           alt="Ethereum Ecosystem Support Program Logo"
+  //         />
+  //         <NavLogoText>
+  //           <span><FormattedMessage id="ecosystem" /></span>{" "}
+  //           <span><FormattedMessage id="support" /></span>
+  //         </NavLogoText>
+  //       </NavLinkMain>
+  //     </div>
+  //     {/* Desktop */}
+  //     <NavLinks>
+  //       <NavLink to="/faq/" activeStyle={{ color: styles.colorOrange }}>
+  //         <FormattedMessage id="page-faq.title" />
+  //       </NavLink>
+  //       <NavLink to="/projects/" activeStyle={{ color: styles.colorOrange }}>
+  //         <FormattedMessage id="page-projects.title" />
+  //       </NavLink>
+  //       <NavLink to="/wishlist/" activeStyle={{ color: styles.colorOrange }}>
+  //         <FormattedMessage id="page-wishlist.title" />
+  //       </NavLink>
+  //       <NavLinkExternal
+  //         href="https://blog.ethereum.org/category/ecosystem-support-program/"
+  //         target="_blank"
+  //         rel="noopener noreferrer"
+  //       >
+  //         <FormattedMessage id="view-website" />
+  //         <FormattedMessage id="blog" />
+  //       </NavLinkExternal>
+  //     </NavLinks>
+  //     {/* Mobile */}
+  //     <MobileNavBackground variants={backgroundVariants} />
+  //     <AnimatePresence>
+  //       {isOpen && (
+  //         <MobileNavLinks key="navigation" toggle={() => toggleOpen()} />
+  //       )}
+  //     </AnimatePresence>
+  //     <MobileNavMenu toggle={() => toggleOpen()} />
+  //   </StyledNav>
+  // )
 }
 
 export default Nav

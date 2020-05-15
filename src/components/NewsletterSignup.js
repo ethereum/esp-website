@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { colorOrangeLightest } from "../utils/styles"
 import { Input, Button } from "../components/SharedStyledComponents"
 import { useToasts } from "react-toast-notifications"
+import { FormattedMessage } from "gatsby-plugin-intl"
 
 const Container = styled.div`
   background-color: ${colorOrangeLightest};
@@ -93,8 +94,7 @@ const NewsletterSignup = () => {
   return (
     <Container>
       <p>
-        Sign up to receive ESP updates to your inbox! You'll hear from us every
-        few weeks, and we'll only ever contact you with ESP news.
+        <FormattedMessage id="newsletter-description" />
       </p>
       <Form onSubmit={handleSubmit}>
         <EmailInput
@@ -105,7 +105,7 @@ const NewsletterSignup = () => {
         />
 
         <SubmitButton disabled={!isEmailValid} type="submit">
-          Sign up
+          <FormattedMessage id="sign-up" />
         </SubmitButton>
       </Form>
     </Container>

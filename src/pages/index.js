@@ -103,7 +103,6 @@ class IndexPage extends React.Component {
     }
   }
 
-  // TODO translate
   render() {
     return (
       <>
@@ -118,7 +117,9 @@ class IndexPage extends React.Component {
               src={vertLogo}
               alt="Ecosystem Support Program Vertical Logo"
             />
-            <Header>An Ethereum Foundation Initiative</Header>
+            <Header>
+              <FormattedMessage id="page-home.header" />
+            </Header>
             <StyledLink
               to="/#welcome"
               className={
@@ -132,25 +133,25 @@ class IndexPage extends React.Component {
             <Copy id="welcome">
               <Section>
                 <h1 style={{ paddingTop: `110px`, fontWeight: `bold` }}>
-                  Welcome!
+                  <FormattedMessage id="page-home.h1" />
                 </h1>
                 <p>
-                  The Ecosystem Support Program exists to provide both financial
-                  and non-financial support to projects and entities within the
-                  greater Ethereum community, in order to accelerate the growth
-                  of the ecosystem. The Ecosystem Support Program is an
-                  expansion of the original Ethereum Grants Program which mainly
-                  focused on financial support. Our focus is on deploying our
-                  resources where they will have the biggest impact.
+                  <FormattedMessage id="page-home.p-1" />
                 </p>
                 <p>
-                  If you've got a project and want to see if ESP is a good fit,{" "}
-                  <Link to="/#contact">get in touch</Link>!
+                  <FormattedMessage id="page-home.p-2" />,{" "}
+                  <Link to="/#contact">
+                    <FormattedMessage id="page-home.p-2-link" />
+                  </Link>
+                  !
                 </p>
               </Section>
               <HR />
               <Section>
-                <H2>Recent News</H2>
+                <H2>
+                  <FormattedMessage id="page-home.recent-news" />
+                </H2>
+                {/* We chose not to translate this for now, given how frequently we update */}
                 <p>
                   <strong>May 12, 2020</strong>: Going forward we'll be
                   releasing quarterly updates on financial support allocations.
@@ -181,19 +182,26 @@ class IndexPage extends React.Component {
                 <TwitterFeed />
               </Section>
               <Section id="newsletter">
-                <H2>Sign up for updates</H2>
+                <H2>
+                  <FormattedMessage id="page-home.updates" />
+                </H2>
                 <NewsletterSignup />
               </Section>
               <HR />
               <UpcomingEvents />
-              <H2 id="contact">Contact Us</H2>
+              <H2 id="contact">
+                <FormattedMessage id="page-home.contact-us" />
+              </H2>
               <p>
-                Are you working on a specific project, or are you still
-                exploring possibilities to get involved?
+                <FormattedMessage id="page-home.contact-us-desc" />
               </p>
               <ButtonContainer>
-                <ButtonLink to="/project/">Specific project</ButtonLink>
-                <ButtonLink to="/explore/">Exploring possibilities</ButtonLink>
+                <ButtonLink to="/project/">
+                  <FormattedMessage id="page-home.specific-project" />
+                </ButtonLink>
+                <ButtonLink to="/explore/">
+                  <FormattedMessage id="page-home.exploring-possibilities" />
+                </ButtonLink>
               </ButtonContainer>
             </Copy>
           </PageBody>
