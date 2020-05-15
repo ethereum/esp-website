@@ -6,6 +6,7 @@ import {
   faChevronLeft,
   faExternalLinkAlt,
 } from "@fortawesome/free-solid-svg-icons"
+// import { FormattedMessage } from "gatsby-plugin-intl"
 
 import SEO from "../components/seo"
 import {
@@ -109,6 +110,7 @@ const ExternalIcon = styled(FontAwesomeIcon)`
   margin-left: 8px;
 `
 
+// TODO translate
 const ProjectPage = ({ data }) => {
   const content = data.markdownRemark
   const { frontmatter } = content

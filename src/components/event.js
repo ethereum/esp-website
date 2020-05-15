@@ -1,5 +1,7 @@
 import React from "react"
 import styled from "styled-components"
+import { FormattedMessage } from "gatsby-plugin-intl"
+
 import {
   colorOrange,
   colorRed,
@@ -65,7 +67,9 @@ const Event = ({ title, dates, url }) => (
       <Title>{title}</Title>
       <Subtitle>{dates}</Subtitle>
     </div>
-    <FakeLink>View Website</FakeLink>
+    <FakeLink>
+      <FormattedMessage id="view-website" />
+    </FakeLink>
   </StyledEvent>
 )
 

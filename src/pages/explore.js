@@ -4,7 +4,6 @@ import { useToasts } from "react-toast-notifications"
 import Select from "react-select"
 import { FormattedMessage, injectIntl } from "gatsby-plugin-intl"
 
-
 import SEO from "../components/seo"
 import { REFERRAL_SOURCES, COUNTRIES } from "../utils/form-inputs"
 import {
@@ -117,25 +116,24 @@ const ExplorePage = ({ intl }) => {
 
   return (
     <>
-      <SEO title="Explore Inquiry" />
+      <SEO title={intl.formatMessage({ id: "page-explore.title" })} />
       <PageBody>
         <FormHeader>
           <h1>
-          <FormattedMessage id="page-explore.explore.h1" />
+            <FormattedMessage id="page-explore.explore.h1" />
           </h1>
           <p>
-          <FormattedMessage id="page-explore.explore.description" />        
+            <FormattedMessage id="page-explore.explore.description" />
           </p>
         </FormHeader>
         <Form onSubmit={handleSubmit}>
           <Label>
-            <span>     
+            <span>
               Your name <Required>*</Required>
             </span>
             <div>
               <small>
-          <FormattedMessage id="page-explore.explore.name-guide" />        
-               
+                <FormattedMessage id="page-explore.explore.name-guide" />
               </small>
             </div>
 
@@ -159,11 +157,11 @@ const ExplorePage = ({ intl }) => {
           </Label>
           <Label>
             <span>
-          <FormattedMessage id="page-explore.explore.proj-name" />        
+              <FormattedMessage id="page-explore.explore.proj-name" />
             </span>
             <div>
               <small>
-          <FormattedMessage id="page-explore.explore.proj-info" />         
+                <FormattedMessage id="page-explore.explore.proj-info" />
               </small>
             </div>
             <Input
@@ -179,7 +177,7 @@ const ExplorePage = ({ intl }) => {
             </span>
             <div>
               <small>
-          <FormattedMessage id="page-explore.explore.profile-info" />               
+                <FormattedMessage id="page-explore.explore.profile-info" />
               </small>
             </div>
             <TextArea
@@ -194,7 +192,7 @@ const ExplorePage = ({ intl }) => {
             </span>
             <div>
               <small>
-          <FormattedMessage id="page-explore.explore.expertise-info" />                               
+                <FormattedMessage id="page-explore.explore.expertise-info" />
               </small>
             </div>
             <TextArea
@@ -225,10 +223,10 @@ const ExplorePage = ({ intl }) => {
             />
           </Label>
           <Label>
-          <FormattedMessage id="page-explore.explore.prev-work" />                                      
+            <FormattedMessage id="page-explore.explore.prev-work" />
             <div>
               <small>
-          <FormattedMessage id="page-explore.explore.link-2-work" />                                                     
+                <FormattedMessage id="page-explore.explore.link-2-work" />
               </small>
             </div>
             <TextArea
@@ -238,7 +236,7 @@ const ExplorePage = ({ intl }) => {
             />
           </Label>
           <Label>
-          <FormattedMessage id="page-explore.explore.questions" />                                                                
+            <FormattedMessage id="page-explore.explore.questions" />
             <TextArea
               name="questions"
               value={formState.questions}
@@ -247,12 +245,12 @@ const ExplorePage = ({ intl }) => {
           </Label>
 
           <Label>
-          <FormattedMessage id="page-explore.explore.country" />                                                                
+            <FormattedMessage id="page-explore.explore.country" />
             <Select options={countryOptions} onChange={handleSelectChange} />
           </Label>
 
           <Label>
-          <FormattedMessage id="page-explore.explore.city" />                                                                
+            <FormattedMessage id="page-explore.explore.city" />
             <Input
               type="text"
               name="city"
@@ -263,7 +261,7 @@ const ExplorePage = ({ intl }) => {
           </Label>
 
           <Label>
-          <FormattedMessage id="page-explore.explore.support" />                                                                
+            <FormattedMessage id="page-explore.explore.support" />
             <Select
               options={referralSourceOptions}
               onChange={handleSelectChange}
@@ -271,7 +269,7 @@ const ExplorePage = ({ intl }) => {
           </Label>
 
           <Label>
-          <FormattedMessage id="page-explore.explore.support-info" />                                                                
+            <FormattedMessage id="page-explore.explore.support-info" />
             <Input
               type="text"
               name="referralName"
@@ -287,12 +285,12 @@ const ExplorePage = ({ intl }) => {
               value={formState.newsletter}
               onChange={handleCheckBoxChange}
             />
-          <FormattedMessage id="page-explore.explore.subscribe" />                                                                           
+            <FormattedMessage id="page-explore.explore.subscribe" />
           </Checkbox>
 
           <div>
             <Button disabled={!isValid} type="submit">
-          <FormattedMessage id="page-explore.explore.button" />                                                                               
+              <FormattedMessage id="page-explore.explore.button" />
             </Button>
           </div>
         </Form>
@@ -302,4 +300,3 @@ const ExplorePage = ({ intl }) => {
 }
 
 export default injectIntl(ExplorePage)
-

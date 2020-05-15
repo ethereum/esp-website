@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
+import { FormattedMessage, injectIntl } from "gatsby-plugin-intl"
 
 import Event from "./event"
 import { screenSizeM } from "../utils/styles"
@@ -16,7 +17,7 @@ const EventsContainer = styled.div`
   }
 `
 
-const UpcomingEvents = () => {
+const UpcomingEvents = ({ intl }) => {
   const [eventsState, setEventsState] = useState({
     events: [],
     loading: true,
@@ -57,9 +58,14 @@ const UpcomingEvents = () => {
     return (
       <>
         <Section>
-          <H2>Upcoming Events</H2>
+          <H2>
+            <FormattedMessage id="upcoming-events" />
+          </H2>
           <EventsContainer>
-            <p>Loading events...</p>
+            <p>
+              <FormattedMessage id="loading-events" />
+              ...
+            </p>
           </EventsContainer>
         </Section>
         <HR />
@@ -74,8 +80,12 @@ const UpcomingEvents = () => {
   return (
     <>
       <Section>
-        <H2>Upcoming Events</H2>
-        <p>Find us at these community events!</p>
+        <H2>
+          <FormattedMessage id="upcoming-events" />
+        </H2>
+        <p>
+          <FormattedMessage id="find-us" />
+        </p>
         <EventsContainer>
           {eventsState.events.map((event, i) => {
             return (
@@ -94,4 +104,4 @@ const UpcomingEvents = () => {
   )
 }
 
-export default UpcomingEvents
+export default injectIntl(UpcomingEvents)
