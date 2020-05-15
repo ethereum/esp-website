@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
-import { FormattedMessage, injectIntl } from "gatsby-plugin-intl"
+import { FormattedMessage } from "gatsby-plugin-intl"
 
 import Event from "./event"
 import { screenSizeM } from "../utils/styles"
@@ -17,7 +17,7 @@ const EventsContainer = styled.div`
   }
 `
 
-const UpcomingEvents = ({ intl }) => {
+const UpcomingEvents = () => {
   const [eventsState, setEventsState] = useState({
     events: [],
     loading: true,
@@ -104,4 +104,4 @@ const UpcomingEvents = ({ intl }) => {
   )
 }
 
-export default injectIntl(UpcomingEvents)
+export default UpcomingEvents

@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
-import { FormattedMessage, injectIntl } from "gatsby-plugin-intl"
+import { FormattedMessage, useIntl } from "gatsby-plugin-intl"
 
 import SEO from "../components/seo"
 import { useState } from "react"
@@ -32,7 +32,8 @@ const UL = styled.ul`
   margin-top: 0.5rem;
 `
 
-const WishlistPage = ({ intl }) => {
+const WishlistPage = () => {
+  const intl = useIntl()
   // TODO simplify w/ Array... couldn't get it working
   const [expanded, setExpanded] = useState({
     0: false,
@@ -556,4 +557,4 @@ const WishlistPage = ({ intl }) => {
   )
 }
 
-export default injectIntl(WishlistPage)
+export default WishlistPage

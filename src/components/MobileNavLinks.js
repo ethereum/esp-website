@@ -1,5 +1,7 @@
 import React from "react"
 import { motion } from "framer-motion"
+// TODO update to `Link` from "gatsby-plugin-intl"
+// requires https://github.com/wiziple/gatsby-plugin-intl/issues/116
 import { Link, useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 import Img from "gatsby-image"
