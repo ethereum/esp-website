@@ -1,0 +1,32 @@
+{
+  "title": "Korean translation",
+  "description": "Korean translation",
+  "find-us": "Korean translation",
+  "loading": "Korean translation",
+  "upcoming-events": "Korean translation",
+  "loading-events": "Korean translation",
+  "view-website": "Korean translation",
+  "page-faq": {
+    "title": "Korean translation",
+    "h1": "Korean translation",
+    "collapse-all": "Korean translation",
+    "expand-all": "Korean translation",
+    "h2-program": "Korean translation",
+    "h2-eligibility": "Korean translation",
+    "h2-application": "Korean translation",
+    "help": {
+      "question": "Korean translation",
+      "answer-p-1": "Korean translation",
+      "answer-p-2": "Korean translation",
+      "answer-li-1": "Korean translation",
+      "answer-li-2": "Korean translation",
+      "answer-li-3": "Korean translation",
+      "answer-li-4": "Korean translation",
+      "answer-li-5": "Korean translation",
+      "answer-li-6": "Korean translation",
+      "answer-li-7": "Korean translation",
+      "answer-li-8": "Korean translation",
+      "answer-p-3": "Korean translation!"
+    }
+  }
+}
