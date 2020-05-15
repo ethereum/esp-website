@@ -56,10 +56,7 @@ const FAQPage = ({ intl, data }) => {
 
   return (
     <>
-      <SEO
-        lang={intl.locale}
-        title={intl.formatMessage({ id: "page-faq.title" })}
-      />
+      <SEO title={intl.formatMessage({ id: "page-faq.title" })} />
       <div>
         <PageHeader>
           <H1>
@@ -121,13 +118,11 @@ const FAQPage = ({ intl, data }) => {
             i={1}
             expanded={expanded}
             setExpanded={setExpanded}
-
             headerText={intl.formatMessage({ id: "page-faq.grant.question" })}
           >
             <p>
               <FormattedMessage id="page-faq.grant.answer-p-1" />
             </p>
-
           </AccordionSection>
           <HR />
           <H2>Eligibility</H2>
@@ -137,11 +132,12 @@ const FAQPage = ({ intl, data }) => {
             i={3}
             expanded={expanded}
             setExpanded={setExpanded}
-            headerText={intl.formatMessage({ id: "page-faq.eligibility.question" })}
+            headerText={intl.formatMessage({
+              id: "page-faq.eligibility.question",
+            })}
           >
             <p>
-              <FormattedMessage id="page-faq.eligibility.answer-p-1" />
-              {" "}
+              <FormattedMessage id="page-faq.eligibility.answer-p-1" />{" "}
               <StyledLink to="/project/">inquiry form</StyledLink>
               <FormattedMessage id="page-faq.eligibility.answer-p-2" />
             </p>
@@ -152,14 +148,15 @@ const FAQPage = ({ intl, data }) => {
             i={4}
             expanded={expanded}
             setExpanded={setExpanded}
-            headerText={intl.formatMessage({ id: "page-faq.eligibility-2.question" })}
+            headerText={intl.formatMessage({
+              id: "page-faq.eligibility-2.question",
+            })}
           >
             <p>
               <FormattedMessage id="page-faq.eligibility-2.answer-p-1" />
             </p>
             <p>
               <FormattedMessage id="page-faq.eligibility-2.answer-p-2" />
-
             </p>
           </AccordionSection>
           <HR />
@@ -170,7 +167,8 @@ const FAQPage = ({ intl, data }) => {
             setExpanded={setExpanded}
             headerText={intl.formatMessage({ id: "page-faq.topics.question" })}
           >
-            <p><FormattedMessage id="page-faq.topics.answer-p-1" />
+            <p>
+              <FormattedMessage id="page-faq.topics.answer-p-1" />
             </p>
             <ul>
               <li>
@@ -208,7 +206,9 @@ const FAQPage = ({ intl, data }) => {
             i={6}
             expanded={expanded}
             setExpanded={setExpanded}
-            headerText={intl.formatMessage({ id: "page-faq.applications.question" })}
+            headerText={intl.formatMessage({
+              id: "page-faq.applications.question",
+            })}
           >
             <p>
               <FormattedMessage id="page-faq.applications.answer-p-1" />
@@ -237,7 +237,9 @@ const FAQPage = ({ intl, data }) => {
             i={7}
             expanded={expanded}
             setExpanded={setExpanded}
-            headerText={intl.formatMessage({ id: "page-faq.millions.question" })}
+            headerText={intl.formatMessage({
+              id: "page-faq.millions.question",
+            })}
           >
             <p>
               <FormattedMessage id="page-faq.millions.answer-p-1" />
@@ -251,7 +253,9 @@ const FAQPage = ({ intl, data }) => {
             i={8}
             expanded={expanded}
             setExpanded={setExpanded}
-            headerText={intl.formatMessage({ id: "page-faq.application-process.question" })}
+            headerText={intl.formatMessage({
+              id: "page-faq.application-process.question",
+            })}
           >
             <p>
               <FormattedMessage id="page-faq.application-process.answer-p-1" />
@@ -268,7 +272,9 @@ const FAQPage = ({ intl, data }) => {
             i={9}
             expanded={expanded}
             setExpanded={setExpanded}
-            headerText={intl.formatMessage({ id: "page-faq.response-time.question" })}
+            headerText={intl.formatMessage({
+              id: "page-faq.response-time.question",
+            })}
           >
             <p>
               <FormattedMessage id="page-faq.response-time.answer-p-1" />
@@ -280,7 +286,9 @@ const FAQPage = ({ intl, data }) => {
             i={10}
             expanded={expanded}
             setExpanded={setExpanded}
-            headerText={intl.formatMessage({ id: "page-faq.confidentiality.question" })}
+            headerText={intl.formatMessage({
+              id: "page-faq.confidentiality.question",
+            })}
           >
             <p>
               <FormattedMessage id="page-faq.confidentiality.answer-p-1" />

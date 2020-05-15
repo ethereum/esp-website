@@ -9,15 +9,14 @@ import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
+import { injectIntl } from "gatsby-plugin-intl"
 
-function SEO({ description, lang, meta, title }) {
+function SEO({ description, meta, title, intl }) {
   const { site } = useStaticQuery(
     graphql`
       query {
         site {
           siteMetadata {
-            title
-            description
             author
             url
             image
@@ -27,19 +26,17 @@ function SEO({ description, lang, meta, title }) {
     `
   )
 
-  const metaDescription = description || site.siteMetadata.description
+  const desc = description || intl.formatMessage({ id: "site-description" })
 
   return (
     <Helmet
-      htmlAttributes={{
-        lang,
-      }}
+      htmlAttributes={{ lang: intl.locale }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={`%s | ${intl.formatMessage({ id: "site-title" })}`}
       meta={[
         {
           name: `description`,
-          content: metaDescription,
+          content: desc,
         },
         {
           name: `image`,
@@ -51,7 +48,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           property: `og:description`,
-          content: metaDescription,
+          content: desc,
         },
         {
           property: `og:type`,
@@ -71,7 +68,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           name: `twitter:description`,
-          content: metaDescription,
+          content: desc,
         },
         {
           property: `og:url`,
@@ -87,16 +84,15 @@ function SEO({ description, lang, meta, title }) {
 }
 
 SEO.defaultProps = {
-  lang: `en`,
   meta: [],
   description: ``,
+  title: ``,
 }
 
 SEO.propTypes = {
   description: PropTypes.string,
-  lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
 }
 
-export default SEO
+export default injectIntl(SEO)
