@@ -7,7 +7,7 @@ import {
   faChevronLeft,
   faExternalLinkAlt,
 } from "@fortawesome/free-solid-svg-icons"
-// import { FormattedMessage } from "gatsby-plugin-intl"
+import { FormattedMessage } from "gatsby-plugin-intl"
 
 import SEO from "../components/seo"
 import {
@@ -111,7 +111,6 @@ const ExternalIcon = styled(FontAwesomeIcon)`
   margin-left: 8px;
 `
 
-// TODO translate
 const ProjectPage = ({ data }) => {
   const content = data.markdownRemark
   const { frontmatter } = content
@@ -129,9 +128,12 @@ const ProjectPage = ({ data }) => {
         <DescriptionContainer>
           <Description>{frontmatter.description}</Description>
           <p>
-            <strong>Grant Received:</strong>
+            <strong>
+              <FormattedMessage id="page-project-detail.grant-received" />:
+            </strong>
             <br />
-            {frontmatter.grantAmount} in {frontmatter.grantYear}
+            {frontmatter.grantAmount} <FormattedMessage id="in" />{" "}
+            {frontmatter.grantYear}
           </p>
         </DescriptionContainer>
       </>
@@ -143,7 +145,9 @@ const ProjectPage = ({ data }) => {
       <SEO title={frontmatter.title} />
       <div>
         <PageHeader>
-          <H1>Featured Projects</H1>
+          <H1>
+            <FormattedMessage id="page-projects.title" />
+          </H1>
         </PageHeader>
         <PageBodyWide>
           <Breadcrumbs>
@@ -151,7 +155,9 @@ const ProjectPage = ({ data }) => {
               <FontAwesomeIcon icon={faChevronLeft} />
               <FontAwesomeIcon icon={faChevronLeft} />
             </Arrow>
-            <Link to="/projects/">Back to featured projects list</Link>
+            <Link to="/projects/">
+              <FormattedMessage id="page-project-detail.back" />
+            </Link>
           </Breadcrumbs>
           <BodyContainer>
             <ImageContainer>
@@ -160,7 +166,9 @@ const ProjectPage = ({ data }) => {
                 alt="Ecosystem Support Program Process"
               />
               <HideDesktop>{mainContent()}</HideDesktop>
-              <Status>Status:</Status>
+              <Status>
+                <FormattedMessage id="page-project-detail.status" />:
+              </Status>
               <p>{frontmatter.status}</p>
               {frontmatter.latestUpdate && (
                 <ButtonExternalLink
@@ -168,7 +176,8 @@ const ProjectPage = ({ data }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Latest update <ExternalIcon icon={faExternalLinkAlt} />
+                  <FormattedMessage id="page-project-detail.latest-update" />{" "}
+                  <ExternalIcon icon={faExternalLinkAlt} />
                 </ButtonExternalLink>
               )}
             </ImageContainer>
