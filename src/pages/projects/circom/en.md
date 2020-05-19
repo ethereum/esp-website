@@ -28,7 +28,7 @@ lang: "en"
 
 ---
 
-Circom, first released in 2018, is a programming language for designing and building reusable circuits compatible with [snarkjs](link). Circom allows the use of templates to represent components, similar to objects and classes in object-oriented programming.
+Circom, first released in 2018, is a programming language for designing and building reusable circuits compatible with [snarkjs](https://github.com/iden3/snarkjs). Circom allows the use of templates to represent components, similar to objects and classes in object-oriented programming.
 
 Circom is a project of [Iden3](https://iden3.io), a team working on a decentralized identity management platform. Since zero knowledge proofs are an integral part of Iden3’s construction, the team set out to create a tool that would be useful for their own work, but could also be shared with the community for others working on similar problems to use (and contribute!).
 

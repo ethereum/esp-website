@@ -19,7 +19,9 @@
   # Directory with the serverless Lambda functions to deploy to AWS.
   # functions = "project/functions/"
 
-# A redirect rule with all the supported properties
+# REDIRECTS
+
+# legacy site redirects
 [[redirects]]
   from = "/index.html"
   to = "/"
@@ -27,3 +29,56 @@
 [[redirects]]
   from = "/application.html"
   to = "/project/"
+
+# i18n redirects
+[[redirects]]
+  from="/"
+  to= "/en/"
+
+[[redirects]]
+  from="/projects/"
+  to= "/en/projects/"
+
+[[redirects]]
+  from="/faq/"
+  to= "/en/faq/"
+
+[[redirects]]
+  from="/wishlist/"
+  to= "/en/wishlist/"
+
+[[redirects]]
+  from="/projects/nethermind/"
+  to= "/en/projects/nethermind/"
+
+[[redirects]]
+  from="/project/"
+  to= "/en/project/"
+
+[[redirects]]
+  from="/projects/ethereum-on-arm/"
+  to= "/en/projects/ethereum-on-arm/"
+
+[[redirects]]
+  from="/projects/turbo-geth/"
+  to= "/en/projects/turbo-geth/"
+
+[[redirects]]
+  from="/explore/"
+  to= "/en/explore/"
+
+[[redirects]]
+  from="/projects/ethers-js/"
+  to= "/en/projects/ethers-js/"
+
+[[redirects]]
+  from="/projects/circom/"
+  to= "/en/projects/circom/"
+
+[[redirects]]
+  from="/projects/uniswap/"
+  to= "/en/projects/uniswap/"
+
+[[redirects]]
+  from="/projects/circom/link"
+  to= "/en/projects/circom/link"
