@@ -1,9 +1,8 @@
 import React from "react"
-import { Link } from "gatsby"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
-import { FormattedMessage, injectIntl } from "gatsby-plugin-intl"
+import { Link, FormattedMessage, injectIntl } from "gatsby-plugin-intl"
 
 import SEO from "../components/seo"
 import UpcomingEvents from "../components/UpcomingEvents"
@@ -121,7 +120,7 @@ class IndexPage extends React.Component {
               <FormattedMessage id="page-home.header" />
             </Header>
             <StyledLink
-              to="/#welcome"
+              to={`${this.props.intl.locale}/#welcome`}
               className={
                 "hero-link " + (this.state.showHeroLink ? "show" : "hide")
               }
@@ -196,10 +195,10 @@ class IndexPage extends React.Component {
                 <FormattedMessage id="page-home.contact-us-desc" />
               </p>
               <ButtonContainer>
-                <ButtonLink to="/project/">
+                <ButtonLink to={`${this.props.intl.locale}/project/`}>
                   <FormattedMessage id="page-home.specific-project" />
                 </ButtonLink>
-                <ButtonLink to="/explore/">
+                <ButtonLink to={`${this.props.intl.locale}/explore/`}>
                   <FormattedMessage id="page-home.exploring-possibilities" />
                 </ButtonLink>
               </ButtonContainer>
