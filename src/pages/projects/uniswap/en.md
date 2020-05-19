@@ -1,12 +1,13 @@
 ---
 title: "Uniswap"
-img: ../../images/projects/uniswap.png
+img: ../../../images/projects/uniswap.png
 category: "Usability - end user"
 description: "Automated market maker designed around ease of use, gas efficiency, and decentralization."
 grantYear: "2018"
 grantAmount: "$50,000 + 120 ETH for security audit"
 status: "Deployed and in use"
 latestUpdate: "https://twitter.com/UniswapExchange/status/1218201972261773312"
+lang: "en"
 ---
 
 **Key components:**

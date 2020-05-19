@@ -91,7 +91,7 @@ class Layout extends React.Component {
           <div className="line left"></div>
           <div className="line right"></div>
           <div className="layout">
-            <Nav hasShadow={this.state.hasNavShadow} intl={intl} />
+            <Nav hasShadow={this.state.hasNavShadow} />
             <div>
               <AnimatePresence>
                 <Main

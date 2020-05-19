@@ -1,12 +1,13 @@
 ---
 title: "Nethermind"
-img: ../../images/projects/nethermind.png
+img: ../../../images/projects/nethermind.png
 category: "Eth 1.0 usability"
 description: ".NET Core client for Ethereum 1.0"
 grantYear: "2019"
 grantAmount: "$50,000"
 status: "Deployed and in use"
 latestUpdate: "https://twitter.com/nethermindeth/status/1225713703460405248"
+lang: "en"
 ---
 
 **Key components:**

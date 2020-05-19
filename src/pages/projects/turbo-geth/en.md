@@ -1,12 +1,13 @@
 ---
 title: "Turbo-Geth"
-img: ../../images/projects/turbo-geth.png
+img: ../../../images/projects/turbo-geth.png
 category: "Eth 1.0 scalability/sustainability"
 description: "Optimized go-ethereum client."
 grantYear: "2018"
 grantAmount: "$25,000"
 status: "In testing, targeting March 2020 release"
 latestUpdate: "https://medium.com/@akhounov/is-ethereum-state-growing-faster-now-and-ethereum-state-analytics-project-97777ab47af"
+lang: "en"
 ---
 
 **Key components:**

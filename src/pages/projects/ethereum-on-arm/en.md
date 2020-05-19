@@ -1,12 +1,13 @@
 ---
 title: "Ethereum on ARM"
-img: ../../images/projects/ethereum-on-arm.png
+img: ../../../images/projects/ethereum-on-arm.png
 category: "Usability - miner/validator"
 description: "Custom Linux images to automatically turn resource constrained devices into full Ethereum nodes."
 grantYear: "2019"
 grantAmount: "$20,000"
 status: "~150 nodes on Eth1 mainnet, Eth 2.0 testnets on Prysm and Lighthouse"
 latestUpdate: "https://www.reddit.com/r/ethereum/comments/epxy8l/ethereum_on_arm_ethereum_1020_ecosystem/"
+lang: "en"
 ---
 
 **Key components:**
