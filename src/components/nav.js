@@ -4,7 +4,7 @@ import { motion, useCycle, AnimatePresence } from "framer-motion"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import styled from "styled-components"
-import { FormattedMessage } from "gatsby-plugin-intl"
+import { FormattedMessage, injectIntl } from "gatsby-plugin-intl"
 
 import MobileNavMenu from "./MobileNavMenu"
 import MobileNavLinks from "./MobileNavLinks"
@@ -153,7 +153,7 @@ const Nav = ({ hasShadow, intl }) => {
       ref={containerRef}
     >
       <div>
-        <NavLinkMain to={`${intl.language}/`}>
+        <NavLinkMain to={`${intl.locale}/`}>
           <Img
             fixed={data.file.childImageSharp.fixed}
             alt="Ethereum Ecosystem Support Program Logo"
@@ -171,19 +171,19 @@ const Nav = ({ hasShadow, intl }) => {
       {/* Desktop */}
       <NavLinks>
         <NavLink
-          to={`${intl.language}/faq/`}
+          to={`${intl.locale}/faq/`}
           activeStyle={{ color: styles.colorOrange }}
         >
           <FormattedMessage id="page-faq.title" />
         </NavLink>
         <NavLink
-          to={`${intl.language}/projects/`}
+          to={`${intl.locale}/projects/`}
           activeStyle={{ color: styles.colorOrange }}
         >
           <FormattedMessage id="page-projects.title" />
         </NavLink>
         <NavLink
-          to={`${intl.language}/wishlist/`}
+          to={`${intl.locale}/wishlist/`}
           activeStyle={{ color: styles.colorOrange }}
         >
           <FormattedMessage id="page-wishlist.title" />
@@ -212,4 +212,4 @@ const Nav = ({ hasShadow, intl }) => {
   )
 }
 
-export default Nav
+export default injectIntl(Nav)

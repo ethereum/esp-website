@@ -1,12 +1,13 @@
 ---
 title: "ethers.js"
-img: ../../images/projects/ethers-js.png
+img: ../../../images/projects/ethers-js.png
 category: "Developer experience"
 description: "A complete and compact JavaScript library for interacting with Ethereum."
 grantYear: "2019"
 grantAmount: "$25,000"
 status: "In use; version 5 in beta"
 latestUpdate: "https://blog.ricmoo.com/beta-release-ethers-js-v5-59d0db222d7b"
+lang: "en"
 ---
 
 **Key components:**

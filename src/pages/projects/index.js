@@ -18,6 +18,11 @@ const Intro = styled.div`
 const ProjectsPage = ({ data }) => {
   const intl = useIntl()
 
+  // filter pages by current language
+  const nodes = data.allMarkdownRemark.edges.filter(({ node }) => {
+    return node.frontmatter.lang === intl.locale
+  })
+
   return (
     <>
       <SEO title={intl.formatMessage({ id: "page-projects.title" })} />
@@ -38,7 +43,7 @@ const ProjectsPage = ({ data }) => {
               <FormattedMessage id="page-projects.p" />
             </p>
           </Intro>
-          {data.allMarkdownRemark.edges.map(({ node }, idx) => {
+          {nodes.map(({ node }, idx) => {
             return (
               <ProjectCard
                 key={idx}
@@ -75,6 +80,7 @@ export const query = graphql`
             grantAmount
             status
             latestUpdate
+            lang
           }
           fields {
             slug
