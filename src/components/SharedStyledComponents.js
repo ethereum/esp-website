@@ -1,3 +1,6 @@
+// TODO sort out how to use Link from "gatsby-plugin-intl"
+// TypeError: Cannot read property 'language' of undefined
+// import { Link } from "gatsby-plugin-intl"
 import { Link } from "gatsby"
 import Img from "gatsby-image"
 import styled from "styled-components"

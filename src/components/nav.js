@@ -4,6 +4,7 @@ import { motion, useCycle, AnimatePresence } from "framer-motion"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import styled from "styled-components"
+import { FormattedMessage } from "gatsby-plugin-intl"
 
 import MobileNavMenu from "./MobileNavMenu"
 import MobileNavLinks from "./MobileNavLinks"
@@ -128,7 +129,7 @@ const MobileNavBackground = styled(motion.div)`
   background: ${styles.colorGrayLightest};
 `
 
-const Nav = ({ hasShadow }) => {
+const Nav = ({ hasShadow, intl }) => {
   const data = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "favicons/114.png" }) {
@@ -152,96 +153,63 @@ const Nav = ({ hasShadow }) => {
       ref={containerRef}
     >
       <div>
-        <NavLinkMain to="/">
+        <NavLinkMain to={`${intl.language}/`}>
           <Img
             fixed={data.file.childImageSharp.fixed}
             alt="Ethereum Ecosystem Support Program Logo"
           />
           <NavLogoText>
-            <span>Ecosystem</span> <span>Support</span>
+            <span>
+              <FormattedMessage id="ecosystem" />
+            </span>{" "}
+            <span>
+              <FormattedMessage id="support" />
+            </span>
           </NavLogoText>
         </NavLinkMain>
       </div>
       {/* Desktop */}
       <NavLinks>
-        <NavLink to="/faq/" activeStyle={{ color: styles.colorOrange }}>
-          FAQ
+        <NavLink
+          to={`${intl.language}/faq/`}
+          activeStyle={{ color: styles.colorOrange }}
+        >
+          <FormattedMessage id="page-faq.title" />
         </NavLink>
-        <NavLink to="/projects/" activeStyle={{ color: styles.colorOrange }}>
-          Featured Projects
+        <NavLink
+          to={`${intl.language}/projects/`}
+          activeStyle={{ color: styles.colorOrange }}
+        >
+          <FormattedMessage id="page-projects.title" />
         </NavLink>
-        <NavLink to="/wishlist/" activeStyle={{ color: styles.colorOrange }}>
-          Wishlist
+        <NavLink
+          to={`${intl.language}/wishlist/`}
+          activeStyle={{ color: styles.colorOrange }}
+        >
+          <FormattedMessage id="page-wishlist.title" />
         </NavLink>
         <NavLinkExternal
           href="https://blog.ethereum.org/category/ecosystem-support-program/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Blog
+          <FormattedMessage id="blog" />
         </NavLinkExternal>
       </NavLinks>
       {/* Mobile */}
       <MobileNavBackground variants={backgroundVariants} />
       <AnimatePresence>
         {isOpen && (
-          <MobileNavLinks key="navigation" toggle={() => toggleOpen()} />
+          <MobileNavLinks
+            intl={intl}
+            key="navigation"
+            toggle={() => toggleOpen()}
+          />
         )}
       </AnimatePresence>
       <MobileNavMenu toggle={() => toggleOpen()} />
     </StyledNav>
   )
-  // TODO translate nav
-  // https://github.com/wiziple/gatsby-plugin-intl/issues/116
-  // return (
-  //   <StyledNav
-  //     className={hasShadow ? "nav-shadow" : ""}
-  //     initial="closed"
-  //     animate={isOpen ? "open" : "closed"}
-  //     ref={containerRef}
-  //   >
-  //     <div>
-  //       <NavLinkMain to="/">
-  //         <Img
-  //           fixed={data.file.childImageSharp.fixed}
-  //           alt="Ethereum Ecosystem Support Program Logo"
-  //         />
-  //         <NavLogoText>
-  //           <span><FormattedMessage id="ecosystem" /></span>{" "}
-  //           <span><FormattedMessage id="support" /></span>
-  //         </NavLogoText>
-  //       </NavLinkMain>
-  //     </div>
-  //     {/* Desktop */}
-  //     <NavLinks>
-  //       <NavLink to="/faq/" activeStyle={{ color: styles.colorOrange }}>
-  //         <FormattedMessage id="page-faq.title" />
-  //       </NavLink>
-  //       <NavLink to="/projects/" activeStyle={{ color: styles.colorOrange }}>
-  //         <FormattedMessage id="page-projects.title" />
-  //       </NavLink>
-  //       <NavLink to="/wishlist/" activeStyle={{ color: styles.colorOrange }}>
-  //         <FormattedMessage id="page-wishlist.title" />
-  //       </NavLink>
-  //       <NavLinkExternal
-  //         href="https://blog.ethereum.org/category/ecosystem-support-program/"
-  //         target="_blank"
-  //         rel="noopener noreferrer"
-  //       >
-  //         <FormattedMessage id="view-website" />
-  //         <FormattedMessage id="blog" />
-  //       </NavLinkExternal>
-  //     </NavLinks>
-  //     {/* Mobile */}
-  //     <MobileNavBackground variants={backgroundVariants} />
-  //     <AnimatePresence>
-  //       {isOpen && (
-  //         <MobileNavLinks key="navigation" toggle={() => toggleOpen()} />
-  //       )}
-  //     </AnimatePresence>
-  //     <MobileNavMenu toggle={() => toggleOpen()} />
-  //   </StyledNav>
-  // )
 }
 
 export default Nav
