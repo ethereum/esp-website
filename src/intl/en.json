@@ -6,6 +6,7 @@
   "ecosystem": "Ecosystem",
   "support": "Support",
   "find-us": "Find us at these community events!",
+  "in": "in",
   "loading": "Loading",
   "loading-events": "Loading events",
   "newsletter-description": "Sign up to receive ESP updates to your inbox! You'll hear from us every few weeks, and we'll only ever contact you with ESP news.",
@@ -282,6 +283,12 @@
     "support": "How did you hear about Ecosystem Support?",
     "support-p": "Did anyone recommend that you contact Ecosystem Support? If so, who?",
     "button": "Submit"
+  },
+  "page-project-detail": {
+    "grant-received": "Grant Received",
+    "back": "Back to featured projects list",
+    "latest-update": "Latest update",
+    "status": "Status"
   },
   "page-projects": {
     "title": "Featured Projects",
