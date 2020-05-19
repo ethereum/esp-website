@@ -1,7 +1,5 @@
 import React from "react"
 import { motion } from "framer-motion"
-// TODO update to `Link` from "gatsby-plugin-intl"
-// requires https://github.com/wiziple/gatsby-plugin-intl/issues/116
 import { Link, useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 import Img from "gatsby-image"
@@ -55,7 +53,7 @@ const navItems = [
   },
 ]
 
-const MobileNavLinks = ({ toggle }) => {
+const MobileNavLinks = ({ toggle, intl }) => {
   const data = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "favicons/114.png" }) {
@@ -89,7 +87,9 @@ const MobileNavLinks = ({ toggle }) => {
       {navItems.map((item, idx) => (
         <Item item={item} key={idx} onClick={toggle}>
           <h3>
-            {!item.isExternal && <Link to={item.route}>{item.text}</Link>}
+            {!item.isExternal && (
+              <Link to={`${intl.language}${item.route}`}>{item.text}</Link>
+            )}
             {item.isExternal && (
               <a href={item.route} target="_blank" rel="noopener noreferrer">
                 {item.text}
