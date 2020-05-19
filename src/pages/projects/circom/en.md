@@ -1,12 +1,13 @@
 ---
 title: "Circom"
-img: ../../images/projects/circom.png
+img: ../../../images/projects/circom.png
 category: "Zero Knowledge Proof R&D"
 description: "A robust and scalable language for complex zkSNARK circuit design."
 grantYear: "2019"
 grantAmount: "$72,363"
 status: "Language in production since 2018, revisions in progress"
 latestUpdate: "https://blog.iden3.io/iden3-Introducing-a-new-set-of-tools-for-mastering-zkSNARKs.html"
+lang: "en"
 ---
 
 **Key components:**

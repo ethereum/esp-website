@@ -1,3 +1,6 @@
+const supportedLanguages = [`en`]
+const defaultLanguage = `en`
+
 module.exports = {
   // `title` & `description` pulls from respective ${lang}.json files in seo.js
   siteMetadata: {
@@ -5,6 +8,8 @@ module.exports = {
     url: "https://esp.ethereum.foundation",
     image:
       "https://user-images.githubusercontent.com/8097623/69177629-c137a400-0abc-11ea-9bcd-da3ba03d2688.png",
+    defaultLanguage,
+    supportedLanguages,
   },
   plugins: [
     `gatsby-plugin-styled-components`,
@@ -21,6 +26,7 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    // add support for markdown pages
     {
       resolve: `gatsby-transformer-remark`,
       options: {
@@ -67,10 +73,10 @@ module.exports = {
         // language JSON resource path
         path: `${__dirname}/src/intl`,
         // supported language
-        languages: [`en`],
+        languages: supportedLanguages,
         // language file path
-        defaultLanguage: `en`,
-        // option to redirect to `/en/` when connecting `/`
+        defaultLanguage,
+        // redirect to `/en/` when connecting `/`
         redirect: true,
       },
     },
