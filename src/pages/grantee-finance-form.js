@@ -165,7 +165,7 @@ const ExplorePage = () => {
       />
       <PageBody>
         <FormHeader>
-          <h1>Welcome!</h1>
+          <h1>Grantee Payment Form</h1>
           <p>
             Please submit your bank or wallet details using this secure form.
             The Ethereum Foundation can remit payment in DAI, ETH, or the fiat
@@ -362,7 +362,8 @@ const ExplorePage = () => {
                     <span>ETH Address</span>
                     <div>
                       <small>
-                        Ethereum address where you'd like to receive ETH.
+                        Ethereum address to receive ETH. Make sure it’s a
+                        secured wallet that you control.
                       </small>
                     </div>
 
@@ -378,7 +379,8 @@ const ExplorePage = () => {
                     <span>DAI Address</span>
                     <div>
                       <small>
-                        Ethereum address where you'd like to receive DAI.
+                        Ethereum address to receive DAI. Make sure it’s a
+                        secured wallet that you control.
                       </small>
                     </div>
 
