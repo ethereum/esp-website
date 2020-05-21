@@ -73,13 +73,19 @@ const ExplorePage = () => {
       },
       body: JSON.stringify(formState),
     })
-      .then(response => response.json())
-      .then(() => {
-        addToast("Success!", {
-          appearance: "success",
-          autoDismiss: true,
-        })
-        navigate("/thanks/")
+      .then(response => {
+        if (response.status !== 200) {
+          addToast("Error submitting, please try again.", {
+            appearance: "error",
+            autoDismiss: true,
+          })
+        } else {
+          addToast("Success!", {
+            appearance: "success",
+            autoDismiss: true,
+          })
+          navigate("/thanks/")
+        }
       })
       .catch(error => {
         console.error(error)
