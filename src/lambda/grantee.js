@@ -17,6 +17,7 @@ exports.handler = async function(event, context) {
     const {
       beneficiaryName,
       beneficiaryAddress,
+      fiatCurrencySymbol,
       bankName,
       bankAddress,
       bankAccountNumber,
@@ -38,6 +39,7 @@ exports.handler = async function(event, context) {
       properties: {
         beneficiaryName,
         beneficiaryAddress,
+        fiatCurrencySymbol,
         bankName,
         bankAddress,
         bankAccountNumber,

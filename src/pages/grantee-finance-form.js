@@ -24,10 +24,10 @@ const RadioInputContainer = styled.div`
   }
 `
 
-// TODO add fiatCurrency
 const bankRequiredFields = [
   "beneficiaryName",
   "beneficiaryAddress",
+  "fiatCurrencySymbol",
   "bankName",
   "bankAddress",
   "bankAccountNumber",
@@ -38,6 +38,7 @@ const bankRequiredFields = [
 const intlBankRequiredFields = [
   "beneficiaryName",
   "beneficiaryAddress",
+  "fiatCurrencySymbol",
   "bankName",
   "bankAddress",
   "bankAccountNumber",
@@ -63,6 +64,7 @@ const ExplorePage = () => {
     ethOrFiat: "",
     beneficiaryName: "",
     beneficiaryAddress: "",
+    fiatCurrencySymbol: "",
     bankName: "",
     bankAddress: "",
     bankAccountNumber: "", // IBAN is used to identify an individual account involved in the international transaction
@@ -78,8 +80,11 @@ const ExplorePage = () => {
 
   const handleInputChange = event => {
     const target = event.target
-    const value = target.value
+    let value = target.value
     const name = target.name
+    if (name === "fiatCurrencySymbol") {
+      value = value.toLocaleUpperCase()
+    }
     setFormState({ ...formState, [name]: value })
   }
 
@@ -242,6 +247,26 @@ const ExplorePage = () => {
 
               {formState.ethOrFiat === "fiat" && (
                 <div>
+                  <Label>
+                    <span>
+                      Fiat currency <Required>*</Required>
+                    </span>
+                    <div>
+                      <small>
+                        Symbol of the currency you'd like to receive funds, e.g.
+                        EUR, USD, RUB.
+                      </small>
+                    </div>
+
+                    <Input
+                      type="text"
+                      maxLength="3"
+                      name="fiatCurrencySymbol"
+                      value={formState.fiatCurrencySymbol}
+                      onChange={handleInputChange}
+                    />
+                  </Label>
+
                   <Label>
                     <span>
                       Bank name <Required>*</Required>
