@@ -232,7 +232,9 @@ const ExplorePage = () => {
             />
           </Label>
           <Label>
-            <FormattedMessage id="page-explore.prev-work" />
+            <span>
+              <FormattedMessage id="page-explore.prev-work" />
+            </span>
             <div>
               <small>
                 <FormattedMessage id="page-explore.link-2-work" />
@@ -245,7 +247,9 @@ const ExplorePage = () => {
             />
           </Label>
           <Label>
-            <FormattedMessage id="page-explore.questions" />
+            <span>
+              <FormattedMessage id="page-explore.questions" />
+            </span>
             <TextArea
               name="questions"
               value={formState.questions}
@@ -254,12 +258,16 @@ const ExplorePage = () => {
           </Label>
 
           <Label>
-            <FormattedMessage id="page-explore.country" />
+            <span>
+              <FormattedMessage id="page-explore.country" />
+            </span>
             <Select options={countryOptions} onChange={handleSelectChange} />
           </Label>
 
           <Label>
-            <FormattedMessage id="page-explore.city" />
+            <span>
+              <FormattedMessage id="page-explore.city" />
+            </span>
             <Input
               type="text"
               name="city"
@@ -270,7 +278,9 @@ const ExplorePage = () => {
           </Label>
 
           <Label>
-            <FormattedMessage id="page-explore.support" />
+            <span>
+              <FormattedMessage id="page-explore.support" />
+            </span>
             <Select
               options={referralSourceOptions}
               onChange={handleSelectChange}
@@ -278,7 +288,9 @@ const ExplorePage = () => {
           </Label>
 
           <Label>
-            <FormattedMessage id="page-explore.support-info" />
+            <span>
+              <FormattedMessage id="page-explore.support-info" />
+            </span>
             <Input
               type="text"
               name="referralName"

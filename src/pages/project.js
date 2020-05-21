@@ -210,7 +210,9 @@ const ProjectPage = () => {
             />
           </Label>
           <Label>
-            <FormattedMessage id="page-project.prev-work" />
+            <span>
+              <FormattedMessage id="page-project.prev-work" />
+            </span>
             <div>
               <small>
                 <FormattedMessage id="page-project.prev-work-links" />
@@ -247,12 +249,16 @@ const ProjectPage = () => {
           </Label>
 
           <Label>
-            <FormattedMessage id="page-project.contact-p-country" />
+            <span>
+              <FormattedMessage id="page-project.contact-p-country" />
+            </span>
             <Select options={countryOptions} onChange={handleSelectChange} />
           </Label>
 
           <Label>
-            <FormattedMessage id="page-project.contact-p-city" />
+            <span>
+              <FormattedMessage id="page-project.contact-p-city" />
+            </span>
             <Input
               type="text"
               name="city"
@@ -263,7 +269,9 @@ const ProjectPage = () => {
           </Label>
 
           <Label>
-            <FormattedMessage id="page-project.support" />
+            <span>
+              <FormattedMessage id="page-project.support" />
+            </span>
             <Select
               options={referralSourceOptions}
               onChange={handleSelectChange}
@@ -271,7 +279,9 @@ const ProjectPage = () => {
           </Label>
 
           <Label>
-            <FormattedMessage id="page-project.support-p" />
+            <span>
+              <FormattedMessage id="page-project.support-p" />
+            </span>
             <Input
               type="text"
               name="referralName"

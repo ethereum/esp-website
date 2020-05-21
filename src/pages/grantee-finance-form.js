@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { navigate } from "gatsby"
 import { useToasts } from "react-toast-notifications"
+import styled from "styled-components"
 
 import SEO from "../components/seo"
 import {
@@ -14,7 +15,16 @@ import {
   Required,
 } from "../components/SharedStyledComponents"
 
-// TODO confirm these combos
+const RadioInputContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  input {
+    margin-right: 1rem;
+  }
+`
+
+// TODO add fiatCurrency
 const bankRequiredFields = [
   "beneficiaryName",
   "beneficiaryAddress",
@@ -50,6 +60,7 @@ const daiRequiredFields = [
 
 const ExplorePage = () => {
   const [formState, setFormState] = useState({
+    ethOrFiat: "",
     beneficiaryName: "",
     beneficiaryAddress: "",
     bankName: "",
@@ -148,205 +159,241 @@ const ExplorePage = () => {
             currency of your choosing.
           </p>
           <p>
-            If you chose to be paid in any fiat currency, the payment will be
-            sent from our account on the following Monday and should arrive in
-            your account in roughly 10 business days. If you choose to be paid
-            in ETH or DAI, someone from the Ethereum Foundation will contact you
-            via email to confirm your address with a test amount before sending
-            the entirety of the funds.
+            <strong>If you choose to be paid in any fiat currency</strong>, the
+            payment will be sent from our account on the following Monday and
+            should arrive in your account in roughly 10 business days.
+          </p>
+          <p>
+            <strong>If you choose to be paid in ETH or DAI</strong>, someone
+            from the Ethereum Foundation will contact you via email to confirm
+            your address with a test amount before sending the entirety of the
+            funds.
           </p>
         </FormHeader>
         <Form onSubmit={handleSubmit}>
           <Label>
             <span>
-              Beneficiary name <Required>*</Required>
+              Payment preference <Required>*</Required>
             </span>
-            <div>
-              <small>
-                Name of the individual or entity attached to the account
-                receiving the funds.
-              </small>
-            </div>
-
-            <Input
-              type="text"
-              name="beneficiaryName"
-              value={formState.beneficiaryName}
-              onChange={handleInputChange}
-            />
+            <RadioInputContainer>
+              <Input
+                type="radio"
+                name="ethOrFiat"
+                value="eth"
+                onChange={handleInputChange}
+              />
+              <div>Receive ETH/DAI</div>
+            </RadioInputContainer>
+            <RadioInputContainer>
+              <Input
+                type="radio"
+                name="ethOrFiat"
+                value="fiat"
+                onChange={handleInputChange}
+              />
+              <div>Receive Fiat</div>
+            </RadioInputContainer>
           </Label>
 
-          <Label>
-            <span>
-              Beneficiary address <Required>*</Required>
-            </span>
+          {formState.ethOrFiat && (
             <div>
-              <small>
-                Personal or business address of the individual or entity
-                receiving the funds.
-              </small>
+              <Label>
+                <span>
+                  Beneficiary name <Required>*</Required>
+                </span>
+                <div>
+                  <small>
+                    Name of the individual or entity attached to the account
+                    receiving the funds.
+                  </small>
+                </div>
+
+                <Input
+                  type="text"
+                  name="beneficiaryName"
+                  value={formState.beneficiaryName}
+                  onChange={handleInputChange}
+                />
+              </Label>
+              <Label>
+                <span>
+                  Beneficiary address <Required>*</Required>
+                </span>
+                <div>
+                  <small>
+                    Personal or business address of the individual or entity
+                    receiving the funds.
+                  </small>
+                </div>
+                <TextArea
+                  name="beneficiaryAddress"
+                  value={formState.beneficiaryAddress}
+                  onChange={handleInputChange}
+                />
+              </Label>
+
+              {formState.ethOrFiat === "fiat" && (
+                <div>
+                  <Label>
+                    <span>
+                      Bank name <Required>*</Required>
+                    </span>
+                    <div>
+                      <small>Name of receiving bank.</small>
+                    </div>
+
+                    <Input
+                      type="text"
+                      name="bankName"
+                      value={formState.bankName}
+                      onChange={handleInputChange}
+                    />
+                  </Label>
+
+                  <Label>
+                    <span>
+                      Bank address <Required>*</Required>
+                    </span>
+                    <div>
+                      <small>Branch address of receiving bank.</small>
+                    </div>
+                    <TextArea
+                      name="bankAddress"
+                      value={formState.bankAddress}
+                      onChange={handleInputChange}
+                    />
+                  </Label>
+
+                  <Label>
+                    <span>
+                      International or Domestic Bank Account Number{" "}
+                      <Required>*</Required>
+                    </span>
+                    <div>
+                      <small>
+                        Provide either an International Bank Account Number
+                        (IBAN) or a standard domestic bank account number.
+                      </small>
+                    </div>
+
+                    <Input
+                      type="text"
+                      name="bankAccountNumber"
+                      value={formState.bankAccountNumber}
+                      onChange={handleInputChange}
+                    />
+                  </Label>
+
+                  <Label>
+                    <span>Bank routing number</span>
+                    <div>
+                      <small>
+                        For U.S. bank account holders, your routing number is a
+                        nine-digit code that's based on the U.S. bank location
+                        where your account was opened.
+                      </small>
+                    </div>
+
+                    <Input
+                      type="text"
+                      name="bankRoutingNumber"
+                      value={formState.bankRoutingNumber}
+                      onChange={handleInputChange}
+                    />
+                  </Label>
+
+                  <Label>
+                    <span>Bank SWIFT code</span>
+                    <div>
+                      <small>
+                        A SWIFT Code or Bank Identifier Code (BIC) is used to
+                        specify a particular bank or branch. These codes are
+                        used when transferring money between banks, particularly
+                        for international wire transfers.
+                      </small>
+                    </div>
+
+                    <Input
+                      type="text"
+                      name="bankSWIFT"
+                      value={formState.bankSWIFT}
+                      onChange={handleInputChange}
+                    />
+                  </Label>
+                </div>
+              )}
+
+              {formState.ethOrFiat === "eth" && (
+                <div>
+                  <Label>
+                    <span>ETH Address</span>
+                    <div>
+                      <small>
+                        Ethereum address where you'd like to receive ETH.
+                      </small>
+                    </div>
+
+                    <Input
+                      type="text"
+                      name="ethAddress"
+                      value={formState.ethAddress}
+                      onChange={handleInputChange}
+                    />
+                  </Label>
+
+                  <Label>
+                    <span>DAI Address</span>
+                    <div>
+                      <small>
+                        Ethereum address where you'd like to receive DAI.
+                      </small>
+                    </div>
+
+                    <Input
+                      type="text"
+                      name="daiAddress"
+                      value={formState.daiAddress}
+                      onChange={handleInputChange}
+                    />
+                  </Label>
+                </div>
+              )}
+
+              <Label>
+                <span>Notes</span>
+                <div>
+                  <small>Anything else we should know?</small>
+                </div>
+                <TextArea
+                  name="notes"
+                  value={formState.notes}
+                  onChange={handleInputChange}
+                />
+              </Label>
+
+              <Label>
+                <span>
+                  Grantee Security ID <Required>*</Required>
+                </span>
+                <div>
+                  <small>The key phrase provided to you by ESP.</small>
+                </div>
+
+                <Input
+                  type="text"
+                  name="granteeSecurityID"
+                  value={formState.granteeSecurityID}
+                  onChange={handleInputChange}
+                />
+              </Label>
+
+              <div>
+                <Button disabled={!isValid} type="submit">
+                  Submit
+                </Button>
+              </div>
             </div>
-            <TextArea
-              name="beneficiaryAddress"
-              value={formState.beneficiaryAddress}
-              onChange={handleInputChange}
-            />
-          </Label>
-
-          <Label>
-            <span>
-              Bank name <Required>*</Required>
-            </span>
-            <div>
-              <small>Name of receiving bank.</small>
-            </div>
-
-            <Input
-              type="text"
-              name="bankName"
-              value={formState.bankName}
-              onChange={handleInputChange}
-            />
-          </Label>
-
-          <Label>
-            <span>
-              Bank address <Required>*</Required>
-            </span>
-            <div>
-              <small>Branch address of receiving bank.</small>
-            </div>
-            <TextArea
-              name="bankAddress"
-              value={formState.bankAddress}
-              onChange={handleInputChange}
-            />
-          </Label>
-
-          <Label>
-            <span>
-              International or Domestic Bank Account Number{" "}
-              <Required>*</Required>
-            </span>
-            <div>
-              <small>
-                Provide either an International Bank Account Number (IBAN) or a
-                standard domestic bank account number.
-              </small>
-            </div>
-
-            <Input
-              type="text"
-              name="bankAccountNumber"
-              value={formState.bankAccountNumber}
-              onChange={handleInputChange}
-            />
-          </Label>
-
-          <Label>
-            <span>
-              Bank routing number <Required>*</Required>
-            </span>
-            <div>
-              <small>
-                For U.S. bank account holders, your routing number is a
-                nine-digit code that's based on the U.S. bank location where
-                your account was opened.
-              </small>
-            </div>
-
-            <Input
-              type="text"
-              name="bankRoutingNumber"
-              value={formState.bankRoutingNumber}
-              onChange={handleInputChange}
-            />
-          </Label>
-
-          <Label>
-            <span>Bank SWIFT code</span>
-            <div>
-              <small>
-                A SWIFT Code or Bank Identifier Code (BIC) is used to specify a
-                particular bank or branch. These codes are used when
-                transferring money between banks, particularly for international
-                wire transfers.
-              </small>
-            </div>
-
-            <Input
-              type="text"
-              name="bankSWIFT"
-              value={formState.bankSWIFT}
-              onChange={handleInputChange}
-            />
-          </Label>
-
-          <Label>
-            <span>
-              ETH Address <Required>*</Required>
-            </span>
-            <div>
-              <small>Ethereum address where you'd like to receive ETH.</small>
-            </div>
-
-            <Input
-              type="text"
-              name="ethAddress"
-              value={formState.ethAddress}
-              onChange={handleInputChange}
-            />
-          </Label>
-
-          <Label>
-            <span>
-              DAI Address <Required>*</Required>
-            </span>
-            <div>
-              <small>Ethereum address where you'd like to receive DAI.</small>
-            </div>
-
-            <Input
-              type="text"
-              name="daiAddress"
-              value={formState.daiAddress}
-              onChange={handleInputChange}
-            />
-          </Label>
-
-          <Label>
-            <span>Notes</span>
-            <div>
-              <small>Anything else we should know?</small>
-            </div>
-            <TextArea
-              name="notes"
-              value={formState.notes}
-              onChange={handleInputChange}
-            />
-          </Label>
-
-          <Label>
-            <span>
-              Grantee Security ID<Required>*</Required>
-            </span>
-            <div>
-              <small>The key phrase provided to you by ESP.</small>
-            </div>
-
-            <Input
-              type="text"
-              name="granteeSecurityID"
-              value={formState.granteeSecurityID}
-              onChange={handleInputChange}
-            />
-          </Label>
-
-          <div>
-            <Button disabled={!isValid} type="submit">
-              Submit
-            </Button>
-          </div>
+          )}
         </Form>
       </PageBody>
     </>
