@@ -87,6 +87,10 @@ export const Label = styled.label`
   flex-direction: column;
   margin-top: 1rem;
   margin-bottom: 2rem;
+
+  span {
+    font-weight: bold;
+  }
 `
 
 export const Input = styled.input`
