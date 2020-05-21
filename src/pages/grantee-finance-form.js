@@ -149,7 +149,15 @@ const ExplorePage = () => {
 
   return (
     <>
-      <SEO title="Grantee Form" />
+      <SEO
+        title="Grantee Form"
+        meta={[
+          {
+            name: "robots",
+            content: "noindex",
+          },
+        ]}
+      />
       <PageBody>
         <FormHeader>
           <h1>Welcome!</h1>
