@@ -21,7 +21,12 @@ const RadioInputContainer = styled.div`
 
   input {
     margin-right: 1rem;
+    margin-top: 0;
   }
+`
+
+const PaymentSpan = styled.span`
+  margin-bottom: 8px;
 `
 
 const bankRequiredFields = [
@@ -185,9 +190,9 @@ const ExplorePage = () => {
         </FormHeader>
         <Form onSubmit={handleSubmit}>
           <Label>
-            <span>
+            <PaymentSpan>
               Payment preference <Required>*</Required>
-            </span>
+            </PaymentSpan>
             <RadioInputContainer>
               <Input
                 type="radio"
