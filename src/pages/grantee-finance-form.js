@@ -254,11 +254,11 @@ const ExplorePage = () => {
                 <div>
                   <Label>
                     <span>
-                      Fiat currency <Required>*</Required>
+                      Fiat currency code <Required>*</Required>
                     </span>
                     <div>
                       <small>
-                        Symbol of the currency you'd like to receive funds, e.g.
+                        Code of the currency you'd like to receive funds, e.g.
                         EUR, USD, RUB.
                       </small>
                     </div>
