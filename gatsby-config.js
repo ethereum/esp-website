@@ -70,7 +70,42 @@ module.exports = {
         trackingId: "UA-145235410-1",
       },
     },
-    `gatsby-plugin-sitemap`,
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        query: `{
+          site {
+            siteMetadata {
+              siteUrl
+            }
+          }
+          allSitePage {
+            nodes {
+              path
+            }
+          }
+        }`,
+        serialize: ({ site, allSitePage }) =>
+          allSitePage.nodes
+            .filter(node => {
+              const path = node.path
+              console.log({ path })
+              // Filter out 404 pages
+              if (path.includes("404")) {
+                return false
+              }
+              // Filter out base pages that don't have a language directory
+              return supportedLanguages.includes(path.split("/")[1])
+            })
+            .map(node => {
+              return {
+                url: `${site.siteMetadata.siteUrl}${node.path}`,
+                changefreq: `weekly`,
+                priority: 0.7,
+              }
+            }),
+      },
+    },
     // i18n support
     {
       resolve: `gatsby-plugin-intl`,
