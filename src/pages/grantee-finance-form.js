@@ -53,13 +53,11 @@ const intlBankRequiredFields = [
 
 const ethRequiredFields = [
   "beneficiaryName",
-  "beneficiaryAddress",
   "ethAddress",
   "granteeSecurityID",
 ]
 const daiRequiredFields = [
   "beneficiaryName",
-  "beneficiaryAddress",
   "daiAddress",
   "granteeSecurityID",
 ]
@@ -233,25 +231,25 @@ const ExplorePage = () => {
                   onChange={handleInputChange}
                 />
               </Label>
-              <Label>
-                <span>
-                  Beneficiary address <Required>*</Required>
-                </span>
-                <div>
-                  <small>
-                    Personal or business address of the individual or entity
-                    receiving the funds.
-                  </small>
-                </div>
-                <TextArea
-                  name="beneficiaryAddress"
-                  value={formState.beneficiaryAddress}
-                  onChange={handleInputChange}
-                />
-              </Label>
 
               {formState.ethOrFiat === "fiat" && (
                 <div>
+                  <Label>
+                    <span>
+                      Beneficiary address <Required>*</Required>
+                    </span>
+                    <div>
+                      <small>
+                        Personal or business address of the individual or entity
+                        receiving the funds.
+                      </small>
+                    </div>
+                    <TextArea
+                      name="beneficiaryAddress"
+                      value={formState.beneficiaryAddress}
+                      onChange={handleInputChange}
+                    />
+                  </Label>
                   <Label>
                     <span>
                       Fiat currency code <Required>*</Required>
