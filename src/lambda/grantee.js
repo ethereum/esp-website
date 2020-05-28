@@ -15,6 +15,7 @@ exports.handler = async function(event, context) {
     const params = JSON.parse(event.body)
 
     const {
+      ethOrFiat,
       beneficiaryName,
       beneficiaryAddress,
       fiatCurrencySymbol,
@@ -29,6 +30,36 @@ exports.handler = async function(event, context) {
       granteeSecurityID,
     } = params
 
+    // Wipe out any old values
+    const properties =
+      ethOrFiat === "fiat"
+        ? {
+            beneficiaryName,
+            beneficiaryAddress,
+            fiatCurrencySymbol,
+            bankName,
+            bankAddress,
+            bankAccountNumber,
+            bankRoutingNumber,
+            bankSWIFT,
+            ethAddress: "",
+            daiAddress: "",
+            notes,
+          }
+        : {
+            beneficiaryName,
+            beneficiaryAddress: "",
+            fiatCurrencySymbol: "",
+            bankName: "",
+            bankAddress: "",
+            bankAccountNumber: "",
+            bankRoutingNumber: "",
+            bankSWIFT: "",
+            ethAddress,
+            daiAddress,
+            notes,
+          }
+
     const instance = axios.create({
       headers: { Authorization: `Basic ${auth}` },
     })
@@ -36,19 +67,7 @@ exports.handler = async function(event, context) {
     const resp = await instance.post(baseURL, {
       userId: granteeSecurityID,
       event: "Grantee form submitted",
-      properties: {
-        beneficiaryName,
-        beneficiaryAddress,
-        fiatCurrencySymbol,
-        bankName,
-        bankAddress,
-        bankAccountNumber,
-        bankRoutingNumber,
-        bankSWIFT,
-        ethAddress,
-        daiAddress,
-        notes,
-      },
+      properties,
       integrations: {
         Salesforce: true,
         MailChimp: false,
