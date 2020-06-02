@@ -96,9 +96,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    const component = node.fields.slug.includes("/projects/")
+      ? path.resolve(`./src/templates/project-detail.js`)
+      : path.resolve(`./src/templates/static.js`)
     createPage({
       path: node.fields.slug,
-      component: path.resolve(`./src/templates/project-detail.js`),
+      component,
       context: {
         slug: node.fields.slug,
         // create `intl` object so `gatsby-plugin-intl` will skip

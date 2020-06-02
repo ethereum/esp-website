@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "gatsby"
 import styled from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons"
@@ -33,7 +34,21 @@ const LinkContainer = styled.div`
 `
 const IconContainer = styled.div``
 
-const Link = styled.a`
+const InternalLink = styled(Link)`
+  color: ${colorGrayDarker};
+  margin-left: 16px;
+  margin-right: 16px;
+  &:hover {
+    color: ${colorRed};
+  }
+
+  @media (max-width: ${screenSizeL}) {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+`
+
+const ExternalLink = styled.a`
   color: ${colorGrayDarker};
   margin-left: 16px;
   margin-right: 16px;
@@ -88,50 +103,48 @@ const Footer = () => (
     <Divider />
     <FooterElement>
       <LinkContainer>
-        <Link
+        <ExternalLink
           className="copy"
           target="_blank"
           rel="noopener noreferrer"
           href="https://www.ethereum.org/"
         >
           Ethereum.org
-        </Link>
+        </ExternalLink>
         <Bar>|</Bar>
-        <Link
-          className="copy"
+        <ExternalLink
           target="_blank"
           rel="noopener noreferrer"
           href="https://ethereum.foundation/"
         >
           Ethereum.foundation
-        </Link>
+        </ExternalLink>
         <Bar>|</Bar>
-        <Link
-          className="copy"
+        <ExternalLink
           target="_blank"
           rel="noopener noreferrer"
           href="https://blog.ethereum.org/category/ecosystem-support-program/"
         >
           Blog
-        </Link>
+        </ExternalLink>
         <Bar>|</Bar>
-        <Link
-          className="copy"
+        <ExternalLink
           target="_blank"
           rel="noopener noreferrer"
           href="https://ethereum.org/privacy-policy/"
         >
           Privacy Policy
-        </Link>
+        </ExternalLink>
         <Bar>|</Bar>
-        <Link
-          className="copy"
+        <ExternalLink
           target="_blank"
           rel="noopener noreferrer"
-          href="https://ethereum.org/cookie-policy/"
+          href="https://ethereum.org/terms-of-use/"
         >
-          Cookie Policy
-        </Link>
+          Terms of Use
+        </ExternalLink>
+        <Bar>|</Bar>
+        <InternalLink to="/en/cookie-policy/">Cookie Policy</InternalLink>
       </LinkContainer>
       <IconContainer>
         <a
