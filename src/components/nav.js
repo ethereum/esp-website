@@ -153,7 +153,7 @@ const Nav = ({ hasShadow, intl }) => {
       ref={containerRef}
     >
       <div>
-        <NavLinkMain to={`${intl.locale}/`}>
+        <NavLinkMain to={`/${intl.locale}/`}>
           <Img
             fixed={data.file.childImageSharp.fixed}
             alt="Ethereum Ecosystem Support Program Logo"
@@ -171,19 +171,19 @@ const Nav = ({ hasShadow, intl }) => {
       {/* Desktop */}
       <NavLinks>
         <NavLink
-          to={`${intl.locale}/faq/`}
+          to={`/${intl.locale}/faq/`}
           activeStyle={{ color: styles.colorOrange }}
         >
           <FormattedMessage id="page-faq.title" />
         </NavLink>
         <NavLink
-          to={`${intl.locale}/projects/`}
+          to={`/${intl.locale}/projects/`}
           activeStyle={{ color: styles.colorOrange }}
         >
           <FormattedMessage id="page-projects.title" />
         </NavLink>
         <NavLink
-          to={`${intl.locale}/wishlist/`}
+          to={`/${intl.locale}/wishlist/`}
           activeStyle={{ color: styles.colorOrange }}
         >
           <FormattedMessage id="page-wishlist.title" />

@@ -18,9 +18,12 @@ const Intro = styled.div`
 const ProjectsPage = ({ data }) => {
   const intl = useIntl()
 
-  // filter pages by current language
+  // filter to project pages && pages of current language
   const nodes = data.allMarkdownRemark.edges.filter(({ node }) => {
-    return node.frontmatter.lang === intl.locale
+    return (
+      node.frontmatter.lang === intl.locale &&
+      node.fields.slug.includes("/projects/")
+    )
   })
 
   return (
