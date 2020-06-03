@@ -4,9 +4,9 @@ exports.handler = async function(event, context) {
   try {
     const { AIRTABLE_API_KEY, AIRTABLE_BASE_ID } = process.env
 
-    // Test table URL
-    const baseURL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Events%20%5BTEST%5D` // Events%20%5BTEST%5D
-    // const baseURL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Events`
+    let baseURL = !!process.env.NETLIFY_DEV
+      ? `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Events%20%5BTEST%5D`
+      : `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Events`
 
     const resp = await axios.get(`${baseURL}?api_key=${AIRTABLE_API_KEY}`)
 
