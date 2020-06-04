@@ -17,6 +17,7 @@ exports.handler = async function(event, context) {
     const {
       ethOrFiat,
       beneficiaryName,
+      contactEmail,
       beneficiaryAddress,
       fiatCurrencySymbol,
       bankName,
@@ -35,6 +36,7 @@ exports.handler = async function(event, context) {
       ethOrFiat === "fiat"
         ? {
             beneficiaryName,
+            contactEmail,
             beneficiaryAddress,
             fiatCurrencySymbol,
             bankName,
@@ -48,6 +50,7 @@ exports.handler = async function(event, context) {
           }
         : {
             beneficiaryName,
+            contactEmail,
             beneficiaryAddress: "",
             fiatCurrencySymbol: "",
             bankName: "",
