@@ -79,6 +79,7 @@ const ExplorePage = () => {
     bankRoutingNumber: "",
     bankSWIFT: "", // SWIFT code is used to identify a specific bank during an international transaction
     notes: "",
+    ethOrDai: "",
     ethAddress: "",
     daiAddress: "",
     granteeSecurityID: "",
@@ -386,38 +387,66 @@ const ExplorePage = () => {
               {formState.ethOrFiat === "eth" && (
                 <div>
                   <Label>
-                    <span>ETH Address</span>
-                    <div>
-                      <small>
-                        Ethereum address to receive ETH. Make sure it’s a
-                        secured wallet that you control.
-                      </small>
-                    </div>
-
-                    <Input
-                      type="text"
-                      name="ethAddress"
-                      value={formState.ethAddress}
-                      onChange={handleInputChange}
-                    />
+                    <PaymentSpan>
+                      Payment preference <Required>*</Required>
+                    </PaymentSpan>
+                    <RadioInputContainer>
+                      <Input
+                        type="radio"
+                        name="ethOrDai"
+                        value="eth"
+                        onChange={handleInputChange}
+                      />
+                      <div>Receive ETH</div>
+                    </RadioInputContainer>
+                    <RadioInputContainer>
+                      <Input
+                        type="radio"
+                        name="ethOrDai"
+                        value="dai"
+                        onChange={handleInputChange}
+                      />
+                      <div>Receive DAI</div>
+                    </RadioInputContainer>
                   </Label>
 
-                  <Label>
-                    <span>DAI Address</span>
-                    <div>
-                      <small>
-                        Ethereum address to receive DAI. Make sure it’s a
-                        secured wallet that you control.
-                      </small>
-                    </div>
+                  {formState.ethOrDai === "eth" && (
+                    <Label>
+                      <span>ETH Address</span>
+                      <div>
+                        <small>
+                          Ethereum address to receive ETH. Make sure it’s a
+                          secured wallet that you control.
+                        </small>
+                      </div>
 
-                    <Input
-                      type="text"
-                      name="daiAddress"
-                      value={formState.daiAddress}
-                      onChange={handleInputChange}
-                    />
-                  </Label>
+                      <Input
+                        type="text"
+                        name="ethAddress"
+                        value={formState.ethAddress}
+                        onChange={handleInputChange}
+                      />
+                    </Label>
+                  )}
+
+                  {formState.ethOrDai === "dai" && (
+                    <Label>
+                      <span>DAI Address</span>
+                      <div>
+                        <small>
+                          Ethereum address to receive DAI. Make sure it’s a
+                          secured wallet that you control.
+                        </small>
+                      </div>
+
+                      <Input
+                        type="text"
+                        name="daiAddress"
+                        value={formState.daiAddress}
+                        onChange={handleInputChange}
+                      />
+                    </Label>
+                  )}
                 </div>
               )}
 
