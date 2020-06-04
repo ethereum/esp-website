@@ -31,6 +31,7 @@ const PaymentSpan = styled.span`
 
 const bankRequiredFields = [
   "beneficiaryName",
+  "contactEmail",
   "beneficiaryAddress",
   "fiatCurrencySymbol",
   "bankName",
@@ -42,6 +43,7 @@ const bankRequiredFields = [
 
 const intlBankRequiredFields = [
   "beneficiaryName",
+  "contactEmail",
   "beneficiaryAddress",
   "fiatCurrencySymbol",
   "bankName",
@@ -53,11 +55,13 @@ const intlBankRequiredFields = [
 
 const ethRequiredFields = [
   "beneficiaryName",
+  "contactEmail",
   "ethAddress",
   "granteeSecurityID",
 ]
 const daiRequiredFields = [
   "beneficiaryName",
+  "contactEmail",
   "daiAddress",
   "granteeSecurityID",
 ]
@@ -66,6 +70,7 @@ const ExplorePage = () => {
   const [formState, setFormState] = useState({
     ethOrFiat: "",
     beneficiaryName: "",
+    contactEmail: "",
     beneficiaryAddress: "",
     fiatCurrencySymbol: "",
     bankName: "",
@@ -228,6 +233,25 @@ const ExplorePage = () => {
                   type="text"
                   name="beneficiaryName"
                   value={formState.beneficiaryName}
+                  onChange={handleInputChange}
+                />
+              </Label>
+
+              <Label>
+                <span>
+                  Contact email <Required>*</Required>
+                </span>
+                <div>
+                  <small>
+                    This email address will receive a copy of the submission for
+                    your records.
+                  </small>
+                </div>
+
+                <Input
+                  type="email"
+                  name="contactEmail"
+                  value={formState.contactEmail}
                   onChange={handleInputChange}
                 />
               </Label>
