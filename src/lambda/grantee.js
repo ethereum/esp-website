@@ -25,6 +25,7 @@ exports.handler = async function(event, context) {
       bankAccountNumber,
       bankRoutingNumber,
       bankSWIFT,
+      ethOrDai,
       ethAddress,
       daiAddress,
       notes,
@@ -58,8 +59,8 @@ exports.handler = async function(event, context) {
             bankAccountNumber: "",
             bankRoutingNumber: "",
             bankSWIFT: "",
-            ethAddress,
-            daiAddress,
+            ethAddress: ethOrDai === "eth" ? ethAddress : "", // ensure only 1 has a value
+            daiAddress: ethOrDai === "dai" ? daiAddress : "", // ensure only 1 has a value
             notes,
           }
 
