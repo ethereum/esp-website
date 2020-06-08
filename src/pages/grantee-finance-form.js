@@ -233,6 +233,7 @@ const ExplorePage = () => {
                 <Input
                   type="text"
                   name="beneficiaryName"
+                  placeholder="John Smith, Glossy DeFi LLC"
                   value={formState.beneficiaryName}
                   onChange={handleInputChange}
                 />
@@ -271,6 +272,7 @@ const ExplorePage = () => {
                     </div>
                     <TextArea
                       name="beneficiaryAddress"
+                      placeholder="1234 Apple Street Unit A New York, NY 10011 United States"
                       value={formState.beneficiaryAddress}
                       onChange={handleInputChange}
                     />
@@ -306,6 +308,7 @@ const ExplorePage = () => {
                     <Input
                       type="text"
                       name="bankName"
+                      placeholder="JP Morgan Chase"
                       value={formState.bankName}
                       onChange={handleInputChange}
                     />
@@ -320,6 +323,7 @@ const ExplorePage = () => {
                     </div>
                     <TextArea
                       name="bankAddress"
+                      placeholder="5678 Banana Street PO Box 35 New York, NY 10011 United States"
                       value={formState.bankAddress}
                       onChange={handleInputChange}
                     />
@@ -377,6 +381,7 @@ const ExplorePage = () => {
                     <Input
                       type="text"
                       name="bankSWIFT"
+                      placeholder="ABCDUS00XXX"
                       value={formState.bankSWIFT}
                       onChange={handleInputChange}
                     />
