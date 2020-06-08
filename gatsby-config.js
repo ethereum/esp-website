@@ -73,6 +73,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
+        exclude: [`/en/grantee-finance-form/`],
         query: `{
           site {
             siteMetadata {
@@ -89,7 +90,6 @@ module.exports = {
           allSitePage.nodes
             .filter(node => {
               const path = node.path
-              console.log({ path })
               // Filter out 404 pages
               if (path.includes("404")) {
                 return false
