@@ -38,6 +38,7 @@ const TwitterFeed = () => {
             data-height={dimensions.height}
             data-width={dimensions.width}
             data-chrome="nofooter noborders"
+            data-tweet-limit="5"
             href="https://twitter.com/EF_ESP"
           >
             Tweets by EF_ESP
