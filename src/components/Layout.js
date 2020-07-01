@@ -5,8 +5,8 @@ import styled from "styled-components"
 import { ToastProvider } from "react-toast-notifications"
 import { IntlProvider, IntlContextProvider } from "gatsby-plugin-intl"
 
-import Footer from "./footer"
-import Nav from "./nav"
+import Footer from "./Footer"
+import Nav from "./Nav"
 import "./layout.css"
 import * as styles from "../utils/styles"
 

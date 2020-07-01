@@ -5,7 +5,7 @@ import { FormattedMessage, useIntl } from "gatsby-plugin-intl"
 
 import SEO from "../components/seo"
 import { useState } from "react"
-import AccordionSection from "../components/accordion"
+import AccordionSection from "../components/Accordion"
 import {
   PageBody,
   PageHeader,
