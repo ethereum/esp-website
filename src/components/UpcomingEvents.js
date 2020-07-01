@@ -78,29 +78,26 @@ const UpcomingEvents = () => {
   }
 
   return (
-    <>
-      <Section>
-        <H2>
-          <FormattedMessage id="upcoming-events" />
-        </H2>
-        <p>
-          <FormattedMessage id="find-us" />
-        </p>
-        <EventsContainer>
-          {eventsState.events.map((event, i) => {
-            return (
-              <Event
-                key={i}
-                title={event.fields["Name"]}
-                dates={event.fields["Dates"]}
-                url={event.fields["Event website"]}
-              />
-            )
-          })}
-        </EventsContainer>
-      </Section>
-      <HR />
-    </>
+    <Section>
+      <H2>
+        <FormattedMessage id="upcoming-events" />
+      </H2>
+      <p>
+        <FormattedMessage id="find-us" />
+      </p>
+      <EventsContainer>
+        {eventsState.events.map((event, i) => {
+          return (
+            <Event
+              key={i}
+              title={event.fields["Name"]}
+              dates={event.fields["Dates"]}
+              url={event.fields["Event website"]}
+            />
+          )
+        })}
+      </EventsContainer>
+    </Section>
   )
 }
 
