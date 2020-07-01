@@ -1,7 +1,7 @@
 import React from "react"
-import { Link } from "gatsby"
 import styled from "styled-components"
 
+import Link from "./Link"
 import {
   CardImage,
   LightText,
@@ -96,9 +96,9 @@ const DetailsLink = styled.div`
   }
 `
 
-const ProjectCard = ({ frontmatter, link }) => {
+const ProjectCard = ({ frontmatter, to }) => {
   return (
-    <Card to={link}>
+    <Card to={to}>
       <CardImage
         fluid={frontmatter.img.childImageSharp.fluid}
         alt="Ecosystem Support Program Process"

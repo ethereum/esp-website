@@ -51,7 +51,7 @@ const ProjectsPage = ({ data }) => {
               <ProjectCard
                 key={idx}
                 frontmatter={node.frontmatter}
-                link={node.fields.slug}
+                to={node.fields.slug}
               />
             )
           })}

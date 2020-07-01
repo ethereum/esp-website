@@ -4,12 +4,12 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
 import { FormattedMessage, injectIntl } from "gatsby-plugin-intl"
 
+import Link from "../components/Link"
 import PageMetadata from "../components/PageMetadata"
 import NewsletterSignup from "../components/NewsletterSignup"
 import {
   PageBody,
   Section,
-  StyledLink,
   ButtonLink,
   H2,
 } from "../components/SharedStyledComponents"
@@ -123,14 +123,14 @@ class IndexPage extends React.Component {
             <Header>
               <FormattedMessage id="page-home.header" />
             </Header>
-            <StyledLink
-              to={`${this.props.intl.locale}/#welcome`}
+            <Link
+              to="#welcome"
               className={
                 "hero-link " + (this.state.showHeroLink ? "show" : "hide")
               }
             >
               <FontAwesomeIcon className="hero-icon" icon={faChevronDown} />
-            </StyledLink>
+            </Link>
           </Hero>
           <PageBody>
             <Copy id="welcome">

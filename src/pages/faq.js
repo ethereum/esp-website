@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import { FormattedMessage, useIntl } from "gatsby-plugin-intl"
 
+import Link from "../components/Link"
 import PageMetadata from "../components/PageMetadata"
 import { useState } from "react"
 import AccordionSection from "../components/Accordion"
@@ -12,7 +13,6 @@ import {
   H1,
   H2,
   HR,
-  StyledLink,
   FakeLink,
 } from "../components/SharedStyledComponents"
 
@@ -139,9 +139,9 @@ const FAQPage = ({ data }) => {
           >
             <p>
               <FormattedMessage id="page-faq.eligibility.answer-p-1" />{" "}
-              <StyledLink to={`${intl.locale}/project/`}>
+              <Link to="/project/">
                 inquiry form
-              </StyledLink>
+              </Link>
               . <FormattedMessage id="page-faq.eligibility.answer-p-2" />
             </p>
           </AccordionSection>

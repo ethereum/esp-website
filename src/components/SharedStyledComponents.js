@@ -57,18 +57,6 @@ export const HR = styled.hr`
   height: 2px;
 `
 
-export const StyledLink = styled(Link)`
-  color: ${styles.colorOrange};
-  text-decoration: none;
-  opacity: 1;
-  outline: none;
-
-  &:hover {
-    text-decoration: none;
-    color: ${styles.colorRed};
-  }
-`
-
 export const FakeLink = styled.div`
   cursor: pointer;
   text-align: right;
