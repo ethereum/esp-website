@@ -43,6 +43,7 @@ const Item = styled(motion.li)`
 
 const navItems = [
   { route: "/", text: "Home" },
+  { route: "/about/", text: "About" },
   { route: "/faq/", text: "FAQ" },
   { route: "/projects/", text: "Featured projects" },
   { route: "/wishlist/", text: "Wishlist" },

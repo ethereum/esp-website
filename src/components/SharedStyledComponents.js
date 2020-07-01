@@ -7,10 +7,19 @@ import styled from "styled-components"
 
 import * as styles from "../utils/styles"
 
+// TODO add styled-components ThemeProvider to handle pixel widths
+
 export const PageBody = styled.div`
   margin: 0 auto 1rem;
   max-width: 780px;
   padding: 40px 16px;
+`
+
+export const PageBodyNoBanner = styled(PageBody)`
+  padding-top: 220px;
+  @media (max-width: 480px) {
+    padding-top: 160px;
+  }
 `
 
 export const PageBodyWide = styled.div`
