@@ -1,6 +1,7 @@
 import React from "react"
-import { FormattedMessage, useIntl, Link } from "gatsby-plugin-intl"
+import { FormattedMessage, useIntl } from "gatsby-plugin-intl"
 
+import Link from "../components/Link"
 import TwitterFeed from "../components/TwitterFeed"
 import NewsletterSignup from "../components/NewsletterSignup"
 import UpcomingEvents from "../components/UpcomingEvents"
@@ -57,24 +58,16 @@ const AboutPage = () => {
             <p>
               <strong>May 12, 2020</strong>: Going forward we'll be releasing
               quarterly updates on financial support allocations. You can{" "}
-              <a
-                href="https://blog.ethereum.org/2020/05/07/ecosystem-support-program-allocation-update-q1/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <Link to="https://blog.ethereum.org/2020/05/07/ecosystem-support-program-allocation-update-q1/">
                 find our Q1 2020 update here
-              </a>
+              </Link>
               .
             </p>
             <p>
               <strong>April 7, 2020</strong>: Check out our recent{" "}
-              <a
-                href="https://blog.ethereum.org/2020/04/01/ecosystem-support-program-allocation-update/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <Link to="https://blog.ethereum.org/2020/04/01/ecosystem-support-program-allocation-update/">
                 Allocation Update
-              </a>{" "}
+              </Link>{" "}
               for details on how we’ve spent our last few months and what we
               funded in 2019!
             </p>

@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "gatsby-plugin-intl"
 import { graphql } from "gatsby"
 import styled from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -9,6 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons"
 import { FormattedMessage } from "gatsby-plugin-intl"
 
+import Link from "../components/Link"
 import PageMetadata from "../components/PageMetadata"
 import {
   PageHeader,
