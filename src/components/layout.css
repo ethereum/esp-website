@@ -781,17 +781,6 @@ a:hover {
   }
 }
 
-/* Pages */
-
-.page-content {
-  padding-top: 180px;
-}
-
-@media (max-width: 480px) {
-  .page-content {
-    padding-top: 120px;
-  }
-}
 /* FAQ page */
 
 .question {

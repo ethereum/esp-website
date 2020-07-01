@@ -171,6 +171,12 @@ const Nav = ({ hasShadow, intl }) => {
       {/* Desktop */}
       <NavLinks>
         <NavLink
+          to={`/${intl.locale}/about/`}
+          activeStyle={{ color: styles.colorOrange }}
+        >
+          <FormattedMessage id="page-about.title" />
+        </NavLink>
+        <NavLink
           to={`/${intl.locale}/faq/`}
           activeStyle={{ color: styles.colorOrange }}
         >
