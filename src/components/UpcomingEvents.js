@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import { FormattedMessage } from "gatsby-plugin-intl"
 
-import Event from "./event"
+import Event from "./Event"
 import { screenSizeM } from "../utils/styles"
 import { Section, HR, H2 } from "../components/SharedStyledComponents"
 
