@@ -4,11 +4,11 @@ import { motion, useCycle, AnimatePresence } from "framer-motion"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import styled from "styled-components"
-import { FormattedMessage, injectIntl } from "gatsby-plugin-intl"
+import { FormattedMessage, useIntl } from "gatsby-plugin-intl"
 
 import MobileNavMenu from "./MobileNavMenu"
 import MobileNavLinks from "./MobileNavLinks"
-import { StyledLink } from "./SharedStyledComponents"
+import Link from "./Link"
 import * as styles from "../utils/styles"
 
 const StyledNav = styled(motion.nav)`
@@ -23,7 +23,7 @@ const StyledNav = styled(motion.nav)`
   align-items: center;
 `
 
-const NavLinkMain = styled(StyledLink)`
+const NavLinkMain = styled(Link)`
   display: flex;
   align-items: center;
   color: black;
@@ -33,38 +33,12 @@ const NavLinkMain = styled(StyledLink)`
 
 const NavLinks = styled.div`
   /* Hide & display MenuToggle */
-  @media (max-width: ${styles.screenSizeS}) {
+  @media (max-width: ${styles.screenSizeM}) {
     display: none;
   }
 `
 
-const NavLink = styled(StyledLink)`
-  color: black;
-  font-size: 18px;
-  margin-right: 20px;
-  padding: 0 0 10px 0;
-  display: inline-block;
-  position: relative;
-
-  &:after {
-    background: none repeat scroll 0 0 transparent;
-    bottom: 0;
-    content: "";
-    display: block;
-    height: 2px;
-    left: 50%;
-    position: absolute;
-    background: ${styles.colorOrange};
-    transition: width 0.3s ease 0s, left 0.3s ease 0s;
-    width: 0;
-  }
-  &:hover:after {
-    width: 100%;
-    left: 0;
-  }
-`
-
-const NavLinkExternal = styled.a`
+const NavLink = styled(Link)`
   color: black;
   font-size: 18px;
   margin-right: 20px;
@@ -128,8 +102,21 @@ const MobileNavBackground = styled(motion.div)`
   width: 100%;
   background: ${styles.colorGrayLightest};
 `
+const navItems = [
+  { to: "/", text: "page-home.title" },
+  { to: "/about/", text: "page-about.title" },
+  { to: "/faq/", text: "page-faq.title" },
+  { to: "/projects/", text: "page-projects.title" },
+  { to: "/wishlist/", text: "page-wishlist.title" },
+  {
+    to: "https://blog.ethereum.org/category/ecosystem-support-program/",
+    text: "blog",
+  },
+]
+const desktopNavItems = navItems.slice(1)
 
-const Nav = ({ hasShadow, intl }) => {
+const Nav = ({ hasShadow }) => {
+  const intl = useIntl()
   const data = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "favicons/114.png" }) {
@@ -159,55 +146,27 @@ const Nav = ({ hasShadow, intl }) => {
             alt="Ethereum Ecosystem Support Program Logo"
           />
           <NavLogoText>
-            <span>
-              <FormattedMessage id="ecosystem" />
-            </span>{" "}
-            <span>
-              <FormattedMessage id="support" />
-            </span>
+            <FormattedMessage id="ecosystem" />{" "}
+            <FormattedMessage id="support" />
           </NavLogoText>
         </NavLinkMain>
       </div>
       {/* Desktop */}
       <NavLinks>
-        <NavLink
-          to={`/${intl.locale}/about/`}
-          activeStyle={{ color: styles.colorOrange }}
-        >
-          <FormattedMessage id="page-about.title" />
-        </NavLink>
-        <NavLink
-          to={`/${intl.locale}/faq/`}
-          activeStyle={{ color: styles.colorOrange }}
-        >
-          <FormattedMessage id="page-faq.title" />
-        </NavLink>
-        <NavLink
-          to={`/${intl.locale}/projects/`}
-          activeStyle={{ color: styles.colorOrange }}
-        >
-          <FormattedMessage id="page-projects.title" />
-        </NavLink>
-        <NavLink
-          to={`/${intl.locale}/wishlist/`}
-          activeStyle={{ color: styles.colorOrange }}
-        >
-          <FormattedMessage id="page-wishlist.title" />
-        </NavLink>
-        <NavLinkExternal
-          href="https://blog.ethereum.org/category/ecosystem-support-program/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <FormattedMessage id="blog" />
-        </NavLinkExternal>
+        {desktopNavItems.map((item, idx) => {
+          return (
+            <NavLink to={item.to} key={idx}>
+              <FormattedMessage id={item.text} />
+            </NavLink>
+          )
+        })}
       </NavLinks>
       {/* Mobile */}
       <MobileNavBackground variants={backgroundVariants} />
       <AnimatePresence>
         {isOpen && (
           <MobileNavLinks
-            intl={intl}
+            navItems={navItems}
             key="navigation"
             toggle={() => toggleOpen()}
           />
@@ -218,4 +177,4 @@ const Nav = ({ hasShadow, intl }) => {
   )
 }
 
-export default injectIntl(Nav)
+export default Nav
