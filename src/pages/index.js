@@ -2,19 +2,16 @@ import React from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
-import { Link, FormattedMessage, injectIntl } from "gatsby-plugin-intl"
+import { FormattedMessage, injectIntl } from "gatsby-plugin-intl"
 
 import SEO from "../components/seo"
-import UpcomingEvents from "../components/UpcomingEvents"
 import NewsletterSignup from "../components/NewsletterSignup"
-import TwitterFeed from "../components/TwitterFeed"
 import {
   PageBody,
   Section,
   StyledLink,
   ButtonLink,
   H2,
-  HR,
 } from "../components/SharedStyledComponents"
 import horzLogo from "../images/horz-logo.svg"
 import vertLogo from "../images/vert-logo.svg"
@@ -138,56 +135,9 @@ class IndexPage extends React.Component {
                   <FormattedMessage id="page-home.p-1" />
                 </p>
                 <p>
-                  <FormattedMessage id="page-home.p-2" />,{" "}
-                  <Link to="/#contact">
-                    <FormattedMessage id="page-home.p-2-link" />
-                  </Link>
-                  !
+                  <FormattedMessage id="page-home.p-2" />
                 </p>
               </Section>
-              <HR />
-              <Section>
-                <H2>
-                  <FormattedMessage id="page-home.recent-news" />
-                </H2>
-                {/* We chose not to translate this for now, given how frequently we update */}
-                <p>
-                  <strong>May 12, 2020</strong>: Going forward we'll be
-                  releasing quarterly updates on financial support allocations.
-                  You can{" "}
-                  <a
-                    href="https://blog.ethereum.org/2020/05/07/ecosystem-support-program-allocation-update-q1/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    find our Q1 2020 update here
-                  </a>
-                  .
-                </p>
-                <p>
-                  <strong>April 7, 2020</strong>: Check out our recent{" "}
-                  <a
-                    href="https://blog.ethereum.org/2020/04/01/ecosystem-support-program-allocation-update/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Allocation Update
-                  </a>{" "}
-                  for details on how we’ve spent our last few months and what we
-                  funded in 2019!
-                </p>
-              </Section>
-              <Section>
-                <TwitterFeed />
-              </Section>
-              <Section id="newsletter">
-                <H2>
-                  <FormattedMessage id="page-home.updates" />
-                </H2>
-                <NewsletterSignup />
-              </Section>
-              <HR />
-              <UpcomingEvents />
               <H2 id="contact">
                 <FormattedMessage id="page-home.contact-us" />
               </H2>
@@ -202,6 +152,12 @@ class IndexPage extends React.Component {
                   <FormattedMessage id="page-home.exploring-possibilities" />
                 </ButtonLink>
               </ButtonContainer>
+              <Section id="newsletter">
+                <H2>
+                  <FormattedMessage id="page-home.updates" />
+                </H2>
+                <NewsletterSignup />
+              </Section>
             </Copy>
           </PageBody>
         </div>

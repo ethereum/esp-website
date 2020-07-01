@@ -22,7 +22,8 @@
     "mission-1": "The Ecosystem Support Program is the branch of the Ethereum Foundation focused on supporting projects across the Ethereum ecosystem that contribute to the success and growth of the network and its community. ESP is an expansion of the original Ethereum Foundation Grants Program which mainly focused on financial support.",
     "mission-2": "We support open source projects that benefit Ethereum, with a particular focus on universal tools, infrastructure, research and public goods. We aim to help out as many projects as we can - whether that means financial support, technical feedback, introductions, free access to tools and platforms, or even just a friendly conversation and a nudge in the right direction.",
     "mission-3": "Our focus is on deploying our resources where they will have the biggest impact.",
-    "mission-4": "If you've got a project and want to see if ESP is a good fit"
+    "mission-4": "If you've got a project and want to see if ESP is a good fit",
+    "recent-news": "Recent News"
   },
   "page-faq": {
     "title": "FAQ",
@@ -107,10 +108,7 @@
     "title": "Home",
     "header": "An Ethereum Foundation Initiative",
     "h1": "Welcome!",
-    "p-1": "The Ecosystem Support Program exists to provide both financial and non-financial support to projects and entities within the greater Ethereum community, in order to accelerate the growth of the ecosystem. The Ecosystem Support Program is an expansion of the original Ethereum Grants Program which mainly focused on financial support. Our focus is on deploying our resources where they will have the biggest impact.",
-    "p-2": "If you've got a project and want to see if ESP is a good fit",
-    "p-2-link": "get in touch",
-    "recent-news": "Recent News",
+    "p-1": "The Ethereum Foundation's Ecosystem Support Program exists to provide both financial and non-financial support to projects and entities within the greater Ethereum community, in order to support the success and growth of the ecosystem. The Ecosystem Support Program is an expansion of the original Ethereum Grants Program which mainly focused on financial support. Our focus is on deploying resources where they will have the biggest impact.",
     "updates": "Sign up for updates",
     "contact-us": "Contact Us",
     "contact-us-desc": "Are you working on a specific project, or are you still exploring possibilities to get involved?",
