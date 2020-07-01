@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 
-import SEO from "../components/seo"
+import PageMetadata from "../components/PageMetadata"
 import { PageBody } from "../components/SharedStyledComponents"
 
 const StaticPage = ({ data }) => {
@@ -10,7 +10,7 @@ const StaticPage = ({ data }) => {
 
   return (
     <>
-      <SEO title={frontmatter.title} />
+      <PageMetadata title={frontmatter.title} />
       <PageBody>
         <div dangerouslySetInnerHTML={{ __html: content.html }} />
       </PageBody>

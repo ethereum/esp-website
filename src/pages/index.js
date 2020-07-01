@@ -4,7 +4,7 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
 import { FormattedMessage, injectIntl } from "gatsby-plugin-intl"
 
-import SEO from "../components/seo"
+import PageMetadata from "../components/PageMetadata"
 import NewsletterSignup from "../components/NewsletterSignup"
 import {
   PageBody,
@@ -107,7 +107,9 @@ class IndexPage extends React.Component {
   render() {
     return (
       <>
-        <SEO title={this.props.intl.formatMessage({ id: "page-home.title" })} />
+        <PageMetadata
+          title={this.props.intl.formatMessage({ id: "page-home.title" })}
+        />
         <div>
           <Hero>
             <HorizontalLogo

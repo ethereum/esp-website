@@ -3,7 +3,7 @@ import { navigate } from "gatsby"
 import { useToasts } from "react-toast-notifications"
 import styled from "styled-components"
 
-import SEO from "../components/seo"
+import PageMetadata from "../components/PageMetadata"
 import {
   PageBody,
   Form,
@@ -163,7 +163,7 @@ const ExplorePage = () => {
 
   return (
     <>
-      <SEO
+      <PageMetadata
         title="Grantee Form"
         meta={[
           {

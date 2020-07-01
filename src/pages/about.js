@@ -4,7 +4,7 @@ import { FormattedMessage, useIntl, Link } from "gatsby-plugin-intl"
 import TwitterFeed from "../components/TwitterFeed"
 import NewsletterSignup from "../components/NewsletterSignup"
 import UpcomingEvents from "../components/UpcomingEvents"
-import SEO from "../components/seo"
+import PageMetadata from "../components/PageMetadata"
 import {
   H1,
   H2,
@@ -18,7 +18,7 @@ const AboutPage = () => {
 
   return (
     <>
-      <SEO title={intl.formatMessage({ id: "page-about.title" })} />
+      <PageMetadata title={intl.formatMessage({ id: "page-about.title" })} />
       <div>
         <PageHeader>
           <H1>

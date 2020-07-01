@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import styled from "styled-components"
 import { FormattedMessage, useIntl } from "gatsby-plugin-intl"
 
-import SEO from "../../components/seo"
+import PageMetadata from "../../components/PageMetadata"
 import ProjectCard from "../../components/ProjectCard"
 import {
   PageBodyWide,
@@ -28,7 +28,7 @@ const ProjectsPage = ({ data }) => {
 
   return (
     <>
-      <SEO title={intl.formatMessage({ id: "page-projects.title" })} />
+      <PageMetadata title={intl.formatMessage({ id: "page-projects.title" })} />
       <div>
         <PageHeader>
           <H1>
