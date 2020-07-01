@@ -76,7 +76,7 @@ const NavLogoText = styled.div`
 // Mobile
 const backgroundVariants = {
   open: {
-    clipPath: `circle(1000px at 200px 0px)`,
+    clipPath: `circle(1400px at 200px 0px)`,
     transition: {
       type: "spring",
       stiffness: 50,

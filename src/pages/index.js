@@ -61,10 +61,14 @@ const VerticalLogo = styled.img`
   display: none;
 
   @media (max-width: ${screenSizeS}) {
-    width: 210px;
+    width: 200px;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 2rem auto;
+  }
+  @media (max-width: 340px) {
+    width: 140px;
+    display: block;
+    margin: 2rem auto;
   }
 `
 
@@ -77,6 +81,11 @@ const Header = styled.h3`
   text-align: center;
   margin-top: 8px;
   color: ${colorGrayLight};
+
+  @media (max-width: 340px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 `
 
 class IndexPage extends React.Component {
