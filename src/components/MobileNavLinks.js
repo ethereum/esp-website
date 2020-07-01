@@ -1,10 +1,12 @@
 import React from "react"
 import { motion } from "framer-motion"
-import { Link, useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
+import { FormattedMessage } from "gatsby-plugin-intl"
 import styled from "styled-components"
 import Img from "gatsby-image"
 
-import { screenSizeS } from "../utils/styles"
+import { screenSizeM } from "../utils/styles"
+import Link from "./Link"
 
 const List = styled(motion.ul)`
   margin: 0;
@@ -19,7 +21,7 @@ const List = styled(motion.ul)`
   align-items: center;
 
   /* Only display on mobile */
-  @media (min-width: ${screenSizeS}) {
+  @media (min-width: ${screenSizeM}) {
     display: none;
   }
 `
@@ -41,20 +43,7 @@ const Item = styled(motion.li)`
   cursor: pointer;
 `
 
-const navItems = [
-  { route: "/", text: "Home" },
-  { route: "/about/", text: "About" },
-  { route: "/faq/", text: "FAQ" },
-  { route: "/projects/", text: "Featured projects" },
-  { route: "/wishlist/", text: "Wishlist" },
-  {
-    route: "https://blog.ethereum.org/category/ecosystem-support-program/",
-    text: "Blog",
-    isExternal: true,
-  },
-]
-
-const MobileNavLinks = ({ toggle, intl }) => {
+const MobileNavLinks = ({ navItems, toggle }) => {
   const data = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "favicons/114.png" }) {
@@ -67,6 +56,7 @@ const MobileNavLinks = ({ toggle, intl }) => {
     }
   `)
 
+  // TODO add height to background list for larger screens
   return (
     <List
       initial={{ y: -300 }}
@@ -88,14 +78,9 @@ const MobileNavLinks = ({ toggle, intl }) => {
       {navItems.map((item, idx) => (
         <Item item={item} key={idx} onClick={toggle}>
           <h3>
-            {!item.isExternal && (
-              <Link to={`${intl.language}${item.route}`}>{item.text}</Link>
-            )}
-            {item.isExternal && (
-              <a href={item.route} target="_blank" rel="noopener noreferrer">
-                {item.text}
-              </a>
-            )}
+            <Link to={item.to}>
+              <FormattedMessage id={item.text} />
+            </Link>
           </h3>
         </Item>
       ))}

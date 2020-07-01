@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { motion, AnimatePresence } from "framer-motion"
 import styled from "styled-components"
 import { ToastProvider } from "react-toast-notifications"
-import { IntlProvider } from "gatsby-plugin-intl"
+import { IntlProvider, IntlContextProvider } from "gatsby-plugin-intl"
 
 import Footer from "./footer"
 import Nav from "./nav"
@@ -86,28 +86,30 @@ class Layout extends React.Component {
         defaultLocale={intl.defaultLocale}
         messages={intl.messages}
       >
-        <ToastProvider>
-          <div className="line top"></div>
-          <div className="line left"></div>
-          <div className="line right"></div>
-          <div className="layout">
-            <Nav hasShadow={this.state.hasNavShadow} />
-            <div>
-              <AnimatePresence>
-                <Main
-                  variants={variants}
-                  initial="initial"
-                  animate="enter"
-                  exit="exit"
-                >
-                  {this.props.children}
-                </Main>
-              </AnimatePresence>
+        <IntlContextProvider value={intl}>
+          <ToastProvider>
+            <div className="line top"></div>
+            <div className="line left"></div>
+            <div className="line right"></div>
+            <div className="layout">
+              <Nav hasShadow={this.state.hasNavShadow} />
+              <div>
+                <AnimatePresence>
+                  <Main
+                    variants={variants}
+                    initial="initial"
+                    animate="enter"
+                    exit="exit"
+                  >
+                    {this.props.children}
+                  </Main>
+                </AnimatePresence>
+              </div>
+              <Footer />
+              <div className="line bottom"></div>
             </div>
-            <Footer />
-            <div className="line bottom"></div>
-          </div>
-        </ToastProvider>
+          </ToastProvider>
+        </IntlContextProvider>
       </IntlProvider>
     )
   }

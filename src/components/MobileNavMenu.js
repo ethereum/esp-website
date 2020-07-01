@@ -2,7 +2,7 @@ import React from "react"
 import { motion } from "framer-motion"
 import styled from "styled-components"
 
-import { screenSizeS } from "../utils/styles"
+import { screenSizeM } from "../utils/styles"
 
 const Path = props => (
   <motion.path
@@ -24,7 +24,7 @@ const Button = styled.button`
   background: transparent;
   z-index: 200;
   /* Only display on mobile */
-  @media (min-width: ${screenSizeS}) {
+  @media (min-width: ${screenSizeM}) {
     display: none;
   }
 `

@@ -68,6 +68,11 @@ const VerticalLogo = styled.img`
   }
 `
 
+const H1 = styled.h1`
+  padding-top: 110px;
+  font-weight: bold;
+`
+
 const Header = styled.h3`
   text-align: center;
   margin-top: 8px;
@@ -128,14 +133,11 @@ class IndexPage extends React.Component {
           <PageBody>
             <Copy id="welcome">
               <Section>
-                <h1 style={{ paddingTop: `110px`, fontWeight: `bold` }}>
+                <H1>
                   <FormattedMessage id="page-home.h1" />
-                </h1>
+                </H1>
                 <p>
                   <FormattedMessage id="page-home.p-1" />
-                </p>
-                <p>
-                  <FormattedMessage id="page-home.p-2" />
                 </p>
               </Section>
               <H2 id="contact">
