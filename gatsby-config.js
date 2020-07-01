@@ -3,7 +3,7 @@ const defaultLanguage = `en`
 
 module.exports = {
   siteMetadata: {
-    // `title` & `description` pulls from respective ${lang}.json files in seo.js
+    // `title` & `description` pulls from respective ${lang}.json files in PageMetadata.js
     title: `Ethereum Ecosystem Support Program`,
     description: `The Ethereum Ecosystem Support Program provides financial and non-financial support for projects working to accelerate the growth of Ethereum.`,
     url: "https://esp.ethereum.foundation",

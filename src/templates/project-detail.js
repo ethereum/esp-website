@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons"
 import { FormattedMessage } from "gatsby-plugin-intl"
 
-import SEO from "../components/seo"
+import PageMetadata from "../components/PageMetadata"
 import {
   PageHeader,
   PageBodyWide,
@@ -142,7 +142,7 @@ const ProjectPage = ({ data }) => {
 
   return (
     <>
-      <SEO title={frontmatter.title} />
+      <PageMetadata title={frontmatter.title} />
       <div>
         <PageHeader>
           <H1>

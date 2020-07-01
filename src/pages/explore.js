@@ -4,7 +4,7 @@ import { useToasts } from "react-toast-notifications"
 import Select from "react-select"
 import { FormattedMessage, useIntl } from "gatsby-plugin-intl"
 
-import SEO from "../components/seo"
+import PageMetadata from "../components/PageMetadata"
 import { REFERRAL_SOURCES, COUNTRIES } from "../utils/form-inputs"
 import {
   PageBody,
@@ -123,7 +123,7 @@ const ExplorePage = () => {
 
   return (
     <>
-      <SEO title={intl.formatMessage({ id: "page-explore.title" })} />
+      <PageMetadata title={intl.formatMessage({ id: "page-explore.title" })} />
       <PageBody>
         <FormHeader>
           <h1>

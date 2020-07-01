@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import { FormattedMessage, useIntl } from "gatsby-plugin-intl"
 
-import SEO from "../components/seo"
+import PageMetadata from "../components/PageMetadata"
 import { useState } from "react"
 import AccordionSection from "../components/Accordion"
 import {
@@ -57,7 +57,7 @@ const FAQPage = ({ data }) => {
 
   return (
     <>
-      <SEO title={intl.formatMessage({ id: "page-faq.title" })} />
+      <PageMetadata title={intl.formatMessage({ id: "page-faq.title" })} />
       <div>
         <PageHeader>
           <H1>

@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { Link } from "gatsby-plugin-intl"
 import { FormattedMessage, useIntl } from "gatsby-plugin-intl"
 
-import SEO from "../components/seo"
+import PageMetadata from "../components/PageMetadata"
 import { useState } from "react"
 import AccordionSection from "../components/Accordion"
 import {
@@ -71,7 +71,7 @@ const WishlistPage = () => {
 
   return (
     <>
-      <SEO title={intl.formatMessage({ id: "page-wishlist.title" })} />
+      <PageMetadata title={intl.formatMessage({ id: "page-wishlist.title" })} />
       <div>
         <PageHeader>
           <H1>

@@ -1,7 +1,7 @@
 import React from "react"
 import { FormattedMessage, useIntl } from "gatsby-plugin-intl"
 
-import SEO from "../components/seo"
+import PageMetadata from "../components/PageMetadata"
 import { PageBodyNoBanner } from "../components/SharedStyledComponents"
 
 const NotFoundPage = () => {
@@ -9,7 +9,7 @@ const NotFoundPage = () => {
 
   return (
     <>
-      <SEO title={intl.formatMessage({ id: "page-404.title" })} />
+      <PageMetadata title={intl.formatMessage({ id: "page-404.title" })} />
       <PageBodyNoBanner>
         <h1>
           <FormattedMessage id="page-404.title" />

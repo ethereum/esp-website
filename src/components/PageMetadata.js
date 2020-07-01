@@ -4,7 +4,7 @@ import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 import { useIntl } from "gatsby-plugin-intl"
 
-const SEO = ({ description, meta, title }) => {
+const PageMetadata = ({ description, meta, title }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -82,16 +82,16 @@ const SEO = ({ description, meta, title }) => {
   )
 }
 
-SEO.defaultProps = {
+PageMetadata.defaultProps = {
   meta: [],
   description: ``,
   title: ``,
 }
 
-SEO.propTypes = {
+PageMetadata.propTypes = {
   description: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
 }
 
-export default SEO
+export default PageMetadata
