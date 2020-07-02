@@ -3,7 +3,9 @@ const axios = require("axios")
 exports.handler = async function(event, context) {
   try {
     const { AIRTABLE_API_KEY, AIRTABLE_BASE_ID } = process.env
-    const baseURL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Pinboard`
+    const baseURL = !!process.env.NETLIFY_DEV
+      ? `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/%5BTEST%5D%20Pinboard`
+      : `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Pinboard`
 
     const resp = await axios.get(`${baseURL}?api_key=${AIRTABLE_API_KEY}`)
 

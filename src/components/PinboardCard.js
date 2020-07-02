@@ -3,6 +3,7 @@ import { motion } from "framer-motion"
 import styled from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTimes } from "@fortawesome/free-solid-svg-icons"
+import showdown from "showdown"
 
 import { ButtonExternalLink } from "./SharedStyledComponents"
 import {
@@ -144,9 +145,21 @@ const ButtonContainer = styled.div``
 const PinboardCard = ({ pin }) => {
   const [isSelected, setIsSelected] = useState(false)
 
+  const markdownConverter = new showdown.Converter({
+    openLinksInNewWindow: true,
+  })
+
   const title = pin.fields["Title"]
-  const desc = pin.fields["Short Description"]
-  const longDesc = pin.fields["Long Description"]
+  let desc = pin.fields["Short Description"]
+  let longDesc = pin.fields["Long Description"]
+  if (longDesc) {
+    // Airtable appears to escape all markdown chars with backslashes
+    longDesc = longDesc.replace(/\\/gi, "")
+  }
+  if (desc) {
+    // Airtable appears to escape all markdown chars with backslashes
+    desc = desc.replace(/\\/gi, "")
+  }
   const truncatedDesc = desc.slice(0, 90) + "..."
 
   const handleSelect = e => {
@@ -172,9 +185,27 @@ const PinboardCard = ({ pin }) => {
               <Title>{title}</Title>
               {isSelected && <CardIcon icon={faTimes} size="lg" />}
             </CardHeader>
-            {!isSelected && <Subtitle>{truncatedDesc}</Subtitle>}
-            {isSelected && <Subtitle>{desc}</Subtitle>}
-            {isSelected && <Subtitle>{longDesc}</Subtitle>}
+            {!isSelected && (
+              <Subtitle
+                dangerouslySetInnerHTML={{
+                  __html: markdownConverter.makeHtml(truncatedDesc),
+                }}
+              />
+            )}
+            {isSelected && (
+              <Subtitle
+                dangerouslySetInnerHTML={{
+                  __html: markdownConverter.makeHtml(desc),
+                }}
+              />
+            )}
+            {isSelected && (
+              <Subtitle
+                dangerouslySetInnerHTML={{
+                  __html: markdownConverter.makeHtml(longDesc),
+                }}
+              />
+            )}
           </div>
           {!isSelected && <FakeLink>View Details</FakeLink>}
           {isSelected && (
