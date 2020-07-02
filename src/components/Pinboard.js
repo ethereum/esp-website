@@ -28,18 +28,16 @@ const Pinboard = () => {
   }, [])
 
   return (
-    <>
+    <PinContainer>
       {pinboardState.loading && <h3>Loading...</h3>}
-
-      <PinContainer>
-        {pinboardState.pins.length &&
-          pinboardState.pins
-            .filter(
-              pin => pin.fields && pin.fields["Display on website"] === "Yes"
-            )
-            .map(pin => <PinboardCard pin={pin} key={pin.id} />)}
-      </PinContainer>
-    </>
+      {!pinboardState.loading &&
+        pinboardState.pins.length &&
+        pinboardState.pins
+          .filter(
+            pin => pin.fields && pin.fields["Display on website"] === "Yes"
+          )
+          .map(pin => <PinboardCard pin={pin} key={pin.id} />)}
+    </PinContainer>
   )
 }
 

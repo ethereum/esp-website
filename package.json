@@ -35,6 +35,7 @@
     "react-helmet": "^5.2.1",
     "react-select": "^3.0.8",
     "react-toast-notifications": "^2.4.0",
+    "showdown": "^1.9.1",
     "smooth-scroll": "^16.1.0",
     "styled-components": "^5.0.0"
   },
