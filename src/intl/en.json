@@ -158,7 +158,6 @@
       "privacy": "Privacy",
       "communications-2": "Communications infrastructure",
       "comm-info-2": "Privacy preserving communication at network and messaging layers. Use cases including:",
-      "answer-li-16": "Decentralized applications",
       "answer-li-17": "Decentralized applications",
       "answer-li-18": "Personal & enterprise message exchange",
       "answer-li-19": "Private transactions",
@@ -181,7 +180,7 @@
       "monitoring-info": "Network and smart contract monitoring tools."
     },
     "h2-usability": {
-      "usability": "usability",
+      "usability": "Usability",
       "friction-reduction": "Friction reduction",
       "answer-d-1": "Removing usability barriers and other impediments to adoption and use.",
       "mgmt": "Key management",

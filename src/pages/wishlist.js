@@ -166,9 +166,6 @@ const WishlistPage = () => {
                   <li>
                     <FormattedMessage id="page-wishlist.h2-capabilities.answer-li-10" />
                   </li>
-                  <li>
-                    <FormattedMessage id="page-wishlist.h2-capabilities.answer-li-10" />
-                  </li>
                 </UL>
               </div>
             </Item>
@@ -221,7 +218,6 @@ const WishlistPage = () => {
               <div>
                 <FormattedMessage id="page-wishlist.h2-privacy.comm-info-2" />
                 <UL>
-                  <FormattedMessage id="page-wishlist.h2-privacy.answer-li-16" />
                   <li>
                     <FormattedMessage id="page-wishlist.h2-privacy.answer-li-17" />
                   </li>
@@ -563,9 +559,9 @@ const WishlistPage = () => {
             <Link to="https://discord.gg/dtqe2TR">
               <FormattedMessage id="page-wishlist.pinboard.p2-link" />
             </Link>
-            . <FormattedMessage id="page-wishlist.pinboard.p2-2" />.
+            . <FormattedMessage id="page-wishlist.pinboard.p2-2" />
           </p>
-          <Pinboard/>
+          <Pinboard />
         </PageBody>
       </div>
     </>
