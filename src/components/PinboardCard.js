@@ -7,6 +7,7 @@ import showdown from "showdown"
 
 import { ButtonExternalLink } from "./SharedStyledComponents"
 import { useOnClickOutside } from "../hooks/useOnClickOutside"
+import { useKeyPress } from "../hooks/useKeyPress"
 import {
   colorOrange,
   colorRed,
@@ -148,7 +149,9 @@ const PinboardCard = ({ pin }) => {
   const [isModalOpen, setModalOpen] = useState(false)
   const ref = useRef()
 
+  // Close modal on outside clicks & `Escape` keypress
   useOnClickOutside(ref, () => setModalOpen(false))
+  useKeyPress(`Escape`, () => setModalOpen(false))
 
   const markdownConverter = new showdown.Converter({
     openLinksInNewWindow: true,
