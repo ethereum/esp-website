@@ -4,6 +4,7 @@ import { Link } from "gatsby-plugin-intl"
 import { FormattedMessage, useIntl } from "gatsby-plugin-intl"
 
 import PageMetadata from "../components/PageMetadata"
+import Pinboard from "../components/Pinboard"
 import { useState } from "react"
 import AccordionSection from "../components/Accordion"
 import {
@@ -551,6 +552,20 @@ const WishlistPage = () => {
             </Item>
           </AccordionSection>
           <HR />
+          <H2>
+            <FormattedMessage id="page-wishlist.pinboard.title" />
+          </H2>
+          <p>
+            <FormattedMessage id="page-wishlist.pinboard.p1" />
+          </p>
+          <p>
+            <FormattedMessage id="page-wishlist.pinboard.p2-1" />{" "}
+            <Link to="https://discord.gg/dtqe2TR">
+              <FormattedMessage id="page-wishlist.pinboard.p2-link" />
+            </Link>
+            . <FormattedMessage id="page-wishlist.pinboard.p2-1" />.
+          </p>
+          <Pinboard/>
         </PageBody>
       </div>
     </>
