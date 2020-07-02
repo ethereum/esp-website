@@ -168,7 +168,8 @@ const PinboardCard = ({ pin }) => {
     // Airtable appears to escape all markdown chars with backslashes
     desc = desc.replace(/\\/gi, "")
   }
-  const truncatedDesc = desc.slice(0, 90) + "..."
+  const truncatedDesc =
+    desc.length > 90 ? desc.slice(0, 90).trim() + "..." : desc
 
   const toggleModal = e => {
     // If user clicks on "X" icon, close modal
