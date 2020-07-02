@@ -563,7 +563,7 @@ const WishlistPage = () => {
             <Link to="https://discord.gg/dtqe2TR">
               <FormattedMessage id="page-wishlist.pinboard.p2-link" />
             </Link>
-            . <FormattedMessage id="page-wishlist.pinboard.p2-1" />.
+            . <FormattedMessage id="page-wishlist.pinboard.p2-2" />.
           </p>
           <Pinboard/>
         </PageBody>
