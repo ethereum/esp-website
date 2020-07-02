@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import { motion } from "framer-motion"
 import styled from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -6,6 +6,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons"
 import showdown from "showdown"
 
 import { ButtonExternalLink } from "./SharedStyledComponents"
+import { useOnClickOutside } from "../hooks/useOnClickOutside"
 import {
   colorOrange,
   colorRed,
@@ -57,7 +58,7 @@ const Overlay = ({ isActive }) => {
 }
 
 const openSpring = { type: "spring", stiffness: 100, damping: 30 }
-const closeSpring = { type: "spring", stiffness: 200, damping: 35 }
+const closeSpring = { type: "spring", stiffness: 100, damping: 35 }
 
 const Card = styled(motion.div)`
   height: 200px;
@@ -75,6 +76,7 @@ const Card = styled(motion.div)`
   }
 `
 
+// Modal container
 const CardContentContainer = styled.div`
   width: 100%;
   height: 100%;
@@ -143,7 +145,10 @@ const ButtonContainer = styled.div``
 
 // TODO createRef on card to close when user clicks outside of card
 const PinboardCard = ({ pin }) => {
-  const [isSelected, setIsSelected] = useState(false)
+  const [isModalOpen, setModalOpen] = useState(false)
+  const ref = useRef()
+
+  useOnClickOutside(ref, () => setModalOpen(false))
 
   const markdownConverter = new showdown.Converter({
     openLinksInNewWindow: true,
@@ -162,44 +167,45 @@ const PinboardCard = ({ pin }) => {
   }
   const truncatedDesc = desc.slice(0, 90) + "..."
 
-  const handleSelect = e => {
-    // If user clicks on "X" icon, close card & overlay
+  const toggleModal = e => {
+    // If user clicks on "X" icon, close modal
     if (e.target.tagName === "path") {
-      setIsSelected(false)
+      setModalOpen(false)
     } else {
-      setIsSelected(true)
+      setModalOpen(true)
     }
   }
 
   return (
     <Card>
-      <Overlay isActive={isSelected} />
-      <CardContentContainer className={isSelected ? "open" : "closed"}>
+      <Overlay isActive={isModalOpen} />
+      <CardContentContainer className={isModalOpen ? "open" : "closed"}>
         <CardContent
-          className={isSelected ? "open" : "closed"}
-          layoutTransition={isSelected ? openSpring : closeSpring}
-          onClick={handleSelect}
+          ref={ref}
+          className={isModalOpen ? "open" : "closed"}
+          layoutTransition={isModalOpen ? openSpring : closeSpring}
+          onClick={toggleModal}
         >
           <div>
             <CardHeader>
               <Title>{title}</Title>
-              {isSelected && <CardIcon icon={faTimes} size="lg" />}
+              {isModalOpen && <CardIcon icon={faTimes} size="lg" />}
             </CardHeader>
-            {!isSelected && (
+            {!isModalOpen && (
               <Subtitle
                 dangerouslySetInnerHTML={{
                   __html: markdownConverter.makeHtml(truncatedDesc),
                 }}
               />
             )}
-            {isSelected && (
+            {isModalOpen && (
               <Subtitle
                 dangerouslySetInnerHTML={{
                   __html: markdownConverter.makeHtml(desc),
                 }}
               />
             )}
-            {isSelected && (
+            {isModalOpen && (
               <Subtitle
                 dangerouslySetInnerHTML={{
                   __html: markdownConverter.makeHtml(longDesc),
@@ -207,8 +213,8 @@ const PinboardCard = ({ pin }) => {
               />
             )}
           </div>
-          {!isSelected && <FakeLink>View Details</FakeLink>}
-          {isSelected && (
+          {!isModalOpen && <FakeLink>View Details</FakeLink>}
+          {isModalOpen && (
             <ButtonContainer>
               <ButtonExternalLink
                 href="https://airtable.com/shrS0J3GQJms4w4Dz"
