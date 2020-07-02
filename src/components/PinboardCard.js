@@ -36,7 +36,7 @@ const FakeLink = styled.div`
 const StyledOverlay = styled(motion.div)`
   cursor: pointer;
   position: fixed;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.7);
   will-change: opacity;
   top: 0;
   bottom: 0;
@@ -103,6 +103,10 @@ const CardContent = styled(motion.div)`
   padding: 1rem;
   cursor: pointer;
 
+  &:hover {
+    background: #fcf3d9;
+  }
+
   z-index: 0;
   transform: none;
   pointer-events: auto;
@@ -113,6 +117,7 @@ const CardContent = styled(motion.div)`
   margin: 0 auto;
 
   &.open {
+    background: #ffffff;
     height: auto;
     max-height: 100%;
     z-index: 1000;
@@ -169,8 +174,6 @@ const PinboardCard = ({ pin }) => {
             </CardHeader>
             {!isSelected && <Subtitle>{truncatedDesc}</Subtitle>}
             {isSelected && <Subtitle>{desc}</Subtitle>}
-            {isSelected && <Subtitle>{longDesc}</Subtitle>}
-            {isSelected && <Subtitle>{longDesc}</Subtitle>}
             {isSelected && <Subtitle>{longDesc}</Subtitle>}
           </div>
           {!isSelected && <FakeLink>View Details</FakeLink>}
