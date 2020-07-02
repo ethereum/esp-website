@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTimes } from "@fortawesome/free-solid-svg-icons"
 
+import { ButtonExternalLink } from "./SharedStyledComponents"
 import {
   colorOrange,
   colorRed,
@@ -132,6 +133,8 @@ const CardIcon = styled(FontAwesomeIcon)`
   cursor: pointer;
 `
 
+const ButtonContainer = styled.div``
+
 // TODO createRef on card to close when user clicks outside of card
 const PinboardCard = ({ pin }) => {
   const [isSelected, setIsSelected] = useState(false)
@@ -171,6 +174,17 @@ const PinboardCard = ({ pin }) => {
             {isSelected && <Subtitle>{longDesc}</Subtitle>}
           </div>
           {!isSelected && <FakeLink>View Details</FakeLink>}
+          {isSelected && (
+            <ButtonContainer>
+              <ButtonExternalLink
+                href="https://airtable.com/shrS0J3GQJms4w4Dz"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Apply
+              </ButtonExternalLink>
+            </ButtonContainer>
+          )}
         </CardContent>
       </CardContentContainer>
     </Card>
