@@ -1,5 +1,6 @@
 ---
 title: Honduras Local Grants
+description: We’re thrilled to announce a Honduras-specific wave of Ethereum Foundation grants!
 lang: en
 img: ../../../images/honduras-header-english.png
 ---
