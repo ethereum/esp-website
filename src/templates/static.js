@@ -13,10 +13,12 @@ const StaticPage = ({ data }) => {
     <>
       <PageMetadata title={frontmatter.title} />
       <PageBody>
-        <Img
-          fluid={frontmatter.img.childImageSharp.fluid}
-          alt="Ecosystem Support Program Process"
-        />
+        {frontmatter.img && (
+          <Img
+            fluid={frontmatter.img.childImageSharp.fluid}
+            alt="Ecosystem Support Program Process"
+          />
+        )}
         <div dangerouslySetInnerHTML={{ __html: content.html }} />
       </PageBody>
     </>
