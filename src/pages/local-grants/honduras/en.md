@@ -1,6 +1,7 @@
 ---
 title: Honduras Local Grants
 lang: en
+img: ../../../images/honduras-header-english.png
 ---
 
 [Lea esta página en español](/es/local-grants/honduras)

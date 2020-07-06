@@ -1,6 +1,7 @@
 ---
 title: Fondos Locales para Honduras
 lang: es
+img: ../../../images/honduras-header-spanish.png
 ---
 
 [Read this page in English](/en/local-grants/honduras)
