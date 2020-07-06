@@ -221,7 +221,7 @@ const PinboardCard = ({ pin }) => {
           {isModalOpen && (
             <ButtonContainer>
               <ButtonExternalLink
-                href="https://airtable.com/shrS0J3GQJms4w4Dz"
+                href="https://esp-pinboard.paperform.co/"
                 target="_blank"
                 rel="noopener noreferrer"
               >

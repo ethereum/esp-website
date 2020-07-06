@@ -248,9 +248,11 @@
     "pinboard": {
       "title": "Pinboard",
       "p1": "Are you interested in contributing, but not sure where to get started? Together with the eth2 research team, we have put together some interesting problems for you to tackle. Whether you're working on your own or with a team, we encourage you to try your hand at any of these! Click on any of the items below for more details. Remember, no solution is too small to BUIDL!",
-      "p2-1": "If you have any lingering questions or simply want to discuss your approach to any of the prompts on the Pinboard, we encourage you to [email us](link to adaptable form) or reach out to us in #general on the",
-      "p2-link": "eth2 Discord",
-      "p2-2": "We are happy to guide you as you begin your journey into eth2."
+      "p2-1": "If you have any lingering questions or simply want to discuss your approach to any of the prompts on the Pinboard, we encourage you to",
+      "p2-link-1": "contact us",
+      "p2-2": "or reach out to us in #general on the",
+      "p2-link-2": "eth2 Discord",
+      "p2-3": "We are happy to guide you as you begin your journey into eth2."
     }
   },
   "page-explore": {
