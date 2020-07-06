@@ -21,7 +21,7 @@ const TwitterFeed = () => {
   useEffect(() => {
     const clientWidth = document.documentElement.clientWidth
     if (clientWidth < screenSizeIntS) {
-      setDimensions({ width: "300", height: "1000" })
+      setDimensions({ width: "300", height: "400" })
     }
 
     const script = document.createElement("script")
@@ -38,7 +38,6 @@ const TwitterFeed = () => {
             data-height={dimensions.height}
             data-width={dimensions.width}
             data-chrome="nofooter noborders"
-            data-tweet-limit="5"
             href="https://twitter.com/EF_ESP"
           >
             Tweets by EF_ESP
