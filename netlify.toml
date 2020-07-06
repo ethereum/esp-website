@@ -40,7 +40,7 @@
 # vanity URLs
 [[redirects]]
   from = "/honduras"
-  to = "/local-projects/es/honduras"
+  to = "/es/local-grants/honduras"
 
 # legacy site redirects
 [[redirects]]
