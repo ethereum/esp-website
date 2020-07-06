@@ -4,7 +4,6 @@ import { motion, useCycle, AnimatePresence } from "framer-motion"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import styled from "styled-components"
-import { useIntl } from "gatsby-plugin-intl"
 
 import MobileNavMenu from "./MobileNavMenu"
 import MobileNavLinks from "./MobileNavLinks"
@@ -118,7 +117,6 @@ const navItems = [
 const desktopNavItems = navItems.slice(1)
 
 const Nav = ({ hasShadow }) => {
-  const intl = useIntl()
   const data = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "favicons/114.png" }) {
