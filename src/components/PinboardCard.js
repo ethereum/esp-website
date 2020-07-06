@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react"
+import React, { useState, useRef } from "react"
 import { motion } from "framer-motion"
 import styled from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -135,6 +135,7 @@ const CardContent = styled(motion.div)`
 const CardHeader = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: ${props => (props.isModalOpen ? `2rem` : `0`)};
 `
 
 const CardIcon = styled(FontAwesomeIcon)`
@@ -144,7 +145,6 @@ const CardIcon = styled(FontAwesomeIcon)`
 
 const ButtonContainer = styled.div``
 
-// TODO createRef on card to close when user clicks outside of card
 const PinboardCard = ({ pin }) => {
   const [isModalOpen, setModalOpen] = useState(false)
   const ref = useRef()
@@ -191,7 +191,7 @@ const PinboardCard = ({ pin }) => {
           onClick={toggleModal}
         >
           <div>
-            <CardHeader>
+            <CardHeader isModalOpen={isModalOpen}>
               <Title>{title}</Title>
               {isModalOpen && <CardIcon icon={faTimes} size="lg" />}
             </CardHeader>
