@@ -37,6 +37,11 @@
 
 # REDIRECTS
 
+# vanity URLs
+[[redirects]]
+  from = "/honduras"
+  to = "/local-projects/es/honduras"
+
 # legacy site redirects
 [[redirects]]
   from = "/index.html"

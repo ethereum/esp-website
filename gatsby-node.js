@@ -3,7 +3,9 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const gatsbyConfig = require(`./gatsby-config.js`)
+
 const supportedLanguages = gatsbyConfig.siteMetadata.supportedLanguages
+const defaultLanguage = gatsbyConfig.siteMetadata.defaultLanguage
 
 // same function from 'gatsby-plugin-intl'
 const flattenMessages = (nestedMessages, prefix = "") => {
@@ -96,6 +98,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    if (!node.frontmatter.lang) {
+      console.error(
+        "Page is missing a `lang` frontmatter property: ",
+        node.fields.slug
+      )
+    }
+
     const component = node.fields.slug.includes("/projects/")
       ? path.resolve(`./src/templates/project-detail.js`)
       : path.resolve(`./src/templates/static.js`)
@@ -117,4 +126,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       },
     })
   })
+}
+
+// Delete page if not supported in language version
+exports.onCreatePage = ({ page, actions: { deletePage } }) => {
+  const lang = page.context.language
+
+  // Delete all page components that aren't english
+  if (lang !== defaultLanguage && page.component.includes(`/src/pages/`)) {
+    deletePage(page)
+  }
 }
