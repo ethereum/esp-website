@@ -13,5 +13,5 @@ export const useKeyPress = (targetKey, handler) => {
     return () => {
       window.removeEventListener("keydown", downHandler)
     }
-  }, []) // Empty array ensures that effect is only run on mount and unmount
+  }, ["downHandler"])
 }

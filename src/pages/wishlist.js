@@ -1,8 +1,8 @@
 import React from "react"
 import styled from "styled-components"
-import { Link } from "gatsby-plugin-intl"
 import { FormattedMessage, useIntl } from "gatsby-plugin-intl"
 
+import Link from "../components/Link"
 import PageMetadata from "../components/PageMetadata"
 import Pinboard from "../components/Pinboard"
 import { useState } from "react"
@@ -556,10 +556,14 @@ const WishlistPage = () => {
           </p>
           <p>
             <FormattedMessage id="page-wishlist.pinboard.p2-1" />{" "}
+            <Link to="https://esp-pinboard.paperform.co/">
+              <FormattedMessage id="page-wishlist.pinboard.p2-link-1" />
+            </Link>{" "}
+            <FormattedMessage id="page-wishlist.pinboard.p2-2" />{" "}
             <Link to="https://discord.gg/dtqe2TR">
-              <FormattedMessage id="page-wishlist.pinboard.p2-link" />
+              <FormattedMessage id="page-wishlist.pinboard.p2-link-2" />
             </Link>
-            . <FormattedMessage id="page-wishlist.pinboard.p2-2" />
+            . <FormattedMessage id="page-wishlist.pinboard.p2-3" />
           </p>
           <Pinboard />
         </PageBody>
