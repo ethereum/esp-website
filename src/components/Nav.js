@@ -4,11 +4,12 @@ import { motion, useCycle, AnimatePresence } from "framer-motion"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import styled from "styled-components"
-import { FormattedMessage, useIntl } from "gatsby-plugin-intl"
+import { useIntl } from "gatsby-plugin-intl"
 
 import MobileNavMenu from "./MobileNavMenu"
 import MobileNavLinks from "./MobileNavLinks"
 import Link from "./Link"
+import TranslatedString from "./TranslatedString"
 import * as styles from "../utils/styles"
 
 const StyledNav = styled(motion.nav)`
@@ -101,12 +102,14 @@ const MobileNavBackground = styled(motion.div)`
   width: 100%;
   background: ${styles.colorGrayLightest};
 `
+
+// TODO remove explicit `/en/` once we add translations
 const navItems = [
-  { to: "/", text: "page-home.title" },
-  { to: "/about/", text: "page-about.title" },
-  { to: "/faq/", text: "page-faq.title" },
-  { to: "/projects/", text: "page-projects.title" },
-  { to: "/wishlist/", text: "page-wishlist.title" },
+  { to: "/en/", text: "page-home.title" },
+  { to: "/en/about/", text: "page-about.title" },
+  { to: "/en/faq/", text: "page-faq.title" },
+  { to: "/en/projects/", text: "page-projects.title" },
+  { to: "/en/wishlist/", text: "page-wishlist.title" },
   {
     to: "https://blog.ethereum.org/category/ecosystem-support-program/",
     text: "blog",
@@ -139,14 +142,16 @@ const Nav = ({ hasShadow }) => {
       ref={containerRef}
     >
       <div>
-        <NavLinkMain to={`/${intl.locale}/`}>
+        {/* TODO replace once we add language support */}
+        {/* <NavLinkMain to={`/${intl.locale}/`}> */}
+        <NavLinkMain to="/en/">
           <Img
             fixed={data.file.childImageSharp.fixed}
             alt="Ethereum Ecosystem Support Program Logo"
           />
           <NavLogoText>
-            <FormattedMessage id="ecosystem" />{" "}
-            <FormattedMessage id="support" />
+            <TranslatedString id="ecosystem" />{" "}
+            <TranslatedString id="support" />
           </NavLogoText>
         </NavLinkMain>
       </div>
@@ -155,7 +160,7 @@ const Nav = ({ hasShadow }) => {
         {desktopNavItems.map((item, idx) => {
           return (
             <NavLink to={item.to} key={idx}>
-              <FormattedMessage id={item.text} />
+              <TranslatedString id={item.text} />
             </NavLink>
           )
         })}

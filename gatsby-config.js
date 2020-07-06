@@ -1,4 +1,4 @@
-const supportedLanguages = [`en`]
+const supportedLanguages = [`en`, `es`]
 const defaultLanguage = `en`
 
 module.exports = {
