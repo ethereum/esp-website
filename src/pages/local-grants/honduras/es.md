@@ -1,5 +1,6 @@
 ---
 title: Fondos Locales para Honduras
+description: Estamos emocionados de anunciarles una ola de fondos exclusivos para Honduras por parte del Ethereum Foundation
 lang: es
 img: ../../../images/honduras-header-spanish.png
 ---
