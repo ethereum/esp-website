@@ -5,7 +5,7 @@ lang: en
 img: ../../../images/honduras-header-english.png
 ---
 
-[Lea esta página en español](/es/local-grants/honduras)
+[Lee esta página en español](/es/local-grants/honduras)
 
 # 🦜 Ethereum Foundation: Announcing a Wave of Honduras Local Grants
 
