@@ -150,6 +150,9 @@ class IndexPage extends React.Component {
                 <p>
                   <FormattedMessage id="page-home.p-1" />
                 </p>
+                <p>
+                  <FormattedMessage id="page-home.p-2" />
+                </p>
               </Section>
               <H2 id="contact">
                 <FormattedMessage id="page-home.contact-us" />

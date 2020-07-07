@@ -19,10 +19,9 @@
     "title": "About",
     "h1": "About Ecosystem Support",
     "h2": "Our Mission",
-    "mission-1": "The Ecosystem Support Program is the branch of the Ethereum Foundation focused on supporting projects across the Ethereum ecosystem that contribute to the success and growth of the network and its community. ESP is an expansion of the original Ethereum Foundation Grants Program which mainly focused on financial support.",
-    "mission-2": "We support open source projects that benefit Ethereum, with a particular focus on universal tools, infrastructure, research and public goods. We aim to help out as many projects as we can - whether that means financial support, technical feedback, introductions, free access to tools and platforms, or even just a friendly conversation and a nudge in the right direction.",
-    "mission-3": "Our focus is on deploying our resources where they will have the biggest impact.",
-    "mission-4": "If you've got a project and want to see if ESP is a good fit",
+    "mission-1": "The Ecosystem Support Program exists to make a wide variety of resources more accessible to projects across the Ethereum ecosystem. We aim to deploy resources where they will have the biggest impact, with a particular focus on universal tools, infrastructure, research and public goods.",
+    "mission-2": "ESP is an outcome of the expansion of the original Ethereum Foundation Grants Program, which focused mainly on funding. ESP's open inquiry process is designed to connect individuals and teams at any stage of development with a broad range of support, whether that means grants, technical feedback, introductions, free access to tools and platforms, or even just a friendly conversation and a nudge in the right direction.",
+    "mission-3": "If you want to see if ESP is a good fit for you or your project",
     "recent-news": "Recent News"
   },
   "page-faq": {
@@ -108,7 +107,8 @@
     "title": "Home",
     "header": "An Ethereum Foundation Initiative",
     "h1": "Welcome!",
-    "p-1": "The Ethereum Foundation's Ecosystem Support Program exists to provide both financial and non-financial support to projects and entities within the greater Ethereum community, in order to support the success and growth of the ecosystem. The Ecosystem Support Program is an expansion of the original Ethereum Grants Program which mainly focused on financial support. Our focus is on deploying resources where they will have the biggest impact.",
+    "p-1": "The Ecosystem Support Program is a branch of the Ethereum Foundation focused on supporting projects and entities within the greater Ethereum community, in order to promote the success and growth of the ecosystem.",
+    "p-2": "We look for open source projects that benefit Ethereum, with a particular focus on universal tools, infrastructure, research and public goods. If you think your project might be a good fit, get in touch below!",
     "updates": "Sign up for updates",
     "contact-us": "Contact Us",
     "contact-us-desc": "Are you working on a specific project, or are you still exploring possibilities to get involved?",

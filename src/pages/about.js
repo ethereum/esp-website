@@ -38,16 +38,11 @@ const AboutPage = () => {
               <FormattedMessage id="page-about.mission-2" />
             </p>
             <p>
-              <i>
-                <FormattedMessage id="page-about.mission-3" />
-              </i>
-            </p>
-
-            <p>
-              <FormattedMessage id="page-about.mission-4" />,{" "}
+              <FormattedMessage id="page-about.mission-3" />,{" "}
               <Link to="/project/">
                 <FormattedMessage id="get-in-touch" />
               </Link>
+              {"!"}
             </p>
           </Section>
           <Section>
