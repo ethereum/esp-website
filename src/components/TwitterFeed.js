@@ -23,7 +23,7 @@ const Embed = styled.div`
 `
 
 const TwitterFeed = () => {
-  const [dimensions, setDimensions] = useState({ width: "600", height: "600" })
+  const [dimensions, setDimensions] = useState({ width: "600", height: "450" })
 
   useEffect(() => {
     const clientWidth = document.documentElement.clientWidth
