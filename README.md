@@ -17,7 +17,7 @@ This repository holds the codebase to our website, [esp.ethereum.foundation](htt
 2. Clone this project
 
 ```
-$ git clone git@github.com:samajammin/esp-website.git && cd esp-website
+$ git clone git@github.com:ethereum/esp-website.git && cd esp-website
 ```
 
 3. Install dependencies
