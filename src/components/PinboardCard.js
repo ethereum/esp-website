@@ -121,14 +121,21 @@ const CardContent = styled(motion.div)`
   margin: 0 auto;
 
   &.open {
+    padding: 0;
     background: #ffffff;
     height: auto;
     max-height: 100%;
     z-index: 1000;
     max-width: 700px;
-    overflow: scroll;
     cursor: auto;
-    padding: 2rem;
+  }
+`
+
+const CardCopy = styled.div`
+  height: 100%;
+  &.open {
+    padding: 1.5rem 1.5rem 0;
+    overflow: scroll;
   }
 `
 
@@ -143,7 +150,11 @@ const CardIcon = styled(FontAwesomeIcon)`
   cursor: pointer;
 `
 
-const ButtonContainer = styled.div``
+const ButtonContainer = styled.div`
+  bottom: 0;
+  position: sticky;
+  margin: 1rem 1.5rem 1.5rem;
+`
 
 const PinboardCard = ({ pin }) => {
   const [isModalOpen, setModalOpen] = useState(false)
@@ -190,7 +201,7 @@ const PinboardCard = ({ pin }) => {
           layoutTransition={isModalOpen ? openSpring : closeSpring}
           onClick={toggleModal}
         >
-          <div>
+          <CardCopy className={isModalOpen ? "open" : "closed"}>
             <CardHeader isModalOpen={isModalOpen}>
               <Title>{title}</Title>
               {isModalOpen && <CardIcon icon={faTimes} size="lg" />}
@@ -216,8 +227,8 @@ const PinboardCard = ({ pin }) => {
                 }}
               />
             )}
-          </div>
-          {!isModalOpen && <FakeLink>View Details</FakeLink>}
+            {!isModalOpen && <FakeLink>View Details</FakeLink>}
+          </CardCopy>
           {isModalOpen && (
             <ButtonContainer>
               <ButtonExternalLink
