@@ -76,10 +76,10 @@ Ten cuidado adicional llenando estos campos:
 (Si es posible, recomendamos que las aplicaciones se escriban en Inglés. Pero, también aceptaremos en Español)
 
 - **Nombre del Proyecto**:
-  - Por favor llena en **[Local Grants Honduras][categoría <número_categoría>]** `<Nombre_de_proyecto>`
+  - Por favor llena en **[Local Grants Honduras][Categoría <número_categoría>]** `<Nombre_de_proyecto>`
   - TIENES que especificar que es para **[Local Grants Honduras]**.
-  - TIENES que especificar a que categoria estas aplicando: **`[Categoría 1], [Categoría 2]`** o **`[Categoría 3]`**.
-  - Por ejemplo: `[Local Grants Honduras][categoría 1] Proyecto HondurasDAO`.
+  - TIENES que especificar a que categoria estas aplicando: **`[Categoría 1], [Categoría 2]`**
+  - Por ejemplo: `[Local Grants Honduras][Categoría 1] Proyecto HondurasDAO`.
 - **Descripción**:
   - Por favor **provee la mayor cantidad de información posible** y enlaces relacionados.
 

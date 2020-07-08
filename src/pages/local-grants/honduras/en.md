@@ -76,10 +76,10 @@ Please take extra care when filling these fields:
 (If possible, we encourage applications written in English. But will accept Spanish)
 
 - **Project name**:
-  - Please fill in **[Local Grants Honduras][group <group_number>]** `<your_project_name>`
+  - Please fill in **[Local Grants Honduras][Group <group_number>]** `<your_project_name>`
   - You MUST specify it’s for **[Local Grants Honduras]**.
   - You MUST specify which group are you applying: **`[Group 1]`** or **`[Group 2]`**.
-  - For example: `[Local Grants Honduras][group 1] HondurasDAO Project`.
+  - For example: `[Local Grants Honduras][Group 1] HondurasDAO Project`.
 - **Project description**:
   - Please provide **as much information as possible** and related links.
 
