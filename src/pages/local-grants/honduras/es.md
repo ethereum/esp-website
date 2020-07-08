@@ -78,7 +78,7 @@ Ten cuidado adicional llenando estos campos:
 - **Nombre del Proyecto**:
   - Por favor llena en **[Local Grants Honduras][Categoría <número_categoría>]** `<Nombre_de_proyecto>`
   - TIENES que especificar que es para **[Local Grants Honduras]**.
-  - TIENES que especificar a que categoria estas aplicando: **`[Categoría 1], [Categoría 2]`**
+  - TIENES que especificar a que categoria estas aplicando: **`[Categoría 1], [Categoría 2]`**.
   - Por ejemplo: `[Local Grants Honduras][Categoría 1] Proyecto HondurasDAO`.
 - **Descripción**:
   - Por favor **provee la mayor cantidad de información posible** y enlaces relacionados.
