@@ -133,6 +133,9 @@ const CardContent = styled(motion.div)`
 
 const CardCopy = styled.div`
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   &.open {
     padding: 1.5rem 1.5rem 0;
     overflow-y: scroll;
