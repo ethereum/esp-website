@@ -136,28 +136,29 @@ const CardCopy = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  &.open {
-    padding: 1.5rem 1.5rem 0;
-    overflow-y: scroll;
+`
 
-    /* Make scrollbar always visible */
-    ::-webkit-scrollbar {
-      -webkit-appearance: none;
-      width: 0.5rem;
-    }
+const CardCopyOpen = styled(CardCopy)`
+  padding: 1.5rem 1.5rem 0;
+  overflow-y: scroll;
 
-    ::-webkit-scrollbar-thumb {
-      border-radius: 4px;
-      background-color: rgba(0, 0, 0, 0.5);
-      box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
-    }
+  /* Make scrollbar always visible */
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 0.5rem;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
   }
 `
 
 const CardHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: ${props => (props.isModalOpen ? `2rem` : `0`)};
+  margin-bottom: 2rem;
 `
 
 const CardIcon = styled(FontAwesomeIcon)`
@@ -216,44 +217,45 @@ const PinboardCard = ({ pin }) => {
           layoutTransition={isModalOpen ? openSpring : closeSpring}
           onClick={toggleModal}
         >
-          <CardCopy className={isModalOpen ? "open" : "closed"}>
-            <CardHeader isModalOpen={isModalOpen}>
+          {isModalOpen && (
+            <>
+              <CardCopyOpen>
+                <CardHeader>
+                  <Title>{title}</Title>
+                  <CardIcon icon={faTimes} size="lg" />
+                </CardHeader>
+                <Subtitle
+                  dangerouslySetInnerHTML={{
+                    __html: markdownConverter.makeHtml(desc),
+                  }}
+                />
+                <Subtitle
+                  dangerouslySetInnerHTML={{
+                    __html: markdownConverter.makeHtml(longDesc),
+                  }}
+                />
+              </CardCopyOpen>
+              <ButtonContainer>
+                <ButtonExternalLink
+                  href="https://esp-pinboard.paperform.co/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Apply
+                </ButtonExternalLink>
+              </ButtonContainer>
+            </>
+          )}
+          {!isModalOpen && (
+            <CardCopy>
               <Title>{title}</Title>
-              {isModalOpen && <CardIcon icon={faTimes} size="lg" />}
-            </CardHeader>
-            {!isModalOpen && (
               <Subtitle
                 dangerouslySetInnerHTML={{
                   __html: markdownConverter.makeHtml(truncatedDesc),
                 }}
               />
-            )}
-            {isModalOpen && (
-              <Subtitle
-                dangerouslySetInnerHTML={{
-                  __html: markdownConverter.makeHtml(desc),
-                }}
-              />
-            )}
-            {isModalOpen && (
-              <Subtitle
-                dangerouslySetInnerHTML={{
-                  __html: markdownConverter.makeHtml(longDesc),
-                }}
-              />
-            )}
-            {!isModalOpen && <FakeLink>View Details</FakeLink>}
-          </CardCopy>
-          {isModalOpen && (
-            <ButtonContainer>
-              <ButtonExternalLink
-                href="https://esp-pinboard.paperform.co/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Apply
-              </ButtonExternalLink>
-            </ButtonContainer>
+              <FakeLink>View Details</FakeLink>
+            </CardCopy>
           )}
         </CardContent>
       </CardContentContainer>
