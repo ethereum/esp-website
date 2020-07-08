@@ -4,6 +4,8 @@ import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 import { useIntl } from "gatsby-plugin-intl"
 
+import { getDefaultMessage } from "../utils/translations"
+
 const PageMetadata = ({ description, meta, title }) => {
   const { site } = useStaticQuery(
     graphql`
@@ -21,13 +23,23 @@ const PageMetadata = ({ description, meta, title }) => {
 
   const intl = useIntl()
 
-  const desc = description || intl.formatMessage({ id: "site-description" })
+  const desc =
+    description ||
+    intl.formatMessage({
+      id: "site-description",
+      defaultMessage: getDefaultMessage("site-description"),
+    })
+
+  const siteTitle = intl.formatMessage({
+    id: "site-title",
+    defaultMessage: getDefaultMessage("site-title"),
+  })
 
   return (
     <Helmet
       htmlAttributes={{ lang: intl.locale }}
       title={title}
-      titleTemplate={`%s | ${intl.formatMessage({ id: "site-title" })}`}
+      titleTemplate={`%s | ${siteTitle}`}
       meta={[
         {
           name: `description`,
