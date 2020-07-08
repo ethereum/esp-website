@@ -138,7 +138,7 @@ const CardCopy = styled.div`
   justify-content: space-between;
 `
 
-const CardCopyOpen = styled(CardCopy)`
+const CardCopyOpen = styled.div`
   padding: 1.5rem 1.5rem 0;
   overflow-y: scroll;
 
