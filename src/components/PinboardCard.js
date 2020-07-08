@@ -91,7 +91,7 @@ const CardContentContainer = styled.div`
     right: 0;
     position: fixed;
     z-index: 1000;
-    overflow: hidden;
+    overflow-y: hidden;
     padding: 10% 0;
   }
 `
@@ -115,7 +115,7 @@ const CardContent = styled(motion.div)`
   transform: none;
   pointer-events: auto;
   position: relative;
-  overflow: hidden;
+  overflow-y: hidden;
   width: 100%;
   height: 100%;
   margin: 0 auto;
@@ -135,7 +135,19 @@ const CardCopy = styled.div`
   height: 100%;
   &.open {
     padding: 1.5rem 1.5rem 0;
-    overflow: scroll;
+    overflow-y: scroll;
+
+    /* Make scrollbar always visible */
+    ::-webkit-scrollbar {
+      -webkit-appearance: none;
+      width: 0.5rem;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      background-color: rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+    }
   }
 `
 
