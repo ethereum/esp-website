@@ -73,8 +73,8 @@ exports.handler = async function(event, context) {
       event: "Grantee form submitted",
       properties,
       integrations: {
-        Salesforce: true,
-        MailChimp: false,
+        Salesforce: false,
+        MailChimp: true,
       },
     })
 

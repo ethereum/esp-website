@@ -78,8 +78,8 @@ exports.handler = async function(event, context) {
         Impact: params.impact,
       },
       integrations: {
-        Salesforce: true,
-        MailChimp: false,
+        Salesforce: false,
+        MailChimp: true,
       },
     })
 
