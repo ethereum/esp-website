@@ -49,34 +49,46 @@ exports.handler = async function(event, context) {
       }
     }
 
+    const traits = {
+      lname: params.name, // Salesforce requires LastName field
+      Email: dedupedEmail,
+      Company: params.projectName, // Salesforce requires Company field
+      City: params.city,
+      Country: params.country,
+      LeadSource: "Website Form",
+      Status: "New",
+      // Custom fields
+      Team_Profile: params.teamProfile,
+      Previous_Work: params.previousWork,
+      Referral_Source: params.referralSource,
+      Referrals: params.referralName,
+      Type_of_Inquiry: params.challenges
+        ? "Project"
+        : "Exploring Possibilities",
+      // Explore custom fields
+      Area_of_Expertise: params.areaOfExpertise,
+      Why_Ethereum: params.whyEthereum,
+      Recent_Projects_or_Developments: params.recentProjectsOrDevelopments,
+      Questions: params.questions,
+      // Project custom fields
+      Project_Description: params.projectDescription,
+      Challenges: params.challenges,
+      Impact: params.impact,
+    }
+
+
+    // Mailchimp has maximum length of 10 for record names
+    for (const k of Object.keys(traits)) {
+      if (k.length > 10) {
+        const newKey = k.slice(0, 10)
+        traits[newKey] = traits[k]
+        delete traits[k]
+      }
+    }
+
     const salesforceResp = await instance.post(baseURL, {
       userId: userId,
-      traits: {
-        LastName: params.name, // Salesforce requires LastName field
-        Email: dedupedEmail,
-        Company: params.projectName, // Salesforce requires Company field
-        City: params.city,
-        Country: params.country,
-        LeadSource: "Website Form",
-        Status: "New",
-        // Custom fields
-        Team_Profile: params.teamProfile,
-        Previous_Work: params.previousWork,
-        Referral_Source: params.referralSource,
-        Referrals: params.referralName,
-        Type_of_Inquiry: params.challenges
-          ? "Project"
-          : "Exploring Possibilities",
-        // Explore custom fields
-        Area_of_Expertise: params.areaOfExpertise,
-        Why_Ethereum: params.whyEthereum,
-        Recent_Projects_or_Developments: params.recentProjectsOrDevelopments,
-        Questions: params.questions,
-        // Project custom fields
-        Project_Description: params.projectDescription,
-        Challenges: params.challenges,
-        Impact: params.impact,
-      },
+      traits,
       integrations: {
         Salesforce: false,
         MailChimp: true,
