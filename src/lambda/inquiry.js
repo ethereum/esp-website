@@ -54,7 +54,7 @@ exports.handler = async function(event, context) {
       traits: {
         LastName: params.name, // Salesforce requires LastName field
         Email: dedupedEmail,
-        Company: params.projectName, // Salesforce requires Company field
+        Company: params.projectName || params.name, // Salesforce requires Company field
         City: params.city,
         Country: params.country,
         LeadSource: "Website Form",
