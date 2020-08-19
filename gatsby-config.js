@@ -1,13 +1,16 @@
-const supportedLanguages = [`en`, `es`]
+const translations = require("./src/utils/translations")
+
+const supportedLanguages = translations.supportedLanguages
 const defaultLanguage = `en`
+const siteUrl = `https://esp.ethereum.foundation`
 
 module.exports = {
   siteMetadata: {
     // `title` & `description` pulls from respective ${lang}.json files in PageMetadata.js
     title: `Ethereum Ecosystem Support Program`,
     description: `The Ethereum Ecosystem Support Program provides financial and non-financial support for projects working to accelerate the growth of Ethereum.`,
-    url: "https://esp.ethereum.foundation",
-    siteUrl: "https://esp.ethereum.foundation", // sitemap
+    url: siteUrl,
+    siteUrl, // for sitemap generation
     author: `@EF_ESP`,
     image:
       "https://user-images.githubusercontent.com/8097623/69177629-c137a400-0abc-11ea-9bcd-da3ba03d2688.png",
@@ -17,6 +20,12 @@ module.exports = {
   plugins: [
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-react-helmet-canonical-urls`,
+      options: {
+        siteUrl,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

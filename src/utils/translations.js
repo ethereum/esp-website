@@ -1,5 +1,7 @@
 const defaultStrings = require("../intl/en.json")
 
+const supportedLanguages = [`en`, `es`]
+
 // Splits key strings to access nested JSON objects
 const resolve = (path, obj) => {
   return path.split(".").reduce((prev, curr) => {
@@ -20,3 +22,4 @@ const getDefaultMessage = key => {
 
 // Must export using ES5 to import in gatsby-node.js
 module.exports.getDefaultMessage = getDefaultMessage
+module.exports.supportedLanguages = supportedLanguages
