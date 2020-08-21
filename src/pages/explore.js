@@ -149,6 +149,7 @@ const ExplorePage = () => {
               name="name"
               value={formState.name}
               onChange={handleInputChange}
+              maxLength="150"
             />
           </Label>
           <Label>
@@ -160,6 +161,7 @@ const ExplorePage = () => {
               name="contactEmail"
               value={formState.contactEmail}
               onChange={handleInputChange}
+              maxLength="150"
             />
           </Label>
           <Label>
@@ -176,6 +178,7 @@ const ExplorePage = () => {
               name="projectName"
               value={formState.projectName}
               onChange={handleInputChange}
+              maxLength="150"
             />
           </Label>
           <Label>
@@ -254,6 +257,7 @@ const ExplorePage = () => {
               name="questions"
               value={formState.questions}
               onChange={handleInputChange}
+              maxLength="255"
             />
           </Label>
 
@@ -271,9 +275,9 @@ const ExplorePage = () => {
             <Input
               type="text"
               name="city"
-              maxLength="40"
               value={formState.city}
               onChange={handleInputChange}
+              maxLength="40"
             />
           </Label>
 
@@ -296,6 +300,7 @@ const ExplorePage = () => {
               name="referralName"
               value={formState.referralName}
               onChange={handleInputChange}
+              maxLength="150"
             />
           </Label>
 

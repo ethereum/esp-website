@@ -52,6 +52,7 @@
   to = "/project/"
 
 # i18n redirects
+# Force because the files exist (root paths still resolve to English)
 [[redirects]]
   from = "/"
   to = "/en/"

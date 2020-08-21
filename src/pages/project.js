@@ -143,6 +143,7 @@ const ProjectPage = () => {
               name="projectName"
               value={formState.projectName}
               onChange={handleInputChange}
+              maxLength="150"
             />
           </Label>
           <Label>
@@ -234,6 +235,7 @@ const ProjectPage = () => {
               name="name"
               value={formState.name}
               onChange={handleInputChange}
+              maxLength="150"
             />
           </Label>
           <Label>
@@ -245,6 +247,7 @@ const ProjectPage = () => {
               name="contactEmail"
               value={formState.contactEmail}
               onChange={handleInputChange}
+              maxLength="150"
             />
           </Label>
 
@@ -262,9 +265,9 @@ const ProjectPage = () => {
             <Input
               type="text"
               name="city"
-              maxLength="40"
               value={formState.city}
               onChange={handleInputChange}
+              maxLength="40"
             />
           </Label>
 
@@ -287,6 +290,7 @@ const ProjectPage = () => {
               name="referralName"
               value={formState.referralName}
               onChange={handleInputChange}
+              maxLength="150"
             />
           </Label>
 
