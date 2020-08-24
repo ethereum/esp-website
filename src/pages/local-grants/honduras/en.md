@@ -11,9 +11,9 @@ img: ../../../images/honduras-header-english.png
 
 Hola Querida Comunidad!
 
-We’re thrilled to announce a Honduras-specific wave of Ethereum Foundation grants! This is a special, community-centered initiative to reward applicants building or planning to build Ethereum-based projects 🌎 😃.
+Thank you for visiting our Local Grants Honduras home! As of August 20, 2020 this special program has ended. However, if you missed the deadline, you can still submit a general support inquiry for your project or idea [here](https://esp.ethereum.foundation/en/project/) through the [Ecosystem Support Program (ESP)](/en/) 🌎 😃!
 
-This wave of local grants is a complement to the Ethereum Foundation’s [Ecosystem Support Program (ESP)](/en/). The goal of the initiative is to encourage ecosystem development in your community and raise awareness of the larger Ethereum ecosystem 🌎 😃.
+ESP is the branch of the Ethereum Foundation focused on supporting projects and entities within the greater Ethereum community, in order to promote the success and growth of the ecosystem. If you're looking for support, [please get in touch](https://esp.ethereum.foundation/en/project/)! Thank you, Honduras 🌎 😃.
 
 ## 📣 Deadline: Thursday August 20th, 2020, 23:59:59 (CST time)
 
