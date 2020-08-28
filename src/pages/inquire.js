@@ -371,6 +371,11 @@ const InquirePage = () => {
                 />
                 <FormattedMessage id="subscribe" />
               </Checkbox>
+              <div>
+                <Button disabled={!isValid} type="submit">
+                  <FormattedMessage id="page-project.button" />
+                </Button>
+              </div>
             </div>
           )}
           {formState.exploreOrProject === "explore" && (
@@ -559,7 +564,6 @@ const InquirePage = () => {
                 />
                 <FormattedMessage id="subscribe" />
               </Checkbox>
-
               <div>
                 <Button disabled={!isValid} type="submit">
                   <FormattedMessage id="page-project.button" />
