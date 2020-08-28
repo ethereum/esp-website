@@ -161,11 +161,8 @@ class IndexPage extends React.Component {
                 <FormattedMessage id="page-home.contact-us-desc" />
               </p>
               <ButtonContainer>
-                <ButtonLink to={`${this.props.intl.locale}/project/`}>
-                  <FormattedMessage id="page-home.specific-project" />
-                </ButtonLink>
-                <ButtonLink to={`${this.props.intl.locale}/explore/`}>
-                  <FormattedMessage id="page-home.exploring-possibilities" />
+                <ButtonLink to={`${this.props.intl.locale}/inquire/`}>
+                  <FormattedMessage id="page-home.inquire" />
                 </ButtonLink>
               </ButtonContainer>
               <Section id="newsletter">
