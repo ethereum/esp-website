@@ -107,6 +107,11 @@ export const CheckboxInput = styled.input`
   transform: scale(1.5);
 `
 
+export const RadioContainer = styled.div`
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+`
+
 export const RadioInputContainer = styled.div`
   display: flex;
   align-items: center;
@@ -115,6 +120,16 @@ export const RadioInputContainer = styled.div`
     margin-right: 1rem;
     margin-top: 0;
   }
+`
+
+export const RadioPrompt = styled.div`
+  margin-bottom: 1rem;
+  font-weight: bold;
+`
+
+export const RadioLabel = styled.label`
+  display: flex;
+  align-items: center;
 `
 
 export const TextArea = styled.textarea`

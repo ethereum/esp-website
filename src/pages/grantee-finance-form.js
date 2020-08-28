@@ -12,13 +12,12 @@ import {
   TextArea,
   Button,
   FormHeader,
+  RadioPrompt,
+  RadioContainer,
+  RadioLabel,
   RadioInputContainer,
   Required,
 } from "../components/SharedStyledComponents"
-
-const PaymentSpan = styled.span`
-  margin-bottom: 8px;
-`
 
 const bankRequiredFields = [
   "beneficiaryName",
@@ -184,29 +183,33 @@ const ExplorePage = () => {
           </p>
         </FormHeader>
         <Form onSubmit={handleSubmit}>
-          <Label>
-            <PaymentSpan>
+          <RadioContainer>
+            <RadioPrompt>
               Payment preference <Required>*</Required>
-            </PaymentSpan>
+            </RadioPrompt>
             <RadioInputContainer>
-              <Input
-                type="radio"
-                name="ethOrFiat"
-                value="eth"
-                onChange={handleInputChange}
-              />
-              <div>Receive ETH/DAI</div>
+              <RadioLabel>
+                <Input
+                  type="radio"
+                  name="ethOrFiat"
+                  value="eth"
+                  onChange={handleInputChange}
+                />
+                <div>Receive ETH/DAI</div>
+              </RadioLabel>
             </RadioInputContainer>
             <RadioInputContainer>
-              <Input
-                type="radio"
-                name="ethOrFiat"
-                value="fiat"
-                onChange={handleInputChange}
-              />
-              <div>Receive Fiat</div>
+              <RadioLabel>
+                <Input
+                  type="radio"
+                  name="ethOrFiat"
+                  value="fiat"
+                  onChange={handleInputChange}
+                />
+                <div>Receive Fiat</div>
+              </RadioLabel>
             </RadioInputContainer>
-          </Label>
+          </RadioContainer>
 
           {formState.ethOrFiat && (
             <div>
@@ -382,29 +385,33 @@ const ExplorePage = () => {
 
               {formState.ethOrFiat === "eth" && (
                 <div>
-                  <Label>
-                    <PaymentSpan>
+                  <RadioContainer>
+                    <RadioPrompt>
                       Payment preference <Required>*</Required>
-                    </PaymentSpan>
+                    </RadioPrompt>
                     <RadioInputContainer>
-                      <Input
-                        type="radio"
-                        name="ethOrDai"
-                        value="eth"
-                        onChange={handleInputChange}
-                      />
-                      <div>Receive ETH</div>
+                      <RadioLabel>
+                        <Input
+                          type="radio"
+                          name="ethOrDai"
+                          value="eth"
+                          onChange={handleInputChange}
+                        />
+                        <div>Receive ETH</div>
+                      </RadioLabel>
                     </RadioInputContainer>
                     <RadioInputContainer>
-                      <Input
-                        type="radio"
-                        name="ethOrDai"
-                        value="dai"
-                        onChange={handleInputChange}
-                      />
-                      <div>Receive DAI</div>
+                      <RadioLabel>
+                        <Input
+                          type="radio"
+                          name="ethOrDai"
+                          value="dai"
+                          onChange={handleInputChange}
+                        />
+                        <div>Receive DAI</div>
+                      </RadioLabel>
                     </RadioInputContainer>
-                  </Label>
+                  </RadioContainer>
 
                   {formState.ethOrDai === "eth" && (
                     <Label>

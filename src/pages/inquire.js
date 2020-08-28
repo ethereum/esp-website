@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import { navigate } from "gatsby"
-import styled from "styled-components"
 import { useToasts } from "react-toast-notifications"
 import Select from "react-select"
 import { FormattedMessage, useIntl } from "gatsby-plugin-intl"
@@ -17,6 +16,9 @@ import {
   TextArea,
   Button,
   FormHeader,
+  RadioPrompt,
+  RadioContainer,
+  RadioLabel,
   RadioInputContainer,
   Required,
 } from "../components/SharedStyledComponents"
@@ -29,11 +31,8 @@ const referralSourceOptions = REFERRAL_SOURCES.map(source => {
   return { value: source, label: source, name: "referralSource" }
 })
 
-const IntroSpan = styled.span`
-  margin-bottom: 8px;
-`
-
 const exploreRequiredFields = [
+  "exploreOrProject",
   "name",
   "contactEmail",
   "teamProfile",
@@ -42,6 +41,7 @@ const exploreRequiredFields = [
   "recentProjectsOrDevelopments",
 ]
 const projectRequiredFields = [
+  "exploreOrProject",
   "projectDescription",
   "teamProfile",
   "impact",
@@ -166,32 +166,36 @@ const InquirePage = () => {
           </p>
         </FormHeader>
         <Form onSubmit={handleSubmit}>
-          <Label>
-            <IntroSpan>
+          <RadioContainer>
+            <RadioPrompt>
               Are you looking for support on a specific project, or are you
               still exploring possibilities to get involved?{" "}
               <Required>*</Required>
-            </IntroSpan>
+            </RadioPrompt>
             {/* TODO fix - clicking on text should change radio input */}
             <RadioInputContainer>
-              <Input
-                type="radio"
-                name="exploreOrProject"
-                value="project"
-                onChange={handleInputChange}
-              />
-              <div>Specific project</div>
+              <RadioLabel>
+                <Input
+                  type="radio"
+                  name="exploreOrProject"
+                  value="project"
+                  onChange={handleInputChange}
+                />
+                <div>Specific project</div>
+              </RadioLabel>
             </RadioInputContainer>
             <RadioInputContainer>
-              <Input
-                type="radio"
-                name="exploreOrProject"
-                value="explore"
-                onChange={handleInputChange}
-              />
-              <div>Exploring possibilities</div>
+              <RadioLabel>
+                <Input
+                  type="radio"
+                  name="exploreOrProject"
+                  value="explore"
+                  onChange={handleInputChange}
+                />
+                <div>Exploring possibilities</div>
+              </RadioLabel>
             </RadioInputContainer>
-          </Label>
+          </RadioContainer>
 
           {formState.exploreOrProject === "project" && (
             <div>
