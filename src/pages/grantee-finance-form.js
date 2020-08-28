@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { navigate } from "gatsby"
 import { useToasts } from "react-toast-notifications"
-import styled from "styled-components"
 
 import PageMetadata from "../components/PageMetadata"
 import {
