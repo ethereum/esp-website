@@ -107,6 +107,16 @@ export const CheckboxInput = styled.input`
   transform: scale(1.5);
 `
 
+export const RadioInputContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  input {
+    margin-right: 1rem;
+    margin-top: 0;
+  }
+`
+
 export const TextArea = styled.textarea`
   margin-top: 8px;
   padding: 8px;

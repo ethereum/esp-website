@@ -5,7 +5,7 @@ import { FormattedMessage } from "gatsby-plugin-intl"
 import styled from "styled-components"
 import Img from "gatsby-image"
 
-import { screenSizeM } from "../utils/styles"
+import { screenSizeL } from "../utils/styles"
 import Link from "./Link"
 
 const List = styled(motion.ul)`
@@ -20,8 +20,8 @@ const List = styled(motion.ul)`
   flex-direction: column;
   align-items: center;
 
-  /* Only display on mobile */
-  @media (min-width: ${screenSizeM}) {
+  /* Only display on smaller screens */
+  @media (min-width: ${screenSizeL}) {
     display: none;
   }
 `

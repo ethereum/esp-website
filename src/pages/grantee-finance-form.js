@@ -12,18 +12,9 @@ import {
   TextArea,
   Button,
   FormHeader,
+  RadioInputContainer,
   Required,
 } from "../components/SharedStyledComponents"
-
-const RadioInputContainer = styled.div`
-  display: flex;
-  align-items: center;
-
-  input {
-    margin-right: 1rem;
-    margin-top: 0;
-  }
-`
 
 const PaymentSpan = styled.span`
   margin-bottom: 8px;

@@ -300,6 +300,28 @@
     "support-p": "Did anyone recommend that you contact Ecosystem Support? If so, who?",
     "button": "Submit"
   },
+  "page-inquiry": {
+    "title": "Inquire",
+    "h1": "Specific Project",
+    "description": "Tell us a bit about your project goals, motivations, needs, challenges, and any other information you feel is pertinent for us to know. You'll hear back from someone on the Ecosystem Support team very soon! We only collect the following information submitted below and will not use or share for any purposes other than evaluation.",
+    "proj-name": "Project name",
+    "proj-desc": "Project description",
+    "proj-success": "What are you working on? What does success look like for your project? (2-3 short paragraphs)",
+    "profile": "Team profile",
+    "team": "Who are the members of your team? Please write or link to bios.",
+    "impact": "Impact",
+    "proj-impact": "What key problem or need do you hope to address? How will your work impact the larger Ethereum ecosystem? Who will benefit from your work?",
+    "challenges": "Needs and Challenges",
+    "challenges-info": "What are the most significant obstacles facing your project or your team right now? What are some of your most pressing needs?",
+    "prev-work-links": "Please provide links to published code, research, or other documentation of what you're working on.",
+    "prev-work": "Previous work",
+    "contact-person": "Contact person",
+    "contact-p-country": "Where is your contact person based (country)?",
+    "contact-p-city": "Where is your contact person based (city)?",
+    "support": "How did you hear about Ecosystem Support?",
+    "support-p": "Did anyone recommend that you contact Ecosystem Support? If so, who?",
+    "button": "Submit"
+  },
   "page-project-detail": {
     "grant-received": "Grant Received",
     "back": "Back to featured projects list",

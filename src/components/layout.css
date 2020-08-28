@@ -650,7 +650,8 @@ pre tt:after {
   background-image: url("../images/lines.svg");
 }
 
-@media (max-width: 760px) {
+/* styles.screenSizeL */
+@media (max-width: 1024px) {
   .line.bottom {
     height: 18px;
   }
