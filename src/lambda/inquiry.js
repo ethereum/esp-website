@@ -64,9 +64,10 @@ exports.handler = async function(event, context) {
         Previous_Work: params.previousWork,
         Referral_Source: params.referralSource,
         Referrals: params.referralName,
-        Type_of_Inquiry: params.challenges
-          ? "Project"
-          : "Exploring Possibilities",
+        Type_of_Inquiry:
+          params.exploreOrProject === "project"
+            ? "Project"
+            : "Exploring Possibilities",
         // Explore custom fields
         Area_of_Expertise: params.areaOfExpertise,
         Why_Ethereum: params.whyEthereum,

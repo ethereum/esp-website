@@ -32,7 +32,7 @@ const NavLinkMain = styled(Link)`
 
 const NavLinks = styled.div`
   /* Hide & display MenuToggle */
-  @media (max-width: ${styles.screenSizeM}) {
+  @media (max-width: ${styles.screenSizeL}) {
     display: none;
   }
 `
@@ -66,7 +66,7 @@ const NavLink = styled(Link)`
 const NavLogoText = styled.div`
   margin: 0;
   margin-left: 5px;
-  @media (max-width: ${styles.screenSizeM}) {
+  @media (max-width: ${styles.screenSizeL}) {
     display: flex;
     flex-direction: column;
   }
@@ -109,6 +109,7 @@ const navItems = [
   { to: "/en/faq/", text: "page-faq.title" },
   { to: "/en/projects/", text: "page-projects.title" },
   { to: "/en/wishlist/", text: "page-wishlist.title" },
+  { to: "/en/inquire/", text: "page-inquire.title" },
   {
     to: "https://blog.ethereum.org/category/ecosystem-support-program/",
     text: "blog",

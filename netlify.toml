@@ -49,7 +49,7 @@
   force = true
 [[redirects]]
   from = "/application.html"
-  to = "/project/"
+  to = "/en/inquire/"
 
 # i18n redirects
 # Force because the files exist (root paths still resolve to English)
@@ -79,7 +79,7 @@
   force = true
 [[redirects]]
   from = "/project/"
-  to = "/en/project/"
+  to = "/en/inquire/"
   force = true
 [[redirects]]
   from = "/projects/ethereum-on-arm/"
@@ -91,7 +91,7 @@
   force = true
 [[redirects]]
   from = "/explore/"
-  to = "/en/explore/"
+  to = "/en/inquire/"
   force = true
 [[redirects]]
   from = "/projects/ethers-js/"
@@ -109,3 +109,11 @@
   from = "/projects/circom/link"
   to = "/en/projects/circom/link"
   force = true
+
+  # form merge redirects
+[[redirects]]
+  from = "/en/project/"
+  to = "/en/inquire/"
+[[redirects]]
+  from = "/en/explore/"
+  to = "/en/inquire/"

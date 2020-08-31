@@ -111,9 +111,8 @@
     "p-2": "We look for open source projects that benefit Ethereum, with a particular focus on universal tools, infrastructure, research and public goods. If you think your project might be a good fit, get in touch below!",
     "updates": "Sign up for updates",
     "contact-us": "Contact Us",
-    "contact-us-desc": "Are you working on a specific project, or are you still exploring possibilities to get involved?",
-    "specific-project": "Specific project",
-    "exploring-possibilities": "Exploring possibilities"
+    "contact-us-desc": "Whether you're working on a specific project, or are you still exploring possibilities, you can connect with our team for guidance.",
+    "inquire": "Submit an inquiry"
   },
   "page-wishlist": {
     "title": "Wishlist",
@@ -299,6 +298,12 @@
     "support": "How did you hear about Ecosystem Support?",
     "support-p": "Did anyone recommend that you contact Ecosystem Support? If so, who?",
     "button": "Submit"
+  },
+  "page-inquire": {
+    "title": "Inquire",
+    "h1": "Submit an Inquiry",
+    "description": "Tell us a bit about yourself, what you’re working on, your needs or challenges, and any other information you feel is pertinent for us to know. You’ll hear back from someone on the Ecosystem Support team very soon! We only collect the following information submitted below and will not use or share for any purposes other than evaluation.",
+    "faq": "If you need a little more guidance on how ESP works, check out our"
   },
   "page-project-detail": {
     "grant-received": "Grant Received",
