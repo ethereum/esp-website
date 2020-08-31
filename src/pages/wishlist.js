@@ -548,7 +548,7 @@ const WishlistPage = () => {
             </Item>
           </AccordionSection>
           <HR />
-          <H2>
+          <H2 id="pinboard">
             <FormattedMessage id="page-wishlist.pinboard.title" />
           </H2>
           <p>
