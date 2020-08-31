@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { navigate } from "gatsby"
 import { useToasts } from "react-toast-notifications"
 import Select from "react-select"
-import { FormattedMessage, useIntl } from "gatsby-plugin-intl"
+import { FormattedMessage, useIntl, Link } from "gatsby-plugin-intl"
 
 import PageMetadata from "../components/PageMetadata"
 import { REFERRAL_SOURCES, COUNTRIES } from "../utils/form-inputs"
@@ -113,7 +113,7 @@ const InquirePage = () => {
             appearance: "success",
             autoDismiss: true,
           })
-          navigate("/thanks/")
+          navigate("/en/thanks/")
         }
       })
       .catch(error => {
@@ -163,6 +163,10 @@ const InquirePage = () => {
           </h1>
           <p>
             <FormattedMessage id="page-inquire.description" />
+          </p>
+          <p>
+            <FormattedMessage id="page-inquire.faq" />{" "}
+            <Link to="/faq/">FAQ</Link>.
           </p>
         </FormHeader>
         <Form onSubmit={handleSubmit}>

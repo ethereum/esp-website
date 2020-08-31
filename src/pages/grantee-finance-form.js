@@ -105,7 +105,7 @@ const ExplorePage = () => {
             appearance: "success",
             autoDismiss: true,
           })
-          navigate("/thanks/")
+          navigate("/en/thanks/")
         }
       })
       .catch(error => {

@@ -302,7 +302,8 @@
   "page-inquire": {
     "title": "Inquire",
     "h1": "Submit an Inquiry",
-    "description": "Tell us a bit about your project goals, motivations, needs, challenges, and any other information you feel is pertinent for us to know. You'll hear back from someone on the Ecosystem Support team very soon! We only collect the following information submitted below and will not use or share for any purposes other than evaluation."
+    "description": "Tell us a bit about yourself, what you’re working on, your needs or challenges, and any other information you feel is pertinent for us to know. You’ll hear back from someone on the Ecosystem Support team very soon! We only collect the following information submitted below and will not use or share for any purposes other than evaluation.",
+    "faq": "If you need a little more guidance on how ESP works, check out our"
   },
   "page-project-detail": {
     "grant-received": "Grant Received",
