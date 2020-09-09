@@ -18,6 +18,7 @@ import {
 import { screenSizeM, screenSizeL } from "../utils/styles"
 
 const StyledBreadcrumbs = styled(Breadcrumbs)`
+  margin-top: 0;
   margin-bottom: 56px;
   @media (max-width: ${screenSizeM}) {
     margin-bottom: 32px;

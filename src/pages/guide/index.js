@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { useIntl } from "gatsby-plugin-intl"
 
+import GuideNav from "../../components/GuideNav"
 import Link from "../../components/Link"
 import PageMetadata from "../../components/PageMetadata"
 import {
@@ -19,11 +20,6 @@ import {
 
 const PageBody = styled(PageBodyWide)`
   display: flex;
-`
-
-const SideNav = styled.nav`
-  margin-right: 4rem;
-  padding: 40px 16px;
 `
 const MainContent = styled.div``
 
@@ -87,23 +83,7 @@ const GuidePage = () => {
           <H1>Guide to ESP</H1>
         </PageHeader>
         <PageBody>
-          <SideNav>
-            Process Details
-            <ul>
-              <li>
-                <Link to="/guide/inquiry/">Inquiry</Link>
-              </li>
-              <li>
-                <Link to="/guide/inquiry/">Inquiry</Link>
-              </li>
-              <li>
-                <Link to="/guide/inquiry/">Inquiry</Link>
-              </li>
-              <li>
-                <Link to="/guide/inquiry/">Inquiry</Link>
-              </li>
-            </ul>
-          </SideNav>
+          <GuideNav />
           <MainContent>
             <Section>
               <H2>About This Guide</H2>

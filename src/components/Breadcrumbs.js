@@ -7,7 +7,8 @@ import Link from "./Link"
 import { colorYellow, screenSizeM } from "../utils/styles"
 
 const Container = styled.div`
-  margin-bottom: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 `
 
 const Arrow = styled.span`

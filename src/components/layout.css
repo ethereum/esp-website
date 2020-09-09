@@ -776,7 +776,8 @@ a:hover {
   margin: 25px 25px 0;
 }
 
-@media (max-width: 760px) {
+/* styles.screenSizeL */
+@media (max-width: 1024px) {
   .layout {
     margin: 18px 18px 0;
   }
