@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons"
 
 import Link from "./Link"
-import { colorYellow, screenSizeM } from "../utils/styles"
+import { colorYellow } from "../utils/styles"
 
 const Container = styled.div`
   margin-top: 2rem;
