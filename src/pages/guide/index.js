@@ -31,6 +31,9 @@ const LightestOrangeContainer = styled.div`
   display: flex;
   background-color: ${colorOrangeLightest};
   padding: 24px;
+  @media (max-width: ${screenSizeS}) {
+    flex-direction: column;
+  }
 `
 
 const List = styled.ul`
