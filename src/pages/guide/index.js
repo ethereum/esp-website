@@ -19,6 +19,7 @@ import {
   colorOrange,
   colorOrangeLightest,
   colorWhite,
+  screenSizeS,
 } from "../../utils/styles"
 
 const PageBody = styled(PageBodyWide)`
@@ -43,11 +44,18 @@ const ProcessContainer = styled.div`
 `
 const ProcessItem = styled.div`
   display: flex;
+  @media (max-width: ${screenSizeS}) {
+    flex-direction: column;
+  }
 `
 const StyledProcessItemChart = styled.div`
   flex: 0 0 200px;
   display: flex;
   flex-direction: column;
+  @media (max-width: ${screenSizeS}) {
+    flex: 1 0 200px;
+    max-height: 100px;
+  }
 `
 const ItemCell = styled.div`
   height: 84px;
@@ -69,6 +77,9 @@ const ItemArrowContainer = styled.div`
   border-left: 2px dotted ${colorOrange};
   margin-left: 50%; /* TODO better way */
   position: relative;
+  @media (max-width: ${screenSizeS}) {
+    display: none;
+  }
 `
 const StyledArrow = styled(FontAwesomeIcon)`
   color: ${colorOrange};
