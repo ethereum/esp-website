@@ -1,6 +1,8 @@
 import React from "react"
 import styled from "styled-components"
 import { useIntl } from "gatsby-plugin-intl"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
 
 import GuideNav from "../../components/GuideNav"
 import Link from "../../components/Link"
@@ -25,13 +27,13 @@ const MainContent = styled.div``
 
 const LightestOrangeContainer = styled.div`
   display: flex;
-  justify-content: space-between;
   background-color: ${colorOrangeLightest};
   padding: 24px;
 `
 
 const List = styled.ul`
   margin-bottom: 0;
+  flex: 1 1 50%;
 `
 
 const Disclaimer = styled.p`
@@ -46,8 +48,12 @@ const ProcessContainer = styled.div`
 const ProcessItem = styled.div`
   display: flex;
 `
-const ItemCell = styled.div`
+const StyledProcessItemChart = styled.div`
   flex: 0 0 200px;
+  display: flex;
+  flex-direction: column;
+`
+const ItemCell = styled.div`
   height: 84px;
   font-weight: bold;
   background: ${colorWhite};
@@ -60,17 +66,36 @@ const ItemCell = styled.div`
   justify-content: center;
   align-items: center;
 `
+const ItemArrowContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  border-left: 2px dotted ${colorOrange};
+  margin-left: 50%; /* TODO better way */
+  position: relative;
+`
+const StyledArrow = styled(FontAwesomeIcon)`
+  color: ${colorOrange};
+  position: absolute;
+  bottom: -12px;
+  right: calc(100% - 6px);
+`
+
 const ItemDescription = styled.div`
   margin: 1rem;
 `
 
-// TODO map through items?
-// const processItems = [
-//   {
-//     title: "Inquiry form",
-//     description: "If you're interested..."
-//   }
-// ]
+const ProcessItemChart = ({ text, shouldDisplayArrow = true }) => {
+  return (
+    <StyledProcessItemChart>
+      <ItemCell>{text}</ItemCell>
+      {shouldDisplayArrow && (
+        <ItemArrowContainer>
+          <StyledArrow icon={faChevronDown} />
+        </ItemArrowContainer>
+      )}
+    </StyledProcessItemChart>
+  )
+}
 
 const GuidePage = () => {
   const intl = useIntl()
@@ -137,16 +162,17 @@ const GuidePage = () => {
               </p>
               <LightestOrangeContainer>
                 <List>
-                  <li>Proprietary</li>
-                  <li>Related to a recent or upcoming ICO</li>
-                  <li>Designed for a zero-sum outcome</li>
+                  <li>Developers</li>
+                  <li>Independent teams</li>
+                  <li>Nonprofits or companies*</li>
                 </List>
                 <List>
-                  <li>Proprietary</li>
-                  <li>Related to a recent or upcoming ICO</li>
-                  <li>Designed for a zero-sum outcome</li>
+                  <li>Researchers</li>
+                  <li>Academics</li>
+                  <li>Community organizers</li>
                 </List>
               </LightestOrangeContainer>
+              <br />
               <p>
                 Our inquiry process is open to veterans and newbies alike.
                 Whatever your level of familiarity or stage of development,
@@ -163,7 +189,7 @@ const GuidePage = () => {
               <H2>The Process</H2>
               <ProcessContainer>
                 <ProcessItem>
-                  <ItemCell>Inquiry form</ItemCell>
+                  <ProcessItemChart text="Inquiry form" />
                   <ItemDescription>
                     If you’re interested in requesting ESP support, your first
                     stop is the <Link to="/inquire/">inquiry form</Link>. The
@@ -173,7 +199,7 @@ const GuidePage = () => {
                   </ItemDescription>
                 </ProcessItem>
                 <ProcessItem>
-                  <ItemCell>Identify support opportunities</ItemCell>
+                  <ProcessItemChart text="Identify support opportunities" />
                   <div>
                     <ItemDescription>
                       Once we've gotten to know you and your project, we'll work
@@ -188,21 +214,21 @@ const GuidePage = () => {
                   </div>
                 </ProcessItem>
                 <ProcessItem>
-                  <ItemCell>Formal proposal</ItemCell>
+                  <ProcessItemChart text="Formal proposal" />
                   <ItemDescription>
                     The first step in applying for a grant is to fill out a
                     formal proposal.
                   </ItemDescription>
                 </ProcessItem>
                 <ProcessItem>
-                  <ItemCell>Evaluation</ItemCell>
+                  <ProcessItemChart text="Evaluation" />
                   <ItemDescription>
                     Next, the team provides initial feedback based on the
                     information they’ve collected.
                   </ItemDescription>
                 </ProcessItem>
                 <ProcessItem>
-                  <ItemCell>Technical interviews</ItemCell>
+                  <ProcessItemChart text="Technical interviews" />
                   <div>
                     <ItemDescription>
                       Once the proposal has been finalized, it will go through a
@@ -219,7 +245,7 @@ const GuidePage = () => {
                   </div>
                 </ProcessItem>
                 <ProcessItem>
-                  <ItemCell>Funding decision</ItemCell>
+                  <ProcessItemChart text="Funding decision" />
                   <ItemDescription>
                     Once the review process is completed, the ESP team makes a
                     final decision on whether to fund the proposal, and the
@@ -227,7 +253,7 @@ const GuidePage = () => {
                   </ItemDescription>
                 </ProcessItem>
                 <ProcessItem>
-                  <ItemCell>KYC</ItemCell>
+                  <ProcessItemChart text="KYC" shouldDisplayArrow={false} />
                   <ItemDescription>
                     All grantees need to go through KYC (Know Your Customer) in
                     order to receive their funds.
