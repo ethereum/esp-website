@@ -77,6 +77,8 @@ const GuideNav = () => {
         <NavLink to="/guide/support/" text="Support Opportunities" />
         <NavLink to="/guide/proposal/" text="Formal Proposal" />
         <NavLink to="/guide/evaluation/" text="Evaluation" />
+        <NavLink to="/guide/funding/" text="Funding Decision" />
+        <NavLink to="/guide/kyc/" text="KYC" />
       </Section>
       <Section>
         <NavLink to="/faq/" text="FAQ" />

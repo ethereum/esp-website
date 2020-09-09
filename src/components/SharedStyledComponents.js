@@ -238,3 +238,8 @@ export const ButtonExternalLink = styled.a`
 export const Section = styled.div`
   margin-bottom: 48px;
 `
+
+export const Disclaimer = styled.p`
+  opacity: 0.6;
+  font-size: 0.8rem;
+`

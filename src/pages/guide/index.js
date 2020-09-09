@@ -8,6 +8,7 @@ import GuideNav from "../../components/GuideNav"
 import Link from "../../components/Link"
 import PageMetadata from "../../components/PageMetadata"
 import {
+  Disclaimer,
   H1,
   H2,
   PageBodyWide,
@@ -36,11 +37,6 @@ const List = styled.ul`
   flex: 1 1 50%;
 `
 
-const Disclaimer = styled.p`
-  opacity: 0.6;
-  font-size: 0.8rem;
-`
-
 const ProcessContainer = styled.div`
   background-color: ${colorOrangeLightest};
   padding: 24px;
@@ -67,6 +63,7 @@ const ItemCell = styled.div`
   align-items: center;
 `
 const ItemArrowContainer = styled.div`
+  z-index: 1;
   width: 100%;
   height: 100%;
   border-left: 2px dotted ${colorOrange};
@@ -81,6 +78,7 @@ const StyledArrow = styled(FontAwesomeIcon)`
 `
 
 const ItemDescription = styled.div`
+  z-index: 2;
   margin: 1rem;
 `
 
@@ -191,72 +189,88 @@ const GuidePage = () => {
                 <ProcessItem>
                   <ProcessItemChart text="Inquiry form" />
                   <ItemDescription>
-                    If you’re interested in requesting ESP support, your first
-                    stop is the <Link to="/inquire/">inquiry form</Link>. The
-                    inquiry form is the first step in opening a conversation
-                    with the ESP team. The more information we have, the better
-                    guidance we can provide!
+                    <p>
+                      If you’re interested in requesting ESP support, your first
+                      stop is the <Link to="/inquire/">inquiry form</Link>. The
+                      inquiry form is the first step in opening a conversation
+                      with the ESP team. The more information we have, the
+                      better guidance we can provide!
+                    </p>
+                    <Link to="/guide/inquiry/">Learn more</Link>
                   </ItemDescription>
                 </ProcessItem>
                 <ProcessItem>
                   <ProcessItemChart text="Identify support opportunities" />
-                  <div>
-                    <ItemDescription>
+                  <ItemDescription>
+                    <p>
                       Once we've gotten to know you and your project, we'll work
                       to identify ways we might be able to support you in moving
                       your work forward.
-                    </ItemDescription>
-                    <ItemDescription>
+                    </p>
+                    <p>
                       If the conversation moves toward financial support, the
                       team will send you a link to begin a formal grant
                       proposal.
-                    </ItemDescription>
-                  </div>
+                    </p>
+                    <Link to="/guide/support/">Learn more</Link>
+                  </ItemDescription>
                 </ProcessItem>
                 <ProcessItem>
                   <ProcessItemChart text="Formal proposal" />
                   <ItemDescription>
-                    The first step in applying for a grant is to fill out a
-                    formal proposal.
+                    <p>
+                      The first step in applying for a grant is to fill out a
+                      formal proposal.
+                    </p>
+                    <Link to="/guide/proposal/">Learn more</Link>
                   </ItemDescription>
                 </ProcessItem>
                 <ProcessItem>
                   <ProcessItemChart text="Evaluation" />
                   <ItemDescription>
-                    Next, the team provides initial feedback based on the
-                    information they’ve collected.
+                    <p>
+                      Next, the team provides initial feedback based on the
+                      information they’ve collected.
+                    </p>
+                    <Link to="/guide/evaluation/">Learn more</Link>
                   </ItemDescription>
                 </ProcessItem>
                 <ProcessItem>
                   <ProcessItemChart text="Technical interviews" />
-                  <div>
-                    <ItemDescription>
+                  <ItemDescription>
+                    <p>
                       Once the proposal has been finalized, it will go through a
                       technical review.
-                    </ItemDescription>
-                    <ItemDescription>
+                    </p>
+                    <p>
                       You will typically be invited to two calls - a meeting
                       with the ESP team member assigned to facilitate the
                       review, and a technical interview with advisors where
                       you'll dive deep into the technical details of your
                       approach in a more structured conversation with advisors
                       selected for their expertise in relevant areas.
-                    </ItemDescription>
-                  </div>
+                    </p>
+                  </ItemDescription>
                 </ProcessItem>
                 <ProcessItem>
                   <ProcessItemChart text="Funding decision" />
                   <ItemDescription>
-                    Once the review process is completed, the ESP team makes a
-                    final decision on whether to fund the proposal, and the
-                    amount that will be allocated.
+                    <p>
+                      Once the review process is completed, the ESP team makes a
+                      final decision on whether to fund the proposal, and the
+                      amount that will be allocated.
+                    </p>
+                    <Link to="/guide/funding/">Learn more</Link>
                   </ItemDescription>
                 </ProcessItem>
                 <ProcessItem>
                   <ProcessItemChart text="KYC" shouldDisplayArrow={false} />
                   <ItemDescription>
-                    All grantees need to go through KYC (Know Your Customer) in
-                    order to receive their funds.
+                    <p>
+                      All grantees need to go through KYC (Know Your Customer)
+                      in order to receive their funds.
+                    </p>
+                    <Link to="/guide/kyc/">Learn more</Link>
                   </ItemDescription>
                 </ProcessItem>
               </ProcessContainer>
