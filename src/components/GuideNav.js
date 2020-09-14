@@ -20,7 +20,7 @@ const Aside = styled.aside`
   min-width: 260px;
   max-width: 25%;
   height: calc(100vh - 380px); /* account for footer */
-  min-height: 330px;
+  min-height: 348px;
   overflow-y: hidden;
   transition: all 0.2s ease-in-out;
   transition: transform 0.2s ease;
