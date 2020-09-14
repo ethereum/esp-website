@@ -28,12 +28,12 @@ const ProposalPage = () => {
         <PageBody>
           <GuideNav />
           <MainContent>
-            <Breadcrumbs to="/guide/" copy={"Back to About This Guide"} />
+            <Breadcrumbs to="/guide/#process" copy={"Back to Overview"} />
             <Section>
-              <H2>ESP Formal Grant Proposal Tips</H2>
+              <H2>ESP Formal Grant Proposal</H2>
               <p>
-                Read on for some insights and tips on how to start your formal
-                grant proposal off right!
+                The first step in applying for a grant is to fill out a formal
+                proposal.
               </p>
               <h3>Team structure and qualifications</h3>
               <p>

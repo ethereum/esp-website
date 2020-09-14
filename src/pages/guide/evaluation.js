@@ -21,7 +21,7 @@ const MainContent = styled.div``
 const EvaluationPage = () => {
   return (
     <>
-      <PageMetadata title="ESP Grant Evaluation Tips" />
+      <PageMetadata title="ESP Grant Evaluation Details" />
       <div>
         <PageHeader>
           <H1>Guide to ESP</H1>
@@ -29,7 +29,7 @@ const EvaluationPage = () => {
         <PageBody>
           <GuideNav />
           <MainContent>
-            <Breadcrumbs to="/guide/" copy={"Back to About This Guide"} />
+            <Breadcrumbs to="/guide/#process" copy={"Back to Overview"} />
             <Section>
               <H2>ESP Grant Evaluation Tips</H2>
               <p>More about how we evaluate grant proposals.</p>

@@ -17,6 +17,7 @@ import {
 } from "../../components/SharedStyledComponents"
 import {
   colorOrange,
+  colorOrangeLighter,
   colorOrangeLightest,
   colorWhite,
   screenSizeS,
@@ -41,16 +42,23 @@ const List = styled.ul`
   flex: 1 1 50%;
 `
 
-const ProcessContainer = styled.div`
-  background-color: ${colorOrangeLightest};
-  padding: 24px;
-`
+const ProcessContainer = styled.div``
 const ProcessItem = styled.div`
+  background-color: ${props =>
+    props.isLight ? colorOrangeLightest : colorOrangeLighter};
+  padding: 0 1.5rem;
   display: flex;
   @media (max-width: ${screenSizeS}) {
     flex-direction: column;
   }
 `
+const ProcessItemFirst = styled(ProcessItem)`
+  padding-top: 1.5rem;
+`
+const ProcessItemLast = styled(ProcessItem)`
+  padding-bottom: 1.5rem;
+`
+
 const StyledProcessItemChart = styled.div`
   flex: 0 0 200px;
   display: flex;
@@ -78,7 +86,7 @@ const ItemArrowContainer = styled.div`
   width: 100%;
   height: 100%;
   border-left: 2px dotted ${colorOrange};
-  margin-left: 50%; /* TODO better way */
+  margin-left: 50%;
   position: relative;
   @media (max-width: ${screenSizeS}) {
     display: none;
@@ -191,7 +199,7 @@ const GuidePage = () => {
                 we'll start the conversation by meeting you where you are, and
                 try to help you find ways to grow your contribution over time.{" "}
               </p>
-              <Disclaimer>
+              <Disclaimer id="process">
                 *While we don't fund revenue-driven work, we may provide funding
                 for specific public-good projects carried out by for-profit
                 companies.
@@ -200,7 +208,7 @@ const GuidePage = () => {
             <Section>
               <H2>The Process</H2>
               <ProcessContainer>
-                <ProcessItem>
+                <ProcessItemFirst isLight={true}>
                   <ProcessItemChart text="Inquiry form" />
                   <ItemDescription>
                     <p>
@@ -212,19 +220,14 @@ const GuidePage = () => {
                     </p>
                     <Link to="/guide/inquiry/">Learn more</Link>
                   </ItemDescription>
-                </ProcessItem>
-                <ProcessItem>
+                </ProcessItemFirst>
+                <ProcessItem isLight={true}>
                   <ProcessItemChart text="Identify support opportunities" />
                   <ItemDescription>
                     <p>
                       Once we've gotten to know you and your project, we'll work
                       to identify ways we might be able to support you in moving
                       your work forward.
-                    </p>
-                    <p>
-                      If the conversation moves toward financial support, the
-                      team will send you a link to begin a formal grant
-                      proposal.
                     </p>
                     <Link to="/guide/support/">Learn more</Link>
                   </ItemDescription>
@@ -233,8 +236,9 @@ const GuidePage = () => {
                   <ProcessItemChart text="Formal proposal" />
                   <ItemDescription>
                     <p>
-                      The first step in applying for a grant is to fill out a
-                      formal proposal.
+                      If the conversation moves toward financial support, the
+                      team will send you a link to begin a formal grant
+                      proposal.
                     </p>
                     <Link to="/guide/proposal/">Learn more</Link>
                   </ItemDescription>
@@ -277,16 +281,19 @@ const GuidePage = () => {
                     <Link to="/guide/funding/">Learn more</Link>
                   </ItemDescription>
                 </ProcessItem>
-                <ProcessItem>
-                  <ProcessItemChart text="KYC" shouldDisplayArrow={false} />
+                <ProcessItemLast>
+                  <ProcessItemChart
+                    text="Onboarding"
+                    shouldDisplayArrow={false}
+                  />
                   <ItemDescription>
                     <p>
-                      All grantees need to go through KYC (Know Your Customer)
-                      in order to receive their funds.
+                      Once a proposal is approved, we'll write up a contract and
+                      do KYC before disbursing funds.
                     </p>
-                    <Link to="/guide/kyc/">Learn more</Link>
+                    <Link to="/guide/onboarding/">Learn more</Link>
                   </ItemDescription>
-                </ProcessItem>
+                </ProcessItemLast>
               </ProcessContainer>
             </Section>
           </MainContent>

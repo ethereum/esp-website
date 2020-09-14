@@ -19,7 +19,7 @@ const PageBody = styled(PageBodyWide)`
 `
 const MainContent = styled.div``
 
-const KYCPage = () => {
+const OnboardingPage = () => {
   return (
     <>
       <PageMetadata title="ESP Grantee KYC Requirements" />
@@ -30,8 +30,36 @@ const KYCPage = () => {
         <PageBody>
           <GuideNav />
           <MainContent>
-            <Breadcrumbs to="/guide/" copy={"Back to About This Guide"} />
+            <Breadcrumbs to="/guide/#process" copy={"Back to Overview"} />
             <Section>
+              <H2>Onboarding and Disbursement</H2>
+              <p>
+                If your proposal is approved, your grant is awarded and moves to
+                the disbursement team for onboarding.
+              </p>
+              <ul>
+                <li>
+                  The disbursement team reaches out with an onboarding guide,
+                  KYC ("Know Your Customer") request, and Payment Details
+                  request. KYC is required for all grantees in order for us to
+                  be compliant with anti-money laundering regulations. The
+                  payment details are needed so we can pay you!
+                </li>
+                <li>
+                  KYC documents are checked by our legal team (see below for a
+                  list of required documents).
+                </li>
+                <li>
+                  A grant agreement is created, signed, and countersigned by the
+                  director of the foundation.
+                </li>
+                <li>
+                  Funds are disbursed according to the grant agreement and you
+                  get to work! An Ethereum Foundation evaluator will check in
+                  periodically as the project progresses.
+                </li>
+              </ul>
+
               <H2>ESP Grantee KYC Requirements</H2>
               <p>
                 All grantees need to go through KYC (Know Your Customer) in
@@ -85,4 +113,4 @@ const KYCPage = () => {
   )
 }
 
-export default KYCPage
+export default OnboardingPage

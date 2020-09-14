@@ -3,7 +3,6 @@ import styled from "styled-components"
 
 import Breadcrumbs from "../../components/Breadcrumbs"
 import GuideNav from "../../components/GuideNav"
-import Link from "../../components/Link"
 import PageMetadata from "../../components/PageMetadata"
 import {
   H1,
@@ -29,14 +28,13 @@ const SupportPage = () => {
         <PageBody>
           <GuideNav />
           <MainContent>
-            <Breadcrumbs to="/guide/" copy={"Back to About This Guide"} />
+            <Breadcrumbs to="/guide/#process" copy={"Back to Overview"} />
             <Section>
               <H2>Identify support opportunities</H2>
               <p>
-                Once we've gotten to{" "}
-                <Link to="/guide/inquiry/">know you and your project</Link>,
-                we'll work to identify ways we might be able to support you in
-                moving your work forward.
+                Once we've gotten to know you and your project, we'll work to
+                identify ways we might be able to support you in moving your
+                work forward.
               </p>
               <p>
                 Sometimes it's as simple as a friendly conversation and a nudge

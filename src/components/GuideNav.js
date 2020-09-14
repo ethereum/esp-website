@@ -21,7 +21,7 @@ const Aside = styled.aside`
   max-width: 25%;
   height: calc(100vh - 380px); /* account for footer */
   min-height: 330px;
-  overflow-y: auto;
+  overflow-y: hidden;
   transition: all 0.2s ease-in-out;
   transition: transform 0.2s ease;
 
@@ -69,7 +69,7 @@ const GuideNav = () => {
   return (
     <Aside>
       <TopSection>
-        <NavLink to="/guide/" text="About This Guide" />
+        <NavLink to="/guide/" text="Overview" />
       </TopSection>
       <Section>
         <ProcessDetails>Process Details</ProcessDetails>
@@ -78,7 +78,7 @@ const GuideNav = () => {
         <NavLink to="/guide/proposal/" text="Formal Proposal" />
         <NavLink to="/guide/evaluation/" text="Evaluation" />
         <NavLink to="/guide/funding/" text="Funding Decision" />
-        <NavLink to="/guide/kyc/" text="KYC" />
+        <NavLink to="/guide/onboarding/" text="Onboarding" />
       </Section>
       <Section>
         <NavLink to="/faq/" text="FAQ" />
