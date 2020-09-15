@@ -106,6 +106,7 @@ const MobileNavBackground = styled(motion.div)`
 const navItems = [
   { to: "/en/", text: "page-home.title" },
   { to: "/en/about/", text: "page-about.title" },
+  { to: "/en/guide/", text: "page-guide.title" },
   { to: "/en/faq/", text: "page-faq.title" },
   { to: "/en/projects/", text: "page-projects.title" },
   { to: "/en/wishlist/", text: "page-wishlist.title" },

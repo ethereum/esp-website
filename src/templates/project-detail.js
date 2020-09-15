@@ -2,13 +2,10 @@ import React from "react"
 import { graphql } from "gatsby"
 import styled from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {
-  faChevronLeft,
-  faExternalLinkAlt,
-} from "@fortawesome/free-solid-svg-icons"
+import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons"
 import { FormattedMessage } from "gatsby-plugin-intl"
 
-import Link from "../components/Link"
+import Breadcrumbs from "../components/Breadcrumbs"
 import PageMetadata from "../components/PageMetadata"
 import {
   PageHeader,
@@ -18,7 +15,15 @@ import {
   ButtonExternalLink,
   H1,
 } from "../components/SharedStyledComponents"
-import { screenSizeM, screenSizeL, colorYellow } from "../utils/styles"
+import { screenSizeM, screenSizeL } from "../utils/styles"
+
+const StyledBreadcrumbs = styled(Breadcrumbs)`
+  margin-top: 0;
+  margin-bottom: 56px;
+  @media (max-width: ${screenSizeM}) {
+    margin-bottom: 32px;
+  }
+`
 
 const BodyContainer = styled.div`
   display: flex;
@@ -54,18 +59,6 @@ const HideMobile = styled.div`
   @media (max-width: ${screenSizeM}) {
     display: none;
   }
-`
-
-const Breadcrumbs = styled.div`
-  margin-bottom: 56px;
-  @media (max-width: ${screenSizeM}) {
-    margin-bottom: 32px;
-  }
-`
-
-const Arrow = styled.span`
-  margin-right: 16px;
-  color: ${colorYellow};
 `
 
 const Header = styled.header`
@@ -150,15 +143,10 @@ const ProjectPage = ({ data }) => {
           </H1>
         </PageHeader>
         <PageBodyWide>
-          <Breadcrumbs>
-            <Arrow>
-              <FontAwesomeIcon icon={faChevronLeft} />
-              <FontAwesomeIcon icon={faChevronLeft} />
-            </Arrow>
-            <Link to="/projects/">
-              <FormattedMessage id="page-project-detail.back" />
-            </Link>
-          </Breadcrumbs>
+          <StyledBreadcrumbs
+            to="/projects/"
+            copy={<FormattedMessage id="page-project-detail.back" />}
+          />
           <BodyContainer>
             <ImageContainer>
               <CardImage

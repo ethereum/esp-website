@@ -103,6 +103,9 @@
       "answer-p-1": "We can provide payment in ETH, DAI, or Fiat currency."
     }
   },
+  "page-guide": {
+    "title": "Guide"
+  },
   "page-home": {
     "title": "Home",
     "header": "An Ethereum Foundation Initiative",
