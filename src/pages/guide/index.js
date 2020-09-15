@@ -123,8 +123,8 @@ const GuidePage = () => {
   return (
     <>
       <PageMetadata
-        title={intl.formatMessage({ id: "page-about.title" })}
-        description={intl.formatMessage({ id: "page-about.description" })}
+        title={intl.formatMessage({ id: "page-guide.title" })}
+        description={intl.formatMessage({ id: "page-guide.description" })}
       />
       <div>
         <PageHeader>
