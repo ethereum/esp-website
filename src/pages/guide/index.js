@@ -122,7 +122,10 @@ const GuidePage = () => {
 
   return (
     <>
-      <PageMetadata title={intl.formatMessage({ id: "page-about.title" })} />
+      <PageMetadata
+        title={intl.formatMessage({ id: "page-about.title" })}
+        description={intl.formatMessage({ id: "page-about.description" })}
+      />
       <div>
         <PageHeader>
           <H1>Guide to ESP</H1>

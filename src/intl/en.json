@@ -104,7 +104,8 @@
     }
   },
   "page-guide": {
-    "title": "Guide"
+    "title": "Guide",
+    "description": "A guide to everything ESP: what we do, expectations for supported projects, how we process inquiries and grant applications, and more."
   },
   "page-home": {
     "title": "Home",
