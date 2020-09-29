@@ -4,10 +4,13 @@ import Img from "gatsby-image"
 import { MDXProvider } from "@mdx-js/react"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 
+import LocalGrantsForm from "../components/LocalGrantsForm"
 import PageMetadata from "../components/PageMetadata"
 import { PageBody } from "../components/SharedStyledComponents"
 
-const components = {}
+const components = {
+  LocalGrantsForm,
+}
 
 const StaticPage = ({ data: { mdx } }) => {
   return (

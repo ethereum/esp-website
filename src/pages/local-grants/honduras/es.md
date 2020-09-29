@@ -86,3 +86,6 @@ Ten cuidado adicional llenando estos campos:
 ¿Preguntas o Comentarios? Escríbenos a:
 
 [LocalGrants@ethereum.org](mailto:LocalGrants@ethereum.org)
+
+<!-- TODO remove? -->
+<LocalGrantsForm />
