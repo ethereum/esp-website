@@ -38,9 +38,6 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    // Ability to set custom IDs for headings (for translations)
-    // i.e. https://www.markdownguide.org/extended-syntax/#heading-ids
-    `gatsby-remark-autolink-headers`,
     // Image support in markdown
     `gatsby-remark-images`,
     // MDX support
@@ -53,14 +50,6 @@ module.exports = {
         // The plugin must be listed top-level & in gatsbyRemarkPlugins
         // See: https://www.gatsbyjs.org/docs/mdx/plugins/
         gatsbyRemarkPlugins: [
-          {
-            resolve: `gatsby-remark-autolink-headers`,
-            options: {
-              enableCustomId: true,
-              elements: [`h1`, `h2`, `h3`, `h4`],
-              className: `header-anchor`,
-            },
-          },
           {
             resolve: `gatsby-remark-images`,
             options: {
