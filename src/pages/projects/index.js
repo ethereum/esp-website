@@ -18,8 +18,9 @@ const Intro = styled.div`
 const ProjectsPage = ({ data }) => {
   const intl = useIntl()
 
+  // TODO move this filter to the query
   // filter to project pages && pages of current language
-  const nodes = data.allMarkdownRemark.edges.filter(({ node }) => {
+  const nodes = data.allMdx.edges.filter(({ node }) => {
     return (
       node.frontmatter.lang === intl.locale &&
       node.fields.slug.includes("/projects/")
@@ -63,7 +64,7 @@ const ProjectsPage = ({ data }) => {
 
 export const query = graphql`
   query {
-    allMarkdownRemark(sort: { fields: [frontmatter___grantYear], order: ASC }) {
+    allMdx(sort: { fields: [frontmatter___grantYear], order: ASC }) {
       totalCount
       edges {
         node {

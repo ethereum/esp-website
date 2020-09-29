@@ -1,36 +1,43 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
+import { MDXProvider } from "@mdx-js/react"
+import { MDXRenderer } from "gatsby-plugin-mdx"
 
 import PageMetadata from "../components/PageMetadata"
 import { PageBody } from "../components/SharedStyledComponents"
 
-const StaticPage = ({ data }) => {
-  const content = data.markdownRemark
-  const { frontmatter } = content
+const components = {}
 
+const StaticPage = ({ data: { mdx } }) => {
   return (
     <>
-      <PageMetadata title={frontmatter.title} />
+      <PageMetadata
+        title={mdx.frontmatter.title}
+        description={mdx.frontmatter.description}
+      />
       <PageBody>
-        {frontmatter.img && (
+        {mdx.frontmatter.img && (
           <Img
-            fluid={frontmatter.img.childImageSharp.fluid}
-            alt="Ecosystem Support Program Process"
+            fluid={mdx.frontmatter.img.childImageSharp.fluid}
+            alt={mdx.frontmatter.imgAlt}
           />
         )}
-        <div dangerouslySetInnerHTML={{ __html: content.html }} />
+        <MDXProvider components={components}>
+          <MDXRenderer>{mdx.body}</MDXRenderer>
+        </MDXProvider>
       </PageBody>
     </>
   )
 }
 
-export const query = graphql`
-  query($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      id
+export const staticPageQuery = graphql`
+  query StaticPageQuery($slug: String) {
+    mdx(fields: { slug: { eq: $slug } }) {
+      fields {
+        slug
+      }
       frontmatter {
-        title
         img {
           childImageSharp {
             fluid(maxWidth: 748) {
@@ -38,12 +45,13 @@ export const query = graphql`
             }
           }
         }
+        imgAlt
+        title
+        description
       }
-      fields {
-        slug
-      }
-      html
+      body
     }
   }
 `
+
 export default StaticPage
