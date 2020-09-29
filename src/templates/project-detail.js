@@ -8,6 +8,7 @@ import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons"
 import { FormattedMessage } from "gatsby-plugin-intl"
 
 import Breadcrumbs from "../components/Breadcrumbs"
+import Link from "../components/Link"
 import PageMetadata from "../components/PageMetadata"
 import {
   PageHeader,
@@ -106,6 +107,12 @@ const ExternalIcon = styled(FontAwesomeIcon)`
   margin-left: 8px;
 `
 
+// Passing components to MDXProvider allows use across all .md/.mdx files
+// https://www.gatsbyjs.com/plugins/gatsby-plugin-mdx/#mdxprovider
+const components = {
+  a: Link,
+}
+
 const ProjectPage = ({ data: { mdx } }) => {
   const mainContent = () => {
     return (
@@ -170,7 +177,7 @@ const ProjectPage = ({ data: { mdx } }) => {
             </ImageContainer>
             <ContentContainer>
               <HideMobile>{mainContent()}</HideMobile>
-              <MDXProvider>
+              <MDXProvider components={components}>
                 <MDXRenderer>{mdx.body}</MDXRenderer>
               </MDXProvider>
             </ContentContainer>

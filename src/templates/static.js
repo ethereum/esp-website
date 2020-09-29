@@ -4,11 +4,15 @@ import Img from "gatsby-image"
 import { MDXProvider } from "@mdx-js/react"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 
+import Link from "../components/Link"
 import LocalGrantsForm from "../components/LocalGrantsForm"
 import PageMetadata from "../components/PageMetadata"
 import { PageBody } from "../components/SharedStyledComponents"
 
+// Passing components to MDXProvider allows use across all .md/.mdx files
+// https://www.gatsbyjs.com/plugins/gatsby-plugin-mdx/#mdxprovider
 const components = {
+  a: Link,
   LocalGrantsForm,
 }
 

@@ -34,7 +34,10 @@ const InternalLink = styled(IntlLink)`
   }
 `
 
-const Link = ({ to, children, className, isPartiallyActive = true }) => {
+const Link = ({ to, href, children, className, isPartiallyActive = true }) => {
+  // markdown pages pass `href`, not `to`
+  to = to || href
+
   const isExternal = to.includes("http") || to.includes("mailto:")
 
   if (isExternal) {
