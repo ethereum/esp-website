@@ -88,5 +88,5 @@ Questions or Comments? Contact us:
 
 [LocalGrants@ethereum.org](mailto:LocalGrants@ethereum.org)
 
-<!-- TODO remove? -->
-<LocalGrantsForm />
+<!-- TODO remove before merge -->
+<LocalGrantsForm wave="Honduras" />

@@ -3,7 +3,6 @@ import { navigate } from "gatsby"
 import styled from "styled-components"
 import { useToasts } from "react-toast-notifications"
 import Select from "react-select"
-import { FormattedMessage, useIntl } from "gatsby-plugin-intl"
 
 import { REFERRAL_SOURCES, COUNTRIES } from "../utils/form-inputs"
 import {
@@ -14,12 +13,30 @@ import {
   CheckboxInput,
   TextArea,
   Button,
-  RadioPrompt,
-  RadioContainer,
-  RadioLabel,
-  RadioInputContainer,
   Required,
 } from "./SharedStyledComponents"
+
+const StyledForm = styled(Form)`
+  margin-top: 2rem;
+`
+
+const PROJECT_STAGES = ["Idea phase", "Early phase", "Live service", "Other"]
+
+const projectStageOptions = PROJECT_STAGES.map(stage => {
+  return { value: stage, label: stage, name: "projectStage" }
+})
+
+const PROJECT_CATEGORIES = ["Technology", "Community", "Education"]
+
+const projectCategoryOptions = PROJECT_CATEGORIES.map(category => {
+  return { value: category, label: category, name: "projectCategory" }
+})
+
+const TEAM_CATEGORIES = ["Individual", "Team"]
+
+const teamOptions = TEAM_CATEGORIES.map(team => {
+  return { value: team, label: team, name: "individualOrTeam" }
+})
 
 const countryOptions = COUNTRIES.map(country => {
   return { value: country, label: country, name: "country" }
@@ -29,55 +46,46 @@ const referralSourceOptions = REFERRAL_SOURCES.map(source => {
   return { value: source, label: source, name: "referralSource" }
 })
 
-const exploreRequiredFields = [
-  "exploreOrProject",
-  "name",
-  "contactEmail",
-  "teamProfile",
-  "areaOfExpertise",
-  "whyEthereum",
-  "recentProjectsOrDevelopments",
-]
-const projectRequiredFields = [
-  "exploreOrProject",
+const requiredFields = [
+  "wave",
+  "projectName",
+  "projectCategory",
+  "projectStage",
   "projectDescription",
-  "teamProfile",
+  "problemBeingSolved",
   "impact",
   "challenges",
+  "individualOrTeam",
+  "teamProfile",
   "name",
   "contactEmail",
+  "referralSource",
 ]
 
-const StyledForm = styled(Form)`
-  margin-top: 2rem;
-`
-
-const LocalGrantsForm = () => {
+const LocalGrantsForm = ({ wave }) => {
   const [formState, setFormState] = useState({
-    exploreOrProject: "",
+    wave,
+    projectName: "",
+    projectCategory: "",
+    projectStage: "",
+    projectDescription: "",
+    problemBeingSolved: "",
+    impact: "",
+    challenges: "",
+    individualOrTeam: "",
+    teamProfile: "",
     name: "",
     contactEmail: "",
-    projectName: "",
-    teamProfile: "",
-    previousWork: "",
-    questions: "",
+    contactAlternative: "",
     city: "",
     country: "",
     referralSource: "",
+    referralSourceOther: "",
     referralName: "",
     newsletter: "",
-    // project
-    projectDescription: "",
-    impact: "",
-    challenges: "",
-    // explore
-    areaOfExpertise: "",
-    whyEthereum: "",
-    recentProjectsOrDevelopments: "",
   })
 
   const { addToast } = useToasts()
-  const intl = useIntl()
 
   const handleCheckBoxChange = event => {
     const target = event.target
@@ -96,6 +104,7 @@ const LocalGrantsForm = () => {
     setFormState({ ...formState, [selectedOption.name]: selectedOption.value })
   }
 
+  // TODO create new function
   const submitInquiry = () => {
     fetch("/.netlify/functions/inquiry", {
       method: "POST",
@@ -133,426 +142,228 @@ const LocalGrantsForm = () => {
   }
 
   const isFormValid = () => {
-    let isValid = false
-
-    const fieldGroups = [exploreRequiredFields, projectRequiredFields]
-
-    fieldGroups.forEach(fieldGroup => {
-      let isGroupValid = true
-
-      fieldGroup.forEach(field => {
-        if (!formState[field]) {
-          isGroupValid = false
-        }
-      })
-      if (isGroupValid) {
-        isValid = true
+    for (const field of requiredFields) {
+      if (!formState[field]) {
+        return false
       }
-    })
-
-    return isValid
+    }
+    return true
   }
 
   const isValid = isFormValid()
 
   return (
     <StyledForm onSubmit={handleSubmit}>
-      <RadioContainer>
-        <RadioPrompt>
-          Are you looking for support on a specific project, or are you still
-          exploring possibilities to get involved? <Required>*</Required>
-        </RadioPrompt>
-        {/* TODO fix - clicking on text should change radio input */}
-        <RadioInputContainer>
-          <RadioLabel>
-            <Input
-              type="radio"
-              name="exploreOrProject"
-              value="project"
-              onChange={handleInputChange}
-            />
-            <div>Specific project</div>
-          </RadioLabel>
-        </RadioInputContainer>
-        <RadioInputContainer>
-          <RadioLabel>
-            <Input
-              type="radio"
-              name="exploreOrProject"
-              value="explore"
-              onChange={handleInputChange}
-            />
-            <div>Exploring possibilities</div>
-          </RadioLabel>
-        </RadioInputContainer>
-      </RadioContainer>
-
-      {formState.exploreOrProject === "project" && (
+      <Label>
+        <span>
+          Project Name <Required>*</Required>
+        </span>
+        <Input
+          type="text"
+          name="projectName"
+          value={formState.projectName}
+          onChange={handleInputChange}
+          maxLength="150"
+        />
+      </Label>
+      <Label>
+        <span>
+          Project Category <Required>*</Required>
+        </span>
+        <Select
+          options={projectCategoryOptions}
+          onChange={handleSelectChange}
+        />
+      </Label>
+      <Label>
+        <span>
+          Stage of Project <Required>*</Required>
+        </span>
+        <Select options={projectStageOptions} onChange={handleSelectChange} />
+      </Label>
+      <Label>
+        <span>
+          Project Description <Required>*</Required>
+        </span>
         <div>
-          <Label>
-            <span>
-              <FormattedMessage id="page-project.proj-name" />
-            </span>
-            <Input
-              type="text"
-              name="projectName"
-              value={formState.projectName}
-              onChange={handleInputChange}
-              maxLength="150"
-            />
-          </Label>
-          <Label>
-            <span>
-              <FormattedMessage id="page-project.proj-desc" />{" "}
-              <Required>*</Required>
-            </span>
-            <div>
-              <small>
-                <FormattedMessage id="page-project.proj-success" />
-              </small>
-            </div>
-            <TextArea
-              name="projectDescription"
-              value={formState.projectDescription}
-              onChange={handleInputChange}
-            />
-          </Label>
-          <Label>
-            <span>
-              <FormattedMessage id="page-project.profile" />{" "}
-              <Required>*</Required>
-            </span>
-            <div>
-              <small>
-                <FormattedMessage id="page-project.team" />
-              </small>
-            </div>
-            <TextArea
-              name="teamProfile"
-              value={formState.teamProfile}
-              onChange={handleInputChange}
-            />
-          </Label>
-          <Label>
-            <span>
-              <FormattedMessage id="page-project.impact" />{" "}
-              <Required>*</Required>
-            </span>
-            <div>
-              <small>
-                <FormattedMessage id="page-project.proj-impact" />
-              </small>
-            </div>
-            <TextArea
-              name="impact"
-              value={formState.impact}
-              onChange={handleInputChange}
-            />
-          </Label>
-          <Label>
-            <span>
-              <FormattedMessage id="page-project.challenges" />{" "}
-              <Required>*</Required>
-            </span>
-            <div>
-              <small>
-                <FormattedMessage id="page-project.challenges-info" />
-              </small>
-            </div>
-            <TextArea
-              name="challenges"
-              value={formState.challenges}
-              onChange={handleInputChange}
-            />
-          </Label>
-          <Label>
-            <span>
-              <FormattedMessage id="page-project.prev-work" />
-            </span>
-            <div>
-              <small>
-                <FormattedMessage id="page-project.prev-work-links" />
-              </small>
-            </div>
-            <TextArea
-              name="previousWork"
-              value={formState.previousWork}
-              onChange={handleInputChange}
-            />
-          </Label>
-          <Label>
-            <span>
-              <FormattedMessage id="page-project.contact-person" />{" "}
-              <Required>*</Required>
-            </span>
-            <Input
-              type="text"
-              name="name"
-              value={formState.name}
-              onChange={handleInputChange}
-              maxLength="150"
-            />
-          </Label>
-          <Label>
-            <span>
-              <FormattedMessage id="contact-email" /> <Required>*</Required>
-            </span>
-            <Input
-              type="email"
-              name="contactEmail"
-              value={formState.contactEmail}
-              onChange={handleInputChange}
-              maxLength="150"
-            />
-          </Label>
-
-          <Label>
-            <span>
-              <FormattedMessage id="page-project.contact-p-country" />
-            </span>
-            <Select options={countryOptions} onChange={handleSelectChange} />
-          </Label>
-
-          <Label>
-            <span>
-              <FormattedMessage id="page-project.contact-p-city" />
-            </span>
-            <Input
-              type="text"
-              name="city"
-              value={formState.city}
-              onChange={handleInputChange}
-              maxLength="40"
-            />
-          </Label>
-
-          <Label>
-            <span>
-              <FormattedMessage id="page-project.support" />
-            </span>
-            <Select
-              options={referralSourceOptions}
-              onChange={handleSelectChange}
-            />
-          </Label>
-
-          <Label>
-            <span>
-              <FormattedMessage id="page-project.support-p" />
-            </span>
-            <Input
-              type="text"
-              name="referralName"
-              value={formState.referralName}
-              onChange={handleInputChange}
-              maxLength="150"
-            />
-          </Label>
-
-          <Checkbox>
-            <CheckboxInput
-              type="checkbox"
-              name="newsletter"
-              value={formState.newsletter}
-              onChange={handleCheckBoxChange}
-            />
-            <FormattedMessage id="subscribe" />
-          </Checkbox>
-          <div>
-            <Button disabled={!isValid} type="submit">
-              <FormattedMessage id="page-project.button" />
-            </Button>
-          </div>
+          <small>
+            What are you working on? What does success look like for your
+            project? (2-3 short paragraphs)
+          </small>
         </div>
-      )}
-      {formState.exploreOrProject === "explore" && (
+        <TextArea
+          name="projectDescription"
+          value={formState.projectDescription}
+          onChange={handleInputChange}
+        />
+      </Label>
+      <Label>
+        <span>
+          Problem Being Solved <Required>*</Required>
+        </span>
         <div>
-          <Label>
-            <span>
-              <FormattedMessage id="page-explore.name" /> <Required>*</Required>
-            </span>
-            <div>
-              <small>
-                <FormattedMessage id="page-explore.name-guide" />
-              </small>
-            </div>
-
-            <Input
-              type="text"
-              name="name"
-              value={formState.name}
-              onChange={handleInputChange}
-              maxLength="150"
-            />
-          </Label>
-          <Label>
-            <span>
-              <FormattedMessage id="contact-email" /> <Required>*</Required>
-            </span>
-            <Input
-              type="email"
-              name="contactEmail"
-              value={formState.contactEmail}
-              onChange={handleInputChange}
-              maxLength="150"
-            />
-          </Label>
-          <Label>
-            <span>
-              <FormattedMessage id="page-explore.proj-name" />
-            </span>
-            <div>
-              <small>
-                <FormattedMessage id="page-explore.proj-info" />
-              </small>
-            </div>
-            <Input
-              type="text"
-              name="projectName"
-              value={formState.projectName}
-              onChange={handleInputChange}
-              maxLength="150"
-            />
-          </Label>
-          <Label>
-            <span>
-              <FormattedMessage id="page-explore.profile" />{" "}
-              <Required>*</Required>
-            </span>
-            <div>
-              <small>
-                <FormattedMessage id="page-explore.profile-info" />
-              </small>
-            </div>
-            <TextArea
-              name="teamProfile"
-              value={formState.teamProfile}
-              onChange={handleInputChange}
-            />
-          </Label>
-          <Label>
-            <span>
-              <FormattedMessage id="page-explore.expertise" />{" "}
-              <Required>*</Required>
-            </span>
-            <div>
-              <small>
-                <FormattedMessage id="page-explore.expertise-info" />
-              </small>
-            </div>
-            <TextArea
-              name="areaOfExpertise"
-              value={formState.areaOfExpertise}
-              onChange={handleInputChange}
-            />
-          </Label>
-          <Label>
-            <span>
-              <FormattedMessage id="page-explore.why" /> <Required>*</Required>
-            </span>
-            <TextArea
-              name="whyEthereum"
-              value={formState.whyEthereum}
-              onChange={handleInputChange}
-            />
-          </Label>
-          <Label>
-            <span>
-              <FormattedMessage id="page-explore.proj-dev" />{" "}
-              <Required>*</Required>
-            </span>
-            <TextArea
-              name="recentProjectsOrDevelopments"
-              value={formState.recentProjectsOrDevelopments}
-              onChange={handleInputChange}
-            />
-          </Label>
-          <Label>
-            <span>
-              <FormattedMessage id="page-explore.prev-work" />
-            </span>
-            <div>
-              <small>
-                <FormattedMessage id="page-explore.link-2-work" />
-              </small>
-            </div>
-            <TextArea
-              name="previousWork"
-              value={formState.previousWork}
-              onChange={handleInputChange}
-            />
-          </Label>
-          <Label>
-            <span>
-              <FormattedMessage id="page-explore.questions" />
-            </span>
-            <TextArea
-              name="questions"
-              value={formState.questions}
-              onChange={handleInputChange}
-              maxLength="255"
-            />
-          </Label>
-
-          <Label>
-            <span>
-              <FormattedMessage id="page-explore.country" />
-            </span>
-            <Select options={countryOptions} onChange={handleSelectChange} />
-          </Label>
-
-          <Label>
-            <span>
-              <FormattedMessage id="page-explore.city" />
-            </span>
-            <Input
-              type="text"
-              name="city"
-              value={formState.city}
-              onChange={handleInputChange}
-              maxLength="40"
-            />
-          </Label>
-
-          <Label>
-            <span>
-              <FormattedMessage id="page-explore.support" />
-            </span>
-            <Select
-              options={referralSourceOptions}
-              onChange={handleSelectChange}
-            />
-          </Label>
-
-          <Label>
-            <span>
-              <FormattedMessage id="page-explore.support-info" />
-            </span>
-            <Input
-              type="text"
-              name="referralName"
-              value={formState.referralName}
-              onChange={handleInputChange}
-              maxLength="150"
-            />
-          </Label>
-
-          <Checkbox>
-            <CheckboxInput
-              type="checkbox"
-              name="newsletter"
-              value={formState.newsletter}
-              onChange={handleCheckBoxChange}
-            />
-            <FormattedMessage id="subscribe" />
-          </Checkbox>
-          <div>
-            <Button disabled={!isValid} type="submit">
-              <FormattedMessage id="page-project.button" />
-            </Button>
-          </div>
+          <small>
+            As concretely as possible, what problem is your project attempting
+            to solve?
+          </small>
         </div>
+        <TextArea
+          name="problemBeingSolved"
+          value={formState.problemBeingSolved}
+          onChange={handleInputChange}
+        />
+      </Label>
+      <Label>
+        <span>
+          Impact <Required>*</Required>
+        </span>
+        <div>
+          <small>
+            How will your project / solution address the problem? How will your
+            work impact the larger Ethereum ecosystem? Who will benefit from
+            your work?
+          </small>
+        </div>
+        <TextArea
+          name="impact"
+          value={formState.impact}
+          onChange={handleInputChange}
+        />
+      </Label>
+      <Label>
+        <span>
+          Challenges <Required>*</Required>
+        </span>
+        <div>
+          <small>
+            What are the most significant obstacles facing your project or your
+            team right now? What are some of your most pressing needs?
+          </small>
+        </div>
+        <TextArea
+          name="challenges"
+          value={formState.challenges}
+          onChange={handleInputChange}
+        />
+      </Label>
+      <Label>
+        <span>
+          Individual or Team <Required>*</Required>
+        </span>
+        <Select options={teamOptions} onChange={handleSelectChange} />
+      </Label>
+      <Label>
+        <span>
+          Individual or Team profile <Required>*</Required>
+        </span>
+        <div>
+          <small>
+            Please write or link to bio(s). If team, who are the members of your
+            team? Please include Twitter, GitHub, LinkedIn, websites, etc.
+          </small>
+        </div>
+        <TextArea
+          name="teamProfile"
+          value={formState.teamProfile}
+          onChange={handleInputChange}
+        />
+      </Label>
+      <Label>
+        <span>
+          Contact Person <Required>*</Required>
+        </span>
+        <Input
+          type="text"
+          name="name"
+          value={formState.name}
+          onChange={handleInputChange}
+          maxLength="150"
+        />
+      </Label>
+      <Label>
+        <span>
+          Contact email <Required>*</Required>
+        </span>
+        <Input
+          type="email"
+          name="contactEmail"
+          value={formState.contactEmail}
+          onChange={handleInputChange}
+          maxLength="150"
+        />
+      </Label>
+      <Label>
+        <span>Alternative Contact (Telegram/Discord)</span>
+        <Input
+          type="text"
+          name="contactAlternative"
+          value={formState.contactAlternative}
+          onChange={handleInputChange}
+          maxLength="150"
+        />
+      </Label>
+      <Label>
+        <span>Where is your contact person based (country)?</span>
+        <Select options={countryOptions} onChange={handleSelectChange} />
+      </Label>
+      <Label>
+        <span>Where is your contact person based (city)?</span>
+        <Input
+          type="text"
+          name="city"
+          value={formState.city}
+          onChange={handleInputChange}
+          maxLength="40"
+        />
+      </Label>
+      <Label>
+        <span>
+          How did you hear about the ESP Local Grants program?{" "}
+          <Required>*</Required>
+        </span>
+        <Select options={referralSourceOptions} onChange={handleSelectChange} />
+      </Label>
+      {formState.referralSource === "Other" && (
+        <Label>
+          <span>
+            How specifically did you hear about the ESP Local Grants program?
+          </span>
+          <Input
+            type="text"
+            name="referralSourceOther"
+            value={formState.referralSourceOther}
+            onChange={handleInputChange}
+            maxLength="150"
+          />
+        </Label>
       )}
+      <Label>
+        <span>
+          Did anyone recommend that you contact Ecosystem Support? If so, who?
+        </span>
+        <Input
+          type="text"
+          name="referralName"
+          value={formState.referralName}
+          onChange={handleInputChange}
+          maxLength="150"
+        />
+      </Label>
+      <Checkbox>
+        <CheckboxInput
+          type="checkbox"
+          name="newsletter"
+          value={formState.newsletter}
+          onChange={handleCheckBoxChange}
+        />
+        Subscribe to the ESP Newsletter? You'll hear from us every few weeks,
+        and we'll only ever contact you with ESP news.
+      </Checkbox>
+      <div>
+        <Button disabled={!isValid} type="submit">
+          Submit
+        </Button>
+      </div>
     </StyledForm>
   )
 }
