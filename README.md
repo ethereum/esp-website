@@ -10,7 +10,7 @@ The Ethereum Ecosystem Support Program exists to provide both financial and non-
 
 This repository holds the codebase to our website, [esp.ethereum.foundation](https://esp.ethereum.foundation)
 
-## Local development
+## Local Development
 
 1. [Set up your development environment](https://www.gatsbyjs.org/tutorial/part-zero/)
 
@@ -20,13 +20,13 @@ This repository holds the codebase to our website, [esp.ethereum.foundation](htt
 $ git clone git@github.com:ethereum/esp-website.git && cd esp-website
 ```
 
-3. Install dependencies
+3. Install Dependencies
 
 ```
 $ yarn
 ```
 
-4. Start developing!
+4. Start Developing!
 
 ```
 yarn develop
