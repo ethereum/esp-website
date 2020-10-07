@@ -301,7 +301,8 @@
     "contact-p-city": "Where is your contact person based (city)?",
     "support": "How did you hear about Ecosystem Support?",
     "support-p": "Did anyone recommend that you contact Ecosystem Support? If so, who?",
-    "button": "Submit"
+    "button": "Submit",
+    "button-pending": "Submitting..."
   },
   "page-inquire": {
     "title": "Inquire",

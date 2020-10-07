@@ -64,6 +64,8 @@ const requiredFields = [
 
 const LocalGrantsForm = ({ wave }) => {
   const [formState, setFormState] = useState({
+    isPending: false,
+    // form fields
     wave,
     projectName: "",
     projectCategory: "",
@@ -105,6 +107,7 @@ const LocalGrantsForm = ({ wave }) => {
   }
 
   const submitInquiry = () => {
+    setFormState({ ...formState, isPending: true })
     fetch("/.netlify/functions/inquiry", {
       method: "POST",
       headers: {
@@ -113,6 +116,7 @@ const LocalGrantsForm = ({ wave }) => {
       body: JSON.stringify(formState),
     })
       .then(response => {
+        setFormState({ ...formState, isPending: false })
         if (response.status !== 200) {
           addToast("Error submitting, please try again.", {
             appearance: "error",
@@ -127,6 +131,7 @@ const LocalGrantsForm = ({ wave }) => {
         }
       })
       .catch(error => {
+        setFormState({ ...formState, isPending: false })
         console.error(error)
         addToast("Error submitting, please try again.", {
           appearance: "error",
@@ -150,6 +155,8 @@ const LocalGrantsForm = ({ wave }) => {
   }
 
   const isValid = isFormValid()
+  const isButtonDisabled = !isValid || formState.isPending
+  const buttonText = formState.isPending ? "Submitting..." : "Submit"
 
   return (
     <StyledForm onSubmit={handleSubmit}>
@@ -359,8 +366,8 @@ const LocalGrantsForm = ({ wave }) => {
         and we'll only ever contact you with ESP news.
       </Checkbox>
       <div>
-        <Button disabled={!isValid} type="submit">
-          Submit
+        <Button disabled={isButtonDisabled} type="submit">
+          {buttonText}
         </Button>
       </div>
     </StyledForm>
