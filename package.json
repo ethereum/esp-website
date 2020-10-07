@@ -31,6 +31,7 @@
     "gatsby-remark-images": "^3.3.31",
     "gatsby-source-filesystem": "^2.1.36",
     "gatsby-transformer-sharp": "^2.3.3",
+    "google-spreadsheet": "^3.0.13",
     "netlify-lambda": "^1.6.3",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",

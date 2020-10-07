@@ -1,6 +1,7 @@
 const axios = require("axios")
+const { GoogleSpreadsheet } = require("google-spreadsheet")
 
-exports.handler = async function(event, context) {
+exports.handler = async function(event) {
   try {
     if (event.httpMethod !== "POST") {
       return { statusCode: 405, body: "Method Not Allowed" }
@@ -92,6 +93,19 @@ exports.handler = async function(event, context) {
         MailChimp: false,
       },
     })
+
+    // If LGP inquiry, send to Google Sheets
+    if (params.wave) {
+      const creds = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
+      const doc = new GoogleSpreadsheet(process.env.GOOGLE_SPREADSHEET_ID)
+      await doc.useServiceAccountAuth({
+        client_email: creds.client_email,
+        private_key: creds.private_key,
+      })
+      await doc.loadInfo()
+      const sheet = doc.sheetsById["1921832072"]
+      await sheet.addRow(params)
+    }
 
     if (salesforceResp.status < 200 || salesforceResp.status >= 300) {
       return {
