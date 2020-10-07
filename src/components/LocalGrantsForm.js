@@ -26,7 +26,7 @@ const projectStageOptions = PROJECT_STAGES.map(stage => {
   return { value: stage, label: stage, name: "projectStage" }
 })
 
-const PROJECT_CATEGORIES = ["Technology", "Community", "Education"]
+const PROJECT_CATEGORIES = ["Technology", "Community", "Education", "Other"]
 
 const projectCategoryOptions = PROJECT_CATEGORIES.map(category => {
   return { value: category, label: category, name: "projectCategory" }
@@ -104,7 +104,6 @@ const LocalGrantsForm = ({ wave }) => {
     setFormState({ ...formState, [selectedOption.name]: selectedOption.value })
   }
 
-  // TODO create new function
   const submitInquiry = () => {
     fetch("/.netlify/functions/inquiry", {
       method: "POST",

@@ -9,7 +9,7 @@ exports.handler = async function(event, context) {
     const { SEGMENT_API_KEY } = process.env
     const baseURL = `https://api.segment.io/v1/identify`
 
-    let keyBuff = new Buffer(`${SEGMENT_API_KEY}:`)
+    let keyBuff = new Buffer.from(`${SEGMENT_API_KEY}:`)
     let auth = keyBuff.toString("base64")
 
     const params = JSON.parse(event.body)
@@ -20,7 +20,7 @@ exports.handler = async function(event, context) {
     // https://segment.com/docs/connections/destinations/catalog/salesforce/
     const dedupedEmail = email.replace("@", `+${Date.now()}@`)
 
-    const emailBuff = new Buffer(email)
+    const emailBuff = new Buffer.from(email)
     const userId = emailBuff.toString("base64")
 
     const instance = axios.create({
@@ -73,10 +73,19 @@ exports.handler = async function(event, context) {
         Why_Ethereum: params.whyEthereum,
         Recent_Projects_or_Developments: params.recentProjectsOrDevelopments,
         Questions: params.questions,
-        // Project custom fields
+        // Project & LGP custom fields
         Project_Description: params.projectDescription,
         Challenges: params.challenges,
         Impact: params.impact,
+        // LGP custom fields
+        // TODO update keys w/ Salesforce fields
+        wave: params.wave,
+        projectCategory: params.projectCategory,
+        projectStage: params.projectStage,
+        problemBeingSolved: params.problemBeingSolved,
+        individualOrTeam: params.individualOrTeam,
+        contactAlternative: params.contactAlternative,
+        referralSourceOther: params.referralSourceOther,
       },
       integrations: {
         Salesforce: true,
