@@ -82,7 +82,7 @@ const LocalGrantsForm = ({ wave }) => {
     city: "",
     country: "",
     referralSource: "",
-    referralSourceOther: "",
+    referralSourceIfOther: "",
     referralName: "",
     newsletter: "",
   })
@@ -336,8 +336,8 @@ const LocalGrantsForm = ({ wave }) => {
           </span>
           <Input
             type="text"
-            name="referralSourceOther"
-            value={formState.referralSourceOther}
+            name="referralSourceIfOther"
+            value={formState.referralSourceIfOther}
             onChange={handleInputChange}
             maxLength="150"
           />

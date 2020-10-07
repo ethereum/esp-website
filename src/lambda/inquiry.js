@@ -79,14 +79,13 @@ exports.handler = async function(event) {
         Challenges: params.challenges,
         Impact: params.impact,
         // LGP custom fields
-        // TODO update keys w/ Salesforce fields
-        wave: params.wave,
-        projectCategory: params.projectCategory,
-        projectStage: params.projectStage,
-        problemBeingSolved: params.problemBeingSolved,
-        individualOrTeam: params.individualOrTeam,
-        contactAlternative: params.contactAlternative,
-        referralSourceOther: params.referralSourceOther,
+        Local_Grants_Wave__c: params.wave,
+        Project_Category__c: params.projectCategory,
+        Stage_of_Project__c: params.projectStage,
+        Problem_Being_Solved__c: params.problemBeingSolved,
+        Individual_or_Team__c: params.individualOrTeam,
+        Alternative_Contact__c: params.contactAlternative,
+        Referral_Source_if_Other__c: params.referralSourceIfOther,
       },
       integrations: {
         Salesforce: true,
