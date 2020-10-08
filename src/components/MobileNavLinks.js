@@ -13,8 +13,13 @@ const List = styled(motion.ul)`
   padding: 0;
   position: absolute;
   left: 0;
-  top: 100px;
+  top: 80px;
   width: 90%;
+  height: auto;
+  max-height: calc(100vh - 80px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-bottom: 4rem;
 
   display: flex;
   flex-direction: column;
@@ -23,6 +28,11 @@ const List = styled(motion.ul)`
   /* Only display on smaller screens */
   @media (min-width: ${screenSizeL}) {
     display: none;
+  }
+  /* Adjust for IPhone 5/SE */
+  @media (max-width: 360px) {
+    top: 60px;
+    max-height: calc(100vh - 60px);
   }
 `
 
@@ -33,11 +43,12 @@ const List = styled(motion.ul)`
 // OR just make Logo slowly appear via CSS transition?
 const Logo = styled(Img)`
   margin-bottom: 40px;
+  min-height: 90px;
 `
 
 const Item = styled(motion.li)`
   list-style: none;
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem !important;
   display: flex;
   align-items: center;
   cursor: pointer;
