@@ -48,7 +48,7 @@ const Logo = styled(Img)`
 
 const Item = styled(motion.li)`
   list-style: none;
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem !important;
   display: flex;
   align-items: center;
   cursor: pointer;
