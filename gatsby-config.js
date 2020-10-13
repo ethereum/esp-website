@@ -12,8 +12,6 @@ module.exports = {
     url: siteUrl,
     siteUrl, // for sitemap generation
     author: `@EF_ESP`,
-    image:
-      "https://user-images.githubusercontent.com/8097623/69177629-c137a400-0abc-11ea-9bcd-da3ba03d2688.png",
     defaultLanguage,
     supportedLanguages,
   },

@@ -8,14 +8,20 @@ import { Location } from "@reach/router"
 import { getDefaultMessage, supportedLanguages } from "../utils/translations"
 
 const PageMetadata = ({ description, meta, title }) => {
-  const { site } = useStaticQuery(
+  const { site, ogImageDefault } = useStaticQuery(
     graphql`
       query {
         site {
           siteMetadata {
             author
             url
-            image
+          }
+        }
+        ogImageDefault: file(relativePath: { eq: "esp-logo-og-image.png" }) {
+          childImageSharp {
+            fixed(width: 1200) {
+              src
+            }
           }
         }
       }
@@ -36,11 +42,18 @@ const PageMetadata = ({ description, meta, title }) => {
     defaultMessage: getDefaultMessage("site-title"),
   })
 
+  const siteUrl = site.siteMetadata.url
+  const ogImageUrl = siteUrl.concat(ogImageDefault.childImageSharp.fixed.src)
+
   return (
     <Location>
       {({ location }) => {
-        {/* Set canonocial URL to use language path to avoid duplicate content */}
-        {/* e.g. set esp.ethereum.foundation/about/ to esp.ethereum.foundation/en/about/ */}
+        {
+          /* Set canonocial URL to use language path to avoid duplicate content */
+        }
+        {
+          /* e.g. set esp.ethereum.foundation/about/ to esp.ethereum.foundation/en/about/ */
+        }
         const { pathname } = location
         let canonicalPath = pathname
         const firstDirectory = canonicalPath.split("/")[1]
@@ -62,7 +75,7 @@ const PageMetadata = ({ description, meta, title }) => {
               },
               {
                 name: `image`,
-                content: site.siteMetadata.image,
+                content: ogImageUrl,
               },
               {
                 property: `og:title`,
@@ -102,7 +115,7 @@ const PageMetadata = ({ description, meta, title }) => {
               },
               {
                 property: `og:image`,
-                content: site.siteMetadata.image,
+                content: ogImageUrl,
               },
             ].concat(meta)}
           />
