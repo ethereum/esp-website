@@ -225,6 +225,7 @@ const ExplorePage = () => {
 
                 <Input
                   type="text"
+                  maxLength="50"
                   name="beneficiaryName"
                   placeholder="John Smith, Glossy DeFi LLC"
                   value={formState.beneficiaryName}
@@ -265,6 +266,7 @@ const ExplorePage = () => {
                     </div>
                     <TextArea
                       name="beneficiaryAddress"
+                      maxLength="255"
                       placeholder="1234 Apple Street Unit A New York, NY 10011 United States"
                       value={formState.beneficiaryAddress}
                       onChange={handleInputChange}
@@ -300,6 +302,7 @@ const ExplorePage = () => {
 
                     <Input
                       type="text"
+                      maxLength="50"
                       name="bankName"
                       placeholder="JP Morgan Chase"
                       value={formState.bankName}
@@ -316,6 +319,7 @@ const ExplorePage = () => {
                     </div>
                     <TextArea
                       name="bankAddress"
+                      maxLength="255"
                       placeholder="5678 Banana Street PO Box 35 New York, NY 10011 United States"
                       value={formState.bankAddress}
                       onChange={handleInputChange}
@@ -336,6 +340,7 @@ const ExplorePage = () => {
 
                     <Input
                       type="text"
+                      maxLength="50"
                       name="bankAccountNumber"
                       value={formState.bankAccountNumber}
                       onChange={handleInputChange}
@@ -354,6 +359,7 @@ const ExplorePage = () => {
 
                     <Input
                       type="text"
+                      maxLength="50"
                       name="bankRoutingNumber"
                       value={formState.bankRoutingNumber}
                       onChange={handleInputChange}
@@ -373,6 +379,7 @@ const ExplorePage = () => {
 
                     <Input
                       type="text"
+                      maxLength="100"
                       name="bankSWIFT"
                       placeholder="ABCDUS00XXX"
                       value={formState.bankSWIFT}
@@ -424,6 +431,7 @@ const ExplorePage = () => {
 
                       <Input
                         type="text"
+                        maxLength="50"
                         name="ethAddress"
                         value={formState.ethAddress}
                         onChange={handleInputChange}
@@ -443,6 +451,7 @@ const ExplorePage = () => {
 
                       <Input
                         type="text"
+                        maxLength="50"
                         name="daiAddress"
                         value={formState.daiAddress}
                         onChange={handleInputChange}
