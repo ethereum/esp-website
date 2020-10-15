@@ -225,7 +225,7 @@ const ExplorePage = () => {
 
                 <Input
                   type="text"
-                  maxLength="50"
+                  maxLength="100"
                   name="beneficiaryName"
                   placeholder="John Smith, Glossy DeFi LLC"
                   value={formState.beneficiaryName}
@@ -302,7 +302,7 @@ const ExplorePage = () => {
 
                     <Input
                       type="text"
-                      maxLength="50"
+                      maxLength="100"
                       name="bankName"
                       placeholder="JP Morgan Chase"
                       value={formState.bankName}
