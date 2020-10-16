@@ -2,7 +2,7 @@
 title: Colombia Local Grants
 description: We’re thrilled to announce a Colombia-specific wave of Ethereum Foundation grants!
 lang: en
-img: ./colombia-local-grants.jpg
+img: ./colombia-local-grants.png
 imgAlt: "ESP Colombia Local Grants image"
 ---
 
