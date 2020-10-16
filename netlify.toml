@@ -41,6 +41,9 @@
 [[redirects]]
   from = "/honduras"
   to = "/es/local-grants/honduras"
+[[redirects]]
+  from = "/colombia"
+  to = "/en/local-grants/colombia"
 
 # legacy site redirects
 [[redirects]]
