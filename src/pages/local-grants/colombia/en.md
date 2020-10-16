@@ -24,17 +24,17 @@ We’re thrilled to announce a Colombia-specific wave of Ethereum Foundation gra
   - Use the [submission form](/en/local-grants/colombia/#submit) below to tell us about your Ethereum-related idea or existing project.
   - And then we'll be in touch!
 
-## Who’s eligible to participate in the contest?
+### Who’s eligible to participate in the contest?
 
 - Colombia Local Grants is open to anyone interested in contributing to Ethereum communities throughout Colombia, even if you’re not from or based in Colombia!
 
-## How can I apply for a local grant?
+### How can I apply for a local grant?
 
 - Fill out the [form below](/en/local-grants/colombia/#submit) y listo!
 - Note: there's no limit on the number of submissions!
   - That is, you may earn awards for each idea or project you submit.
 
-## What types of projects are you interested in?
+### What types of projects are you interested in?
 
 - Any and all projects benefiting the Colombian Ethereum ecosystem!
 - Surprise us with your creativity! But here are a few prompt questions:
@@ -47,7 +47,7 @@ We’re thrilled to announce a Colombia-specific wave of Ethereum Foundation gra
   - Are you working on Ethereum-related research?
 - For further inspiration, here’s a general, non-exhaustive [wishlist](/en/wishlist/).
 
-## What are the judging criteria?
+### What are the judging criteria?
 
 - Feasibility
 - Innovativeness
@@ -56,34 +56,32 @@ We’re thrilled to announce a Colombia-specific wave of Ethereum Foundation gra
 - In the spirit of making the ecosystem better
 - Alignment with Ethereum values
 
-## What are submission requirements?
+### What are submission requirements?
 
 - Submission must be in English
 - Submission must be related to Ethereum
 - For technical submissions, software must be open source
 
-## When is the deadline to apply?
+### When is the deadline to apply?
 
 - December 17, 2020
 
-## How much are local grants awards?
+### How much are local grants awards?
 
 - Award amounts are decided on a case-by-case basis
 - Recipients will have the option to accept awards in ETH, Dai, or USD
 
-<!-- TODO add anchor links -->
-
-# 🚀 How to Submit
+## 🚀 How to Submit {#submit}
 
 _Use the submission form below to tell us about your Ethereum-related idea or existing project. And that's it. After we receive your submission, we'll be in touch by email!_
 
-<LocalGrantsForm wave="Colombia" />
+<LocalGrantsForm wave="Colombia | 2020" />
 
-# 🦄 Support & Resources
+## 🦄 Support & Resources
 
 - Do you have questions or feedback? Write us at: LocalGrants@ethereum.org
 - [Ethereum.org en Español](https://ethereum.org/es/)
   - Interested in helping translate Ethereum.org? [Learn more about our Translation Program](https://ethereum.org/en/contributing/translation-program/) 😃 .
 - Participate in [Descrubiendo Blockchain](https://www.eventbrite.co/e/entradas-descubriendo-blockchain-122482736161), a free online web3 lecture series in Spanish.
 - [Devcon](https://devcon.org/), the annual conference for Ethereum developers, researchers, thinkers, and makers, will take place in [Bogotá in 2021](https://blog.ethereum.org/2020/05/28/devcon-hacia-colombia-en-2021/)!
-- Further [details on the EF's Ecosystem Support Program](https://esp.ethereum.foundation/en/faq/)
+- Further [details on the EF's Ecosystem Support Program](/en/faq/)
