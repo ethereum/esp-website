@@ -10,15 +10,13 @@ imgAlt: "ESP Colombia Local Grants image"
 
 ¡Hola Colombia!
 
-We’re thrilled to announce a Colombia-specific wave of Ethereum Foundation grants! This is a special, community-centered contest to support individuals and teams contributing to the Colombian Ethereum ecosystem 🌎 😃 .
-
----
+We’re thrilled to announce a Colombia-specific wave of Ethereum Foundation grants! This is a special, community-centered contest to support individuals and teams contributing to the Colombian Ethereum ecosystem 🌎😃.
 
 ## 🥭 What is Colombia Local Grants?
 
 - Colombia Local Grants is a complement initiative to the [Ecosystem Support Program (ESP)](/en/), which is the Ethereum Foundation’s general support arm.
 
-- This local pilot program is an “open call for submissions” contest, the goal being to discover opportunities in Colombia and help support the local ecosystem 🌎 !
+- This local pilot program is an “open call for submissions” contest, the goal being to discover opportunities in Colombia and help support the local ecosystem 🌎!
 
 - The submission process is simple and straightforward:
   - Use the [submission form](/en/local-grants/colombia/#submit) below to tell us about your Ethereum-related idea or existing project.

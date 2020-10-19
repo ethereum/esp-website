@@ -5,7 +5,7 @@ import styled from "styled-components"
 import * as styles from "../utils/styles"
 
 // TODO pull from gatsby-config.js
-const supportedLanguages = [`en`]
+const supportedLanguages = [`en`, `es`]
 
 const HASH_PATTERN = /^#.*/
 const isHashLink = to => HASH_PATTERN.test(to)

@@ -2,12 +2,12 @@
 title: Fondos Locales para Honduras
 description: Estamos emocionados de anunciarles una ola de fondos exclusivos para Honduras por parte del Ethereum Foundation
 lang: es
-img: ../../../images/honduras-header-spanish.png
+img: ./honduras-header-spanish.png
 ---
 
-[Read this page in English](/en/local-grants/honduras)
-
 # 🦜 Ethereum Foundation: Anunciando una ola de Fondos Locales para Honduras
+
+[Read this page in English](/en/local-grants/honduras)
 
 ¡Hola Querida Comunidad!
 
@@ -86,6 +86,3 @@ Ten cuidado adicional llenando estos campos:
 ¿Preguntas o Comentarios? Escríbenos a:
 
 [LocalGrants@ethereum.org](mailto:LocalGrants@ethereum.org)
-
-<!-- TODO remove before merge -->
-<LocalGrantsForm wave="Honduras" />

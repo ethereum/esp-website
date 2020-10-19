@@ -2,13 +2,13 @@
 title: Honduras Local Grants
 description: We’re thrilled to announce a Honduras-specific wave of Ethereum Foundation grants!
 lang: en
-img: ../../../images/honduras-header-english.png
+img: ./honduras-header-english.png
 imgAlt: "ESP Honduras Local Grants hero image"
 ---
 
-[Lee esta página en español](/es/local-grants/honduras)
-
 # 🦜 Ethereum Foundation: Announcing a Wave of Honduras Local Grants
+
+[Lee esta página en español](/es/local-grants/honduras)
 
 Hola Querida Comunidad!
 
@@ -87,6 +87,3 @@ Please take extra care when filling these fields:
 Questions or Comments? Contact us:
 
 [LocalGrants@ethereum.org](mailto:LocalGrants@ethereum.org)
-
-<!-- TODO remove before merge -->
-<LocalGrantsForm wave="Honduras" />
