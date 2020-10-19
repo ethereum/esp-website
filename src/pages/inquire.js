@@ -52,6 +52,8 @@ const projectRequiredFields = [
 
 const InquirePage = () => {
   const [formState, setFormState] = useState({
+    isPending: false,
+    // form fields
     exploreOrProject: "",
     name: "",
     contactEmail: "",
@@ -95,6 +97,7 @@ const InquirePage = () => {
   }
 
   const submitInquiry = () => {
+    setFormState({ ...formState, isPending: true })
     fetch("/.netlify/functions/inquiry", {
       method: "POST",
       headers: {
@@ -103,6 +106,7 @@ const InquirePage = () => {
       body: JSON.stringify(formState),
     })
       .then(response => {
+        setFormState({ ...formState, isPending: false })
         if (response.status !== 200) {
           addToast("Error submitting, please try again.", {
             appearance: "error",
@@ -117,6 +121,7 @@ const InquirePage = () => {
         }
       })
       .catch(error => {
+        setFormState({ ...formState, isPending: false })
         console.error(error)
         addToast("Error submitting, please try again.", {
           appearance: "error",
@@ -152,6 +157,10 @@ const InquirePage = () => {
   }
 
   const isValid = isFormValid()
+  const isButtonDisabled = !isValid || formState.isPending
+  const buttonTextId = formState.isPending
+    ? "page-project.button-pending"
+    : "page-project.button"
 
   return (
     <>
@@ -376,8 +385,8 @@ const InquirePage = () => {
                 <FormattedMessage id="subscribe" />
               </Checkbox>
               <div>
-                <Button disabled={!isValid} type="submit">
-                  <FormattedMessage id="page-project.button" />
+                <Button disabled={isButtonDisabled} type="submit">
+                  <FormattedMessage id={buttonTextId} />
                 </Button>
               </div>
             </div>
@@ -569,8 +578,8 @@ const InquirePage = () => {
                 <FormattedMessage id="subscribe" />
               </Checkbox>
               <div>
-                <Button disabled={!isValid} type="submit">
-                  <FormattedMessage id="page-project.button" />
+                <Button disabled={isButtonDisabled} type="submit">
+                  <FormattedMessage id={buttonTextId} />
                 </Button>
               </div>
             </div>

@@ -2,16 +2,16 @@
 title: Fondos Locales para Honduras
 description: Estamos emocionados de anunciarles una ola de fondos exclusivos para Honduras por parte del Ethereum Foundation
 lang: es
-img: ../../../images/honduras-header-spanish.png
+img: ./honduras-header-spanish.png
 ---
-
-[Read this page in English](/en/local-grants/honduras)
 
 # 🦜 Ethereum Foundation: Anunciando una ola de Fondos Locales para Honduras
 
+[Read this page in English](/en/local-grants/honduras)
+
 ¡Hola Querida Comunidad!
 
-¡Gracias por visitar nuestro sitio de Grants Locales para Honduras! Desde el 20 de Agosto, 2020 este programa especial ha finalizado. Sin embargo, si perdiste la fecha límite, ¡aún puedes enviar una [petición general de apoyo](https://esp.ethereum.foundation/en/project/) para tu proyecto o idea a través del [Ecosystem Support Program (ESP)](/en/) 🌎 😃! 
+¡Gracias por visitar nuestro sitio de Grants Locales para Honduras! Desde el 20 de Agosto, 2020 este programa especial ha finalizado. Sin embargo, si perdiste la fecha límite, ¡aún puedes enviar una [petición general de apoyo](https://esp.ethereum.foundation/en/project/) para tu proyecto o idea a través del [Ecosystem Support Program (ESP)](/en/) 🌎 😃!
 
 ESP es la rama del Ethereum Foundation enfocada en apoyar proyectos y entidades dentro de la gran comunidad de Ethereum, con el fin de promover el éxito y el crecimiento del ecosistema. Si buscas apoyo, ¡Ponte en contacto! Gracias, Honduras 🌎 😃.
 
@@ -76,7 +76,7 @@ Ten cuidado adicional llenando estos campos:
 (Si es posible, recomendamos que las aplicaciones se escriban en Inglés. Pero, también aceptaremos en Español)
 
 - **Nombre del Proyecto**:
-  - Por favor llena en **[Local Grants Honduras][Categoría <número_categoría>]** `<Nombre_de_proyecto>`
+  - Por favor llena en **[Local Grants Honduras][categoría <número_categoría>]** `<Nombre_de_proyecto>`
   - TIENES que especificar que es para **[Local Grants Honduras]**.
   - TIENES que especificar a que categoria estas aplicando: **`[Categoría 1], [Categoría 2]`**.
   - Por ejemplo: `[Local Grants Honduras][Categoría 1] Proyecto HondurasDAO`.

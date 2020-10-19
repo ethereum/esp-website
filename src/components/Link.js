@@ -5,7 +5,10 @@ import styled from "styled-components"
 import * as styles from "../utils/styles"
 
 // TODO pull from gatsby-config.js
-const supportedLanguages = [`en`]
+const supportedLanguages = [`en`, `es`]
+
+const HASH_PATTERN = /^#.*/
+const isHashLink = to => HASH_PATTERN.test(to)
 
 const ExternalLink = styled.a`
   color: ${styles.colorOrange};
@@ -34,8 +37,23 @@ const InternalLink = styled(IntlLink)`
   }
 `
 
-const Link = ({ to, children, className, isPartiallyActive = true }) => {
+const Link = ({ to, href, children, className, isPartiallyActive = true }) => {
+  // markdown pages pass `href`, not `to`
+  to = to || href
+
   const isExternal = to.includes("http") || to.includes("mailto:")
+  const isHash = isHashLink(to)
+
+  // Must use <a> tags for anchor links
+  // Otherwise <Link> functionality will navigate to homepage
+  // See https://github.com/gatsbyjs/gatsby/issues/21909
+  if (isHash) {
+    return (
+      <a className={className} href={to}>
+        {children}
+      </a>
+    )
+  }
 
   if (isExternal) {
     return (

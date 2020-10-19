@@ -36,21 +36,39 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    // add support for markdown pages
+    // Markdown header anchor links
+    `gatsby-remark-autolink-headers`,
+    // Image support in markdown
+    `gatsby-remark-images`,
+    // MDX support
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        plugins: [
+        // process all `.md` files as MDX
+        extensions: [`.mdx`, `.md`],
+        // Note: in order for MDX to work with gatsby-remark-plugins
+        // The plugin must be listed top-level & in gatsbyRemarkPlugins
+        // See: https://www.gatsbyjs.org/docs/mdx/plugins/
+        gatsbyRemarkPlugins: [
           {
-            resolve: "gatsby-remark-external-links",
+            resolve: `gatsby-remark-autolink-headers`,
             options: {
-              target: "_blank",
-              rel: "noopener noreferrer",
+              enableCustomId: true,
+              elements: [`h1`, `h2`, `h3`, `h4`],
+              className: `header-anchor`,
+            },
+          },
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1200,
             },
           },
         ],
+        remarkPlugins: [],
       },
     },
+    // Need for `gatsby-image`
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

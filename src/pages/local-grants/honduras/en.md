@@ -2,12 +2,13 @@
 title: Honduras Local Grants
 description: We’re thrilled to announce a Honduras-specific wave of Ethereum Foundation grants!
 lang: en
-img: ../../../images/honduras-header-english.png
+img: ./honduras-header-english.png
+imgAlt: "ESP Honduras Local Grants hero image"
 ---
 
-[Lee esta página en español](/es/local-grants/honduras)
-
 # 🦜 Ethereum Foundation: Announcing a Wave of Honduras Local Grants
+
+[Lee esta página en español](/es/local-grants/honduras)
 
 Hola Querida Comunidad!
 
@@ -76,7 +77,7 @@ Please take extra care when filling these fields:
 (If possible, we encourage applications written in English. But will accept Spanish)
 
 - **Project name**:
-  - Please fill in **[Local Grants Honduras][Group <group_number>]** `<your_project_name>`
+  - Please fill in **[Local Grants Honduras][group <group_number>]** `<your_project_name>`
   - You MUST specify it’s for **[Local Grants Honduras]**.
   - You MUST specify which group are you applying: **`[Group 1]`** or **`[Group 2]`**.
   - For example: `[Local Grants Honduras][Group 1] HondurasDAO Project`.

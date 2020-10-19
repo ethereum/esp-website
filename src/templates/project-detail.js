@@ -1,11 +1,14 @@
 import React from "react"
 import { graphql } from "gatsby"
+import { MDXProvider } from "@mdx-js/react"
+import { MDXRenderer } from "gatsby-plugin-mdx"
 import styled from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons"
 import { FormattedMessage } from "gatsby-plugin-intl"
 
 import Breadcrumbs from "../components/Breadcrumbs"
+import Link from "../components/Link"
 import PageMetadata from "../components/PageMetadata"
 import {
   PageHeader,
@@ -104,29 +107,32 @@ const ExternalIcon = styled(FontAwesomeIcon)`
   margin-left: 8px;
 `
 
-const ProjectPage = ({ data }) => {
-  const content = data.markdownRemark
-  const { frontmatter } = content
+// Passing components to MDXProvider allows use across all .md/.mdx files
+// https://www.gatsbyjs.com/plugins/gatsby-plugin-mdx/#mdxprovider
+const components = {
+  a: Link,
+}
 
+const ProjectPage = ({ data: { mdx } }) => {
   const mainContent = () => {
     return (
       <>
         <Header>
-          <Title>{content.frontmatter.title}</Title>
+          <Title>{mdx.frontmatter.title}</Title>
           <Category>
-            <p>{frontmatter.category}</p>
+            <p>{mdx.frontmatter.category}</p>
           </Category>
         </Header>
 
         <DescriptionContainer>
-          <Description>{frontmatter.description}</Description>
+          <Description>{mdx.frontmatter.description}</Description>
           <p>
             <strong>
               <FormattedMessage id="page-project-detail.grant-received" />:
             </strong>
             <br />
-            {frontmatter.grantAmount} <FormattedMessage id="in" />{" "}
-            {frontmatter.grantYear}
+            {mdx.frontmatter.grantAmount} <FormattedMessage id="in" />{" "}
+            {mdx.frontmatter.grantYear}
           </p>
         </DescriptionContainer>
       </>
@@ -135,7 +141,7 @@ const ProjectPage = ({ data }) => {
 
   return (
     <>
-      <PageMetadata title={frontmatter.title} />
+      <PageMetadata title={mdx.frontmatter.title} />
       <div>
         <PageHeader>
           <H1>
@@ -150,17 +156,17 @@ const ProjectPage = ({ data }) => {
           <BodyContainer>
             <ImageContainer>
               <CardImage
-                fluid={frontmatter.img.childImageSharp.fluid}
-                alt="Ecosystem Support Program Process"
+                fluid={mdx.frontmatter.img.childImageSharp.fluid}
+                alt={`${mdx.frontmatter.title} logo`}
               />
               <HideDesktop>{mainContent()}</HideDesktop>
               <Status>
                 <FormattedMessage id="page-project-detail.status" />:
               </Status>
-              <p>{frontmatter.status}</p>
-              {frontmatter.latestUpdate && (
+              <p>{mdx.frontmatter.status}</p>
+              {mdx.frontmatter.latestUpdate && (
                 <ButtonExternalLink
-                  href={frontmatter.latestUpdate}
+                  href={mdx.frontmatter.latestUpdate}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -171,7 +177,9 @@ const ProjectPage = ({ data }) => {
             </ImageContainer>
             <ContentContainer>
               <HideMobile>{mainContent()}</HideMobile>
-              <div dangerouslySetInnerHTML={{ __html: content.html }} />
+              <MDXProvider components={components}>
+                <MDXRenderer>{mdx.body}</MDXRenderer>
+              </MDXProvider>
             </ContentContainer>
           </BodyContainer>
         </PageBodyWide>
@@ -180,12 +188,13 @@ const ProjectPage = ({ data }) => {
   )
 }
 
-export const query = graphql`
-  query($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      id
+export const projectDetailPageQuery = graphql`
+  query ProjectDetailPageQuery($slug: String) {
+    mdx(fields: { slug: { eq: $slug } }) {
+      fields {
+        slug
+      }
       frontmatter {
-        title
         img {
           childImageSharp {
             fluid(maxWidth: 200) {
@@ -197,14 +206,13 @@ export const query = graphql`
         description
         grantYear
         grantAmount
-        status
         latestUpdate
+        status
+        title
       }
-      fields {
-        slug
-      }
-      html
+      body
     }
   }
 `
+
 export default ProjectPage

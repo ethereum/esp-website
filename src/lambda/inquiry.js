@@ -1,6 +1,7 @@
 const axios = require("axios")
+const { GoogleSpreadsheet } = require("google-spreadsheet")
 
-exports.handler = async function(event, context) {
+exports.handler = async function(event) {
   try {
     if (event.httpMethod !== "POST") {
       return { statusCode: 405, body: "Method Not Allowed" }
@@ -9,7 +10,7 @@ exports.handler = async function(event, context) {
     const { SEGMENT_API_KEY } = process.env
     const baseURL = `https://api.segment.io/v1/identify`
 
-    let keyBuff = new Buffer(`${SEGMENT_API_KEY}:`)
+    let keyBuff = new Buffer.from(`${SEGMENT_API_KEY}:`)
     let auth = keyBuff.toString("base64")
 
     const params = JSON.parse(event.body)
@@ -20,7 +21,7 @@ exports.handler = async function(event, context) {
     // https://segment.com/docs/connections/destinations/catalog/salesforce/
     const dedupedEmail = email.replace("@", `+${Date.now()}@`)
 
-    const emailBuff = new Buffer(email)
+    const emailBuff = new Buffer.from(email)
     const userId = emailBuff.toString("base64")
 
     const instance = axios.create({
@@ -73,16 +74,37 @@ exports.handler = async function(event, context) {
         Why_Ethereum: params.whyEthereum,
         Recent_Projects_or_Developments: params.recentProjectsOrDevelopments,
         Questions: params.questions,
-        // Project custom fields
+        // Project & LGP custom fields
         Project_Description: params.projectDescription,
         Challenges: params.challenges,
         Impact: params.impact,
+        // LGP custom fields
+        Local_Grants_Wave: params.wave,
+        Project_Category: params.projectCategory,
+        Stage_of_Project: params.projectStage,
+        Problem_Being_Solved: params.problemBeingSolved,
+        Individual_or_Team: params.individualOrTeam,
+        Alternative_Contact: params.contactAlternative,
+        Referral_Source_if_Other: params.referralSourceIfOther,
       },
       integrations: {
         Salesforce: true,
         MailChimp: false,
       },
     })
+
+    // If LGP inquiry, send to Google Sheets
+    if (params.wave) {
+      const creds = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
+      const doc = new GoogleSpreadsheet(process.env.GOOGLE_SPREADSHEET_ID)
+      await doc.useServiceAccountAuth({
+        client_email: creds.client_email,
+        private_key: creds.private_key,
+      })
+      await doc.loadInfo()
+      const sheet = doc.sheetsById["1921832072"]
+      await sheet.addRow(params)
+    }
 
     if (salesforceResp.status < 200 || salesforceResp.status >= 300) {
       return {
