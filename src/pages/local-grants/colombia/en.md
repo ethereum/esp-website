@@ -8,41 +8,43 @@ imgAlt: "ESP Colombia Local Grants image"
 
 # **Ethereum Foundation: Announcing a Wave of Colombia Local Grants**
 
-¡Hola Colombia!
+_¡Hola Colombia!_
 
-We’re thrilled to announce a Colombia-specific wave of Ethereum Foundation grants! This is a special, community-centered contest to support individuals and teams contributing to the Colombian Ethereum ecosystem 🌎😃.
+_¡Estamos encantados de anunciar esta línea de subvenciones de la Ethereum Foundation, específica para Colombia! Se trata de una iniciativa centrado en la comunidad, con el objetivo de apoyar a las personas y equipos que contribuyen al ecosistema Ethereum colombiano. ¡La iniciativa dura hasta el 17 de diciembre!_ 🌎😃.
 
 ## 🥭 What is Colombia Local Grants?
 
 - Colombia Local Grants is a complement initiative to the [Ecosystem Support Program (ESP)](/en/), which is the Ethereum Foundation’s general support arm.
 
-- This local pilot program is an “open call for submissions” contest, the goal being to discover opportunities in Colombia and help support the local ecosystem 🌎!
+- This local pilot is an “open call for submissions” program, the goal being to discover opportunities in Colombia and help support the local ecosystem 🌎!
 
 - The submission process is simple and straightforward:
   - Use the [submission form](/en/local-grants/colombia/#submit) below to tell us about your Ethereum-related idea or existing project.
   - And then we'll be in touch!
 
-### Who’s eligible to participate in the contest?
+### Who’s eligible to participate in the program?
 
 - Colombia Local Grants is open to anyone interested in contributing to Ethereum communities throughout Colombia, even if you’re not from or based in Colombia!
 
 ### How can I apply for a local grant?
 
 - Fill out the [form below](/en/local-grants/colombia/#submit) y listo!
-- Note: there's no limit on the number of submissions!
-  - That is, you may earn awards for each idea or project you submit.
+- Note: there's no limit on the number of submissions.
+  - That is, we're happy to support more than one idea or project!
 
 ### What types of projects are you interested in?
 
-- Any and all projects benefiting the Colombian Ethereum ecosystem!
+- Any and all projects (technical, educational, community, and otherwise) benefiting the Colombian Ethereum ecosystem!
 - Surprise us with your creativity! But here are a few prompt questions:
-  - Are you building a project on Ethereum?
-  - Are you building a useful dApp on Ethereum that addresses a clear need in your local community or the Ethereum ecosystem?
+  - Are you building a technical project on Ethereum?
+  - Are you building public good infrastructure or open source tooling?
+  - Are you developing a useful dApp on Ethereum that addresses a clear need in your local community or the Ethereum ecosystem?
+  - Are you working on Layer 2, Eth2, or interoperability challenges?
   - Are you building community or educational resources in Spanish or local indigenous languages?
   - Are you building bridges with universities, local companies, among other local players to grow the Ethereum community?
   - Are you making it easier to onboard users in your community onto dApps, DAOs, the larger Ethereum family?
   - Are you growing the local Ethereum developer base?
-  - Are you working on Ethereum-related research?
+  - Are you working on Ethereum-related research (e.g., cryptography, Eth2, proof systems)?
 - For further inspiration, here’s a general, non-exhaustive [wishlist](/en/wishlist/).
 
 ### What are the judging criteria?
@@ -50,6 +52,7 @@ We’re thrilled to announce a Colombia-specific wave of Ethereum Foundation gra
 - Feasibility
 - Innovativeness
 - Usability
+- Potential impact
 - Sustainability of the project
 - In the spirit of making the ecosystem better
 - Alignment with Ethereum values
