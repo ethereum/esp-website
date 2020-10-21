@@ -10,7 +10,7 @@ imgAlt: "ESP Colombia Local Grants image"
 
 _¡Hola Colombia!_
 
-_¡Estamos encantados de anunciar esta línea de subvenciones de la Ethereum Foundation, específica para Colombia! Se trata de un programa centrado en la comunidad, con el objetivo de apoyar a las personas y equipos que contribuyen al ecosistema Ethereum colombiano. ¡El programa estará abierto hasta el 17 de diciembre de 2020!_ 🌎😃.
+_We’re thrilled to announce a Colombia-specific wave of Ethereum Foundation grants! This is a special, community-centered program to support individuals and teams contributing to the Colombian Ethereum ecosystem_ 🌎😃.
 
 ## 🥭 What is Colombia Local Grants?
 
