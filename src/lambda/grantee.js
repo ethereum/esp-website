@@ -59,8 +59,8 @@ exports.handler = async function(event, context) {
             bankAccountNumber: "",
             bankRoutingNumber: "",
             bankSWIFT: "",
-            ethAddress: ethOrDai === "eth" ? ethAddress : "", // ensure only 1 has a value
-            daiAddress: ethOrDai === "dai" ? daiAddress : "", // ensure only 1 has a value
+            ethAddress: ethOrDai === "eth" ? ethAddress.trim() : "", // ensure only 1 has a value
+            daiAddress: ethOrDai === "dai" ? daiAddress.trim() : "", // ensure only 1 has a value
             notes,
           }
 
@@ -69,7 +69,7 @@ exports.handler = async function(event, context) {
     })
 
     const resp = await instance.post(baseURL, {
-      userId: granteeSecurityID,
+      userId: granteeSecurityID.trim(),
       event: "Grantee form submitted",
       properties,
       integrations: {

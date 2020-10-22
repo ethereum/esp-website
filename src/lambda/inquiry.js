@@ -14,7 +14,7 @@ exports.handler = async function(event) {
     let auth = keyBuff.toString("base64")
 
     const params = JSON.parse(event.body)
-    const email = params.contactEmail
+    const email = params.contactEmail.trim()
 
     // Hack to ensure we create a unique lead every submission
     // By default, Segment merges lead data if the email exists:
