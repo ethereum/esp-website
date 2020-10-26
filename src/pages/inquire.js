@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import styled from "styled-components"
 import { navigate } from "gatsby"
 import { useToasts } from "react-toast-notifications"
 import Select from "react-select"
@@ -36,6 +37,11 @@ const INQUIRY_TYPES = ["Question", "Feedback", "Other"]
 const inquiryTypeOptions = INQUIRY_TYPES.map(type => {
   return { value: type, label: type, name: "inquiryType" }
 })
+
+const SmallPrompt = styled.small`
+  font-weight: normal;
+  font-style: italic;
+`
 
 const exploreRequiredFields = [
   "exploreOrProject",
@@ -109,7 +115,7 @@ const InquirePage = () => {
     })
       .then(response => {
         setFormState({ ...formState, isPending: false })
-        if (response.status !== 200) {
+        if (response.status < 200 || response.status >= 300) {
           addToast("Error submitting, please try again.", {
             appearance: "error",
             autoDismiss: true,
@@ -176,8 +182,11 @@ const InquirePage = () => {
             <FormattedMessage id="page-inquire.description" />
           </p>
           <p>
-            <FormattedMessage id="page-inquire.faq" />{" "}
-            <Link to="/faq/">FAQ</Link>.
+            <FormattedMessage id="page-inquire.guide" />{" "}
+            <Link to="/guide/">
+              <FormattedMessage id="page-inquire.guide-link" />
+            </Link>
+            .
           </p>
         </FormHeader>
         <Form onSubmit={handleSubmit}>
@@ -185,6 +194,10 @@ const InquirePage = () => {
             <RadioPrompt>
               <FormattedMessage id="page-inquire.prompt" />{" "}
               <Required>*</Required>
+              <br />
+              <SmallPrompt>
+                <FormattedMessage id="page-inquire.prompt-small" />
+              </SmallPrompt>
             </RadioPrompt>
             <RadioInputContainer>
               <RadioLabel>
