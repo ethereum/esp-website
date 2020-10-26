@@ -1,5 +1,6 @@
 const axios = require("axios")
 const { GoogleSpreadsheet } = require("google-spreadsheet")
+const sgMail = require("@sendgrid/mail")
 
 exports.handler = async function(event) {
   try {
@@ -52,10 +53,8 @@ exports.handler = async function(event) {
 
     const isProjectInquiry = params.exploreOrProject === "project"
 
-    // 1. Send to Mailchimp (if subscribed)
-    // 2. Send to Salesforce
-    // 3. Send to Google Sheets (if LGP)
     if (isProjectInquiry) {
+      // Send to Salesforce
       const salesforceResp = await instance.post(baseURL, {
         userId: userId,
         traits: {
@@ -115,24 +114,25 @@ exports.handler = async function(event) {
         }
       }
     } else {
-      // Send general inquiry to Mailchimp
-      const mailchimpResp = await instance.post(baseURL, {
-        userId: userId,
-        traits: {
-          email,
-          name: params.name,
-          inquiry: params.inquiry,
-          type: params.inquiryType,
-          newsletter: !!params.newsletter,
-          project: params.projectName,
-        },
-        integrations: {
-          Salesforce: false,
-        },
-      })
+      // Send email alert
+      const { INQUIRY_EMAIL_ADDRESS, SENDGRID_API_KEY } = process.env
+      sgMail.setApiKey(SENDGRID_API_KEY)
+      const msg = {
+        to: INQUIRY_EMAIL_ADDRESS,
+        from: INQUIRY_EMAIL_ADDRESS,
+        subject: `New general inquiry: ${params.name}`,
+        html: `
+          <p><strong>Name:</strong> ${params.name}</p>
+          <p><strong>Project/company name:</strong> ${params.projectName}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Inquiry type:</strong> ${params.inquiryType}</p>
+          <p><strong>Inquiry:</strong> ${params.inquiry}</p>
+        `,
+      }
+      const sgResp = await sgMail.send(msg)
       return {
-        statusCode: mailchimpResp.status,
-        body: mailchimpResp.statusText,
+        statusCode: sgResp[0].statusCode,
+        body: JSON.stringify({ data: sgResp[0].body }),
       }
     }
   } catch (err) {
