@@ -218,7 +218,7 @@ const InquirePage = () => {
                   value="explore"
                   onChange={handleInputChange}
                 />
-                <div>Exploring possibilities</div>
+                <div>General inquiry</div>
               </RadioLabel>
             </RadioInputContainer>
           </RadioContainer>
