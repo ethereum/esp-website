@@ -68,21 +68,9 @@ Let us know your great work! 👨🏼‍💻
 - Awards decided on a case-by-case basis
 - Recipients will have the option to accept awards in ETH, Dai, or USD
 
-## ☕️ Submit your application now!
+## ☕️ Next Steps
 
-Please submit your application to [https://esp.ethereum.foundation/en/project/](/en/project/)
-
-Please take extra care when filling these fields:
-
-(If possible, we encourage applications written in English. But will accept Spanish)
-
-- **Project name**:
-  - Please fill in **[Local Grants Honduras][group <group_number>]** `<your_project_name>`
-  - You MUST specify it’s for **[Local Grants Honduras]**.
-  - You MUST specify which group are you applying: **`[Group 1]`** or **`[Group 2]`**.
-  - For example: `[Local Grants Honduras][Group 1] HondurasDAO Project`.
-- **Project description**:
-  - Please provide **as much information as possible** and related links.
+The Honduras Local Grants pilot has come to an end. However, if you missed the deadline, you can still submit a general support inquiry for your project or idea [here](https://esp.ethereum.foundation/en/project/) through the [Ecosystem Support Program (ESP)](/en/)! 
 
 Questions or Comments? Contact us:
 
