@@ -69,7 +69,7 @@ El programa está dividido en 2 categorías, aplica al que más te convenga.
 
 ## ☕️ Próximos Pasos
 
- Desde el 20 de Agosto, 2020 este programa especial ha finalizado. Sin embargo, si perdiste la fecha límite, ¡aún puedes enviar una [petición general de apoyo](https://esp.ethereum.foundation/en/project/) para tu proyecto o idea a través del [Ecosystem Support Program (ESP)](/en/)!
+Desde el 20 de Agosto, 2020 este programa especial ha finalizado. Sin embargo, si perdiste la fecha límite, ¡aún puedes enviar una [petición general de apoyo](https://esp.ethereum.foundation/en/project/) para tu proyecto o idea a través del [Ecosystem Support Program (ESP)](/en/)!
 
 ¿Preguntas o Comentarios? Escríbenos a:
 
