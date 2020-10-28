@@ -173,7 +173,7 @@ const HeroImg = styled(Img)`
 `
 
 const StaticPage = ({ location, data: { mdx } }) => {
-  const hasImgMargin = location.pathname.includes("/en/local-grants/colombia")
+  const hasImgMargin = location.pathname.includes("/local-grants/colombia")
   return (
     <>
       <PageMetadata

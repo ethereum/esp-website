@@ -8,6 +8,8 @@ imgAlt: "ESP Colombia Local Grants image"
 
 # **Ethereum Foundation: Announcing a Wave of Colombia Local Grants**
 
+[Lee esta página en español](/es/local-grants/colombia/)
+
 _¡Hola Colombia!_
 
 _We’re thrilled to announce a Colombia-specific wave of Ethereum Foundation grants! This is a special, community-centered program to support individuals and teams contributing to the Colombian Ethereum ecosystem. The program runs until December 17, 2020!_ 🌎😃.
