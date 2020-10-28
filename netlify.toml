@@ -43,7 +43,7 @@
   to = "/es/local-grants/honduras"
 [[redirects]]
   from = "/colombia"
-  to = "/en/local-grants/colombia"
+  to = "/es/local-grants/colombia"
 
 # legacy site redirects
 [[redirects]]
