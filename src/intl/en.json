@@ -258,29 +258,6 @@
       "p2-3": "We are happy to guide you as you begin your journey into eth2."
     }
   },
-  "page-explore": {
-    "title": "Explore Inquiry",
-    "h1": "Exploring possibilities",
-    "description": "Tell us a bit about yourself, your skills, what you're excited about, and what questions you have. We only collect the following information submitted below and will not use or share for any purposes other than evaluation.",
-    "name": "Your name",
-    "name-guide": "Use whichever preferred name you would like our team to address you by.",
-    "proj-name": "Project name",
-    "proj-info": "What's the name of the project you’re currently working on? This is optional.",
-    "profile": "Profile",
-    "profile-info": "Tell us a little bit about yourself - whatever you think we should know.",
-    "expertise": "Area of expertise",
-    "expertise-info": "What is unique about your skill set? What kinds of problems do you enjoy solving?",
-    "why": "Why Ethereum?",
-    "proj-dev": "What's a project or development that you were excited about recently?",
-    "prev-work": "Previous work",
-    "link-2-work": "Please provide links to published code, research, or other documentation of what you're working on.",
-    "questions": "What questions can we answer for you?",
-    "country": "What country are you located in?",
-    "city": "What city are you located in?",
-    "support": "How did you hear about Ecosystem Support?",
-    "support-info": "Did anyone recommend that you contact Ecosystem Support? If so, who?",
-    "button": "Submit"
-  },
   "page-project": {
     "title": "Project Inquiry",
     "h1": "Specific Project",
@@ -308,7 +285,15 @@
     "title": "Inquire",
     "h1": "Submit an Inquiry",
     "description": "Tell us a bit about yourself, what you’re working on, your needs or challenges, and any other information you feel is pertinent for us to know. You’ll hear back from someone on the Ecosystem Support team very soon! We only collect the following information submitted below and will not use or share for any purposes other than evaluation.",
-    "faq": "If you need a little more guidance on how ESP works, check out our"
+    "guide": "If you need a little more guidance on how ESP works, check out our",
+    "guide-link": "Guide to ESP",
+    "prompt": "Are you looking for support on a specific project, or do you have a more general inquiry?",
+    "prompt-small": "Please note that we do not accept job applications through this site.",
+    "name": "Your name",
+    "name-guide": "Use whichever preferred name you would like our team to address you by.",
+    "inquiry-type": "What are you getting in touch about?",
+    "inquiry": "Briefly enter your question, comment or reason for contacting us below",
+    "proj-company-name": "Project or company name"
   },
   "page-project-detail": {
     "grant-received": "Grant Received",
@@ -328,7 +313,7 @@
   "page-thanks": {
     "title": "Thanks",
     "h1": "Thank you!",
-    "p-1": "Your inquiry has been successfully submitted! The Ecosystem Support team will be reaching out within the next few business days with detailed information.",
+    "p-1": "Your inquiry has been successfully submitted! The Ecosystem Support team will get back to you within the next few business days.",
     "p-2": "Until then, kick back and relax."
   }
 }

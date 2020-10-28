@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import styled from "styled-components"
 import { navigate } from "gatsby"
 import { useToasts } from "react-toast-notifications"
 import Select from "react-select"
@@ -31,14 +32,23 @@ const referralSourceOptions = REFERRAL_SOURCES.map(source => {
   return { value: source, label: source, name: "referralSource" }
 })
 
+const INQUIRY_TYPES = ["Question", "Feedback", "Other"]
+
+const inquiryTypeOptions = INQUIRY_TYPES.map(type => {
+  return { value: type, label: type, name: "inquiryType" }
+})
+
+const SmallPrompt = styled.small`
+  font-weight: normal;
+  font-style: italic;
+`
+
 const exploreRequiredFields = [
   "exploreOrProject",
   "name",
   "contactEmail",
-  "teamProfile",
-  "areaOfExpertise",
-  "whyEthereum",
-  "recentProjectsOrDevelopments",
+  "inquiryType",
+  "inquiry",
 ]
 const projectRequiredFields = [
   "exploreOrProject",
@@ -58,22 +68,20 @@ const InquirePage = () => {
     name: "",
     contactEmail: "",
     projectName: "",
+    newsletter: "",
+    // project
     teamProfile: "",
     previousWork: "",
-    questions: "",
     city: "",
     country: "",
     referralSource: "",
     referralName: "",
-    newsletter: "",
-    // project
     projectDescription: "",
     impact: "",
     challenges: "",
     // explore
-    areaOfExpertise: "",
-    whyEthereum: "",
-    recentProjectsOrDevelopments: "",
+    inquiryType: "",
+    inquiry: "",
   })
 
   const { addToast } = useToasts()
@@ -107,7 +115,7 @@ const InquirePage = () => {
     })
       .then(response => {
         setFormState({ ...formState, isPending: false })
-        if (response.status !== 200) {
+        if (response.status < 200 || response.status >= 300) {
           addToast("Error submitting, please try again.", {
             appearance: "error",
             autoDismiss: true,
@@ -174,18 +182,23 @@ const InquirePage = () => {
             <FormattedMessage id="page-inquire.description" />
           </p>
           <p>
-            <FormattedMessage id="page-inquire.faq" />{" "}
-            <Link to="/faq/">FAQ</Link>.
+            <FormattedMessage id="page-inquire.guide" />{" "}
+            <Link to="/guide/">
+              <FormattedMessage id="page-inquire.guide-link" />
+            </Link>
+            .
           </p>
         </FormHeader>
         <Form onSubmit={handleSubmit}>
           <RadioContainer>
             <RadioPrompt>
-              Are you looking for support on a specific project, or are you
-              still exploring possibilities to get involved?{" "}
+              <FormattedMessage id="page-inquire.prompt" />{" "}
               <Required>*</Required>
+              <br />
+              <SmallPrompt>
+                <FormattedMessage id="page-inquire.prompt-small" />
+              </SmallPrompt>
             </RadioPrompt>
-            {/* TODO fix - clicking on text should change radio input */}
             <RadioInputContainer>
               <RadioLabel>
                 <Input
@@ -205,7 +218,7 @@ const InquirePage = () => {
                   value="explore"
                   onChange={handleInputChange}
                 />
-                <div>Exploring possibilities</div>
+                <div>General inquiry</div>
               </RadioLabel>
             </RadioInputContainer>
           </RadioContainer>
@@ -395,12 +408,12 @@ const InquirePage = () => {
             <div>
               <Label>
                 <span>
-                  <FormattedMessage id="page-explore.name" />{" "}
+                  <FormattedMessage id="page-inquire.name" />{" "}
                   <Required>*</Required>
                 </span>
                 <div>
                   <small>
-                    <FormattedMessage id="page-explore.name-guide" />
+                    <FormattedMessage id="page-inquire.name-guide" />
                   </small>
                 </div>
 
@@ -426,13 +439,8 @@ const InquirePage = () => {
               </Label>
               <Label>
                 <span>
-                  <FormattedMessage id="page-explore.proj-name" />
+                  <FormattedMessage id="page-inquire.proj-company-name" />
                 </span>
-                <div>
-                  <small>
-                    <FormattedMessage id="page-explore.proj-info" />
-                  </small>
-                </div>
                 <Input
                   type="text"
                   name="projectName"
@@ -441,130 +449,28 @@ const InquirePage = () => {
                   maxLength="150"
                 />
               </Label>
-              <Label>
-                <span>
-                  <FormattedMessage id="page-explore.profile" />{" "}
-                  <Required>*</Required>
-                </span>
-                <div>
-                  <small>
-                    <FormattedMessage id="page-explore.profile-info" />
-                  </small>
-                </div>
-                <TextArea
-                  name="teamProfile"
-                  value={formState.teamProfile}
-                  onChange={handleInputChange}
-                />
-              </Label>
-              <Label>
-                <span>
-                  <FormattedMessage id="page-explore.expertise" />{" "}
-                  <Required>*</Required>
-                </span>
-                <div>
-                  <small>
-                    <FormattedMessage id="page-explore.expertise-info" />
-                  </small>
-                </div>
-                <TextArea
-                  name="areaOfExpertise"
-                  value={formState.areaOfExpertise}
-                  onChange={handleInputChange}
-                />
-              </Label>
-              <Label>
-                <span>
-                  <FormattedMessage id="page-explore.why" />{" "}
-                  <Required>*</Required>
-                </span>
-                <TextArea
-                  name="whyEthereum"
-                  value={formState.whyEthereum}
-                  onChange={handleInputChange}
-                />
-              </Label>
-              <Label>
-                <span>
-                  <FormattedMessage id="page-explore.proj-dev" />{" "}
-                  <Required>*</Required>
-                </span>
-                <TextArea
-                  name="recentProjectsOrDevelopments"
-                  value={formState.recentProjectsOrDevelopments}
-                  onChange={handleInputChange}
-                />
-              </Label>
-              <Label>
-                <span>
-                  <FormattedMessage id="page-explore.prev-work" />
-                </span>
-                <div>
-                  <small>
-                    <FormattedMessage id="page-explore.link-2-work" />
-                  </small>
-                </div>
-                <TextArea
-                  name="previousWork"
-                  value={formState.previousWork}
-                  onChange={handleInputChange}
-                />
-              </Label>
-              <Label>
-                <span>
-                  <FormattedMessage id="page-explore.questions" />
-                </span>
-                <TextArea
-                  name="questions"
-                  value={formState.questions}
-                  onChange={handleInputChange}
-                  maxLength="255"
-                />
-              </Label>
 
               <Label>
                 <span>
-                  <FormattedMessage id="page-explore.country" />
+                  <FormattedMessage id="page-inquire.inquiry-type" />{" "}
+                  <Required>*</Required>
                 </span>
                 <Select
-                  options={countryOptions}
+                  options={inquiryTypeOptions}
                   onChange={handleSelectChange}
                 />
               </Label>
 
               <Label>
                 <span>
-                  <FormattedMessage id="page-explore.city" />
+                  <FormattedMessage id="page-inquire.inquiry" />{" "}
+                  <Required>*</Required>
                 </span>
-                <Input
-                  type="text"
-                  name="city"
-                  value={formState.city}
+                <TextArea
+                  name="inquiry"
+                  value={formState.inquiry}
                   onChange={handleInputChange}
-                  maxLength="40"
-                />
-              </Label>
-
-              <Label>
-                <span>
-                  <FormattedMessage id="page-explore.support" />
-                </span>
-                <Select
-                  options={referralSourceOptions}
-                  onChange={handleSelectChange}
-                />
-              </Label>
-
-              <Label>
-                <span>
-                  <FormattedMessage id="page-explore.support-info" />
-                </span>
-                <Input
-                  type="text"
-                  name="referralName"
-                  value={formState.referralName}
-                  onChange={handleInputChange}
-                  maxLength="150"
+                  maxLength={255}
                 />
               </Label>
 

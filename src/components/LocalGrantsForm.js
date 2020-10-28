@@ -67,6 +67,7 @@ const LocalGrantsForm = ({ wave }) => {
     isPending: false,
     // form fields
     wave,
+    exploreOrProject: "project", // send to CRM
     projectName: "",
     projectCategory: "",
     projectStage: "",
