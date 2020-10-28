@@ -67,21 +67,9 @@ El programa está dividido en 2 categorías, aplica al que más te convenga.
 - La cantidad de cada premio será decidido caso por caso
 - Los destinatarios tendrán la opción de aceptar el premio en ETH, DAI o USD
 
-## ☕️ ¡Envía tu aplicación ahora!
+## ☕️ Próximos Pasos
 
-Por favor envía tu aplicación a [https://esp.ethereum.foundation/en/project/](https://esp.ethereum.foundation/en/project/)
-
-Ten cuidado adicional llenando estos campos:
-
-(Si es posible, recomendamos que las aplicaciones se escriban en Inglés. Pero, también aceptaremos en Español)
-
-- **Nombre del Proyecto**:
-  - Por favor llena en **[Local Grants Honduras][categoría <número_categoría>]** `<Nombre_de_proyecto>`
-  - TIENES que especificar que es para **[Local Grants Honduras]**.
-  - TIENES que especificar a que categoria estas aplicando: **`[Categoría 1], [Categoría 2]`**.
-  - Por ejemplo: `[Local Grants Honduras][Categoría 1] Proyecto HondurasDAO`.
-- **Descripción**:
-  - Por favor **provee la mayor cantidad de información posible** y enlaces relacionados.
+ Desde el 20 de Agosto, 2020 este programa especial ha finalizado. Sin embargo, si perdiste la fecha límite, ¡aún puedes enviar una [petición general de apoyo](https://esp.ethereum.foundation/en/project/) para tu proyecto o idea a través del [Ecosystem Support Program (ESP)](/en/)!
 
 ¿Preguntas o Comentarios? Escríbenos a:
 
