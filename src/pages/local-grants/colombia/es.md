@@ -6,7 +6,7 @@ img: ./colombia-local-grants.png
 imgAlt: "ESP Colombia Local Grants image"
 ---
 
-# **Fundación Ethereum: anuncia su línea de subvenciones locales para Colombia 🇨🇴**
+# **Ethereum Foundation: Anunciando una ola de Fondos Locales para Colombia 🇨🇴**
 
 [Read this page in English](/en/local-grants/colombia/)
 
