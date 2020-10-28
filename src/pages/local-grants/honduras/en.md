@@ -8,7 +8,7 @@ imgAlt: "ESP Honduras Local Grants hero image"
 
 # 🦜 Ethereum Foundation: Announcing a Wave of Honduras Local Grants
 
-[Lee esta página en español](/es/local-grants/honduras)
+[Lee esta página en español](/es/local-grants/honduras/)
 
 Hola Querida Comunidad!
 
@@ -70,7 +70,7 @@ Let us know your great work! 👨🏼‍💻
 
 ## ☕️ Next Steps
 
-The Honduras Local Grants pilot has come to an end. However, if you missed the deadline, you can still submit a general support inquiry for your project or idea [here](https://esp.ethereum.foundation/en/project/) through the [Ecosystem Support Program (ESP)](/en/)! 
+The Honduras Local Grants pilot has come to an end. However, if you missed the deadline, you can still submit a general support inquiry for your project or idea [here](https://esp.ethereum.foundation/en/project/) through the [Ecosystem Support Program (ESP)](/en/)!
 
 Questions or Comments? Contact us:
 

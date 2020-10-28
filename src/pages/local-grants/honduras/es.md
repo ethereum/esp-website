@@ -7,7 +7,7 @@ img: ./honduras-header-spanish.png
 
 # 🦜 Ethereum Foundation: Anunciando una ola de Fondos Locales para Honduras
 
-[Read this page in English](/en/local-grants/honduras)
+[Read this page in English](/en/local-grants/honduras/)
 
 ¡Hola Querida Comunidad!
 
