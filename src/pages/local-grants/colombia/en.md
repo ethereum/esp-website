@@ -32,7 +32,7 @@ _We’re thrilled to announce a Colombia-specific wave of Ethereum Foundation gr
 - Note: there's no limit on the number of submissions.
   - That is, we're happy to support more than one idea or project!
 
-### What types of projects are you interested in?
+### What types of projects are of interest?
 
 - Any and all projects (technical, educational, community, and otherwise) benefiting the Colombian Ethereum ecosystem!
 - Surprise us with your creativity! But here are a few prompt questions:
