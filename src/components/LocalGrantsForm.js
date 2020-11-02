@@ -3,8 +3,9 @@ import { navigate } from "gatsby"
 import styled from "styled-components"
 import { useToasts } from "react-toast-notifications"
 import Select from "react-select"
+import { FormattedMessage, useIntl } from "gatsby-plugin-intl"
 
-import { REFERRAL_SOURCES, COUNTRIES } from "../utils/form-inputs"
+import { COUNTRIES } from "../utils/form-inputs"
 import {
   Form,
   Label,
@@ -20,31 +21,44 @@ const StyledForm = styled(Form)`
   margin-top: 2rem;
 `
 
-const PROJECT_STAGES = ["Idea phase", "Early phase", "Live service", "Other"]
+const PROJECT_STAGES = [
+  { id: "page-project.proj-stage-idea", value: "Idea Phase" },
+  { id: "page-project.proj-stage-early", value: "Early Phase" },
+  { id: "page-project.proj-stage-live", value: "Live service" },
+  { id: "page-project.proj-stage-other", value: "Other" },
+]
 
-const projectStageOptions = PROJECT_STAGES.map(stage => {
-  return { value: stage, label: stage, name: "projectStage" }
-})
+const PROJECT_CATEGORIES = [
+  { id: "page-project.proj-category-tech", value: "Technology" },
+  { id: "page-project.proj-category-comm", value: "Community" },
+  { id: "page-project.proj-category-edu", value: "Education" },
+  { id: "page-project.proj-category-other", value: "Other" },
+]
 
-const PROJECT_CATEGORIES = ["Technology", "Community", "Education", "Other"]
-
-const projectCategoryOptions = PROJECT_CATEGORIES.map(category => {
-  return { value: category, label: category, name: "projectCategory" }
-})
-
-const TEAM_CATEGORIES = ["Individual", "Team"]
-
-const teamOptions = TEAM_CATEGORIES.map(team => {
-  return { value: team, label: team, name: "individualOrTeam" }
-})
+const TEAM_CATEGORIES = [
+  { id: "page-project.proj-individual-team-individual", value: "Individual" },
+  { id: "page-project.proj-individual-team-team", value: "Team" },
+]
 
 const countryOptions = COUNTRIES.map(country => {
   return { value: country, label: country, name: "country" }
 })
 
-const referralSourceOptions = REFERRAL_SOURCES.map(source => {
-  return { value: source, label: source, name: "referralSource" }
-})
+const REFERRAL_SOURCES_1 = [
+  {
+    id: "page-project.proj-hear-localgrants-dropdown-1",
+    value: "Ethereum Blog",
+  },
+  {
+    id: "page-project.proj-hear-localgrants-dropdown-2",
+    value: "Ethereum Community Events",
+  },
+  {
+    id: "page-project.proj-hear-localgrants-dropdown-3",
+    value: "Other team/project in ecosystem",
+  },
+  { id: "page-project.proj-hear-localgrants-dropdown-4", value: "Other" },
+]
 
 const requiredFields = [
   "wave",
@@ -88,7 +102,40 @@ const LocalGrantsForm = ({ wave }) => {
     newsletter: "",
   })
 
+  const intl = useIntl()
   const { addToast } = useToasts()
+
+  const projectStageOptions = PROJECT_STAGES.map(stageObject => {
+    return {
+      value: stageObject.value,
+      label: intl.formatMessage({ id: stageObject.id }),
+      name: "projectStage",
+    }
+  })
+
+  const projectCategoryOptions = PROJECT_CATEGORIES.map(category => {
+    return {
+      value: category.value,
+      label: intl.formatMessage({ id: category.id }),
+      name: "projectCategory",
+    }
+  })
+
+  const teamOptions = TEAM_CATEGORIES.map(team => {
+    return {
+      value: team.value,
+      label: intl.formatMessage({ id: team.id }),
+      name: "individualOrTeam",
+    }
+  })
+
+  const referralSourceOptions = REFERRAL_SOURCES_1.map(source => {
+    return {
+      value: source.value,
+      label: intl.formatMessage({ id: source.id }),
+      name: "referralSource",
+    }
+  })
 
   const handleCheckBoxChange = event => {
     const target = event.target
@@ -157,25 +204,29 @@ const LocalGrantsForm = ({ wave }) => {
 
   const isValid = isFormValid()
   const isButtonDisabled = !isValid || formState.isPending
-  const buttonText = formState.isPending ? "Submitting..." : "Submit"
+  const buttonText = formState.isPending
+    ? intl.formatMessage({ id: "page-project.button-pending" })
+    : intl.formatMessage({ id: "page-project.button" })
 
   return (
     <StyledForm onSubmit={handleSubmit}>
       <Label>
         <span>
-          Project Name <Required>*</Required>
+          <FormattedMessage id='page-project.proj-name' />{" "}
+          <Required>*</Required>
         </span>
         <Input
-          type="text"
-          name="projectName"
+          type='text'
+          name='projectName'
           value={formState.projectName}
           onChange={handleInputChange}
-          maxLength="150"
+          maxLength='150'
         />
       </Label>
       <Label>
         <span>
-          Project Category <Required>*</Required>
+          <FormattedMessage id='page-project.proj-category' />{" "}
+          <Required>*</Required>
         </span>
         <Select
           options={projectCategoryOptions}
@@ -184,148 +235,155 @@ const LocalGrantsForm = ({ wave }) => {
       </Label>
       <Label>
         <span>
-          Stage of Project <Required>*</Required>
+          <FormattedMessage id='page-project.proj-stage' />{" "}
+          <Required>*</Required>
         </span>
         <Select options={projectStageOptions} onChange={handleSelectChange} />
       </Label>
       <Label>
         <span>
-          Project Description <Required>*</Required>
+          <FormattedMessage id='page-project.proj-desc' />
+          <Required>*</Required>
         </span>
         <div>
           <small>
-            What are you working on? What does success look like for your
-            project? (2-3 short paragraphs)
+            <FormattedMessage id='page-project.proj-success' />
           </small>
         </div>
         <TextArea
-          name="projectDescription"
+          name='projectDescription'
           value={formState.projectDescription}
           onChange={handleInputChange}
         />
       </Label>
       <Label>
         <span>
-          Problem Being Solved <Required>*</Required>
+          <FormattedMessage id='page-project.proj-prob-solved' />{" "}
+          <Required>*</Required>
         </span>
         <div>
           <small>
-            As concretely as possible, what problem is your project attempting
-            to solve?
+            <FormattedMessage id='page-project.proj-prob-solved-desc' />
           </small>
         </div>
         <TextArea
-          name="problemBeingSolved"
+          name='problemBeingSolved'
           value={formState.problemBeingSolved}
           onChange={handleInputChange}
         />
       </Label>
       <Label>
         <span>
-          Impact <Required>*</Required>
+          <FormattedMessage id='page-project.impacts' /> <Required>*</Required>
         </span>
         <div>
           <small>
-            How will your project / solution address the problem? How will your
-            work impact the larger Ethereum ecosystem? Who will benefit from
-            your work?
+            <FormattedMessage id='page-project.proj-impact-desc' />
           </small>
         </div>
         <TextArea
-          name="impact"
+          name='impact'
           value={formState.impact}
           onChange={handleInputChange}
         />
       </Label>
       <Label>
         <span>
-          Challenges <Required>*</Required>
+          <FormattedMessage id='page-project.proj-challenges' />
+          <Required>*</Required>
         </span>
         <div>
           <small>
-            What are the most significant obstacles facing your project or your
-            team right now? What are some of your most pressing needs?
+            <FormattedMessage id='page-project.challenges-info' />
           </small>
         </div>
         <TextArea
-          name="challenges"
+          name='challenges'
           value={formState.challenges}
           onChange={handleInputChange}
         />
       </Label>
       <Label>
         <span>
-          Individual or Team <Required>*</Required>
+          <FormattedMessage id='page-project.proj-individual-team' />{" "}
+          <Required>*</Required>
         </span>
         <Select options={teamOptions} onChange={handleSelectChange} />
       </Label>
       <Label>
         <span>
-          Individual or Team profile <Required>*</Required>
+          <FormattedMessage id='page-project.proj-team-profile' />{" "}
+          <Required>*</Required>
         </span>
         <div>
           <small>
-            Please write or link to bio(s). If team, who are the members of your
-            team? Please include Twitter, GitHub, LinkedIn, websites, etc.
+            <FormattedMessage id='page-project.proj-team-profile-desc' />
           </small>
         </div>
         <TextArea
-          name="teamProfile"
+          name='teamProfile'
           value={formState.teamProfile}
           onChange={handleInputChange}
         />
       </Label>
       <Label>
         <span>
-          Contact Person <Required>*</Required>
+          <FormattedMessage id='page-project.contact-person' />
+          <Required>*</Required>
         </span>
         <Input
-          type="text"
-          name="name"
+          type='text'
+          name='name'
           value={formState.name}
           onChange={handleInputChange}
-          maxLength="150"
+          maxLength='150'
         />
       </Label>
       <Label>
         <span>
-          Contact email <Required>*</Required>
+          <FormattedMessage id='contact-email' /> <Required>*</Required>
         </span>
         <Input
-          type="email"
-          name="contactEmail"
+          type='email'
+          name='contactEmail'
           value={formState.contactEmail}
           onChange={handleInputChange}
-          maxLength="150"
+          maxLength='150'
         />
       </Label>
       <Label>
-        <span>Alternative Contact (Telegram/Discord)</span>
+        <span>
+          <FormattedMessage id='page-project.contact-alternative' />
+        </span>
         <Input
-          type="text"
-          name="contactAlternative"
+          type='text'
+          name='contactAlternative'
           value={formState.contactAlternative}
           onChange={handleInputChange}
-          maxLength="150"
+          maxLength='150'
         />
       </Label>
       <Label>
-        <span>Where is your contact person based (country)?</span>
+        <span>
+          <FormattedMessage id='page-project.contact-p-country' />
+        </span>
         <Select options={countryOptions} onChange={handleSelectChange} />
       </Label>
       <Label>
-        <span>Where is your contact person based (city)?</span>
+        <span>
+          <FormattedMessage id='page-project.contact-p-city' />
+        </span>
         <Input
-          type="text"
-          name="city"
+          type='text'
+          name='city'
           value={formState.city}
           onChange={handleInputChange}
-          maxLength="40"
+          maxLength='40'
         />
       </Label>
       <Label>
         <span>
-          How did you hear about the ESP Local Grants program?{" "}
+          <FormattedMessage id='page-project.proj-hear-localgrants' />{" "}
           <Required>*</Required>
         </span>
         <Select options={referralSourceOptions} onChange={handleSelectChange} />
@@ -333,41 +391,40 @@ const LocalGrantsForm = ({ wave }) => {
       {formState.referralSource === "Other" && (
         <Label>
           <span>
-            How specifically did you hear about the ESP Local Grants program?
+            <FormattedMessage id='page-project.proj-hear-localgrants-specifics' />
           </span>
           <Input
-            type="text"
-            name="referralSourceIfOther"
+            type='text'
+            name='referralSourceIfOther'
             value={formState.referralSourceIfOther}
             onChange={handleInputChange}
-            maxLength="150"
+            maxLength='150'
           />
         </Label>
       )}
       <Label>
         <span>
-          Did anyone recommend that you contact Ecosystem Support? If so, who?
+          <FormattedMessage id='page-project.support-p' />
         </span>
         <Input
-          type="text"
-          name="referralName"
+          type='text'
+          name='referralName'
           value={formState.referralName}
           onChange={handleInputChange}
-          maxLength="150"
+          maxLength='150'
         />
       </Label>
       <Checkbox>
         <CheckboxInput
-          type="checkbox"
-          name="newsletter"
+          type='checkbox'
+          name='newsletter'
           value={formState.newsletter}
           onChange={handleCheckBoxChange}
         />
-        Subscribe to the ESP Newsletter? You'll hear from us every few weeks,
-        and we'll only ever contact you with ESP news.
+        <FormattedMessage id='page-project.subscribe' />
       </Checkbox>
       <div>
-        <Button disabled={isButtonDisabled} type="submit">
+        <Button disabled={isButtonDisabled} type='submit'>
           {buttonText}
         </Button>
       </div>
