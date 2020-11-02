@@ -85,7 +85,7 @@ const WishlistPage = () => {
           </H2>
           <p>
             <FormattedMessage id="page-wishlist.h2-description" />{" "}
-            <Link to="/project/">
+            <Link to="/inquire/">
               <FormattedMessage id="page-wishlist.h2-description-link" />
             </Link>
             !

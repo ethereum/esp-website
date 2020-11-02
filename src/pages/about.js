@@ -39,7 +39,7 @@ const AboutPage = () => {
             </p>
             <p>
               <FormattedMessage id="page-about.mission-3" />,{" "}
-              <Link to="/project/">
+              <Link to="/inquire/">
                 <FormattedMessage id="get-in-touch" />
               </Link>
               {"!"}
