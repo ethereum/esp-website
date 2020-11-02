@@ -76,7 +76,7 @@ _We’re thrilled to announce a Colombia-specific wave of Ethereum Foundation gr
 
 ## 🚀 How to Submit {#submit}
 
-_Use the submission form below to tell us about your Ethereum-related idea or existing project. And that's it. After we receive your submission, we'll be in touch by email!_
+_Use the submission form below to tell us about your Ethereum-related idea or existing project. And that's it. After we receive your submission, we'll be in touch by email! Remember that submissions must be in English._
 
 <LocalGrantsForm wave="Colombia | 2020" />
 
