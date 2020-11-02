@@ -12,9 +12,9 @@ imgAlt: "ESP Honduras Local Grants hero image"
 
 Hola Querida Comunidad!
 
-Thank you for visiting our Local Grants Honduras home! As of August 20, 2020 this special program has ended. However, if you missed the deadline, you can still submit a general support inquiry for your project or idea [here](https://esp.ethereum.foundation/en/project/) through the [Ecosystem Support Program (ESP)](/en/) 🌎 😃!
+Thank you for visiting our Local Grants Honduras home! As of August 20, 2020 this special program has ended. However, if you missed the deadline, you can still submit a general support inquiry for your project or idea [here](/en/inquire/) through the [Ecosystem Support Program (ESP)](/en/) 🌎 😃!
 
-ESP is the branch of the Ethereum Foundation focused on supporting projects and entities within the greater Ethereum community, in order to promote the success and growth of the ecosystem. If you're looking for support, [please get in touch](https://esp.ethereum.foundation/en/project/)! Thank you, Honduras 🌎 😃.
+ESP is the branch of the Ethereum Foundation focused on supporting projects and entities within the greater Ethereum community, in order to promote the success and growth of the ecosystem. If you're looking for support, [please get in touch](/en/inquire/)! Thank you, Honduras 🌎 😃.
 
 ## 📣 Deadline: Thursday August 20th, 2020, 23:59:59 (CST time)
 
@@ -70,7 +70,7 @@ Let us know your great work! 👨🏼‍💻
 
 ## ☕️ Next Steps
 
-The Honduras Local Grants pilot has come to an end. However, if you missed the deadline, you can still submit a general support inquiry for your project or idea [here](https://esp.ethereum.foundation/en/project/) through the [Ecosystem Support Program (ESP)](/en/)!
+The Honduras Local Grants pilot has come to an end. However, if you missed the deadline, you can still submit a general support inquiry for your project or idea [here](/en/inquire/) through the [Ecosystem Support Program (ESP)](/en/)!
 
 Questions or Comments? Contact us:
 

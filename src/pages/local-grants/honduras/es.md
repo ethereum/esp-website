@@ -11,7 +11,7 @@ img: ./honduras-header-spanish.png
 
 ¡Hola Querida Comunidad!
 
-¡Gracias por visitar nuestro sitio de Grants Locales para Honduras! Desde el 20 de Agosto, 2020 este programa especial ha finalizado. Sin embargo, si perdiste la fecha límite, ¡aún puedes enviar una [petición general de apoyo](https://esp.ethereum.foundation/en/project/) para tu proyecto o idea a través del [Ecosystem Support Program (ESP)](/en/) 🌎 😃!
+¡Gracias por visitar nuestro sitio de Grants Locales para Honduras! Desde el 20 de Agosto, 2020 este programa especial ha finalizado. Sin embargo, si perdiste la fecha límite, ¡aún puedes enviar una [petición general de apoyo](/en/inquire/) para tu proyecto o idea a través del [Ecosystem Support Program (ESP)](/en/) 🌎 😃!
 
 ESP es la rama del Ethereum Foundation enfocada en apoyar proyectos y entidades dentro de la gran comunidad de Ethereum, con el fin de promover el éxito y el crecimiento del ecosistema. Si buscas apoyo, ¡Ponte en contacto! Gracias, Honduras 🌎 😃.
 
@@ -69,7 +69,7 @@ El programa está dividido en 2 categorías, aplica al que más te convenga.
 
 ## ☕️ Próximos Pasos
 
-Desde el 20 de Agosto, 2020 este programa especial ha finalizado. Sin embargo, si perdiste la fecha límite, ¡aún puedes enviar una [petición general de apoyo](https://esp.ethereum.foundation/en/project/) para tu proyecto o idea a través del [Ecosystem Support Program (ESP)](/en/)!
+Desde el 20 de Agosto, 2020 este programa especial ha finalizado. Sin embargo, si perdiste la fecha límite, ¡aún puedes enviar una [petición general de apoyo](/en/inquire/) para tu proyecto o idea a través del [Ecosystem Support Program (ESP)](/en/)!
 
 ¿Preguntas o Comentarios? Escríbenos a:
 
