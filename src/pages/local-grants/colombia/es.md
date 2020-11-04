@@ -2,7 +2,7 @@
 title: Programa de Fondos Locales para Colombia
 description: Una línea de subvenciones de la Fundación Ethereum, específica para Colombia!
 lang: es
-img: ./colombia-local-grants.png
+img: ./ETH-ESP-Colombia-local-grant-logo.png
 imgAlt: "ESP Colombia Local Grants image"
 ---
 
