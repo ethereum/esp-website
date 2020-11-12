@@ -87,4 +87,4 @@ _Use the submission form below to tell us about your Ethereum-related idea or ex
   - Interested in helping translate Ethereum.org? [Learn more about our Translation Program](https://ethereum.org/en/contributing/translation-program/) 😃 .
 - Participate in [Descrubiendo Blockchain](https://www.eventbrite.co/e/entradas-descubriendo-blockchain-122482736161), a free online web3 lecture series in Spanish.
 - [Devcon](https://devcon.org/), the annual conference for Ethereum developers, researchers, thinkers, and makers, will take place in [Bogotá in 2021](https://blog.ethereum.org/2020/05/28/devcon-hacia-colombia-en-2021/)!
-- Further [details on the EF's Ecosystem Support Program](en/guide/)
+- Further [details on the EF's Ecosystem Support Program](/en/guide/)
