@@ -55,7 +55,7 @@ const REFERRAL_SOURCES = [
   },
   {
     id: "page-project.proj-hear-localgrants-dropdown-5",
-    value: "Newsletter",
+    value: "ESP Newsletter",
   },
   {
     id: "page-project.proj-hear-localgrants-dropdown-3",
