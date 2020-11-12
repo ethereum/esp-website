@@ -44,7 +44,7 @@ const countryOptions = COUNTRIES.map(country => {
   return { value: country, label: country, name: "country" }
 })
 
-const REFERRAL_SOURCES_1 = [
+const REFERRAL_SOURCES = [
   {
     id: "page-project.proj-hear-localgrants-dropdown-1",
     value: "Ethereum Blog",
@@ -52,6 +52,10 @@ const REFERRAL_SOURCES_1 = [
   {
     id: "page-project.proj-hear-localgrants-dropdown-2",
     value: "Ethereum Community Events",
+  },
+  {
+    id: "page-project.proj-hear-localgrants-dropdown-5",
+    value: "ESP Newsletter",
   },
   {
     id: "page-project.proj-hear-localgrants-dropdown-3",
@@ -129,7 +133,7 @@ const LocalGrantsForm = ({ wave }) => {
     }
   })
 
-  const referralSourceOptions = REFERRAL_SOURCES_1.map(source => {
+  const referralSourceOptions = REFERRAL_SOURCES.map(source => {
     return {
       value: source.value,
       label: intl.formatMessage({ id: source.id }),
@@ -212,20 +216,20 @@ const LocalGrantsForm = ({ wave }) => {
     <StyledForm onSubmit={handleSubmit}>
       <Label>
         <span>
-          <FormattedMessage id='page-project.proj-name' />{" "}
+          <FormattedMessage id="page-project.proj-name" />{" "}
           <Required>*</Required>
         </span>
         <Input
-          type='text'
-          name='projectName'
+          type="text"
+          name="projectName"
           value={formState.projectName}
           onChange={handleInputChange}
-          maxLength='150'
+          maxLength="150"
         />
       </Label>
       <Label>
         <span>
-          <FormattedMessage id='page-project.proj-category' />{" "}
+          <FormattedMessage id="page-project.proj-category" />{" "}
           <Required>*</Required>
         </span>
         <Select
@@ -235,155 +239,155 @@ const LocalGrantsForm = ({ wave }) => {
       </Label>
       <Label>
         <span>
-          <FormattedMessage id='page-project.proj-stage' />{" "}
+          <FormattedMessage id="page-project.proj-stage" />{" "}
           <Required>*</Required>
         </span>
         <Select options={projectStageOptions} onChange={handleSelectChange} />
       </Label>
       <Label>
         <span>
-          <FormattedMessage id='page-project.proj-desc' />
+          <FormattedMessage id="page-project.proj-desc" />
           <Required>*</Required>
         </span>
         <div>
           <small>
-            <FormattedMessage id='page-project.proj-success' />
+            <FormattedMessage id="page-project.proj-success" />
           </small>
         </div>
         <TextArea
-          name='projectDescription'
+          name="projectDescription"
           value={formState.projectDescription}
           onChange={handleInputChange}
         />
       </Label>
       <Label>
         <span>
-          <FormattedMessage id='page-project.proj-prob-solved' />{" "}
+          <FormattedMessage id="page-project.proj-prob-solved" />{" "}
           <Required>*</Required>
         </span>
         <div>
           <small>
-            <FormattedMessage id='page-project.proj-prob-solved-desc' />
+            <FormattedMessage id="page-project.proj-prob-solved-desc" />
           </small>
         </div>
         <TextArea
-          name='problemBeingSolved'
+          name="problemBeingSolved"
           value={formState.problemBeingSolved}
           onChange={handleInputChange}
         />
       </Label>
       <Label>
         <span>
-          <FormattedMessage id='page-project.impacts' /> <Required>*</Required>
+          <FormattedMessage id="page-project.impacts" /> <Required>*</Required>
         </span>
         <div>
           <small>
-            <FormattedMessage id='page-project.proj-impact-desc' />
+            <FormattedMessage id="page-project.proj-impact-desc" />
           </small>
         </div>
         <TextArea
-          name='impact'
+          name="impact"
           value={formState.impact}
           onChange={handleInputChange}
         />
       </Label>
       <Label>
         <span>
-          <FormattedMessage id='page-project.proj-challenges' />
+          <FormattedMessage id="page-project.proj-challenges" />
           <Required>*</Required>
         </span>
         <div>
           <small>
-            <FormattedMessage id='page-project.challenges-info' />
+            <FormattedMessage id="page-project.challenges-info" />
           </small>
         </div>
         <TextArea
-          name='challenges'
+          name="challenges"
           value={formState.challenges}
           onChange={handleInputChange}
         />
       </Label>
       <Label>
         <span>
-          <FormattedMessage id='page-project.proj-individual-team' />{" "}
+          <FormattedMessage id="page-project.proj-individual-team" />{" "}
           <Required>*</Required>
         </span>
         <Select options={teamOptions} onChange={handleSelectChange} />
       </Label>
       <Label>
         <span>
-          <FormattedMessage id='page-project.proj-team-profile' />{" "}
+          <FormattedMessage id="page-project.proj-team-profile" />{" "}
           <Required>*</Required>
         </span>
         <div>
           <small>
-            <FormattedMessage id='page-project.proj-team-profile-desc' />
+            <FormattedMessage id="page-project.proj-team-profile-desc" />
           </small>
         </div>
         <TextArea
-          name='teamProfile'
+          name="teamProfile"
           value={formState.teamProfile}
           onChange={handleInputChange}
         />
       </Label>
       <Label>
         <span>
-          <FormattedMessage id='page-project.contact-person' />
+          <FormattedMessage id="page-project.contact-person" />
           <Required>*</Required>
         </span>
         <Input
-          type='text'
-          name='name'
+          type="text"
+          name="name"
           value={formState.name}
           onChange={handleInputChange}
-          maxLength='150'
+          maxLength="150"
         />
       </Label>
       <Label>
         <span>
-          <FormattedMessage id='contact-email' /> <Required>*</Required>
+          <FormattedMessage id="contact-email" /> <Required>*</Required>
         </span>
         <Input
-          type='email'
-          name='contactEmail'
+          type="email"
+          name="contactEmail"
           value={formState.contactEmail}
           onChange={handleInputChange}
-          maxLength='150'
+          maxLength="150"
         />
       </Label>
       <Label>
         <span>
-          <FormattedMessage id='page-project.contact-alternative' />
+          <FormattedMessage id="page-project.contact-alternative" />
         </span>
         <Input
-          type='text'
-          name='contactAlternative'
+          type="text"
+          name="contactAlternative"
           value={formState.contactAlternative}
           onChange={handleInputChange}
-          maxLength='150'
+          maxLength="150"
         />
       </Label>
       <Label>
         <span>
-          <FormattedMessage id='page-project.contact-p-country' />
+          <FormattedMessage id="page-project.contact-p-country" />
         </span>
         <Select options={countryOptions} onChange={handleSelectChange} />
       </Label>
       <Label>
         <span>
-          <FormattedMessage id='page-project.contact-p-city' />
+          <FormattedMessage id="page-project.contact-p-city" />
         </span>
         <Input
-          type='text'
-          name='city'
+          type="text"
+          name="city"
           value={formState.city}
           onChange={handleInputChange}
-          maxLength='40'
+          maxLength="40"
         />
       </Label>
       <Label>
         <span>
-          <FormattedMessage id='page-project.proj-hear-localgrants' />{" "}
+          <FormattedMessage id="page-project.proj-hear-localgrants" />{" "}
           <Required>*</Required>
         </span>
         <Select options={referralSourceOptions} onChange={handleSelectChange} />
@@ -391,40 +395,40 @@ const LocalGrantsForm = ({ wave }) => {
       {formState.referralSource === "Other" && (
         <Label>
           <span>
-            <FormattedMessage id='page-project.proj-hear-localgrants-specifics' />
+            <FormattedMessage id="page-project.proj-hear-localgrants-specifics" />
           </span>
           <Input
-            type='text'
-            name='referralSourceIfOther'
+            type="text"
+            name="referralSourceIfOther"
             value={formState.referralSourceIfOther}
             onChange={handleInputChange}
-            maxLength='150'
+            maxLength="150"
           />
         </Label>
       )}
       <Label>
         <span>
-          <FormattedMessage id='page-project.support-p' />
+          <FormattedMessage id="page-project.support-p" />
         </span>
         <Input
-          type='text'
-          name='referralName'
+          type="text"
+          name="referralName"
           value={formState.referralName}
           onChange={handleInputChange}
-          maxLength='150'
+          maxLength="150"
         />
       </Label>
       <Checkbox>
         <CheckboxInput
-          type='checkbox'
-          name='newsletter'
+          type="checkbox"
+          name="newsletter"
           value={formState.newsletter}
           onChange={handleCheckBoxChange}
         />
-        <FormattedMessage id='page-project.subscribe' />
+        <FormattedMessage id="page-project.subscribe" />
       </Checkbox>
       <div>
-        <Button disabled={isButtonDisabled} type='submit'>
+        <Button disabled={isButtonDisabled} type="submit">
           {buttonText}
         </Button>
       </div>

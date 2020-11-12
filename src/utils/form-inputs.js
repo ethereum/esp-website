@@ -242,6 +242,7 @@ export const COUNTRIES = [
 export const REFERRAL_SOURCES = [
   "Ethereum Blog",
   "Ethereum Community Events",
+  "ESP Newsletter",
   "Other team/project in ecosystem",
   "Other",
 ]
