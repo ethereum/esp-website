@@ -86,4 +86,4 @@ _Completa el siguiente formulario de inscripción, para dejarnos saber sobre tu 
   - Interesado en contribuir a la traducción de [Ethereum.org](https://ethereum.org/)?  😃 . Aprende acerca de nuestro [Programa de Traducción](https://ethereum.org/en/contributing/translation-program/).
 - Participa en [Descrubiendo Blockchain](https://www.eventbrite.co/e/entradas-descubriendo-blockchain-122482736161), serie de conferencias Web3, gratuitas y en español.
 - [Devcon](https://devcon.org/), la conferencia anual para desarrolladores, investigadores, pensadores, builders y creadores de Ethereum, tendrá lugar en [Bogotá en el 2021](https://blog.ethereum.org/2020/05/28/devcon-hacia-colombia-en-2021/)!
-- Más detalles acerca del [Programa de Apoyo al Ecosistema Ethereum](/en/faq/).
+- Más detalles acerca del [Programa de Apoyo al Ecosistema Ethereum](/en/guide/).
