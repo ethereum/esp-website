@@ -8,6 +8,7 @@ import {
   colorGray,
   colorGrayLighter,
   colorYellow,
+  colorText,
   screenSizeL,
 } from "../utils/styles"
 
@@ -51,7 +52,7 @@ const ProcessDetails = styled.div`
 `
 
 const StyledLink = styled(Link)`
-  color: black;
+  color: ${colorText};
 `
 
 const NavLink = ({ to, text }) => {

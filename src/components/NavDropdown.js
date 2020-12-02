@@ -11,10 +11,12 @@ import TranslatedString from "./TranslatedString"
 import { useOnClickOutside } from "../hooks/useOnClickOutside"
 import * as styles from "../utils/styles"
 
-const Dropdown = styled.div``
+const Dropdown = styled.div`
+  padding: 0 0 10px 0;
+`
 
 const DropdownTitle = styled.span`
-  color: black;
+  color: ${styles.colorText};
   font-size: 18px;
   margin-right: 20px;
   display: inline-block;

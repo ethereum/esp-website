@@ -26,7 +26,7 @@ const StyledNav = styled(motion.nav)`
 const NavLinkMain = styled(Link)`
   display: flex;
   align-items: center;
-  color: black;
+  color: ${styles.colorText};
   margin-right: 20px;
   padding: 0 0 10px 0;
 `
@@ -40,9 +40,10 @@ const NavLinks = styled.div`
 `
 
 const NavLink = styled(Link)`
-  color: black;
+  color: ${styles.colorText};
   font-size: 18px;
   margin-right: 20px;
+  padding: 0 0 10px 0;
   display: inline-block;
   position: relative;
 
