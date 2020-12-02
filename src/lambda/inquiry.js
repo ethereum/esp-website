@@ -2,6 +2,9 @@ const axios = require("axios")
 const { GoogleSpreadsheet } = require("google-spreadsheet")
 const sgMail = require("@sendgrid/mail")
 
+// https://github.com/netlify/netlify-lambda/issues/201
+require("encoding")
+
 exports.handler = async function(event) {
   try {
     if (event.httpMethod !== "POST") {
