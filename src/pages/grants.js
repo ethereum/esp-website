@@ -64,7 +64,7 @@ const GrantsPage = () => {
             it fits these guidelines, <Link to="/inquire/">let's talk</Link>!
             Even if grant funding isn't a viable option, we may be able to help
             in some other way. You can read more about our holistic approach to
-            supporting the Ethereum ecosystem [here](support page).
+            supporting the Ethereum ecosystem <Link to="/support/">here</Link>.
           </p>
           <H2>It all starts with an inquiry!</H2>
           <p>
@@ -89,11 +89,11 @@ const GrantsPage = () => {
             application processes in the <Link to="/guide/">Guide to ESP</Link>.
           </p>
           <p>
-            Our <Link to="/wishlist/">wishlist</Link>
-            includes some of the areas we've been most focused on recently. Keep
-            in mind that the Wishlist is not meant to serve as a comprehensive
-            list of ESP's interests or a call for specific proposals, but to
-            spark ideas and give context for our work.
+            Our <Link to="/wishlist/">Wishlist</Link> includes some of the areas
+            we've been most focused on recently. Keep in mind that the Wishlist
+            is not meant to serve as a comprehensive list of ESP's interests or
+            a call for specific proposals, but to spark ideas and give context
+            for our work.
           </p>
           <p>
             If you'd like to learn more about past grant recipients, check out
@@ -102,6 +102,11 @@ const GrantsPage = () => {
             a more comprehensive list:
           </p>
           <ul>
+            <li>
+              <Link to="https://blog.ethereum.org/2020/11/25/esp-q3-updates/">
+                2020 Q3
+              </Link>
+            </li>
             <li>
               <Link to="https://blog.ethereum.org/2020/09/08/esp-q2-updates/">
                 2020 Q2

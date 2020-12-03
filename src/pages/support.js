@@ -82,14 +82,11 @@ const SupportPage = () => {
           </p>
           <p>
             For some examples of projects that have received support other than
-            traditional financial grants, check out our recent blog post:
+            traditional financial grants, check out our blog post,{" "}
+            <Link to="https://blog.ethereum.org/2020/08/19/esp-beyond-grants/">
+              ESP: Beyond Grants
+            </Link>
           </p>
-          <StyledButtonLink
-            href="https://blog.ethereum.org/2020/08/19/esp-beyond-grants/"
-            target="_blank"
-          >
-            View blog post
-          </StyledButtonLink>
           <H2>It all starts with an inquiry!</H2>
           <p>
             If you’re interested in requesting support from ESP, the first step
