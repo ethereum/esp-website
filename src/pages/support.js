@@ -86,6 +86,7 @@ const SupportPage = () => {
             <Link to="https://blog.ethereum.org/2020/08/19/esp-beyond-grants/">
               ESP: Beyond Grants
             </Link>
+            .
           </p>
           <H2>It all starts with an inquiry!</H2>
           <p>
