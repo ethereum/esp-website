@@ -12,6 +12,7 @@ export const colorGrayDark = "#bdbdbd"
 export const colorGrayDarker = "#888888"
 export const colorGrayDarkest = "#26293b"
 export const colorRed = "#E65753"
+export const colorText = "hsla(0, 0%, 0%, 0.8)"
 export const colorYellow = "#fac54a"
 
 // screens

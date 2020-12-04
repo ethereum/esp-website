@@ -11,6 +11,7 @@ import {
   colorGrayDark,
   colorOrange,
   colorRed,
+  colorText,
   screenSizeL,
   screenSizeM,
 } from "../utils/styles"
@@ -21,7 +22,7 @@ const Card = styled(Link)`
   border-radius: 10px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
   border: solid 1px ${colorGrayDark};
-  color: black;
+  color: ${colorText};
 
   margin-bottom: 24px;
   display: flex;
@@ -34,7 +35,7 @@ const Card = styled(Link)`
   transition: 0.4s ease-out;
 
   &:hover {
-    color: black;
+    color: ${colorText};
     transform: translateY(-2px);
   }
 

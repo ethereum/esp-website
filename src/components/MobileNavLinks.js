@@ -1,12 +1,13 @@
 import React from "react"
 import { motion } from "framer-motion"
 import { useStaticQuery, graphql } from "gatsby"
-import { FormattedMessage } from "gatsby-plugin-intl"
 import styled from "styled-components"
 import Img from "gatsby-image"
 
-import { screenSizeL } from "../utils/styles"
 import Link from "./Link"
+import TranslatedString from "./TranslatedString"
+
+import { screenSizeL } from "../utils/styles"
 
 const List = styled(motion.ul)`
   margin: 0;
@@ -86,15 +87,28 @@ const MobileNavLinks = ({ navItems, toggle }) => {
         fixed={data.file.childImageSharp.fixed}
         alt="Ethereum Ecosystem Support Program Logo"
       />
-      {navItems.map((item, idx) => (
-        <Item item={item} key={idx} onClick={toggle}>
-          <h3>
-            <Link to={item.to}>
-              <FormattedMessage id={item.text} />
-            </Link>
-          </h3>
-        </Item>
-      ))}
+      {navItems.map((item, idx) => {
+        if (item.items) {
+          return item.items.map((subItem, subIdx) => (
+            <Item item={subItem} key={subIdx} onClick={toggle}>
+              <h3>
+                <Link to={subItem.to}>
+                  <TranslatedString id={subItem.text} />
+                </Link>
+              </h3>
+            </Item>
+          ))
+        }
+        return (
+          <Item item={item} key={idx} onClick={toggle}>
+            <h3>
+              <Link to={item.to}>
+                <TranslatedString id={item.text} />
+              </Link>
+            </h3>
+          </Item>
+        )
+      })}
     </List>
   )
 }

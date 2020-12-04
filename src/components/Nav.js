@@ -7,6 +7,7 @@ import styled from "styled-components"
 
 import MobileNavMenu from "./MobileNavMenu"
 import MobileNavLinks from "./MobileNavLinks"
+import NavDropdown from "./NavDropdown"
 import Link from "./Link"
 import TranslatedString from "./TranslatedString"
 import * as styles from "../utils/styles"
@@ -25,12 +26,13 @@ const StyledNav = styled(motion.nav)`
 const NavLinkMain = styled(Link)`
   display: flex;
   align-items: center;
-  color: black;
+  color: ${styles.colorText};
   margin-right: 20px;
   padding: 0 0 10px 0;
 `
 
 const NavLinks = styled.div`
+  display: flex;
   /* Hide & display MenuToggle */
   @media (max-width: ${styles.screenSizeL}) {
     display: none;
@@ -38,7 +40,7 @@ const NavLinks = styled.div`
 `
 
 const NavLink = styled(Link)`
-  color: black;
+  color: ${styles.colorText};
   font-size: 18px;
   margin-right: 20px;
   padding: 0 0 10px 0;
@@ -105,7 +107,15 @@ const MobileNavBackground = styled(motion.div)`
 // TODO remove explicit `/en/` once we add translations
 const navItems = [
   { to: "/en/", text: "page-home.title" },
-  { to: "/en/about/", text: "page-about.title" },
+  {
+    to: "/en/about/",
+    text: "page-about.title",
+    items: [
+      { to: "/en/about/", text: "page-about.nav" },
+      { to: "/en/support/", text: "page-support.title" },
+      { to: "/en/grants/", text: "page-grants.title" },
+    ],
+  },
   { to: "/en/guide/", text: "page-guide.title" },
   { to: "/en/faq/", text: "page-faq.title" },
   { to: "/en/projects/", text: "page-projects.title" },
@@ -158,6 +168,9 @@ const Nav = ({ hasShadow }) => {
       {/* Desktop */}
       <NavLinks>
         {desktopNavItems.map((item, idx) => {
+          if (item.items) {
+            return <NavDropdown section={item} key={idx} />
+          }
           return (
             <NavLink to={item.to} key={idx}>
               <TranslatedString id={item.text} />

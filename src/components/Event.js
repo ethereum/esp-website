@@ -8,6 +8,7 @@ import {
   colorGrayLight,
   colorGrayDark,
   colorGrayDarkest,
+  colorText,
   screenSizeS,
 } from "../utils/styles"
 
@@ -48,7 +49,7 @@ const StyledEvent = styled.a`
   transition: 0.4s ease-out;
 
   &:hover {
-    color: black;
+    color: ${colorText};
     transform: translateY(-2px);
   }
 
