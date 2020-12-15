@@ -1,9 +1,7 @@
-// TODO sort out how to use Link from "gatsby-plugin-intl"
-// TypeError: Cannot read property 'language' of undefined
-// import { Link } from "gatsby-plugin-intl"
-import { Link } from "gatsby"
 import Img from "gatsby-image"
 import styled from "styled-components"
+
+import Link from "./Link"
 
 import * as styles from "../utils/styles"
 
@@ -191,7 +189,9 @@ export const Button = styled.button`
 `
 
 export const ButtonLink = styled(Link)`
+  text-decoration: none;
   display: inline-block;
+  white-space: nowrap;
   line-height: 1.5;
   font-weight: bold;
   text-align: center;

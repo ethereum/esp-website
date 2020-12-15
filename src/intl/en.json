@@ -280,7 +280,7 @@
     "proj-prob-solved-desc": "As concretely as possible, what problem is your project attempting to solve?",
     "profile": "Team profile",
     "team": "Who are the members of your team? Please write or link to bios.",
-    "impacts": "Impact",
+    "impact": "Impact",
     "proj-impact-desc": "How will your project / solution address the problem? How will your work impact the larger Ethereum ecosystem? Who will benefit from your work?",
     "proj-impact": "What key problem or need do you hope to address? How will your work impact the larger Ethereum ecosystem? Who will benefit from your work?",
     "proj-challenges": "Challenges",
