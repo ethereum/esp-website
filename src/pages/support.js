@@ -1,19 +1,13 @@
 import React from "react"
-import styled from "styled-components"
 
 import Link from "../components/Link"
 import PageMetadata from "../components/PageMetadata"
 import {
-  ButtonExternalLink,
   H1,
   H2,
   PageBody,
   PageHeader,
 } from "../components/SharedStyledComponents"
-
-const StyledButtonLink = styled(ButtonExternalLink)`
-  margin: 2rem 0;
-`
 
 const SupportPage = () => {
   return (
