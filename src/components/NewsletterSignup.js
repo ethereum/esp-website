@@ -1,9 +1,11 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { colorOrangeLightest } from "../utils/styles"
-import { Input, Button } from "../components/SharedStyledComponents"
-import { useToasts } from "react-toast-notifications"
 import { FormattedMessage } from "gatsby-plugin-intl"
+import { useToasts } from "react-toast-notifications"
+import { Input, Button } from "./SharedStyledComponents"
+import { colorOrangeLightest } from "../utils/styles"
+import { validateEmail } from "../utils/validate-email"
+import { ValidateError } from "../utils/validate-error"
 
 const Container = styled.div`
   background-color: ${colorOrangeLightest};
@@ -52,7 +54,7 @@ const SubmitButton = styled(Button)`
 
 const NewsletterSignup = () => {
   const [email, setEmail] = useState("")
-
+  const [loading, setLoading] = useState(false)
   const { addToast } = useToasts()
 
   const handleInputChange = event => {
@@ -60,6 +62,7 @@ const NewsletterSignup = () => {
   }
 
   const submitInquiry = () => {
+    setLoading(true)
     fetch("/.netlify/functions/newsletter-signup", {
       method: "POST",
       headers: {
@@ -73,23 +76,37 @@ const NewsletterSignup = () => {
           appearance: "success",
           autoDismiss: true,
         })
+        setLoading(false)
         setEmail("")
       })
       .catch(error => {
         console.error(error)
+        setLoading(false)
         addToast("Error submitting, please try again.", {
           appearance: "error",
           autoDismiss: true,
         })
       })
+      .finally(() => setLoading(false))
   }
 
   const handleSubmit = event => {
     event.preventDefault()
-    submitInquiry()
+    try {
+      validateEmail(email)
+      submitInquiry()
+    } catch (error) {
+      console.error(error)
+      if (error instanceof ValidateError) {
+        addToast(`${error.message}`, {
+          appearance: "error",
+          autoDismiss: true,
+        })
+      }
+    }
   }
 
-  const isEmailValid = !!email
+  const isEmailFieldEmpty = !!email
 
   return (
     <Container>
@@ -103,8 +120,7 @@ const NewsletterSignup = () => {
           onChange={handleInputChange}
           placeholder="Enter your email"
         />
-
-        <SubmitButton disabled={!isEmailValid} type="submit">
+        <SubmitButton disabled={!isEmailFieldEmpty || loading} type="submit">
           <FormattedMessage id="sign-up" />
         </SubmitButton>
       </Form>
