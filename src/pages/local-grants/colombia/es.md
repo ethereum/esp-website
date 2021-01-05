@@ -75,9 +75,11 @@ El Programa de Subvenciones Locales de Colombia es una iniciativa complementaria
 
 ## **🚀 ¿Cómo aplicar?** {#submit}
 
-_Completa el siguiente formulario de inscripción, para dejarnos saber sobre tu ideas relacionadas con Ethereum o tu proyecto ya existente; eso es todo. ¡Tras recibir tu aplicación, nos podremos en contacto vía correo electrónico! Acuérdate de que las propuestas deben ser presentadas en inglés._
+Este programa especial ha finalizado. Sin embargo, si perdiste la fecha límite, ¡aún puedes enviar una [petición general de apoyo](/en/inquire/) para tu proyecto o idea a través del [Ecosystem Support Program (ESP)](/en/)!
 
-<LocalGrantsForm wave="Colombia | 2020" />
+¿Preguntas o Comentarios? Escríbenos a:
+
+[LocalGrants@ethereum.org](mailto:LocalGrants@ethereum.org)
 
 ## **🦄 Apoyo y recursos**
 
