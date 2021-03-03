@@ -368,13 +368,7 @@ const RollupGrantsForm = ({ wave }) => {
         />
       </Label>
       <Label>
-        <span>
-          Proposal Timeline and Deliverables
-          <Required>*</Required>
-        </span>
-        {/* <div>
-          <small>TODO: Add description text here?</small>
-        </div> */}
+        <span>Proposal Timeline and Deliverables</span>
         <TextArea
           name="proposalTimeline"
           value={formState.proposalTimeline}
