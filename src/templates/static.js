@@ -172,8 +172,8 @@ const HeroImg = styled(Img)`
   margin-bottom: ${props => (props.hasImgMargin ? `3rem` : `0`)};
 `
 
-const StaticPage = ({ location, data: { mdx } }) => {
-  const hasImgMargin = location.pathname.includes("/local-grants/colombia")
+const StaticPage = ({ data: { mdx } }) => {
+  const hasImgMargin = !!mdx.frontmatter.img
   return (
     <>
       <PageMetadata
