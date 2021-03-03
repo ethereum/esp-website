@@ -7,6 +7,7 @@ import styled from "styled-components"
 
 import Link from "../components/Link"
 import LocalGrantsForm from "../components/LocalGrantsForm"
+import RollupGrantsForm from "../components/RollupGrantsForm"
 import PageMetadata from "../components/PageMetadata"
 import { PageBody } from "../components/SharedStyledComponents"
 import * as styles from "../utils/styles"
@@ -166,6 +167,7 @@ const components = {
   h3: Header3,
   h4: Header4,
   LocalGrantsForm,
+  RollupGrantsForm,
 }
 
 const HeroImg = styled(Img)`

@@ -25,6 +25,12 @@ const countryOptions = COUNTRIES.map(country => ({
   label: country,
   name: "country",
 }))
+// Inject option to opt-out at the top
+countryOptions.unshift({
+  value: "",
+  label: "(optional)",
+  name: "country",
+})
 
 const PROJECT_CATEGORIES = [
   "Wallets",
@@ -81,7 +87,7 @@ const RollupGrantsForm = ({ wave }) => {
     impact: "",
     challenges: "",
     proposalTimeline: "",
-    requestedAmount: 0,
+    requestedAmount: "",
     referralSource: "",
     referralSourceIfOther: "",
     twitter: "",
@@ -381,11 +387,11 @@ const RollupGrantsForm = ({ wave }) => {
           {/* <Required>*</Required> */}
         </span>
         <Input
-          type="number"
+          type="text"
           name="requestedAmount"
-          value={formState.projectName}
+          value={formState.requestedAmount}
           onChange={handleInputChange}
-          min="0"
+          maxLength="150"
         />
       </Label>
       <Label>
@@ -398,6 +404,7 @@ const RollupGrantsForm = ({ wave }) => {
       {formState.referralSource ===
         REFERRAL_SOURCES[REFERRAL_SOURCES.length - 1] && (
         <Label>
+          <span>If other:</span>
           <Input
             type="text"
             name="referralSourceIfOther"
