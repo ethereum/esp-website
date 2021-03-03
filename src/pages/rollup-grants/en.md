@@ -43,6 +43,8 @@ Ideas and projects at any stage of development are welcome:
 
 Grants are decided on a case-by-case basis and you may enter more than one proposal! So long as each proposal is unique and meets the requirements (add link to paragraph).
 
+<RollupGrantsForm wave="Rollups | 2020" />
+
 ### Deadline {#deadline}
 
 The deadline for proposals is any time the day of April 16th 2021. We will follow-up with you about your submission by email.
