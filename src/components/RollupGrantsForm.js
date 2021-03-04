@@ -33,14 +33,14 @@ countryOptions.unshift({
 })
 
 const PROJECT_CATEGORIES = [
-  "Wallets",
-  "Infrastructure",
+  "Adoption",
   "Community & Education",
   "Devex, Tooling & Testing",
+  "Infrastructure",
   "Interoperability",
-  "Adoption",
-  "Standards and Research",
   "New Rollups",
+  "Standards and Research",
+  "Wallets",
   "Other",
 ]
 
