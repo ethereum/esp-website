@@ -43,7 +43,7 @@ Ideas and projects at any stage of development are welcome:
 
 Grants are decided on a case-by-case basis and you may enter more than one proposal! So long as each proposal is unique and meets the requirements (add link to paragraph).
 
-<RollupGrantsForm wave="Rollups | 2020" />
+<RollupGrantsForm wave="Rollup Community Grants | 2021" />
 
 ### Deadline {#deadline}
 

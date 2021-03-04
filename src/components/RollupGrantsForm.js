@@ -55,7 +55,11 @@ const REFERRAL_SOURCES = [
 
 const requiredFields = [
   "wave",
-  "email",
+  "category",
+  "firstName",
+  "lastName",
+  "contactEmail",
+  "company",
   "individualOrTeam",
   "teamProfile",
   "projectCategory",
@@ -70,11 +74,13 @@ const requiredFields = [
 const RollupGrantsForm = ({ wave }) => {
   const [formState, setFormState] = useState({
     isPending: false,
-    // form fields
     wave,
+    category: "Layer 2",
+    exploreOrProject: "project",
+    // form fields
     firstName: "",
     lastName: "",
-    email: "",
+    contactEmail: "",
     company: "",
     city: "",
     country: "",
@@ -86,7 +92,7 @@ const RollupGrantsForm = ({ wave }) => {
     problemBeingSolved: "",
     impact: "",
     challenges: "",
-    proposalTimeline: "",
+    proposedTimeline: "",
     requestedAmount: "",
     referralSource: "",
     referralSourceIfOther: "",
@@ -94,7 +100,7 @@ const RollupGrantsForm = ({ wave }) => {
     github: "",
     linkedin: "",
     questions: "",
-    contactAlternativeInfo: "",
+    contactAlternative: "",
     other: "",
     newsletter: "",
   })
@@ -139,7 +145,7 @@ const RollupGrantsForm = ({ wave }) => {
   const submitInquiry = async () => {
     setFormState({ ...formState, isPending: true })
     try {
-      const response = fetch("/.netlify/functions/inquiry", {
+      const response = await fetch("/.netlify/functions/inquiry", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -190,7 +196,9 @@ const RollupGrantsForm = ({ wave }) => {
   return (
     <StyledForm onSubmit={handleSubmit}>
       <Label>
-        <span>Contact - First Name</span>
+        <span>
+          Contact - First Name <Required>*</Required>
+        </span>
         <Input
           type="text"
           name="firstName"
@@ -200,7 +208,9 @@ const RollupGrantsForm = ({ wave }) => {
         />
       </Label>
       <Label>
-        <span>Contact - Last Name</span>
+        <span>
+          Contact - Last Name <Required>*</Required>
+        </span>
         <Input
           type="text"
           name="lastName"
@@ -211,19 +221,20 @@ const RollupGrantsForm = ({ wave }) => {
       </Label>
       <Label>
         <span>
-          Contact Email
-          <Required>*</Required>
+          Contact Email <Required>*</Required>
         </span>
         <Input
           type="email"
-          name="email"
-          value={formState.email}
+          name="contactEmail"
+          value={formState.contactEmail}
           onChange={handleInputChange}
           maxLength="150"
         />
       </Label>
       <Label>
-        <span>Company / Association</span>
+        <span>
+          Company / Association <Required>*</Required>
+        </span>
         <div>
           <small>
             The name of any company you're most associated with or work for. Use
@@ -254,15 +265,13 @@ const RollupGrantsForm = ({ wave }) => {
       </Label>
       <Label>
         <span>
-          Are you submitting as an individual or a team?
-          <Required>*</Required>
+          Are you submitting as an individual or a team? <Required>*</Required>
         </span>
         <Select options={teamOptions} onChange={handleSelectChange} />
       </Label>
       <Label>
         <span>
-          Individual/Team profile
-          <Required>*</Required>
+          Individual/Team profile <Required>*</Required>
         </span>
         <div>
           <small>
@@ -278,8 +287,7 @@ const RollupGrantsForm = ({ wave }) => {
       </Label>
       <Label>
         <span>
-          Project Category
-          <Required>*</Required>
+          Project Category <Required>*</Required>
         </span>
         <Select
           options={projectCategoryOptions}
@@ -288,8 +296,7 @@ const RollupGrantsForm = ({ wave }) => {
       </Label>
       <Label>
         <span>
-          Project Name
-          <Required>*</Required>
+          Project Name <Required>*</Required>
         </span>
         <Input
           type="text"
@@ -301,8 +308,7 @@ const RollupGrantsForm = ({ wave }) => {
       </Label>
       <Label>
         <span>
-          Project Description
-          <Required>*</Required>
+          Project Description <Required>*</Required>
         </span>
         <div>
           <small>
@@ -318,8 +324,7 @@ const RollupGrantsForm = ({ wave }) => {
       </Label>
       <Label>
         <span>
-          Problem Being Solved
-          <Required>*</Required>
+          Problem Being Solved <Required>*</Required>
         </span>
         <div>
           <small>
@@ -335,8 +340,7 @@ const RollupGrantsForm = ({ wave }) => {
       </Label>
       <Label>
         <span>
-          Impact
-          <Required>*</Required>
+          Impact <Required>*</Required>
         </span>
         <div>
           <small>
@@ -352,8 +356,7 @@ const RollupGrantsForm = ({ wave }) => {
       </Label>
       <Label>
         <span>
-          Needs and Challenges
-          <Required>*</Required>
+          Needs and Challenges <Required>*</Required>
         </span>
         <div>
           <small>
@@ -370,28 +373,24 @@ const RollupGrantsForm = ({ wave }) => {
       <Label>
         <span>Proposal Timeline and Deliverables</span>
         <TextArea
-          name="proposalTimeline"
-          value={formState.proposalTimeline}
+          name="proposedTimeline"
+          value={formState.proposedTimeline}
           onChange={handleInputChange}
         />
       </Label>
       <Label>
-        <span>
-          Requested Grant Amount
-          {/* <Required>*</Required> */}
-        </span>
+        <span>Requested Grant Amount</span>
         <Input
           type="text"
           name="requestedAmount"
           value={formState.requestedAmount}
           onChange={handleInputChange}
-          maxLength="150"
+          maxLength="20"
         />
       </Label>
       <Label>
         <span>
-          How did you hear about this wave of grants?
-          <Required>*</Required>
+          How did you hear about this wave of grants? <Required>*</Required>
         </span>
         <Select options={referralSourceOptions} onChange={handleSelectChange} />
       </Label>
@@ -449,11 +448,11 @@ const RollupGrantsForm = ({ wave }) => {
         />
       </Label>
       <Label>
-        <span>Telegram Username or Alternative Contact Info</span>
+        <span>Telegram Username{/* or Alternative Contact Info */}</span>
         <Input
           type="text"
-          name="contactAlternativeInfo"
-          value={formState.contactAlternativeInfo}
+          name="contactAlternative"
+          value={formState.contactAlternative}
           onChange={handleInputChange}
           maxLength="150"
         />

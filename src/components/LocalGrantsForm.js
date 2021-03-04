@@ -75,7 +75,7 @@ const requiredFields = [
   "challenges",
   "individualOrTeam",
   "teamProfile",
-  "name",
+  "lastName",
   "contactEmail",
   "referralSource",
 ]
@@ -95,7 +95,7 @@ const LocalGrantsForm = ({ wave }) => {
     challenges: "",
     individualOrTeam: "",
     teamProfile: "",
-    name: "",
+    lastName: "",
     contactEmail: "",
     contactAlternative: "",
     city: "",
@@ -338,7 +338,7 @@ const LocalGrantsForm = ({ wave }) => {
         <Input
           type="text"
           name="name"
-          value={formState.name}
+          value={formState.lastName}
           onChange={handleInputChange}
           maxLength="150"
         />

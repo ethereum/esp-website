@@ -61,22 +61,33 @@ exports.handler = async function(event) {
       const salesforceResp = await instance.post(baseURL, {
         userId: userId,
         traits: {
-          LastName: params.name, // Salesforce requires LastName field
+          FirstName: params.firstName,
+          LastName: params.lastName, // Salesforce requires LastName field
           Email: dedupedEmail,
-          Company: params.projectName || params.name, // Salesforce requires Company field
+          Company: params.company || params.projectName || params.name, // Salesforce requires Company field
           City: params.city,
           Country: params.country,
           LeadSource: "Website Form",
           Status: "New",
           // Custom fields
           Team_Profile: params.teamProfile,
-          Previous_Work: params.previousWork,
+          Previous_Work: params.previousWork || params.company,
           Referral_Source: params.referralSource,
-          Referrals: params.referralName,
+          Referrals: params.referralName || params.referralSource,
           Type_of_Inquiry: "Project",
+          Project_Name: params.projectName,
           Project_Description: params.projectDescription,
           Challenges: params.challenges,
           Impact: params.impact,
+          Proposed_Timeline: params.proposedTimeline,
+          Requested_Amount: params.requestedAmount,
+          Twitter: params.twitter,
+          Github_Username: params.github,
+          LinkedIn_Profile: params.linkedin,
+          Questions: params.questions,
+          Alternative_Contact: params.contactAlternativeInfo,
+          Additional_Information: params.other,
+          Category: params.category,
           // LGP custom fields
           Local_Grants_Wave: params.wave,
           Project_Category: params.projectCategory,
@@ -91,9 +102,11 @@ exports.handler = async function(event) {
           MailChimp: false,
         },
       })
-
       // Send to Google Sheets (if LGP)
-      if (params.wave) {
+      if (params.wave === "Rollup Community Grants | 2021") {
+        // 1XC7_pZCXUXZmNpXO7wg4e6Nu7lyMPG5SWQC7I3U-lD4
+        // Need Google API credentials for Rollup Grants sheet
+      } else if (params.wave) {
         const creds = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
         const doc = new GoogleSpreadsheet(process.env.GOOGLE_SPREADSHEET_ID)
         await doc.useServiceAccountAuth({
