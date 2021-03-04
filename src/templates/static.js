@@ -8,6 +8,7 @@ import styled from "styled-components"
 import Link from "../components/Link"
 import LocalGrantsForm from "../components/LocalGrantsForm"
 import RollupGrantsForm from "../components/RollupGrantsForm"
+import ExpandableCard from "../components/ExpandableCard"
 import PageMetadata from "../components/PageMetadata"
 import { PageBody } from "../components/SharedStyledComponents"
 import * as styles from "../utils/styles"
@@ -168,6 +169,7 @@ const components = {
   h4: Header4,
   LocalGrantsForm,
   RollupGrantsForm,
+  ExpandableCard,
 }
 
 const HeroImg = styled(Img)`
