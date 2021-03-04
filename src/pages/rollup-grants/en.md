@@ -2,8 +2,8 @@
 title: Ethereum Rollup Community Grants
 description: Grants to build a rollup ecosystem
 lang: en
-img: ../local-grants/colombia/ETH-ESP-Colombia-local-grant-logo.png
-imgAlt: "ESP Colombia Local Grants image"
+img: ./esp-hero.jpeg
+imgAlt: "ESP Rollup Grants image"
 ---
 
 # Rollup Community Grants {#rollup-community-grants}
