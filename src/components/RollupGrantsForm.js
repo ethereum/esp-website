@@ -380,6 +380,9 @@ const RollupGrantsForm = ({ wave }) => {
       </Label>
       <Label>
         <span>Requested Grant Amount</span>
+        <div>
+          <small>Ex: USD 20,000.00</small>
+        </div>
         <Input
           type="text"
           name="requestedAmount"
