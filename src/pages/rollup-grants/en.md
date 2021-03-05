@@ -16,7 +16,7 @@ Calling all those interested in building up the Ethereum rollup community!
 
 The Ethereum ecosystem is likely to be all-in on rollups as a scaling strategy for the near and mid-term future (see Vitalik’s rollup centric ethereum roadmap). A variety of optimistic and zk-rollups are already in production or will go live soon.
 
-As gas prices are soaring the most promising short term solution to getting a scalable EVM like developer experience is optimistic rollups. Therefore, in this round our [wishlist](https://ethereum.org/en/community/rollup-grants/#whishlist) emphasizes evm-optimistic rollups. However, don't let this restrict your creativity - we are accepting applications for all types of rollups.
+As gas prices are soaring the most promising short term solution to getting a scalable EVM like developer experience is optimistic rollups. Therefore, in this round our [wishlist](https://ethereum.org/en/community/rollup-grants/#wishlist) emphasizes evm-optimistic rollups. However, don't let this restrict your creativity - we are accepting applications for all types of rollups.
 
 The goal is to grow the rollup community and help to kickstart a flourishing ecosystem. We want to make it easy for dapps to live on multiple rollups and have user and developer experience for rollups on par with mainnet or better. Social recovery wallets could be made the default and it should be easy for users to move from one rollup to another even during prolonged periods of very high gas prices.
 
