@@ -189,7 +189,7 @@ A lot of the design space that has not yet been explored. Learn from what has be
 
 ## Next steps and support {#Next-steps-and-support}
 
-Use the form above.
+Use the form above to submit your proposal.
 
 For any general support questions about your submission, please email rollupgrants@ethereum.org.
 
