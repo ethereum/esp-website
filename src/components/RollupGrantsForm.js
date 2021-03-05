@@ -54,7 +54,7 @@ const REFERRAL_SOURCES = [
 ]
 
 const requiredFields = [
-  "wave",
+  "round",
   "category",
   "firstName",
   "lastName",
@@ -71,10 +71,10 @@ const requiredFields = [
   "referralSource",
 ]
 
-const RollupGrantsForm = ({ wave }) => {
+const RollupGrantsForm = props => {
   const [formState, setFormState] = useState({
     isPending: false,
-    wave,
+    round: "Rollup Community Grants | 2021",
     category: "Layer 2",
     exploreOrProject: "project",
     // form fields
@@ -393,7 +393,7 @@ const RollupGrantsForm = ({ wave }) => {
       </Label>
       <Label>
         <span>
-          How did you hear about this wave of grants? <Required>*</Required>
+          How did you hear about this round of grants? <Required>*</Required>
         </span>
         <Select options={referralSourceOptions} onChange={handleSelectChange} />
       </Label>

@@ -62,7 +62,7 @@ exports.handler = async function(event) {
         userId: userId,
         traits: {
           FirstName: params.firstName,
-          LastName: params.lastName, // Salesforce requires LastName field
+          LastName: params.lastName || params.name, // Salesforce requires LastName field
           Email: dedupedEmail,
           Company: params.company || params.projectName || params.name, // Salesforce requires Company field
           City: params.city,
@@ -90,6 +90,7 @@ exports.handler = async function(event) {
           Category: params.category,
           // LGP custom fields
           Local_Grants_Wave: params.wave,
+          Proactive_Community_Grants_Round: params.round,
           Project_Category: params.projectCategory,
           Stage_of_Project: params.projectStage,
           Problem_Being_Solved: params.problemBeingSolved,
