@@ -7,6 +7,8 @@ import styled from "styled-components"
 
 import Link from "../components/Link"
 import LocalGrantsForm from "../components/LocalGrantsForm"
+import RollupGrantsForm from "../components/RollupGrantsForm"
+import ExpandableCard from "../components/ExpandableCard"
 import PageMetadata from "../components/PageMetadata"
 import { PageBody } from "../components/SharedStyledComponents"
 import * as styles from "../utils/styles"
@@ -166,14 +168,16 @@ const components = {
   h3: Header3,
   h4: Header4,
   LocalGrantsForm,
+  RollupGrantsForm,
+  ExpandableCard,
 }
 
 const HeroImg = styled(Img)`
   margin-bottom: ${props => (props.hasImgMargin ? `3rem` : `0`)};
 `
 
-const StaticPage = ({ location, data: { mdx } }) => {
-  const hasImgMargin = location.pathname.includes("/local-grants/colombia")
+const StaticPage = ({ data: { mdx } }) => {
+  const hasImgMargin = !!mdx.frontmatter.img
   return (
     <>
       <PageMetadata

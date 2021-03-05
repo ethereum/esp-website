@@ -61,22 +61,35 @@ exports.handler = async function(event) {
       const salesforceResp = await instance.post(baseURL, {
         userId: userId,
         traits: {
-          LastName: params.name, // Salesforce requires LastName field
+          FirstName: params.firstName,
+          LastName: params.lastName || params.name, // Salesforce requires LastName field
           Email: dedupedEmail,
-          Company: params.projectName || params.name, // Salesforce requires Company field
+          Company: params.company || params.projectName || params.name, // Salesforce requires Company field
           City: params.city,
           Country: params.country,
           LeadSource: "Website Form",
           Status: "New",
           // Custom fields
           Team_Profile: params.teamProfile,
-          Previous_Work: params.previousWork,
+          Previous_Work: params.previousWork || params.company,
           Referral_Source: params.referralSource,
-          Referrals: params.referralName,
+          Referrals: params.referralName || params.referralSource,
           Type_of_Inquiry: "Project",
+          Project_Name: params.projectName,
           Project_Description: params.projectDescription,
           Challenges: params.challenges,
           Impact: params.impact,
+          // Round custom fields
+          Proactive_Community_Grants_Round: params.round,
+          Proposed_Timeline: params.proposedTimeline,
+          Requested_Amount: params.requestedAmount,
+          Twitter: params.twitter,
+          Github_Username: params.github,
+          LinkedIn_Profile: params.linkedin,
+          Questions: params.questions,
+          Alternative_Contact: params.contactAlternativeInfo,
+          Additional_Information: params.other,
+          Category: params.category,
           // LGP custom fields
           Local_Grants_Wave: params.wave,
           Project_Category: params.projectCategory,
@@ -92,8 +105,8 @@ exports.handler = async function(event) {
         },
       })
 
-      // Send to Google Sheets (if LGP)
-      if (params.wave) {
+      // Send to Google Sheets
+      if (params.round === "Rollup Community Grants | 2021") {
         const creds = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
         const doc = new GoogleSpreadsheet(process.env.GOOGLE_SPREADSHEET_ID)
         await doc.useServiceAccountAuth({

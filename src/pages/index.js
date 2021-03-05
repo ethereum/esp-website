@@ -15,7 +15,12 @@ import {
 } from "../components/SharedStyledComponents"
 import horzLogo from "../images/horz-logo.svg"
 import vertLogo from "../images/vert-logo.svg"
-import { screenSizeM, screenSizeS, colorGrayLight } from "../utils/styles"
+import {
+  screenSizeM,
+  screenSizeS,
+  colorGrayLight,
+  colorOrangeLightest,
+} from "../utils/styles"
 
 const Hero = styled.div`
   height: 100vh;
@@ -88,6 +93,11 @@ const Header = styled.h3`
   }
 `
 
+const RollupsCallout = styled.div`
+  background-color: ${colorOrangeLightest};
+  padding: 24px;
+`
+
 class IndexPage extends React.Component {
   constructor(props) {
     super(props)
@@ -114,6 +124,7 @@ class IndexPage extends React.Component {
   }
 
   render() {
+    console.log(this.props.intl)
     return (
       <>
         <PageMetadata
@@ -154,6 +165,13 @@ class IndexPage extends React.Component {
                   <FormattedMessage id="page-home.p-2" />
                 </p>
               </Section>
+              {this.props.intl.locale === "en" && (
+                <RollupsCallout>
+                  The Ethereum Foundation is sponsoring a wave of rollup
+                  community grants. Proposals are due April 16th, 2021.{" "}
+                  <Link to="/rollup-grants/">See details.</Link>
+                </RollupsCallout>
+              )}
               <H2 id="contact">
                 <FormattedMessage id="page-home.contact-us" />
               </H2>

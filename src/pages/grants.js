@@ -1,4 +1,5 @@
 import React from "react"
+import styled from "styled-components"
 
 import Link from "../components/Link"
 import PageMetadata from "../components/PageMetadata"
@@ -7,7 +8,26 @@ import {
   H2,
   PageBody,
   PageHeader,
+  ButtonLink,
 } from "../components/SharedStyledComponents"
+import { screenSizeM } from "../utils/styles"
+
+const ButtonContainer = styled.div`
+  margin: 60px 0;
+  display: flex;
+  justify-content: space-around;
+
+  @media (max-width: ${screenSizeM}) {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    & > * {
+      margin-top: 30px;
+    }
+  }
+`
 
 const GrantsPage = () => {
   return (
@@ -83,6 +103,15 @@ const GrantsPage = () => {
             with input from technical advisors before a funding decision is
             made.
           </p>
+          <H2>Open Call: Rollup Community Grants</H2>
+          <p>
+            We are currently accepting proposals to grow the rollup community
+            and help kickstart a flourishing rollup ecosystem. Submissions are
+            open through April 16th, 2021.
+          </p>
+          <ButtonContainer>
+            <ButtonLink to="/rollup-grants/">See details</ButtonLink>
+          </ButtonContainer>
           <H2>More Information</H2>
           <p>
             You can find detailed information on the inquiry and grant
