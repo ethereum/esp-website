@@ -79,6 +79,8 @@ exports.handler = async function(event) {
           Project_Description: params.projectDescription,
           Challenges: params.challenges,
           Impact: params.impact,
+          // Round custom fields
+          Proactive_Community_Grants_Round: params.round,
           Proposed_Timeline: params.proposedTimeline,
           Requested_Amount: params.requestedAmount,
           Twitter: params.twitter,
@@ -90,7 +92,6 @@ exports.handler = async function(event) {
           Category: params.category,
           // LGP custom fields
           Local_Grants_Wave: params.wave,
-          Proactive_Community_Grants_Round: params.round,
           Project_Category: params.projectCategory,
           Stage_of_Project: params.projectStage,
           Problem_Being_Solved: params.problemBeingSolved,
