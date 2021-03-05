@@ -103,11 +103,9 @@ exports.handler = async function(event) {
           MailChimp: false,
         },
       })
-      // Send to Google Sheets (if LGP)
-      if (params.wave === "Rollup Community Grants | 2021") {
-        // 1XC7_pZCXUXZmNpXO7wg4e6Nu7lyMPG5SWQC7I3U-lD4
-        // Need Google API credentials for Rollup Grants sheet
-      } else if (params.wave) {
+
+      // Send to Google Sheets
+      if (params.round === "Rollup Community Grants | 2021") {
         const creds = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
         const doc = new GoogleSpreadsheet(process.env.GOOGLE_SPREADSHEET_ID)
         await doc.useServiceAccountAuth({
