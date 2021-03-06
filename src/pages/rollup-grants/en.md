@@ -14,7 +14,7 @@ _The Ethereum Foundation is sponsoring a wave of rollup community grants. Propos
 
 Calling all those interested in building up the Ethereum rollup community!
 
-The Ethereum ecosystem is likely to be all-in on rollups as a scaling strategy for the near and mid-term future (see Vitalik’s rollup centric ethereum roadmap). A variety of optimistic and zk-rollups are already in production or will go live soon.
+The Ethereum ecosystem is likely to be all-in on rollups as a scaling strategy for the near and mid-term future ([see Vitalik’s rollup centric ethereum roadmap](https://ethereum-magicians.org/t/a-rollup-centric-ethereum-roadmap/4698)). A variety of optimistic and zk-rollups are already in production or will go live soon.
 
 As gas prices are soaring the most promising short term solution to getting a scalable EVM like developer experience is optimistic rollups. Therefore, in this round our [wishlist](#wishlist) emphasizes evm-optimistic rollups. However, don't let this restrict your creativity - we are accepting applications for all types of rollups.
 
@@ -41,7 +41,7 @@ Ideas and projects at any stage of development are welcome:
 - Work in progress.
 - Fleshed out project.
 
-Grants are decided on a case-by-case basis and you may enter more than one proposal! So long as each proposal is unique and meets the requirements (add link to paragraph).
+Grants are decided on a case-by-case basis and you may enter more than one proposal! So long as each proposal is unique and meets the requirements.
 
 <RollupGrantsForm />
 
