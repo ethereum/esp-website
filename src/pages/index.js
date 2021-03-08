@@ -124,7 +124,6 @@ class IndexPage extends React.Component {
   }
 
   render() {
-    console.log(this.props.intl)
     return (
       <>
         <PageMetadata
