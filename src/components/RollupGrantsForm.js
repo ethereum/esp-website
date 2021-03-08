@@ -5,6 +5,7 @@ import { useToasts } from "react-toast-notifications"
 import Select from "react-select"
 
 import { COUNTRIES } from "../utils/form-inputs"
+import { validateEmail } from "../utils/validate-email"
 import {
   Form,
   Label,
@@ -15,9 +16,18 @@ import {
   Button,
   Required,
 } from "./SharedStyledComponents"
+import { colorRed } from "../utils/styles"
 
 const StyledForm = styled(Form)`
   margin-top: 2rem;
+`
+
+const ErrorMessage = styled.small`
+  color: ${colorRed};
+`
+
+const StyledButton = styled(Button)`
+  margin-bottom: 1rem;
 `
 
 const countryOptions = COUNTRIES.map(country => ({
@@ -72,6 +82,10 @@ const requiredFields = [
 ]
 
 const RollupGrantsForm = props => {
+  const [errors, setErrors] = useState({
+    contactEmail: false,
+    linkedin: false,
+  })
   const [formState, setFormState] = useState({
     isPending: false,
     round: "Rollup Community Grants | 2021",
@@ -177,10 +191,38 @@ const RollupGrantsForm = props => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    submitInquiry()
+    setErrors({
+      contactEmail: false,
+      linkedin: false,
+    })
+    let isValid = true
+    try {
+      validateEmail(formState.contactEmail)
+    } catch (error) {
+      console.warn("Invalid email address")
+      isValid = false
+      setErrors({ ...errors, contactEmail: !isValid })
+      addToast("Invalid email address", {
+        appearance: "error",
+        autoDismiss: true,
+      })
+    }
+    const { linkedin } = formState
+    const re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+    if (linkedin !== "" && !linkedin.match(re)) {
+      console.warn("Invalid LinkedIn profile URL")
+      isValid = false
+      setErrors({ ...errors, linkedin: !isValid })
+      addToast("Invalid LinkedIn URL", {
+        appearance: "error",
+        autoDismiss: true,
+      })
+    }
+    isValid && submitInquiry()
   }
 
-  const isFormValid = () => {
+  const isFilledOut = () => {
+    // Checks if all required fields are populated
     for (const field of requiredFields) {
       if (!formState[field]) {
         return false
@@ -189,8 +231,7 @@ const RollupGrantsForm = props => {
     return true
   }
 
-  const isValid = isFormValid()
-  const isButtonDisabled = !isValid || formState.isPending
+  const isButtonDisabled = !isFilledOut() || formState.isPending
   const buttonText = formState.isPending ? "Submitting..." : "Submit"
 
   return (
@@ -230,6 +271,9 @@ const RollupGrantsForm = props => {
           onChange={handleInputChange}
           maxLength="150"
         />
+        {errors.contactEmail && (
+          <ErrorMessage>Please provide a valid email address</ErrorMessage>
+        )}
       </Label>
       <Label>
         <span>
@@ -448,6 +492,9 @@ const RollupGrantsForm = props => {
           onChange={handleInputChange}
           maxLength="150"
         />
+        {errors.linkedin && (
+          <ErrorMessage>Ensure LinkedIn profile is valid URL</ErrorMessage>
+        )}
       </Label>
       <Label>
         <span>
@@ -488,9 +535,21 @@ const RollupGrantsForm = props => {
         and we'll only ever contact you with ESP news.
       </Checkbox>
       <div>
-        <Button disabled={isButtonDisabled} type="submit">
+        <StyledButton disabled={isButtonDisabled} onClick={handleSubmit}>
           {buttonText}
-        </Button>
+        </StyledButton>
+        {isButtonDisabled && (
+          <div>
+            <small>Fill out all required fields before submitting</small>
+          </div>
+        )}
+        {Object.values(errors).includes(true) && (
+          <div>
+            <ErrorMessage>
+              Check that all required fields are filled out correctly
+            </ErrorMessage>
+          </div>
+        )}
       </div>
     </StyledForm>
   )
