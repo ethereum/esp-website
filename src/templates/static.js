@@ -159,6 +159,12 @@ const Header4 = styled.h4`
   }
 `
 
+const Divider = styled.div`
+  height: 3px;
+  background-image: linear-gradient(to right, #ffcf47, #c6566c);
+  margin: 2rem 0;
+`
+
 // Passing components to MDXProvider allows use across all .md/.mdx files
 // https://www.gatsbyjs.com/plugins/gatsby-plugin-mdx/#mdxprovider
 const components = {
@@ -170,6 +176,7 @@ const components = {
   LocalGrantsForm,
   RollupGrantsForm,
   ExpandableCard,
+  Divider,
 }
 
 const HeroImg = styled(Img)`
