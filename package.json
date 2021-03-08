@@ -47,7 +47,12 @@
     "styled-components": "^5.0.0"
   },
   "devDependencies": {
-    "prettier": "^1.19.1"
+    "babel-jest": "^26.6.3",
+    "babel-preset-gatsby": "^0.9.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^26.6.3",
+    "prettier": "^1.19.1",
+    "react-test-renderer": "^17.0.1"
   },
   "keywords": [
     "gatsby",
@@ -63,7 +68,7 @@
     "start": "yarn develop",
     "start:static": "gatsby build && gatsby serve",
     "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
