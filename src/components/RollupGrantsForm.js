@@ -34,8 +34,8 @@ countryOptions.unshift({
 
 const PROJECT_CATEGORIES = [
   "Adoption",
-  "Community & Education",
-  "Devex, Tooling & Testing",
+  "Community and Education",
+  "Devex, Tooling and Testing",
   "Infrastructure",
   "Interoperability",
   "New Rollups",
@@ -381,7 +381,7 @@ const RollupGrantsForm = props => {
       <Label>
         <span>Requested Grant Amount</span>
         <div>
-          <small>Ex: USD 20,000.00</small>
+          <small>Ex: USD 4,000</small>
         </div>
         <Input
           type="text"
@@ -411,27 +411,36 @@ const RollupGrantsForm = props => {
         </Label>
       )}
       <Label>
-        <span>Twitter Handle</span>
+        <span>Twitter Username</span>
+        <div>
+          <small>Ex: @ef_esp</small>
+        </div>
         <Input
           type="text"
           name="twitter"
           value={formState.twitter}
           onChange={handleInputChange}
-          maxLength="150"
+          maxLength="15"
         />
       </Label>
       <Label>
         <span>GitHub Username</span>
+        <div>
+          <small>Ex: @github_username</small>
+        </div>
         <Input
           type="text"
           name="github"
           value={formState.github}
           onChange={handleInputChange}
-          maxLength="150"
+          maxLength="40"
         />
       </Label>
       <Label>
-        <span>LinkedIn Profile</span>
+        <span>LinkedIn Profile URL</span>
+        <div>
+          <small>Ex: https://www.linkedin.com/in/profilename</small>
+        </div>
         <Input
           type="text"
           name="linkedin"
