@@ -34,8 +34,8 @@ countryOptions.unshift({
 
 const PROJECT_CATEGORIES = [
   "Adoption",
-  "Community & Education",
-  "Devex, Tooling & Testing",
+  "Community and Education",
+  "Devex, Tooling and Testing",
   "Infrastructure",
   "Interoperability",
   "New Rollups",
@@ -412,12 +412,15 @@ const RollupGrantsForm = props => {
       )}
       <Label>
         <span>Twitter Handle</span>
+        <div>
+          <small>Ex: @ef_esp</small>
+        </div>
         <Input
           type="text"
           name="twitter"
           value={formState.twitter}
           onChange={handleInputChange}
-          maxLength="150"
+          maxLength="15"
         />
       </Label>
       <Label>
@@ -427,7 +430,7 @@ const RollupGrantsForm = props => {
           name="github"
           value={formState.github}
           onChange={handleInputChange}
-          maxLength="150"
+          maxLength="40"
         />
       </Label>
       <Label>
