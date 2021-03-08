@@ -106,7 +106,7 @@ const NewsletterSignup = () => {
     }
   }
 
-  const isEmailFieldEmpty = !!email
+  const isEmailFieldEmpty = !email
 
   return (
     <Container>
@@ -120,7 +120,7 @@ const NewsletterSignup = () => {
           onChange={handleInputChange}
           placeholder="Enter your email"
         />
-        <SubmitButton disabled={!isEmailFieldEmpty || loading} type="submit">
+        <SubmitButton disabled={isEmailFieldEmpty || loading} type="submit">
           <FormattedMessage id="sign-up" />
         </SubmitButton>
       </Form>
