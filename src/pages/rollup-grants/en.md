@@ -107,7 +107,7 @@ Most rollups currently have a centralized coordinator that orders transactions, 
 
    <ul>
     <li>Create educational material for potential coordinators and verifiers.</li>
-    <li>Support community infrastructure for coordinators and validators to facilitate communication and coordination.</li>
+    <li>Support community infrastructure for coordinators and verifiers to facilitate communication and coordination.</li>
     <li>Organize pager duty for verifiers to ensure fraud proof submission.</li>
   </ul>
 </ExpandableCard>
@@ -170,7 +170,7 @@ contentPreview="
 Find ways to make rollups more efficient."
 title="Research">
 
-Rollups need to make the state before and after a transition available. Its might be possible to further compress this data.
+Rollups need to make the state before and after a transition available. It might be possible to further compress this data.
 
    <p>For example:</p>
 
