@@ -64,8 +64,6 @@ const REFERRAL_SOURCES = [
 ]
 
 const requiredFields = [
-  "round",
-  "category",
   "firstName",
   "lastName",
   "contactEmail",
@@ -81,42 +79,38 @@ const requiredFields = [
   "referralSource",
 ]
 
-const RollupGrantsForm = props => {
-  const [errors, setErrors] = useState({
-    contactEmail: false,
-    linkedin: false,
-  })
+const RollupGrantsForm = () => {
   const [formState, setFormState] = useState({
     isPending: false,
-    round: "Rollup Community Grants | 2021",
-    category: "Layer 2",
-    exploreOrProject: "project",
+    round: { value: "Rollup Community Grants | 2021" },
+    category: { value: "Layer 2" },
+    exploreOrProject: { value: "project" },
     // form fields
-    firstName: "",
-    lastName: "",
-    contactEmail: "",
-    company: "",
-    city: "",
-    country: "",
-    individualOrTeam: "",
-    teamProfile: "",
-    projectCategory: "",
-    projectName: "",
-    projectDescription: "",
-    problemBeingSolved: "",
-    impact: "",
-    challenges: "",
-    proposedTimeline: "",
-    requestedAmount: "",
-    referralSource: "",
-    referralSourceIfOther: "",
-    twitter: "",
-    github: "",
-    linkedin: "",
-    questions: "",
-    contactAlternative: "",
-    other: "",
-    newsletter: "",
+    firstName: { value: "", isTouched: false, isValid: false },
+    lastName: { value: "", isTouched: false, isValid: false },
+    contactEmail: { value: "", isTouched: false, isValid: false },
+    company: { value: "", isTouched: false, isValid: false },
+    city: { value: "", isTouched: false, isValid: true },
+    country: { value: "", isTouched: false, isValid: true },
+    individualOrTeam: { value: "", isTouched: false, isValid: false },
+    teamProfile: { value: "", isTouched: false, isValid: false },
+    projectCategory: { value: "", isTouched: false, isValid: false },
+    projectName: { value: "", isTouched: false, isValid: false },
+    projectDescription: { value: "", isTouched: false, isValid: false },
+    problemBeingSolved: { value: "", isTouched: false, isValid: false },
+    impact: { value: "", isTouched: false, isValid: false },
+    challenges: { value: "", isTouched: false, isValid: false },
+    proposedTimeline: { value: "", isTouched: false, isValid: true },
+    requestedAmount: { value: "", isTouched: false, isValid: true },
+    referralSource: { value: "", isTouched: false, isValid: false },
+    referralSourceIfOther: { value: "", isTouched: false, isValid: true },
+    twitter: { value: "", isTouched: false, isValid: true },
+    github: { value: "", isTouched: false, isValid: true },
+    linkedin: { value: "", isTouched: false, isValid: true },
+    questions: { value: "", isTouched: false, isValid: true },
+    contactAlternative: { value: "", isTouched: false, isValid: true },
+    other: { value: "", isTouched: false, isValid: true },
+    newsletter: { value: "", isTouched: false, isValid: true },
   })
 
   const { addToast } = useToasts()
@@ -139,32 +133,75 @@ const RollupGrantsForm = props => {
     name: "referralSource",
   }))
 
+  const isEmailValid = () => {
+    try {
+      validateEmail(formState.contactEmail.value)
+      return true
+    } catch (error) {
+      return false
+    }
+  }
+
+  const isUrlValid = () => {
+    const { value } = formState.linkedin
+    const re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+    return value === "" || value.match(re)
+  }
+
   const handleCheckBoxChange = event => {
-    const target = event.target
-    const name = target.name
-    setFormState({ ...formState, [name]: target.checked })
+    const { name, checked } = event.target
+    setFormState({
+      ...formState,
+      [name]: { ...formState[name], value: checked },
+    })
   }
 
   const handleInputChange = event => {
-    const target = event.target
-    const value = target.value
-    const name = target.name
-    setFormState({ ...formState, [name]: value })
+    const { value, name } = event.target
+    const snapshot = { ...formState }
+    snapshot[name].value = value
+    snapshot[name].isValid =
+      name === "contactEmail"
+        ? isEmailValid()
+        : name === "linkedin"
+        ? isUrlValid()
+        : requiredFields.includes(name)
+        ? value !== ""
+        : true
+    setFormState(snapshot)
   }
 
   const handleSelectChange = selectedOption => {
-    setFormState({ ...formState, [selectedOption.name]: selectedOption.value })
+    const { name, value } = selectedOption
+    const snapshot = { ...formState }
+    snapshot[name].value = value
+    snapshot[name].isValid = value !== "" || !requiredFields.includes(name)
+    setFormState(snapshot)
+  }
+
+  const handleTouched = (event, field) => {
+    const name = field || event.target.name
+    const snapshot = { ...formState }
+    snapshot[name].isTouched = true
+    setFormState(snapshot)
   }
 
   const submitInquiry = async () => {
     setFormState({ ...formState, isPending: true })
+    const stateFields = Object.keys(formState)
+    const formStateFields = stateFields.filter(field => formState[field].value)
+    const formData = {}
+    for (const field of formStateFields) {
+      formData[field] = formState[field].value
+    }
+
     try {
       const response = await fetch("/.netlify/functions/inquiry", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formState),
+        body: JSON.stringify(formData),
       })
       setFormState({ ...formState, isPending: false })
       if (response.status !== 200) {
@@ -191,48 +228,26 @@ const RollupGrantsForm = props => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    setErrors({
-      contactEmail: false,
-      linkedin: false,
-    })
-    let isValid = true
-    try {
-      validateEmail(formState.contactEmail)
-    } catch (error) {
-      console.warn("Invalid email address")
-      isValid = false
-      setErrors({ ...errors, contactEmail: !isValid })
-      addToast("Invalid email address", {
-        appearance: "error",
-        autoDismiss: true,
-      })
-    }
-    const { linkedin } = formState
-    const re = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
-    if (linkedin !== "" && !linkedin.match(re)) {
-      console.warn("Invalid LinkedIn profile URL")
-      isValid = false
-      setErrors({ ...errors, linkedin: !isValid })
-      addToast("Invalid LinkedIn URL", {
-        appearance: "error",
-        autoDismiss: true,
-      })
-    }
-    isValid && submitInquiry()
+    // Already be validated before this button is enabled
+    isFormValid() && submitInquiry()
   }
 
-  const isFilledOut = () => {
-    // Checks if all required fields are populated
+  const isFormValid = () => {
     for (const field of requiredFields) {
-      if (!formState[field]) {
+      if (!formState[field]?.isValid) {
         return false
       }
+    }
+    if (!formState.linkedin.isValid) {
+      return false
     }
     return true
   }
 
-  const isButtonDisabled = !isFilledOut() || formState.isPending
+  const isButtonDisabled = !isFormValid() || formState.isPending
   const buttonText = formState.isPending ? "Submitting..." : "Submit"
+
+  const RequiredError = () => <ErrorMessage>Field is required</ErrorMessage>
 
   return (
     <StyledForm onSubmit={handleSubmit}>
@@ -243,10 +258,15 @@ const RollupGrantsForm = props => {
         <Input
           type="text"
           name="firstName"
-          value={formState.firstName}
+          value={formState.firstName?.value}
           onChange={handleInputChange}
           maxLength="150"
+          onBlur={handleTouched}
+          required
         />
+        {formState.firstName.isTouched && !formState.firstName.isValid && (
+          <RequiredError />
+        )}
       </Label>
       <Label>
         <span>
@@ -255,10 +275,15 @@ const RollupGrantsForm = props => {
         <Input
           type="text"
           name="lastName"
-          value={formState.lastName}
+          value={formState.lastName.value}
           onChange={handleInputChange}
           maxLength="150"
+          onBlur={handleTouched}
+          required
         />
+        {formState.lastName.isTouched && !formState.lastName.isValid && (
+          <RequiredError />
+        )}
       </Label>
       <Label>
         <span>
@@ -267,13 +292,16 @@ const RollupGrantsForm = props => {
         <Input
           type="email"
           name="contactEmail"
-          value={formState.contactEmail}
+          value={formState.contactEmail.value}
           onChange={handleInputChange}
           maxLength="150"
+          onBlur={handleTouched}
+          required
         />
-        {errors.contactEmail && (
-          <ErrorMessage>Please provide a valid email address</ErrorMessage>
-        )}
+        {formState.contactEmail.isTouched &&
+          !formState.contactEmail.isValid && (
+            <ErrorMessage>Please provide a valid email address</ErrorMessage>
+          )}
       </Label>
       <Label>
         <span>
@@ -288,17 +316,22 @@ const RollupGrantsForm = props => {
         <Input
           type="text"
           name="company"
-          value={formState.company}
+          value={formState.company.value}
           onChange={handleInputChange}
           maxLength="150"
+          onBlur={handleTouched}
+          required
         />
+        {formState.company.isTouched && !formState.company.isValid && (
+          <RequiredError />
+        )}
       </Label>
       <Label>
         <span>What city is your contact based? (optional)</span>
         <Input
           type="text"
           name="city"
-          value={formState.city}
+          value={formState.city.value}
           onChange={handleInputChange}
           maxLength="150"
         />
@@ -311,7 +344,14 @@ const RollupGrantsForm = props => {
         <span>
           Are you submitting as an individual or a team? <Required>*</Required>
         </span>
-        <Select options={teamOptions} onChange={handleSelectChange} />
+        <Select
+          options={teamOptions}
+          onChange={handleSelectChange}
+          onBlur={e => handleTouched(e, "individualOrTeam")}
+          required
+        />
+        {formState.individualOrTeam.isTouched &&
+          !formState.individualOrTeam.isValid && <RequiredError />}
       </Label>
       <Label>
         <span>
@@ -325,9 +365,14 @@ const RollupGrantsForm = props => {
         </div>
         <TextArea
           name="teamProfile"
-          value={formState.teamProfile}
+          value={formState.teamProfile.value}
           onChange={handleInputChange}
+          onBlur={handleTouched}
+          required
         />
+        {formState.teamProfile.isTouched && !formState.teamProfile.isValid && (
+          <RequiredError />
+        )}
       </Label>
       <Label>
         <span>
@@ -336,7 +381,11 @@ const RollupGrantsForm = props => {
         <Select
           options={projectCategoryOptions}
           onChange={handleSelectChange}
+          onBlur={e => handleTouched(e, "projectCategory")}
+          required
         />
+        {formState.projectCategory.isTouched &&
+          !formState.projectCategory.isValid && <RequiredError />}
       </Label>
       <Label>
         <span>
@@ -345,10 +394,15 @@ const RollupGrantsForm = props => {
         <Input
           type="text"
           name="projectName"
-          value={formState.projectName}
+          value={formState.projectName.value}
           onChange={handleInputChange}
           maxLength="150"
+          onBlur={handleTouched}
+          required
         />
+        {formState.projectName.isTouched && !formState.projectName.isValid && (
+          <RequiredError />
+        )}
       </Label>
       <Label>
         <span>
@@ -362,9 +416,13 @@ const RollupGrantsForm = props => {
         </div>
         <TextArea
           name="projectDescription"
-          value={formState.projectDescription}
+          value={formState.projectDescription.value}
           onChange={handleInputChange}
+          onBlur={handleTouched}
+          required
         />
+        {formState.projectDescription.isTouched &&
+          !formState.projectDescription.isValid && <RequiredError />}
       </Label>
       <Label>
         <span>
@@ -378,9 +436,13 @@ const RollupGrantsForm = props => {
         </div>
         <TextArea
           name="problemBeingSolved"
-          value={formState.problemBeingSolved}
+          value={formState.problemBeingSolved.value}
           onChange={handleInputChange}
+          onBlur={handleTouched}
+          required
         />
+        {formState.problemBeingSolved.isTouched &&
+          !formState.problemBeingSolved.isValid && <RequiredError />}
       </Label>
       <Label>
         <span>
@@ -394,9 +456,14 @@ const RollupGrantsForm = props => {
         </div>
         <TextArea
           name="impact"
-          value={formState.impact}
+          value={formState.impact.value}
           onChange={handleInputChange}
+          onBlur={handleTouched}
+          required
         />
+        {formState.impact.isTouched && !formState.impact.isValid && (
+          <RequiredError />
+        )}
       </Label>
       <Label>
         <span>
@@ -410,15 +477,20 @@ const RollupGrantsForm = props => {
         </div>
         <TextArea
           name="challenges"
-          value={formState.challenges}
+          value={formState.challenges.value}
           onChange={handleInputChange}
+          onBlur={handleTouched}
+          required
         />
+        {formState.challenges.isTouched && !formState.challenges.isValid && (
+          <RequiredError />
+        )}
       </Label>
       <Label>
         <span>Proposal Timeline and Deliverables</span>
         <TextArea
           name="proposedTimeline"
-          value={formState.proposedTimeline}
+          value={formState.proposedTimeline.value}
           onChange={handleInputChange}
         />
       </Label>
@@ -430,7 +502,7 @@ const RollupGrantsForm = props => {
         <Input
           type="text"
           name="requestedAmount"
-          value={formState.requestedAmount}
+          value={formState.requestedAmount.value}
           onChange={handleInputChange}
           maxLength="20"
         />
@@ -439,16 +511,23 @@ const RollupGrantsForm = props => {
         <span>
           How did you hear about this round of grants? <Required>*</Required>
         </span>
-        <Select options={referralSourceOptions} onChange={handleSelectChange} />
+        <Select
+          options={referralSourceOptions}
+          onChange={handleSelectChange}
+          onBlur={e => handleTouched(e, "referralSource")}
+          required
+        />
+        {formState.referralSource.isTouched &&
+          !formState.referralSource.isValid && <RequiredError />}
       </Label>
-      {formState.referralSource ===
+      {formState.referralSource.value ===
         REFERRAL_SOURCES[REFERRAL_SOURCES.length - 1] && (
         <Label>
           <span>If other:</span>
           <Input
             type="text"
             name="referralSourceIfOther"
-            value={formState.referralSourceIfOther}
+            value={formState.referralSourceIfOther.value}
             onChange={handleInputChange}
             maxLength="150"
           />
@@ -462,7 +541,7 @@ const RollupGrantsForm = props => {
         <Input
           type="text"
           name="twitter"
-          value={formState.twitter}
+          value={formState.twitter.value}
           onChange={handleInputChange}
           maxLength="15"
         />
@@ -475,7 +554,7 @@ const RollupGrantsForm = props => {
         <Input
           type="text"
           name="github"
-          value={formState.github}
+          value={formState.github.value}
           onChange={handleInputChange}
           maxLength="40"
         />
@@ -488,11 +567,12 @@ const RollupGrantsForm = props => {
         <Input
           type="text"
           name="linkedin"
-          value={formState.linkedin}
+          value={formState.linkedin.value}
           onChange={handleInputChange}
+          onBlur={handleTouched}
           maxLength="150"
         />
-        {errors.linkedin && (
+        {formState.linkedin.isTouched && !formState.linkedin.isValid && (
           <ErrorMessage>Ensure LinkedIn profile is valid URL</ErrorMessage>
         )}
       </Label>
@@ -502,16 +582,16 @@ const RollupGrantsForm = props => {
         </span>
         <TextArea
           name="questions"
-          value={formState.questions}
+          value={formState.questions.value}
           onChange={handleInputChange}
         />
       </Label>
       <Label>
-        <span>Telegram Username{/* or Alternative Contact Info */}</span>
+        <span>Telegram Username</span>
         <Input
           type="text"
           name="contactAlternative"
-          value={formState.contactAlternative}
+          value={formState.contactAlternative.value}
           onChange={handleInputChange}
           maxLength="150"
         />
@@ -520,7 +600,7 @@ const RollupGrantsForm = props => {
         <span>Anything else you'd like to share? (optional)</span>
         <TextArea
           name="other"
-          value={formState.other}
+          value={formState.other.value}
           onChange={handleInputChange}
         />
       </Label>
@@ -528,7 +608,7 @@ const RollupGrantsForm = props => {
         <CheckboxInput
           type="checkbox"
           name="newsletter"
-          value={formState.newsletter}
+          value={formState.newsletter.value}
           onChange={handleCheckBoxChange}
         />
         Subscribe to the ESP Newsletter? You'll hear from us every few weeks,
@@ -538,18 +618,6 @@ const RollupGrantsForm = props => {
         <StyledButton disabled={isButtonDisabled} onClick={handleSubmit}>
           {buttonText}
         </StyledButton>
-        {isButtonDisabled && (
-          <div>
-            <small>Fill out all required fields before submitting</small>
-          </div>
-        )}
-        {Object.values(errors).includes(true) && (
-          <div>
-            <ErrorMessage>
-              Check that all required fields are filled out correctly
-            </ErrorMessage>
-          </div>
-        )}
       </div>
     </StyledForm>
   )
