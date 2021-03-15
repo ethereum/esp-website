@@ -22,8 +22,22 @@ const StyledForm = styled(Form)`
   margin-top: 2rem;
 `
 
+const StyledSelect = styled(Select)`
+  margin-top: 0.5rem;
+`
+
+const StyledLabel = styled(Label)`
+  margin-bottom: 2.5rem;
+`
+
 const ErrorMessage = styled.small`
   color: ${colorRed};
+`
+
+const ErrorDiv = styled.div`
+  margin-top: 0.5rem;
+  height: 0rem;
+  width: 100%;
 `
 
 const StyledButton = styled(Button)`
@@ -251,7 +265,7 @@ const RollupGrantsForm = () => {
 
   return (
     <StyledForm onSubmit={handleSubmit}>
-      <Label>
+      <StyledLabel>
         <span>
           Contact - First Name <Required>*</Required>
         </span>
@@ -264,11 +278,13 @@ const RollupGrantsForm = () => {
           onBlur={handleTouched}
           required
         />
-        {formState.firstName.isTouched && !formState.firstName.isValid && (
-          <RequiredError />
-        )}
-      </Label>
-      <Label>
+        <ErrorDiv>
+          {formState.firstName.isTouched && !formState.firstName.isValid && (
+            <RequiredError />
+          )}
+        </ErrorDiv>
+      </StyledLabel>
+      <StyledLabel>
         <span>
           Contact - Last Name <Required>*</Required>
         </span>
@@ -281,11 +297,13 @@ const RollupGrantsForm = () => {
           onBlur={handleTouched}
           required
         />
-        {formState.lastName.isTouched && !formState.lastName.isValid && (
-          <RequiredError />
-        )}
-      </Label>
-      <Label>
+        <ErrorDiv>
+          {formState.lastName.isTouched && !formState.lastName.isValid && (
+            <RequiredError />
+          )}
+        </ErrorDiv>
+      </StyledLabel>
+      <StyledLabel>
         <span>
           Contact Email <Required>*</Required>
         </span>
@@ -298,12 +316,14 @@ const RollupGrantsForm = () => {
           onBlur={handleTouched}
           required
         />
-        {formState.contactEmail.isTouched &&
-          !formState.contactEmail.isValid && (
-            <ErrorMessage>Please provide a valid email address</ErrorMessage>
-          )}
-      </Label>
-      <Label>
+        <ErrorDiv>
+          {formState.contactEmail.isTouched &&
+            !formState.contactEmail.isValid && (
+              <ErrorMessage>Please provide a valid email address</ErrorMessage>
+            )}
+        </ErrorDiv>
+      </StyledLabel>
+      <StyledLabel>
         <span>
           Company / Association <Required>*</Required>
         </span>
@@ -322,11 +342,13 @@ const RollupGrantsForm = () => {
           onBlur={handleTouched}
           required
         />
-        {formState.company.isTouched && !formState.company.isValid && (
-          <RequiredError />
-        )}
-      </Label>
-      <Label>
+        <ErrorDiv>
+          {formState.company.isTouched && !formState.company.isValid && (
+            <RequiredError />
+          )}
+        </ErrorDiv>
+      </StyledLabel>
+      <StyledLabel>
         <span>What city is your contact based? (optional)</span>
         <Input
           type="text"
@@ -335,25 +357,27 @@ const RollupGrantsForm = () => {
           onChange={handleInputChange}
           maxLength="150"
         />
-      </Label>
-      <Label>
+      </StyledLabel>
+      <StyledLabel>
         <span>What country is your contact based? (optional)</span>
-        <Select options={countryOptions} onChange={handleSelectChange} />
-      </Label>
-      <Label>
+        <StyledSelect options={countryOptions} onChange={handleSelectChange} />
+      </StyledLabel>
+      <StyledLabel>
         <span>
           Are you submitting as an individual or a team? <Required>*</Required>
         </span>
-        <Select
+        <StyledSelect
           options={teamOptions}
           onChange={handleSelectChange}
           onBlur={e => handleTouched(e, "individualOrTeam")}
           required
         />
-        {formState.individualOrTeam.isTouched &&
-          !formState.individualOrTeam.isValid && <RequiredError />}
-      </Label>
-      <Label>
+        <ErrorDiv>
+          {formState.individualOrTeam.isTouched &&
+            !formState.individualOrTeam.isValid && <RequiredError />}
+        </ErrorDiv>
+      </StyledLabel>
+      <StyledLabel>
         <span>
           Individual/Team profile <Required>*</Required>
         </span>
@@ -370,24 +394,27 @@ const RollupGrantsForm = () => {
           onBlur={handleTouched}
           required
         />
-        {formState.teamProfile.isTouched && !formState.teamProfile.isValid && (
-          <RequiredError />
-        )}
-      </Label>
-      <Label>
+        <ErrorDiv>
+          {formState.teamProfile.isTouched &&
+            !formState.teamProfile.isValid && <RequiredError />}
+        </ErrorDiv>
+      </StyledLabel>
+      <StyledLabel>
         <span>
           Project Category <Required>*</Required>
         </span>
-        <Select
+        <StyledSelect
           options={projectCategoryOptions}
           onChange={handleSelectChange}
           onBlur={e => handleTouched(e, "projectCategory")}
           required
         />
-        {formState.projectCategory.isTouched &&
-          !formState.projectCategory.isValid && <RequiredError />}
-      </Label>
-      <Label>
+        <ErrorDiv>
+          {formState.projectCategory.isTouched &&
+            !formState.projectCategory.isValid && <RequiredError />}
+        </ErrorDiv>
+      </StyledLabel>
+      <StyledLabel>
         <span>
           Project Name <Required>*</Required>
         </span>
@@ -400,11 +427,12 @@ const RollupGrantsForm = () => {
           onBlur={handleTouched}
           required
         />
-        {formState.projectName.isTouched && !formState.projectName.isValid && (
-          <RequiredError />
-        )}
-      </Label>
-      <Label>
+        <ErrorDiv>
+          {formState.projectName.isTouched &&
+            !formState.projectName.isValid && <RequiredError />}
+        </ErrorDiv>
+      </StyledLabel>
+      <StyledLabel>
         <span>
           Project Description <Required>*</Required>
         </span>
@@ -421,10 +449,12 @@ const RollupGrantsForm = () => {
           onBlur={handleTouched}
           required
         />
-        {formState.projectDescription.isTouched &&
-          !formState.projectDescription.isValid && <RequiredError />}
-      </Label>
-      <Label>
+        <ErrorDiv>
+          {formState.projectDescription.isTouched &&
+            !formState.projectDescription.isValid && <RequiredError />}
+        </ErrorDiv>
+      </StyledLabel>
+      <StyledLabel>
         <span>
           Problem Being Solved <Required>*</Required>
         </span>
@@ -441,10 +471,12 @@ const RollupGrantsForm = () => {
           onBlur={handleTouched}
           required
         />
-        {formState.problemBeingSolved.isTouched &&
-          !formState.problemBeingSolved.isValid && <RequiredError />}
-      </Label>
-      <Label>
+        <ErrorDiv>
+          {formState.problemBeingSolved.isTouched &&
+            !formState.problemBeingSolved.isValid && <RequiredError />}
+        </ErrorDiv>
+      </StyledLabel>
+      <StyledLabel>
         <span>
           Impact <Required>*</Required>
         </span>
@@ -461,11 +493,13 @@ const RollupGrantsForm = () => {
           onBlur={handleTouched}
           required
         />
-        {formState.impact.isTouched && !formState.impact.isValid && (
-          <RequiredError />
-        )}
-      </Label>
-      <Label>
+        <ErrorDiv>
+          {formState.impact.isTouched && !formState.impact.isValid && (
+            <RequiredError />
+          )}
+        </ErrorDiv>
+      </StyledLabel>
+      <StyledLabel>
         <span>
           Needs and Challenges <Required>*</Required>
         </span>
@@ -482,19 +516,21 @@ const RollupGrantsForm = () => {
           onBlur={handleTouched}
           required
         />
-        {formState.challenges.isTouched && !formState.challenges.isValid && (
-          <RequiredError />
-        )}
-      </Label>
-      <Label>
+        <ErrorDiv>
+          {formState.challenges.isTouched && !formState.challenges.isValid && (
+            <RequiredError />
+          )}
+        </ErrorDiv>
+      </StyledLabel>
+      <StyledLabel>
         <span>Proposal Timeline and Deliverables</span>
         <TextArea
           name="proposedTimeline"
           value={formState.proposedTimeline.value}
           onChange={handleInputChange}
         />
-      </Label>
-      <Label>
+      </StyledLabel>
+      <StyledLabel>
         <span>Requested Grant Amount</span>
         <div>
           <small>Ex: USD 4,000</small>
@@ -506,23 +542,25 @@ const RollupGrantsForm = () => {
           onChange={handleInputChange}
           maxLength="20"
         />
-      </Label>
-      <Label>
+      </StyledLabel>
+      <StyledLabel>
         <span>
           How did you hear about this round of grants? <Required>*</Required>
         </span>
-        <Select
+        <StyledSelect
           options={referralSourceOptions}
           onChange={handleSelectChange}
           onBlur={e => handleTouched(e, "referralSource")}
           required
         />
-        {formState.referralSource.isTouched &&
-          !formState.referralSource.isValid && <RequiredError />}
-      </Label>
+        <ErrorDiv>
+          {formState.referralSource.isTouched &&
+            !formState.referralSource.isValid && <RequiredError />}
+        </ErrorDiv>
+      </StyledLabel>
       {formState.referralSource.value ===
         REFERRAL_SOURCES[REFERRAL_SOURCES.length - 1] && (
-        <Label>
+        <StyledLabel>
           <span>If other:</span>
           <Input
             type="text"
@@ -531,9 +569,9 @@ const RollupGrantsForm = () => {
             onChange={handleInputChange}
             maxLength="150"
           />
-        </Label>
+        </StyledLabel>
       )}
-      <Label>
+      <StyledLabel>
         <span>Twitter Username</span>
         <div>
           <small>Ex: @ef_esp</small>
@@ -545,8 +583,8 @@ const RollupGrantsForm = () => {
           onChange={handleInputChange}
           maxLength="15"
         />
-      </Label>
-      <Label>
+      </StyledLabel>
+      <StyledLabel>
         <span>GitHub Username</span>
         <div>
           <small>Ex: @github_username</small>
@@ -558,8 +596,8 @@ const RollupGrantsForm = () => {
           onChange={handleInputChange}
           maxLength="40"
         />
-      </Label>
-      <Label>
+      </StyledLabel>
+      <StyledLabel>
         <span>LinkedIn Profile URL</span>
         <div>
           <small>Ex: https://www.linkedin.com/in/profilename</small>
@@ -572,11 +610,13 @@ const RollupGrantsForm = () => {
           onBlur={handleTouched}
           maxLength="150"
         />
-        {formState.linkedin.isTouched && !formState.linkedin.isValid && (
-          <ErrorMessage>Ensure LinkedIn profile is valid URL</ErrorMessage>
-        )}
-      </Label>
-      <Label>
+        <ErrorDiv>
+          {formState.linkedin.isTouched && !formState.linkedin.isValid && (
+            <ErrorMessage>Ensure LinkedIn profile is valid URL</ErrorMessage>
+          )}
+        </ErrorDiv>
+      </StyledLabel>
+      <StyledLabel>
         <span>
           What questions do you have about anything related to rollups?
         </span>
@@ -585,8 +625,8 @@ const RollupGrantsForm = () => {
           value={formState.questions.value}
           onChange={handleInputChange}
         />
-      </Label>
-      <Label>
+      </StyledLabel>
+      <StyledLabel>
         <span>Telegram Username</span>
         <Input
           type="text"
@@ -595,15 +635,15 @@ const RollupGrantsForm = () => {
           onChange={handleInputChange}
           maxLength="150"
         />
-      </Label>
-      <Label>
+      </StyledLabel>
+      <StyledLabel>
         <span>Anything else you'd like to share? (optional)</span>
         <TextArea
           name="other"
           value={formState.other.value}
           onChange={handleInputChange}
         />
-      </Label>
+      </StyledLabel>
       <Checkbox>
         <CheckboxInput
           type="checkbox"
