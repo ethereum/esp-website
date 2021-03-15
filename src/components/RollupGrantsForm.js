@@ -618,6 +618,11 @@ const RollupGrantsForm = () => {
         <StyledButton disabled={isButtonDisabled} onClick={handleSubmit}>
           {buttonText}
         </StyledButton>
+        {isButtonDisabled && (
+          <div>
+            <small>Fill out all required fields before submitting</small>
+          </div>
+        )}
       </div>
     </StyledForm>
   )
