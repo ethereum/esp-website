@@ -59,7 +59,7 @@ countryOptions.unshift({
 const PROJECT_CATEGORIES = [
   "Adoption",
   "Community and Education",
-  "Devex, Tooling and Testing",
+  "DevEx, Tooling, and Testing",
   "Infrastructure",
   "Interoperability",
   "New Rollups",
