@@ -48,12 +48,10 @@ const PageMetadata = ({ description, meta, title }) => {
   return (
     <Location>
       {({ location }) => {
-        {
-          /* Set canonocial URL to use language path to avoid duplicate content */
-        }
-        {
-          /* e.g. set esp.ethereum.foundation/about/ to esp.ethereum.foundation/en/about/ */
-        }
+        /**
+         * Set canonocial URL to use language path to avoid duplicate content
+         * e.g. set esp.ethereum.foundation/about/ to esp.ethereum.foundation/en/about/
+         */
         const { pathname } = location
         let canonicalPath = pathname
         const firstDirectory = canonicalPath.split("/")[1]
