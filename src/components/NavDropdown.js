@@ -21,6 +21,7 @@ const DropdownTitle = styled.span`
   margin-right: 20px;
   display: inline-block;
   cursor: pointer;
+  white-space: nowrap;
 
   &:hover {
     color: ${styles.colorOrange};
