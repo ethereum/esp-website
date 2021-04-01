@@ -768,21 +768,6 @@ a:hover {
   }
 }
 
-/* TODO move to styled components */
-
-/* Layout */
-
-.layout {
-  margin: 25px 25px 0;
-}
-
-/* styles.screenSizeL */
-@media (max-width: 1024px) {
-  .layout {
-    margin: 18px 18px 0;
-  }
-}
-
 /* FAQ page */
 
 .question {

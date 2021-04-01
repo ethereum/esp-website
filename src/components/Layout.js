@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import PropTypes from "prop-types"
 import { motion, AnimatePresence } from "framer-motion"
 import styled from "styled-components"
@@ -40,79 +40,42 @@ const Main = styled(motion.main)`
   }
 `
 
-class Layout extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      hasNavShadow: false,
-    }
-  }
-
-  // TODO all this `hasNavShadow` logic should be in <Nav />
-  // I couldn't figure out how to make <Nav /> a class component
-  // & still use staticQuery for the image loading
-  componentDidMount = () => {
-    window.addEventListener("scroll", this.handleScroll)
-
-    // add smooth scroll behavior for anchor links
+const Layout = ({ children, pageContext: { intl } }) => {
+  useEffect(() => {
+    // add smooth scroll behavior for anchor hash links
     // https://medium.com/@chrisfitkin/how-to-smooth-scroll-links-in-gatsby-3dc445299558
     if (typeof window !== "undefined") {
       // eslint-disable-next-line global-require
       require("smooth-scroll")('a[href*="#"]')
     }
-  }
+  }, [])
 
-  componentWillUnmount = () => {
-    window.removeEventListener("scroll", this.handleScroll)
-  }
-
-  handleScroll = () => {
-    if (window.pageYOffset <= 20 && this.state.hasNavShadow) {
-      this.setState({ hasNavShadow: false })
-    }
-    if (window.pageYOffset > 20 && !this.state.hasNavShadow) {
-      this.setState({ hasNavShadow: true })
-    }
-  }
-
-  render() {
-    // IntlProvider appears to be necessary in order to pass context into components
-    // that live outside page components (e.g. Nav & Footer). See:
-    // https://github.com/wiziple/gatsby-plugin-intl/issues/116
-    const intl = this.props.pageContext.intl
-    return (
-      <IntlProvider
-        locale={intl.language}
-        defaultLocale={intl.defaultLocale}
-        messages={intl.messages}
-      >
-        <IntlContextProvider value={intl}>
-          <ToastProvider>
-            <div className="line top"></div>
-            <div className="line left"></div>
-            <div className="line right"></div>
-            <div className="layout">
-              <Nav hasShadow={this.state.hasNavShadow} />
-              <div>
-                <AnimatePresence>
-                  <Main
-                    variants={variants}
-                    initial="initial"
-                    animate="enter"
-                    exit="exit"
-                  >
-                    {this.props.children}
-                  </Main>
-                </AnimatePresence>
-              </div>
-              <Footer />
-              <div className="line bottom"></div>
-            </div>
-          </ToastProvider>
-        </IntlContextProvider>
-      </IntlProvider>
-    )
-  }
+  return (
+    <IntlProvider
+      locale={intl.language}
+      defaultLocale={intl.defaultLocale}
+      messages={intl.messages}
+    >
+      <IntlContextProvider value={intl}>
+        <ToastProvider>
+          <Nav />
+          <div>
+            <AnimatePresence>
+              <Main
+                variants={variants}
+                initial="initial"
+                animate="enter"
+                exit="exit"
+              >
+                {children}
+              </Main>
+            </AnimatePresence>
+          </div>
+          <Footer />
+        </ToastProvider>
+      </IntlContextProvider>
+    </IntlProvider>
+  )
 }
 
 Layout.propTypes = {
