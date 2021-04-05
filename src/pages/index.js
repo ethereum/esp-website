@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
@@ -98,102 +98,89 @@ const RollupsCallout = styled.div`
   padding: 24px;
 `
 
-class IndexPage extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      showHeroLink: true,
+const IndexPage = ({ intl }) => {
+  const [showHeroLink, setShowHeroLink] = useState(true)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.pageYOffset <= 100 && !showHeroLink) {
+        setShowHeroLink(true)
+      }
+      if (window.pageYOffset > 100 && showHeroLink) {
+        setShowHeroLink(false)
+      }
     }
-  }
-
-  componentDidMount = () => {
-    window.addEventListener("scroll", this.handleScroll)
-  }
-
-  componentWillUnmount = () => {
-    window.removeEventListener("scroll", this.handleScroll)
-  }
-
-  handleScroll = () => {
-    if (window.pageYOffset <= 100 && !this.state.showHeroLink) {
-      this.setState({ showHeroLink: true })
+    window.addEventListener("scroll", handleScroll)
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
     }
-    if (window.pageYOffset > 100 && this.state.showHeroLink) {
-      this.setState({ showHeroLink: false })
-    }
-  }
+  }, [showHeroLink])
 
-  render() {
-    return (
-      <>
-        <PageMetadata
-          title={this.props.intl.formatMessage({ id: "page-home.title" })}
-        />
-        <div>
-          <Hero>
-            <HorizontalLogo
-              src={horzLogo}
-              alt="Ecosystem Support Program Horizontal Logo"
-            />
-            <VerticalLogo
-              src={vertLogo}
-              alt="Ecosystem Support Program Vertical Logo"
-            />
-            <Header>
-              <FormattedMessage id="page-home.header" />
-            </Header>
-            <Link
-              to="#welcome"
-              className={
-                "hero-link " + (this.state.showHeroLink ? "show" : "hide")
-              }
-            >
-              <FontAwesomeIcon className="hero-icon" icon={faChevronDown} />
-            </Link>
-          </Hero>
-          <PageBody>
-            <Copy id="welcome">
-              <Section>
-                <H1>
-                  <FormattedMessage id="page-home.h1" />
-                </H1>
-                <p>
-                  <FormattedMessage id="page-home.p-1" />
-                </p>
-                <p>
-                  <FormattedMessage id="page-home.p-2" />
-                </p>
-              </Section>
-              {this.props.intl.locale === "en" && (
-                <RollupsCallout>
-                  The Ethereum Foundation is sponsoring a wave of rollup
-                  community grants. Proposals are due April 16th, 2021.{" "}
-                  <Link to="/rollup-grants/">See details.</Link>
-                </RollupsCallout>
-              )}
-              <H2 id="contact">
-                <FormattedMessage id="page-home.contact-us" />
-              </H2>
+  return (
+    <>
+      <PageMetadata title={intl.formatMessage({ id: "page-home.title" })} />
+      <div>
+        <Hero>
+          <HorizontalLogo
+            src={horzLogo}
+            alt="Ecosystem Support Program Horizontal Logo"
+          />
+          <VerticalLogo
+            src={vertLogo}
+            alt="Ecosystem Support Program Vertical Logo"
+          />
+          <Header>
+            <FormattedMessage id="page-home.header" />
+          </Header>
+          <Link
+            to="#welcome"
+            className={"hero-link " + (showHeroLink ? "show" : "hide")}
+          >
+            <FontAwesomeIcon className="hero-icon" icon={faChevronDown} />
+          </Link>
+        </Hero>
+        <PageBody>
+          <Copy id="welcome">
+            <Section>
+              <H1>
+                <FormattedMessage id="page-home.h1" />
+              </H1>
               <p>
-                <FormattedMessage id="page-home.contact-us-desc" />
+                <FormattedMessage id="page-home.p-1" />
               </p>
-              <ButtonContainer>
-                <ButtonLink to="/inquire/">
-                  <FormattedMessage id="page-home.inquire" />
-                </ButtonLink>
-              </ButtonContainer>
-              <Section id="newsletter">
-                <H2>
-                  <FormattedMessage id="page-home.updates" />
-                </H2>
-                <NewsletterSignup />
-              </Section>
-            </Copy>
-          </PageBody>
-        </div>
-      </>
-    )
-  }
+              <p>
+                <FormattedMessage id="page-home.p-2" />
+              </p>
+            </Section>
+            {intl.locale === "en" && (
+              <RollupsCallout>
+                The Ethereum Foundation is sponsoring a wave of rollup community
+                grants. Proposals are due April 16th, 2021.{" "}
+                <Link to="/rollup-grants/">See details.</Link>
+              </RollupsCallout>
+            )}
+            <H2 id="contact">
+              <FormattedMessage id="page-home.contact-us" />
+            </H2>
+            <p>
+              <FormattedMessage id="page-home.contact-us-desc" />
+            </p>
+            <ButtonContainer>
+              <ButtonLink to="/inquire/">
+                <FormattedMessage id="page-home.inquire" />
+              </ButtonLink>
+            </ButtonContainer>
+            <Section id="newsletter">
+              <H2>
+                <FormattedMessage id="page-home.updates" />
+              </H2>
+              <NewsletterSignup />
+            </Section>
+          </Copy>
+        </PageBody>
+      </div>
+    </>
+  )
 }
 
 export default injectIntl(IndexPage)
