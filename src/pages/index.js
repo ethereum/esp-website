@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
 import { FormattedMessage, injectIntl } from "gatsby-plugin-intl"
+import "@fortawesome/fontawesome-svg-core/styles.css"
 
 import Link from "../components/Link"
 import PageMetadata from "../components/PageMetadata"
