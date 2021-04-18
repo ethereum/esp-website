@@ -12,6 +12,10 @@ _The Ethereum Foundation is sponsoring a wave of rollup community grants. Propos
 
 <Divider />
 
+> 🚨 **The deadline for submission has passed. Stay tuned for updates.**
+
+<Divider />
+
 Calling all those interested in building up the Ethereum rollup community!
 
 The Ethereum ecosystem is likely to be all-in on rollups as a scaling strategy for the near and mid-term future ([see Vitalik’s rollup centric ethereum roadmap](https://ethereum-magicians.org/t/a-rollup-centric-ethereum-roadmap/4698)). A variety of optimistic and zk-rollups are already in production or will go live soon.
