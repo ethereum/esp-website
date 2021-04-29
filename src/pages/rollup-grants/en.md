@@ -12,7 +12,7 @@ imgAlt: "ESP Rollup Grants image"
 
 > 🚨 **The deadline for submission has passed. Stay tuned for updates.**
 
-> [What if I missed the dealine?](#what-if-i-miss-deadline)
+> [What if I missed the deadline?](#what-if-i-miss-deadline)
 
 <Divider />
 
@@ -177,8 +177,6 @@ A lot of the design space that has not yet been explored. Learn from what has be
 </ExpandableCard>
 
 ## Next steps and support {#Next-steps-and-support}
-
-Use the form above to submit your proposal.
 
 For any general support questions about your submission, please email rollupgrants@ethereum.org.
 
