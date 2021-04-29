@@ -178,8 +178,6 @@ A lot of the design space that has not yet been explored. Learn from what has be
 
 ## Next steps and support {#Next-steps-and-support}
 
-Use the form above to submit your proposal.
-
 For any general support questions about your submission, please email rollupgrants@ethereum.org.
 
 For technical questions about rollups, ideas or direction for proposals, and all things rollups, we invite you to join the [EthereumRollupGrants](https://t.me/EthereumRollupGrants) telegram channel.
