@@ -8,11 +8,11 @@ imgAlt: "ESP Rollup Grants image"
 
 # Rollup Community Grants {#rollup-community-grants}
 
-_The Ethereum Foundation is sponsoring a wave of rollup community grants. Proposals are due April 16th 2021. Here are all the details you need._
-
 <Divider />
 
 > 🚨 **The deadline for submission has passed. Stay tuned for updates.**
+
+> [What if I missed the dealine?](#what-if-i-miss-deadline)
 
 <Divider />
 
@@ -32,26 +32,11 @@ Here some links to dive deeper:
 - Learn the basics on [Ethhub](https://docs.ethhub.io/ethereum-roadmap/layer-2-scaling/optimistic_rollups/)
 - [An Incomplete Guide to Rollups](https://vitalik.ca/general/2021/01/05/rollup.html) by Vitalik.
 
-## Submit proposal {#submit-proposal}
+### Proposal deadline {#deadline}
 
-Anyone is free to participate (individuals and teams) in this grants round.
+The deadline for proposals was April 16th 2021. Grants are decided on a case-by-base basis, and we will follow-up with you about your submission by email.
 
-If you want to submit something but need some inspiration, check out the [wishlist below](#wishlist).
-
-Ideas and projects at any stage of development are welcome:
-
-- Idea phase.
-- Proof of concept.
-- Work in progress.
-- Fleshed out project.
-
-Grants are decided on a case-by-case basis and you may enter more than one proposal! So long as each proposal is unique and meets the requirements.
-
-<RollupGrantsForm />
-
-### Deadline {#deadline}
-
-The deadline for proposals is any time the day of April 16th 2021. We will follow-up with you about your submission by email.
+Interested in applying for a grant? You can still [inquire](/inquire/) through our general form.
 
 ### Requirements {#requirements}
 

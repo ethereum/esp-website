@@ -103,15 +103,6 @@ const GrantsPage = () => {
             with input from technical advisors before a funding decision is
             made.
           </p>
-          <H2>Open Call: Rollup Community Grants</H2>
-          <p>
-            We are currently accepting proposals to grow the rollup community
-            and help kickstart a flourishing rollup ecosystem. Submissions are
-            open through April 16th, 2021.
-          </p>
-          <ButtonContainer>
-            <ButtonLink to="/rollup-grants/">See details</ButtonLink>
-          </ButtonContainer>
           <H2>More Information</H2>
           <p>
             You can find detailed information on the inquiry and grant

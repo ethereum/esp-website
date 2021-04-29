@@ -153,13 +153,6 @@ const IndexPage = ({ intl }) => {
                 <FormattedMessage id="page-home.p-2" />
               </p>
             </Section>
-            {intl.locale === "en" && (
-              <RollupsCallout>
-                The Ethereum Foundation is sponsoring a wave of rollup community
-                grants. Proposals are due April 16th, 2021.{" "}
-                <Link to="/rollup-grants/">See details.</Link>
-              </RollupsCallout>
-            )}
             <H2 id="contact">
               <FormattedMessage id="page-home.contact-us" />
             </H2>
