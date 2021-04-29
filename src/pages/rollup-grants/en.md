@@ -36,6 +36,8 @@ Here some links to dive deeper:
 
 The deadline for proposals was April 16th 2021. Grants are decided on a case-by-base basis, and we will follow-up with you about your submission by email.
 
+Interested in applying for a grant? You can still [inquire](/inquire/) through our general form.
+
 ### Requirements {#requirements}
 
 - Proposals must be in English.
