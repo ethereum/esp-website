@@ -470,7 +470,7 @@ const InquirePage = () => {
                   name="inquiry"
                   value={formState.inquiry}
                   onChange={handleInputChange}
-                  maxLength={255}
+                  maxLength={1000}
                 />
               </Label>
 
