@@ -10,6 +10,9 @@ imgAlt: ESP Road to Devcon Grants image
 
 *The Ethereum Foundation is sponsoring a wave of small grants for meetups and events. Applications are open through August 8. Read on for details.*
 
+<!-- TODO: Add links to translated pages -->
+<!-- [Lee esta página en español](/es/devcon-grants/) -->
+
 Calling all community organizers! 
 
 As much as we're looking forward to Devcon, it's far from the only place that the Ethereum community comes together. This past year has shown us just how much we depend on community-run events to keep us connected even while we're apart, and we want to support you in doing that crucial work. 
@@ -44,8 +47,7 @@ If your event doesn't have financial costs attached, get in touch anyway! We'd l
 
 Once you've submitted your application, we'll follow up by email. 
 
-<!-- TODO: Connect to DevconGrantsForm when completed -->
-<!-- <DevconGrantsForm wave="Road to Devcon" /> -->
+<DevconGrantsForm />
 
 ### Selection criteria {#selection-criteria}
 

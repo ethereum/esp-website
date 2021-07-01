@@ -90,6 +90,14 @@ exports.handler = async function(event) {
           Alternative_Contact: params.contactAlternativeInfo,
           Additional_Information: params.other,
           Category: params.category,
+          SponsorshipLink: params.eventLink,
+          SponsorshipDetails: params.eventTopic,
+          SponsorshipDate: params.eventDate,
+          InPerson: params.inPerson,
+          TypeOfEvent: params.eventType,
+          _EstimatedAttendees: params.estimatedAttendees,
+          _ConfirmedSpeakers: params.confirmedSpeakers,
+          _OtherSponsors: params.otherSponsors,
           // LGP custom fields
           Local_Grants_Wave: params.wave,
           Project_Category: params.projectCategory,
@@ -115,6 +123,16 @@ exports.handler = async function(event) {
         })
         await doc.loadInfo()
         const sheet = doc.sheetsById["1921832072"]
+        await sheet.addRow(params)
+      } else if (params.round === "Road to Devcon Event Grants") {
+        const creds = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
+        const doc = new GoogleSpreadsheet(process.env.GOOGLE_SPREADSHEET_ID)
+        await doc.useServiceAccountAuth({
+          client_email: creds.client_email,
+          private_key: creds.private_key,
+        })
+        await doc.loadInfo()
+        const sheet = doc.sheetsById["1952323195"]
         await sheet.addRow(params)
       }
 
