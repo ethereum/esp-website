@@ -124,19 +124,19 @@ const DevconGrantsForm = () => {
 
   const inPersonOptions = IN_PERSON_OPTIONS.map(option => ({
     value: option,
-    label: option,
+    label: formatMessage({id:`page-devcon.${option}`}),
     name: "inPerson",
   }))
 
   const eventTypeOptions = EVENT_TYPES.map(option => ({
     value: option,
-    label: option,
+    label: formatMessage({id:`page-devcon.${option}`}),
     name: "eventType",
   }))
 
   const referralSourceOptions = REFERRAL_SOURCES.map(source => ({
     value: source,
-    label: source,
+    label: formatMessage({id:`page-devcon.${source}`}),
     name: "referralSource",
   }))
 
@@ -262,7 +262,7 @@ const DevconGrantsForm = () => {
     <StyledForm onSubmit={handleSubmit}>
       <StyledLabel>
         <span>
-          Contact - First Name <Required>*</Required>
+          <FormattedMessage id="page-devcon.contact-first-name" /> <Required>*</Required>
         </span>
         <Input
           type="text"
@@ -281,7 +281,7 @@ const DevconGrantsForm = () => {
       </StyledLabel>
       <StyledLabel>
         <span>
-          Contact - Last Name <Required>*</Required>
+          <FormattedMessage id="page-devcon.contact-last-name" /> <Required>*</Required>
         </span>
         <Input
           type="text"
@@ -300,7 +300,7 @@ const DevconGrantsForm = () => {
       </StyledLabel>
       <StyledLabel>
         <span>
-          Contact Email <Required>*</Required>
+          <FormattedMessage id="page-devcon.contact-email" /> <Required>*</Required>
         </span>
         <Input
           type="email"
@@ -320,10 +320,10 @@ const DevconGrantsForm = () => {
       </StyledLabel>
       <StyledLabel>
         <span>
-          Organization <Required>*</Required>
+          <FormattedMessage id="page-devcon.organization" /> <Required>*</Required>
         </span>
         <div>
-          <small>If you're working alone, just write "none"</small>
+          <small><FormattedMessage id="page-devcon.organization-subtext" /></small>
         </div>
         <Input
           type="text"
@@ -341,7 +341,7 @@ const DevconGrantsForm = () => {
         </ErrorDiv>
       </StyledLabel>
       <StyledLabel>
-        <span>List any previous events you've organized</span>
+        <span><FormattedMessage id="page-devcon.list-previous-events" /></span>
         <TextArea
           name="previousWork"
           value={formState.previousWork.value}
@@ -351,12 +351,11 @@ const DevconGrantsForm = () => {
       </StyledLabel>
       <StyledLabel>
         <span>
-          Tell us about you or your team! <Required>*</Required>
+          <FormattedMessage id="page-devcon.tell-us-about-your-team" /> <Required>*</Required>
         </span>
         <div>
           <small>
-            Please write or link to bio(s). If team, who are the members of your
-            team? Please include Twitter, GitHub, LinkedIn, websites, etc.
+            <FormattedMessage id="page-devcon.tell-us-about-your-team-subtext" />
           </small>
         </div>
         <TextArea
@@ -373,7 +372,7 @@ const DevconGrantsForm = () => {
       </StyledLabel>
       <StyledLabel>
         <span>
-          Event Name <Required>*</Required>
+          <FormattedMessage id="page-devcon.event-name" /> <Required>*</Required>
         </span>
         <Input
           type="text"
@@ -391,10 +390,10 @@ const DevconGrantsForm = () => {
       </StyledLabel>
       <StyledLabel>
         <span>
-          Link to public event page <Required>*</Required>
+          <FormattedMessage id="page-devcon.link-to-public-event" /> <Required>*</Required>
         </span>
         <div>
-          <small>Example: https://www.myevent.com</small>
+          <small><FormattedMessage id="page-devcon.link-to-public-event-example" /></small>
         </div>
         <Input
           type="text"
@@ -406,13 +405,13 @@ const DevconGrantsForm = () => {
         />
         <ErrorDiv>
           {formState.eventLink.isTouched && !formState.eventLink.isValid && (
-            <ErrorMessage>Ensure link is a valid URL</ErrorMessage>
+            <ErrorMessage><FormattedMessage id="page-devcon.link-to-public-event-error" /></ErrorMessage>
           )}
         </ErrorDiv>
       </StyledLabel>
       <StyledLabel>
         <span>
-          Event Topic <Required>*</Required>
+          <FormattedMessage id="page-devcon.event-topic" /> <Required>*</Required>
         </span>
         <TextArea
           name="eventTopic"
@@ -429,7 +428,7 @@ const DevconGrantsForm = () => {
       </StyledLabel>
       <StyledLabel>
         <span>
-          Event Description <Required>*</Required>
+          <FormattedMessage id="page-devcon.event-description" /> <Required>*</Required>
         </span>
         <TextArea
           name="projectDescription"
@@ -445,10 +444,10 @@ const DevconGrantsForm = () => {
       </StyledLabel>
       <StyledLabel>
         <span>
-          Event Date <Required>*</Required>
+          <FormattedMessage id="page-devcon.event-date" /> <Required>*</Required>
         </span>
         <div>
-          <small>Please enter the first date of your event</small>
+          <small><FormattedMessage id="page-devcon.event-date-subtext" /></small>
         </div>
         <Input
           type="text"
@@ -467,7 +466,7 @@ const DevconGrantsForm = () => {
       </StyledLabel>
       <StyledLabel>
         <span>
-          Is your event in-person or online? <Required>*</Required>
+          <FormattedMessage id="page-devcon.event-in-person-or-online" /> <Required>*</Required>
         </span>
         <StyledSelect
           options={inPersonOptions}
@@ -482,10 +481,10 @@ const DevconGrantsForm = () => {
       </StyledLabel>
       {formState.inPerson.value === "In-person" && (
         <StyledLabel>
-          <span>Event location</span>
+          <span><FormattedMessage id="page-devcon.event-location" /></span>
           <div>
             <small>
-              (<Required>*</Required> required if happening in person)
+              (<Required>*</Required> <FormattedMessage id="page-devcon.event-location-subtext" />)
             </small>
           </div>
           <Input
@@ -504,7 +503,7 @@ const DevconGrantsForm = () => {
         </StyledLabel>
       )}
       <StyledLabel>
-        <span>What type of event is this?</span>
+        <span><FormattedMessage id="page-devcon.event-type" /></span>
         <StyledSelect
           options={eventTypeOptions}
           onChange={handleSelectChange}
@@ -516,9 +515,9 @@ const DevconGrantsForm = () => {
         </ErrorDiv>
       </StyledLabel>
       <StyledLabel>
-        <span>Social media or other links</span>
+        <span><FormattedMessage id="page-devcon.social-media" /></span>
         <div>
-          <small>Example: @twitter</small>
+          <small><FormattedMessage id="page-devcon.social-media-subtext" /></small>
         </div>
         <Input
           type="text"
@@ -530,7 +529,7 @@ const DevconGrantsForm = () => {
       </StyledLabel>
       <StyledLabel>
         <span>
-          Expected number of attendees/registrants <Required>*</Required>
+          <FormattedMessage id="page-devcon.expected-number-attendees" /> <Required>*</Required>
         </span>
         <Input
           type="text"
@@ -548,11 +547,11 @@ const DevconGrantsForm = () => {
       </StyledLabel>
       <StyledLabel>
         <span>
-          Target audience <Required>*</Required>
+          <FormattedMessage id="page-devcon.target-audience" /> <Required>*</Required>
         </span>
         <div>
           <small>
-            (For example: developers, entrepreneurs, general community)
+            <FormattedMessage id="page-devcon.target-audience-subtext" />
           </small>
         </div>
         <TextArea
@@ -569,7 +568,7 @@ const DevconGrantsForm = () => {
         </ErrorDiv>
       </StyledLabel>
       <StyledLabel>
-        <span>List any confirmed speakers</span>
+        <span><FormattedMessage id="page-devcon.list-confirmed-speakers" /></span>
         <TextArea
           name="confirmedSpeakers"
           value={formState.confirmedSpeakers.value}
@@ -578,7 +577,7 @@ const DevconGrantsForm = () => {
       </StyledLabel>
       <StyledLabel>
         <span>
-          Budget Breakdown <Required>*</Required>
+          <FormattedMessage id="page-devcon.budget-breakdown" /> <Required>*</Required>
         </span>
         <TextArea
           name="proposedTimeline"
@@ -594,10 +593,10 @@ const DevconGrantsForm = () => {
       </StyledLabel>
       <StyledLabel>
         <span>
-          Requested Grant Amount <Required>*</Required>
+          <FormattedMessage id="page-devcon.requested-grant-amount" /> <Required>*</Required>
         </span>
         <div>
-          <small>$500-1500 USD</small>
+          <small><FormattedMessage id="page-devcon.requested-grant-amount-subtext" /></small>
         </div>
         <Input
           type="text"
@@ -614,7 +613,7 @@ const DevconGrantsForm = () => {
         </ErrorDiv>
       </StyledLabel>
       <StyledLabel>
-        <span>List any confirmed sponsors</span>
+        <span><FormattedMessage id="page-devcon.list-confirmed-sponsors" /></span>
         <TextArea
           name="otherSponsors"
           value={formState.otherSponsors.value}
@@ -622,7 +621,7 @@ const DevconGrantsForm = () => {
         />
       </StyledLabel>
       <StyledLabel>
-        <span>Anything else you'd like to share? (optional)</span>
+        <span><FormattedMessage id="page-devcon.anything-else-to-share" /></span>
         <TextArea
           name="other"
           value={formState.other.value}
@@ -631,7 +630,7 @@ const DevconGrantsForm = () => {
       </StyledLabel>
       <StyledLabel>
         <span>
-          How did you hear about this round of grants? <Required>*</Required>
+          <FormattedMessage id="page-devcon.how-did-you-hear-about-grants" /> <Required>*</Required>
         </span>
         <StyledSelect
           options={referralSourceOptions}
@@ -647,7 +646,7 @@ const DevconGrantsForm = () => {
       {formState.referralSource.value ===
         REFERRAL_SOURCES[REFERRAL_SOURCES.length - 1] && (
         <StyledLabel>
-          <span>If other:</span>
+          <span><FormattedMessage id="page-devcon.if-other" /></span>
           <Input
             type="text"
             name="referralSourceIfOther"
@@ -664,8 +663,7 @@ const DevconGrantsForm = () => {
           value={formState.newsletter.value}
           onChange={handleCheckBoxChange}
         />
-        Subscribe to the ESP Newsletter? You'll hear from us every few weeks,
-        and we'll only ever contact you with ESP news.
+        <FormattedMessage id="page-devcon.subscribe-checkbox" />
       </Checkbox>
       <div>
         <StyledButton disabled={isButtonDisabled} onClick={handleSubmit}>
@@ -673,7 +671,7 @@ const DevconGrantsForm = () => {
         </StyledButton>
         {!isFormValid() && (
           <div>
-            <small>Fill out all required fields before submitting</small>
+            <small><FormattedMessage id="page-devcon.fill-out-required-message" /></small>
           </div>
         )}
       </div>
