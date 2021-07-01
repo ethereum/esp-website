@@ -443,6 +443,11 @@ const DevconGrantsForm = () => {
           <FormattedMessage id="page-devcon.event-description" />{" "}
           <Required>*</Required>
         </span>
+        <div>
+          <small>
+            <FormattedMessage id="page-devcon.event-description-subtext" />
+          </small>
+        </div>
         <TextArea
           name="projectDescription"
           value={formState.projectDescription.value}
@@ -502,6 +507,11 @@ const DevconGrantsForm = () => {
             <FormattedMessage id="page-devcon.event-location" />{" "}
             <Required>*</Required>
           </span>
+          <div>
+            <small>
+              <FormattedMessage id="page-devcon.event-location-subtext" />
+            </small>
+          </div>
           <Input
             type="text"
             name="city"
@@ -605,6 +615,11 @@ const DevconGrantsForm = () => {
           <FormattedMessage id="page-devcon.budget-breakdown" />{" "}
           <Required>*</Required>
         </span>
+        <div>
+          <small>
+            <FormattedMessage id="page-devcon.budget-breakdown-subtext" />
+          </small>
+        </div>
         <TextArea
           name="proposedTimeline"
           value={formState.proposedTimeline.value}
