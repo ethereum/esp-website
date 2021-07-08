@@ -2,7 +2,7 @@
 title: Road to Devcon Meetup and Event Grants
 description: Sponsorship grants funding online or in-person meetups and events leading up to Devcon
 lang: en
-img: ./devcon-hero.jpg
+img: ./devcon-hero.jpeg
 imgAlt: ESP Road to Devcon Grants image
 ---
 
