@@ -68,7 +68,7 @@ The deadline for proposals is end of day [anywhere on Earth](https://en.wikipedi
 
 ## **Next steps and support** {#next-steps-and-support}
 
-For any general support questions about your submission, please email [_@ethereum.org](mailto:_@ethereum.org) <!-- TODO: Fill in email -->
+For any general support questions about your submission, please email [grants@devcon.org](mailto:grants@devcon.org)
 
 ## **Frequently asked questions** {#faq}
 
