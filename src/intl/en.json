@@ -400,6 +400,10 @@
     "other-team-in-ecosystem": "Other team/project in ecosystem",
     "if-other": "If other:",
     "subscribe-checkbox": "Subscribe to the ESP Newsletter? You'll hear from us every few weeks, and we'll only ever contact you with ESP news.",
-    "fill-out-required-message": "Fill out all required fields before submitting"
+    "fill-out-required-message": "Fill out all required fields before submitting",
+    "submitting": "Submitting...",
+    "submit": "Submit",
+    "error-submitting": "Error submitting, please try again.",
+    "success": "Success!"
   }
 }

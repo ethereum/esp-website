@@ -215,21 +215,21 @@ const DevconGrantsForm = () => {
       })
       setFormState({ ...formState, isPending: false })
       if (response.status !== 200) {
-        addToast("Error submitting, please try again.", {
+        addToast(formatMessage({ id: `devcon-page.error-submitting` }), {
           appearance: "error",
           autoDismiss: true,
         })
       } else {
-        addToast("Success!", {
+        addToast(formatMessage({ id: `devcon-page.success` }), {
           appearance: "success",
           autoDismiss: true,
         })
-        navigate("/en/thanks/")
+        navigate("/thanks/")
       }
     } catch (error) {
       setFormState({ ...formState, isPending: false })
       console.error(error)
-      addToast("Error submitting, please try again.", {
+      addToast(formatMessage({ id: `devcon-page.error-submitting` }), {
         appearance: "error",
         autoDismiss: true,
       })
@@ -250,7 +250,9 @@ const DevconGrantsForm = () => {
   }
 
   const isButtonDisabled = !isFormValid() || formState.isPending
-  const buttonText = formState.isPending ? "Submitting..." : "Submit"
+  const buttonText = formState.isPending
+    ? formatMessage({ id: `devcon-page.submitting` })
+    : formatMessage({ id: `devcon-page.submit` })
 
   const RequiredError = () => <ErrorMessage>Field is required</ErrorMessage>
 
