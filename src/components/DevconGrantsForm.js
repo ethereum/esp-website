@@ -568,11 +568,12 @@ const DevconGrantsForm = () => {
           <Required>*</Required>
         </span>
         <Input
-          type="text"
+          type="number"
           name="estimatedAttendees"
           value={formState.estimatedAttendees.value}
           onChange={handleInputChange}
           maxLength="255"
+          min="0"
           onBlur={handleTouched}
           required
         />
