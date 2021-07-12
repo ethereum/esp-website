@@ -44,7 +44,7 @@ imgAlt: Devcon 派对形象之路
 
 您提交申请之后，我们会通过电子邮件跟进您的申请进度。
 
-<DovconGrantsForm />
+<DevconGrantsForm />
 
 ### 选择标准 {#selection-criteria}
 
