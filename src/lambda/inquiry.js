@@ -95,9 +95,9 @@ exports.handler = async function(event) {
           SponsorshipDate: params.eventDate,
           InPerson: params.inPerson,
           TypeOfEvent: params.eventType,
-          _EstimatedAttendees: params.estimatedAttendees,
-          _ConfirmedSpeakers: params.confirmedSpeakers,
-          _OtherSponsors: params.otherSponsors,
+          Estimated_Number_of_Attendees: params.estimatedAttendees,
+          Confirmed_Speakers: params.confirmedSpeakers,
+          Confirmed_Sponsors: params.otherSponsors,
           // LGP custom fields
           Local_Grants_Wave: params.wave,
           Project_Category: params.projectCategory,
