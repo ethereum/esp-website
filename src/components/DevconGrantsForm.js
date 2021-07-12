@@ -396,6 +396,31 @@ const DevconGrantsForm = () => {
       </StyledLabel>
       <StyledLabel>
         <span>
+          <FormattedMessage id="page-devcon.event-date" />{" "}
+          <Required>*</Required>
+        </span>
+        <div>
+          <small>
+            <FormattedMessage id="page-devcon.event-date-subtext" />
+          </small>
+        </div>
+        <Input
+          type="text"
+          name="eventDate"
+          value={formState.eventDate.value}
+          onChange={handleInputChange}
+          maxLength="255"
+          onBlur={handleTouched}
+          required
+        />
+        <ErrorDiv>
+          {formState.eventDate.isTouched && !formState.eventDate.isValid && (
+            <RequiredError />
+          )}
+        </ErrorDiv>
+      </StyledLabel>
+      <StyledLabel>
+        <span>
           <FormattedMessage id="page-devcon.link-to-public-event" />{" "}
           <Required>*</Required>
         </span>
@@ -462,25 +487,15 @@ const DevconGrantsForm = () => {
       </StyledLabel>
       <StyledLabel>
         <span>
-          <FormattedMessage id="page-devcon.event-date" />{" "}
-          <Required>*</Required>
+          <FormattedMessage id="page-devcon.event-type" />
         </span>
-        <div>
-          <small>
-            <FormattedMessage id="page-devcon.event-date-subtext" />
-          </small>
-        </div>
-        <Input
-          type="text"
-          name="eventDate"
-          value={formState.eventDate.value}
-          onChange={handleInputChange}
-          maxLength="255"
-          onBlur={handleTouched}
-          required
+        <StyledSelect
+          options={eventTypeOptions}
+          onChange={handleSelectChange}
+          onBlur={e => handleTouched(e, "eventType")}
         />
         <ErrorDiv>
-          {formState.eventDate.isTouched && !formState.eventDate.isValid && (
+          {formState.eventType.isTouched && !formState.eventType.isValid && (
             <RequiredError />
           )}
         </ErrorDiv>
@@ -497,8 +512,9 @@ const DevconGrantsForm = () => {
           required
         />
         <ErrorDiv>
-          {formState.referralSource.isTouched &&
-            !formState.referralSource.isValid && <RequiredError />}
+          {formState.inPerson.isTouched && !formState.inPerson.isValid && (
+            <RequiredError />
+          )}
         </ErrorDiv>
       </StyledLabel>
       {formState.inPerson.value === "In-person" && (
@@ -527,20 +543,6 @@ const DevconGrantsForm = () => {
           </ErrorDiv>
         </StyledLabel>
       )}
-      <StyledLabel>
-        <span>
-          <FormattedMessage id="page-devcon.event-type" />
-        </span>
-        <StyledSelect
-          options={eventTypeOptions}
-          onChange={handleSelectChange}
-          onBlur={e => handleTouched(e, "eventType")}
-        />
-        <ErrorDiv>
-          {formState.referralSource.isTouched &&
-            !formState.referralSource.isValid && <RequiredError />}
-        </ErrorDiv>
-      </StyledLabel>
       <StyledLabel>
         <span>
           <FormattedMessage id="page-devcon.social-media" />
@@ -612,6 +614,16 @@ const DevconGrantsForm = () => {
       </StyledLabel>
       <StyledLabel>
         <span>
+          <FormattedMessage id="page-devcon.list-confirmed-sponsors" />
+        </span>
+        <TextArea
+          name="otherSponsors"
+          value={formState.otherSponsors.value}
+          onChange={handleInputChange}
+        />
+      </StyledLabel>
+      <StyledLabel>
+        <span>
           <FormattedMessage id="page-devcon.budget-breakdown" />{" "}
           <Required>*</Required>
         </span>
@@ -655,16 +667,6 @@ const DevconGrantsForm = () => {
           {formState.requestedAmount.isTouched &&
             !formState.requestedAmount.isValid && <RequiredError />}
         </ErrorDiv>
-      </StyledLabel>
-      <StyledLabel>
-        <span>
-          <FormattedMessage id="page-devcon.list-confirmed-sponsors" />
-        </span>
-        <TextArea
-          name="otherSponsors"
-          value={formState.otherSponsors.value}
-          onChange={handleInputChange}
-        />
       </StyledLabel>
       <StyledLabel>
         <span>
