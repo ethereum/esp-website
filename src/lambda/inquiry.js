@@ -114,17 +114,7 @@ exports.handler = async function(event) {
       })
 
       // Send to Google Sheets
-      if (params.round === "Rollup Community Grants | 2021") {
-        const creds = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
-        const doc = new GoogleSpreadsheet(process.env.GOOGLE_SPREADSHEET_ID)
-        await doc.useServiceAccountAuth({
-          client_email: creds.client_email,
-          private_key: creds.private_key,
-        })
-        await doc.loadInfo()
-        const sheet = doc.sheetsById["1921832072"]
-        await sheet.addRow(params)
-      } else if (params.round === "Road to Devcon Event Grants") {
+      if (params.round === "Road to Devcon Event Grants") {
         const creds = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
         const doc = new GoogleSpreadsheet(process.env.GOOGLE_SPREADSHEET_ID)
         await doc.useServiceAccountAuth({
