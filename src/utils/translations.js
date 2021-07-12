@@ -1,6 +1,6 @@
 const defaultStrings = require("../intl/en.json")
 
-const supportedLanguages = [`en`, `es`]
+const supportedLanguages = [`en`, `es`, `zh`]
 
 // Splits key strings to access nested JSON objects
 const resolve = (path, obj) => {
