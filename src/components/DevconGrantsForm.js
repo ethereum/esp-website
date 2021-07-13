@@ -348,6 +348,11 @@ const DevconGrantsForm = () => {
         <span>
           <FormattedMessage id="page-devcon.list-previous-events" />
         </span>
+        <div>
+          <small>
+            <FormattedMessage id="page-devcon.list-previous-events-subtext" />
+          </small>
+        </div>
         <TextArea
           name="previousWork"
           value={formState.previousWork.value}
@@ -382,6 +387,11 @@ const DevconGrantsForm = () => {
           <FormattedMessage id="page-devcon.event-name" />{" "}
           <Required>*</Required>
         </span>
+        <div>
+          <small>
+            <FormattedMessage id="page-devcon.event-name-subtext" />
+          </small>
+        </div>
         <Input
           type="text"
           name="projectName"
@@ -491,6 +501,11 @@ const DevconGrantsForm = () => {
         <span>
           <FormattedMessage id="page-devcon.event-type" />
         </span>
+        <div>
+          <small>
+            <FormattedMessage id="page-devcon.choose-from-picklist" />
+          </small>
+        </div>
         <StyledSelect
           options={eventTypeOptions}
           onChange={handleSelectChange}
@@ -507,6 +522,11 @@ const DevconGrantsForm = () => {
           <FormattedMessage id="page-devcon.event-in-person-or-online" />{" "}
           <Required>*</Required>
         </span>
+        <div>
+          <small>
+            <FormattedMessage id="page-devcon.choose-from-picklist" />
+          </small>
+        </div>
         <StyledSelect
           options={inPersonOptions}
           onChange={handleSelectChange}
@@ -567,6 +587,11 @@ const DevconGrantsForm = () => {
           <FormattedMessage id="page-devcon.expected-number-attendees" />{" "}
           <Required>*</Required>
         </span>
+        <div>
+          <small>
+            <FormattedMessage id="page-devcon.expected-number-attendees-subtext" />
+          </small>
+        </div>
         <Input
           type="number"
           name="estimatedAttendees"
@@ -609,6 +634,11 @@ const DevconGrantsForm = () => {
         <span>
           <FormattedMessage id="page-devcon.list-confirmed-speakers" />
         </span>
+        <div>
+          <small>
+            <FormattedMessage id="page-devcon.list-confirmed-speakers-subtext" />
+          </small>
+        </div>
         <TextArea
           name="confirmedSpeakers"
           value={formState.confirmedSpeakers.value}
