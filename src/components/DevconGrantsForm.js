@@ -239,7 +239,7 @@ const DevconGrantsForm = () => {
   const handleSubmit = event => {
     event.preventDefault()
     // Already be validated before this button is enabled
-    isFormValid() && false && submitInquiry() // TODO: remove false to allow completion
+    isFormValid() && submitInquiry()
   }
 
   const isFormValid = () => {
