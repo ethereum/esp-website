@@ -58,7 +58,7 @@ imgAlt: Devcon 派对形象之路
 
 ### **申请截至日期** {#deadline}
 
-提案的截止日期是 8 月 8 日 [AoE时间](https://en.wikipedia.org/wiki/Anywhere_on_Earth)。我们将在 2 个工作日内通过电子邮件跟进，以确认我们已收到您提交的申请。
+提案的截止日期是 8 月 12 日 [AoE时间](https://en.wikipedia.org/wiki/Anywhere_on_Earth)。我们将在 2 个工作日内通过电子邮件跟进，以确认我们已收到您提交的申请。
 
 ### **要求** {#requirements}
 
@@ -68,7 +68,7 @@ imgAlt: Devcon 派对形象之路
 
 ## **后续与咨询** {#next-steps-and-support}
 
-如果您有任何关于您申请的问题。请邮件咨询[_@ethereum.org](mailto:_@ethereum.org)
+如果您有任何关于您申请的问题。请邮件咨询[grants@devcon.org](mailto:grants@devcon.org)
 
 ## **常见问题** {#faq}
 
