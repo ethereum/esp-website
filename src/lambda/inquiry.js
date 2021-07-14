@@ -83,6 +83,7 @@ exports.handler = async function(event) {
           Proactive_Community_Grants_Round: params.round,
           Proposed_Timeline: params.proposedTimeline,
           Requested_Amount: params.requestedAmount,
+          Sponsorship_Monetary_Request: params.requestedAmount,
           Twitter: params.twitter,
           Github_Username: params.github,
           LinkedIn_Profile: params.linkedin,
@@ -90,6 +91,14 @@ exports.handler = async function(event) {
           Alternative_Contact: params.contactAlternativeInfo,
           Additional_Information: params.other,
           Category: params.category,
+          Sponsorship_Link: params.eventLink,
+          Sponsorship_Details: params.eventTopic,
+          Sponsorship_Date: new Date(params.eventDate).toJSON(),
+          In_Person: params.inPerson,
+          Type_of_Event: params.eventType,
+          Estimated_Number_of_Attendees: params.estimatedAttendees,
+          Confirmed_Speakers: params.confirmedSpeakers,
+          Confirmed_Sponsors: params.otherSponsors,
           // LGP custom fields
           Local_Grants_Wave: params.wave,
           Project_Category: params.projectCategory,
@@ -106,7 +115,7 @@ exports.handler = async function(event) {
       })
 
       // Send to Google Sheets
-      if (params.round === "Rollup Community Grants | 2021") {
+      if (params.round === "Road to Devcon Event Grants") {
         const creds = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
         const doc = new GoogleSpreadsheet(process.env.GOOGLE_SPREADSHEET_ID)
         await doc.useServiceAccountAuth({
@@ -114,7 +123,7 @@ exports.handler = async function(event) {
           private_key: creds.private_key,
         })
         await doc.loadInfo()
-        const sheet = doc.sheetsById["1921832072"]
+        const sheet = doc.sheetsById["1764094527"]
         await sheet.addRow(params)
       }
 

@@ -4,8 +4,7 @@ import { Link as IntlLink } from "gatsby-plugin-intl"
 import styled from "styled-components"
 import * as styles from "../utils/styles"
 
-// TODO pull from gatsby-config.js
-const supportedLanguages = [`en`, `es`]
+import { supportedLanguages } from "../utils/translations"
 
 const HASH_PATTERN = /^#.*/
 const isHashLink = to => HASH_PATTERN.test(to)
