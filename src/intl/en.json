@@ -373,7 +373,7 @@
     "event-description": "Event Description",
     "event-description-subtext": "For example: Will your agenda include talks, workshops, discussions? What is your planned format - round table, showcase or a more informal setting? What are your goals for the event?",
     "event-date": "Event Date",
-    "event-date-subtext": "Please enter the first date of your event (DD/MM/YYYY)",
+    "event-date-subtext": "Please enter the first date of your event (MM/DD/YYYY)",
     "event-in-person-or-online": "Is your event in-person or online?",
     "in-person": "In-person",
     "online": "Online",

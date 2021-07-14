@@ -93,7 +93,7 @@ exports.handler = async function(event) {
           Category: params.category,
           Sponsorship_Link: params.eventLink,
           Sponsorship_Details: params.eventTopic,
-          Sponsorship_Date: params.eventDate,
+          Sponsorship_Date: new Date(params.eventDate).toJSON(),
           In_Person: params.inPerson,
           Type_of_Event: params.eventType,
           Estimated_Number_of_Attendees: params.estimatedAttendees,
