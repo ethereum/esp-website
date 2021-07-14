@@ -8,7 +8,7 @@ imgAlt: Devcon 派对形象之路
 
 # 通往Devcon聚会与活动资助之路 {#road-to-devcon-grants}
 
-*以太坊基金会正在发放一波面向聚会和活动的小额资助。 资助申请开放至 8 月 8 日。请继续阅读以了解详细信息*
+*以太坊基金会正在发放一波面向聚会和活动的小额资助。 资助申请开放至 8 月 12 日。请继续阅读以了解详细信息*
 
 [Read this page in English](/en/devcon-grants/)
 <!-- [Lee esta página en español](/es/devcon-grants/) -->

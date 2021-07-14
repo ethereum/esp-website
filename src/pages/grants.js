@@ -106,7 +106,7 @@ const GrantsPage = () => {
           <H2>Open Call: Road to Devcon Meetup and Event Grants</H2>
           <p>
             The Ethereum Foundation is sponsoring a wave of small grants for
-            meetups and events. Applications are open through August 8.
+            meetups and events. Applications are open through August 12.
           </p>
           <ButtonContainer>
             <ButtonLink to="/devcon-grants/">See details</ButtonLink>

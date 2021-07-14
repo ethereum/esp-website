@@ -8,7 +8,7 @@ imgAlt: ESP Road to Devcon Grants image
 
 # Road to Devcon Meetup and Event Grants {#road-to-devcon-grants}
 
-*The Ethereum Foundation is sponsoring a wave of small grants for meetups and events. Applications are open through August 8. Read on for details.*
+*The Ethereum Foundation is sponsoring a wave of small grants for meetups and events. Applications are open through August 12. Read on for details.*
 
 <!-- [Lee esta página en español](/es/devcon-grants/) -->
 [用中文阅读本页](/zh/devcon-grants/)
