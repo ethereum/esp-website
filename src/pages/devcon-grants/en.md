@@ -58,7 +58,7 @@ Once you've submitted your application, we'll follow up by email.
 
 ### **Deadline for Submission** {#deadline}
 
-The deadline for proposals is end of day [anywhere on Earth](https://en.wikipedia.org/wiki/Anywhere_on_Earth) on August 8. We will follow up by email within 2 business days to confirm that we've received your submission.
+The deadline for proposals is end of day [anywhere on Earth](https://en.wikipedia.org/wiki/Anywhere_on_Earth) on August 12. We will follow up by email within 2 business days to confirm that we've received your submission.
 
 ### **Requirements** {#requirements}
 
