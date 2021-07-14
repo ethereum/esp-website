@@ -462,6 +462,11 @@ const DevconGrantsForm = () => {
           <FormattedMessage id="page-devcon.event-topic" />{" "}
           <Required>*</Required>
         </span>
+        <div>
+          <small>
+            <FormattedMessage id="page-devcon.event-topic-subtext" />
+          </small>
+        </div>
         <TextArea
           name="eventTopic"
           value={formState.eventTopic.value}

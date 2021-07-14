@@ -18,6 +18,7 @@
     "link-to-public-event-example": "示例https://www.myevent.com",
     "link-to-public-event-error": "Ensure link is a valid URL",
     "event-topic": "活动主题",
+    "event-topic-subtext": "Does your event have a specific focus? For example: staking, zero knowledge, defi, social impact",
     "event-description": "活动描述",
     "event-description-subtext": "例如您的议程是否包括演讲、研讨会、讨论？您计划的形式是什么——圆桌会议、展示会或某些非正式形式？您活动的目标是什么？",
     "event-date": "活动日期",
