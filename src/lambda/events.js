@@ -2,22 +2,7 @@ const axios = require("axios")
 
 exports.handler = async function(event, context) {
   try {
-    const {
-      AIRTABLE_API_KEY,
-      AIRTABLE_BASE_ID,
-      CONTEXT,
-      LAMBDA_DOMAIN_WHITELIST,
-    } = process.env
-
-    if (CONTEXT !== "dev") {
-      const host = event.headers.host
-      const whitelist = JSON.parse(LAMBDA_DOMAIN_WHITELIST)
-      if (!whitelist.includes(host)) {
-        return {
-          statusCode: 403,
-        }
-      }
-    }
+    const { AIRTABLE_API_KEY, AIRTABLE_BASE_ID } = process.env
 
     const baseURL = !!process.env.NETLIFY_DEV
       ? `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/Events%20%5BTEST%5D`

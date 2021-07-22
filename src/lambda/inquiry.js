@@ -7,20 +7,24 @@ require("encoding")
 
 exports.handler = async function(event) {
   try {
-    const { CONTEXT, SEGMENT_API_KEY, LAMBDA_DOMAIN_WHITELIST } = process.env
+    const { SEGMENT_API_KEY } = process.env
 
-    if (CONTEXT !== "dev") {
-      const host = event.headers.host
-      const whitelist = JSON.parse(LAMBDA_DOMAIN_WHITELIST)
-      if (!whitelist.includes(host)) {
-        return {
-          statusCode: 403,
-        }
+    if (event.httpMethod === "OPTIONS") {
+      return {
+        statusCode: 200,
+        headers: {
+          "Access-Control-Allow-Origin": "https://netlify.app",
+          "Access-Control-Allow-Headers": "Content-Type",
+          "Access-Control-Allow-Methods": "POST",
+        },
       }
     }
 
     if (event.httpMethod !== "POST") {
       return { statusCode: 405, body: "Method Not Allowed" }
+    }
+    return {
+      statusCode: 418,
     }
 
     const baseURL = `https://api.segment.io/v1/identify`

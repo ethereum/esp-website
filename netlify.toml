@@ -37,6 +37,10 @@
 # [context.deploy-preview]
   # publish = "project/dist/"
 
+[[headers]]
+  for = "/*"
+    [headers.values]
+    Access-Control-Allow-Origin = "https://test.app"
 
 # REDIRECTS
 
