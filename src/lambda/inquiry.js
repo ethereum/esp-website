@@ -7,11 +7,22 @@ require("encoding")
 
 exports.handler = async function(event) {
   try {
+    const { CONTEXT, SEGMENT_API_KEY, LAMBDA_DOMAIN_WHITELIST } = process.env
+
+    if (CONTEXT !== "dev") {
+      const host = event.headers.host
+      const whitelist = JSON.parse(LAMBDA_DOMAIN_WHITELIST)
+      if (!whitelist.includes(host)) {
+        return {
+          statusCode: 403,
+        }
+      }
+    }
+
     if (event.httpMethod !== "POST") {
       return { statusCode: 405, body: "Method Not Allowed" }
     }
 
-    const { SEGMENT_API_KEY } = process.env
     const baseURL = `https://api.segment.io/v1/identify`
 
     let keyBuff = new Buffer.from(`${SEGMENT_API_KEY}:`)
