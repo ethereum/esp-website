@@ -438,7 +438,9 @@ const DevconGrantsForm = () => {
         <ErrorDiv>
           {formState.eventDate.isTouched && !formState.eventDate.isValid && (
             <div>
-              <ErrorMessage>Please provide a valid date in the future</ErrorMessage>
+              <ErrorMessage>
+                <FormattedMessage id="page-devcon.event-date-future" />
+              </ErrorMessage>
             </div>
           )}
         </ErrorDiv>

@@ -23,6 +23,7 @@
     "event-description-subtext": "例如您的议程是否包括演讲、研讨会、讨论？您计划的形式是什么——圆桌会议、展示会或某些非正式形式？您活动的目标是什么？",
     "event-date": "活动日期",
     "event-date-subtext": "请填写您的活动第一天的日期",
+    "event-date-future": "请提供未来的有效日期",
     "event-in-person-or-online": "您的活动是面对面的还是在线的？",
     "in-person": "会面",
     "online": "线上",
