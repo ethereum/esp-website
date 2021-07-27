@@ -156,6 +156,14 @@ const DevconGrantsForm = () => {
     return formState.city.value.length > 0
   }
 
+  const isDateValid = () => {
+    const [month, day, year] = formState.eventDate.value.split("/")
+    const currentDate = new Date()
+    const inputDate = new Date(year, month - 1, day)
+
+    return inputDate > currentDate
+  }
+
   const handleCheckBoxChange = event => {
     const { name, checked } = event.target
     setFormState({
@@ -175,6 +183,8 @@ const DevconGrantsForm = () => {
         ? isUrlValid()
         : name === "city"
         ? isCityValid()
+        : name === "eventDate"
+        ? isDateValid()
         : requiredFields.includes(name)
         ? value !== ""
         : true
@@ -427,7 +437,11 @@ const DevconGrantsForm = () => {
         />
         <ErrorDiv>
           {formState.eventDate.isTouched && !formState.eventDate.isValid && (
-            <RequiredError />
+            <div>
+              <ErrorMessage>
+                <FormattedMessage id="page-devcon.event-date-future" />
+              </ErrorMessage>
+            </div>
           )}
         </ErrorDiv>
       </StyledLabel>
