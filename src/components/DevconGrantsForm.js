@@ -264,7 +264,11 @@ const DevconGrantsForm = () => {
     ? formatMessage({ id: `page-devcon.submitting` })
     : formatMessage({ id: `page-devcon.submit` })
 
-  const RequiredError = () => <ErrorMessage>Field is required</ErrorMessage>
+  const RequiredError = () => (
+    <ErrorMessage>
+      <FormattedMessage id="page-devcon.required-field" />
+    </ErrorMessage>
+  )
 
   return (
     <StyledForm onSubmit={handleSubmit}>
@@ -558,7 +562,8 @@ const DevconGrantsForm = () => {
           )}
         </ErrorDiv>
       </StyledLabel>
-      {formState.inPerson.value === "In-person" && (
+      {formState.inPerson.value ===
+        formatMessage({ id: "page-devcon.in-person" }) && (
         <StyledLabel>
           <span>
             <FormattedMessage id="page-devcon.event-location" />{" "}
