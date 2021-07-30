@@ -10,7 +10,8 @@ imgAlt: ESP Road to Devcon Grants image
 
 *The Ethereum Foundation is sponsoring a wave of small grants for meetups and events. Applications are open through August 12. Read on for details.*
 
-<!-- [Lee esta página en español](/es/devcon-grants/) -->
+[Lee esta página en español](/es/devcon-grants/)
+
 [用中文阅读本页](/zh/devcon-grants/)
 
 Calling all community organizers! 
@@ -80,7 +81,7 @@ Events of any size, location, demographic or (Ethereum-related) topic are welcom
 
 Your event should have a confirmed date. Other than that, any stage of planning is fine!
 
-### Am I required to have confirmed speakers or sponsors? {#additional-requirements}
+### **Am I required to have confirmed speakers or sponsors?** {#additional-requirements}
 
 Nope! We understand that a lot of smaller events won't have a long list of speakers or other sponsors - but if you do have any speakers or sponsors lined up, please let us know. 
 
