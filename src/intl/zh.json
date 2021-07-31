@@ -60,6 +60,7 @@
     "submitting": "Submitting...",
     "submit": "Submit",
     "error-submitting": "Error submitting, please try again.",
-    "success": "Success!"
+    "success": "Success!",
+    "required-field": "Field is required"
   }
 }

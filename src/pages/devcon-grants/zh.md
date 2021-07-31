@@ -11,7 +11,8 @@ imgAlt: Devcon 派对形象之路
 *以太坊基金会正在发放一波面向聚会和活动的小额资助。 资助申请开放至 8 月 12 日。请继续阅读以了解详细信息*
 
 [Read this page in English](/en/devcon-grants/)
-<!-- [Lee esta página en español](/es/devcon-grants/) -->
+
+[Lee esta página en español](/es/devcon-grants/)
 
 召唤所有社区组织者！
 
@@ -80,7 +81,7 @@ imgAlt: Devcon 派对形象之路
 
 您的活动需要一个明确的日期。除此之外，任何计划阶段都可以！
 
-### 我的活动是否需要明确的演讲者或者资助商？{#additional-requirements}
+### **我的活动是否需要明确的演讲者或者资助商？** {#additional-requirements}
 
 不！我们理解很多小型活动不会有很长的演讲者或其他资助商名单 - 但如果您有任何演讲者或资助商，请告诉我们。
 
