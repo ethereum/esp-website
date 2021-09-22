@@ -214,6 +214,6 @@ The Rollup Community Grants is an open call for proposals. Which means, it's exp
 
 You can submit an inquiry for support through the Ecosystem Support Program.
 
-The Ethereum Foundation has a general grants initiative called the [Ecosystem Support Program (ESP)](https://esp.ethereum.foundation/).
+The Ethereum Foundation has a general grants initiative called the [Ecosystem Support Program (ESP)](/inquire/).
 
 If you miss the deadline for this dedicated round of grants, but have a proposal related to rollups, head on over to ESP.

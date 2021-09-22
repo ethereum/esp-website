@@ -92,4 +92,4 @@ Tu evento debe tener una fecha confirmada. Aparte de eso, ¡cualquier etapa de l
 
 ### **¿Qué pasa si no cumplo con la fecha límite, mi evento no es elegible o quiero solicitar una cantidad superior al límite para esta ronda?** {#exceptions}
 
-Puedes enviar una consulta para patrocinio u otro tipo de apoyo a través del [Programa de apoyo al ecosistema (ESP)](https://esp.ethereum.foundation/es), la iniciativa de apoyo general de EF.
+Puedes enviar una consulta para patrocinio u otro tipo de apoyo a través del [Programa de apoyo al ecosistema (ESP)](/en/inquire/), la iniciativa de apoyo general de EF.

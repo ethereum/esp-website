@@ -91,4 +91,4 @@ Nope! We understand that a lot of smaller events won't have a long list of speak
 
 ### **What if I miss the deadline, my event is not eligible or I want to request an amount above the limit for this round?** {#exceptions}
 
-You can always submit an inquiry for sponsorship or other support through the [Ecosystem Support Program (ESP)](https://esp.ethereum.foundation/), the EF's general support initiative.
+You can always submit an inquiry for sponsorship or other support through the [Ecosystem Support Program (ESP)](/inquire/), the EF's general support initiative.
