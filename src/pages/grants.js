@@ -103,14 +103,6 @@ const GrantsPage = () => {
             with input from technical advisors before a funding decision is
             made.
           </p>
-          <H2>Open Call: Road to Devcon Meetup and Event Grants</H2>
-          <p>
-            The Ethereum Foundation is sponsoring a wave of small grants for
-            meetups and events. Applications are open through August 12.
-          </p>
-          <ButtonContainer>
-            <ButtonLink to="/devcon-grants/">See details</ButtonLink>
-          </ButtonContainer>
           <H2>More Information</H2>
           <p>
             You can find detailed information on the inquiry and grant

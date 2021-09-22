@@ -114,18 +114,18 @@ exports.handler = async function(event) {
         },
       })
 
-      // Send to Google Sheets
-      if (params.round === "Road to Devcon Event Grants") {
-        const creds = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
-        const doc = new GoogleSpreadsheet(process.env.GOOGLE_SPREADSHEET_ID)
-        await doc.useServiceAccountAuth({
-          client_email: creds.client_email,
-          private_key: creds.private_key,
-        })
-        await doc.loadInfo()
-        const sheet = doc.sheetsById["1764094527"]
-        await sheet.addRow(params)
-      }
+      // // Send to Google Sheets
+      // if (params.round === "Road to Devcon Event Grants") {
+      //   const creds = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
+      //   const doc = new GoogleSpreadsheet(process.env.GOOGLE_SPREADSHEET_ID)
+      //   await doc.useServiceAccountAuth({
+      //     client_email: creds.client_email,
+      //     private_key: creds.private_key,
+      //   })
+      //   await doc.loadInfo()
+      //   const sheet = doc.sheetsById["1764094527"]
+      //   await sheet.addRow(params)
+      // }
 
       if (salesforceResp.status < 200 || salesforceResp.status >= 300) {
         return {

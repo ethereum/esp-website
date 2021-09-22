@@ -1,8 +1,5 @@
 {
   "contact-email": "Email del contacto",
-  "page-home": {
-    "devcon-callout": "La Fundación Ethereum patrocina una ola de pequeñas subvenciones para reuniones y eventos. Las solicitudes estarn abiertas hasta el 12 de agosto de 2021. Continúa leyendo para más detalles."
-  },
   "page-project": {
     "proj-name": "Nombre del proyecto",
     "proj-category": "Categoría del proyecto",
