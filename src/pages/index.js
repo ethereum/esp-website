@@ -94,11 +94,6 @@ const Header = styled.h3`
   }
 `
 
-const DevconCallout = styled.div`
-  background-color: ${colorOrangeLightest};
-  padding: 24px;
-`
-
 const IndexPage = ({ intl }) => {
   const [showHeroLink, setShowHeroLink] = useState(true)
 
@@ -153,12 +148,6 @@ const IndexPage = ({ intl }) => {
                 <FormattedMessage id="page-home.p-2" />
               </p>
             </Section>
-            <DevconCallout>
-              <FormattedMessage id="page-home.devcon-callout" />{" "}
-              <Link to="/devcon-grants/">
-                <FormattedMessage id="page-home.see-details" />
-              </Link>
-            </DevconCallout>
             <H2 id="contact">
               <FormattedMessage id="page-home.contact-us" />
             </H2>

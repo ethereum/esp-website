@@ -8,7 +8,13 @@ imgAlt: ESP Road to Devcon Grants image
 
 # Road to Devcon Meetup and Event Grants {#road-to-devcon-grants}
 
-*The Ethereum Foundation is sponsoring a wave of small grants for meetups and events. Applications are open through August 12. Read on for details.*
+<Divider />
+
+> 🚨 **The deadline for submission has passed. Stay tuned for updates.**
+
+> [What if I missed the deadline?](#exceptions)
+
+<Divider />
 
 [Lee esta página en español](/es/devcon-grants/)
 
@@ -48,8 +54,6 @@ If your event doesn't have financial costs attached, get in touch anyway! We'd l
 
 Once you've submitted your application, we'll follow up by email. 
 
-<DevconGrantsForm />
-
 ### Selection criteria {#selection-criteria}
 
 - Size and reach of target audience
@@ -87,4 +91,4 @@ Nope! We understand that a lot of smaller events won't have a long list of speak
 
 ### **What if I miss the deadline, my event is not eligible or I want to request an amount above the limit for this round?** {#exceptions}
 
-You can always submit an inquiry for sponsorship or other support through the [Ecosystem Support Program (ESP)](https://esp.ethereum.foundation/), the EF's general support initiative.
+You can always submit an inquiry for sponsorship or other support through the [Ecosystem Support Program (ESP)](/inquire/), the EF's general support initiative.

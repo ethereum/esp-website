@@ -8,7 +8,13 @@ imgAlt: Devcon 派对形象之路
 
 # 通往Devcon聚会与活动资助之路 {#road-to-devcon-grants}
 
-*以太坊基金会正在发放一波面向聚会和活动的小额资助。 资助申请开放至 8 月 12 日。请继续阅读以了解详细信息*
+<Divider />
+
+> 🚨 **提交截止日期已过。 请继续关注更新。**
+
+> [如果我错过了截止日期怎么办？](#exceptions)
+
+<Divider />
 
 [Read this page in English](/en/devcon-grants/)
 
@@ -48,8 +54,6 @@ imgAlt: Devcon 派对形象之路
 
 您提交申请之后，我们会通过电子邮件跟进您的申请进度。
 
-<DevconGrantsForm />
-
 ### 选择标准 {#selection-criteria}
 
 - 目标受众的规模和范围
@@ -87,4 +91,4 @@ imgAlt: Devcon 派对形象之路
 
 ### **如果我错过了截止日期，我的活动不符合资格，或者我想申请超出本轮限制的金额怎么办？** {#exceptions}
 
-您可以随时通过 EF 的一般支持计划 [生态系统支持计划 (ESP)](https://esp.ethereum.foundation/) 提交资助申请或查询其他支持。
+您可以随时通过 EF 的一般支持计划 [生态系统支持计划 (ESP)](/en/inquire/) 提交资助申请或查询其他支持。

@@ -8,7 +8,14 @@ imgAlt: Imagen de ESP Camino a Devcon otorga
 
 # Camino a Devcon: Subvenciones para eventos y reuniones {#road-to-devcon-grants}
 
-*La Fundación Ethereum patrocina una ola de pequeñas subvenciones para reuniones y eventos. Las solicitudes estarn abiertas hasta el 12 de agosto de 2021. Continúa leyendo para más detalles.*
+<Divider />
+
+> 🚨 **La fecha límite para la presentación ha pasado. Estén atentos a las actualizaciones.**
+
+> [¿Qué pasa si no cumplo con la fecha límite?](#exceptions)
+
+<Divider />
+
 
 [Read this page in English](/en/devcon-grants/)
 
@@ -48,9 +55,6 @@ Si su evento no tiene costos financieros, ¡comuníquese con nosotros de todos m
 
 Una vez que hayas enviado tu solicitud, nos pondremos en contacto contigo a través de correo electrónico.
 
-<DevconGrantsForm />
-
-
 ### Criteria de selección {#selection-criteria}
 
 - Tamaño y alcance de la audiencia objetivo
@@ -88,4 +92,4 @@ Tu evento debe tener una fecha confirmada. Aparte de eso, ¡cualquier etapa de l
 
 ### **¿Qué pasa si no cumplo con la fecha límite, mi evento no es elegible o quiero solicitar una cantidad superior al límite para esta ronda?** {#exceptions}
 
-Puedes enviar una consulta para patrocinio u otro tipo de apoyo a través del [Programa de apoyo al ecosistema (ESP)](https://esp.ethereum.foundation/es), la iniciativa de apoyo general de EF.
+Puedes enviar una consulta para patrocinio u otro tipo de apoyo a través del [Programa de apoyo al ecosistema (ESP)](/en/inquire/), la iniciativa de apoyo general de EF.
