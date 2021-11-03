@@ -7,6 +7,7 @@ import styled from "styled-components"
 
 import Link from "../components/Link"
 import LocalGrantsForm from "../components/LocalGrantsForm"
+import DevconGrantsForm from "../components/DevconGrantsForm"
 import ExpandableCard from "../components/ExpandableCard"
 import PageMetadata from "../components/PageMetadata"
 import { PageBody } from "../components/SharedStyledComponents"
@@ -173,6 +174,7 @@ const components = {
   h3: Header3,
   h4: Header4,
   LocalGrantsForm,
+  DevconGrantsForm,
   ExpandableCard,
   Divider,
 }

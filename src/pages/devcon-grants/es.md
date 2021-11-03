@@ -8,18 +8,9 @@ imgAlt: Imagen de ESP Camino a Devcon otorga
 
 # Camino a Devcon: Subvenciones para eventos y reuniones {#road-to-devcon-grants}
 
-<Divider />
-
-> 🚨 **La fecha límite para la presentación ha pasado. Estén atentos a las actualizaciones.**
-
-> [¿Qué pasa si no cumplo con la fecha límite?](#exceptions)
-
-<Divider />
-
+En un esfuerzo por apoyar el crecimiento de la comunidad Ethereum en Colombia y América Latina antes de Devcon, nos gustaría ofrecer apoyo (tanto monetario como de otro tipo) a reuniones y eventos que ocurren antes de Devcon. Sigue leyendo para más detalles.
 
 [Read this page in English](/en/devcon-grants/)
-
-[用中文阅读本页](/zh/devcon-grants/)
 
 ¡Este es un llamado a todos los organizadores de la comunidad!
 
@@ -55,16 +46,14 @@ Si su evento no tiene costos financieros, ¡comuníquese con nosotros de todos m
 
 Una vez que hayas enviado tu solicitud, nos pondremos en contacto contigo a través de correo electrónico.
 
+<DevconGrantsForm />
+
 ### Criteria de selección {#selection-criteria}
 
 - Tamaño y alcance de la audiencia objetivo
 - Estrategia para promocionar el evento
 - Historial de organizar eventos exitosos
 - Propósito e impacto de la financiación del evento
-
-### **Plazo de Entrega** {#deadline}
-
-La fecha límite para presentar propuestas es el 12 de agosto de 2021 al final del día en [“Cualquier lugar de la Tierra”](https://es.wikipedia.org/wiki/Circunferencia_de_la_Tierra). Haremos un seguimiento vía correo electrónico en un plazo de 2 días hábiles, confirmando que hemos recibido su aplicación.
 
 ### **Requisitos** {#requirements}
 

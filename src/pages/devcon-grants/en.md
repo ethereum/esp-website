@@ -8,17 +8,9 @@ imgAlt: ESP Road to Devcon Grants image
 
 # Road to Devcon Meetup and Event Grants {#road-to-devcon-grants}
 
-<Divider />
-
-> 🚨 **The deadline for submission has passed. Stay tuned for updates.**
-
-> [What if I missed the deadline?](#exceptions)
-
-<Divider />
+In an effort to support the growth of the Ethereum community in Colombia and LatAm in advance of Devcon, we would like to offer support (both monetary and otherwise) to meetups and events happening before Devcon. Read on for details.
 
 [Lee esta página en español](/es/devcon-grants/)
-
-[用中文阅读本页](/zh/devcon-grants/)
 
 Calling all community organizers! 
 
@@ -54,16 +46,14 @@ If your event doesn't have financial costs attached, get in touch anyway! We'd l
 
 Once you've submitted your application, we'll follow up by email. 
 
+<DevconGrantsForm />
+
 ### Selection criteria {#selection-criteria}
 
 - Size and reach of target audience
 - "Get the word out" strategy
 - History of organizing successful events
 - Purpose and impact of funding
-
-### **Deadline for Submission** {#deadline}
-
-The deadline for proposals is end of day [anywhere on Earth](https://en.wikipedia.org/wiki/Anywhere_on_Earth) on August 12. We will follow up by email within 2 business days to confirm that we've received your submission.
 
 ### **Requirements** {#requirements}
 
