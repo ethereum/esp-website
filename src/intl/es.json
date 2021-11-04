@@ -57,7 +57,7 @@
     "link-to-public-event-example": "Por ejemplo: https://www.myevent.com",
     "link-to-public-event-error": "Asegúrese de que el enlace sea una URL válida",
     "event-topic": "Temas del evento",
-    "event-topic-subtext": "Describa brevemente todos los temas que planea cubrir en este evento.",
+    "event-topic-subtext": "Describa brevemente los temas que planea cubrir en este evento. Por ejemplo: staking, conocimiento cero, defi, impacto social, NFT, ETH como dinero, etc.",
     "event-description": "Descripción del evento",
     "event-description-subtext": "Por ejemplo: ¿Incluir su agenda charlas, talleres temáticos, discusiones? ¿Cuál es su formato planificado: discusión de mesa redonda, exposición o un ambiente más informal? ¿Cuáles son sus objetivos para el evento?",
     "event-date": "Fecha del evento",
