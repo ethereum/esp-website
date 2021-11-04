@@ -16,7 +16,7 @@ En un esfuerzo por apoyar el crecimiento de la comunidad Ethereum en Colombia y 
 
 Por mucho que esperamos Devcon, está lejos de ser el único lugar donde se reúne la comunidad Ethereum. El año pasado nos ha demostrado cuánto dependemos de los eventos locales organizados por la comunidad para mantenernos conectados, incluso cuando estamos separados, y queremos apoyarlos hacer este trabajo crucial.
 
-En colaboración con el equipo de Ecosystem Support, estamos anunciando una ola de pequeñas subvenciones, desde **$500-1500 USD**, para ayudar a cubrir los costos incurridos en organizar eventos de pequeña escala, como reuniones locales o talleres temáticos.
+En colaboración con el equipo de Ecosystem Support, estamos anunciando una ola de pequeñas subvenciones para ayudar a cubrir los costos incurridos en organizar eventos de pequeña escala, como reuniones locales o talleres temáticos.
 
 ### ¿Quién? {#who}
 
@@ -31,18 +31,23 @@ Queremos escuchar de los organizadores de:
 
 Los eventos elegibles para una subvención  deben ser:
 
+- Ubicado en America Latina
 - Enfocados en Ethereum
 - De asistencia gratuita
 - Abiertos para cualquier persona
-- Si se lleva a cabo en persona, deben cumplir con todas las restricciones y directrices locales de COVID-19
 - No deben estarenfocados en inversiones, precio, ICO, o las ventas de tokens.
 - Los eventos que ya hayan sucedidono son elegibles.
 
 ### ¿Cómo aplicar? {#how-to-apply}
 
-Completa el formulario a continuación para solicitar fondos para tu evento. Las subvenciones van desde $500-1500 USD; deberás enviar un presupuesto que detalle cómo se utilizarán los fondos.
-
-Si su evento no tiene costos financieros, ¡comuníquese con nosotros de todos modos! Nos encantaría incluirlo en la [página de eventos de “Road to Devcon”](https://www.devcon.org/es/#participate) y compartir anuncios y grabaciones de tu evento. También podemos ayudar con otros aspectos, como buscar oradores u obtener acceso a herramientas de reuniones virtuales.
+1. Envíe este formulario con la idea de su evento y la solicitud de presupuesto detallada.
+2. Espere recibir noticias del equipo de Devcon sobre la aprobación del presupuesto y el evento.
+3. Si se aprueba, organice su evento, incluida la marca de Road to Devcon, y documente:
+    1. Tomar fotografías del evento mostrando el número de asistentes.
+    2. Obtenga una copia de los materiales de presentación y diapositivas para mostrar los temas discutidos.
+    3. Recibos del evento.
+4. Haga un seguimiento con el equipo de Devcon con una revisión del evento y el material de documentación de #3.
+5. El equipo de Devcon reembolsará según el presupuesto preaprobado.
 
 Una vez que hayas enviado tu solicitud, nos pondremos en contacto contigo a través de correo electrónico.
 
@@ -58,7 +63,7 @@ Una vez que hayas enviado tu solicitud, nos pondremos en contacto contigo a trav
 ### **Requisitos** {#requirements}
 
 - Lea los criterios de elegibilidad para asegurarse de que su evento sea elegible
-- Los eventos pueden realizarse en cualquier idioma, pero actualmente recibimos propuestas en inglés, español y chino.
+- Los eventos pueden realizarse en cualquier idioma, pero actualmente recibimos propuestas en inglés y español.
 - Los eventos deben publicarse abiertamente.
 
 ## **Próximos pasos y soporte** {#next-steps-and-support}
