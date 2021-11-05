@@ -8,23 +8,15 @@ imgAlt: ESP Road to Devcon Grants image
 
 # Road to Devcon Meetup and Event Grants {#road-to-devcon-grants}
 
-<Divider />
-
-> 🚨 **The deadline for submission has passed. Stay tuned for updates.**
-
-> [What if I missed the deadline?](#exceptions)
-
-<Divider />
+In an effort to support the growth of the Ethereum community in Colombia and LatAm in advance of Devcon, we would like to offer support (both monetary and otherwise) to meetups and events happening before Devcon. Read on for details.
 
 [Lee esta página en español](/es/devcon-grants/)
-
-[用中文阅读本页](/zh/devcon-grants/)
 
 Calling all community organizers! 
 
 As much as we're looking forward to Devcon, it's far from the only place that the Ethereum community comes together. This past year has shown us just how much we depend on community-run events to keep us connected even while we're apart, and we want to support you in doing that crucial work. 
 
-In collaboration with the Ecosystem Support team, we're announcing a wave of small grants, from **$500-1500 USD**, to help cover costs incurred in organizing smaller-scale events such as local meetups or topical workshops. 
+In collaboration with the Ecosystem Support team, we're announcing a wave of small grants to help cover costs incurred in organizing smaller-scale events such as local meetups or topical workshops. 
 
 ### Who {#who}
 
@@ -38,21 +30,27 @@ We want to hear from organizers of:
 ### Eligibility {#eligibility}
 
 To be eligible for a grant, your event should be:
-
+- Based in Latin America
 - Ethereum focused
 - Free to attend
 - Open to anyone
-- If held in person, compliant with all local COVID-19 restrictions and guidance
 - Not focused on investment, price or token sales
 - Events that have already taken place are not eligible
 
 ### How to apply {#how-to-apply}
 
-Fill out the form below to request funding for your event. Grants range from $500-1500 USD; you'll need to submit a budget detailing how funds will be used. 
-
-If your event doesn't have financial costs attached, get in touch anyway! We'd love to list it on the [Road to Devcon events page](https://www.devcon.org/en/#participate) and share announcements and recordings. We may also be able to help with other aspects like sourcing speakers or getting access to virtual meetup tools. 
+1. Submit this form with your event idea and detailed budget request.
+2. Wait to hear back from the Devcon team about event and budget approval.
+3. If approved, host your event, including Road to Devcon branding, and document it:
+    1. Take photos of the event showing the number present.
+    2. Get a copy of presentation materials and slides to show the themes discussed.
+    3. Receipts from the event.
+4. Follow up with the Devcon team with a review of the event and the documentation material from #3.
+5. The Devcon team will reimburse based on the pre-approved budget.
 
 Once you've submitted your application, we'll follow up by email. 
+
+<DevconGrantsForm />
 
 ### Selection criteria {#selection-criteria}
 
@@ -61,19 +59,15 @@ Once you've submitted your application, we'll follow up by email.
 - History of organizing successful events
 - Purpose and impact of funding
 
-### **Deadline for Submission** {#deadline}
-
-The deadline for proposals is end of day [anywhere on Earth](https://en.wikipedia.org/wiki/Anywhere_on_Earth) on August 12. We will follow up by email within 2 business days to confirm that we've received your submission.
-
 ### **Requirements** {#requirements}
 
 - Please read eligibility criteria above to make sure your event is eligible
-- Events may be held in any language, but we're currently only able to accept proposals in English, Spanish, Chinese.
+- Events may be held in any language, but we're currently only able to accept proposals in English, or Spanish.
 - Events must be publicly posted.
 
 ## **Next steps and support** {#next-steps-and-support}
 
-For any general support questions about your submission, please email [grants@devcon.org](mailto:grants@devcon.org)
+For any general support questions about your submission, please email [grants@devcon.org](mailto:grants@devcon.org)
 
 ## **Frequently asked questions** {#faq}
 
