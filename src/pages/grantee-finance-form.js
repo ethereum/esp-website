@@ -26,7 +26,6 @@ const bankRequiredFields = [
   "bankName",
   "bankAddress",
   "bankAccountNumber",
-  "bankRoutingNumber",
   "granteeSecurityID",
 ]
 
@@ -65,7 +64,6 @@ const ExplorePage = () => {
     bankName: "",
     bankAddress: "",
     bankAccountNumber: "", // IBAN is used to identify an individual account involved in the international transaction
-    bankRoutingNumber: "",
     bankSWIFT: "", // SWIFT code is used to identify a specific bank during an international transaction
     notes: "",
     ethOrDai: "",
@@ -170,7 +168,11 @@ const ExplorePage = () => {
             currency of your choosing.
           </p>
           <p>
-            <strong>If you choose to be paid in any fiat currency</strong>, the payment will be sent from our account on the following Monday and should arrive in your account in roughly 10 business days. Please note this will be an international wire transfer, so please provide international banking details.
+            <strong>If you choose to be paid in any fiat currency</strong>, the
+            payment will be sent from our account on the following Monday and
+            should arrive in your account in roughly 10 business days. Please
+            note this will be an international wire transfer, so please provide
+            international banking details.
           </p>
           <p>
             <strong>If you choose to be paid in ETH or DAI</strong>, someone
@@ -326,8 +328,7 @@ const ExplorePage = () => {
 
                   <Label>
                     <span>
-                      International Bank Account Number{" "}
-                      <Required>*</Required>
+                      International Bank Account Number <Required>*</Required>
                     </span>
                     <div>
                       <small>
