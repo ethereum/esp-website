@@ -23,7 +23,6 @@ exports.handler = async function(event, context) {
       bankName,
       bankAddress,
       bankAccountNumber,
-      bankRoutingNumber,
       bankSWIFT,
       ethOrDai,
       ethAddress,
@@ -43,7 +42,6 @@ exports.handler = async function(event, context) {
             bankName,
             bankAddress,
             bankAccountNumber,
-            bankRoutingNumber,
             bankSWIFT,
             ethAddress: "",
             daiAddress: "",
@@ -57,7 +55,6 @@ exports.handler = async function(event, context) {
             bankName: "",
             bankAddress: "",
             bankAccountNumber: "",
-            bankRoutingNumber: "",
             bankSWIFT: "",
             ethAddress: ethOrDai === "eth" ? ethAddress.trim() : "", // ensure only 1 has a value
             daiAddress: ethOrDai === "dai" ? daiAddress.trim() : "", // ensure only 1 has a value
