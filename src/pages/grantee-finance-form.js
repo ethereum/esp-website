@@ -170,9 +170,7 @@ const ExplorePage = () => {
             currency of your choosing.
           </p>
           <p>
-            <strong>If you choose to be paid in any fiat currency</strong>, the
-            payment will be sent from our account on the following Monday and
-            should arrive in your account in roughly 10 business days.
+            <strong>If you choose to be paid in any fiat currency</strong>, the payment will be sent from our account on the following Monday and should arrive in your account in roughly 10 business days. Please note this will be an international wire transfer, so please provide international banking details.
           </p>
           <p>
             <strong>If you choose to be paid in ETH or DAI</strong>, someone
@@ -328,13 +326,12 @@ const ExplorePage = () => {
 
                   <Label>
                     <span>
-                      International or Domestic Bank Account Number{" "}
+                      International Bank Account Number{" "}
                       <Required>*</Required>
                     </span>
                     <div>
                       <small>
-                        Provide either an International Bank Account Number
-                        (IBAN) or a standard domestic bank account number.
+                        Provide an International Bank Account Number (IBAN).
                       </small>
                     </div>
 
@@ -343,25 +340,6 @@ const ExplorePage = () => {
                       maxLength="50"
                       name="bankAccountNumber"
                       value={formState.bankAccountNumber}
-                      onChange={handleInputChange}
-                    />
-                  </Label>
-
-                  <Label>
-                    <span>Bank routing number</span>
-                    <div>
-                      <small>
-                        For U.S. bank account holders, your routing number is a
-                        nine-digit code that's based on the U.S. bank location
-                        where your account was opened.
-                      </small>
-                    </div>
-
-                    <Input
-                      type="text"
-                      maxLength="50"
-                      name="bankRoutingNumber"
-                      value={formState.bankRoutingNumber}
                       onChange={handleInputChange}
                     />
                   </Label>
