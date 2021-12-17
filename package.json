@@ -2,79 +2,45 @@
   "name": "esp-website",
   "private": false,
   "description": "The website for esp.ethereum.foundation",
-  "version": "2.0.0",
-  "author": "Sam Richards <sam.richards@ethereum.org>",
+  "version": "3.0.0",
+  "author": "Nicolás Quiroz <nh.quiroz@gmail.com>",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.25",
-    "@fortawesome/free-brands-svg-icons": "^5.11.2",
-    "@fortawesome/free-solid-svg-icons": "^5.11.2",
-    "@fortawesome/react-fontawesome": "^0.1.7",
-    "@mdx-js/mdx": "^1.6.18",
-    "@mdx-js/react": "^1.6.18",
-    "@sendgrid/mail": "^7.3.0",
-    "analytics-node": "^3.4.0-beta.1",
-    "axios": "^0.21.1",
-    "babel-plugin-styled-components": "^1.10.7",
-    "encoding": "^0.1.13",
-    "framer-motion": "^1.6.17",
-    "gatsby": "^3.1.0",
-    "gatsby-image": "^3.1.0",
-    "gatsby-plugin-google-analytics": "^3.1.0",
-    "gatsby-plugin-google-fonts": "^1.0.1",
-    "gatsby-plugin-intl": "^0.3.3",
-    "gatsby-plugin-manifest": "^3.1.0",
-    "gatsby-plugin-mdx": "^2.1.0",
-    "gatsby-plugin-offline": "^4.1.0",
-    "gatsby-plugin-react-helmet": "^4.1.0",
-    "gatsby-plugin-react-helmet-canonical-urls": "^1.4.0",
-    "gatsby-plugin-sharp": "^3.1.0",
-    "gatsby-plugin-sitemap": "^3.1.0",
-    "gatsby-plugin-styled-components": "^4.1.0",
-    "gatsby-remark-autolink-headers": "^3.1.0",
-    "gatsby-remark-images": "^4.1.0",
-    "gatsby-source-filesystem": "^3.1.0",
-    "gatsby-transformer-sharp": "^3.1.0",
-    "google-spreadsheet": "^3.0.13",
-    "netlify-lambda": "^1.6.3",
-    "prop-types": "^15.7.2",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react-helmet": "^5.2.1",
-    "react-select": "^3.0.8",
-    "react-toast-notifications": "^2.4.0",
-    "showdown": "^1.9.1",
-    "smooth-scroll": "^16.1.0",
-    "styled-components": "^5.0.0"
+    "@chakra-ui/react": "^1.7.3",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "framer-motion": "^4",
+    "next": "12.0.7",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-hook-form": "^7.22.1"
   },
   "devDependencies": {
-    "babel-jest": "^26.6.3",
-    "babel-preset-gatsby": "^0.9.1",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^26.6.3",
-    "prettier": "^1.19.1",
-    "react-test-renderer": "^17.0.1"
+    "@types/jsforce": "^1.9.37",
+    "@types/node": "17.0.0",
+    "@types/react": "17.0.37",
+    "eslint": "8.4.1",
+    "eslint-config-next": "12.0.7",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.5.1",
+    "typescript": "4.5.4"
   },
   "keywords": [
-    "gatsby",
+    "nextjs",
+    "chakraui",
     "ethereum"
   ],
   "license": "MIT",
-  "scripts": {
-    "build": "gatsby build && yarn build:lambda",
-    "build:app": "gatsby build",
-    "build:lambda": "netlify-lambda build src/lambda",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "start": "yarn develop",
-    "start:static": "gatsby build && gatsby serve",
-    "serve": "gatsby serve",
-    "test": "jest"
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ethereum/esp-website"
+    "url": "https://github.com/ethereum/esp-website/tree/esp-redesign"
   },
   "bugs": {
-    "url": "https://github.com/ethereum/esp-website/issues"
+    "url": "https://github.com/ethereum/esp-website/tree/esp-redesign/issues"
   }
 }
