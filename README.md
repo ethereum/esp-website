@@ -41,6 +41,10 @@ To learn more about Next.js, take a look at the following resources:
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
+## Adding ChakraUI to a NextJS project
+
+[This](https://chakra-ui.com/guides/getting-started/nextjs-guide) is a very clear and step-by-step guide on it.
+
 ## Learning ChakraUI
 
-We recommend checking the [official docs](https://chakra-ui.com/docs/getting-started)
+We recommend checking the [official docs](https://chakra-ui.com/docs/getting-started).
