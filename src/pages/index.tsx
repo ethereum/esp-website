@@ -1,5 +1,11 @@
-import { Button, Container, Flex, Heading, Text } from '@chakra-ui/react';
-import type { NextPage } from 'next';
+import {
+  value Button,
+  value Container,
+  value Flex,
+  value Heading,
+  value Text
+} from '@chakra-ui/react';
+import type { value NextPage } from 'next';
 import Head from 'next/head';
 
 const Home: NextPage = () => {
@@ -21,6 +27,8 @@ const Home: NextPage = () => {
             Whether you&apos;re working on a specific project, or you&apos;re still exploring
             possibilities, you can connect with our team for guidance.
           </Text>
+
+          <h3>Test copy addition</h3>
 
           <Flex>
             <Button>
