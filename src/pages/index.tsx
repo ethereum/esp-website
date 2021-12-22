@@ -1,11 +1,5 @@
-import {
-  value Button,
-  value Container,
-  value Flex,
-  value Heading,
-  value Text
-} from '@chakra-ui/react';
-import type { value NextPage } from 'next';
+import { Button, Container, Flex, Heading, Text } from '@chakra-ui/react';
+import type { NextPage } from 'next';
 import Head from 'next/head';
 
 const Home: NextPage = () => {
