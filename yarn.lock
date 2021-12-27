@@ -776,6 +776,11 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@fontsource/libre-franklin@^4.5.0":
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/libre-franklin/-/libre-franklin-4.5.0.tgz#6193cd6e5ef64b3d5a3c02420d79ea81a276c73e"
+  integrity sha512-pFJyUqbnQhuyyOa84GoAqZacRp4CTaZehBWD5/g8TaJXzmV3uKJpDczfYafE+UnMKKW60RLNx0NCucrDMnn3Zg==
+
 "@hapi/accept@5.0.2":
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/@hapi/accept/-/accept-5.0.2.tgz#ab7043b037e68b722f93f376afb05e85c0699523"
