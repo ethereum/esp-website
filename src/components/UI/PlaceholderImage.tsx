@@ -15,7 +15,7 @@ export const PlaceholderImage: FC<Props> = ({ height, width }) => {
       backgroundColor='#e5e5e5'
       borderRadius='100%'
       h={height}
-      w={width}
+      w={{ base: '300px', md: width }}
     >
       image here
     </Flex>
