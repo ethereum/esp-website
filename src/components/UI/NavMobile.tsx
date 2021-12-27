@@ -1,5 +1,5 @@
 import { createIcon } from '@chakra-ui/icons';
-import { Box, Flex } from '@chakra-ui/react';
+import { Box, Flex, IconButton, Menu, MenuButton } from '@chakra-ui/react';
 import Image from 'next/image';
 import { FC } from 'react';
 import logoSrc from '../../public/esp-logo.svg';
@@ -16,8 +16,16 @@ export const NavMobile: FC = () => {
       <Box>
         <Image src={logoSrc} alt='Ecosystem Support Program logo' height={64} width={148} />
       </Box>
-      <Box>
-        <HamburgerIcon h='25px' w='32px' color='brand.accent' />
+
+      <Box mt={2}>
+        <Menu>
+          <MenuButton
+            as={IconButton}
+            aria-label='Menu'
+            icon={<HamburgerIcon h='25px' w='32px' color='brand.accent' />}
+            background='none'
+          />
+        </Menu>
       </Box>
     </Flex>
   );
