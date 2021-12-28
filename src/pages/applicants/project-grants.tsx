@@ -44,21 +44,25 @@ const ProjectGrants: NextPage = () => {
               to your project:
             </PageText>
 
-            <PageText>
-              <UnorderedList ml={6} spacing={1}>
-                <ListItem>
-                  More complex, or larger in scope: the proposed work has multiple components or
-                  stages, a longer project timeline, or will require you to make new long-term
-                  hires.
-                </ListItem>
-                <ListItem>Higher-cost: your expected budget exceeds $30,000.</ListItem>
-                <ListItem>
-                  A mature idea: you have thought deeply about your goals and strategy, asked
-                  yourself difficult questions to validate your approach, and thoroughly researched
-                  the state of the art in your chosen domain.
-                </ListItem>
-              </UnorderedList>
-            </PageText>
+            <UnorderedList
+              color='brand.paragraph'
+              fontSize='paragraph'
+              fontWeight={300}
+              lineHeight='24px'
+              ml={6}
+              spacing={1}
+            >
+              <ListItem>
+                More complex, or larger in scope: the proposed work has multiple components or
+                stages, a longer project timeline, or will require you to make new long-term hires.
+              </ListItem>
+              <ListItem>Higher-cost: your expected budget exceeds $30,000.</ListItem>
+              <ListItem>
+                A mature idea: you have thought deeply about your goals and strategy, asked yourself
+                difficult questions to validate your approach, and thoroughly researched the state
+                of the art in your chosen domain.
+              </ListItem>
+            </UnorderedList>
           </section>
         </main>
       </Layout>

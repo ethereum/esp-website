@@ -17,8 +17,8 @@ export const NavMobile: FC = () => {
           <MenuButton
             as={IconButton}
             aria-label='Menu'
-            icon={<HamburgerIcon h='25px' w='32px' color='brand.accent' />}
             background='none'
+            icon={<HamburgerIcon h='25px' w='32px' color='brand.accent' />}
           />
         </Menu>
       </Box>
