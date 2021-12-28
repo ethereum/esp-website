@@ -1,0 +1,1 @@
+export { HamburgerIcon } from './HamburguerIcon';
