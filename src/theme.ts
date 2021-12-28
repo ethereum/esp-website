@@ -15,6 +15,7 @@ export default extendTheme({
   },
   fontSizes: {
     h1: '40px',
+    h2: '24px',
     paragraph: '15px'
   },
   sizes: {
