@@ -7,7 +7,3 @@
     url('./public/fonts/MaisonNeueMono-Bold.woff2') format('woff2'),
     url('./public/fonts/MaisonNeueMono-Bold.woff') format('woff');
 }
-
-.maison-neue-mono {
-  font-family: 'Maison Neue Mono' !important;
-}

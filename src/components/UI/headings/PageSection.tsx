@@ -9,8 +9,8 @@ export const PageSection: FC<HeadingProps> = ({ children, ...props }) => {
       fontSize='22px'
       fontWeight={700}
       lineHeight='29px'
-      className='maison-neue-mono'
       textAlign='center'
+      variant='page-section'
       {...props}
     >
       {children}
