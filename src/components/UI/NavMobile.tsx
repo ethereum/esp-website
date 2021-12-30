@@ -1,7 +1,7 @@
 import { Box, Flex, IconButton, Menu, MenuButton } from '@chakra-ui/react';
 import Image from 'next/image';
 import { FC } from 'react';
-import logoSrc from '../../public/esp-logo.svg';
+import logoSrc from '../../public/images/esp-logo.svg';
 import { HamburgerIcon } from './icons';
 
 export const NavMobile: FC = () => {
@@ -17,8 +17,8 @@ export const NavMobile: FC = () => {
           <MenuButton
             as={IconButton}
             aria-label='Menu'
-            icon={<HamburgerIcon h='25px' w='32px' color='brand.accent' />}
             background='none'
+            icon={<HamburgerIcon h='25px' w='32px' color='brand.accent' />}
           />
         </Menu>
       </Box>

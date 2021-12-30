@@ -15,11 +15,22 @@ export default extendTheme({
   },
   fontSizes: {
     h1: '40px',
+    h2: '24px',
+    h4: '18px',
     paragraph: '15px'
   },
   sizes: {
     container: {
       mobile: '450px'
+    }
+  },
+  components: {
+    Heading: {
+      variants: {
+        'page-section': {
+          fontFamily: `Maison Neue Mono, ${base.fonts?.heading}`
+        }
+      }
     }
   }
 });
