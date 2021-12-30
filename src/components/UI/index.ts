@@ -1,4 +1,4 @@
-export { PageHeading } from './headings/PageHeading';
+export { PageHeading, PageSection, PageSubheading } from './headings';
 export { Layout } from './Layout';
 export { NavMobile } from './NavMobile';
 export { PageText } from './PageText';

@@ -1,7 +1,7 @@
 import { Box, Flex, IconButton, Menu, MenuButton } from '@chakra-ui/react';
 import Image from 'next/image';
 import { FC } from 'react';
-import logoSrc from '../../public/esp-logo.svg';
+import logoSrc from '../../public/images/esp-logo.svg';
 import { HamburgerIcon } from './icons';
 
 export const NavMobile: FC = () => {
