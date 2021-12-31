@@ -1,17 +1,32 @@
-import { Center, ListItem, Stack, UnorderedList } from '@chakra-ui/react';
+import { Center, ListItem, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { useReducer } from 'react';
 import {
   Layout,
+  List,
   NavMobile,
   PageHeading,
   PageSection,
   PageSubheading,
   PageText,
-  PlaceholderImage
+  PlaceholderImage,
+  StepArrow,
+  StepHeader,
+  StepReadMore,
+  VisuallyHiddenText
 } from '../../components/UI';
+import { processReducer } from '../../reducers';
+
+const initialProcessState = {
+  apply: false,
+  evaluate: false,
+  decision: false
+};
 
 const ProjectGrants: NextPage = () => {
+  const [readMore, dispatch] = useReducer(processReducer, initialProcessState);
+
   return (
     <>
       <Head>
@@ -55,14 +70,7 @@ const ProjectGrants: NextPage = () => {
               </PageText>
 
               <Stack>
-                <UnorderedList
-                  color='brand.paragraph'
-                  fontSize='paragraph'
-                  fontWeight={300}
-                  lineHeight='24px'
-                  spacing={1}
-                  ml={6}
-                >
+                <List>
                   <ListItem>
                     More complex, or larger in scope: the proposed work has multiple components or
                     stages, a longer project timeline, or will require you to make new long-term
@@ -74,14 +82,93 @@ const ProjectGrants: NextPage = () => {
                     yourself difficult questions to validate your approach, and thoroughly
                     researched the state of the art in your chosen domain.
                   </ListItem>
-                </UnorderedList>
+                </List>
               </Stack>
             </section>
           </Stack>
 
           <Stack spacing={10}>
             <section id='process'>
-              <PageSection>Process</PageSection>
+              <PageSection mb={6}>Process</PageSection>
+
+              <Stack spacing={5}>
+                <Stack>
+                  <StepHeader>Apply</StepHeader>
+
+                  <PageText>
+                    You&apos;ll need to fill out the form on the next page as well as a long-form
+                    application where you&apos;ll go into depth about your goals, motivations, plans
+                    and intended impact. Make sure you have read and
+                    <span hidden={readMore.apply}>... </span>{' '}
+                    <VisuallyHiddenText readMore={readMore.apply}>
+                      understood our scope and criteria, and see below for advice on crafting a
+                      great application. After submitting, you&apos;ll receive a confirmation email
+                      within two business days.
+                    </VisuallyHiddenText>
+                    <StepReadMore
+                      hidden={readMore.apply}
+                      onClick={() => dispatch({ type: 'PROCESS_APPLY' })}
+                    />
+                    <span hidden={readMore.apply}>.</span>
+                  </PageText>
+
+                  <StepArrow />
+                </Stack>
+
+                <Stack>
+                  <StepHeader>Evaluate and refine</StepHeader>
+
+                  <PageText>
+                    If we determine that a project is in scope for ESP support, we&apos;ll begin a
+                    deeper evaluation of the project&apos;s technical approach, potential impact,
+                    risks, and other factors. Our next steps might
+                    <span hidden={readMore.evaluate}>... </span>{' '}
+                    <VisuallyHiddenText readMore={readMore.evaluate}>
+                      include gathering more information, getting input from advisors, and working
+                      with you to refine or rescope the project proposal.
+                    </VisuallyHiddenText>
+                    <StepReadMore
+                      hidden={readMore.evaluate}
+                      onClick={() => dispatch({ type: 'PROCESS_EVALUATE' })}
+                    />
+                    <span hidden={readMore.evaluate}>.</span>
+                  </PageText>
+
+                  <StepArrow />
+                </Stack>
+
+                <Stack>
+                  <StepHeader>Decision</StepHeader>
+
+                  <PageText>
+                    Once the proposal is finalized, we&apos;ll make an allocation decision based on
+                    our assessment as well as input received from advisors. Decision time for a
+                    project grant application varies depending on scope
+                    <span hidden={readMore.decision}>... </span>{' '}
+                    <VisuallyHiddenText readMore={readMore.decision}>
+                      and complexity, and may take a few months from when the application was first
+                      submitted.
+                    </VisuallyHiddenText>
+                    <StepReadMore
+                      hidden={readMore.decision}
+                      onClick={() => dispatch({ type: 'PROCESS_DECISION' })}
+                    />
+                    <span hidden={readMore.decision}>.</span>
+                  </PageText>
+
+                  <StepArrow />
+                </Stack>
+
+                <Stack>
+                  <StepHeader>Activation</StepHeader>
+
+                  <PageText>
+                    We sign a grant agreement, complete KYC and send funds in fiat, ETH or DAI - and
+                    you get to work! You&apos;ll have a point of contact at the EF who will check in
+                    with you regularly as you progress with your work.
+                  </PageText>
+                </Stack>
+              </Stack>
             </section>
 
             <section id='requirements'>
@@ -92,14 +179,7 @@ const ProjectGrants: NextPage = () => {
                 fund:
               </PageText>
 
-              <UnorderedList
-                color='brand.paragraph'
-                fontSize='paragraph'
-                fontWeight={300}
-                lineHeight='24px'
-                spacing={1}
-                ml={6}
-              >
+              <List>
                 <ListItem>
                   Work funded by ESP grants must benefit Ethereum in a way that aligns with
                   ESP&apos;s mission and scope.
@@ -108,7 +188,7 @@ const ProjectGrants: NextPage = () => {
                   Any output must be open source or otherwise freely available; for-profit companies
                   are welcome to apply but the specific grant funded work must be non-commercial.
                 </ListItem>
-              </UnorderedList>
+              </List>
             </section>
 
             <section id='eligibility'>
@@ -119,14 +199,7 @@ const ProjectGrants: NextPage = () => {
                 scope:
               </PageText>
 
-              <UnorderedList
-                color='brand.paragraph'
-                fontSize='paragraph'
-                fontWeight={300}
-                lineHeight='24px'
-                spacing={1}
-                ml={6}
-              >
+              <List>
                 <ListItem>Individuals, teams or organizations.</ListItem>
                 <ListItem>
                   Established projects, newcomers to Ethereum, past grantees or applicants.
@@ -141,20 +214,13 @@ const ProjectGrants: NextPage = () => {
                   fund past work.
                 </ListItem>
                 <ListItem>Builders of any age, origin, identity or background.</ListItem>
-              </UnorderedList>
+              </List>
             </section>
 
             <section id='not-eligible'>
               <PageSection mb={6}>What is NOT eligible</PageSection>
 
-              <UnorderedList
-                color='brand.paragraph'
-                fontSize='paragraph'
-                fontWeight={300}
-                lineHeight='24px'
-                spacing={1}
-                ml={6}
-              >
+              <List>
                 <ListItem>
                   Anything that is not legal within the jurisdiction where the work is taking place.
                 </ListItem>
@@ -163,7 +229,7 @@ const ProjectGrants: NextPage = () => {
                 </ListItem>
                 <ListItem>Projects with a planned token launch or public funding round.</ListItem>
                 <ListItem>Art projects or charities that don&apos;t fit within our scope.</ListItem>
-              </UnorderedList>
+              </List>
             </section>
 
             <section id='tips-application'>
@@ -179,14 +245,7 @@ const ProjectGrants: NextPage = () => {
                 mind:
               </PageText>
 
-              <UnorderedList
-                color='brand.paragraph'
-                fontSize='paragraph'
-                fontWeight={300}
-                lineHeight='24px'
-                spacing={1}
-                ml={6}
-              >
+              <List>
                 <ListItem>
                   <strong>Be specific:</strong> we want you to share your grand vision - but you
                   also need to tell us, concretely, how you plan to achieve your goals.
@@ -235,7 +294,7 @@ const ProjectGrants: NextPage = () => {
                   your application, we ask you to start thinking about different potential paths to
                   achieving your goals.
                 </ListItem>
-              </UnorderedList>
+              </List>
             </section>
 
             <section id='faq'>

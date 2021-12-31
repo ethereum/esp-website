@@ -1,3 +1,4 @@
-export { PageHeading } from './PageHeading';
-export { PageSection } from './PageSection';
-export { PageSubheading } from './PageSubheading';
+export * from './PageHeading';
+export * from './PageSection';
+export * from './PageSubheading';
+export * from './StepHeading';
