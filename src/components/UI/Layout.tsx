@@ -1,22 +1,20 @@
-import { Container, ContainerProps, Stack, Text } from '@chakra-ui/react';
+import { Box, Container, ContainerProps } from '@chakra-ui/react';
 import { FC } from 'react';
-import { NavMobile } from './NavMobile';
-import { UnicornSpace } from './UnicornSpace';
+import { NavMobile, NewsletterSignup } from './common';
+import { UnicornSpace } from './common/UnicornSpace';
 
 export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
   return (
-    <Container maxW={{ base: 'container.mobile', md: '600px' }} px={5} py={3} {...props}>
-      <NavMobile />
+    <Container maxW={{ base: 'container.mobile', md: '600px' }} p={0} {...props}>
+      <Box px={5} py={3}>
+        <NavMobile />
 
-      {children}
+        {children}
 
-      <UnicornSpace />
+        <UnicornSpace />
+      </Box>
 
-      <Stack>
-        <Text>Join our newsletter to stay tuned!</Text>
-
-        <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
-      </Stack>
+      <NewsletterSignup />
     </Container>
   );
 };
