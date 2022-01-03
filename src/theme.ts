@@ -5,7 +5,11 @@ export default extendTheme({
     brand: {
       accent: '#f85858',
       heading: '#e44550',
-      paragraph: '#232264'
+      paragraph: '#232264',
+      orange: {
+        100: '#f76f45',
+        200: '#f87045'
+      }
     }
   },
   fonts: {
@@ -17,6 +21,9 @@ export default extendTheme({
     h1: '40px',
     h2: '24px',
     h4: '18px',
+    faq: {
+      question: '16px'
+    },
     paragraph: '15px'
   },
   sizes: {

@@ -1,3 +1,4 @@
+export * from './FAQItem';
 export * from './headings';
 export * from './Layout';
 export * from './List';
