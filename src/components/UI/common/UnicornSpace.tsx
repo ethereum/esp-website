@@ -5,7 +5,7 @@ import unicornSVG from '../../../public/images/unicorn.svg';
 
 export const UnicornSpace: FC = () => {
   return (
-    <Stack>
+    <Stack id='unicorn'>
       <Flex h={72} justifyContent='center' alignItems='flex-end'>
         <Box>
           <Image src={unicornSVG} alt='unicorn emoji' height='60px' width='49px' />

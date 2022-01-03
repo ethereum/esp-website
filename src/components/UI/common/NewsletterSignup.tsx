@@ -5,6 +5,7 @@ import { ImportantText, PageText } from '../text';
 export const NewsletterSignup: FC = () => {
   return (
     <Flex
+      id='newsletter'
       direction='column'
       justifyContent='center'
       alignItems='center'
