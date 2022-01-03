@@ -12,12 +12,13 @@ import {
   PageSubheading,
   PageText,
   PlaceholderImage,
+  ReadyToApply,
   StepArrow,
   StepHeader,
   StepReadMore,
   VisuallyHiddenText
-} from '../../components/UI';
-import { processReducer } from '../../reducers';
+} from '../../../components/UI';
+import { processReducer } from '../../../reducers';
 
 const initialProcessState = {
   apply: false,
@@ -88,7 +89,7 @@ const ProjectGrants: NextPage = () => {
             </section>
           </Stack>
 
-          <Stack spacing={10}>
+          <Stack spacing={10} mb={10}>
             <section id='process'>
               <PageSection mb={6}>Process</PageSection>
 
@@ -395,6 +396,12 @@ const ProjectGrants: NextPage = () => {
                   </PageText>
                 </FAQItem>
               </Accordion>
+            </section>
+          </Stack>
+
+          <Stack>
+            <section id='ready-to-apply'>
+              <ReadyToApply link='/applicants/project-grants/apply' />
             </section>
           </Stack>
         </main>
