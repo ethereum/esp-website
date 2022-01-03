@@ -1,4 +1,4 @@
-import { Container, ContainerProps } from '@chakra-ui/react';
+import { Container, ContainerProps, Stack, Text } from '@chakra-ui/react';
 import { FC } from 'react';
 import { NavMobile } from './NavMobile';
 import { UnicornSpace } from './UnicornSpace';
@@ -11,6 +11,12 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       {children}
 
       <UnicornSpace />
+
+      <Stack>
+        <Text>Join our newsletter to stay tuned!</Text>
+
+        <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+      </Stack>
     </Container>
   );
 };
