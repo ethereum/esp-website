@@ -45,7 +45,7 @@ export default extendTheme({
     Text: {
       variants: {
         ready: {
-          fontFamily: `Maison Neue Mono, ${base.fonts?.heading}`
+          fontFamily: `Maison Neue Mono, ${base.fonts?.body}`
         }
       }
     }
