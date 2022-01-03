@@ -10,6 +10,7 @@ interface Props {
 export const FAQItem: FC<Props> = ({ question, children }) => {
   return (
     <AccordionItem
+      id={question}
       py={2}
       maxW='100%'
       borderRadius='10px'
