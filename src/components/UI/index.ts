@@ -5,6 +5,7 @@ export * from './List';
 export * from './NavMobile';
 export * from './PageText';
 export * from './PlaceholderImage';
+export * from './ReadyToApply';
 export * from './Step';
 export * from './Step/StepHeader';
 export * from './VisuallyHiddenText';
