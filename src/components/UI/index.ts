@@ -8,4 +8,5 @@ export * from './PlaceholderImage';
 export * from './ReadyToApply';
 export * from './Step';
 export * from './Step/StepHeader';
+export * from './UnicornSpace';
 export * from './VisuallyHiddenText';
