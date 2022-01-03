@@ -4,12 +4,14 @@ export default extendTheme({
   colors: {
     brand: {
       accent: '#f85858',
+      hover: '#fb7971',
       heading: '#e44550',
       paragraph: '#232264',
       orange: {
         100: '#f76f45',
         200: '#f87045'
-      }
+      },
+      ready: '#30354b'
     }
   },
   fonts: {
@@ -35,6 +37,13 @@ export default extendTheme({
     Heading: {
       variants: {
         'page-section': {
+          fontFamily: `Maison Neue Mono, ${base.fonts?.heading}`
+        }
+      }
+    },
+    Text: {
+      variants: {
+        ready: {
           fontFamily: `Maison Neue Mono, ${base.fonts?.heading}`
         }
       }
