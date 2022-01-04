@@ -1,8 +1,9 @@
-import { Center, Flex, Heading, Stack, Text } from '@chakra-ui/react';
+import { Center, Flex, Heading, Stack } from '@chakra-ui/react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
-import planeVectorSVG from '../../public/images/plane-vector.svg';
+import planeVectorSVG from '../../../public/images/plane-vector.svg';
+import { ImportantText } from '../text';
 
 interface Props {
   link: string;
@@ -44,16 +45,7 @@ export const ReadyToApply: FC<Props> = ({ link }) => {
           position='relative'
           onClick={() => router.push(link)}
         >
-          <Text
-            color='white'
-            textAlign='center'
-            variant='ready'
-            fontSize='h4'
-            fontWeight={700}
-            lineHeight='24px'
-          >
-            Apply
-          </Text>
+          <ImportantText color='white'>Apply</ImportantText>
 
           <Flex position='absolute' left={36}>
             <Image src={planeVectorSVG} alt='paper plane vector' height='29px' width='32px' />

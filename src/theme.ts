@@ -11,7 +11,8 @@ export default extendTheme({
         100: '#f76f45',
         200: '#f87045'
       },
-      ready: '#30354b'
+      ready: '#30354b',
+      border: '#a9a9b8'
     }
   },
   fonts: {
@@ -44,7 +45,7 @@ export default extendTheme({
     Text: {
       variants: {
         ready: {
-          fontFamily: `Maison Neue Mono, ${base.fonts?.heading}`
+          fontFamily: `Maison Neue Mono, ${base.fonts?.body}`
         }
       }
     }
