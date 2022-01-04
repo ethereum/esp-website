@@ -6,9 +6,9 @@ import githubLogoSVG from '../../../public/images/github-logo.svg';
 import twitterLogoSVG from '../../../public/images/twitter-logo.svg';
 import { ImportantText, PageText } from '../text';
 
-export const MobileFooter: FC = () => {
+export const Footer: FC = () => {
   return (
-    <Flex bgGradient='linear(to-b, #E07861 10%, #E06361 100%)' d='column'>
+    <Flex id='footer' bgGradient='linear(to-b, #E07861 10%, #E06361 100%)' d='column'>
       <Center px={5} py={8}>
         <Image src={efLogoSVG} alt='Ethereum Foundation logo' height={64} width={200} />
       </Center>

@@ -1,4 +1,4 @@
-export * from './MobileFooter';
+export * from './Footer';
 export * from './NavMobile';
 export * from './NewsletterSignup';
 export * from './ReadyToApply';

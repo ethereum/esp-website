@@ -1,6 +1,6 @@
 import { Box, Container, ContainerProps } from '@chakra-ui/react';
 import { FC } from 'react';
-import { MobileFooter, NavMobile, NewsletterSignup } from './common';
+import { Footer, NavMobile, NewsletterSignup } from './common';
 import { UnicornSpace } from './common/UnicornSpace';
 
 export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
@@ -16,7 +16,7 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
 
       <NewsletterSignup />
 
-      <MobileFooter />
+      <Footer />
     </Container>
   );
 };
