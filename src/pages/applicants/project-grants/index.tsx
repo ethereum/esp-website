@@ -2,6 +2,7 @@ import { Accordion, Center, Link, ListItem, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useReducer } from 'react';
+
 import {
   FAQItem,
   List,
@@ -16,6 +17,7 @@ import {
   StepReadMore,
   VisuallyHiddenText
 } from '../../../components/UI';
+
 import { processReducer } from '../../../reducers';
 
 const initialProcessState = {

@@ -1,6 +1,7 @@
 import { Box, Center } from '@chakra-ui/react';
 import Image from 'next/image';
 import { FC } from 'react';
+
 import stepPolygonSVG from '../../../public/images/step-polygon.svg';
 
 export const StepArrow: FC = () => {

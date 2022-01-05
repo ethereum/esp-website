@@ -1,7 +1,7 @@
 import { Box, Container, ContainerProps } from '@chakra-ui/react';
 import { FC } from 'react';
-import { Footer, NavMobile, NewsletterSignup } from './common';
-import { UnicornSpace } from './common/UnicornSpace';
+
+import { Footer, NavMobile, NewsletterSignup, UnicornSpace } from './common';
 
 export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
   return (

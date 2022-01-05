@@ -1,5 +1,6 @@
 import { Flex, Input, Stack } from '@chakra-ui/react';
 import { FC } from 'react';
+
 import { ImportantText, PageText } from '../text';
 
 export const NewsletterSignup: FC = () => {

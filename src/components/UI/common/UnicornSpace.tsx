@@ -1,6 +1,7 @@
 import { Box, Flex, Stack } from '@chakra-ui/react';
 import Image from 'next/image';
 import { FC } from 'react';
+
 import unicornSVG from '../../../public/images/unicorn.svg';
 
 export const UnicornSpace: FC = () => {

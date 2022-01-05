@@ -1,5 +1,6 @@
 import { AccordionButton, AccordionItem, AccordionPanel, Box, Flex } from '@chakra-ui/react';
 import { FC } from 'react';
+
 import { MinusIcon, PlusIcon } from '../../components/UI/icons';
 import { FAQQuestion } from './headings';
 

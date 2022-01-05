@@ -1,5 +1,6 @@
 import { Flex, HeadingProps } from '@chakra-ui/react';
 import { FC } from 'react';
+
 import { StepHeading } from '../headings';
 
 export const StepHeader: FC<HeadingProps> = ({ children }) => {
