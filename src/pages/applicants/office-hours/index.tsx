@@ -291,6 +291,33 @@ const OfficeHours: NextPage = () => {
               </ListItem>
             </List>
           </section>
+
+          <section id='faq'>
+            <PageSection mb={6}>FAQ</PageSection>
+
+            <Accordion allowToggle>
+              <FAQItem question='Can I bring others to the call?'>
+                <PageText>
+                  Yes! We&apos;ll send you a call invitation, and you&apos;re welcome to add people
+                  from your team; but we recommend no more than 4 since time is limited.
+                </PageText>
+              </FAQItem>
+
+              <FAQItem question='How long will the call be?'>
+                <PageText>The scheduled call will be 20 minutes long.</PageText>
+              </FAQItem>
+
+              <FAQItem question='How should I prepare?'>
+                <PageText>
+                  Be as specific as possible about what you hope the ESP team can help you with, and
+                  write down questions or challenges that you&apos;d like to address. Don&apos;t
+                  plan on giving a presentation about your project - rather, use the submission form
+                  to introduce your project and give us any relevant context in advance so we can
+                  make the best use of the time.
+                </PageText>
+              </FAQItem>
+            </Accordion>
+          </section>
         </Stack>
 
         <Stack>
