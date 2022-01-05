@@ -1,10 +1,12 @@
 import { Box, Center, Divider, Flex, Link, Stack } from '@chakra-ui/react';
 import Image from 'next/image';
 import { FC } from 'react';
+
+import { ImportantText, PageText } from '../text';
+
 import efLogoSVG from '../../../public/images/ef-logo.svg';
 import githubLogoSVG from '../../../public/images/github-logo.svg';
 import twitterLogoSVG from '../../../public/images/twitter-logo.svg';
-import { ImportantText, PageText } from '../text';
 
 export const Footer: FC = () => {
   return (
