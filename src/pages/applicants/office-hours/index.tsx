@@ -195,12 +195,25 @@ const OfficeHours: NextPage = () => {
             </PageText>
 
             <PageText fontWeight={700}>Help navigating the Ethereum ecosystem</PageText>
-            <PageText mb={6}>
+            <PageText>
               We like to think we know the Ethereum ecosystem pretty well. If you&apos;re feeling
               lost, we may be able to help point you in the right direction by identifying resources
               you might not be aware of, other projects tackling similar problems, communities and
               events to consider participating in, or even other potential sources of funding.
             </PageText>
+          </section>
+
+          <section id='not-offered'>
+            <PageSection mb={6}>What we DON&apos;T offer</PageSection>
+
+            <List>
+              <ListItem>Financial or legal advice.</ListItem>
+              <ListItem>
+                Advice on creating, structuring, launching, selling, or doing pretty much anything
+                else with a token.
+              </ListItem>
+              <ListItem>Help with transactions, wallets or exchanges.</ListItem>
+            </List>
           </section>
         </Stack>
 
