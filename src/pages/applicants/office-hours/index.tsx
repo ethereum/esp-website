@@ -215,6 +215,82 @@ const OfficeHours: NextPage = () => {
               <ListItem>Help with transactions, wallets or exchanges.</ListItem>
             </List>
           </section>
+
+          <section id='before-submitting'>
+            <PageSection mb={6}>Before submitting</PageSection>
+
+            <PageText>Please check out these resources for answers to common inquiries:</PageText>
+
+            <List>
+              <ListItem>
+                For information about Ethereum including staking, wallet and transaction basics, and
+                developer resources:{' '}
+                <Link
+                  fontWeight={700}
+                  color='brand.orange.100'
+                  href='https://ethereum.org'
+                  isExternal
+                  _hover={{ textDecoration: 'none' }}
+                >
+                  click here
+                </Link>
+                .
+              </ListItem>
+              <ListItem>
+                If you&apos;re hiring or looking for employment:{' '}
+                <Link
+                  fontWeight={700}
+                  color='brand.orange.100'
+                  href='https://ethereum.org/en/community/#ethereum-jobs'
+                  isExternal
+                  _hover={{ textDecoration: 'none' }}
+                >
+                  click here
+                </Link>
+                .
+              </ListItem>
+              <ListItem>
+                If you&apos;re interested in working at the Ethereum Foundation:{' '}
+                <Link
+                  fontWeight={700}
+                  color='brand.orange.100'
+                  href='https://ethereum.bamboohr.com/jobs/'
+                  isExternal
+                  _hover={{ textDecoration: 'none' }}
+                >
+                  click here
+                </Link>
+                .
+              </ListItem>
+              <ListItem>
+                If you&apos;re interested in connecting with others with similar interests or in
+                your local area,{' '}
+                <Link
+                  fontWeight={700}
+                  color='brand.orange.100'
+                  href='https://ethereum.org/en/community/'
+                  isExternal
+                  _hover={{ textDecoration: 'none' }}
+                >
+                  check out here
+                </Link>{' '}
+                for Meetup groups, upcoming events, and online communities!.
+              </ListItem>
+              <ListItem>
+                If you&apos;re exploring possible sources of funding:{' '}
+                <Link
+                  fontWeight={700}
+                  color='brand.orange.100'
+                  href='https://ethereum.org/en/community/grants/#broad-ethereum-ecosystem'
+                  isExternal
+                  _hover={{ textDecoration: 'none' }}
+                >
+                  click here
+                </Link>
+                .
+              </ListItem>
+            </List>
+          </section>
         </Stack>
 
         <Stack>
