@@ -154,6 +154,26 @@ const SmallGrants: NextPage = () => {
               </Stack>
             </Stack>
           </section>
+
+          <section id='requirements'>
+            <PageSection mb={6}>Requirements</PageSection>
+
+            <PageText>
+              We&apos;re flexible in many ways, but we do have some hard rules for the projects we
+              fund:
+            </PageText>
+
+            <List>
+              <ListItem>
+                Work funded by ESP grants must benefit Ethereum in a way that aligns with ESP&apos;s
+                mission and scope.
+              </ListItem>
+              <ListItem>
+                Any output must be open source or otherwise freely available; for-profit companies
+                are welcome to apply but the specific grant funded work must be non-commercial.
+              </ListItem>
+            </List>
+          </section>
         </Stack>
 
         <Stack>
