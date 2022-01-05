@@ -174,6 +174,31 @@ const SmallGrants: NextPage = () => {
               </ListItem>
             </List>
           </section>
+
+          <section id='eligibility'>
+            <PageSection mb={6}>Elegibility</PageSection>
+
+            <PageText>
+              We are happy to hear from all kinds of contributors who are working within our scope:
+            </PageText>
+
+            <List>
+              <ListItem>Individuals, teams or organizations.</ListItem>
+              <ListItem>
+                Newcomers to Ethereum, established projects, past grantees or applicants
+              </ListItem>
+              <ListItem>
+                Any area of expertise - we work with developers, researchers, academics, designers,
+                educators, communicators, community organizers, and more.
+              </ListItem>
+              <ListItem>
+                Projects at any point in the development process: just an idea, early stages, proof
+                of concept, or with significant progress already made. However, we do not fund past
+                work.
+              </ListItem>
+              <ListItem>Builders of any age, origin, identity or background.</ListItem>
+            </List>
+          </section>
         </Stack>
 
         <Stack>
