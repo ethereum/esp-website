@@ -350,7 +350,16 @@ const ProjectGrants: NextPage = () => {
                   Don&apos;t be discouraged! We have a finite scope and sometimes it&apos;s just not
                   a fit, or not the right time - that doesn&apos;t mean the work you&apos;re doing
                   isn&apos;t important. Consider continuing to develop your idea at a hackathon or
-                  by posting to forums like ethresear.ch, looking into{' '}
+                  by posting to forums like{' '}
+                  <Link
+                    fontWeight={700}
+                    color='brand.orange.100'
+                    href='https://ethresear.ch/'
+                    isExternal
+                  >
+                    ethresear.ch
+                  </Link>
+                  , looking into{' '}
                   <Link
                     fontWeight={700}
                     color='brand.orange.100'

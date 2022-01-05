@@ -1,10 +1,11 @@
-import { Link, ListItem, Stack } from '@chakra-ui/react';
+import { Accordion, Link, ListItem, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useState } from 'react';
 
 import {
   ApplicantsDescription,
+  FAQItem,
   List,
   PageSection,
   PageSubheading,
@@ -271,6 +272,118 @@ const SmallGrants: NextPage = () => {
                 later!
               </ListItem>
             </List>
+          </section>
+
+          <section id='faq'>
+            <PageSection mb={6}>FAQ</PageSection>
+
+            <Accordion allowToggle>
+              <FAQItem question='Is my application confidential?'>
+                <PageText>
+                  Applications are not shared with the public. However, any information you provide
+                  may be shared with advisors in the review process, so let us know in your
+                  application if there&apos;s something you want us to keep confidential!
+                </PageText>
+              </FAQItem>
+
+              <FAQItem question='How long will the call be?'>
+                <PageText>The scheduled call will be 20 minutes long.</PageText>
+              </FAQItem>
+
+              <FAQItem question='Can I remain anonymous?'>
+                <PageText>
+                  Mostly, yes. We are legally required to perform KYC before transferring funds to
+                  you, and will need to know your real identity to complete that process. However,
+                  we are happy to keep that information confidential outside of the few members of
+                  the EF team involved in KYC processing, and use a pseudonym or omit your name
+                  entirely in any communications that will be visible to anyone else.
+                </PageText>
+              </FAQItem>
+
+              <FAQItem question='What currency are grants paid in?'>
+                <PageText>We can provide payment in ETH, DAI, or Fiat currency.</PageText>
+              </FAQItem>
+
+              <FAQItem question='Is my for-profit company eligible for a grant?'>
+                <PageText mb={6}>
+                  Ethereum&apos;s ecosystem is unique in the way it embraces both entrepreneurship
+                  and collaboration, and we want to keep it that way. We believe that builders can
+                  and should be able to build a business while continuing to contribute to FOSS and
+                  public goods.
+                </PageText>
+
+                <PageText>
+                  Although we do not fund work that is intended to be monetized, we are happy to
+                  hear from for-profit entities that are building public goods. We regularly fund
+                  components or areas of work carried out by for-profit companies, as long as the
+                  specific funded work fits within our scope and remains free and open to anyone.
+                </PageText>
+              </FAQItem>
+
+              <FAQItem question='Will anybody actually read my application?'>
+                <PageText>
+                  Yes! The team meets weekly to review every submission we receive, and give careful
+                  consideration to whether the project is eligible and what we can do to support. We
+                  love learning about the amazing work people are doing in the ecosystem, even when
+                  that work is outside of our scope.
+                </PageText>
+              </FAQItem>
+
+              <FAQItem question='What if I need more than $30,000?'>
+                <PageText>
+                  Small grants have a hard limit of $30,000, but if you anticipate needing more to
+                  get to the finish line, you have options. You can apply for Project Grants, which
+                  have no funding cap. If your project is otherwise a better fit for a small grant,
+                  e.g. it&apos;s more experimental or in early stages, consider applying for a small
+                  grant for a specific component or phase of work, and we can revisit the
+                  possibility of funding additional work as you approach the finish line on your
+                  initial grant.
+                </PageText>
+              </FAQItem>
+
+              <FAQItem question='What happens if I’m not awarded a grant?'>
+                <PageText mb={6}>
+                  Don&apos;t be discouraged! We have a finite scope and sometimes it&apos;s just not
+                  a fit, or not the right time - that doesn&apos;t mean the work you&apos;re doing
+                  isn&apos;t important. Consider continuing to develop your idea at a hackathon or
+                  by posting to forums like{' '}
+                  <Link
+                    fontWeight={700}
+                    color='brand.orange.100'
+                    href='https://ethresear.ch/'
+                    isExternal
+                  >
+                    ethresear.ch
+                  </Link>
+                  , looking into{' '}
+                  <Link
+                    fontWeight={700}
+                    color='brand.orange.100'
+                    href='https://ethereum.org/en/community/grants/'
+                    isExternal
+                  >
+                    other funding sources
+                  </Link>
+                  , or participating in{' '}
+                  <Link
+                    fontWeight={700}
+                    color='brand.orange.100'
+                    href='https://ethereum.org/en/community/'
+                    isExternal
+                  >
+                    community groups or events
+                  </Link>{' '}
+                  for new perspectives and possibilities within the vast and vibrant Ethereum
+                  ecosystem.
+                </PageText>
+
+                <PageText>
+                  You can also reapply in the future if you feel that something has changed. If
+                  you&apos;re considering reapplying, we recommend signing up for office hours first
+                  before restarting the application process.
+                </PageText>
+              </FAQItem>
+            </Accordion>
           </section>
         </Stack>
 
