@@ -1,9 +1,16 @@
-import { Flex, Input, Stack } from '@chakra-ui/react';
+import { Button, Center, Flex, FormControl, Input, Stack } from '@chakra-ui/react';
 import { FC } from 'react';
+import { useForm } from 'react-hook-form';
 
 import { ImportantText, PageText } from '../text';
 
 export const NewsletterSignup: FC = () => {
+  const { handleSubmit, register } = useForm();
+
+  function onSubmit() {
+    console.log('submitted!');
+  }
+
   return (
     <Flex
       id='newsletter'
@@ -25,18 +32,40 @@ export const NewsletterSignup: FC = () => {
         </PageText>
       </Stack>
 
-      <Stack w='100%' mb={3}>
-        <Input
-          placeholder='Enter your email'
-          bg='white'
-          borderRadius={0}
-          borderColor='brand.border'
-          h='56px'
-        />
+      <Stack w='100%'>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <FormControl id='email' isRequired mb={3}>
+            <Input
+              type='email'
+              placeholder='Enter your email'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              h='56px'
+              {...register('email', { required: true })}
+            />
+          </FormControl>
+
+          <Center>
+            <Button
+              _hover={{ bg: 'brand.hover' }}
+              backgroundColor='brand.accent'
+              w='148px'
+              py={7}
+              borderRadius={0}
+              justifyContent='center'
+              alignItems='center'
+              type='submit'
+            >
+              <ImportantText color='white'>Sign up</ImportantText>
+            </Button>
+          </Center>
+        </form>
       </Stack>
 
-      <Flex
+      {/* <Flex
         as='button'
+        type='submit'
         _hover={{ bg: 'brand.hover' }}
         backgroundColor='brand.accent'
         w='148px'
@@ -46,7 +75,7 @@ export const NewsletterSignup: FC = () => {
         onClick={() => console.log('subscribed!')}
       >
         <ImportantText color='white'>Sign up</ImportantText>
-      </Flex>
+      </Flex> */}
     </Flex>
   );
 };
