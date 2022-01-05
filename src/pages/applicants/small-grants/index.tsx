@@ -1,6 +1,7 @@
 import { Accordion, Link, ListItem, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { useState } from 'react';
 
 import {
   ApplicantsDescription,
@@ -11,10 +12,14 @@ import {
   PageText,
   ReadyToApply,
   StepArrow,
-  StepHeader
+  StepHeader,
+  StepReadMore,
+  VisuallyHiddenText
 } from '../../../components/UI';
 
 const SmallGrants: NextPage = () => {
+  const [readMore, setReadMore] = useState(false);
+
   return (
     <>
       <Head>
@@ -78,6 +83,76 @@ const SmallGrants: NextPage = () => {
               </Link>{' '}
               to get your questions answered before submitting.
             </PageText>
+          </section>
+        </Stack>
+
+        <Stack spacing={10} mb={10}>
+          <section id='process'>
+            <PageSection mb={6}>Process</PageSection>
+
+            <Stack spacing={5}>
+              <Stack>
+                <StepHeader>Application</StepHeader>
+
+                <PageText>
+                  Just fill out the online form! Make sure you have read and understood our scope
+                  and criteria below. After submitting, you&apos;ll receive a confirmation email
+                  within two business days.
+                </PageText>
+
+                <StepArrow />
+              </Stack>
+
+              <Stack>
+                <StepHeader>Evaluation</StepHeader>
+
+                <PageText>
+                  Every submission is read and considered by the ESP team. You most likely
+                  won&apos;t hear from us during the evaluation process for a small grant
+                  application, but you&apos;re always welcome to get in touch - just reply to the
+                  <span hidden={readMore}>... </span>{' '}
+                  <VisuallyHiddenText readMore={readMore}>
+                    confirmation email if you have questions or think of anything else we should
+                    know.
+                  </VisuallyHiddenText>
+                  <StepReadMore hidden={readMore} onClick={() => setReadMore(true)} />
+                  <span hidden={readMore}>.</span>
+                </PageText>
+
+                <StepArrow />
+              </Stack>
+
+              <Stack>
+                <StepHeader>Decision</StepHeader>
+
+                <PageText>
+                  Unless we reach out to clarify anything on your application, you can expect to
+                  hear back from us with a final decision around two weeks after you submit it.
+                </PageText>
+
+                <StepArrow />
+              </Stack>
+
+              <Stack>
+                <StepHeader>Activation</StepHeader>
+
+                <PageText>
+                  We sign a grant agreement, complete KYC and send funds in fiat, ETH or DAI - and
+                  you get to work!
+                </PageText>
+
+                <StepArrow />
+              </Stack>
+
+              <Stack>
+                <StepHeader>Completition</StepHeader>
+
+                <PageText>
+                  Once you&apos;ve completed work on your grant, you&apos;ll share the results in a
+                  report, blog post or video.
+                </PageText>
+              </Stack>
+            </Stack>
           </section>
         </Stack>
 
