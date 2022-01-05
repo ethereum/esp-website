@@ -8,7 +8,7 @@ export default extendTheme({
       heading: '#e44550',
       paragraph: '#232264',
       orange: {
-        100: '#f76f45',
+        100: '#ff4d15',
         200: '#f87045'
       },
       ready: '#30354b',
