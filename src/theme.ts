@@ -12,7 +12,14 @@ export default extendTheme({
         200: '#f87045'
       },
       ready: '#30354b',
-      border: '#a9a9b8'
+      border: '#a9a9b8',
+      divider: '#e5e5e5',
+      footer: {
+        bgGradient: {
+          start: '#e07861',
+          end: '#e06361'
+        }
+      }
     }
   },
   fonts: {
