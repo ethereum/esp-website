@@ -185,7 +185,7 @@ const SmallGrants: NextPage = () => {
             <List>
               <ListItem>Individuals, teams or organizations.</ListItem>
               <ListItem>
-                Newcomers to Ethereum, established projects, past grantees or applicants
+                Newcomers to Ethereum, established projects, past grantees or applicants.
               </ListItem>
               <ListItem>
                 Any area of expertise - we work with developers, researchers, academics, designers,
@@ -197,6 +197,22 @@ const SmallGrants: NextPage = () => {
                 work.
               </ListItem>
               <ListItem>Builders of any age, origin, identity or background.</ListItem>
+            </List>
+          </section>
+
+          <section id='not-eligible'>
+            <PageSection mb={6}>What is NOT eligible</PageSection>
+
+            <List>
+              <ListItem>
+                Anything that is not legal within the jurisdiction where the work is taking place.
+              </ListItem>
+              <ListItem>
+                Financial products (trading, investment products, lending, betting, etc).
+              </ListItem>
+              <ListItem>Projects with a planned token launch or public funding round.</ListItem>
+              <ListItem>Art projects or charities that don&apos;t fit within our scope.</ListItem>
+              <ListItem>Token -or investment- focused events.</ListItem>
             </List>
           </section>
         </Stack>
