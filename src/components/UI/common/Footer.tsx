@@ -8,13 +8,17 @@ import { ImportantText, PageText } from '../text';
 
 export const Footer: FC = () => {
   return (
-    <Flex id='footer' bgGradient='linear(to-b, #E07861 10%, #E06361 100%)' d='column'>
+    <Flex
+      id='footer'
+      bgGradient='linear(to-b, brand.footer.bgGradient.start 10%, brand.footer.bgGradient.end 100%)'
+      d='column'
+    >
       <Center px={5} py={8}>
         <Image src={efLogoSVG} alt='Ethereum Foundation logo' height={64} width={200} />
       </Center>
 
       <Center px={5}>
-        <Divider borderColor='#e5e5e5' opacity={1} />
+        <Divider borderColor='brand.divider' opacity={1} />
       </Center>
 
       <Flex px={5} py={6} justifyContent='center'>
@@ -92,7 +96,7 @@ export const Footer: FC = () => {
       </Flex>
 
       <Center px={5}>
-        <Divider borderColor='#e5e5e5' opacity={1} />
+        <Divider borderColor='brand.divider' opacity={1} />
       </Center>
 
       <Stack px={5} pt={3} pb={5}>
