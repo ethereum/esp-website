@@ -1,16 +1,15 @@
-import { Accordion, Center, Link, ListItem, Stack } from '@chakra-ui/react';
+import { Accordion, Link, ListItem, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useReducer } from 'react';
 
 import {
+  ApplicantsDescription,
   FAQItem,
   List,
-  PageHeading,
   PageSection,
   PageSubheading,
   PageText,
-  PlaceholderImage,
   ReadyToApply,
   StepArrow,
   StepHeader,
@@ -40,16 +39,7 @@ const ProjectGrants: NextPage = () => {
       <main>
         <Stack mb={32}>
           <section id='hero'>
-            <PageHeading mb={4} ml={-1}>
-              For Applicants
-            </PageHeading>
-            <PageText mb={2}>
-              Whether you&apos;re working on a specific project, or you&apos;re still exploring
-              possibilities, you can connect with our team for guidance.
-            </PageText>
-            <Center>
-              <PlaceholderImage height='250px' width='360px' />
-            </Center>
+            <ApplicantsDescription />
           </section>
         </Stack>
 
