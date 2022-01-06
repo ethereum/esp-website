@@ -53,7 +53,7 @@ export const NewsletterSignup: FC = () => {
       direction='column'
       justifyContent='center'
       alignItems='center'
-      bgGradient='linear(to-b, #FFF8EC 10%, #FEE8DC 100%)'
+      bgGradient='linear(to-b, brand.newsletter.bgGradient.start 10%, brand.newsletter.bgGradient.end 100%)'
       px={10}
       py={8}
     >

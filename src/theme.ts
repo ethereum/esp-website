@@ -19,6 +19,12 @@ export default extendTheme({
           start: '#e07861',
           end: '#e06361'
         }
+      },
+      newsletter: {
+        bgGradient: {
+          start: '#fff8ec',
+          end: '#fee8dc'
+        }
       }
     }
   },
