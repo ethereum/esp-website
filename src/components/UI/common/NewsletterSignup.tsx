@@ -15,7 +15,7 @@ export const NewsletterSignup: FC = () => {
       py={8}
     >
       <Stack mb={6}>
-        <ImportantText color='brand.ready' textAlign='center'>
+        <ImportantText color='brand.ready.text' textAlign='center'>
           Join our newsletter to stay tuned!
         </ImportantText>
 
