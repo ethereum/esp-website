@@ -1,15 +1,51 @@
-import { Button, Center, Flex, FormControl, Input, Stack } from '@chakra-ui/react';
+import { Button, Center, Flex, FormControl, Input, Stack, useToast } from '@chakra-ui/react';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { ImportantText, PageText } from '../text';
 
-export const NewsletterSignup: FC = () => {
-  const { handleSubmit, register } = useForm();
+type FormData = {
+  email: string;
+};
 
-  function onSubmit() {
-    console.log('submitted!');
-  }
+export const NewsletterSignup: FC = () => {
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isValid },
+    reset
+  } = useForm<FormData>({
+    mode: 'onChange'
+  });
+  const toast = useToast();
+
+  const onSubmit = (data: FormData) => {
+    if (errors.email) {
+      toast({
+        position: 'top-right',
+        title: 'Email is not valid, please try again.',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+        containerStyle: {
+          fontFamily: 'fonts.heading'
+        }
+      });
+    } else {
+      toast({
+        position: 'top-right',
+        title: 'Success!',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+        containerStyle: {
+          fontFamily: 'fonts.heading'
+        }
+      });
+    }
+
+    reset();
+  };
 
   return (
     <Flex
@@ -42,7 +78,13 @@ export const NewsletterSignup: FC = () => {
               borderRadius={0}
               borderColor='brand.border'
               h='56px'
-              {...register('email', { required: true })}
+              {...register('email', {
+                required: true,
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: 'Invalid email address'
+                }
+              })}
             />
           </FormControl>
 
@@ -56,26 +98,13 @@ export const NewsletterSignup: FC = () => {
               justifyContent='center'
               alignItems='center'
               type='submit'
+              isDisabled={!isValid}
             >
               <ImportantText color='white'>Sign up</ImportantText>
             </Button>
           </Center>
         </form>
       </Stack>
-
-      {/* <Flex
-        as='button'
-        type='submit'
-        _hover={{ bg: 'brand.hover' }}
-        backgroundColor='brand.accent'
-        w='148px'
-        py={4}
-        justifyContent='center'
-        alignItems='center'
-        onClick={() => console.log('subscribed!')}
-      >
-        <ImportantText color='white'>Sign up</ImportantText>
-      </Flex> */}
     </Flex>
   );
 };
