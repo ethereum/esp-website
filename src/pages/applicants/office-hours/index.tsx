@@ -3,16 +3,15 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 
 import {
-  ApplicantsDescription,
   FAQItem,
   List,
   PageSection,
   PageSubheading,
   PageText,
-  ReadyToApply,
   StepArrow,
   StepHeader
 } from '../../../components/UI';
+import { ApplicantsLayout } from '../../../components/layout';
 
 const OfficeHours: NextPage = () => {
   return (
@@ -22,13 +21,7 @@ const OfficeHours: NextPage = () => {
         <meta name='description' content='Office Hours' />
       </Head>
 
-      <main>
-        <Stack mb={32}>
-          <section id='hero'>
-            <ApplicantsDescription />
-          </section>
-        </Stack>
-
+      <ApplicantsLayout linkToApply='/applicants/office-hours/apply'>
         <Stack mb={10}>
           <section id='description'>
             <PageSubheading mb={8}>Office Hours</PageSubheading>
@@ -308,13 +301,7 @@ const OfficeHours: NextPage = () => {
             </Accordion>
           </section>
         </Stack>
-
-        <Stack>
-          <section id='ready-to-apply'>
-            <ReadyToApply link='/applicants/office-hours/apply' />
-          </section>
-        </Stack>
-      </main>
+      </ApplicantsLayout>
     </>
   );
 };

@@ -4,18 +4,17 @@ import Head from 'next/head';
 import { useReducer } from 'react';
 
 import {
-  ApplicantsDescription,
   FAQItem,
   List,
   PageSection,
   PageSubheading,
   PageText,
-  ReadyToApply,
   StepArrow,
   StepHeader,
   StepReadMore,
   VisuallyHiddenText
 } from '../../../components/UI';
+import { ApplicantsLayout } from '../../../components/layout';
 
 import { processReducer } from '../../../reducers';
 
@@ -35,13 +34,7 @@ const ProjectGrants: NextPage = () => {
         <meta name='description' content='Project Grants' />
       </Head>
 
-      <main>
-        <Stack mb={32}>
-          <section id='hero'>
-            <ApplicantsDescription />
-          </section>
-        </Stack>
-
+      <ApplicantsLayout linkToApply='/applicants/project-grants/apply'>
         <Stack mb={10}>
           <section id='description'>
             <PageSubheading mb={8}>Project grants</PageSubheading>
@@ -389,13 +382,7 @@ const ProjectGrants: NextPage = () => {
             </Accordion>
           </section>
         </Stack>
-
-        <Stack>
-          <section id='ready-to-apply'>
-            <ReadyToApply link='/applicants/project-grants/apply' />
-          </section>
-        </Stack>
-      </main>
+      </ApplicantsLayout>
     </>
   );
 };
