@@ -2,7 +2,8 @@ import { Button, Center, Flex, FormControl, Input, Stack, useToast } from '@chak
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { ImportantText, PageText } from '../text';
+import { ImportantText } from '../headings';
+import { PageText } from '../text';
 
 type FormData = {
   email: string;
