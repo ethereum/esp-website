@@ -23,7 +23,7 @@ export const NavMobile: FC = () => {
               as={IconButton}
               aria-label='Menu'
               background='none'
-              icon={<HamburgerIcon h='25px' w='32px' color='brand.accent' />}
+              icon={<HamburgerIcon h='25px' w='32px' color='brand.accent' background='none' />}
             />
           </Menu>
         </Box>

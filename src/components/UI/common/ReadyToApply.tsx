@@ -17,7 +17,7 @@ export const ReadyToApply: FC<Props> = ({ link }) => {
   return (
     <Stack
       borderRadius='20px'
-      bgGradient='linear(to-b, #FFF8EC 10%, #FEE8DC 100%)'
+      bgGradient='linear(to-b, brand.ready.bgGradient.start 10%, brand.ready.bgGradient.end 100%)'
       h='150px'
       w='100%'
       justifyContent='center'
@@ -25,7 +25,7 @@ export const ReadyToApply: FC<Props> = ({ link }) => {
       <Stack mb={2}>
         <Heading
           as='h4'
-          color='brand.ready'
+          color='brand.ready.text'
           fontSize='h4'
           fontWeight={700}
           lineHeight='22px'

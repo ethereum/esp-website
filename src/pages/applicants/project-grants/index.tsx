@@ -33,7 +33,6 @@ const ProjectGrants: NextPage = () => {
       <Head>
         <title>Ethereum Ecosystem Program | Project Grants</title>
         <meta name='description' content='Project Grants' />
-        <link rel='icon' href='/images/favicon.ico' type='image/x-icon' />
       </Head>
 
       <main>

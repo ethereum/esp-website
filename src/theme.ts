@@ -11,7 +11,13 @@ export default extendTheme({
         100: '#ff4d15',
         200: '#f87045'
       },
-      ready: '#30354b',
+      ready: {
+        text: '#30354b',
+        bgGradient: {
+          start: '#fff8ec',
+          end: '#fee8dc'
+        }
+      },
       border: '#a9a9b8',
       divider: '#e5e5e5',
       footer: {
@@ -25,6 +31,19 @@ export default extendTheme({
           start: '#fff8ec',
           end: '#fee8dc'
         }
+      },
+      faq: {
+        bgGradient: {
+          start: '#ffe5e2',
+          end: '#f3d1ee'
+        }
+      },
+      layout: {
+        bgGradient: {
+          start: '#ffe5e2',
+          end: '#e4deff'
+        },
+        rgba: 'rgba(228, 222, 255, 0)'
       }
     }
   },

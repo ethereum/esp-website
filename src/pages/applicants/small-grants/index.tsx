@@ -24,8 +24,7 @@ const SmallGrants: NextPage = () => {
     <>
       <Head>
         <title>Ethereum Ecosystem Program | Small Grants</title>
-        <meta name='description' content='Project Grants' />
-        <link rel='icon' href='/images/favicon.ico' type='image/x-icon' />
+        <meta name='description' content='Small Grants' />
       </Head>
 
       <main>
