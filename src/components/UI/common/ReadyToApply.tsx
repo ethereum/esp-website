@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 
-import { ImportantText } from '../text';
+import { ImportantText } from '../headings';
 
 import planeVectorSVG from '../../../public/images/plane-vector.svg';
 

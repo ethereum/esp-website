@@ -1,9 +1,10 @@
-import { Text, TextProps } from '@chakra-ui/react';
+import { Heading, HeadingProps } from '@chakra-ui/react';
 import { FC } from 'react';
 
-export const ImportantText: FC<TextProps> = ({ children, ...props }) => {
+export const ImportantText: FC<HeadingProps> = ({ children, ...props }) => {
   return (
-    <Text
+    <Heading
+      as='h4'
       textAlign='center'
       variant='ready'
       fontSize='h4'
@@ -12,6 +13,6 @@ export const ImportantText: FC<TextProps> = ({ children, ...props }) => {
       {...props}
     >
       {children}
-    </Text>
+    </Heading>
   );
 };

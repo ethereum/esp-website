@@ -1,16 +1,60 @@
-import { Flex, Input, Stack } from '@chakra-ui/react';
+import { Button, Center, Flex, FormControl, Input, Stack, useToast } from '@chakra-ui/react';
 import { FC } from 'react';
+import { useForm } from 'react-hook-form';
 
-import { ImportantText, PageText } from '../text';
+import { ImportantText } from '../headings';
+import { PageText } from '../text';
+
+type FormData = {
+  email: string;
+};
 
 export const NewsletterSignup: FC = () => {
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isValid },
+    reset
+  } = useForm<FormData>({
+    mode: 'onChange'
+  });
+  const toast = useToast();
+
+  const onSubmit = (data: FormData) => {
+    if (errors.email) {
+      toast({
+        position: 'top-right',
+        title: 'Email is not valid, please try again.',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+        containerStyle: {
+          fontFamily: 'fonts.heading'
+        }
+      });
+    } else {
+      toast({
+        position: 'top-right',
+        title: 'Success!',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+        containerStyle: {
+          fontFamily: 'fonts.heading'
+        }
+      });
+    }
+
+    reset();
+  };
+
   return (
     <Flex
       id='newsletter'
       direction='column'
       justifyContent='center'
       alignItems='center'
-      bgGradient='linear(to-b, #FFF8EC 10%, #FEE8DC 100%)'
+      bgGradient='linear(to-b, brand.newsletter.bgGradient.start 10%, brand.newsletter.bgGradient.end 100%)'
       px={10}
       py={8}
     >
@@ -25,28 +69,43 @@ export const NewsletterSignup: FC = () => {
         </PageText>
       </Stack>
 
-      <Stack w='100%' mb={3}>
-        <Input
-          placeholder='Enter your email'
-          bg='white'
-          borderRadius={0}
-          borderColor='brand.border'
-          h='56px'
-        />
-      </Stack>
+      <Stack w='100%'>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <FormControl id='email' isRequired mb={3}>
+            <Input
+              type='email'
+              placeholder='Enter your email'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              h='56px'
+              {...register('email', {
+                required: true,
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: 'Invalid email address'
+                }
+              })}
+            />
+          </FormControl>
 
-      <Flex
-        as='button'
-        _hover={{ bg: 'brand.hover' }}
-        backgroundColor='brand.accent'
-        w='148px'
-        py={4}
-        justifyContent='center'
-        alignItems='center'
-        onClick={() => console.log('subscribed!')}
-      >
-        <ImportantText color='white'>Sign up</ImportantText>
-      </Flex>
+          <Center>
+            <Button
+              _hover={{ bg: 'brand.hover' }}
+              backgroundColor='brand.accent'
+              w='148px'
+              py={7}
+              borderRadius={0}
+              justifyContent='center'
+              alignItems='center'
+              type='submit'
+              isDisabled={!isValid}
+            >
+              <ImportantText color='white'>Sign up</ImportantText>
+            </Button>
+          </Center>
+        </form>
+      </Stack>
     </Flex>
   );
 };

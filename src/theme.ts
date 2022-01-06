@@ -26,6 +26,12 @@ export default extendTheme({
           end: '#e06361'
         }
       },
+      newsletter: {
+        bgGradient: {
+          start: '#fff8ec',
+          end: '#fee8dc'
+        }
+      },
       faq: {
         bgGradient: {
           start: '#ffe5e2',
