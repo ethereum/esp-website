@@ -19,8 +19,7 @@ const OfficeHours: NextPage = () => {
     <>
       <Head>
         <title>Ethereum Ecosystem Program | Office Hours</title>
-        <meta name='description' content='Project Grants' />
-        <link rel='icon' href='/images/favicon.ico' type='image/x-icon' />
+        <meta name='description' content='Office Hours' />
       </Head>
 
       <main>
