@@ -33,7 +33,7 @@ const ProjectGrants: NextPage = () => {
         <meta name='description' content='Project Grants' />
       </Head>
 
-      <Stack mb={10}>
+      <Stack mb={8}>
         <section id='description'>
           <PageSubheading mb={8}>Project grants</PageSubheading>
 
