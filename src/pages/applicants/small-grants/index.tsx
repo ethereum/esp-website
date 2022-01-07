@@ -4,18 +4,17 @@ import Head from 'next/head';
 import { useState } from 'react';
 
 import {
-  ApplicantsDescription,
   FAQItem,
   List,
   PageSection,
   PageSubheading,
   PageText,
-  ReadyToApply,
   StepArrow,
   StepHeader,
   StepReadMore,
   VisuallyHiddenText
 } from '../../../components/UI';
+import { ApplicantsLayout } from '../../../components/layout';
 
 const SmallGrants: NextPage = () => {
   const [readMore, setReadMore] = useState(false);
@@ -27,13 +26,7 @@ const SmallGrants: NextPage = () => {
         <meta name='description' content='Small Grants' />
       </Head>
 
-      <main>
-        <Stack mb={32}>
-          <section id='hero'>
-            <ApplicantsDescription />
-          </section>
-        </Stack>
-
+      <ApplicantsLayout linkToApply='/applicants/small-grants/apply'>
         <Stack mb={10}>
           <section id='description'>
             <PageSubheading mb={8}>Small Grants</PageSubheading>
@@ -385,13 +378,7 @@ const SmallGrants: NextPage = () => {
             </Accordion>
           </section>
         </Stack>
-
-        <Stack>
-          <section id='ready-to-apply'>
-            <ReadyToApply link='/applicants/small-grants/apply' />
-          </section>
-        </Stack>
-      </main>
+      </ApplicantsLayout>
     </>
   );
 };
