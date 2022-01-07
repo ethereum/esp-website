@@ -111,7 +111,7 @@ export const ApplicantsLayout: FC = ({ children }) => {
         </Tabs>
       </Flex>
 
-      <Stack px={5} mb={0}>
+      <Stack px={5}>
         <Stack mb={8}>{children}</Stack>
 
         {router.pathname.startsWith(APPLICANTS_PAGES_BASEPATH) &&

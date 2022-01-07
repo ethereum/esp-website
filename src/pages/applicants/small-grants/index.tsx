@@ -77,7 +77,7 @@ const SmallGrants: NextPage = () => {
         </section>
       </Stack>
 
-      <Stack spacing={10} mb={10}>
+      <Stack spacing={10}>
         <section id='process'>
           <PageSection mb={6}>Process</PageSection>
 
