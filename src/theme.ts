@@ -73,13 +73,6 @@ export default extendTheme({
           fontFamily: `Maison Neue Mono, ${base.fonts?.heading}`
         }
       }
-    },
-    Text: {
-      variants: {
-        ready: {
-          fontFamily: `Maison Neue Mono, ${base.fonts?.body}`
-        }
-      }
     }
   }
 });
