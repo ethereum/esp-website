@@ -1,28 +1,38 @@
-import { Box, Flex, Stack, Tab, TabList, Tabs } from '@chakra-ui/react';
-import { FC, useState } from 'react';
+import { Flex, Stack, Tab, TabList, Tabs } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import { FC, useContext, useState } from 'react';
 
 import { ApplicantsDescription, ImportantText, ReadyToApply } from '../UI';
 
+import { ApplicantsContext } from '../../contexts';
+
 import {
+  APPLICANTS_PAGES_BASEPATH,
   APPLICANTS_URL,
   OFFICE_HOURS_URL,
   PROJECT_GRANTS_URL,
   SMALL_GRANTS_URL
 } from '../../constants';
+import { TabMapI } from '../../types';
 
-interface Props {
-  idx: number;
-}
-
-import { useRouter } from 'next/router';
+const tabMap: TabMapI = {
+  [APPLICANTS_URL]: 0,
+  [OFFICE_HOURS_URL]: 1,
+  [SMALL_GRANTS_URL]: 2,
+  [PROJECT_GRANTS_URL]: 3
+};
 
 export const ApplicantsLayout: FC = ({ children }) => {
-  // use context api value here
-  const [tabIndex, setTabIndex] = useState(0);
   const router = useRouter();
+  const { currentTab, setCurrentTab } = useContext(ApplicantsContext);
+  const [tabIndex, setTabIndex] = useState(tabMap[router.pathname]);
+
+  console.log({ currentTab });
+  console.log(router.pathname);
 
   const handleChange = (index: number) => {
     setTabIndex(index);
+    setCurrentTab(index);
 
     switch (index) {
       case 0:
@@ -105,9 +115,7 @@ export const ApplicantsLayout: FC = ({ children }) => {
                 borderBottomColor: 'brand.accent'
               }}
             >
-              <ImportantText color='brand.ready.text' display='inline'>
-                Overview
-              </ImportantText>
+              <ImportantText color='brand.ready.text'>Overview</ImportantText>
             </Tab>
             <Tab
               px={0}
@@ -120,9 +128,7 @@ export const ApplicantsLayout: FC = ({ children }) => {
                 borderBottomColor: 'brand.accent'
               }}
             >
-              <ImportantText color='brand.ready.text' display='inline'>
-                Office Hours
-              </ImportantText>
+              <ImportantText color='brand.ready.text'>Office Hours</ImportantText>
             </Tab>
             <Tab
               px={0}
@@ -135,9 +141,7 @@ export const ApplicantsLayout: FC = ({ children }) => {
                 borderBottomColor: 'brand.accent'
               }}
             >
-              <ImportantText color='brand.ready.text' display='inline'>
-                Small Grants
-              </ImportantText>
+              <ImportantText color='brand.ready.text'>Small Grants</ImportantText>
             </Tab>
             <Tab
               px={0}
@@ -150,20 +154,23 @@ export const ApplicantsLayout: FC = ({ children }) => {
                 borderBottomColor: 'brand.accent'
               }}
             >
-              <ImportantText color='brand.ready.text' display='inline'>
-                Project Grants
-              </ImportantText>
+              <ImportantText color='brand.ready.text'>Project Grants</ImportantText>
             </Tab>
           </TabList>
         </Tabs>
       </Flex>
 
-      {children}
+      <Stack px={5} mb={0}>
+        <Stack mb={8}>{children}</Stack>
 
-      <Stack>
-        <section id='ready-to-apply'>
-          <ReadyToApply link={'#'} />
-        </section>
+        {router.pathname.startsWith(APPLICANTS_PAGES_BASEPATH) &&
+          !router.pathname.endsWith('/apply') && (
+            <Stack>
+              <section id='ready-to-apply'>
+                <ReadyToApply link={`${router.pathname}/apply`} />
+              </section>
+            </Stack>
+          )}
       </Stack>
     </>
   );
