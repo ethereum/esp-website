@@ -7,6 +7,7 @@ import { Layout } from '../components/layout';
 import theme from '../theme';
 
 import '../global.css';
+import 'focus-visible/dist/focus-visible';
 import '@fontsource/libre-franklin/200.css';
 import '@fontsource/libre-franklin/300.css';
 import '@fontsource/libre-franklin/400.css';
