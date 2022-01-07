@@ -1,38 +1,25 @@
 import { Flex, Stack, Tab, TabList, Tabs } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import { FC, useContext, useState } from 'react';
+import { FC, useState } from 'react';
 
 import { ApplicantsDescription, ImportantText, ReadyToApply } from '../UI';
 
-import { ApplicantsContext } from '../../contexts';
-
 import {
   APPLICANTS_PAGES_BASEPATH,
+  APPLICANTS_TABS,
   APPLICANTS_URL,
   OFFICE_HOURS_URL,
   PROJECT_GRANTS_URL,
-  SMALL_GRANTS_URL
+  SMALL_GRANTS_URL,
+  TABS_MAP
 } from '../../constants';
-import { TabMapI } from '../../types';
-
-const tabMap: TabMapI = {
-  [APPLICANTS_URL]: 0,
-  [OFFICE_HOURS_URL]: 1,
-  [SMALL_GRANTS_URL]: 2,
-  [PROJECT_GRANTS_URL]: 3
-};
 
 export const ApplicantsLayout: FC = ({ children }) => {
   const router = useRouter();
-  const { currentTab, setCurrentTab } = useContext(ApplicantsContext);
-  const [tabIndex, setTabIndex] = useState(tabMap[router.pathname]);
-
-  console.log({ currentTab });
-  console.log(router.pathname);
+  const [tabIndex, setTabIndex] = useState(TABS_MAP[router.pathname]);
 
   const handleChange = (index: number) => {
     setTabIndex(index);
-    setCurrentTab(index);
 
     switch (index) {
       case 0:
@@ -104,58 +91,22 @@ export const ApplicantsLayout: FC = ({ children }) => {
           isLazy
         >
           <TabList whiteSpace='nowrap' h='64px'>
-            <Tab
-              px={0}
-              mx={6}
-              pb={0}
-              borderBottom='10px solid'
-              borderBottomColor='transparent'
-              _selected={{
-                borderBottom: '10px solid',
-                borderBottomColor: 'brand.accent'
-              }}
-            >
-              <ImportantText color='brand.ready.text'>Overview</ImportantText>
-            </Tab>
-            <Tab
-              px={0}
-              mx={6}
-              pb={0}
-              borderBottom='10px solid'
-              borderBottomColor='transparent'
-              _selected={{
-                borderBottom: '10px solid',
-                borderBottomColor: 'brand.accent'
-              }}
-            >
-              <ImportantText color='brand.ready.text'>Office Hours</ImportantText>
-            </Tab>
-            <Tab
-              px={0}
-              mx={6}
-              pb={0}
-              borderBottom='10px solid'
-              borderBottomColor='transparent'
-              _selected={{
-                borderBottom: '10px solid',
-                borderBottomColor: 'brand.accent'
-              }}
-            >
-              <ImportantText color='brand.ready.text'>Small Grants</ImportantText>
-            </Tab>
-            <Tab
-              px={0}
-              mx={6}
-              pb={0}
-              borderBottom='10px solid'
-              borderBottomColor='transparent'
-              _selected={{
-                borderBottom: '10px solid',
-                borderBottomColor: 'brand.accent'
-              }}
-            >
-              <ImportantText color='brand.ready.text'>Project Grants</ImportantText>
-            </Tab>
+            {APPLICANTS_TABS.map(tabElement => (
+              <Tab
+                key={tabElement}
+                px={0}
+                mx={6}
+                pb={0}
+                borderBottom='10px solid'
+                borderBottomColor='transparent'
+                _selected={{
+                  borderBottom: '10px solid',
+                  borderBottomColor: 'brand.accent'
+                }}
+              >
+                <ImportantText color='brand.ready.text'>{tabElement}</ImportantText>
+              </Tab>
+            ))}
           </TabList>
         </Tabs>
       </Flex>
