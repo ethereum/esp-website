@@ -1,3 +1,3 @@
-export interface TabMapI {
+export interface TabsMap {
   [name: string]: number;
 }
