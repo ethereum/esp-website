@@ -1,4 +1,4 @@
-import { AccordionButton, AccordionItem, AccordionPanel, Box, Flex } from '@chakra-ui/react';
+import { AccordionButton, AccordionItem, AccordionPanel, Box, Stack } from '@chakra-ui/react';
 import { FC } from 'react';
 
 import { MinusIcon, PlusIcon } from '../../components/UI/icons';
@@ -32,12 +32,7 @@ export const FAQItem: FC<Props> = ({ question, children }) => {
             </Box>
           </AccordionButton>
           <AccordionPanel pb={4}>
-            <Flex ml={8}>
-              <Box mr={3}>
-                <FAQQuestion>A.</FAQQuestion>
-              </Box>
-              <Box maxW='92%'>{children}</Box>
-            </Flex>
+            <Stack ml={8}>{children}</Stack>
           </AccordionPanel>
         </>
       )}
