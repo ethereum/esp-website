@@ -1,7 +1,6 @@
 import { Accordion, Link, ListItem, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { useReducer } from 'react';
 
 import {
   FAQItem,
@@ -10,22 +9,10 @@ import {
   PageSubheading,
   PageText,
   StepArrow,
-  StepHeader,
-  StepReadMore,
-  VisuallyHiddenText
+  StepHeader
 } from '../../../components/UI';
 
-import { processReducer } from '../../../reducers';
-
-const initialProcessState = {
-  apply: false,
-  evaluate: false,
-  decision: false
-};
-
 const ProjectGrants: NextPage = () => {
-  const [readMore, dispatch] = useReducer(processReducer, initialProcessState);
-
   return (
     <>
       <Head>
@@ -74,18 +61,9 @@ const ProjectGrants: NextPage = () => {
               <PageText>
                 You&apos;ll need to fill out the form on the next page as well as a long-form
                 application where you&apos;ll go into depth about your goals, motivations, plans and
-                intended impact. Make sure you have read and
-                <span hidden={readMore.apply}>... </span>{' '}
-                <VisuallyHiddenText readMore={readMore.apply}>
-                  understood our scope and criteria, and see below for advice on crafting a great
-                  application. After submitting, you&apos;ll receive a confirmation email within two
-                  business days.
-                </VisuallyHiddenText>
-                <StepReadMore
-                  hidden={readMore.apply}
-                  onClick={() => dispatch({ type: 'PROCESS_APPLY' })}
-                />
-                <span hidden={readMore.apply}>.</span>
+                intended impact. Make sure you have read and understood our scope and criteria, and
+                see below for advice on crafting a great application. After submitting, you&apos;ll
+                receive a confirmation email within two business days.
               </PageText>
 
               <StepArrow />
@@ -97,17 +75,8 @@ const ProjectGrants: NextPage = () => {
               <PageText>
                 If we determine that a project is in scope for ESP support, we&apos;ll begin a
                 deeper evaluation of the project&apos;s technical approach, potential impact, risks,
-                and other factors. Our next steps might
-                <span hidden={readMore.evaluate}>... </span>{' '}
-                <VisuallyHiddenText readMore={readMore.evaluate}>
-                  include gathering more information, getting input from advisors, and working with
-                  you to refine or rescope the project proposal.
-                </VisuallyHiddenText>
-                <StepReadMore
-                  hidden={readMore.evaluate}
-                  onClick={() => dispatch({ type: 'PROCESS_EVALUATE' })}
-                />
-                <span hidden={readMore.evaluate}>.</span>
+                and other factors. Our next steps might include gathering more information, getting
+                input from advisors, and working with you to refine or rescope the project proposal.
               </PageText>
 
               <StepArrow />
@@ -119,17 +88,8 @@ const ProjectGrants: NextPage = () => {
               <PageText>
                 Once the proposal is finalized, we&apos;ll make an allocation decision based on our
                 assessment as well as input received from advisors. Decision time for a project
-                grant application varies depending on scope
-                <span hidden={readMore.decision}>... </span>{' '}
-                <VisuallyHiddenText readMore={readMore.decision}>
-                  and complexity, and may take a few months from when the application was first
-                  submitted.
-                </VisuallyHiddenText>
-                <StepReadMore
-                  hidden={readMore.decision}
-                  onClick={() => dispatch({ type: 'PROCESS_DECISION' })}
-                />
-                <span hidden={readMore.decision}>.</span>
+                grant application varies depending on scope and complexity, and may take a few
+                months from when the application was first submitted.
               </PageText>
 
               <StepArrow />

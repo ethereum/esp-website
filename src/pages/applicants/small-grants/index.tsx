@@ -1,7 +1,6 @@
 import { Accordion, Link, ListItem, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { useState } from 'react';
 
 import {
   FAQItem,
@@ -10,16 +9,12 @@ import {
   PageSubheading,
   PageText,
   StepArrow,
-  StepHeader,
-  StepReadMore,
-  VisuallyHiddenText
+  StepHeader
 } from '../../../components/UI';
 
 import { OFFICE_HOURS_URL } from '../../../constants';
 
 const SmallGrants: NextPage = () => {
-  const [readMore, setReadMore] = useState(false);
-
   return (
     <>
       <Head>
@@ -100,13 +95,8 @@ const SmallGrants: NextPage = () => {
               <PageText>
                 Every submission is read and considered by the ESP team. You most likely won&apos;t
                 hear from us during the evaluation process for a small grant application, but
-                you&apos;re always welcome to get in touch - just reply to the
-                <span hidden={readMore}>... </span>{' '}
-                <VisuallyHiddenText readMore={readMore}>
-                  confirmation email if you have questions or think of anything else we should know.
-                </VisuallyHiddenText>
-                <StepReadMore hidden={readMore} onClick={() => setReadMore(true)} />
-                <span hidden={readMore}>.</span>
+                you&apos;re always welcome to get in touch - just reply to the confirmation email if
+                you have questions or think of anything else we should know.
               </PageText>
 
               <StepArrow />
