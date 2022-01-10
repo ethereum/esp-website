@@ -6,7 +6,7 @@ export const ImportantText: FC<HeadingProps> = ({ children, ...props }) => {
     <Heading
       as='h4'
       textAlign='center'
-      variant='ready'
+      variant='page-section'
       fontSize='h4'
       fontWeight={700}
       lineHeight='24px'

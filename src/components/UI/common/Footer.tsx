@@ -9,6 +9,8 @@ import efLogoSVG from '../../../public/images/ef-logo.svg';
 import githubLogoSVG from '../../../public/images/github-logo.svg';
 import twitterLogoSVG from '../../../public/images/twitter-logo.svg';
 
+import { ABOUT_URL, APPLICANTS_URL } from '../../../constants';
+
 export const Footer: FC = () => {
   return (
     <Flex
@@ -31,12 +33,12 @@ export const Footer: FC = () => {
               Home
             </ImportantText>
           </Link>
-          <Link href='/applicants' _hover={{ textDecoration: 'none' }}>
+          <Link href={APPLICANTS_URL} _hover={{ textDecoration: 'none' }}>
             <ImportantText color='white' textAlign='left'>
               For Applicants
             </ImportantText>
           </Link>
-          <Link href='/about' _hover={{ textDecoration: 'none' }}>
+          <Link href={ABOUT_URL} _hover={{ textDecoration: 'none' }}>
             <ImportantText color='white' textAlign='left'>
               About ESP
             </ImportantText>
