@@ -1,13 +1,30 @@
-import { Button, Center, Flex, FormControl, Input, Stack, useToast } from '@chakra-ui/react';
+import {
+  Box,
+  BoxProps,
+  Button,
+  ButtonProps,
+  Center,
+  Flex,
+  FormControl,
+  Input,
+  Stack,
+  useToast
+} from '@chakra-ui/react';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
+import { motion } from 'framer-motion';
 
 import { ImportantText } from '../headings';
 import { PageText } from '../text';
 
+import { useShadowAnimation } from '../../../hooks';
+
 type FormData = {
   email: string;
 };
+
+const MotionBox = motion<BoxProps>(Box);
+const MotionButton = motion<ButtonProps>(Button);
 
 export const NewsletterSignup: FC = () => {
   const {
@@ -19,6 +36,7 @@ export const NewsletterSignup: FC = () => {
     mode: 'onChange'
   });
   const toast = useToast();
+  const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
 
   const onSubmit = (data: FormData) => {
     if (errors.email) {
@@ -90,19 +108,34 @@ export const NewsletterSignup: FC = () => {
           </FormControl>
 
           <Center>
-            <Button
-              _hover={{ bg: 'brand.hover' }}
-              backgroundColor='brand.accent'
-              w='148px'
-              py={7}
-              borderRadius={0}
-              justifyContent='center'
-              alignItems='center'
-              type='submit'
-              isDisabled={!isValid}
-            >
-              <ImportantText color='white'>Sign up</ImportantText>
-            </Button>
+            <Box position='relative'>
+              <MotionBox
+                backgroundColor='brand.shadow'
+                h='56px'
+                w='148px'
+                position='absolute'
+                animate={shadowBoxControl}
+                opacity={!isValid ? 0 : 1}
+              />
+
+              <MotionButton
+                backgroundColor='brand.accent'
+                w='148px'
+                py={7}
+                borderRadius={0}
+                justifyContent='center'
+                alignItems='center'
+                type='submit'
+                isDisabled={!isValid}
+                _hover={{ bg: 'brand.hover' }}
+                whileHover={{ x: -1.5, y: -1.5 }}
+                onMouseEnter={() => setButtonHovered(true)}
+                onMouseLeave={() => setButtonHovered(false)}
+                pointerEvents={!isValid ? 'none' : 'auto'}
+              >
+                <ImportantText color='white'>Sign up</ImportantText>
+              </MotionButton>
+            </Box>
           </Center>
         </form>
       </Stack>
