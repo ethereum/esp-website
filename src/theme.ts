@@ -4,6 +4,7 @@ export default extendTheme({
   colors: {
     brand: {
       accent: '#f85858',
+      shadow: '#e34550',
       hover: '#fb7971',
       heading: '#e44550',
       paragraph: '#232264',
