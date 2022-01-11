@@ -73,6 +73,13 @@ export default extendTheme({
           fontFamily: `Maison Neue Mono, ${base.fonts?.heading}`
         }
       }
+    },
+    MenuButton: {
+      variants: {
+        transparent: {
+          background: 'none'
+        }
+      }
     }
   }
 });
