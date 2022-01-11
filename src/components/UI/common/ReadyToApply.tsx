@@ -1,9 +1,11 @@
 import { Box, BoxProps, Center, Flex, FlexProps, Heading, Link, Stack } from '@chakra-ui/react';
-import { motion, useAnimation } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 
 import { ImportantText } from '../headings';
+
+import { useShadowAnimation } from '../../../hooks';
 
 import planeVectorSVG from '../../../public/images/plane-vector.svg';
 
@@ -15,20 +17,7 @@ const MotionBox = motion<BoxProps>(Box);
 const MotionFlex = motion<FlexProps>(Flex);
 
 export const ReadyToApply: FC<Props> = ({ link }) => {
-  const [buttonHovered, setbButtonHovered] = useState(false);
-  const shadowBox = useAnimation();
-
-  useEffect(() => {
-    const sequence = async () => {
-      if (buttonHovered) {
-        shadowBox.start({ x: 1.5, y: 1.5 });
-      } else {
-        shadowBox.start({ x: 0, y: 0 });
-      }
-    };
-
-    sequence();
-  }, [buttonHovered, shadowBox]);
+  const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
 
   return (
     <Stack
@@ -62,7 +51,7 @@ export const ReadyToApply: FC<Props> = ({ link }) => {
               justifyContent='center'
               alignItems='center'
               position='absolute'
-              animate={shadowBox}
+              animate={shadowBoxControl}
             />
 
             <MotionFlex
@@ -73,8 +62,8 @@ export const ReadyToApply: FC<Props> = ({ link }) => {
               alignItems='center'
               position='relative'
               _hover={{ bg: 'brand.hover' }}
-              onMouseEnter={() => setbButtonHovered(true)}
-              onMouseLeave={() => setbButtonHovered(false)}
+              onMouseEnter={() => setButtonHovered(true)}
+              onMouseLeave={() => setButtonHovered(false)}
               whileHover={{ x: -1.5, y: -1.5 }}
             >
               <ImportantText color='white'>Apply</ImportantText>
