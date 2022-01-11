@@ -12,7 +12,15 @@ import {
   StepHeader
 } from '../../../components/UI';
 
-import { WHAT_WE_SUPPORT_URL } from '../../../constants';
+import {
+  EF_JOBS_URL,
+  EF_PHILOSOPHY_URL,
+  ETHEREUM_COMMUNITY_URL,
+  ETHEREUM_BROAD_ECOSYSTEM_URL,
+  ETHEREUM_JOBS_URL,
+  ETHEREUM_ORG_URL,
+  WHAT_WE_SUPPORT_URL
+} from '../../../constants';
 
 const OfficeHours: NextPage = () => {
   return (
@@ -127,7 +135,7 @@ const OfficeHours: NextPage = () => {
             <Link
               fontWeight={700}
               color='brand.orange.100'
-              href='https://ethereum.foundation/philosophy/'
+              href={EF_PHILOSOPHY_URL}
               isExternal
               _hover={{ textDecoration: 'none' }}
             >
@@ -210,7 +218,7 @@ const OfficeHours: NextPage = () => {
               <Link
                 fontWeight={700}
                 color='brand.orange.100'
-                href='https://ethereum.org'
+                href={ETHEREUM_ORG_URL}
                 isExternal
                 _hover={{ textDecoration: 'none' }}
               >
@@ -223,7 +231,7 @@ const OfficeHours: NextPage = () => {
               <Link
                 fontWeight={700}
                 color='brand.orange.100'
-                href='https://ethereum.org/en/community/#ethereum-jobs'
+                href={ETHEREUM_JOBS_URL}
                 isExternal
                 _hover={{ textDecoration: 'none' }}
               >
@@ -236,7 +244,7 @@ const OfficeHours: NextPage = () => {
               <Link
                 fontWeight={700}
                 color='brand.orange.100'
-                href='https://ethereum.bamboohr.com/jobs/'
+                href={EF_JOBS_URL}
                 isExternal
                 _hover={{ textDecoration: 'none' }}
               >
@@ -250,7 +258,7 @@ const OfficeHours: NextPage = () => {
               <Link
                 fontWeight={700}
                 color='brand.orange.100'
-                href='https://ethereum.org/en/community/'
+                href={ETHEREUM_COMMUNITY_URL}
                 isExternal
                 _hover={{ textDecoration: 'none' }}
               >
@@ -263,7 +271,7 @@ const OfficeHours: NextPage = () => {
               <Link
                 fontWeight={700}
                 color='brand.orange.100'
-                href='https://ethereum.org/en/community/grants/#broad-ethereum-ecosystem'
+                href={ETHEREUM_BROAD_ECOSYSTEM_URL}
                 isExternal
                 _hover={{ textDecoration: 'none' }}
               >
