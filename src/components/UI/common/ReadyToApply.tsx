@@ -19,8 +19,6 @@ export const ReadyToApply: FC<Props> = ({ link }) => {
   const shadowBox = useAnimation();
 
   useEffect(() => {
-    console.log({ buttonHovered });
-
     const sequence = async () => {
       if (buttonHovered) {
         shadowBox.start({ x: 1.5, y: 1.5 });
