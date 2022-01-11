@@ -47,9 +47,6 @@ export const ReadyToApply: FC<Props> = ({ link }) => {
               backgroundColor='brand.shadow'
               h='56px'
               w='208px'
-              py={4}
-              justifyContent='center'
-              alignItems='center'
               position='absolute'
               animate={shadowBoxControl}
             />
@@ -62,9 +59,9 @@ export const ReadyToApply: FC<Props> = ({ link }) => {
               alignItems='center'
               position='relative'
               _hover={{ bg: 'brand.hover' }}
+              whileHover={{ x: -1.5, y: -1.5 }}
               onMouseEnter={() => setButtonHovered(true)}
               onMouseLeave={() => setButtonHovered(false)}
-              whileHover={{ x: -1.5, y: -1.5 }}
             >
               <ImportantText color='white'>Apply</ImportantText>
 
