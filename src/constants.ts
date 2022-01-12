@@ -11,6 +11,9 @@ export const OFFICE_HOURS_URL = '/applicants/office-hours';
 export const SMALL_GRANTS_URL = '/applicants/small-grants';
 export const PROJECT_GRANTS_URL = '/applicants/project-grants';
 
+// apply forms
+export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
+
 // tabs
 export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Small Grants', 'Project Grants'];
 export const TABS_MAP: TabsMap = {
