@@ -1426,3 +1426,12 @@ export const TIMEZONE_OPTIONS = [
     label: 'GMT–11:00 Samoa Standard Time (Pacific/Pago_Pago)'
   }
 ];
+
+// how did you hear about ESP
+export const HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS = [
+  { value: 'Ethereum Blog', label: 'Ethereum Blog' },
+  { value: 'Ethereum Community Events', label: 'Ethereum Community Events' },
+  { value: 'ESP Newsletter', label: 'ESP Newsletter' },
+  { value: 'Other team/projects in ecosystem', label: 'Other team/projects in ecosystem' },
+  { value: 'Other', label: 'Other' }
+];
