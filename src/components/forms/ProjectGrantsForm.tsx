@@ -16,6 +16,7 @@ import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 import { ImportantText } from '../UI/headings';
 import { PageText } from '../UI/text';
@@ -31,28 +32,30 @@ import {
   COUNTRY_OPTIONS,
   HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
   PROJECT_CATEGORY_OPTIONS,
+  PROJECT_GRANTS_THANK_YOU_PAGE_URL,
   TIMEZONE_OPTIONS
 } from '../../constants';
 
-type FormData = {
-  email: string;
-};
+import { ProjectGrantsFormData } from '../../types';
 
 const MotionBox = motion<BoxProps>(Box);
 const MotionButton = motion<ButtonProps>(Button);
 
 export const ProjectGrantsForm: FC = () => {
+  const router = useRouter();
   const {
     handleSubmit,
     register,
     formState: { errors, isValid },
     reset
-  } = useForm<FormData>({
+  } = useForm<ProjectGrantsFormData>({
     mode: 'onChange'
   });
   const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
 
-  const onSubmit = data => {};
+  const onSubmit = (data: ProjectGrantsFormData) => {
+    router.push(PROJECT_GRANTS_THANK_YOU_PAGE_URL);
+  };
 
   return (
     <Stack
@@ -65,13 +68,13 @@ export const ProjectGrantsForm: FC = () => {
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormControl isRequired mb={8}>
-          <FormLabel htmlFor='project-name'>
+          <FormLabel htmlFor='projectName'>
             <PageText display='inline' fontSize='input'>
               Project name
             </PageText>
           </FormLabel>
           <Input
-            id='project-name'
+            id='projectName'
             type='text'
             placeholder='Enter project name'
             bg='white'
@@ -85,13 +88,13 @@ export const ProjectGrantsForm: FC = () => {
         </FormControl>
 
         <FormControl isRequired mb={8}>
-          <FormLabel htmlFor='organization-name'>
+          <FormLabel htmlFor='organizationName'>
             <PageText display='inline' fontSize='input'>
               Organization name
             </PageText>
           </FormLabel>
           <Input
-            id='organization-name'
+            id='organizationName'
             type='text'
             placeholder='Enter organization name'
             bg='white'
@@ -174,15 +177,16 @@ export const ProjectGrantsForm: FC = () => {
         </FormControl>
 
         <FormControl isRequired mb={8}>
-          <FormLabel htmlFor='team-profile'>
+          <FormLabel htmlFor='teamProfile'>
             <PageText display='inline' fontSize='input'>
               Team Profile
             </PageText>
           </FormLabel>
           <Textarea
-            id='team-profile'
-            value={''}
-            onChange={() => {}}
+            id='teamProfile'
+            // TODO: change this when input validation is added
+            // value={''}
+            // onChange={() => {}}
             placeholder="Briefly describe your organization. Provide links to previous work. How is your organization suited to the project's objectives, and how does it provide the necessary expertise?"
             bg='white'
             borderRadius={0}
@@ -195,15 +199,16 @@ export const ProjectGrantsForm: FC = () => {
         </FormControl>
 
         <FormControl isRequired mb={8}>
-          <FormLabel htmlFor='project-summary'>
+          <FormLabel htmlFor='projectSummary'>
             <PageText display='inline' fontSize='input'>
               Brief Project Summary
             </PageText>
           </FormLabel>
           <Textarea
-            id='project-summary'
-            value={''}
-            onChange={() => {}}
+            id='projectSummary'
+            // TODO: change this when input validation is added
+            // value={''}
+            // onChange={() => {}}
             placeholder="Describe your project in a few sentences (you'll have the chance to go into more detail in the long form). If it's already underway, provide links to any existing published work."
             bg='white'
             borderRadius={0}
@@ -217,14 +222,14 @@ export const ProjectGrantsForm: FC = () => {
 
         {/* {TODO: Project Category values are not defined yet} */}
         <FormControl isRequired mb={8}>
-          <FormLabel htmlFor='project-category'>
+          <FormLabel htmlFor='projectCategory'>
             <PageText display='inline' fontSize='input'>
               Project Category
             </PageText>
           </FormLabel>
 
           <Select
-            id='project-category'
+            id='projectCategory'
             options={PROJECT_CATEGORY_OPTIONS}
             components={{ DropdownIndicator }}
             placeholder='Select'
@@ -235,13 +240,13 @@ export const ProjectGrantsForm: FC = () => {
         </FormControl>
 
         <FormControl isRequired mb={8}>
-          <FormLabel htmlFor='requested-amount'>
+          <FormLabel htmlFor='requestedAmount'>
             <PageText display='inline' fontSize='input'>
               Requested Amount
             </PageText>
           </FormLabel>
           <Input
-            id='requested-amount'
+            id='requestedAmount'
             type='text'
             placeholder='Estimated grant amount. Ex: USD 50,000'
             bg='white'
@@ -255,13 +260,13 @@ export const ProjectGrantsForm: FC = () => {
         </FormControl>
 
         <FormControl isRequired mb={8}>
-          <FormLabel htmlFor='first-name'>
+          <FormLabel htmlFor='firstName'>
             <PageText display='inline' fontSize='input'>
               First Name
             </PageText>
           </FormLabel>
           <Input
-            id='first-name'
+            id='firstName'
             type='text'
             placeholder='Enter your first name'
             bg='white'
@@ -275,13 +280,13 @@ export const ProjectGrantsForm: FC = () => {
         </FormControl>
 
         <FormControl isRequired mb={8}>
-          <FormLabel htmlFor='last-name'>
+          <FormLabel htmlFor='lastName'>
             <PageText display='inline' fontSize='input'>
               Last Name
             </PageText>
           </FormLabel>
           <Input
-            id='last-name'
+            id='lastName'
             type='text'
             placeholder='Enter your last name'
             bg='white'
@@ -369,14 +374,14 @@ export const ProjectGrantsForm: FC = () => {
         </FormControl>
 
         <FormControl isRequired mb={8}>
-          <FormLabel htmlFor='how-did-you-hear-about-esp'>
+          <FormLabel htmlFor='howDidYouHearAboutESP'>
             <PageText display='inline' fontSize='input'>
               How did you hear about the Ecosystem Support Program?
             </PageText>
           </FormLabel>
 
           <Select
-            id='how-did-you-hear-about-esp'
+            id='howDidYouHearAboutESP'
             options={HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS}
             components={{ DropdownIndicator }}
             placeholder='Select'
