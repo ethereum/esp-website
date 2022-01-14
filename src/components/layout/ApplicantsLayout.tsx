@@ -114,15 +114,15 @@ export const ApplicantsLayout: FC = ({ children }) => {
       <Stack px={5}>
         <Stack mb={8}>{children}</Stack>
 
-        {(router.pathname.startsWith(APPLICANTS_PAGES_BASEPATH) &&
-          !router.pathname.endsWith('/apply')) ||
-          (!router.pathname.endsWith('/thank-you') && (
+        {router.pathname.startsWith(APPLICANTS_PAGES_BASEPATH) &&
+          !router.pathname.endsWith('/apply') &&
+          !router.pathname.endsWith('/thank-you') && (
             <Stack>
               <section id='ready-to-apply'>
                 <ReadyToApply link={`${router.pathname}/apply`} />
               </section>
             </Stack>
-          ))}
+          )}
       </Stack>
     </>
   );
