@@ -12,7 +12,7 @@ export const PlaceholderImage: FC<Props> = ({ height, width }) => {
       alignItems='center'
       alignSelf='center'
       justifyContent='center'
-      backgroundColor='brand.divider'
+      backgroundColor='brand.divider.100'
       borderRadius='100%'
       h={height}
       w={{ base: '300px', md: width }}

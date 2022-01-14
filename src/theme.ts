@@ -20,7 +20,10 @@ export default extendTheme({
         }
       },
       border: '#a9a9b8',
-      divider: '#e5e5e5',
+      divider: {
+        100: '#e5e5e5',
+        200: '#a1a0ba'
+      },
       footer: {
         bgGradient: {
           start: '#e07861',
@@ -45,7 +48,8 @@ export default extendTheme({
           end: '#e4deff'
         },
         rgba: 'rgba(228, 222, 255, 0)'
-      }
+      },
+      option: '#ffefec'
     }
   },
   fonts: {
@@ -60,7 +64,8 @@ export default extendTheme({
     faq: {
       question: '16px'
     },
-    paragraph: '15px'
+    paragraph: '15px',
+    input: '14px'
   },
   sizes: {
     container: {

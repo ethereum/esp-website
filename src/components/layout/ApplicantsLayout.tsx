@@ -80,7 +80,7 @@ export const ApplicantsLayout: FC = ({ children }) => {
         backgroundColor='white'
         overflowX='auto'
         borderBottom='1px solid'
-        borderBottomColor='brand.divider'
+        borderBottomColor='brand.divider.100'
       >
         <Tabs
           id='tabbed-navigation'

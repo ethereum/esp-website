@@ -23,7 +23,7 @@ export const Footer: FC = () => {
       </Center>
 
       <Center px={5}>
-        <Divider borderColor='brand.divider' opacity={1} />
+        <Divider borderColor='brand.divider.100' opacity={1} />
       </Center>
 
       <Flex px={5} py={6} justifyContent='center'>
@@ -101,7 +101,7 @@ export const Footer: FC = () => {
       </Flex>
 
       <Center px={5}>
-        <Divider borderColor='brand.divider' opacity={1} />
+        <Divider borderColor='brand.divider.100' opacity={1} />
       </Center>
 
       <Stack px={5} pt={3} pb={5}>
