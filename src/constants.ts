@@ -15,7 +15,24 @@ export const PROJECT_GRANTS_THANK_YOU_PAGE_URL = '/applicants/project-grants/tha
 // apply forms
 export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
 
-// ESP
+// ethereum ecosystem
+export const ETHEREUM_ORG_URL = 'https://ethereum.org/';
+export const ETHEREUM_PRIVACY_POLICY_URL = 'https://ethereum.org/en/privacy-policy/';
+export const ETHEREUM_TERMS_OF_USE_URL = 'https://ethereum.org/en/terms-of-use/';
+export const ETHEREUM_GITHUB_URL = 'https://github.com/ethereum';
+export const ETHEREUM_JOBS_URL = 'https://ethereum.org/en/community/#ethereum-jobs';
+export const ETHEREUM_COMMUNITY_URL = 'https://ethereum.org/en/community/';
+export const ETHEREUM_BROAD_ECOSYSTEM_URL =
+  'https://ethereum.org/en/community/grants/#broad-ethereum-ecosystem';
+export const ETHEREUM_GRANTS_URL = 'https://ethereum.org/en/community/grants/';
+
+// EF
+export const EF_PHILOSOPHY_URL = 'https://ethereum.foundation/philosophy/';
+export const EF_JOBS_URL = 'https://ethereum.bamboohr.com/jobs/';
+
+// ESP external links
+export const ESP_BLOG_URL = 'https://blog.ethereum.org/category/ecosystem-support-program/';
+export const ESP_TWITTER_URL = 'https://twitter.com/EF_ESP';
 export const ESP_EMAIL_ADDRESS = 'mailto:esp@ethereum.org';
 
 // tabs
@@ -1441,3 +1458,14 @@ export const HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS = [
   { value: 'Other team/projects in ecosystem', label: 'Other team/projects in ecosystem' },
   { value: 'Other', label: 'Other' }
 ];
+
+// mobile menu
+export const MOBILE_MENU = [
+  { href: '/', text: 'Home' },
+  { href: APPLICANTS_URL, text: 'For Applicants' },
+  { href: ABOUT_URL, text: 'About ESP' },
+  { href: ESP_BLOG_URL, text: 'Blog' }
+];
+
+// external links
+export const ETHRESEARCH_URL = 'https://ethresear.ch/';

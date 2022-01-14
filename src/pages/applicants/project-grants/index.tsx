@@ -11,6 +11,7 @@ import {
   StepArrow,
   StepHeader
 } from '../../../components/UI';
+import { ETHEREUM_COMMUNITY_URL, ETHEREUM_GRANTS_URL, ETHRESEARCH_URL } from '../../../constants';
 
 const ProjectGrants: NextPage = () => {
   return (
@@ -296,19 +297,14 @@ const ProjectGrants: NextPage = () => {
                 fit, or not the right time - that doesn&apos;t mean the work you&apos;re doing
                 isn&apos;t important. Consider continuing to develop your idea at a hackathon or by
                 posting to forums like{' '}
-                <Link
-                  fontWeight={700}
-                  color='brand.orange.100'
-                  href='https://ethresear.ch/'
-                  isExternal
-                >
+                <Link fontWeight={700} color='brand.orange.100' href={ETHRESEARCH_URL} isExternal>
                   ethresear.ch
                 </Link>
                 , looking into{' '}
                 <Link
                   fontWeight={700}
                   color='brand.orange.100'
-                  href='https://ethereum.org/en/community/grants/'
+                  href={ETHEREUM_GRANTS_URL}
                   isExternal
                 >
                   other funding sources
@@ -317,7 +313,7 @@ const ProjectGrants: NextPage = () => {
                 <Link
                   fontWeight={700}
                   color='brand.orange.100'
-                  href='https://ethereum.org/en/community/'
+                  href={ETHEREUM_COMMUNITY_URL}
                   isExternal
                 >
                   community groups or events
