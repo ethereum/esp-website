@@ -432,7 +432,7 @@ export const ProjectGrantsForm: FC = () => {
         <Center>
           <Box position='relative'>
             <MotionBox
-              backgroundColor='brand.shadow'
+              backgroundColor='brand.button.shadow'
               h='56px'
               w='310px'
               position='absolute'

@@ -44,7 +44,7 @@ export const ReadyToApply: FC<Props> = ({ link }) => {
         <Link href={link} _hover={{ textDecoration: 'none' }}>
           <Box position='relative'>
             <MotionBox
-              backgroundColor='brand.shadow'
+              backgroundColor='brand.button.shadow'
               h='56px'
               w='208px'
               position='absolute'

@@ -4,7 +4,9 @@ export default extendTheme({
   colors: {
     brand: {
       accent: '#f85858',
-      shadow: '#e34550',
+      button: {
+        shadow: '#e34550'
+      },
       hover: '#fb7971',
       heading: '#e44550',
       paragraph: '#232264',
@@ -88,5 +90,8 @@ export default extendTheme({
         }
       }
     }
+  },
+  shadows: {
+    select: '0px 3px 5px rgba(0, 0, 0, 0.25)'
   }
 });
