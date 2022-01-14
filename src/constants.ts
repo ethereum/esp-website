@@ -10,9 +10,13 @@ export const APPLICANTS_PAGES_BASEPATH = '/applicants/';
 export const OFFICE_HOURS_URL = '/applicants/office-hours';
 export const SMALL_GRANTS_URL = '/applicants/small-grants';
 export const PROJECT_GRANTS_URL = '/applicants/project-grants';
+export const PROJECT_GRANTS_THANK_YOU_PAGE_URL = '/applicants/project-grants/thank-you';
 
 // apply forms
 export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
+
+// ESP
+export const ESP_EMAIL_ADDRESS = 'mailto:esp@ethereum.org';
 
 // tabs
 export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Small Grants', 'Project Grants'];
@@ -20,7 +24,9 @@ export const TABS_MAP: TabsMap = {
   [APPLICANTS_URL]: 0,
   [OFFICE_HOURS_URL]: 1,
   [SMALL_GRANTS_URL]: 2,
-  [PROJECT_GRANTS_URL]: 3
+  [PROJECT_GRANTS_URL]: 3,
+  [PROJECT_GRANTS_APPLY_URL]: 3,
+  [PROJECT_GRANTS_THANK_YOU_PAGE_URL]: 3
 };
 
 // project categories
