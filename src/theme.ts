@@ -49,7 +49,8 @@ export default extendTheme({
         },
         rgba: 'rgba(228, 222, 255, 0)'
       },
-      option: '#ffefec'
+      option: '#ffefec',
+      uploadProposal: 'rgba(189, 189, 189, 0.2)'
     }
   },
   fonts: {
