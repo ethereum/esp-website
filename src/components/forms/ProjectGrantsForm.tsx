@@ -18,15 +18,14 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import { ImportantText } from '../UI/headings';
-import { PageText } from '../UI/text';
-
-import { DropdownIndicator } from '../UI/common';
+import { DropdownIndicator, ImportantText, PageText } from '../UI';
 
 import { useShadowAnimation } from '../../hooks';
 
 import { chakraStyles } from './chakraStyles';
+
 import planeVectorSVG from '../../public/images/plane-vector.svg';
+import uploadSVG from '../../public/images/upload.svg';
 
 import {
   COUNTRY_OPTIONS,
@@ -391,7 +390,7 @@ export const ProjectGrantsForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl mb={8}>
+        <FormControl mb={12}>
           <FormLabel htmlFor='recommendation'>
             <PageText fontSize='input'>
               Did anyone recommend that you contact Ecosystem Support?
@@ -410,6 +409,25 @@ export const ProjectGrantsForm: FC = () => {
             fontSize='input'
           />
         </FormControl>
+
+        <Center mb={12}>
+          <Flex
+            h='136px'
+            w='100%'
+            bgColor='brand.uploadProposal'
+            justifyContent='center'
+            alignItems='center'
+            cursor='pointer'
+          >
+            <Box mr={5}>
+              <Image src={uploadSVG} alt='Upload file' height={42} width={44} />
+            </Box>
+
+            <PageText fontSize='input' fontWeight={400} lineHeight='21px' maxW='220px'>
+              Upload the proposal. Click here or drag file to this box.
+            </PageText>
+          </Flex>
+        </Center>
 
         <Center>
           <Box position='relative'>
