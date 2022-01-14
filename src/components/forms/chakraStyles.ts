@@ -28,7 +28,8 @@ export const chakraStyles: ChakraStylesConfig = {
   menu: provided => ({
     ...provided,
     borderRadius: 0,
-    mt: '1px'
+    mt: '1px',
+    boxShadow: 'select'
   }),
   menuList: provided => ({
     ...provided,
