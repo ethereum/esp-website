@@ -1,5 +1,8 @@
 import {
   Box,
+  BoxProps,
+  Button,
+  ButtonProps,
   Center,
   Flex,
   FormControl,
@@ -11,12 +14,18 @@ import {
 import { Select } from 'chakra-react-select';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 
-import { ImportantText } from '../headings';
+import { ImportantText } from '../UI/headings';
 import { PageText } from '../UI/text';
 
 import { DropdownIndicator } from '../UI/common';
+
+import { useShadowAnimation } from '../../hooks';
+
 import { chakraStyles } from './chakraStyles';
+import planeVectorSVG from '../../public/images/plane-vector.svg';
 
 import {
   COUNTRY_OPTIONS,
@@ -29,6 +38,9 @@ type FormData = {
   email: string;
 };
 
+const MotionBox = motion<BoxProps>(Box);
+const MotionButton = motion<ButtonProps>(Button);
+
 export const ProjectGrantsForm: FC = () => {
   const {
     handleSubmit,
@@ -38,6 +50,7 @@ export const ProjectGrantsForm: FC = () => {
   } = useForm<FormData>({
     mode: 'onChange'
   });
+  const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
 
   const onSubmit = data => {};
 
@@ -327,6 +340,7 @@ export const ProjectGrantsForm: FC = () => {
           </FormLabel>
 
           <Select
+            id='country'
             options={COUNTRY_OPTIONS}
             components={{ DropdownIndicator }}
             placeholder='Select'
@@ -344,6 +358,7 @@ export const ProjectGrantsForm: FC = () => {
           </FormLabel>
 
           <Select
+            id='timezone'
             options={TIMEZONE_OPTIONS}
             components={{ DropdownIndicator }}
             placeholder='Select'
@@ -361,6 +376,7 @@ export const ProjectGrantsForm: FC = () => {
           </FormLabel>
 
           <Select
+            id='how-did-you-hear-about-esp'
             options={HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS}
             components={{ DropdownIndicator }}
             placeholder='Select'
@@ -389,6 +405,39 @@ export const ProjectGrantsForm: FC = () => {
             fontSize='input'
           />
         </FormControl>
+
+        <Center>
+          <Box position='relative'>
+            <MotionBox
+              backgroundColor='brand.shadow'
+              h='56px'
+              w='310px'
+              position='absolute'
+              animate={shadowBoxControl}
+              opacity={!isValid ? 0 : 1}
+            />
+
+            <MotionButton
+              backgroundColor='brand.accent'
+              w='310px'
+              py={7}
+              borderRadius={0}
+              type='submit'
+              isDisabled={!isValid}
+              _hover={{ bg: 'brand.hover' }}
+              whileHover={{ x: -1.5, y: -1.5 }}
+              onMouseEnter={() => setButtonHovered(true)}
+              onMouseLeave={() => setButtonHovered(false)}
+              pointerEvents={!isValid ? 'none' : 'auto'}
+            >
+              <ImportantText color='white'>Submit Application</ImportantText>
+
+              <Flex pl={5}>
+                <Image src={planeVectorSVG} alt='paper plane vector' height='29px' width='32px' />
+              </Flex>
+            </MotionButton>
+          </Box>
+        </Center>
       </form>
     </Stack>
   );
