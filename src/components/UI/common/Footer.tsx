@@ -9,7 +9,16 @@ import efLogoSVG from '../../../public/images/ef-logo.svg';
 import githubLogoSVG from '../../../public/images/github-logo.svg';
 import twitterLogoSVG from '../../../public/images/twitter-logo.svg';
 
-import { ABOUT_URL, APPLICANTS_URL } from '../../../constants';
+import {
+  ABOUT_URL,
+  APPLICANTS_URL,
+  ESP_BLOG_URL,
+  ESP_TWITTER_URL,
+  ETHEREUM_GITHUB_URL,
+  ETHEREUM_ORG_URL,
+  ETHEREUM_PRIVACY_POLICY_URL,
+  ETHEREUM_TERMS_OF_USE_URL
+} from '../../../constants';
 
 export const Footer: FC = () => {
   return (
@@ -43,11 +52,7 @@ export const Footer: FC = () => {
               About ESP
             </ImportantText>
           </Link>
-          <Link
-            href='https://blog.ethereum.org/category/ecosystem-support-program/'
-            isExternal
-            _hover={{ textDecoration: 'none' }}
-          >
+          <Link href={ESP_BLOG_URL} isExternal _hover={{ textDecoration: 'none' }}>
             <ImportantText color='white' textAlign='left'>
               Blog
             </ImportantText>
@@ -55,20 +60,12 @@ export const Footer: FC = () => {
         </Stack>
 
         <Stack>
-          <Link
-            href='https://ethereum.org/en/privacy-policy/'
-            isExternal
-            _hover={{ textDecoration: 'none' }}
-          >
+          <Link href={ETHEREUM_PRIVACY_POLICY_URL} isExternal _hover={{ textDecoration: 'none' }}>
             <ImportantText color='white' textAlign='left'>
               Privacy Policy
             </ImportantText>
           </Link>
-          <Link
-            href='https://ethereum.org/en/terms-of-use/'
-            isExternal
-            _hover={{ textDecoration: 'none' }}
-          >
+          <Link href={ETHEREUM_TERMS_OF_USE_URL} isExternal _hover={{ textDecoration: 'none' }}>
             <ImportantText color='white' textAlign='left'>
               Terms of Use
             </ImportantText>
@@ -78,7 +75,7 @@ export const Footer: FC = () => {
               Cookie Policy
             </ImportantText>
           </Link>
-          <Link href='https://ethereum.org/en/' isExternal _hover={{ textDecoration: 'none' }}>
+          <Link href={ETHEREUM_ORG_URL} isExternal _hover={{ textDecoration: 'none' }}>
             <ImportantText color='white' textAlign='left'>
               Ethereum.org
             </ImportantText>
@@ -88,13 +85,13 @@ export const Footer: FC = () => {
 
       <Flex justifyContent='center' alignItems='center' pt={3} pb={6}>
         <Box mr={8}>
-          <Link href='https://twitter.com/EF_ESP' isExternal>
+          <Link href={ESP_TWITTER_URL} isExternal>
             <Image src={twitterLogoSVG} alt='Twitter logo' height={42} width={52} />
           </Link>
         </Box>
 
         <Box>
-          <Link href='https://github.com/ethereum' isExternal>
+          <Link href={ETHEREUM_GITHUB_URL} isExternal>
             <Image src={githubLogoSVG} alt='GitHub logo' height={51} width={50} />
           </Link>
         </Box>
