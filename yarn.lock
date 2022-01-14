@@ -1033,11 +1033,6 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.4.tgz#fcf7205c25dff795ee79af1e30da2c9790808f11"
   integrity sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ==
 
-"@types/react-select-country-list@^2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@types/react-select-country-list/-/react-select-country-list-2.2.0.tgz#26cb825cc72943ea5775c305abecfc06f15784b4"
-  integrity sha512-VECRojGGvbnkhXZUYmMS+AiGe5O/jzVpD5BXXlOC532qJCGNAJ+Pgm6ka9rEz7qi12v26/GwnyqrNn51IMdrZg==
-
 "@types/react-transition-group@^4.4.0":
   version "4.4.4"
   resolved "https://registry.yarnpkg.com/@types/react-transition-group/-/react-transition-group-4.4.4.tgz#acd4cceaa2be6b757db61ed7b432e103242d163e"
