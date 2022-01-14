@@ -79,7 +79,7 @@ export const NavMobile: FC = () => {
                   ))}
 
                   <Center>
-                    <Divider borderColor='brand.divider' opacity={1} w={72} mt={1} mb={-2} />
+                    <Divider borderColor='brand.divider.100' opacity={1} w={72} mt={1} mb={-2} />
                   </Center>
 
                   <Link href={ETHEREUM_ORG_URL} isExternal _hover={{ textDecoration: 'none' }}>
