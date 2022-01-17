@@ -22,7 +22,7 @@ import { DropdownIndicator, ImportantText, PageText } from '../UI';
 
 import { useShadowAnimation } from '../../hooks';
 
-import { chakraStyles } from './chakraStyles';
+import { chakraStyles } from './selectStyles';
 
 import planeVectorSVG from '../../public/images/plane-vector.svg';
 import uploadSVG from '../../public/images/upload.svg';
@@ -31,9 +31,9 @@ import {
   COUNTRY_OPTIONS,
   HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
   PROJECT_CATEGORY_OPTIONS,
-  PROJECT_GRANTS_THANK_YOU_PAGE_URL,
   TIMEZONE_OPTIONS
-} from '../../constants';
+} from './constants';
+import { PROJECT_GRANTS_THANK_YOU_PAGE_URL } from '../../constants';
 
 import { ProjectGrantsFormData } from '../../types';
 
