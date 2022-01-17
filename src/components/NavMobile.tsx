@@ -17,12 +17,12 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 
-import { ImportantText } from '../headings';
-import { CloseIcon, HamburgerIcon } from '../icons';
+import { ImportantText } from './UI/headings';
+import { CloseIcon, HamburgerIcon } from './UI/icons';
 
-import logoSVG from '../../../public/images/esp-logo.svg';
+import logoSVG from '../public/images/esp-logo.svg';
 
-import { ETHEREUM_ORG_URL, MOBILE_MENU } from '../../../constants';
+import { ETHEREUM_ORG_URL, MOBILE_MENU } from '../constants';
 
 export const NavMobile: FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();

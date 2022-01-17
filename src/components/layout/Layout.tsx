@@ -2,11 +2,12 @@ import { Box, Container, ContainerProps } from '@chakra-ui/react';
 import { FC } from 'react';
 import { useRouter } from 'next/router';
 
-import { Footer, NavMobile, NewsletterSignup, UnicornSpace } from '../UI/common';
+import { Footer, UnicornSpace } from '../UI/common';
+import { Forms, NewsletterSignup } from '../forms';
 import { ApplicantsLayout } from './ApplicantsLayout';
+import { NavMobile } from '../NavMobile';
 
 import { APPLICANTS_URL } from '../../constants';
-import { Forms } from '../forms';
 
 export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
   const router = useRouter();

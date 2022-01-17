@@ -3,11 +3,11 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FC } from 'react';
 
-import { ImportantText } from '../headings';
+import { ImportantText } from './UI/headings';
 
-import { useShadowAnimation } from '../../../hooks';
+import { useShadowAnimation } from '../hooks';
 
-import planeVectorSVG from '../../../public/images/plane-vector.svg';
+import planeVectorSVG from '../public/images/plane-vector.svg';
 
 interface Props {
   link: string;
