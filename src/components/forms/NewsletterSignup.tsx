@@ -14,11 +14,11 @@ import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 
-import { ImportantText } from '../headings';
-import { PageText } from '../text';
+import { ImportantText } from '../UI/headings';
+import { PageText } from '../UI/text';
 
-import { useShadowAnimation } from '../../../hooks';
-import { NewsletterFormData } from '../../../types';
+import { useShadowAnimation } from '../../hooks';
+import { NewsletterFormData } from '../../types';
 
 const MotionBox = motion<BoxProps>(Box);
 const MotionButton = motion<ButtonProps>(Button);

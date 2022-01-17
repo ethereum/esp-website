@@ -2,7 +2,8 @@ import { Flex, Stack, Tab, TabList, Tabs } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
 
-import { ApplicantsDescription, ImportantText, ReadyToApply } from '../UI';
+import { ApplicantsDescription, ImportantText } from '../UI';
+import { ReadyToApply } from '../ReadyToApply';
 
 import {
   APPLICANTS_PAGES_BASEPATH,
