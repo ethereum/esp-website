@@ -10,7 +10,8 @@ const ProjectGrants: NextPage = () => {
     <>
       <Head>
         <title>Ethereum Ecosystem Program | Thank you for applying to Project Grants</title>
-        <meta name='description' content='Project Grants' />
+        <meta name='description' content='Thank you for applying to Project Grants' />
+        <meta name='robots' content='noindex' />
       </Head>
 
       <Stack mb={10}>
