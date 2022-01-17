@@ -6,6 +6,7 @@ import { Footer, NavMobile, NewsletterSignup, UnicornSpace } from '../UI/common'
 import { ApplicantsLayout } from './ApplicantsLayout';
 
 import { APPLICANTS_URL } from '../../constants';
+import { Forms } from '../forms';
 
 export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
   const router = useRouter();
@@ -25,6 +26,8 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       ) : (
         children
       )}
+
+      <Forms />
 
       <Box px={5} pb={3}>
         <UnicornSpace />

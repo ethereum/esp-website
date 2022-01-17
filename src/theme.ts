@@ -4,7 +4,9 @@ export default extendTheme({
   colors: {
     brand: {
       accent: '#f85858',
-      shadow: '#e34550',
+      button: {
+        shadow: '#e34550'
+      },
       hover: '#fb7971',
       heading: '#e44550',
       paragraph: '#232264',
@@ -20,7 +22,10 @@ export default extendTheme({
         }
       },
       border: '#a9a9b8',
-      divider: '#e5e5e5',
+      divider: {
+        100: '#e5e5e5',
+        200: '#a1a0ba'
+      },
       footer: {
         bgGradient: {
           start: '#e07861',
@@ -45,7 +50,9 @@ export default extendTheme({
           end: '#e4deff'
         },
         rgba: 'rgba(228, 222, 255, 0)'
-      }
+      },
+      option: '#ffefec',
+      uploadProposal: 'rgba(189, 189, 189, 0.2)'
     }
   },
   fonts: {
@@ -60,7 +67,8 @@ export default extendTheme({
     faq: {
       question: '16px'
     },
-    paragraph: '15px'
+    paragraph: '15px',
+    input: '14px'
   },
   sizes: {
     container: {
@@ -82,5 +90,8 @@ export default extendTheme({
         }
       }
     }
+  },
+  shadows: {
+    select: '0px 3px 5px rgba(0, 0, 0, 0.25)'
   }
 });

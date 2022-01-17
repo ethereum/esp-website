@@ -10,15 +10,10 @@ export const APPLICANTS_PAGES_BASEPATH = '/applicants/';
 export const OFFICE_HOURS_URL = '/applicants/office-hours';
 export const SMALL_GRANTS_URL = '/applicants/small-grants';
 export const PROJECT_GRANTS_URL = '/applicants/project-grants';
+export const PROJECT_GRANTS_THANK_YOU_PAGE_URL = '/applicants/project-grants/thank-you';
 
-// tabs
-export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Small Grants', 'Project Grants'];
-export const TABS_MAP: TabsMap = {
-  [APPLICANTS_URL]: 0,
-  [OFFICE_HOURS_URL]: 1,
-  [SMALL_GRANTS_URL]: 2,
-  [PROJECT_GRANTS_URL]: 3
-};
+// apply forms
+export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
 
 // ethereum ecosystem
 export const ETHEREUM_ORG_URL = 'https://ethereum.org/';
@@ -38,6 +33,18 @@ export const EF_JOBS_URL = 'https://ethereum.bamboohr.com/jobs/';
 // ESP external links
 export const ESP_BLOG_URL = 'https://blog.ethereum.org/category/ecosystem-support-program/';
 export const ESP_TWITTER_URL = 'https://twitter.com/EF_ESP';
+export const ESP_EMAIL_ADDRESS = 'mailto:esp@ethereum.org';
+
+// tabs
+export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Small Grants', 'Project Grants'];
+export const TABS_MAP: TabsMap = {
+  [APPLICANTS_URL]: 0,
+  [OFFICE_HOURS_URL]: 1,
+  [SMALL_GRANTS_URL]: 2,
+  [PROJECT_GRANTS_URL]: 3,
+  [PROJECT_GRANTS_APPLY_URL]: 3,
+  [PROJECT_GRANTS_THANK_YOU_PAGE_URL]: 3
+};
 
 // mobile menu
 export const MOBILE_MENU = [

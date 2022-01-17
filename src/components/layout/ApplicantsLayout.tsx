@@ -80,7 +80,7 @@ export const ApplicantsLayout: FC = ({ children }) => {
         backgroundColor='white'
         overflowX='auto'
         borderBottom='1px solid'
-        borderBottomColor='brand.divider'
+        borderBottomColor='brand.divider.100'
       >
         <Tabs
           id='tabbed-navigation'
@@ -115,7 +115,8 @@ export const ApplicantsLayout: FC = ({ children }) => {
         <Stack mb={8}>{children}</Stack>
 
         {router.pathname.startsWith(APPLICANTS_PAGES_BASEPATH) &&
-          !router.pathname.endsWith('/apply') && (
+          !router.pathname.endsWith('/apply') &&
+          !router.pathname.endsWith('/thank-you') && (
             <Stack>
               <section id='ready-to-apply'>
                 <ReadyToApply link={`${router.pathname}/apply`} />

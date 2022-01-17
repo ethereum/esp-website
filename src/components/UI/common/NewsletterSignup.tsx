@@ -18,10 +18,7 @@ import { ImportantText } from '../headings';
 import { PageText } from '../text';
 
 import { useShadowAnimation } from '../../../hooks';
-
-type FormData = {
-  email: string;
-};
+import { NewsletterFormData } from '../../../types';
 
 const MotionBox = motion<BoxProps>(Box);
 const MotionButton = motion<ButtonProps>(Button);
@@ -32,13 +29,13 @@ export const NewsletterSignup: FC = () => {
     register,
     formState: { errors, isValid },
     reset
-  } = useForm<FormData>({
+  } = useForm<NewsletterFormData>({
     mode: 'onChange'
   });
   const toast = useToast();
   const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = (data: NewsletterFormData) => {
     if (errors.email) {
       toast({
         position: 'top-right',
@@ -110,7 +107,7 @@ export const NewsletterSignup: FC = () => {
           <Center>
             <Box position='relative'>
               <MotionBox
-                backgroundColor='brand.shadow'
+                backgroundColor='brand.button.shadow'
                 h='56px'
                 w='148px'
                 position='absolute'
