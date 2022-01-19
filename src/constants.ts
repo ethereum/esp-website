@@ -10,10 +10,14 @@ export const APPLICANTS_PAGES_BASEPATH = '/applicants/';
 export const OFFICE_HOURS_URL = '/applicants/office-hours';
 export const SMALL_GRANTS_URL = '/applicants/small-grants';
 export const PROJECT_GRANTS_URL = '/applicants/project-grants';
-export const PROJECT_GRANTS_THANK_YOU_PAGE_URL = '/applicants/project-grants/thank-you';
 
 // apply forms
 export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
+export const OFFICE_HOURS_APPLY_URL = '/applicants/office-hours/apply';
+
+// thank you pages
+export const PROJECT_GRANTS_THANK_YOU_PAGE_URL = '/applicants/project-grants/thank-you';
+export const OFFICE_HOURS_THANK_YOU_PAGE_URL = '/applicants/office-hours/thank-you';
 
 // ethereum ecosystem
 export const ETHEREUM_ORG_URL = 'https://ethereum.org/';
@@ -42,6 +46,8 @@ export const TABS_MAP: TabsMap = {
   [OFFICE_HOURS_URL]: 1,
   [SMALL_GRANTS_URL]: 2,
   [PROJECT_GRANTS_URL]: 3,
+  [OFFICE_HOURS_APPLY_URL]: 1,
+  [OFFICE_HOURS_THANK_YOU_PAGE_URL]: 1,
   [PROJECT_GRANTS_APPLY_URL]: 3,
   [PROJECT_GRANTS_THANK_YOU_PAGE_URL]: 3
 };
