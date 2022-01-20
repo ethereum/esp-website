@@ -4,16 +4,16 @@ import Head from 'next/head';
 
 import { PlaceholderImage, ThankYouBody } from '../../../components/UI';
 
-const ProjectGrantsThankYou: NextPage = () => {
+const OfficeHoursThankYou: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Ethereum Ecosystem Program | Thank you for applying to Project Grants</title>
-        <meta name='description' content='Thank you for applying to Project Grants' />
+        <title>Ethereum Ecosystem Program | Thank you for applying to Office Hours</title>
+        <meta name='description' content='Thank you for applying to Office Hours' />
         <meta name='robots' content='noindex' />
       </Head>
 
-      <ThankYouBody grantType='Project Grants' />
+      <ThankYouBody grantType='Office Hours' />
 
       <Center>
         <PlaceholderImage height='250px' width='360px' />
@@ -22,4 +22,4 @@ const ProjectGrantsThankYou: NextPage = () => {
   );
 };
 
-export default ProjectGrantsThankYou;
+export default OfficeHoursThankYou;
