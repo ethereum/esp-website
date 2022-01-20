@@ -35,8 +35,9 @@ const OfficeHours: NextPage = () => {
           <PageSubheading mb={8}>Office Hours</PageSubheading>
 
           <PageText mb={6}>
-            If you have questions before submitting a grant application, or need support other than
-            funding, you can request a session with a member of the ESP team.
+            Office Hours are a chance to connect directly with a member of the EF&apos;s Ecosystem
+            Support team for support other than funding, including support with the process of
+            submitting a grant application.
           </PageText>
 
           <PageText>Office Hours might be a good fit if you:</PageText>
@@ -163,9 +164,8 @@ const OfficeHours: NextPage = () => {
           <PageSection mb={6}>What we offer</PageSection>
 
           <PageText mb={6}>
-            Office Hours are a chance to connect directly with a member of the EF&apos;s Ecosystem
-            Support team for support other than funding, including support with the process of
-            submitting a grant application. Some common topics include:
+            Office hours sessions are short informal calls with a member of the ESP team. Some
+            common call topics include:
           </PageText>
 
           <PageText fontWeight={700}>Guidance on submitting a grant application</PageText>
@@ -262,7 +262,7 @@ const OfficeHours: NextPage = () => {
                 isExternal
                 _hover={{ textDecoration: 'none' }}
               >
-                check out here
+                check out this page
               </Link>{' '}
               for Meetup groups, upcoming events, and online communities!.
             </ListItem>
