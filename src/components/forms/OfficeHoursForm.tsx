@@ -145,7 +145,7 @@ export const OfficeHoursForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl isRequired mb={2}>
+        <FormControl isRequired mb={8}>
           <FormLabel htmlFor='individualOrTeam' mb={4}>
             <PageText display='inline' fontSize='input'>
               Are you submitting on behalf of a team, or as an individual?
