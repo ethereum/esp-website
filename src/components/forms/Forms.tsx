@@ -10,7 +10,7 @@ export const Forms: FC = () => {
   const router = useRouter();
 
   return (
-    <Stack>
+    <Stack id='forms'>
       {router.pathname === PROJECT_GRANTS_APPLY_URL && <ProjectGrantsForm />}{' '}
       {router.pathname === OFFICE_HOURS_APPLY_URL && <OfficeHoursForm />}
     </Stack>

@@ -78,21 +78,19 @@ export const OfficeHoursForm: FC = () => {
   return (
     <Stack
       w='100%'
-      id='project-grants-apply'
       bgGradient='linear(to-b, brand.newsletter.bgGradient.start 10%, brand.newsletter.bgGradient.end 100%)'
       px={5}
       pt={8}
       pb={20}
     >
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <FormControl isRequired mb={8}>
+      <form id='office-hours-form' onSubmit={handleSubmit(onSubmit)}>
+        <FormControl id='first-name' isRequired mb={8}>
           <FormLabel htmlFor='firstName'>
             <PageText display='inline' fontSize='input'>
               First Name
             </PageText>
           </FormLabel>
           <Input
-            id='firstName'
             type='text'
             placeholder='Enter your first name'
             bg='white'
@@ -105,14 +103,13 @@ export const OfficeHoursForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl isRequired mb={8}>
+        <FormControl id='last-name' isRequired mb={8}>
           <FormLabel htmlFor='lastName'>
             <PageText display='inline' fontSize='input'>
               Last Name
             </PageText>
           </FormLabel>
           <Input
-            id='lastName'
             type='text'
             placeholder='Enter your last name'
             bg='white'
@@ -125,14 +122,13 @@ export const OfficeHoursForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl isRequired mb={8}>
+        <FormControl id='email' isRequired mb={8}>
           <FormLabel htmlFor='email'>
             <PageText display='inline' fontSize='input'>
               Email
             </PageText>
           </FormLabel>
           <Input
-            id='email'
             type='email'
             placeholder='Enter your Email'
             bg='white'
@@ -145,7 +141,7 @@ export const OfficeHoursForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl isRequired mb={8}>
+        <FormControl id='individual-or-team' isRequired mb={8}>
           <FormLabel htmlFor='individualOrTeam' mb={4}>
             <PageText display='inline' fontSize='input'>
               Are you submitting on behalf of a team, or as an individual?
@@ -155,16 +151,22 @@ export const OfficeHoursForm: FC = () => {
           <RadioGroup
             onChange={handleRadioButton}
             value={individualOrTeam}
-            id='individualOrTeam'
             fontSize='input'
             colorScheme='white'
           >
             <Stack direction='row'>
-              <Radio size='lg' name='individualOrTeam' value='Individual' defaultChecked mr={8}>
+              <Radio
+                id='individual'
+                size='lg'
+                name='individualOrTeam'
+                value='Individual'
+                defaultChecked
+                mr={8}
+              >
                 <PageText fontSize='input'>Individual</PageText>
               </Radio>
 
-              <Radio size='lg' name='individualOrTeam' value='Team'>
+              <Radio id='team' size='lg' name='individualOrTeam' value='Team'>
                 <PageText fontSize='input'>Team</PageText>
               </Radio>
             </Stack>
@@ -172,7 +174,7 @@ export const OfficeHoursForm: FC = () => {
         </FormControl>
 
         {individualOrTeam === TEAM && (
-          <FormControl isRequired mb={8}>
+          <FormControl id='company' isRequired mb={8}>
             <FormLabel htmlFor='company'>
               <PageText display='inline' fontSize='input'>
                 Name of organization or entity
@@ -180,7 +182,6 @@ export const OfficeHoursForm: FC = () => {
             </FormLabel>
 
             <Input
-              id='company'
               type='text'
               placeholder="Enter the name of organization or entity you're submitting for"
               bg='white'
@@ -194,13 +195,12 @@ export const OfficeHoursForm: FC = () => {
           </FormControl>
         )}
 
-        <FormControl mt={8} mb={8}>
+        <FormControl id='project-name' mt={8} mb={8}>
           <FormLabel htmlFor='projectName'>
             <PageText fontSize='input'>Project name</PageText>
           </FormLabel>
 
           <Input
-            id='projectName'
             type='text'
             placeholder='Enter your first name'
             bg='white'
@@ -213,12 +213,11 @@ export const OfficeHoursForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl mb={8}>
+        <FormControl id='project-summary' mb={8}>
           <FormLabel htmlFor='projectSummary'>
             <PageText fontSize='input'>Brief Project Summary</PageText>
           </FormLabel>
           <Textarea
-            id='projectSummary'
             // TODO: change this when input validation is added
             // value={''}
             // onChange={() => {}}
@@ -233,12 +232,11 @@ export const OfficeHoursForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl mb={8}>
+        <FormControl id='additional-info' mb={8}>
           <FormLabel htmlFor='additionalInfo'>
             <PageText fontSize='input'>Where can we learn more?</PageText>
           </FormLabel>
           <Textarea
-            id='additionalInfo'
             // TODO: change this when input validation is added
             // value={''}
             // onChange={() => {}}
@@ -253,7 +251,7 @@ export const OfficeHoursForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl isRequired mb={8}>
+        <FormControl id='project-category' isRequired mb={8}>
           <FormLabel htmlFor='projectCategory'>
             <PageText display='inline' fontSize='input'>
               Project Category
@@ -261,7 +259,7 @@ export const OfficeHoursForm: FC = () => {
           </FormLabel>
 
           <Select
-            id='projectCategory'
+            id='project-category-select'
             options={PROJECT_CATEGORY_OPTIONS}
             components={{ DropdownIndicator }}
             placeholder='Select'
@@ -271,7 +269,7 @@ export const OfficeHoursForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl isRequired mb={8}>
+        <FormControl id='how-did-you-hear-about-ESP' isRequired mb={8}>
           <FormLabel htmlFor='howDidYouHearAboutESP'>
             <PageText display='inline' fontSize='input'>
               How did you hear about the Ecosystem Support Program?
@@ -279,7 +277,7 @@ export const OfficeHoursForm: FC = () => {
           </FormLabel>
 
           <Select
-            id='howDidYouHearAboutESP'
+            id='how-did-you-hear-about-ESP-select'
             options={HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS}
             components={{ DropdownIndicator }}
             placeholder='Select'
@@ -289,7 +287,7 @@ export const OfficeHoursForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl id='reasonForMeeting' isRequired mb={2}>
+        <FormControl id='reason-for-meeting' isRequired mb={2}>
           <FormLabel htmlFor='reasonForMeeting'>
             <PageText display='inline' fontSize='input'>
               What can we help you with? You may choose more than one reason.
@@ -298,19 +296,19 @@ export const OfficeHoursForm: FC = () => {
 
           <CheckboxGroup colorScheme='white' onChange={handleCheckbox} value={reasonForMeeting}>
             <Stack>
-              <Checkbox value='Project feedback or advice'>
+              <Checkbox id='project-feedback' value='Project feedback or advice'>
                 <PageText fontSize='input'>Project feedback or advice</PageText>
               </Checkbox>
-              <Checkbox value='Questions about ESP'>
+              <Checkbox id='questions-about-esp' value='Questions about ESP'>
                 <PageText fontSize='input'>Questions about ESP</PageText>
               </Checkbox>
-              <Checkbox value='Questions about applying for a grant'>
+              <Checkbox id='questions-about-applying' value='Questions about applying for a grant'>
                 <PageText fontSize='input'>Questions about applying for a grant</PageText>
               </Checkbox>
-              <Checkbox value='How to contribute to Ethereum'>
+              <Checkbox id='how-to-contribute' value='How to contribute to Ethereum'>
                 <PageText fontSize='input'>How to contribute to Ethereum</PageText>
               </Checkbox>
-              <Checkbox value='Other'>
+              <Checkbox id='other' value='Other'>
                 <PageText fontSize='input'>Other</PageText>
               </Checkbox>
             </Stack>
@@ -318,14 +316,13 @@ export const OfficeHoursForm: FC = () => {
         </FormControl>
 
         {reasonForMeeting.includes(OTHER) && (
-          <FormControl isRequired mb={8}>
+          <FormControl id='other-reason-for-meeting' isRequired mb={8}>
             <FormLabel htmlFor='otherReasonForMeeting'>
               <PageText display='inline' fontSize='input'>
                 Reason for meeting
               </PageText>
             </FormLabel>
             <Textarea
-              id='otherReasonForMeeting'
               // TODO: change this when input validation is added
               // value={''}
               // onChange={() => {}}
@@ -341,7 +338,7 @@ export const OfficeHoursForm: FC = () => {
           </FormControl>
         )}
 
-        <FormControl isRequired mt={8} mb={20}>
+        <FormControl id='timezone' isRequired mt={8} mb={20}>
           <FormLabel htmlFor='timezone'>
             <PageText display='inline' fontSize='input'>
               Your Time Zone
@@ -349,7 +346,7 @@ export const OfficeHoursForm: FC = () => {
           </FormLabel>
 
           <Select
-            id='timezone'
+            id='timezone-select'
             options={TIMEZONE_OPTIONS}
             components={{ DropdownIndicator }}
             placeholder='Select'
@@ -360,7 +357,7 @@ export const OfficeHoursForm: FC = () => {
         </FormControl>
 
         <Center>
-          <Box position='relative'>
+          <Box id='submit-application' position='relative'>
             <MotionBox
               backgroundColor='brand.button.shadow'
               h='56px'
