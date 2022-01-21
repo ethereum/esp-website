@@ -7,6 +7,7 @@ export const PROJECT_CATEGORY_OPTIONS = [
   { value: 'Execution layer', label: 'Execution layer' },
   { value: 'General research', label: 'General research' },
   { value: 'Layer 2', label: 'Layer 2' },
+  { value: 'Community event', label: 'Community event' },
   { value: 'Other', label: 'Other' }
 ];
 
@@ -1416,3 +1417,12 @@ export const HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS = [
 // office hours
 export const TEAM = 'Team';
 export const OTHER = 'Other';
+export const COMMUNITY_EVENT = 'Community event';
+export const REASONS_FOR_MEETING = [
+  'Project feedback or advice',
+  'Questions about ESP',
+  'Questions about applying for a grant',
+  'How to contribute to Ethereum',
+  'Other',
+  ''
+];
