@@ -67,10 +67,9 @@ const SmallGrants: NextPage = () => {
               fontWeight={700}
               color='brand.orange.100'
               href={OFFICE_HOURS_URL}
-              isExternal
               _hover={{ textDecoration: 'none' }}
             >
-              office hours
+              Office Hours
             </Link>{' '}
             to get your questions answered before submitting.
           </PageText>
