@@ -953,6 +953,18 @@ export const SmallGrantsForm: FC = () => {
                 h='150px'
               />
             </FormControl>
+
+            <Stack mb={10}>
+              <PageText fontSize='input' fontWeight={700} mb={-1}>
+                NOTE:
+              </PageText>
+
+              <PageText fontSize='input'>
+                Event sponsorships are <strong>not</strong> grants - there are some key differences
+                in the way they are administered - but the application process starts in the same
+                way.
+              </PageText>
+            </Stack>
           </>
         )}
 
