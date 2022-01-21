@@ -4,8 +4,6 @@ import {
   Button,
   ButtonProps,
   Center,
-  Checkbox,
-  CheckboxGroup,
   Flex,
   FormControl,
   FormLabel,
@@ -34,11 +32,8 @@ import {
   COMMUNITY_EVENT,
   EVENT_FORMAT_OPTIONS,
   EVENT_TYPE_OPTIONS,
-  HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
-  OTHER,
   PROJECT_CATEGORY_OPTIONS,
-  TEAM,
-  TIMEZONE_OPTIONS
+  TEAM
 } from './constants';
 import { SMALL_GRANTS_THANK_YOU_PAGE_URL } from '../../constants';
 
@@ -101,7 +96,6 @@ export const SmallGrantsForm: FC = () => {
           <Input
             id='first-name'
             type='text'
-            placeholder='Maria'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -121,7 +115,6 @@ export const SmallGrantsForm: FC = () => {
           <Input
             id='last-name'
             type='text'
-            placeholder='Smith'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -141,7 +134,6 @@ export const SmallGrantsForm: FC = () => {
           <Input
             id='email'
             type='email'
-            placeholder='maria@email.me'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -700,9 +692,7 @@ export const SmallGrantsForm: FC = () => {
             </>
           )}
 
-        {/* (projectCategory as ProjectCategory).value === COMMUNITY_EVENT */}
-
-        {true && (
+        {(projectCategory as ProjectCategory).value === COMMUNITY_EVENT && (
           <>
             <FormControl id='previous-work-control' isRequired mb={8}>
               <FormLabel htmlFor='previousWork'>
