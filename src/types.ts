@@ -1,3 +1,5 @@
+import { PROJECT_CATEGORY_OPTIONS, REASONS_FOR_MEETING } from './components/forms/constants';
+
 export interface TabsMap {
   [name: string]: number;
 }
@@ -44,11 +46,7 @@ export type OfficeHoursFormData = {
 
 export type IndividualOrTeam = 'Individual' | 'Team';
 
-export type ReasonForMeeting = [
-  | 'Project feedback or advice'
-  | 'Questions about ESP'
-  | 'Questions about applying for a grant'
-  | 'How to contribute to Ethereum'
-  | 'Other'
-  | ''
-];
+export type ReasonForMeeting = typeof REASONS_FOR_MEETING;
+
+// const PROJECT_CATEGORIES = PROJECT_CATEGORY_OPTIONS.map(({ label }) => label);
+export type ProjectCategory = typeof PROJECT_CATEGORY_OPTIONS[number];
