@@ -65,13 +65,14 @@ export const ProjectGrantsForm: FC = () => {
       pb={20}
     >
       <form id='project-grants-form' onSubmit={handleSubmit(onSubmit)}>
-        <FormControl id='project-name' isRequired mb={8}>
+        <FormControl id='project-name-control' isRequired mb={8}>
           <FormLabel htmlFor='projectName'>
             <PageText display='inline' fontSize='input'>
               Project name
             </PageText>
           </FormLabel>
           <Input
+            id='project-name'
             type='text'
             placeholder='Enter project name'
             bg='white'
@@ -84,13 +85,14 @@ export const ProjectGrantsForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl id='organization-name' isRequired mb={8}>
+        <FormControl id='organization-name-control' isRequired mb={8}>
           <FormLabel htmlFor='organizationName'>
             <PageText display='inline' fontSize='input'>
               Organization name
             </PageText>
           </FormLabel>
           <Input
+            id='organization-name'
             type='text'
             placeholder='Enter organization name'
             bg='white'
@@ -103,7 +105,7 @@ export const ProjectGrantsForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl id='website' mb={8}>
+        <FormControl id='website-control' mb={8}>
           <FormLabel htmlFor='website'>
             <PageText fontSize='input'>Website</PageText>
           </FormLabel>
@@ -111,6 +113,7 @@ export const ProjectGrantsForm: FC = () => {
             https://
           </PageText>
           <Input
+            id='website'
             type='text'
             placeholder='yourwebsiteaddress.com'
             bg='white'
@@ -125,7 +128,7 @@ export const ProjectGrantsForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl id='github' mb={8}>
+        <FormControl id='github-control' mb={8}>
           <FormLabel htmlFor='github'>
             <PageText fontSize='input'>GitHub</PageText>
           </FormLabel>
@@ -133,6 +136,7 @@ export const ProjectGrantsForm: FC = () => {
             https://github.com/
           </PageText>
           <Input
+            id='github'
             type='text'
             placeholder='yourgithubaccount'
             bg='white'
@@ -147,7 +151,7 @@ export const ProjectGrantsForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl id='twitter' mb={8}>
+        <FormControl id='twitter-control' mb={8}>
           <FormLabel htmlFor='twitter'>
             <PageText fontSize='input'>Twitter</PageText>
           </FormLabel>
@@ -155,6 +159,7 @@ export const ProjectGrantsForm: FC = () => {
             https://twitter.com/
           </PageText>
           <Input
+            id='twitter'
             type='text'
             placeholder='yourtwitterhandle'
             bg='white'
@@ -169,13 +174,14 @@ export const ProjectGrantsForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl id='team-profile' isRequired mb={8}>
+        <FormControl id='team-profile-control' isRequired mb={8}>
           <FormLabel htmlFor='teamProfile'>
             <PageText display='inline' fontSize='input'>
               Team Profile
             </PageText>
           </FormLabel>
           <Textarea
+            id='team-profile'
             // TODO: change this when input validation is added
             // value={''}
             // onChange={() => {}}
@@ -190,13 +196,14 @@ export const ProjectGrantsForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl id='project-summary' isRequired mb={8}>
+        <FormControl id='project-summary-control' isRequired mb={8}>
           <FormLabel htmlFor='projectSummary'>
             <PageText display='inline' fontSize='input'>
               Brief Project Summary
             </PageText>
           </FormLabel>
           <Textarea
+            id='project-summary'
             // TODO: change this when input validation is added
             // value={''}
             // onChange={() => {}}
@@ -211,8 +218,7 @@ export const ProjectGrantsForm: FC = () => {
           />
         </FormControl>
 
-        {/* {TODO: Project Category values are not defined yet} */}
-        <FormControl id='project-category' isRequired mb={8}>
+        <FormControl id='project-category-control' isRequired mb={8}>
           <FormLabel htmlFor='projectCategory'>
             <PageText display='inline' fontSize='input'>
               Project Category
@@ -220,6 +226,7 @@ export const ProjectGrantsForm: FC = () => {
           </FormLabel>
 
           <Select
+            id='project-category'
             options={PROJECT_CATEGORY_OPTIONS}
             components={{ DropdownIndicator }}
             placeholder='Select'
@@ -229,13 +236,14 @@ export const ProjectGrantsForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl id='requested-amount' isRequired mb={8}>
+        <FormControl id='requested-amount-control' isRequired mb={8}>
           <FormLabel htmlFor='requestedAmount'>
             <PageText display='inline' fontSize='input'>
               Requested Amount
             </PageText>
           </FormLabel>
           <Input
+            id='requested-amount'
             type='text'
             placeholder='Estimated grant amount. Ex: USD 50,000'
             bg='white'
@@ -248,13 +256,14 @@ export const ProjectGrantsForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl id='first-name' isRequired mb={8}>
+        <FormControl id='first-name-control' isRequired mb={8}>
           <FormLabel htmlFor='firstName'>
             <PageText display='inline' fontSize='input'>
               First Name
             </PageText>
           </FormLabel>
           <Input
+            id='first-name'
             type='text'
             placeholder='Enter your first name'
             bg='white'
@@ -267,13 +276,14 @@ export const ProjectGrantsForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl id='last-name' isRequired mb={8}>
+        <FormControl id='last-name-control' isRequired mb={8}>
           <FormLabel htmlFor='lastName'>
             <PageText display='inline' fontSize='input'>
               Last Name
             </PageText>
           </FormLabel>
           <Input
+            id='last-name'
             type='text'
             placeholder='Enter your last name'
             bg='white'
@@ -286,13 +296,14 @@ export const ProjectGrantsForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl id='email' isRequired mb={8}>
+        <FormControl id='email-control' isRequired mb={8}>
           <FormLabel htmlFor='email'>
             <PageText display='inline' fontSize='input'>
               Email
             </PageText>
           </FormLabel>
           <Input
+            id='email'
             type='email'
             placeholder='Enter your Email'
             bg='white'
@@ -305,11 +316,12 @@ export const ProjectGrantsForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl id='city' mb={8}>
+        <FormControl id='city-control' mb={8}>
           <FormLabel htmlFor='city'>
             <PageText fontSize='input'>City</PageText>
           </FormLabel>
           <Input
+            id='city'
             type='text'
             placeholder='Enter your city'
             bg='white'
@@ -322,7 +334,7 @@ export const ProjectGrantsForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl id='country' isRequired mb={8}>
+        <FormControl id='country-control' isRequired mb={8}>
           <FormLabel htmlFor='country'>
             <PageText display='inline' fontSize='input'>
               Country
@@ -330,6 +342,7 @@ export const ProjectGrantsForm: FC = () => {
           </FormLabel>
 
           <Select
+            id='country'
             options={COUNTRY_OPTIONS}
             components={{ DropdownIndicator }}
             placeholder='Select'
@@ -339,7 +352,7 @@ export const ProjectGrantsForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl id='timezone' isRequired mb={8}>
+        <FormControl id='timezone-control' isRequired mb={8}>
           <FormLabel htmlFor='timezone'>
             <PageText display='inline' fontSize='input'>
               Your Time Zone
@@ -347,7 +360,7 @@ export const ProjectGrantsForm: FC = () => {
           </FormLabel>
 
           <Select
-            id='timezone-select'
+            id='timezone'
             options={TIMEZONE_OPTIONS}
             components={{ DropdownIndicator }}
             placeholder='Select'
@@ -357,7 +370,7 @@ export const ProjectGrantsForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl id='how-did-you-hear-about-ESP' isRequired mb={8}>
+        <FormControl id='how-did-you-hear-about-ESP-control' isRequired mb={8}>
           <FormLabel htmlFor='howDidYouHearAboutESP'>
             <PageText display='inline' fontSize='input'>
               How did you hear about the Ecosystem Support Program?
@@ -365,7 +378,7 @@ export const ProjectGrantsForm: FC = () => {
           </FormLabel>
 
           <Select
-            id='how-did-you-hear-about-ESP-select'
+            id='how-did-you-hear-about-ESP'
             options={HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS}
             components={{ DropdownIndicator }}
             placeholder='Select'
@@ -375,15 +388,16 @@ export const ProjectGrantsForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl id='recommendation' mb={12}>
-          <FormLabel htmlFor='recommendation'>
+        <FormControl id='referrer-control' mb={12}>
+          <FormLabel htmlFor='referrer'>
             <PageText fontSize='input'>
               Did anyone recommend that you contact Ecosystem Support?
             </PageText>
           </FormLabel>
           <Input
+            id='referrer'
             type='text'
-            placeholder='Enter your recommendation'
+            placeholder='Enter your referrer'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
