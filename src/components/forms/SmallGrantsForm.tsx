@@ -95,13 +95,13 @@ export const SmallGrantsForm: FC = () => {
         <FormControl id='first-name-control' isRequired mb={8}>
           <FormLabel htmlFor='firstName'>
             <PageText display='inline' fontSize='input'>
-              First Name
+              First name
             </PageText>
           </FormLabel>
           <Input
             id='first-name'
             type='text'
-            placeholder='Enter your first name'
+            placeholder='Maria'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -115,13 +115,13 @@ export const SmallGrantsForm: FC = () => {
         <FormControl id='last-name-control' isRequired mb={8}>
           <FormLabel htmlFor='lastName'>
             <PageText display='inline' fontSize='input'>
-              Last Name
+              Last name
             </PageText>
           </FormLabel>
           <Input
             id='last-name'
             type='text'
-            placeholder='Enter your last name'
+            placeholder='Smith'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -141,7 +141,7 @@ export const SmallGrantsForm: FC = () => {
           <Input
             id='email'
             type='email'
-            placeholder='Enter your Email'
+            placeholder='maria@email.me'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -192,7 +192,6 @@ export const SmallGrantsForm: FC = () => {
                 Name of organization or entity
               </PageText>
             </FormLabel>
-
             <Input
               id='company'
               type='text'
@@ -209,17 +208,22 @@ export const SmallGrantsForm: FC = () => {
         )}
 
         <FormControl id='individual-or-team-summary-control' isRequired mb={8}>
-          <FormLabel htmlFor='individualOrTeamSummary'>
+          <FormLabel htmlFor='individualOrTeamSummary' mb={1}>
             <PageText display='inline' fontSize='input'>
               Individual or team summary
             </PageText>
           </FormLabel>
+
+          <PageText as='small' fontSize='helpText' color='brand.helpText'>
+            Tell us about yourself, your experience and motivations
+          </PageText>
+
           <Textarea
             id='individual-or-team-summary'
             // TODO: change this when input validation is added
             // value={''}
             // onChange={() => {}}
-            placeholder='Tell us about yourself, your experience and motivations'
+            placeholder=''
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -227,6 +231,7 @@ export const SmallGrantsForm: FC = () => {
             color='brand.paragraph'
             fontSize='input'
             h='150px'
+            mt={3}
           />
         </FormControl>
 
@@ -258,12 +263,12 @@ export const SmallGrantsForm: FC = () => {
             <PageText fontSize='input'>Twitter</PageText>
           </FormLabel>
           <PageText fontSize='input' position='absolute' bottom='15.5px' left={4} zIndex={9}>
-            https://twitter.com/
+            @
           </PageText>
           <Input
             id='twitter'
             type='text'
-            placeholder='yourtwitterhandle'
+            placeholder='twitter_handle'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -272,7 +277,7 @@ export const SmallGrantsForm: FC = () => {
             position='relative'
             color='brand.paragraph'
             fontSize='input'
-            pl={36}
+            pl={8}
           />
         </FormControl>
 
@@ -299,11 +304,15 @@ export const SmallGrantsForm: FC = () => {
           (projectCategory as ProjectCategory).value !== '' && (
             <>
               <FormControl id='project-name-control' isRequired mt={8} mb={8}>
-                <FormLabel htmlFor='projectName'>
+                <FormLabel htmlFor='projectName' mb={1}>
                   <PageText display='inline' fontSize='input'>
                     Project name
                   </PageText>
                 </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  A short, concise title of what you&apos;re working on
+                </PageText>
 
                 <Input
                   id='project-name'
@@ -316,17 +325,22 @@ export const SmallGrantsForm: FC = () => {
                   _placeholder={{ fontSize: 'input' }}
                   color='brand.paragraph'
                   fontSize='input'
+                  mt={3}
                 />
               </FormControl>
 
               <FormControl id='project-repo-control' mb={8}>
-                <FormLabel htmlFor='projectRepo'>
+                <FormLabel htmlFor='projectRepo' mb={1}>
                   <PageText fontSize='input'>Project repo</PageText>
                 </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  Github, Radicle, etc
+                </PageText>
+
                 <Input
                   id='project-repo'
                   type='text'
-                  placeholder='Enter Github, Radicle etc.'
                   bg='white'
                   borderRadius={0}
                   borderColor='brand.border'
@@ -334,19 +348,24 @@ export const SmallGrantsForm: FC = () => {
                   _placeholder={{ fontSize: 'input' }}
                   color='brand.paragraph'
                   fontSize='input'
+                  mt={3}
                 />
               </FormControl>
 
               <FormControl id='other-links-control' mb={8}>
-                <FormLabel htmlFor='otherLinks'>
+                <FormLabel htmlFor='otherLinks' mb={1}>
                   <PageText fontSize='input'>Other links</PageText>
                 </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  If you have a demo or published work, show us your stuff!
+                </PageText>
+
                 <Textarea
                   id='other-links'
                   // TODO: change this when input validation is added
                   // value={''}
                   // onChange={() => {}}
-                  placeholder='If you have a demo or published work, show us your stuff!'
                   bg='white'
                   borderRadius={0}
                   borderColor='brand.border'
@@ -354,43 +373,51 @@ export const SmallGrantsForm: FC = () => {
                   color='brand.paragraph'
                   fontSize='input'
                   h='150px'
+                  mt={3}
                 />
               </FormControl>
 
               <FormControl id='project-summary-control' isRequired mb={8}>
-                <FormLabel htmlFor='projectSummary'>
+                <FormLabel htmlFor='projectSummary' mb={1}>
                   <PageText display='inline' fontSize='input'>
                     Describe your project
                   </PageText>
                 </FormLabel>
-                <Textarea
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  Describe your project in 140 characters or less
+                </PageText>
+
+                <Input
                   id='project-summary'
-                  // TODO: change this when input validation is added
-                  // value={''}
-                  // onChange={() => {}}
-                  placeholder='Describe your project in 140 characters or less'
+                  type='text'
                   bg='white'
                   borderRadius={0}
                   borderColor='brand.border'
+                  h='56px'
                   _placeholder={{ fontSize: 'input' }}
                   color='brand.paragraph'
                   fontSize='input'
-                  h='150px'
+                  mt={3}
                 />
               </FormControl>
 
               <FormControl id='project-description-control' isRequired mb={8}>
-                <FormLabel htmlFor='projectDescription'>
+                <FormLabel htmlFor='projectDescription' mb={1}>
                   <PageText display='inline' fontSize='input'>
                     What is the project?
                   </PageText>
                 </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  Describe the main concept and components of the proposed work
+                </PageText>
+
                 <Textarea
                   id='project-description'
                   // TODO: change this when input validation is added
                   // value={''}
                   // onChange={() => {}}
-                  placeholder='Describe the main concept and components of the proposed work'
                   bg='white'
                   borderRadius={0}
                   borderColor='brand.border'
@@ -398,21 +425,27 @@ export const SmallGrantsForm: FC = () => {
                   color='brand.paragraph'
                   fontSize='input'
                   h='150px'
+                  mt={3}
                 />
               </FormControl>
 
               <FormControl id='why-is-project-important-control' isRequired mb={8}>
-                <FormLabel htmlFor='whyIsProjectImportant'>
+                <FormLabel htmlFor='whyIsProjectImportant' mb={1}>
                   <PageText display='inline' fontSize='input'>
                     Why is your project important?
                   </PageText>
                 </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  Why is this project important for your target demographic/problem area? How do you
+                  know people need what you&apos;re making?
+                </PageText>
+
                 <Textarea
                   id='why-is-project-important'
                   // TODO: change this when input validation is added
                   // value={''}
                   // onChange={() => {}}
-                  placeholder="Why is this project important for your target demographic/problem area? How do you know people need what you're making?"
                   bg='white'
                   borderRadius={0}
                   borderColor='brand.border'
@@ -420,21 +453,27 @@ export const SmallGrantsForm: FC = () => {
                   color='brand.paragraph'
                   fontSize='input'
                   h='150px'
+                  mt={3}
                 />
               </FormControl>
 
               <FormControl id='how-does-your-project-differ-control' isRequired mb={8}>
-                <FormLabel htmlFor='howDoesYourProjectDiffer'>
+                <FormLabel htmlFor='howDoesYourProjectDiffer' mb={1}>
                   <PageText display='inline' fontSize='input'>
                     How does your project differ from similar ones?
                   </PageText>
                 </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  Why are you building this project? Do you have unique expertise/perspective? What
+                  are the current alternative options that people rely on?
+                </PageText>
+
                 <Textarea
                   id='how-does-your-project-differ'
                   // TODO: change this when input validation is added
                   // value={''}
                   // onChange={() => {}}
-                  placeholder='Why are you building this project? Do you have unique expertise/perspective? What are the current alternative options that people rely on?'
                   bg='white'
                   borderRadius={0}
                   borderColor='brand.border'
@@ -442,21 +481,26 @@ export const SmallGrantsForm: FC = () => {
                   color='brand.paragraph'
                   fontSize='input'
                   h='150px'
+                  mt={3}
                 />
               </FormControl>
 
               <FormControl id='is-your-project-public-good-control' isRequired mb={8}>
-                <FormLabel htmlFor='isYourProjectPublicGood'>
+                <FormLabel htmlFor='isYourProjectPublicGood' mb={1}>
                   <PageText display='inline' fontSize='input'>
                     Is your project a public good?
                   </PageText>
                 </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  If so, tell us how?
+                </PageText>
+
                 <Textarea
                   id='is-your-project-public-good'
                   // TODO: change this when input validation is added
                   // value={''}
                   // onChange={() => {}}
-                  placeholder='If so, tell us how?'
                   bg='white'
                   borderRadius={0}
                   borderColor='brand.border'
@@ -464,15 +508,22 @@ export const SmallGrantsForm: FC = () => {
                   color='brand.paragraph'
                   fontSize='input'
                   h='150px'
+                  mt={3}
                 />
               </FormControl>
 
               <FormControl id='roadmap-control' isRequired mb={8}>
-                <FormLabel htmlFor='roadmap'>
+                <FormLabel htmlFor='roadmap' mb={1}>
                   <PageText display='inline' fontSize='input'>
                     Proposed Tasks, roadmap and budget
                   </PageText>
                 </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  Provide a brief timeline of the expected work and estimated budget for each
+                  objective
+                </PageText>
+
                 <Textarea
                   id='roadmap'
                   // TODO: change this when input validation is added
@@ -486,15 +537,21 @@ export const SmallGrantsForm: FC = () => {
                   color='brand.paragraph'
                   fontSize='input'
                   h='150px'
+                  mt={3}
                 />
               </FormControl>
 
               <FormControl id='requested-amount-control' isRequired mb={8}>
-                <FormLabel htmlFor='requestedAmount'>
+                <FormLabel htmlFor='requestedAmount' mb={1}>
                   <PageText display='inline' fontSize='input'>
                     Requested Amount
                   </PageText>
                 </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  Give us an itemized breakdown of how you&apos;ll be using the requested funds!
+                </PageText>
+
                 <Input
                   id='requested-amount'
                   type='text'
@@ -506,6 +563,7 @@ export const SmallGrantsForm: FC = () => {
                   _placeholder={{ fontSize: 'input' }}
                   color='brand.paragraph'
                   fontSize='input'
+                  mt={3}
                 />
               </FormControl>
 
