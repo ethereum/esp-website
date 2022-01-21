@@ -11,6 +11,21 @@ export const PROJECT_CATEGORY_OPTIONS = [
   { value: 'Other', label: 'Other' }
 ];
 
+// events
+export const EVENT_TYPE_OPTIONS = [
+  { value: 'Conference', label: 'Conference' },
+  { value: 'Speaker Series', label: 'Speaker Series' },
+  { value: 'Meetup', label: 'Meetup' },
+  { value: 'Hackathon', label: 'Hackathon' },
+  { value: 'Other', label: 'Other' }
+];
+
+export const EVENT_FORMAT_OPTIONS = [
+  { value: 'In-person', label: 'In-person' },
+  { value: 'Online', label: 'Online' },
+  { value: 'Hybrid (both)', label: 'Hybrid (both)' }
+];
+
 // countries
 export const COUNTRY_OPTIONS = [
   {
