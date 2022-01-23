@@ -156,7 +156,7 @@ export const ProjectGrantsForm: FC = () => {
             <PageText fontSize='input'>Twitter</PageText>
           </FormLabel>
           <PageText fontSize='input' position='absolute' bottom='15.5px' left={4} zIndex={9}>
-            https://twitter.com/
+            @
           </PageText>
           <Input
             id='twitter'
@@ -170,7 +170,7 @@ export const ProjectGrantsForm: FC = () => {
             position='relative'
             color='brand.paragraph'
             fontSize='input'
-            pl={36}
+            pl={8}
           />
         </FormControl>
 
