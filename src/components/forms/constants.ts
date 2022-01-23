@@ -1,22 +1,22 @@
 // project categories
 export const PROJECT_CATEGORY_OPTIONS = [
   { value: 'Community and education', label: 'Community and education' },
+  { value: 'Community event', label: 'Community event' },
   { value: 'Consensus layer', label: 'Consensus layer' },
   { value: 'Cryptography and zkp', label: 'Cryptography and zkp' },
   { value: 'Developer experience and tooling', label: 'Developer experience and tooling' },
   { value: 'Execution layer', label: 'Execution layer' },
   { value: 'General research', label: 'General research' },
   { value: 'Layer 2', label: 'Layer 2' },
-  { value: 'Community event', label: 'Community event' },
   { value: 'Other', label: 'Other' }
 ];
 
 // events
 export const EVENT_TYPE_OPTIONS = [
   { value: 'Conference', label: 'Conference' },
-  { value: 'Speaker Series', label: 'Speaker Series' },
-  { value: 'Meetup', label: 'Meetup' },
   { value: 'Hackathon', label: 'Hackathon' },
+  { value: 'Meetup', label: 'Meetup' },
+  { value: 'Speaker Series', label: 'Speaker Series' },
   { value: 'Other', label: 'Other' }
 ];
 
