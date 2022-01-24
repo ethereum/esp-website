@@ -1,6 +1,13 @@
 import { extendTheme, theme as base } from '@chakra-ui/react';
 
 export default extendTheme({
+  breakpoints: {
+    xs: '320px',
+    sm: '360px',
+    md: '768px',
+    lg: '960px',
+    xl: '1200px'
+  },
   colors: {
     brand: {
       accent: '#f85858',
@@ -53,7 +60,8 @@ export default extendTheme({
       },
       option: '#ffefec',
       uploadProposal: 'rgba(189, 189, 189, 0.2)',
-      helpText: '#7c7ba1'
+      helpText: '#7c7ba1',
+      warning: '#f0f6fd'
     }
   },
   fonts: {
