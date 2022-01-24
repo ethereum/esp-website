@@ -369,31 +369,6 @@ export const SmallGrantsForm: FC = () => {
                 />
               </FormControl>
 
-              <FormControl id='project-summary-control' isRequired mb={8}>
-                <FormLabel htmlFor='projectSummary' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Describe your project
-                  </PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Describe your project in 140 characters or less
-                </PageText>
-
-                <Input
-                  id='project-summary'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  mt={3}
-                />
-              </FormControl>
-
               <FormControl id='project-description-control' isRequired mb={8}>
                 <FormLabel htmlFor='projectDescription' mb={1}>
                   <PageText display='inline' fontSize='input'>
