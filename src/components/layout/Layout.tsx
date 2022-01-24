@@ -2,7 +2,7 @@ import { Box, Container, ContainerProps } from '@chakra-ui/react';
 import { FC } from 'react';
 import { useRouter } from 'next/router';
 
-import { Footer, UnicornSpace } from '../UI/common';
+import { Footer, FooterBackgroundImage } from '../UI/common';
 import { Forms, NewsletterSignup } from '../forms';
 import { ApplicantsLayout } from './ApplicantsLayout';
 import { NavMobile } from '../NavMobile';
@@ -30,9 +30,7 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
 
       <Forms />
 
-      <Box px={5} pb={3}>
-        <UnicornSpace />
-      </Box>
+      <FooterBackgroundImage />
 
       <NewsletterSignup />
 
