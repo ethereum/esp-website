@@ -1,6 +1,13 @@
 import { extendTheme, theme as base } from '@chakra-ui/react';
 
 export default extendTheme({
+  breakpoints: {
+    xs: '320px',
+    sm: '360px',
+    md: '768px',
+    lg: '960px',
+    xl: '1200px'
+  },
   colors: {
     brand: {
       accent: '#f85858',
