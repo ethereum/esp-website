@@ -269,10 +269,6 @@ const SmallGrants: NextPage = () => {
               </PageText>
             </FAQItem>
 
-            <FAQItem question='How long will the call be?'>
-              <PageText>The scheduled call will be 20 minutes long.</PageText>
-            </FAQItem>
-
             <FAQItem question='Can I remain anonymous?'>
               <PageText>
                 Mostly, yes. We are legally required to perform KYC before transferring funds to
