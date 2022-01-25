@@ -6,10 +6,10 @@ export const WHAT_WE_SUPPORT_URL = '/about/what-we-support';
 
 // applicants
 export const APPLICANTS_URL = '/applicants';
-export const APPLICANTS_PAGES_BASEPATH = '/applicants/';
 export const OFFICE_HOURS_URL = '/applicants/office-hours';
 export const SMALL_GRANTS_URL = '/applicants/small-grants';
 export const PROJECT_GRANTS_URL = '/applicants/project-grants';
+export const APPLICANTS_PAGES = [OFFICE_HOURS_URL, SMALL_GRANTS_URL, PROJECT_GRANTS_URL];
 
 // apply forms
 export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
