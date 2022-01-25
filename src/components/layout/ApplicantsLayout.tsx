@@ -6,7 +6,7 @@ import { ApplicantsDescription, ImportantText } from '../UI';
 import { ReadyToApply } from '../ReadyToApply';
 
 import {
-  APPLICANTS_PAGES_BASEPATH,
+  APPLICANTS_PAGES,
   APPLICANTS_TABS,
   APPLICANTS_URL,
   OFFICE_HOURS_URL,
@@ -115,15 +115,13 @@ export const ApplicantsLayout: FC = ({ children }) => {
       <Stack px={5}>
         <Stack mb={8}>{children}</Stack>
 
-        {router.pathname.startsWith(APPLICANTS_PAGES_BASEPATH) &&
-          !router.pathname.endsWith('/apply') &&
-          !router.pathname.endsWith('/thank-you') && (
-            <Stack>
-              <section id='ready-to-apply'>
-                <ReadyToApply link={`${router.pathname}/apply`} />
-              </section>
-            </Stack>
-          )}
+        {APPLICANTS_PAGES.some(path => router.pathname === path) && (
+          <Stack>
+            <section id='ready-to-apply'>
+              <ReadyToApply link={`${router.pathname}/apply`} />
+            </section>
+          </Stack>
+        )}
       </Stack>
     </>
   );
