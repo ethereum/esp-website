@@ -35,50 +35,34 @@ export const Footer: FC = () => {
         <Divider borderColor='brand.divider.100' opacity={1} />
       </Center>
 
-      <Flex px={5} py={6} justifyContent='center'>
-        <Stack mr={{ base: 6, md: 32 }}>
+      <Flex px={5} py={6} direction='column' alignItems='center'>
+        <Stack mb={2}>
           <Link href='/' _hover={{ textDecoration: 'none' }}>
-            <ImportantText color='white' textAlign='left'>
-              Home
-            </ImportantText>
+            <ImportantText color='white'>Home</ImportantText>
           </Link>
           <Link href={APPLICANTS_URL} _hover={{ textDecoration: 'none' }}>
-            <ImportantText color='white' textAlign='left'>
-              For Applicants
-            </ImportantText>
+            <ImportantText color='white'>For Applicants</ImportantText>
           </Link>
           <Link href={ABOUT_URL} _hover={{ textDecoration: 'none' }}>
-            <ImportantText color='white' textAlign='left'>
-              About ESP
-            </ImportantText>
+            <ImportantText color='white'>About ESP</ImportantText>
           </Link>
           <Link href={ESP_BLOG_URL} isExternal _hover={{ textDecoration: 'none' }}>
-            <ImportantText color='white' textAlign='left'>
-              Blog
-            </ImportantText>
+            <ImportantText color='white'>Blog</ImportantText>
           </Link>
         </Stack>
 
         <Stack>
           <Link href={ETHEREUM_PRIVACY_POLICY_URL} isExternal _hover={{ textDecoration: 'none' }}>
-            <ImportantText color='white' textAlign='left'>
-              Privacy Policy
-            </ImportantText>
+            <ImportantText color='white'>Privacy Policy</ImportantText>
           </Link>
           <Link href={ETHEREUM_TERMS_OF_USE_URL} isExternal _hover={{ textDecoration: 'none' }}>
-            <ImportantText color='white' textAlign='left'>
-              Terms of Use
-            </ImportantText>
+            <ImportantText color='white'>Terms of Use</ImportantText>
           </Link>
           <Link href='#' _hover={{ textDecoration: 'none' }}>
-            <ImportantText color='white' textAlign='left'>
-              Cookie Policy
-            </ImportantText>
+            <ImportantText color='white'>Cookie Policy</ImportantText>
           </Link>
           <Link href={ETHEREUM_ORG_URL} isExternal _hover={{ textDecoration: 'none' }}>
-            <ImportantText color='white' textAlign='left'>
-              Ethereum.org
-            </ImportantText>
+            <ImportantText color='white'>Ethereum.org</ImportantText>
           </Link>
         </Stack>
       </Flex>
