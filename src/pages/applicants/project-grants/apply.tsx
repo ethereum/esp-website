@@ -1,23 +1,11 @@
-import { Box, BoxProps, Center, Flex, FlexProps, Link, Stack } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
+import { Center, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
-import {
-  ApplicationAttentionMsg,
-  ImportantText,
-  PageSubheading,
-  PageText
-} from '../../../components/UI';
-
-import { useShadowAnimation } from '../../../hooks';
-
-const MotionBox = motion<BoxProps>(Box);
-const MotionFlex = motion<FlexProps>(Flex);
+import { ButtonLink } from '../../../components';
+import { ApplicationAttentionMsg, PageSubheading, PageText } from '../../../components/UI';
 
 const ProjectGrantsApply: NextPage = () => {
-  const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
-
   return (
     <>
       <Head>
@@ -45,32 +33,7 @@ const ProjectGrantsApply: NextPage = () => {
           <section id='download-application'>
             <Center>
               {/* TODO: update download link */}
-              <Link href='#' _hover={{ textDecoration: 'none' }}>
-                <Box position='relative'>
-                  <MotionBox
-                    backgroundColor='brand.button.shadow'
-                    h='56px'
-                    w='268px'
-                    position='absolute'
-                    animate={shadowBoxControl}
-                  />
-
-                  <MotionFlex
-                    backgroundColor='brand.accent'
-                    w='268px'
-                    py={4}
-                    justifyContent='center'
-                    alignItems='center'
-                    position='relative'
-                    _hover={{ bg: 'brand.hover' }}
-                    whileHover={{ x: -1.5, y: -1.5 }}
-                    onMouseEnter={() => setButtonHovered(true)}
-                    onMouseLeave={() => setButtonHovered(false)}
-                  >
-                    <ImportantText color='white'>Download Application</ImportantText>
-                  </MotionFlex>
-                </Box>
-              </Link>
+              <ButtonLink label='Download Application' link='#' width='268px' />
             </Center>
           </section>
         </Stack>
