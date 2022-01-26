@@ -4,6 +4,7 @@ import Head from 'next/head';
 
 import { ButtonLink } from '../../../components';
 import { ApplicationAttentionMsg, PageSubheading, PageText } from '../../../components/UI';
+import { PROJECT_GRANTS_DOWNLOAD_FILE_URL } from '../../../constants';
 
 const ProjectGrantsApply: NextPage = () => {
   return (
@@ -32,8 +33,11 @@ const ProjectGrantsApply: NextPage = () => {
         <Stack>
           <section id='download-application'>
             <Center>
-              {/* TODO: update download link */}
-              <ButtonLink label='Download Application' link='#' width='268px' />
+              <ButtonLink
+                label='Download Application'
+                link={PROJECT_GRANTS_DOWNLOAD_FILE_URL}
+                width='268px'
+              />
             </Center>
           </section>
         </Stack>

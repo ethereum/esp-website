@@ -15,6 +15,8 @@ export const APPLICANTS_PAGES = [OFFICE_HOURS_URL, SMALL_GRANTS_URL, PROJECT_GRA
 export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
 export const OFFICE_HOURS_APPLY_URL = '/applicants/office-hours/apply';
 export const SMALL_GRANTS_APPLY_URL = '/applicants/small-grants/apply';
+export const PROJECT_GRANTS_DOWNLOAD_FILE_URL =
+  'https://ipfs.chainsafe.io/ipfs/QmQ6TWeRS2z5pMsKsZgeBiCdZwNM1wctno9ESYkZUkNKi4';
 
 // thank you pages
 export const PROJECT_GRANTS_THANK_YOU_PAGE_URL = '/applicants/project-grants/thank-you';
