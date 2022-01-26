@@ -93,7 +93,6 @@ export const OfficeHoursForm: FC = () => {
           <Input
             id='first-name'
             type='text'
-            placeholder='Enter your first name'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -113,7 +112,6 @@ export const OfficeHoursForm: FC = () => {
           <Input
             id='last-name'
             type='text'
-            placeholder='Enter your last name'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -133,7 +131,6 @@ export const OfficeHoursForm: FC = () => {
           <Input
             id='email'
             type='email'
-            placeholder='Enter your Email'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -179,11 +176,16 @@ export const OfficeHoursForm: FC = () => {
 
         {individualOrTeam === TEAM && (
           <FormControl id='company-control' isRequired mb={8}>
-            <FormLabel htmlFor='company'>
+            <FormLabel htmlFor='company' mb={1}>
               <PageText display='inline' fontSize='input'>
                 Name of organization or entity
               </PageText>
             </FormLabel>
+
+            <PageText as='small' fontSize='helpText' color='brand.helpText'>
+              Name of your team or entity you&apos;re submitting for. If your organization
+              doesn&apos;t have a formal name, just try to describe it in a few words!
+            </PageText>
 
             <Input
               id='company'
@@ -196,14 +198,20 @@ export const OfficeHoursForm: FC = () => {
               _placeholder={{ fontSize: 'input' }}
               color='brand.paragraph'
               fontSize='input'
+              mt={3}
             />
           </FormControl>
         )}
 
         <FormControl id='project-name-control' mt={8} mb={8}>
-          <FormLabel htmlFor='projectName'>
+          <FormLabel htmlFor='projectName' mb={1}>
             <PageText fontSize='input'>Project name</PageText>
           </FormLabel>
+
+          <PageText as='small' fontSize='helpText' color='brand.helpText'>
+            If you&apos;re not asking for help on a project, or simply don&apos;t have a title yet,
+            you can write &quot;N/A&quot;.
+          </PageText>
 
           <Input
             id='project-name'
@@ -216,19 +224,25 @@ export const OfficeHoursForm: FC = () => {
             _placeholder={{ fontSize: 'input' }}
             color='brand.paragraph'
             fontSize='input'
+            mt={3}
           />
         </FormControl>
 
         <FormControl id='project-summary-control' mb={8}>
-          <FormLabel htmlFor='projectSummary'>
+          <FormLabel htmlFor='projectSummary' mb={1}>
             <PageText fontSize='input'>Brief Project Summary</PageText>
           </FormLabel>
+
+          <PageText as='small' fontSize='helpText' color='brand.helpText'>
+            If you have a project you&apos;d like to discuss, give us a short summary of what you
+            are hoping to accomplish. Just a paragraph will do.
+          </PageText>
+
           <Textarea
             id='project-summary'
             // TODO: change this when input validation is added
             // value={''}
             // onChange={() => {}}
-            placeholder="If you have a project you'd like to discuss, give us a short summary of what you are hoping to accomplish. Just a paragraph will do."
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -236,19 +250,25 @@ export const OfficeHoursForm: FC = () => {
             color='brand.paragraph'
             fontSize='input'
             h='150px'
+            mt={3}
           />
         </FormControl>
 
         <FormControl id='additional-info-control' mb={8}>
-          <FormLabel htmlFor='additionalInfo'>
+          <FormLabel htmlFor='additionalInfo' mb={1}>
             <PageText fontSize='input'>Where can we learn more?</PageText>
           </FormLabel>
+
+          <PageText as='small' fontSize='helpText' color='brand.helpText'>
+            Please share links to any relevant Github repos, social media, websites, published work
+            or professional profiles.
+          </PageText>
+
           <Textarea
             id='additional-info'
             // TODO: change this when input validation is added
             // value={''}
             // onChange={() => {}}
-            placeholder='Please share links to any relevant Github repos, social media, websites, published work or professional profiles.'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -256,25 +276,32 @@ export const OfficeHoursForm: FC = () => {
             color='brand.paragraph'
             fontSize='input'
             h='150px'
+            mt={3}
           />
         </FormControl>
 
         <FormControl id='project-category-control' isRequired mb={8}>
-          <FormLabel htmlFor='projectCategory'>
+          <FormLabel htmlFor='projectCategory' mb={1}>
             <PageText display='inline' fontSize='input'>
               Project Category
             </PageText>
           </FormLabel>
 
-          <Select
-            id='project-category-select'
-            options={PROJECT_CATEGORY_OPTIONS}
-            components={{ DropdownIndicator }}
-            placeholder='Select'
-            closeMenuOnSelect={true}
-            selectedOptionColor='brand.option'
-            chakraStyles={chakraStyles}
-          />
+          <PageText as='small' fontSize='helpText' color='brand.helpText'>
+            Choose what category your project best fits into.
+          </PageText>
+
+          <Box mt={3}>
+            <Select
+              id='project-category-select'
+              options={PROJECT_CATEGORY_OPTIONS}
+              components={{ DropdownIndicator }}
+              placeholder='Select'
+              closeMenuOnSelect={true}
+              selectedOptionColor='brand.option'
+              chakraStyles={chakraStyles}
+            />
+          </Box>
         </FormControl>
 
         <FormControl id='how-did-you-hear-about-ESP-control' isRequired mb={8}>
