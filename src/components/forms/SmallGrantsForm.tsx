@@ -75,7 +75,6 @@ export const SmallGrantsForm: FC = () => {
 
   const handleProjectCategory = (category: ProjectCategory | unknown) => {
     setProjectCategory(category);
-    console.log((category as ProjectCategory).value);
   };
 
   return (
