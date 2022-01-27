@@ -129,7 +129,7 @@ const SmallGrants: NextPage = () => {
             </Stack>
 
             <Stack>
-              <StepHeader>Completition</StepHeader>
+              <StepHeader>Completion</StepHeader>
 
               <PageText>
                 Once you&apos;ve completed work on your grant, you&apos;ll share the results in a
@@ -195,7 +195,7 @@ const SmallGrants: NextPage = () => {
             </ListItem>
             <ListItem>Projects with a planned token launch or public funding round.</ListItem>
             <ListItem>Art projects or charities that don&apos;t fit within our scope.</ListItem>
-            <ListItem>Token -or investment- focused events.</ListItem>
+            <ListItem>Token or investment focused events.</ListItem>
           </List>
         </section>
 
