@@ -160,7 +160,7 @@ const SmallGrants: NextPage = () => {
         </section>
 
         <section id='eligibility'>
-          <PageSection mb={6}>Elegibility</PageSection>
+          <PageSection mb={6}>Eligibility</PageSection>
 
           <PageText>
             We are happy to hear from all kinds of contributors who are working within our scope:
