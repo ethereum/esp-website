@@ -78,7 +78,7 @@ export const NewsletterSignup: FC = () => {
           Join our newsletter to stay tuned!
         </ImportantText>
 
-        <PageText textAlign='center'>
+        <PageText textAlign='center' fontSize='input'>
           Sign up to receive ESP updates to your inbox! You&apos;ll hear from us every few weeks,
           and we&apos;ll only ever contact you with ESP news.
         </PageText>
