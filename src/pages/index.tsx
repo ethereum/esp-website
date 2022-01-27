@@ -15,7 +15,7 @@ import whatWeSupportTreeSVG from '../public/images/what-we-support-tree.svg';
 import whoWeSupportRootsMobileSVG from '../public/images/who-we-support-roots-mobile.svg';
 import whoWeSupportRootsSVG from '../public/images/who-we-support-roots.svg';
 
-import { ABOUT_URL, WHO_WE_SUPPORT_URL } from '../constants';
+import { ABOUT_URL, HOW_WE_SUPPORT_URL, WHO_WE_SUPPORT_URL } from '../constants';
 
 const Home: NextPage = () => {
   const [isMobile] = useMediaQuery('(max-width: 768px)');
@@ -240,6 +240,61 @@ const Home: NextPage = () => {
 
                 <Flex justifyContent={{ base: 'center', md: 'flex-start' }}>
                   <ButtonLink label='Read more' link={WHO_WE_SUPPORT_URL} width='247px' />
+                </Flex>
+              </Stack>
+            </Flex>
+          </Stack>
+        </section>
+
+        <section id='how-we-support'>
+          <Stack
+            borderRadius='10px'
+            bgGradient='linear(to-br, #FFE5E2 2.29%, #F3D1EE 101.37%)'
+            h={{ xs: '100%', md: '458px' }}
+            w='100%'
+            justifyContent='center'
+          >
+            <Flex
+              alignItems='center'
+              direction={{ base: 'column', md: 'row' }}
+              px={6}
+              py={{ xs: 10, md: 0 }}
+            >
+              <Stack mb={4} mr={{ base: 0, md: 12 }}>
+                <PageSection textAlign={{ base: 'center', md: 'left' }} mb={6}>
+                  How We Support
+                </PageSection>
+
+                <Box>
+                  {/* TODO: replace this image when it's ready */}
+                  {/* <Image
+                    src={isMobile ? whoWeSupportRootsMobileSVG : whoWeSupportRootsSVG}
+                    alt='supported categories tree'
+                    height='230.43px'
+                    width='400px'
+                  /> */}
+                </Box>
+              </Stack>
+
+              <Stack>
+                <Stack mb={6}>
+                  <PageText mb={6}>
+                    We aim to deploy resources, both financial and non-financial, where they will
+                    have the biggest impact. We try to keep our processes flexible and evolving in
+                    order to be open to new ideas and support builders of all kinds.
+                  </PageText>
+
+                  <PageText>
+                    Grants are awarded through a formal application and evaluation process, while
+                    our office hours are an opportunity to explore a broad range of support through
+                    an informal conversation with a member of the ESP team, such as project
+                    feedback, advice, help navigating the ecosystem or guidance on submitting a
+                    grant application.
+                  </PageText>
+                </Stack>
+
+                <Flex justifyContent={{ base: 'center', md: 'flex-start' }}>
+                  <ButtonLink label='Read more' link={HOW_WE_SUPPORT_URL} width='247px' />
                 </Flex>
               </Stack>
             </Flex>
