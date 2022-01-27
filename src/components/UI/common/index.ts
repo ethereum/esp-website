@@ -1,4 +1,5 @@
 export * from './ApplicantsDescription';
+export * from './ApplicationAttentionMsg';
 export * from './ApplicationTypeCard';
 export * from './DropdownIndicator';
 export * from './Footer';

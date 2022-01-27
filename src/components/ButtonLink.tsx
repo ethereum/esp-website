@@ -9,10 +9,6 @@ import { useShadowAnimation } from '../hooks';
 
 import planeVectorSVG from '../public/images/plane-vector.svg';
 
-interface Props {
-  link: string;
-}
-
 const MotionBox = motion<BoxProps>(Box);
 const MotionFlex = motion<FlexProps>(Flex);
 

@@ -59,7 +59,9 @@ export default extendTheme({
         rgba: 'rgba(228, 222, 255, 0)'
       },
       option: '#ffefec',
-      uploadProposal: 'rgba(189, 189, 189, 0.2)'
+      uploadProposal: 'rgba(189, 189, 189, 0.2)',
+      helpText: '#7c7ba1',
+      warning: '#f0f6fd'
     }
   },
   fonts: {
@@ -75,7 +77,8 @@ export default extendTheme({
       question: '16px'
     },
     paragraph: '15px',
-    input: '14px'
+    input: '14px',
+    helpText: '13px'
   },
   sizes: {
     container: {
