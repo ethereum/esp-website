@@ -1112,7 +1112,7 @@ export const SmallGrantsForm: FC = () => {
             </FormControl>
 
             <FormControl id='event-additional-info-control' mb={8}>
-              <FormLabel htmlFor='eventAdditionalInfo'>
+              <FormLabel htmlFor='eventAdditionalInfo' mb={1}>
                 <PageText fontSize='input'>Anything else you&apos;d like to share?</PageText>
               </FormLabel>
 
@@ -1134,6 +1134,7 @@ export const SmallGrantsForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 h='150px'
+                mt={3}
               />
             </FormControl>
 
