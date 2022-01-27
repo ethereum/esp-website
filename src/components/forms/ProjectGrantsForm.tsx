@@ -371,7 +371,6 @@ export const ProjectGrantsForm: FC = () => {
           <Input
             id='requested-amount'
             type='text'
-            placeholder='USD 50,000'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'

@@ -216,7 +216,6 @@ export const OfficeHoursForm: FC = () => {
           <Input
             id='project-name'
             type='text'
-            placeholder='Enter project name'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -362,7 +361,6 @@ export const OfficeHoursForm: FC = () => {
               // TODO: change this when input validation is added
               // value={''}
               // onChange={() => {}}
-              placeholder='Describe a reason for meeting'
               bg='white'
               borderRadius={0}
               borderColor='brand.border'

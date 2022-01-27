@@ -492,7 +492,7 @@ export const SmallGrantsForm: FC = () => {
                 </FormLabel>
 
                 <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Ex: EUR 10,000
+                  Ex: EUR 10,000.
                 </PageText>
 
                 <Input
@@ -761,33 +761,17 @@ export const SmallGrantsForm: FC = () => {
 
         {(projectCategory as ProjectCategory).value === COMMUNITY_EVENT && (
           <>
-            <FormControl id='previous-events-control' isRequired mb={8}>
-              <FormLabel htmlFor='previousEvents'>
-                <PageText display='inline' fontSize='input'>
-                  List of any previous events you&apos;ve organized
-                </PageText>
-              </FormLabel>
-              <Textarea
-                id='previous-events'
-                // TODO: change this when input validation is added
-                // value={''}
-                // onChange={() => {}}
-                bg='white'
-                borderRadius={0}
-                borderColor='brand.border'
-                _placeholder={{ fontSize: 'input' }}
-                color='brand.paragraph'
-                fontSize='input'
-                h='150px'
-              />
-            </FormControl>
-
             <FormControl id='event-name-control' isRequired mb={8}>
-              <FormLabel htmlFor='eventName'>
+              <FormLabel htmlFor='eventName' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   Event name
                 </PageText>
               </FormLabel>
+
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                What&apos;s the official title of your event?
+              </PageText>
+
               <Input
                 id='event-name'
                 type='text'
@@ -798,19 +782,25 @@ export const SmallGrantsForm: FC = () => {
                 _placeholder={{ fontSize: 'input' }}
                 color='brand.paragraph'
                 fontSize='input'
+                mt={3}
               />
             </FormControl>
 
             <FormControl id='event-date-control' isRequired mb={8}>
-              <FormLabel htmlFor='eventDate'>
+              <FormLabel htmlFor='eventDate' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   Event date
                 </PageText>
               </FormLabel>
+
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Please enter the first date of your event (MM/DD/YYYY)
+              </PageText>
+
+              {/* TODO: convert date to 'MM/DD/YYYY' format before submitting */}
               <Input
                 id='event-date'
                 type='date'
-                placeholder='Enter the first date of your event (MM/DD/YYYY)'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -818,15 +808,50 @@ export const SmallGrantsForm: FC = () => {
                 _placeholder={{ fontSize: 'input' }}
                 color='brand.paragraph'
                 fontSize='input'
+                mt={3}
               />
             </FormControl>
 
-            <FormControl id='event-link-control' mb={8}>
-              <FormLabel htmlFor='eventLink'>
-                <PageText fontSize='input'>Is there a website for this event?</PageText>
+            <FormControl id='previous-work-control' isRequired mb={8}>
+              <FormLabel htmlFor='previousWork' mb={1}>
+                <PageText display='inline' fontSize='input'>
+                  List of any previous events you&apos;ve organized
+                </PageText>
               </FormLabel>
+
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                The more information the better!
+              </PageText>
+
+              <Textarea
+                id='previous-work'
+                // TODO: change this when input validation is added
+                // value={''}
+                // onChange={() => {}}
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+                h='150px'
+                mt={3}
+              />
+            </FormControl>
+
+            <FormControl id='sponsorship-link-control' mb={8}>
+              <FormLabel htmlFor='sponsorshipLink' mb={1}>
+                <PageText fontSize='input'>
+                  Is there a website for this event? Paste the link here.
+                </PageText>
+              </FormLabel>
+
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Meetup, Facebook page, event site, etc (URL only).
+              </PageText>
+
               <Input
-                id='event-link'
+                id='sponsorship-link'
                 type='text'
                 bg='white'
                 borderRadius={0}
@@ -835,38 +860,25 @@ export const SmallGrantsForm: FC = () => {
                 _placeholder={{ fontSize: 'input' }}
                 color='brand.paragraph'
                 fontSize='input'
+                mt={3}
               />
             </FormControl>
 
-            <FormControl id='event-topics-control' isRequired mb={8}>
-              <FormLabel htmlFor='eventTopics'>
-                <PageText display='inline' fontSize='input'>
-                  Event topics
-                </PageText>
-              </FormLabel>
-              <Textarea
-                id='event-topics'
-                // TODO: change this when input validation is added
-                // value={''}
-                // onChange={() => {}}
-                bg='white'
-                borderRadius={0}
-                borderColor='brand.border'
-                _placeholder={{ fontSize: 'input' }}
-                color='brand.paragraph'
-                fontSize='input'
-                h='150px'
-              />
-            </FormControl>
-
-            <FormControl id='event-description-control' isRequired mb={8}>
-              <FormLabel htmlFor='eventDescription'>
+            <FormControl id='sponsorship-details-control' isRequired mb={8}>
+              <FormLabel htmlFor='sponsorshipDetails' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   Describe your event
                 </PageText>
               </FormLabel>
+
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                For example: Will your agenda include talks, workshops, discussions? What is your
+                planned format - round table, showcase or a more informal setting? What are your
+                goals for the event?
+              </PageText>
+
               <Textarea
-                id='event-description'
+                id='sponsorship-details'
                 // TODO: change this when input validation is added
                 // value={''}
                 // onChange={() => {}}
@@ -877,6 +889,35 @@ export const SmallGrantsForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 h='150px'
+                mt={3}
+              />
+            </FormControl>
+
+            <FormControl id='sponsorship-topics-control' isRequired mb={8}>
+              <FormLabel htmlFor='sponsorshipTopics' mb={1}>
+                <PageText display='inline' fontSize='input'>
+                  Event topics
+                </PageText>
+              </FormLabel>
+
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Please briefly describe the topics you plan to cover at this event. For example:
+                staking, zero knowledge, defi, social impact, NFTs, etc.
+              </PageText>
+
+              <Textarea
+                id='sponsorship-topics'
+                // TODO: change this when input validation is added
+                // value={''}
+                // onChange={() => {}}
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+                h='150px'
+                mt={3}
               />
             </FormControl>
 
@@ -917,15 +958,19 @@ export const SmallGrantsForm: FC = () => {
             </FormControl>
 
             <FormControl id='expected-attendees-control' isRequired mb={8}>
-              <FormLabel htmlFor='expectedAttendees'>
+              <FormLabel htmlFor='expectedAttendees' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   Expected number of attendees/registrants
                 </PageText>
               </FormLabel>
+
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Enter a whole number. Ex: 300.
+              </PageText>
+
               <Input
                 id='expected-attendees'
                 type='number'
-                placeholder='Estimated number. Ex: 300'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -933,21 +978,26 @@ export const SmallGrantsForm: FC = () => {
                 _placeholder={{ fontSize: 'input' }}
                 color='brand.paragraph'
                 fontSize='input'
+                mt={3}
               />
             </FormControl>
 
             <FormControl id='target-audience-control' isRequired mb={8}>
-              <FormLabel htmlFor='targetAudience'>
+              <FormLabel htmlFor='targetAudience' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   Target Audience
                 </PageText>
               </FormLabel>
+
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Ex: developers, entrepreneurs, general community.
+              </PageText>
+
               <Textarea
                 id='target-audience'
                 // TODO: change this when input validation is added
                 // value={''}
                 // onChange={() => {}}
-                placeholder='Ex: developers, entrepreneurs, general community'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -955,15 +1005,22 @@ export const SmallGrantsForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 h='150px'
+                mt={3}
               />
             </FormControl>
 
             <FormControl id='confirmed-speakers-control' isRequired mb={8}>
-              <FormLabel htmlFor='confirmedSpeakers'>
+              <FormLabel htmlFor='confirmedSpeakers' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   List any confirmed speakers
                 </PageText>
               </FormLabel>
+
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Please list their full names and topic discussion. If you do not have any confirmed
+                speakers, please explain why.
+              </PageText>
+
               <Textarea
                 id='confirmed-speakers'
                 // TODO: change this when input validation is added
@@ -976,6 +1033,7 @@ export const SmallGrantsForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 h='150px'
+                mt={3}
               />
             </FormControl>
 
@@ -1000,14 +1058,20 @@ export const SmallGrantsForm: FC = () => {
               />
             </FormControl>
 
-            <FormControl id='budget-breakdown-control' isRequired mb={8}>
-              <FormLabel htmlFor='budgetBreakdown'>
+            <FormControl id='event-proposed-timeline-control' isRequired mb={8}>
+              <FormLabel htmlFor='eventProposedTimeline' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   Budget breakdown
                 </PageText>
               </FormLabel>
+
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Please itemize your anticipated costs - best estimates are ok if things are not yet
+                confirmed or dependent on final attendee count.
+              </PageText>
+
               <Textarea
-                id='budget-breakdown'
+                id='event-proposed-timeline'
                 // TODO: change this when input validation is added
                 // value={''}
                 // onChange={() => {}}
@@ -1018,19 +1082,24 @@ export const SmallGrantsForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 h='150px'
+                mt={3}
               />
             </FormControl>
 
             <FormControl id='event-requested-amount-control' isRequired mb={8}>
-              <FormLabel htmlFor='eventRequestedAmount'>
+              <FormLabel htmlFor='eventRequestedAmount' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   Requested Sponsorship Amount
                 </PageText>
               </FormLabel>
+
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Ex: USD 500.
+              </PageText>
+
               <Input
                 id='event-requested-amount'
                 type='text'
-                placeholder='Ex: USD $500-1,500'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -1038,6 +1107,7 @@ export const SmallGrantsForm: FC = () => {
                 _placeholder={{ fontSize: 'input' }}
                 color='brand.paragraph'
                 fontSize='input'
+                mt={3}
               />
             </FormControl>
 
@@ -1045,6 +1115,13 @@ export const SmallGrantsForm: FC = () => {
               <FormLabel htmlFor='eventAdditionalInfo'>
                 <PageText fontSize='input'>Anything else you&apos;d like to share?</PageText>
               </FormLabel>
+
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Is there anything we should know about that hasn&apos;t been covered by the
+                questions above? You also have the option to link any supporting documents or
+                relevant sites here.
+              </PageText>
+
               <Textarea
                 id='event-additional-info'
                 // TODO: change this when input validation is added
