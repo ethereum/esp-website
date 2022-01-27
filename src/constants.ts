@@ -68,3 +68,6 @@ export const MOBILE_MENU = [
 
 // external links
 export const ETHRESEARCH_URL = 'https://ethresear.ch/';
+
+// api
+export const API_DOWNLOAD_APPLICATION_URL = '/api/download-application';
