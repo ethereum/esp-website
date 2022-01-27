@@ -3,6 +3,7 @@ import { TabsMap } from './types';
 // about
 export const ABOUT_URL = '/about';
 export const WHO_WE_SUPPORT_URL = '/about/who-we-support';
+export const HOW_WE_SUPPORT_URL = '/about/how-we-support';
 
 // applicants
 export const APPLICANTS_URL = '/applicants';
