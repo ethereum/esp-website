@@ -77,7 +77,8 @@ export default extendTheme({
       question: '16px'
     },
     paragraph: '15px',
-    input: '14px'
+    input: '14px',
+    stats: '20px'
   },
   sizes: {
     container: {
