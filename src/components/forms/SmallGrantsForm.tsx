@@ -41,7 +41,8 @@ import {
   IndividualOrTeam,
   OfficeHoursFormData,
   ProjectCategory,
-  ProjectGrantsFormData
+  ProjectGrantsFormData,
+  RepeatApplicant
 } from '../../types';
 
 const MotionBox = motion<BoxProps>(Box);
@@ -49,6 +50,7 @@ const MotionButton = motion<ButtonProps>(Button);
 
 export const SmallGrantsForm: FC = () => {
   const [individualOrTeam, setIndividualOrTeam] = useState<IndividualOrTeam>('Individual');
+  const [repeatApplicant, setRepeatApplicant] = useState('No');
   // `unknown` comes from react-select required typings (https://stackoverflow.com/a/54370057)
   const [projectCategory, setProjectCategory] = useState<ProjectCategory | unknown>({
     value: '',
@@ -69,8 +71,12 @@ export const SmallGrantsForm: FC = () => {
     router.push(SMALL_GRANTS_THANK_YOU_PAGE_URL);
   };
 
-  const handleRadioButton = (value: IndividualOrTeam) => {
+  const handleIndividualOrTeam = (value: IndividualOrTeam) => {
     setIndividualOrTeam(value);
+  };
+
+  const handleRepeatApplicant = (value: RepeatApplicant) => {
+    setRepeatApplicant(value);
   };
 
   const handleProjectCategory = (category: ProjectCategory | unknown) => {
@@ -152,7 +158,7 @@ export const SmallGrantsForm: FC = () => {
 
           <RadioGroup
             id='individual-or-team'
-            onChange={handleRadioButton}
+            onChange={handleIndividualOrTeam}
             value={individualOrTeam}
             fontSize='input'
             colorScheme='white'
@@ -206,7 +212,8 @@ export const SmallGrantsForm: FC = () => {
           </FormLabel>
 
           <PageText as='small' fontSize='helpText' color='brand.helpText'>
-            Tell us about yourself, your experience and motivations
+            Tell us about yourself, your experience, and your motivations. Feel free to link to any
+            biography pages, LinkedIn pages, etc.
           </PageText>
 
           <Textarea
@@ -214,7 +221,6 @@ export const SmallGrantsForm: FC = () => {
             // TODO: change this when input validation is added
             // value={''}
             // onChange={() => {}}
-            placeholder=''
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -302,13 +308,12 @@ export const SmallGrantsForm: FC = () => {
                 </FormLabel>
 
                 <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  A short, concise title of what you&apos;re working on
+                  A short, concise title of what you&apos;re working on.
                 </PageText>
 
                 <Input
                   id='project-name'
                   type='text'
-                  placeholder='Enter project name'
                   bg='white'
                   borderRadius={0}
                   borderColor='brand.border'
@@ -326,7 +331,7 @@ export const SmallGrantsForm: FC = () => {
                 </FormLabel>
 
                 <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Github, Radicle, etc
+                  Github, Radicle, etc.
                 </PageText>
 
                 <Input
@@ -339,6 +344,34 @@ export const SmallGrantsForm: FC = () => {
                   _placeholder={{ fontSize: 'input' }}
                   color='brand.paragraph'
                   fontSize='input'
+                  mt={3}
+                />
+              </FormControl>
+
+              <FormControl id='previous-work-control' isRequired mb={8}>
+                <FormLabel htmlFor='previousWork' mb={1}>
+                  <PageText display='inline' fontSize='input'>
+                    Previous work
+                  </PageText>
+                </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  Please provide links to published code, research, or other documentation of what
+                  you&apos;ve worked on.
+                </PageText>
+
+                <Textarea
+                  id='previous-work'
+                  // TODO: change this when input validation is added
+                  // value={''}
+                  // onChange={() => {}}
+                  bg='white'
+                  borderRadius={0}
+                  borderColor='brand.border'
+                  _placeholder={{ fontSize: 'input' }}
+                  color='brand.paragraph'
+                  fontSize='input'
+                  h='150px'
                   mt={3}
                 />
               </FormControl>
@@ -376,7 +409,7 @@ export const SmallGrantsForm: FC = () => {
                 </FormLabel>
 
                 <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Describe the main concept and components of the proposed work
+                  Describe the main concept and components of the proposed work.
                 </PageText>
 
                 <Textarea
@@ -403,8 +436,8 @@ export const SmallGrantsForm: FC = () => {
                 </FormLabel>
 
                 <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Why is this project important for your target demographic/problem area? How do you
-                  know people need what you&apos;re making?
+                  How do you know people need what you&apos;re making? Why is this project important
+                  for your target demographic/problem area?
                 </PageText>
 
                 <Textarea
@@ -431,12 +464,67 @@ export const SmallGrantsForm: FC = () => {
                 </FormLabel>
 
                 <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Why are you building this project? Do you have unique expertise/perspective? What
-                  are the current alternative options that people rely on?
+                  What other solutions are being worked on, and what alternatives do people
+                  currently rely on? Do you have unique expertise/perspective?
                 </PageText>
 
                 <Textarea
                   id='how-does-your-project-differ'
+                  // TODO: change this when input validation is added
+                  // value={''}
+                  // onChange={() => {}}
+                  bg='white'
+                  borderRadius={0}
+                  borderColor='brand.border'
+                  _placeholder={{ fontSize: 'input' }}
+                  color='brand.paragraph'
+                  fontSize='input'
+                  h='150px'
+                  mt={3}
+                />
+              </FormControl>
+
+              <FormControl id='project-requested-amount-control' isRequired mb={8}>
+                <FormLabel htmlFor='projectRequestedAmount' mb={1}>
+                  <PageText display='inline' fontSize='input'>
+                    Requested Amount
+                  </PageText>
+                </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  Ex: EUR 10,000
+                </PageText>
+
+                <Input
+                  id='project-requested-amount'
+                  type='text'
+                  bg='white'
+                  borderRadius={0}
+                  borderColor='brand.border'
+                  h='56px'
+                  _placeholder={{ fontSize: 'input' }}
+                  color='brand.paragraph'
+                  fontSize='input'
+                  mt={3}
+                />
+              </FormControl>
+
+              <FormControl id='proposed-timeline-control' isRequired mb={8}>
+                <FormLabel htmlFor='proposedTimeline' mb={1}>
+                  <PageText display='inline' fontSize='input'>
+                    Proposed tasks, roadmap and budget
+                  </PageText>
+                </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  Give us an itemized breakdown of how you&apos;ll be using the requested funds.
+                  Provide a brief timeline of the expected work and estimated budget. For each month
+                  or stage of work, list: main objectives, tasks that need to be completed to reach
+                  each objective, deliverables, and anticipated budget.
+                </PageText>
+
+                <Textarea
+                  id='proposed-timeline'
                   // TODO: change this when input validation is added
                   // value={''}
                   // onChange={() => {}}
@@ -459,7 +547,7 @@ export const SmallGrantsForm: FC = () => {
                 </FormLabel>
 
                 <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  If so, tell us how?
+                  If so, how?
                 </PageText>
 
                 <Textarea
@@ -478,73 +566,22 @@ export const SmallGrantsForm: FC = () => {
                 />
               </FormControl>
 
-              <FormControl id='roadmap-control' isRequired mb={8}>
-                <FormLabel htmlFor='roadmap' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Proposed Tasks, roadmap and budget
-                  </PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Provide a brief timeline of the expected work and estimated budget for each
-                  objective
-                </PageText>
-
-                <Textarea
-                  id='roadmap'
-                  // TODO: change this when input validation is added
-                  // value={''}
-                  // onChange={() => {}}
-                  placeholder='- *Month 1 Main objectives* - *Task* - *Task* - *Deliverables* - *Budget* - *M2 Main objectives* - *Task* - *Task* - *Deliverables* - *Budget* - *M3* -*Task* - *Task* - *Deliverables* - *Budget*'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  h='150px'
-                  mt={3}
-                />
-              </FormControl>
-
-              <FormControl id='requested-amount-control' isRequired mb={8}>
-                <FormLabel htmlFor='requestedAmount' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Requested Amount
-                  </PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Give us an itemized breakdown of how you&apos;ll be using the requested funds!
-                </PageText>
-
-                <Input
-                  id='requested-amount'
-                  type='text'
-                  placeholder='Ex: USD 5,000'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  mt={3}
-                />
-              </FormControl>
-
               <FormControl id='is-open-source-control' isRequired mb={8}>
-                <FormLabel htmlFor='isOpenSource'>
+                <FormLabel htmlFor='isOpenSource' mb={1}>
                   <PageText display='inline' fontSize='input'>
                     Is your project open source?
                   </PageText>
                 </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  If not, why not?
+                </PageText>
+
                 <Textarea
                   id='is-open-source'
                   // TODO: change this when input validation is added
                   // value={''}
                   // onChange={() => {}}
-                  placeholder='If not, tell us why not?'
                   bg='white'
                   borderRadius={0}
                   borderColor='brand.border'
@@ -552,21 +589,27 @@ export const SmallGrantsForm: FC = () => {
                   color='brand.paragraph'
                   fontSize='input'
                   h='150px'
+                  mt={3}
                 />
               </FormControl>
 
               <FormControl id='future-plans-control' isRequired mb={8}>
-                <FormLabel htmlFor='futurePlans'>
+                <FormLabel htmlFor='futurePlans' mb={1}>
                   <PageText display='inline' fontSize='input'>
                     What are your plans after the grant is completed?
                   </PageText>
                 </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  How do you aim to be sustainable after the grant? Alternatively, tell us why this
+                  project doesn&apos;t need to be sustainable!
+                </PageText>
+
                 <Textarea
                   id='future-plans'
                   // TODO: change this when input validation is added
                   // value={''}
                   // onChange={() => {}}
-                  placeholder="Tell us how you aim to be sustainable after the grant? Or tell us why this project doesn't need to be sustainable!"
                   bg='white'
                   borderRadius={0}
                   borderColor='brand.border'
@@ -574,6 +617,7 @@ export const SmallGrantsForm: FC = () => {
                   color='brand.paragraph'
                   fontSize='input'
                   h='150px'
+                  mt={3}
                 />
               </FormControl>
 
@@ -588,7 +632,6 @@ export const SmallGrantsForm: FC = () => {
                   // TODO: change this when input validation is added
                   // value={''}
                   // onChange={() => {}}
-                  placeholder=''
                   bg='white'
                   borderRadius={0}
                   borderColor='brand.border'
@@ -597,6 +640,45 @@ export const SmallGrantsForm: FC = () => {
                   fontSize='input'
                   h='150px'
                 />
+              </FormControl>
+
+              <FormControl id='repeat-applicant-control' isRequired mb={8}>
+                <FormLabel htmlFor='individualOrTeam' mb={2}>
+                  <PageText display='inline' fontSize='input'>
+                    Have you previously applied to ESP with this same idea or project?
+                  </PageText>
+                </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  Has anything changed? If you&apos;re considering reapplying, we recommend signing
+                  up for Office Hours first before restarting the application process.
+                </PageText>
+
+                <RadioGroup
+                  id='repeat-applicant'
+                  onChange={handleRepeatApplicant}
+                  value={repeatApplicant}
+                  fontSize='input'
+                  colorScheme='white'
+                  mt={4}
+                >
+                  <Stack direction='row'>
+                    <Radio
+                      id='repeat-applicant-no'
+                      size='lg'
+                      name='repeatApplicant'
+                      value='No'
+                      defaultChecked
+                      mr={8}
+                    >
+                      <PageText fontSize='input'>No</PageText>
+                    </Radio>
+
+                    <Radio id='repeat-applicant-yes' size='lg' name='repeatApplicant' value='Yes'>
+                      <PageText fontSize='input'>Yes</PageText>
+                    </Radio>
+                  </Stack>
+                </RadioGroup>
               </FormControl>
 
               <FormControl id='progress-since-previous-application-control' isRequired mb={8}>
@@ -611,7 +693,6 @@ export const SmallGrantsForm: FC = () => {
                   // TODO: change this when input validation is added
                   // value={''}
                   // onChange={() => {}}
-                  placeholder=''
                   bg='white'
                   borderRadius={0}
                   borderColor='brand.border'
@@ -623,17 +704,21 @@ export const SmallGrantsForm: FC = () => {
               </FormControl>
 
               <FormControl id='applied-previously-control' isRequired mb={8}>
-                <FormLabel htmlFor='appliedPreviously'>
+                <FormLabel htmlFor='appliedPreviously' mb={1}>
                   <PageText display='inline' fontSize='input'>
                     Have you applied for or received other funding?
                   </PageText>
                 </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  If so, where else did you get funding from?
+                </PageText>
+
                 <Textarea
                   id='applied-previously'
                   // TODO: change this when input validation is added
                   // value={''}
                   // onChange={() => {}}
-                  placeholder=''
                   bg='white'
                   borderRadius={0}
                   borderColor='brand.border'
@@ -641,19 +726,26 @@ export const SmallGrantsForm: FC = () => {
                   color='brand.paragraph'
                   fontSize='input'
                   h='150px'
+                  mt={3}
                 />
               </FormControl>
 
               <FormControl id='project-additional-info-control' mb={8}>
-                <FormLabel htmlFor='projectAdditionalInfo'>
+                <FormLabel htmlFor='projectAdditionalInfo' mb={1}>
                   <PageText fontSize='input'>Anything else you&apos;d like to share?</PageText>
                 </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  Is there anything we should know about that hasn&apos;t been covered by the
+                  questions above? You also have the option to link any supporting documents or
+                  relevant sites here.
+                </PageText>
+
                 <Textarea
                   id='project-additional-info'
                   // TODO: change this when input validation is added
                   // value={''}
                   // onChange={() => {}}
-                  placeholder=''
                   bg='white'
                   borderRadius={0}
                   borderColor='brand.border'
@@ -661,6 +753,7 @@ export const SmallGrantsForm: FC = () => {
                   color='brand.paragraph'
                   fontSize='input'
                   h='150px'
+                  mt={3}
                 />
               </FormControl>
             </>
@@ -668,18 +761,17 @@ export const SmallGrantsForm: FC = () => {
 
         {(projectCategory as ProjectCategory).value === COMMUNITY_EVENT && (
           <>
-            <FormControl id='previous-work-control' isRequired mb={8}>
-              <FormLabel htmlFor='previousWork'>
+            <FormControl id='previous-events-control' isRequired mb={8}>
+              <FormLabel htmlFor='previousEvents'>
                 <PageText display='inline' fontSize='input'>
                   List of any previous events you&apos;ve organized
                 </PageText>
               </FormLabel>
               <Textarea
-                id='previous-work'
+                id='previous-events'
                 // TODO: change this when input validation is added
                 // value={''}
                 // onChange={() => {}}
-                placeholder=''
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -699,7 +791,6 @@ export const SmallGrantsForm: FC = () => {
               <Input
                 id='event-name'
                 type='text'
-                placeholder=''
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -737,7 +828,6 @@ export const SmallGrantsForm: FC = () => {
               <Input
                 id='event-link'
                 type='text'
-                placeholder='Meetup, Facebook page, event site, etc. URL only'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -759,7 +849,6 @@ export const SmallGrantsForm: FC = () => {
                 // TODO: change this when input validation is added
                 // value={''}
                 // onChange={() => {}}
-                placeholder=''
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -781,7 +870,6 @@ export const SmallGrantsForm: FC = () => {
                 // TODO: change this when input validation is added
                 // value={''}
                 // onChange={() => {}}
-                placeholder=''
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -881,7 +969,6 @@ export const SmallGrantsForm: FC = () => {
                 // TODO: change this when input validation is added
                 // value={''}
                 // onChange={() => {}}
-                placeholder=''
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -903,7 +990,6 @@ export const SmallGrantsForm: FC = () => {
                 // TODO: change this when input validation is added
                 // value={''}
                 // onChange={() => {}}
-                placeholder=''
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -925,7 +1011,6 @@ export const SmallGrantsForm: FC = () => {
                 // TODO: change this when input validation is added
                 // value={''}
                 // onChange={() => {}}
-                placeholder=''
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -965,7 +1050,6 @@ export const SmallGrantsForm: FC = () => {
                 // TODO: change this when input validation is added
                 // value={''}
                 // onChange={() => {}}
-                placeholder=''
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'

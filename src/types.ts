@@ -50,6 +50,8 @@ export type OfficeHoursFormData = {
 
 export type IndividualOrTeam = 'Individual' | 'Team';
 
+export type RepeatApplicant = 'Yes' | 'No';
+
 export type ReasonForMeeting = typeof REASONS_FOR_MEETING;
 
 export type ProjectCategory = typeof PROJECT_CATEGORY_OPTIONS[number];
