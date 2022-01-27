@@ -1,3 +1,9 @@
+import {
+  HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
+  PROJECT_CATEGORY_OPTIONS,
+  REASONS_FOR_MEETING
+} from './components/forms/constants';
+
 export interface TabsMap {
   [name: string]: number;
 }
@@ -44,11 +50,10 @@ export type OfficeHoursFormData = {
 
 export type IndividualOrTeam = 'Individual' | 'Team';
 
-export type ReasonForMeeting = [
-  | 'Project feedback or advice'
-  | 'Questions about ESP'
-  | 'Questions about applying for a grant'
-  | 'How to contribute to Ethereum'
-  | 'Other'
-  | ''
-];
+export type RepeatApplicant = 'Yes' | 'No';
+
+export type ReasonForMeeting = typeof REASONS_FOR_MEETING;
+
+export type ProjectCategory = typeof PROJECT_CATEGORY_OPTIONS[number];
+
+export type ReferralSource = typeof HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS[number];

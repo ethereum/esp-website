@@ -67,10 +67,9 @@ const SmallGrants: NextPage = () => {
               fontWeight={700}
               color='brand.orange.100'
               href={OFFICE_HOURS_URL}
-              isExternal
               _hover={{ textDecoration: 'none' }}
             >
-              office hours
+              Office Hours
             </Link>{' '}
             to get your questions answered before submitting.
           </PageText>
@@ -268,10 +267,6 @@ const SmallGrants: NextPage = () => {
                 may be shared with advisors in the review process, so let us know in your
                 application if there&apos;s something you want us to keep confidential!
               </PageText>
-            </FAQItem>
-
-            <FAQItem question='How long will the call be?'>
-              <PageText>The scheduled call will be 20 minutes long.</PageText>
             </FAQItem>
 
             <FAQItem question='Can I remain anonymous?'>

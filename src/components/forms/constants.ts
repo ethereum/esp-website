@@ -1,6 +1,7 @@
 // project categories
 export const PROJECT_CATEGORY_OPTIONS = [
   { value: 'Community and education', label: 'Community and education' },
+  { value: 'Community event', label: 'Community event' },
   { value: 'Consensus layer', label: 'Consensus layer' },
   { value: 'Cryptography and zkp', label: 'Cryptography and zkp' },
   { value: 'Developer experience and tooling', label: 'Developer experience and tooling' },
@@ -8,6 +9,21 @@ export const PROJECT_CATEGORY_OPTIONS = [
   { value: 'General research', label: 'General research' },
   { value: 'Layer 2', label: 'Layer 2' },
   { value: 'Other', label: 'Other' }
+];
+
+// events
+export const EVENT_TYPE_OPTIONS = [
+  { value: 'Conference', label: 'Conference' },
+  { value: 'Hackathon', label: 'Hackathon' },
+  { value: 'Meetup', label: 'Meetup' },
+  { value: 'Speaker Series', label: 'Speaker Series' },
+  { value: 'Other', label: 'Other' }
+];
+
+export const EVENT_FORMAT_OPTIONS = [
+  { value: 'In-person', label: 'In-person' },
+  { value: 'Online', label: 'Online' },
+  { value: 'Hybrid (both)', label: 'Hybrid (both)' }
 ];
 
 // countries
@@ -1416,3 +1432,12 @@ export const HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS = [
 // office hours
 export const TEAM = 'Team';
 export const OTHER = 'Other';
+export const COMMUNITY_EVENT = 'Community event';
+export const REASONS_FOR_MEETING = [
+  'Project feedback or advice',
+  'Questions about ESP',
+  'Questions about applying for a grant',
+  'How to contribute to Ethereum',
+  'Other',
+  ''
+];

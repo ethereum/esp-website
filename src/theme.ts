@@ -60,6 +60,8 @@ export default extendTheme({
       },
       option: '#ffefec',
       uploadProposal: 'rgba(189, 189, 189, 0.2)',
+      helpText: '#7c7ba1',
+      warning: '#f0f6fd',
       homepageHero: '#f8e8fc',
       stats: {
         bgGradient: {
@@ -96,7 +98,8 @@ export default extendTheme({
     },
     paragraph: '15px',
     input: '14px',
-    stats: '20px'
+    stats: '20px',
+    helpText: '13px'
   },
   sizes: {
     container: {
