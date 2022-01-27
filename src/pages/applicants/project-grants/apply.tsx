@@ -4,7 +4,8 @@ import Head from 'next/head';
 
 import { ButtonLink } from '../../../components';
 import { ApplicationAttentionMsg, PageSubheading, PageText } from '../../../components/UI';
-import { PROJECT_GRANTS_DOWNLOAD_FILE_URL } from '../../../constants';
+
+import { API_DOWNLOAD_APPLICATION_URL } from '../../../constants';
 
 const ProjectGrantsApply: NextPage = () => {
   return (
@@ -35,7 +36,7 @@ const ProjectGrantsApply: NextPage = () => {
             <Center>
               <ButtonLink
                 label='Download Application'
-                link={PROJECT_GRANTS_DOWNLOAD_FILE_URL}
+                link={API_DOWNLOAD_APPLICATION_URL}
                 width='268px'
               />
             </Center>
