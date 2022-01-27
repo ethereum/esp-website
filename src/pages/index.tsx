@@ -54,7 +54,7 @@ const Home: NextPage = () => {
             h='513px'
             justifyContent='center'
             alignItems='center'
-            bgGradient='linear(to-br, stats.bgGradient.start 2.29%, stats.bgGradient.end 101.37%)'
+            bgGradient='linear(to-br, brand.stats.bgGradient.start 2.29%, brand.stats.bgGradient.end 101.37%)'
             borderTop='5px solid'
             borderTopColor='brand.heading'
             borderBottom='5px solid'
@@ -203,7 +203,7 @@ const Home: NextPage = () => {
         <section id='who-we-support'>
           <Stack
             borderRadius='10px'
-            bgGradient='linear(to-br, whoWeSupport.bgGradient.start 0%, whoWeSupport.bgGradient.end 100%)'
+            bgGradient='linear(to-br, brand.whoWeSupport.bgGradient.start 0%, brand.whoWeSupport.bgGradient.end 100%)'
             h={{ xs: '100%', md: '458px' }}
             w='100%'
             justifyContent='center'
@@ -249,7 +249,7 @@ const Home: NextPage = () => {
         <section id='how-we-support'>
           <Stack
             borderRadius='10px'
-            bgGradient='linear(to-br, howWeSupport.bgGradient.start 2.29%, howWeSupport.bgGradient.end 101.37%)'
+            bgGradient='linear(to-br, brand.howWeSupport.bgGradient.start 2.29%, brand.howWeSupport.bgGradient.end 101.37%)'
             h={{ xs: '100%', md: '458px' }}
             w='100%'
             justifyContent='center'
