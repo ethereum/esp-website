@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           bg={router.pathname === '/' ? 'brand.homepageHero' : undefined}
           bgGradient={
             router.pathname !== '/'
-              ? 'linear(to-b, brand.layout.bgGradient.start 0%, brand.layout.bgGradient.end 81.77%, brand.layout.rgba 100%)'
+              ? 'linear(to-br, brand.layout.bgGradient.start 0%, brand.layout.bgGradient.end 81.77%, brand.layout.rgba 100%)'
               : undefined
           }
           h='600px'

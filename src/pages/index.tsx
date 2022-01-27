@@ -1,15 +1,23 @@
-import { Box, Flex, Stack } from '@chakra-ui/react';
+import { Box, Center, Flex, Stack, useMediaQuery } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import Head from 'next/head';
 
+import { ButtonLink } from '../components';
 import { PageSection, PageText } from '../components/UI';
 
 import smallSucculentSVG from '../public/images/small-succulent.svg';
 import mediumSucculentSVG from '../public/images/medium-succulent.svg';
 import bigSucculentSVG from '../public/images/big-succulent.svg';
 
+import whatWeSupportTreeMobileSVG from '../public/images/what-we-support-tree-mobile.svg';
+import whatWeSupportTreeSVG from '../public/images/what-we-support-tree.svg';
+
+import { WHAT_WE_SUPPORT_URL } from '../constants';
+
 const Home: NextPage = () => {
+  const [isMobile] = useMediaQuery('(max-width: 768px)');
+
   return (
     <>
       <Head>
@@ -143,6 +151,52 @@ const Home: NextPage = () => {
                 </Flex>
               </Flex>
             </Flex>
+          </section>
+
+          <section id='what-we-support'>
+            <Stack
+              borderRadius='10px'
+              bgGradient='linear(to-br, brand.ready.bgGradient.start 10%, brand.ready.bgGradient.end 100%)'
+              h={{ xs: '100%', md: '458px' }}
+              w='100%'
+              justifyContent='center'
+            >
+              <Flex
+                alignItems='center'
+                direction={{ base: 'column', md: 'row' }}
+                px={6}
+                py={{ xs: 10, md: 0 }}
+              >
+                <Stack mb={4} mr={{ base: 0, md: 12 }}>
+                  <PageSection textAlign={{ base: 'center', md: 'left' }} mb={6}>
+                    What we support
+                  </PageSection>
+
+                  <Box>
+                    <Image
+                      src={isMobile ? whatWeSupportTreeMobileSVG : whatWeSupportTreeSVG}
+                      alt='supported categories tree'
+                      height='230.43px'
+                      width='400px'
+                    />
+                  </Box>
+                </Stack>
+
+                <Stack>
+                  <PageText mb={6}>
+                    We award dozens of grants each quarter, across a variety of categories. We
+                    support <strong>open source projects</strong> that strengthen Ethereum&apos;s
+                    foundations, with a particular focus on builder tools, infrastructure, research,
+                    community resources and other public goods. Funding is generally directed toward
+                    supporting builders rather than end users.
+                  </PageText>
+
+                  <Flex justifyContent={{ base: 'center', md: 'flex-start' }}>
+                    <ButtonLink label='Read more' link={WHAT_WE_SUPPORT_URL} width='247px' />
+                  </Flex>
+                </Stack>
+              </Flex>
+            </Stack>
           </section>
         </Stack>
       </Stack>

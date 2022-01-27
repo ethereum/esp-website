@@ -18,18 +18,20 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
         <NavMobile />
       </Box>
 
-      {router.pathname.startsWith(APPLICANTS_URL) ? (
+      {router.pathname === '/' && (
+        <>
+          <HomepageHero />
+
+          {children}
+        </>
+      )}
+
+      {router.pathname.startsWith(APPLICANTS_URL) && (
         <Box mt={-6}>
           <main>
             <ApplicantsLayout>{children}</ApplicantsLayout>
           </main>
         </Box>
-      ) : (
-        <>
-          {router.pathname === '/' && <HomepageHero />}
-
-          {children}
-        </>
       )}
 
       <Forms />
