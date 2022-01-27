@@ -45,13 +45,13 @@ const SmallGrants: NextPage = () => {
             <List>
               <ListItem>
                 In early stage: you&apos;ve started work but are still testing assumptions or
-                working toward a proof of concept
+                working toward a proof of concept.
               </ListItem>
               <ListItem>
                 Experimental: you have an idea that&apos;s a little “out there” but potentially
-                impactful - and the only way to find out is to try it
+                impactful - and the only way to find out is to try it.
               </ListItem>
-              <ListItem>Time sensitive: you need a decision within a few weeks</ListItem>
+              <ListItem>Time sensitive: you need a decision within a few weeks.</ListItem>
               <ListItem>Smaller in scope: funding request comes in under $30,000.</ListItem>
               <ListItem>
                 Community event related: sponsorship requests for events focused on Ethereum&apos;s
