@@ -59,7 +59,8 @@ export default extendTheme({
         rgba: 'rgba(228, 222, 255, 0)'
       },
       option: '#ffefec',
-      uploadProposal: 'rgba(189, 189, 189, 0.2)'
+      uploadProposal: 'rgba(189, 189, 189, 0.2)',
+      homepageHero: '#f8e8fc'
     }
   },
   fonts: {
@@ -68,6 +69,7 @@ export default extendTheme({
     body: `Libre Franklin, ${base.fonts?.body}`
   },
   fontSizes: {
+    homepage: '30px',
     h1: '40px',
     h2: '24px',
     h4: '18px',
