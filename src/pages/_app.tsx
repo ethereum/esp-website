@@ -1,6 +1,7 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 import { Layout } from '../components/layout';
 
@@ -18,6 +19,8 @@ import favicon16 from '../public/images/favicon-16x16.png';
 import favicon32 from '../public/images/favicon-32x32.png';
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
   return (
     <>
       <Head>
@@ -28,7 +31,12 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <ChakraProvider theme={theme}>
         <Layout
-          bgGradient='linear(to-b, brand.layout.bgGradient.start 0%, brand.layout.bgGradient.end 81.77%, brand.layout.rgba 100%)'
+          bg={router.pathname === '/' ? 'brand.homepageHero' : undefined}
+          bgGradient={
+            router.pathname !== '/'
+              ? 'linear(to-br, brand.layout.bgGradient.start 0%, brand.layout.bgGradient.end 81.77%, brand.layout.rgba 100%)'
+              : undefined
+          }
           h='600px'
         >
           <Component {...pageProps} />

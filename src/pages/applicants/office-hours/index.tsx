@@ -19,7 +19,7 @@ import {
   ETHEREUM_BROAD_ECOSYSTEM_URL,
   ETHEREUM_JOBS_URL,
   ETHEREUM_ORG_URL,
-  WHAT_WE_SUPPORT_URL
+  ABOUT_URL
 } from '../../../constants';
 
 const OfficeHours: NextPage = () => {
@@ -127,7 +127,7 @@ const OfficeHours: NextPage = () => {
             <Link
               fontWeight={700}
               color='brand.orange.100'
-              href={WHAT_WE_SUPPORT_URL}
+              href={ABOUT_URL}
               _hover={{ textDecoration: 'none' }}
             >
               scope

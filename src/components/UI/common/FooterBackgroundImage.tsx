@@ -9,11 +9,12 @@ export const FooterBackgroundImage: FC = () => {
   const [isMobile] = useMediaQuery('(max-width: 768px)');
 
   return (
-    <Box mt={24} mb={-2}>
+    <Box mt={{ base: 10, md: 24 }} mb={-2}>
       <Image
         src={isMobile ? footerBackgroundMobile : footerBackground}
         alt='People gathered around the Ethereum tree'
         objectFit='cover'
+        quality={85}
       />
     </Box>
   );

@@ -15,7 +15,7 @@ export const ApplicationTypeCard: FC<Props> = ({ title, link, children }) => {
   return (
     <Stack
       borderRadius='10px'
-      bgGradient='linear(to-b, brand.ready.bgGradient.start 10%, brand.ready.bgGradient.end 100%)'
+      bgGradient='linear(to-br, brand.ready.bgGradient.start 10%, brand.ready.bgGradient.end 100%)'
       h={{ xs: '100%', md: '182px' }}
       w='100%'
       justifyContent='center'

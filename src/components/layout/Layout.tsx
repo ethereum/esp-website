@@ -2,10 +2,10 @@ import { Box, Container, ContainerProps } from '@chakra-ui/react';
 import { FC } from 'react';
 import { useRouter } from 'next/router';
 
-import { Footer, FooterBackgroundImage } from '../UI/common';
+import { Footer, FooterBackgroundImage, HomepageHero } from '../UI';
 import { Forms, NewsletterSignup } from '../forms';
-import { ApplicantsLayout } from './ApplicantsLayout';
-import { NavMobile } from '../NavMobile';
+import { ApplicantsLayout } from '../layout';
+import { NavMobile } from '../../components';
 
 import { APPLICANTS_URL } from '../../constants';
 
@@ -18,14 +18,20 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
         <NavMobile />
       </Box>
 
-      {router.pathname.startsWith(APPLICANTS_URL) ? (
+      {router.pathname === '/' && (
+        <>
+          <HomepageHero />
+
+          {children}
+        </>
+      )}
+
+      {router.pathname.startsWith(APPLICANTS_URL) && (
         <Box mt={-6}>
           <main>
             <ApplicantsLayout>{children}</ApplicantsLayout>
           </main>
         </Box>
-      ) : (
-        children
       )}
 
       <Forms />
