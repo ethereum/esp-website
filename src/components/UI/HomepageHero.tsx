@@ -13,7 +13,7 @@ export const HomepageHero: FC = () => {
 
   return (
     <Stack mb={6}>
-      <Stack px={5} py={3} mb={-10} zIndex={1}>
+      <Stack px={5} py={3} mb={-12} zIndex={1}>
         <PageSubheading
           as='h1'
           fontSize='homepage'
