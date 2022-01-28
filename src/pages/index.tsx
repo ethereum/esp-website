@@ -11,9 +11,10 @@ import mediumSucculentSVG from '../public/images/medium-succulent.svg';
 import bigSucculentSVG from '../public/images/big-succulent.svg';
 import whatWeSupportTreeMobileSVG from '../public/images/what-we-support-tree-mobile.svg';
 import whatWeSupportTreeSVG from '../public/images/what-we-support-tree.svg';
-
 import whoWeSupportRootsMobileSVG from '../public/images/who-we-support-roots-mobile.svg';
 import whoWeSupportRootsSVG from '../public/images/who-we-support-roots.svg';
+import howWeSupportRootsMobileSVG from '../public/images/how-we-support-roots-mobile.svg';
+import howWeSupportRootsSVG from '../public/images/how-we-support-roots.svg';
 
 import { ABOUT_URL, HOW_WE_SUPPORT_URL, WHO_WE_SUPPORT_URL } from '../constants';
 
@@ -266,13 +267,12 @@ const Home: NextPage = () => {
                 </PageSection>
 
                 <Box>
-                  {/* TODO: replace this image when it's ready */}
-                  {/* <Image
-                    src={isMobile ? whoWeSupportRootsMobileSVG : whoWeSupportRootsSVG}
-                    alt='supported categories tree'
-                    height='230.43px'
-                    width='400px'
-                  /> */}
+                  <Image
+                    src={isMobile ? howWeSupportRootsMobileSVG : howWeSupportRootsSVG}
+                    alt='people making research about supported categories'
+                    objectFit='cover'
+                    quality={85}
+                  />
                 </Box>
               </Stack>
 
