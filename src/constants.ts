@@ -2,7 +2,8 @@ import { TabsMap } from './types';
 
 // about
 export const ABOUT_URL = '/about';
-export const WHAT_WE_SUPPORT_URL = '/about/what-we-support';
+export const WHO_WE_SUPPORT_URL = '/about/who-we-support';
+export const HOW_WE_SUPPORT_URL = '/about/how-we-support';
 
 // applicants
 export const APPLICANTS_URL = '/applicants';
@@ -43,9 +44,9 @@ export const ESP_BLOG_URL = 'https://blog.ethereum.org/category/ecosystem-suppor
 export const ESP_TWITTER_URL = 'https://twitter.com/EF_ESP';
 export const ESP_EMAIL_ADDRESS = 'mailto:esp@ethereum.org';
 
-// tabs
+// applicants tabs
 export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Small Grants', 'Project Grants'];
-export const TABS_MAP: TabsMap = {
+export const APPLICANTS_TABS_MAP: TabsMap = {
   [APPLICANTS_URL]: 0,
   [OFFICE_HOURS_URL]: 1,
   [SMALL_GRANTS_URL]: 2,
@@ -56,6 +57,14 @@ export const TABS_MAP: TabsMap = {
   [SMALL_GRANTS_THANK_YOU_PAGE_URL]: 2,
   [PROJECT_GRANTS_APPLY_URL]: 3,
   [PROJECT_GRANTS_THANK_YOU_PAGE_URL]: 3
+};
+
+// about tabs
+export const ABOUT_TABS = ['What We Support', 'Who We Support', 'How We Support'];
+export const ABOUT_TABS_MAP: TabsMap = {
+  [ABOUT_URL]: 0,
+  [WHO_WE_SUPPORT_URL]: 1,
+  [HOW_WE_SUPPORT_URL]: 2
 };
 
 // mobile menu
