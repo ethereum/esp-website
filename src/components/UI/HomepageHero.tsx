@@ -12,7 +12,7 @@ export const HomepageHero: FC = () => {
   const [isMobile] = useMediaQuery('(max-width: 768px)');
 
   return (
-    <Stack h='580px' mb={isMobile ? 6 : 16}>
+    <Stack mb={6}>
       <Stack px={5} py={3} mb={-10} zIndex={1}>
         <PageSubheading
           as='h1'
