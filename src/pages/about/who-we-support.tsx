@@ -1,0 +1,63 @@
+import { Link, Stack } from '@chakra-ui/react';
+import type { NextPage } from 'next';
+import Head from 'next/head';
+
+import { PageSection, PageText } from '../../components/UI';
+
+import { ESP_BLOG_URL } from '../../constants';
+
+const WhoWeSupport: NextPage = () => {
+  return (
+    <>
+      <Head>
+        <title>Ethereum Ecosystem Program | Applicants Overview</title>
+        <meta name='description' content='Applicants Overview' />
+      </Head>
+
+      <Stack spacing={10}>
+        <section id='supporting-builders'>
+          <PageSection mb={6}>Supporting Builders</PageSection>
+          <PageText mb={6}>
+            ESP funding is generally directed toward supporting builders rather than directly
+            impacting end users. We don&apos;t often fund dapps or front-end platforms, although
+            this is not a hard rule and there are exceptions - for example, where an application
+            serves as a research or educational tool, or a reference implementation of a new
+            standard.
+          </PageText>
+          <PageText mb={6}>
+            Our grantees come from all over the world and represent many different backgrounds,
+            disciplines and levels of experience. We have supported individuals and teams of all
+            kinds - companies, DAOs, nonprofits, institutions, academics, developers, educators,
+            community organizers and more.
+          </PageText>
+          <PageText mb={6}>
+            Our{' '}
+            <Link
+              fontWeight={700}
+              color='brand.orange.100'
+              href={ESP_BLOG_URL}
+              _hover={{ textDecoration: 'none' }}
+            >
+              blog
+            </Link>{' '}
+            also features monthly roundups which showcase grantees’ progress after their grants are
+            awarded and go into more detail about their background and work.
+          </PageText>
+        </section>
+
+        <section id='latest-grantees'>
+          <PageSection mb={6}>Latest Grantees</PageSection>
+
+          <PageText mb={6}>
+            This is only a small sample – we&apos;ll highlight a few at a time and rotate
+            periodically, so make sure to check back once in a while for updates. We&apos;ll feature
+            projects that have had at least a few months since receiving support, so that we have
+            some results to look back on as well as ongoing trajectory and remaining milestones.
+          </PageText>
+        </section>
+      </Stack>
+    </>
+  );
+};
+
+export default WhoWeSupport;
