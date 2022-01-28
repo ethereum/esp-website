@@ -67,7 +67,7 @@ export const NavMobile: FC = () => {
 
         <Drawer onClose={onClose} isOpen={isOpen} size='full'>
           <DrawerContent>
-            <DrawerBody bgGradient='linear(to-b, brand.footer.bgGradient.start 10%, brand.footer.bgGradient.end 100%)'>
+            <DrawerBody bgGradient='linear(to-br, brand.footer.bgGradient.start 10%, brand.footer.bgGradient.end 100%)'>
               <Stack h='100%' justifyContent='center' alignItems='center'>
                 <Stack spacing={6}>
                   {MOBILE_MENU.map(({ href, text }) => (

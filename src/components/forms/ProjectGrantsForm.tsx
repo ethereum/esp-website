@@ -68,7 +68,7 @@ export const ProjectGrantsForm: FC = () => {
   return (
     <Stack
       w='100%'
-      bgGradient='linear(to-b, brand.newsletter.bgGradient.start 10%, brand.newsletter.bgGradient.end 100%)'
+      bgGradient='linear(to-br, brand.newsletter.bgGradient.start 10%, brand.newsletter.bgGradient.end 100%)'
       px={5}
       pt={8}
       pb={20}

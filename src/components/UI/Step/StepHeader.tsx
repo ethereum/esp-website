@@ -11,7 +11,7 @@ export const StepHeader: FC<HeadingProps> = ({ children }) => {
       h='50px'
       maxW='100%'
       borderRadius='10px'
-      bgGradient='linear(to-r, brand.faq.bgGradient.start 10%, brand.faq.bgGradient.end 100%)'
+      bgGradient='linear(to-br, brand.faq.bgGradient.start 10%, brand.faq.bgGradient.end 100%)'
       mb={4}
     >
       <StepHeading>{children}</StepHeading>

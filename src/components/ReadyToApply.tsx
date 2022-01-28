@@ -11,7 +11,7 @@ export const ReadyToApply: FC<Props> = ({ link }) => {
   return (
     <Stack
       borderRadius='10px'
-      bgGradient='linear(to-b, brand.ready.bgGradient.start 10%, brand.ready.bgGradient.end 100%)'
+      bgGradient='linear(to-br, brand.ready.bgGradient.start 10%, brand.ready.bgGradient.end 100%)'
       h='150px'
       w='100%'
       justifyContent='center'

@@ -61,7 +61,26 @@ export default extendTheme({
       option: '#ffefec',
       uploadProposal: 'rgba(189, 189, 189, 0.2)',
       helpText: '#7c7ba1',
-      warning: '#f0f6fd'
+      warning: '#f0f6fd',
+      homepageHero: '#f8e8fc',
+      stats: {
+        bgGradient: {
+          start: 'rgba(255, 229, 226, 0.3)',
+          end: 'rgba(243, 209, 238, 0.3)'
+        }
+      },
+      whoWeSupport: {
+        bgGradient: {
+          start: '#f0f6fd',
+          end: '#ecf2fe'
+        }
+      },
+      howWeSupport: {
+        bgGradient: {
+          start: '#ffe5e2',
+          end: '#f3d1ee'
+        }
+      }
     }
   },
   fonts: {
@@ -70,6 +89,7 @@ export default extendTheme({
     body: `Libre Franklin, ${base.fonts?.body}`
   },
   fontSizes: {
+    homepage: '30px',
     h1: '40px',
     h2: '24px',
     h4: '18px',
@@ -78,6 +98,7 @@ export default extendTheme({
     },
     paragraph: '15px',
     input: '14px',
+    stats: '20px',
     helpText: '13px'
   },
   sizes: {

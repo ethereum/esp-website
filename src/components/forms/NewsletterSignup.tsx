@@ -69,7 +69,7 @@ export const NewsletterSignup: FC = () => {
       direction='column'
       justifyContent='center'
       alignItems='center'
-      bgGradient='linear(to-b, brand.newsletter.bgGradient.start 10%, brand.newsletter.bgGradient.end 100%)'
+      bgGradient='linear(to-br, brand.newsletter.bgGradient.start 10%, brand.newsletter.bgGradient.end 100%)'
       px={10}
       py={8}
     >
@@ -78,7 +78,7 @@ export const NewsletterSignup: FC = () => {
           Join our newsletter to stay tuned!
         </ImportantText>
 
-        <PageText textAlign='center'>
+        <PageText textAlign='center' fontSize='input'>
           Sign up to receive ESP updates to your inbox! You&apos;ll hear from us every few weeks,
           and we&apos;ll only ever contact you with ESP news.
         </PageText>

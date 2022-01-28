@@ -16,7 +16,7 @@ export const FAQItem: FC<Props> = ({ question, children }) => {
       maxW='100%'
       borderRadius='10px'
       border='none'
-      bgGradient='linear(to-r, brand.faq.bgGradient.start 10%, brand.faq.bgGradient.end 100%)'
+      bgGradient='linear(to-br, brand.faq.bgGradient.start 10%, brand.faq.bgGradient.end 100%)'
       mb='10px'
     >
       {({ isExpanded }) => (

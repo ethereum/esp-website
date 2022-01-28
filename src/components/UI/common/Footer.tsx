@@ -24,7 +24,7 @@ export const Footer: FC = () => {
   return (
     <Flex
       id='footer'
-      bgGradient='linear(to-b, brand.footer.bgGradient.start 10%, brand.footer.bgGradient.end 100%)'
+      bgGradient='linear(to-br, brand.footer.bgGradient.start 10%, brand.footer.bgGradient.end 100%)'
       d='column'
     >
       <Center px={5} py={8}>
