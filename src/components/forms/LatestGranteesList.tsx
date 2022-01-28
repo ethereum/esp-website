@@ -19,7 +19,9 @@ export const LatestGranteesList: FC = () => {
   return (
     <Box>
       {GRANTEES_LIST.map(category => {
-        console.log(category[Object.keys(category)[0]]);
+        // console.log(category[Object.keys(category)[0]]);
+
+        // console.log(GRANTEES_LIST[0]['Community & education'][0].recipient);
 
         return (
           <Box key={Object.keys(category)[0]}>
