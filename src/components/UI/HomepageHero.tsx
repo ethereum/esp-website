@@ -34,6 +34,8 @@ export const HomepageHero: FC = () => {
         <Image
           src={isMobile ? homepageHeroMobile : homepageHero}
           alt='People gathered around the Ethereum tree'
+          objectFit='cover'
+          quality={85}
         />
       </Box>
     </Stack>

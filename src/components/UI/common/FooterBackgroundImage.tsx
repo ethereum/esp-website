@@ -14,6 +14,7 @@ export const FooterBackgroundImage: FC = () => {
         src={isMobile ? footerBackgroundMobile : footerBackground}
         alt='People gathered around the Ethereum tree'
         objectFit='cover'
+        quality={85}
       />
     </Box>
   );

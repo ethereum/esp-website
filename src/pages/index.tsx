@@ -177,8 +177,8 @@ const Home: NextPage = () => {
                   <Image
                     src={isMobile ? whatWeSupportTreeMobileSVG : whatWeSupportTreeSVG}
                     alt='supported categories tree'
-                    height='230.43px'
-                    width='400px'
+                    objectFit='cover'
+                    quality={85}
                   />
                 </Box>
               </Stack>
@@ -223,8 +223,8 @@ const Home: NextPage = () => {
                   <Image
                     src={isMobile ? whoWeSupportRootsMobileSVG : whoWeSupportRootsSVG}
                     alt='supported categories tree'
-                    height='230.43px'
-                    width='400px'
+                    objectFit='cover'
+                    quality={85}
                   />
                 </Box>
               </Stack>
