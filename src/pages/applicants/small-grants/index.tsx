@@ -45,13 +45,13 @@ const SmallGrants: NextPage = () => {
             <List>
               <ListItem>
                 In early stage: you&apos;ve started work but are still testing assumptions or
-                working toward a proof of concept
+                working toward a proof of concept.
               </ListItem>
               <ListItem>
                 Experimental: you have an idea that&apos;s a little “out there” but potentially
-                impactful - and the only way to find out is to try it
+                impactful - and the only way to find out is to try it.
               </ListItem>
-              <ListItem>Time sensitive: you need a decision within a few weeks</ListItem>
+              <ListItem>Time sensitive: you need a decision within a few weeks.</ListItem>
               <ListItem>Smaller in scope: funding request comes in under $30,000.</ListItem>
               <ListItem>
                 Community event related: sponsorship requests for events focused on Ethereum&apos;s
@@ -129,7 +129,7 @@ const SmallGrants: NextPage = () => {
             </Stack>
 
             <Stack>
-              <StepHeader>Completition</StepHeader>
+              <StepHeader>Completion</StepHeader>
 
               <PageText>
                 Once you&apos;ve completed work on your grant, you&apos;ll share the results in a
@@ -160,7 +160,7 @@ const SmallGrants: NextPage = () => {
         </section>
 
         <section id='eligibility'>
-          <PageSection mb={6}>Elegibility</PageSection>
+          <PageSection mb={6}>Eligibility</PageSection>
 
           <PageText>
             We are happy to hear from all kinds of contributors who are working within our scope:
@@ -195,7 +195,7 @@ const SmallGrants: NextPage = () => {
             </ListItem>
             <ListItem>Projects with a planned token launch or public funding round.</ListItem>
             <ListItem>Art projects or charities that don&apos;t fit within our scope.</ListItem>
-            <ListItem>Token -or investment- focused events.</ListItem>
+            <ListItem>Token or investment focused events.</ListItem>
           </List>
         </section>
 

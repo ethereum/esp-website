@@ -264,7 +264,7 @@ const OfficeHours: NextPage = () => {
               >
                 check out this page
               </Link>{' '}
-              for Meetup groups, upcoming events, and online communities!.
+              for Meetup groups, upcoming events, and online communities!
             </ListItem>
             <ListItem>
               If you&apos;re exploring possible sources of funding:{' '}
