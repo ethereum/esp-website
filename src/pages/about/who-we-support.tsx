@@ -10,13 +10,17 @@ const WhoWeSupport: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Ethereum Ecosystem Program | Applicants Overview</title>
-        <meta name='description' content='Applicants Overview' />
+        <title>Who We Support | Ethereum Foundation Ecosystem Support Program</title>
+        <meta
+          name='description'
+          content='We support builders from many different backgrounds, all over the world. See a list of our latest grantees!'
+        />
       </Head>
 
       <Stack spacing={10}>
         <section id='supporting-builders'>
           <PageSection mb={6}>Supporting Builders</PageSection>
+
           <PageText mb={6}>
             ESP funding is generally directed toward supporting builders rather than directly
             impacting end users. We don&apos;t often fund dapps or front-end platforms, although
@@ -24,13 +28,15 @@ const WhoWeSupport: NextPage = () => {
             serves as a research or educational tool, or a reference implementation of a new
             standard.
           </PageText>
+
           <PageText mb={6}>
             Our grantees come from all over the world and represent many different backgrounds,
             disciplines and levels of experience. We have supported individuals and teams of all
             kinds - companies, DAOs, nonprofits, institutions, academics, developers, educators,
             community organizers and more.
           </PageText>
-          <PageText mb={6}>
+
+          <PageText>
             Our{' '}
             <Link
               fontWeight={700}
@@ -40,8 +46,8 @@ const WhoWeSupport: NextPage = () => {
             >
               blog
             </Link>{' '}
-            also features monthly roundups which showcase grantees’ progress after their grants are
-            awarded and go into more detail about their background and work.
+            also features monthly roundups which showcase grantees&apos; progress after their grants
+            are awarded and go into more detail about their background and work.
           </PageText>
         </section>
 
@@ -49,7 +55,7 @@ const WhoWeSupport: NextPage = () => {
           <PageSection mb={6}>Latest Grantees</PageSection>
 
           <PageText mb={6}>
-            This is only a small sample – we&apos;ll highlight a few at a time and rotate
+            This is only a small sample - we&apos;ll highlight a few at a time and rotate
             periodically, so make sure to check back once in a while for updates. We&apos;ll feature
             projects that have had at least a few months since receiving support, so that we have
             some results to look back on as well as ongoing trajectory and remaining milestones.
