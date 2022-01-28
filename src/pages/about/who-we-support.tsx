@@ -2,6 +2,7 @@ import { Link, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
+import { LatestGranteesList } from '../../components/forms';
 import { PageSection, PageText } from '../../components/UI';
 
 import { ESP_BLOG_URL } from '../../constants';
@@ -54,12 +55,14 @@ const WhoWeSupport: NextPage = () => {
         <section id='latest-grantees'>
           <PageSection mb={6}>Latest Grantees</PageSection>
 
-          <PageText mb={6}>
+          <PageText mb={16}>
             This is only a small sample - we&apos;ll highlight a few at a time and rotate
             periodically, so make sure to check back once in a while for updates. We&apos;ll feature
             projects that have had at least a few months since receiving support, so that we have
             some results to look back on as well as ongoing trajectory and remaining milestones.
           </PageText>
+
+          <LatestGranteesList />
         </section>
       </Stack>
     </>
