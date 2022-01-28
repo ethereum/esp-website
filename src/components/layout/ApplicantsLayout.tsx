@@ -8,16 +8,16 @@ import { ReadyToApply } from '../ReadyToApply';
 import {
   APPLICANTS_PAGES,
   APPLICANTS_TABS,
+  APPLICANTS_TABS_MAP,
   APPLICANTS_URL,
   OFFICE_HOURS_URL,
   PROJECT_GRANTS_URL,
-  SMALL_GRANTS_URL,
-  TABS_MAP
+  SMALL_GRANTS_URL
 } from '../../constants';
 
 export const ApplicantsLayout: FC = ({ children }) => {
   const router = useRouter();
-  const [tabIndex, setTabIndex] = useState(TABS_MAP[router.pathname]);
+  const [tabIndex, setTabIndex] = useState(APPLICANTS_TABS_MAP[router.pathname]);
 
   const handleChange = (index: number) => {
     setTabIndex(index);
