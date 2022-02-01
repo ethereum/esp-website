@@ -13,7 +13,7 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
   const router = useRouter();
 
   return (
-    <Container maxW={{ base: 'container.mobile', md: '100%' }} p={0} {...props}>
+    <Container maxW='100%' p={0} {...props}>
       <Box px={5} py={3}>
         <Nav />
       </Box>
