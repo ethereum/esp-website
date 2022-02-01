@@ -52,7 +52,6 @@ const Home: NextPage = () => {
 
         <section id='stats'>
           <Flex
-            h='513px'
             justifyContent='center'
             alignItems='center'
             bgGradient='linear(to-br, brand.stats.bgGradient.start 2.29%, brand.stats.bgGradient.end 101.37%)'
@@ -61,7 +60,7 @@ const Home: NextPage = () => {
             borderBottom='5px solid'
             borderBottomColor='brand.heading'
           >
-            <Flex direction='column'>
+            <Flex direction='column' mt={8}>
               <Flex justifyContent='center' alignItems='center' mb={10}>
                 <Flex w='150px' justifyContent='center' ml='-20px'>
                   <Image
@@ -122,7 +121,7 @@ const Home: NextPage = () => {
                 </Stack>
               </Flex>
 
-              <Flex justifyContent='center' alignItems='center'>
+              <Flex justifyContent='center' alignItems='center' mb={8}>
                 <Flex w='150px' justifyContent='center' ml={2}>
                   <Image
                     src={bigSucculentSVG}
@@ -151,6 +150,10 @@ const Home: NextPage = () => {
                   </PageText>
                 </Stack>
               </Flex>
+
+              <PageText fontSize='input' textAlign='center' p={4}>
+                * Ecosystem Support allocations are not inclusive of all EF spending
+              </PageText>
             </Flex>
           </Flex>
         </section>
