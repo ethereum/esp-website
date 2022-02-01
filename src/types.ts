@@ -3,6 +3,7 @@ import {
   PROJECT_CATEGORY_OPTIONS,
   REASONS_FOR_MEETING
 } from './components/forms/constants';
+import { ABOUT_URL, APPLICANTS_URL, ESP_BLOG_URL, HOME_URL } from './constants';
 
 export interface TabsMap {
   [name: string]: number;
@@ -57,3 +58,10 @@ export type ReasonForMeeting = typeof REASONS_FOR_MEETING;
 export type ProjectCategory = typeof PROJECT_CATEGORY_OPTIONS[number];
 
 export type ReferralSource = typeof HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS[number];
+
+export type Href = typeof HOME_URL | typeof APPLICANTS_URL | typeof ABOUT_URL | typeof ESP_BLOG_URL;
+
+export interface NavLink {
+  href: Href;
+  text: string;
+}

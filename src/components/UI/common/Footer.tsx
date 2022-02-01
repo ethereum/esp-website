@@ -17,7 +17,8 @@ import {
   ETHEREUM_GITHUB_URL,
   ETHEREUM_ORG_URL,
   ETHEREUM_PRIVACY_POLICY_URL,
-  ETHEREUM_TERMS_OF_USE_URL
+  ETHEREUM_TERMS_OF_USE_URL,
+  HOME_URL
 } from '../../../constants';
 
 export const Footer: FC = () => {
@@ -37,7 +38,7 @@ export const Footer: FC = () => {
 
       <Flex px={5} py={6} direction='column' alignItems='center'>
         <Stack mb={2}>
-          <Link href='/' _hover={{ textDecoration: 'none' }}>
+          <Link href={HOME_URL} _hover={{ textDecoration: 'none' }}>
             <ImportantText color='white'>Home</ImportantText>
           </Link>
           <Link href={APPLICANTS_URL} _hover={{ textDecoration: 'none' }}>

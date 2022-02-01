@@ -1,4 +1,7 @@
-import { TabsMap } from './types';
+import { NavLink, TabsMap } from './types';
+
+// home
+export const HOME_URL = '/';
 
 // about
 export const ABOUT_URL = '/about';
@@ -59,9 +62,9 @@ export const TABS_MAP: TabsMap = {
   [PROJECT_GRANTS_THANK_YOU_PAGE_URL]: 3
 };
 
-// mobile menu
-export const MOBILE_MENU = [
-  { href: '/', text: 'Home' },
+// nav
+export const NAV_LINKS: NavLink[] = [
+  { href: HOME_URL, text: 'Home' },
   { href: APPLICANTS_URL, text: 'For Applicants' },
   { href: ABOUT_URL, text: 'About ESP' },
   { href: ESP_BLOG_URL, text: 'Blog' }

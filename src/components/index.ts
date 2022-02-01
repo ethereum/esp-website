@@ -1,3 +1,3 @@
 export * from './ButtonLink';
-export * from './NavMobile';
+export * from './Nav';
 export * from './ReadyToApply';

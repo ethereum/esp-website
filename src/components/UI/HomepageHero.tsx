@@ -8,6 +8,8 @@ import { ButtonLink } from '../';
 import homepageHero from '../../public/images/homepage-hero.svg';
 import homepageHeroMobile from '../../public/images/homepage-hero-mobile.svg';
 
+import { APPLICANTS_URL } from '../../constants';
+
 export const HomepageHero: FC = () => {
   const [isMobile] = useMediaQuery('(max-width: 768px)');
 
@@ -26,7 +28,7 @@ export const HomepageHero: FC = () => {
         </PageSubheading>
 
         <Center>
-          <ButtonLink label='Learn more' link='#' width='177px' />
+          <ButtonLink label='Learn more' link={APPLICANTS_URL} width='177px' />
         </Center>
       </Stack>
 
