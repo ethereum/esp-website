@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { Footer, FooterBackgroundImage, HomepageHero } from '../UI';
 import { Forms, NewsletterSignup } from '../forms';
 import { ApplicantsLayout } from '../layout';
-import { NavMobile } from '../../components';
+import { Nav } from '../../components';
 
 import { APPLICANTS_URL } from '../../constants';
 
@@ -13,9 +13,9 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
   const router = useRouter();
 
   return (
-    <Container maxW={{ base: 'container.mobile', md: '730px' }} p={0} {...props}>
+    <Container maxW={{ base: 'container.mobile', md: '100%' }} p={0} {...props}>
       <Box px={5} py={3}>
-        <NavMobile />
+        <Nav />
       </Box>
 
       {router.pathname === '/' && (
