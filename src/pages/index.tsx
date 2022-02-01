@@ -1,4 +1,4 @@
-import { Box, Center, Flex, Stack, useMediaQuery } from '@chakra-ui/react';
+import { Box, Flex, Stack, useMediaQuery } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import Head from 'next/head';
@@ -52,7 +52,6 @@ const Home: NextPage = () => {
 
         <section id='stats'>
           <Flex
-            h='513px'
             justifyContent='center'
             alignItems='center'
             bgGradient='linear(to-br, brand.stats.bgGradient.start 2.29%, brand.stats.bgGradient.end 101.37%)'
@@ -60,16 +59,19 @@ const Home: NextPage = () => {
             borderTopColor='brand.heading'
             borderBottom='5px solid'
             borderBottomColor='brand.heading'
+            px={2}
           >
-            <Flex direction='column'>
+            <Flex direction='column' mt={8}>
               <Flex justifyContent='center' alignItems='center' mb={10}>
-                <Flex w='150px' justifyContent='center' ml='-20px'>
-                  <Image
-                    src={smallSucculentSVG}
-                    alt='small succulent plant representing allocation in 2019'
-                    height='67.83px'
-                    width='71.48px'
-                  />
+                <Flex justifyContent='center' ml={{ xs: '-10px', sm: '-21px' }}>
+                  <Stack w='150px' alignItems='center'>
+                    <Image
+                      src={smallSucculentSVG}
+                      alt='small succulent plant representing allocation in 2019'
+                      height='67.83px'
+                      width='71.48px'
+                    />
+                  </Stack>
                 </Flex>
 
                 <Stack>
@@ -78,7 +80,7 @@ const Home: NextPage = () => {
                   </PageSection>
 
                   <Box>
-                    <PageText fontSize='h1' fontWeight={200} mb={1}>
+                    <PageText fontSize={{ base: 'allocations', md: 'h1' }} fontWeight={200} mb={1}>
                       $7.7{' '}
                       <PageText as='span' fontSize='stats'>
                         million
@@ -93,13 +95,15 @@ const Home: NextPage = () => {
               </Flex>
 
               <Flex justifyContent='center' alignItems='center' mb={10}>
-                <Flex w='150px' justifyContent='center'>
-                  <Image
-                    src={mediumSucculentSVG}
-                    alt='medium succulent plant representing allocation in 2020'
-                    height='91.93px'
-                    width='96.79px'
-                  />
+                <Flex justifyContent='center' ml={{ xs: '-10px', sm: '-4px' }}>
+                  <Stack w='150px'>
+                    <Image
+                      src={mediumSucculentSVG}
+                      alt='medium succulent plant representing allocation in 2020'
+                      height='91.93px'
+                      width='96.79px'
+                    />
+                  </Stack>
                 </Flex>
 
                 <Stack>
@@ -108,7 +112,7 @@ const Home: NextPage = () => {
                   </PageSection>
 
                   <Box>
-                    <PageText fontSize='h1' fontWeight={200} mb={1}>
+                    <PageText fontSize={{ base: 'allocations', md: 'h1' }} fontWeight={200} mb={1}>
                       $12.9{' '}
                       <PageText as='span' fontSize='stats'>
                         million
@@ -122,14 +126,16 @@ const Home: NextPage = () => {
                 </Stack>
               </Flex>
 
-              <Flex justifyContent='center' alignItems='center'>
-                <Flex w='150px' justifyContent='center' ml={2}>
-                  <Image
-                    src={bigSucculentSVG}
-                    alt='big opened succulent plant representing allocation in 2021'
-                    height='122.29px'
-                    width='131px'
-                  />
+              <Flex justifyContent='center' alignItems='center' mb={8}>
+                <Flex justifyContent='center' ml={{ xs: '-8px', sm: '5px' }}>
+                  <Stack w='150px'>
+                    <Image
+                      src={bigSucculentSVG}
+                      alt='big opened succulent plant representing allocation in 2021'
+                      height='122.29px'
+                      width='131px'
+                    />
+                  </Stack>
                 </Flex>
 
                 <Stack>
@@ -138,7 +144,7 @@ const Home: NextPage = () => {
                   </PageSection>
 
                   <Box>
-                    <PageText fontSize='h1' fontWeight={200} mb={1}>
+                    <PageText fontSize={{ base: 'allocations', md: 'h1' }} fontWeight={200} mb={1}>
                       $24.0{' '}
                       <PageText as='span' fontSize='stats'>
                         million
@@ -151,6 +157,10 @@ const Home: NextPage = () => {
                   </PageText>
                 </Stack>
               </Flex>
+
+              <PageText fontSize='input' textAlign='center' p={4}>
+                * Ecosystem Support allocations are not inclusive of all EF spending
+              </PageText>
             </Flex>
           </Flex>
         </section>

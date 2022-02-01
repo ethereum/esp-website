@@ -90,6 +90,7 @@ export default extendTheme({
   },
   fontSizes: {
     homepage: '30px',
+    allocations: '36px',
     h1: '40px',
     h2: '24px',
     h4: '18px',
