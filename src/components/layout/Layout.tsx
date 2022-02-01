@@ -7,7 +7,7 @@ import { Forms, NewsletterSignup } from '../forms';
 import { ApplicantsLayout } from '../layout';
 import { Nav } from '../../components';
 
-import { APPLICANTS_URL } from '../../constants';
+import { APPLICANTS_URL, HOME_URL } from '../../constants';
 
 export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
   const router = useRouter();
@@ -18,7 +18,7 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
         <Nav />
       </Box>
 
-      {router.pathname === '/' && (
+      {router.pathname === HOME_URL && (
         <>
           <HomepageHero />
 
