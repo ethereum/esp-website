@@ -159,7 +159,7 @@ const Home: NextPage = () => {
               </Flex>
 
               <PageText fontSize='input' textAlign='center' p={4}>
-                * Ecosystem Support allocations are not inclusive of all EF spending
+                * ESP grants and support are not inclusive of all EF allocations
               </PageText>
             </Flex>
           </Flex>
