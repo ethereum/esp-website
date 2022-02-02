@@ -5,7 +5,7 @@ export default extendTheme({
     xs: '320px',
     sm: '360px',
     md: '768px',
-    lg: '960px',
+    lg: '1015px',
     xl: '1200px'
   },
   colors: {
