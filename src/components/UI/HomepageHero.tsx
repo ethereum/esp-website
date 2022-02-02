@@ -1,9 +1,9 @@
-import { Box, Center, Flex, Img, Stack } from '@chakra-ui/react';
+import { Box, Flex, Stack } from '@chakra-ui/react';
 import Image from 'next/image';
 import { FC } from 'react';
 
 import { PageSubheading } from '../UI';
-import { ButtonLink } from '../';
+import { ButtonLink } from '../../components';
 
 import homepageHero from '../../public/images/homepage-hero.svg';
 import homepageHeroMobile from '../../public/images/homepage-hero-mobile.svg';
@@ -51,16 +51,22 @@ export const HomepageHero: FC = () => {
         </Box>
 
         <Box display={{ base: 'none', md: 'block' }} mt={6}>
-          <Image
-            src={homepageHero}
-            alt='People gathered around the Ethereum tree'
-            // width='1378px'
-            // height='600px'
-            // className='background-image'
-            layout='fill'
-            objectFit='cover'
-            quality={85}
-            priority={true}
+          <Box>
+            <Image
+              src={homepageHero}
+              alt='People gathered around the Ethereum tree'
+              layout='fill'
+              objectFit='cover'
+              quality={85}
+              priority={true}
+            />
+          </Box>
+
+          <Box
+            mt={{ md: '-140px', lg: '-50px' }}
+            h={48}
+            mb={-36}
+            bgGradient='linear(to-b, #F6E6FC 0%, #E7BDF7 83.85%, rgba(231, 189, 247, 0) 100%)'
           />
         </Box>
       </Box>

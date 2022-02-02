@@ -1,4 +1,4 @@
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, LinkOverlay } from '@chakra-ui/react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -38,7 +38,7 @@ function MyApp({ Component, pageProps }: AppProps) {
               ? 'linear(to-br, brand.layout.bgGradient.start 0%, brand.layout.bgGradient.end 81.77%, brand.layout.rgba 100%)'
               : undefined
           }
-          h='600px'
+          h={{ base: '600px', lg: '877px' }}
         >
           <Component {...pageProps} />
         </Layout>
