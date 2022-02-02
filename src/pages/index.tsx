@@ -46,7 +46,7 @@ const Home: NextPage = () => {
               </section>
             </Stack>
 
-            <Stack w={{ md: '90%' }}>
+            <Stack w={{ md: '90%' }} mb={{ md: 8 }}>
               <section id='esp-role'>
                 <PageSection mb={6} textAlign={{ base: 'center', md: 'left' }}>
                   Ecosystem Support Program&apos;s Role
@@ -67,6 +67,7 @@ const Home: NextPage = () => {
             <Flex
               justifyContent='center'
               alignItems='center'
+              direction='column'
               bgGradient='linear(to-br, brand.stats.bgGradient.start 2.29%, brand.stats.bgGradient.end 101.37%)'
               borderTop='5px solid'
               borderTopColor='brand.heading'
@@ -74,8 +75,8 @@ const Home: NextPage = () => {
               borderBottomColor='brand.heading'
               px={2}
             >
-              <Flex direction='column' mt={8}>
-                <Flex justifyContent='center' alignItems='center' mb={10}>
+              <Flex direction={{ base: 'column', lg: 'row' }} mt={8} justifyContent='flex-start'>
+                <Flex justifyContent='center' alignItems='center' mb={10} mr={{ lg: 16 }}>
                   <Flex justifyContent='center' ml={{ xs: '-10px', sm: '-21px' }}>
                     <Stack w='150px' alignItems='center'>
                       <Image
@@ -111,7 +112,7 @@ const Home: NextPage = () => {
                   </Stack>
                 </Flex>
 
-                <Flex justifyContent='center' alignItems='center' mb={10}>
+                <Flex justifyContent='center' alignItems='center' mb={10} mr={{ lg: 16 }}>
                   <Flex justifyContent='center' ml={{ xs: '-10px', sm: '-4px' }}>
                     <Stack w='150px'>
                       <Image
@@ -148,7 +149,7 @@ const Home: NextPage = () => {
                 </Flex>
 
                 <Flex justifyContent='center' alignItems='center' mb={8}>
-                  <Flex justifyContent='center' ml={{ xs: '-8px', sm: '5px' }}>
+                  <Flex justifyContent='center' ml={{ xs: '-8px', sm: '5px' }} mr={{ lg: 4 }}>
                     <Stack w='150px'>
                       <Image
                         src={bigSucculentSVG}
@@ -182,11 +183,13 @@ const Home: NextPage = () => {
                     </PageText>
                   </Stack>
                 </Flex>
+              </Flex>
 
+              <Stack>
                 <PageText fontSize='input' textAlign='center' p={4}>
                   * ESP grants and support are not inclusive of all EF allocations
                 </PageText>
-              </Flex>
+              </Stack>
             </Flex>
           </section>
 
