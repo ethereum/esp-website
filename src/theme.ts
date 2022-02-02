@@ -63,6 +63,7 @@ export default extendTheme({
       helpText: '#7c7ba1',
       warning: '#f0f6fd',
       homepageHero: '#f8e8fc',
+      homepageWhiteBox: 'rgba(255, 255, 255, 0.6)',
       stats: {
         bgGradient: {
           start: 'rgba(255, 229, 226, 0.3)',

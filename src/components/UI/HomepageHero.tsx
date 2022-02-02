@@ -17,7 +17,7 @@ export const HomepageHero: FC = () => {
         px={{ base: 5, md: 9 }}
         py={{ base: 3, md: 12 }}
         mb={{ base: -12, md: 5, lg: 52 }}
-        bg={{ md: 'rgba(255, 255, 255, 0.6)' }}
+        bg={{ md: 'brand.homepageWhiteBox' }}
         ml={{ md: 12 }}
         maxW={{ md: '626px' }}
         zIndex={1}
