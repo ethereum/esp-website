@@ -14,7 +14,6 @@ export const FooterBackgroundImage: FC = () => {
           alt='People gathered around the Ethereum tree'
           width='450px'
           height='200px'
-          sizes='(max-width: 450px) 450px'
           objectFit='cover'
           quality={85}
         />
@@ -26,7 +25,6 @@ export const FooterBackgroundImage: FC = () => {
           alt='People gathered around the Ethereum tree'
           width='1440px'
           height='335px'
-          sizes='(max-width: 450px) 450px'
           objectFit='cover'
           quality={85}
         />

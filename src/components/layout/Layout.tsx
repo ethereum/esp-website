@@ -14,7 +14,7 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
 
   return (
     <Container maxW='100%' p={0} {...props}>
-      <Box px={5} py={3}>
+      <Box px={{ base: 5, md: 12 }} py={{ base: 3, md: 8 }}>
         <Nav />
       </Box>
 
