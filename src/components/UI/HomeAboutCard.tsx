@@ -17,18 +17,12 @@ interface Props {
 
 export const HomeAboutCard: FC<Props> = ({ bgGradient, img, title, link, children }) => {
   return (
-    <Stack
-      borderRadius='10px'
-      bgGradient={bgGradient}
-      h={{ xs: '100%', md: '458px' }}
-      w='100%'
-      justifyContent='center'
-    >
+    <Stack borderRadius='10px' bgGradient={bgGradient} w='100%' justifyContent='center'>
       <Flex
         alignItems='center'
         direction={{ base: 'column', md: 'row' }}
-        px={{ base: 6, lg: 32 }}
-        py={{ xs: 10, md: 0 }}
+        px={{ base: 6, lg: 24 }}
+        py={{ base: 10, lg: 16 }}
       >
         <Stack mb={4} mr={{ base: 0, md: 6, lg: 12 }} w={{ base: '100%', md: '50%' }}>
           <PageSection textAlign={{ base: 'center', lg: 'left' }} mb={6}>

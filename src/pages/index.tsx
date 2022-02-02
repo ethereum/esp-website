@@ -3,7 +3,6 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 import Head from 'next/head';
 
-import { ButtonLink } from '../components';
 import { HomeAboutCard, PageSection, PageText } from '../components/UI';
 
 import smallSucculentSVG from '../public/images/small-succulent.svg';
@@ -71,7 +70,7 @@ const Home: NextPage = () => {
               px={2}
             >
               <Flex direction={{ base: 'column', lg: 'row' }} mt={8} justifyContent='flex-start'>
-                <Flex justifyContent='center' alignItems='center' mb={10} mr={{ lg: 16 }}>
+                <Flex justifyContent='center' alignItems='center' mb={10} mr={{ lg: 24 }}>
                   <Flex justifyContent='center' ml={{ xs: '-10px', sm: '-21px' }}>
                     <Stack w='150px' alignItems='center'>
                       <Image
@@ -107,7 +106,7 @@ const Home: NextPage = () => {
                   </Stack>
                 </Flex>
 
-                <Flex justifyContent='center' alignItems='center' mb={10} mr={{ lg: 16 }}>
+                <Flex justifyContent='center' alignItems='center' mb={10} mr={{ lg: 24 }}>
                   <Flex justifyContent='center' ml={{ xs: '-10px', sm: '-4px' }}>
                     <Stack w='150px'>
                       <Image
