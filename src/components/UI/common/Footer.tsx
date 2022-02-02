@@ -27,7 +27,11 @@ export const Footer: FC = () => {
       id='footer'
       bgGradient='linear(to-br, brand.footer.bgGradient.start 10%, brand.footer.bgGradient.end 100%)'
     >
-      <Flex direction={{ base: 'column', lg: 'row' }} justifyContent={{ lg: 'space-around' }}>
+      <Flex
+        direction={{ base: 'column', lg: 'row' }}
+        justifyContent={{ lg: 'space-around' }}
+        alignItems={{ lg: 'flex-start' }}
+      >
         <Center px={5} py={8}>
           <Image src={efLogoSVG} alt='Ethereum Foundation logo' height={64} width={200} />
         </Center>
@@ -36,8 +40,14 @@ export const Footer: FC = () => {
           <Divider borderColor='brand.divider.100' opacity={1} />
         </Center>
 
-        <Flex px={5} py={6} direction={{ base: 'column', lg: 'row' }} alignItems='center'>
-          <Stack mb={2} mr={{ lg: 32 }}>
+        <Flex
+          px={5}
+          py={6}
+          direction={{ base: 'column', lg: 'row' }}
+          alignItems='center'
+          mt={{ lg: 5 }}
+        >
+          <Stack mb={{ base: 2, lg: 0 }} mr={{ lg: 32 }}>
             <Link href={HOME_URL} _hover={{ textDecoration: 'none' }}>
               <ImportantText color='white' textAlign={{ base: 'center', lg: 'left' }}>
                 Home
@@ -84,7 +94,7 @@ export const Footer: FC = () => {
           </Stack>
         </Flex>
 
-        <Flex justifyContent='center' alignItems='center' pt={3} pb={6}>
+        <Flex justifyContent='center' alignItems='center' pt={3} pb={6} mt={{ lg: 7 }}>
           <Box mr={8}>
             <Link href={ESP_TWITTER_URL} isExternal>
               <Image src={twitterLogoSVG} alt='Twitter logo' height={42} width={52} />
@@ -100,7 +110,7 @@ export const Footer: FC = () => {
       </Flex>
 
       <Stack>
-        <Center px={{ base: 5, lg: 12 }}>
+        <Center px={{ base: 5, lg: 12 }} mt={{ lg: 10 }}>
           <Divider borderColor='brand.divider.100' opacity={1} />
         </Center>
 
