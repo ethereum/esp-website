@@ -101,7 +101,7 @@ export const Nav: FC = () => {
           </Drawer>
         </Box>
 
-        <Flex display={{ base: 'none', md: 'block' }}>
+        <Flex display={{ base: 'none', md: 'block' }} zIndex={1}>
           <UnorderedList>
             {NAV_LINKS.map((nav, idx) => (
               <ListItem key={nav.text} display='inline'>
