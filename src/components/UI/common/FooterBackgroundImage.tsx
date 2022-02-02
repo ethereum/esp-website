@@ -12,8 +12,7 @@ export const FooterBackgroundImage: FC = () => {
         <Image
           src={footerBackgroundMobile}
           alt='People gathered around the Ethereum tree'
-          width='450px'
-          height='200px'
+          layout='responsive'
           objectFit='cover'
           quality={85}
         />
@@ -23,8 +22,7 @@ export const FooterBackgroundImage: FC = () => {
         <Image
           src={footerBackground}
           alt='People gathered around the Ethereum tree'
-          width='1440px'
-          height='335px'
+          layout='responsive'
           objectFit='cover'
           quality={85}
         />

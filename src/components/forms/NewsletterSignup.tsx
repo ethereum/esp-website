@@ -73,7 +73,7 @@ export const NewsletterSignup: FC = () => {
       px={10}
       py={8}
     >
-      <Stack mb={6}>
+      <Stack mt={2} mb={6}>
         <ImportantText color='brand.ready.text' textAlign='center'>
           Join our newsletter to stay tuned!
         </ImportantText>
