@@ -40,7 +40,13 @@ const About: NextPage = () => {
       </Stack>
 
       <Center>
-        <Image src={aboutSVG} alt='about pages draft image' objectFit='cover' />
+        <Image
+          src={aboutSVG}
+          alt='watering the garden of grants categories'
+          objectFit='cover'
+          quality={85}
+          priority={true}
+        />
       </Center>
     </>
   );
