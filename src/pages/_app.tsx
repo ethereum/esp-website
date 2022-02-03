@@ -17,6 +17,7 @@ import '@fontsource/libre-franklin/700.css';
 import favicon from '../public/images/favicon.ico';
 import favicon16 from '../public/images/favicon-16x16.png';
 import favicon32 from '../public/images/favicon-32x32.png';
+import { HOME_URL } from '../constants';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -31,13 +32,13 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <ChakraProvider theme={theme}>
         <Layout
-          bg={router.pathname === '/' ? 'brand.homepageHero' : undefined}
+          bg={router.pathname === HOME_URL ? 'brand.homepageHero' : undefined}
           bgGradient={
-            router.pathname !== '/'
+            router.pathname !== HOME_URL
               ? 'linear(to-br, brand.layout.bgGradient.start 0%, brand.layout.bgGradient.end 81.77%, brand.layout.rgba 100%)'
               : undefined
           }
-          h='600px'
+          h={{ base: '600px', lg: '877px' }}
         >
           <Component {...pageProps} />
         </Layout>

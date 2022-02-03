@@ -6,20 +6,20 @@ import { Footer, FooterBackgroundImage, HomepageHero } from '../UI';
 import { Forms, NewsletterSignup } from '../forms';
 
 import { AboutLayout, ApplicantsLayout } from '../layout';
-import { NavMobile } from '../../components';
+import { Nav } from '../../components';
 
-import { ABOUT_URL, APPLICANTS_URL } from '../../constants';
+import { ABOUT_URL, APPLICANTS_URL, HOME_URL } from '../../constants';
 
 export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
   const router = useRouter();
 
   return (
-    <Container maxW={{ base: 'container.mobile', md: '730px' }} p={0} {...props}>
-      <Box px={5} py={3}>
-        <NavMobile />
+    <Container maxW='100%' p={0} {...props}>
+      <Box px={{ base: 5, md: 12 }} py={{ base: 3, md: 8 }}>
+        <Nav />
       </Box>
 
-      {router.pathname === '/' && (
+      {router.pathname === HOME_URL && (
         <>
           <HomepageHero />
 
