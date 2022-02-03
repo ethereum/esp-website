@@ -1,30 +1,29 @@
+/* eslint-disable react/no-children-prop */
 import { Box, Flex, Link, Stack } from '@chakra-ui/react';
 import Image from 'next/image';
+import ReactMarkdown from 'react-markdown';
+import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import { FC } from 'react';
 
 import { PageText, StepHeading } from '../UI';
+import { GrantsListTheme } from './grantsListTheme';
 
 import granteesTwitterLogoSVG from '../../public/images/grantees-twitter-logo.svg';
 
-import { GRANTEES_LIST } from './constants';
+import { Grant } from '../../types';
 
-// interface Props {
-//   label: string;
-//   link: string;
-//   width: string;
-//   isApplyButton?: boolean;
-// }
+interface Props {
+  grantsList: Grant[];
+}
 
-export const LatestGranteesList: FC = () => {
+export const LatestGranteesList: FC<Props> = ({ grantsList }) => {
+  const grantsCategories = [...Array.from(new Set(grantsList.map(grant => grant.Category)))];
+
   return (
     <Box>
-      {GRANTEES_LIST.map(category => {
-        // console.log(category[Object.keys(category)[0]]);
-
-        // console.log(GRANTEES_LIST[0]['Community & education'][0].recipient);
-
+      {grantsCategories.map(grantCategory => {
         return (
-          <Box key={Object.keys(category)[0]}>
+          <Box key={grantCategory}>
             <Flex
               justifyContent='center'
               alignItems='center'
@@ -33,38 +32,53 @@ export const LatestGranteesList: FC = () => {
               borderRadius='10px'
               bgGradient='linear(to-br, #F0F6FD 0%, #ECF2FE 100%)'
             >
-              <StepHeading>{Object.keys(category)}</StepHeading>
+              <StepHeading>{grantCategory}</StepHeading>
             </Flex>
 
-            <Stack
-              py={6}
-              borderBottom='1px solid'
-              borderColor='brand.granteesListDivider'
-              _last={{ borderBottom: 'none' }}
-            >
-              <Flex justifyContent='space-between'>
-                {}
+            {grantsList
+              .filter(({ Category }) => Category === grantCategory)
+              .map(grant => (
+                <Stack
+                  key={grant.Project}
+                  py={6}
+                  borderBottom='1px solid'
+                  borderColor='brand.granteesListDivider'
+                  _last={{ borderBottom: 'none' }}
+                >
+                  <Flex justifyContent='space-between'>
+                    <Box display='inline'>
+                      <ReactMarkdown
+                        components={ChakraUIRenderer(GrantsListTheme)}
+                        children={grant.Project}
+                        skipHtml
+                      />{' '}
+                      {grant.Project && grant.Recipient && <PageText as='span'>by</PageText>}{' '}
+                      <ReactMarkdown
+                        components={ChakraUIRenderer(GrantsListTheme)}
+                        children={grant.Recipient}
+                        skipHtml
+                      />
+                    </Box>
 
-                <PageText>
-                  <strong>
-                    <Link textDecoration='underline'>Ethereum Cat Herders</Link>
-                  </strong>
-                </PageText>
+                    {grant.Twitter && (
+                      <Box>
+                        <Link href={`https://twitter.com/${grant.Twitter}`} isExternal>
+                          <Image
+                            src={granteesTwitterLogoSVG}
+                            alt='Twitter logo'
+                            height={23}
+                            width={30}
+                          />
+                        </Link>
+                      </Box>
+                    )}
+                  </Flex>
 
-                <Box>
-                  <Link href={''} isExternal>
-                    <Image src={granteesTwitterLogoSVG} alt='Twitter logo' height={23} width={30} />
-                  </Link>
-                </Box>
-              </Flex>
-
-              <Stack>
-                <PageText>
-                  Community group supporting Ethereum core developers with project management,
-                  communication and coordination.
-                </PageText>
-              </Stack>
-            </Stack>
+                  <Stack>
+                    <PageText>{grant.Description}</PageText>
+                  </Stack>
+                </Stack>
+              ))}
           </Box>
         );
       })}
