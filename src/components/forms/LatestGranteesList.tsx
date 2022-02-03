@@ -6,7 +6,7 @@ import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import { FC } from 'react';
 
 import { PageText, StepHeading } from '../UI';
-import { GrantsListTheme } from './grantsListTheme';
+import { GrantsListTheme } from './GrantsListTheme';
 
 import granteesTwitterLogoSVG from '../../public/images/grantees-twitter-logo.svg';
 
