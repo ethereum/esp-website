@@ -1443,33 +1443,3 @@ export const REASONS_FOR_MEETING = [
   'Other',
   ''
 ];
-
-// grantees list
-// TODO: compelte this list
-// https://blog.ethereum.org/2021/11/04/esp-allocation-update-q2-2021/
-// https://docs.google.com/spreadsheets/d/1_EkcnmserI8YwMYQLUG8eW0qh3_sXv1SAVcM2CF9HDc/edit#gid=0
-
-export const GRANTEES_LIST = [
-  {
-    'Community & education': [
-      {
-        project: null,
-        projectWebsite: null,
-        recipient: 'Ethereum Cat Herders',
-        recipientWebsite: 'https://ethereumcatherders.com/',
-        description:
-          'Community group supporting Ethereum core developers with project management, communication and coordination.',
-        twitterHandle: 'EthCatHerders'
-      },
-      {
-        project: 'EthCC',
-        projectWebsite: 'https://ethcc.io/',
-        recipient: 'Ethereum France',
-        recipientWebsite: 'https://www.ethereum-france.com/',
-        description: 'Developer and community conference held in Paris, France.',
-        twitterHandle: 'ethcc'
-      }
-    ]
-  },
-  { 'Consensus layer': [] }
-];
