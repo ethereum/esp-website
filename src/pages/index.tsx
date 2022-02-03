@@ -165,7 +165,7 @@ const Home: NextPage = () => {
                         fontWeight={200}
                         mb={1}
                       >
-                        $24.0{' '}
+                        $26.9{' '}
                         <PageText as='span' fontSize='stats'>
                           million
                         </PageText>
@@ -173,7 +173,7 @@ const Home: NextPage = () => {
                     </Box>
 
                     <PageText fontSize='faq.question' fontWeight={400} mb={1}>
-                      125 projects
+                      136 projects
                     </PageText>
                   </Stack>
                 </Flex>
