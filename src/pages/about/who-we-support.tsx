@@ -14,7 +14,7 @@ import { Grant } from '../../types';
 // getStaticProps runs server-side only (on build-time)
 export const getStaticProps: GetStaticProps = async context => {
   const grants = await axios
-    .get(process.env.GOOGLE_SHEET_API_URL!)
+    .get(process.env.GOOGLE_GRANTS_SHEET_API_URL!)
     .then(res => {
       return new Promise<Grant[]>((resolve, reject) => {
         Papa.parse(res.data, {
