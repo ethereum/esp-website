@@ -103,14 +103,6 @@ export const AboutLayout: FC = ({ children }) => {
 
       <Stack px={5}>
         <Stack mb={8}>{children}</Stack>
-
-        {APPLICANTS_PAGES.some(path => router.pathname === path) && (
-          <Stack>
-            <section id='ready-to-apply'>
-              <ReadyToApply link={`${router.pathname}/apply`} />
-            </section>
-          </Stack>
-        )}
       </Stack>
     </>
   );
