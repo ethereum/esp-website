@@ -23,7 +23,7 @@ export const LatestGranteesList: FC<Props> = ({ grantsList }) => {
     <Box>
       {grantsCategories.map(grantCategory => {
         return (
-          <Box key={grantCategory}>
+          <Box key={grantCategory} mb={8} _last={{ mb: 0 }}>
             <Flex
               justifyContent='center'
               alignItems='center'
@@ -46,7 +46,7 @@ export const LatestGranteesList: FC<Props> = ({ grantsList }) => {
                   _last={{ borderBottom: 'none' }}
                 >
                   <Flex justifyContent='space-between'>
-                    <Box display='inline'>
+                    <Box display='inline' pr={4}>
                       <ReactMarkdown
                         components={ChakraUIRenderer(GrantsListTheme)}
                         children={grant.Project}
@@ -61,7 +61,7 @@ export const LatestGranteesList: FC<Props> = ({ grantsList }) => {
                     </Box>
 
                     {grant.Twitter && (
-                      <Box>
+                      <Box flexShrink={0}>
                         <Link href={`https://twitter.com/${grant.Twitter}`} isExternal>
                           <Image
                             src={granteesTwitterLogoSVG}
