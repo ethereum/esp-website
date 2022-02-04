@@ -37,12 +37,10 @@ const OfficeHours: NextPage = () => {
         <Flex>
           <ApplicantsSidebar sidebarLinks={SIDEBAR_OFFICE_HOURS_LINKS} />
 
-          <Box w={{ lg: '70%' }} px={{ lg: 20 }}>
+          <Box w={{ lg: '70%' }} pl={{ lg: 20 }} pr={{ lg: 12 }}>
             <Stack mb={8}>
               <section id='description'>
-                <PageSubheading mb={8} textAlign={{ base: 'center', md: 'left' }}>
-                  Office Hours
-                </PageSubheading>
+                <PageSubheading mb={8}>Office Hours</PageSubheading>
 
                 <PageText mb={6}>
                   Office Hours are a chance to connect directly with a member of the EF&apos;s
@@ -80,46 +78,33 @@ const OfficeHours: NextPage = () => {
 
             <Stack spacing={10}>
               <section id='process'>
-                <PageSection mb={6} textAlign={{ base: 'center', md: 'left' }}>
-                  Process
-                </PageSection>
+                <PageSection mb={6}>Process</PageSection>
 
-                <Stack spacing={10}>
-                  <Stack>
-                    <ProcessStep title='Request' arrow>
-                      Submit the form on the next page to request an office hours appointment. We
-                      may contact you for clarification if your request appears to be out of scope.
-                    </ProcessStep>
-                  </Stack>
+                <Stack spacing={{ base: 5, md: 10 }}>
+                  <ProcessStep title='Request' withArrow>
+                    Submit the form on the next page to request an office hours appointment. We may
+                    contact you for clarification if your request appears to be out of scope.
+                  </ProcessStep>
 
-                  <Stack>
-                    <ProcessStep title='Schedule' arrow>
-                      If it seems like a fit, we&apos;ll get in touch to set up a time, then send
-                      you a calendar invite with a call link.
-                    </ProcessStep>
-                  </Stack>
+                  <ProcessStep title='Schedule' withArrow>
+                    If it seems like a fit, we&apos;ll get in touch to set up a time, then send you
+                    a calendar invite with a call link.
+                  </ProcessStep>
 
-                  <Stack>
-                    <ProcessStep title='Prepare' arrow>
-                      The more specific you are about what you need, the better we&apos;ll be able
-                      to help you! Read through the section below to make sure you understand what
-                      we can and can&apos;t do in these sessions.
-                    </ProcessStep>
-                  </Stack>
+                  <ProcessStep title='Prepare' withArrow>
+                    The more specific you are about what you need, the better we&apos;ll be able to
+                    help you! Read through the section below to make sure you understand what we can
+                    and can&apos;t do in these sessions.
+                  </ProcessStep>
 
-                  <Stack>
-                    <ProcessStep title='Meet'>
-                      You&apos;ll have an informal 20-minute video call with a member of the ESP
-                      team.
-                    </ProcessStep>
-                  </Stack>
+                  <ProcessStep title='Meet'>
+                    You&apos;ll have an informal 20-minute video call with a member of the ESP team.
+                  </ProcessStep>
                 </Stack>
               </section>
 
               <section id='eligibility'>
-                <PageSection mb={6} textAlign={{ base: 'center', md: 'left' }}>
-                  Eligibility
-                </PageSection>
+                <PageSection mb={6}>Eligibility</PageSection>
 
                 <PageText mb={6}>
                   Our criteria for office hours are a bit more flexible than our requirements for
@@ -162,9 +147,7 @@ const OfficeHours: NextPage = () => {
               </section>
 
               <section id='what-we-offer'>
-                <PageSection mb={6} textAlign={{ base: 'center', md: 'left' }}>
-                  What we offer
-                </PageSection>
+                <PageSection mb={6}>What we offer</PageSection>
 
                 <PageText mb={6}>
                   Office hours sessions are short informal calls with a member of the ESP team. Some
@@ -198,9 +181,7 @@ const OfficeHours: NextPage = () => {
               </section>
 
               <section id='what-we-dont-offer'>
-                <PageSection mb={6} textAlign={{ base: 'center', md: 'left' }}>
-                  What we DON&apos;T offer
-                </PageSection>
+                <PageSection mb={6}>What we DON&apos;T offer</PageSection>
 
                 <List>
                   <ListItem>Financial or legal advice.</ListItem>
@@ -213,9 +194,7 @@ const OfficeHours: NextPage = () => {
               </section>
 
               <section id='before-submitting'>
-                <PageSection mb={6} textAlign={{ base: 'center', md: 'left' }}>
-                  Before submitting
-                </PageSection>
+                <PageSection mb={6}>Before submitting</PageSection>
 
                 <PageText>
                   Please check out these resources for answers to common inquiries:
@@ -293,9 +272,7 @@ const OfficeHours: NextPage = () => {
               </section>
 
               <section id='faq'>
-                <PageSection mb={6} textAlign={{ base: 'center', md: 'left' }}>
-                  FAQ
-                </PageSection>
+                <PageSection mb={6}>FAQ</PageSection>
 
                 <Accordion allowToggle>
                   <FAQItem question='Can I bring others to the call?'>

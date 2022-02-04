@@ -37,16 +37,12 @@ const Applicants: NextPage = () => {
         <Flex>
           <ApplicantsSidebar sidebarLinks={SIDEBAR_APPLICANTS_LINKS} />
 
-          <Box w={{ lg: '70%' }} px={{ lg: 20 }}>
+          <Box w={{ lg: '70%' }} pl={{ lg: 20 }} pr={{ lg: 12 }}>
             <Stack mb={8}>
-              <PageSubheading mb={6} textAlign={{ base: 'center', md: 'left' }}>
-                ESP Grants and Support Overview
-              </PageSubheading>
+              <PageSubheading mb={6}>ESP Grants and Support Overview</PageSubheading>
 
               <section id='mission-and-scope'>
-                <PageSection mb={6} textAlign={{ base: 'center', md: 'left' }}>
-                  Mission and Scope
-                </PageSection>
+                <PageSection mb={6}>Mission and Scope</PageSection>
 
                 <PageText mb={6}>
                   As the public facing allocation arm of the Ethereum Foundation, ESP provides
@@ -160,9 +156,7 @@ const Applicants: NextPage = () => {
 
             <Stack spacing={10}>
               <section id='how-we-support'>
-                <PageSection mb={6} textAlign={{ base: 'center', md: 'left' }}>
-                  How we support
-                </PageSection>
+                <PageSection mb={6}>How we support</PageSection>
 
                 <PageText mb={6}>
                   Grants are direct funding, awarded following a formal application, evaluation, and
@@ -186,9 +180,7 @@ const Applicants: NextPage = () => {
               </section>
 
               <section id='application-types'>
-                <PageSection mb={6} textAlign={{ base: 'center', md: 'left' }}>
-                  Application types
-                </PageSection>
+                <PageSection mb={6}>Application types</PageSection>
 
                 <PageText mb={6}>
                   There are several ways to request support from ESP. Choose an application type to

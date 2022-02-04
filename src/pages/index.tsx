@@ -27,9 +27,7 @@ const Home: NextPage = () => {
           <Flex direction={{ base: 'column', md: 'row' }}>
             <Stack mb={{ base: 10, md: 0 }} w={{ md: '100%' }} mr={{ base: 0, md: 12 }}>
               <section id='mission'>
-                <PageSection mb={6} textAlign={{ base: 'center', md: 'left' }}>
-                  The Ethereum Foundation&apos;s Mission
-                </PageSection>
+                <PageSection mb={6}>The Ethereum Foundation&apos;s Mission</PageSection>
 
                 <PageText fontSize='stats' fontWeight={100} lineHeight='32px'>
                   Our mission is to do what is best for Ethereum&apos;s long-term success. Our role
@@ -42,9 +40,7 @@ const Home: NextPage = () => {
 
             <Stack w={{ md: '90%' }} mb={{ md: 8 }}>
               <section id='esp-role'>
-                <PageSection mb={6} textAlign={{ base: 'center', md: 'left' }}>
-                  Ecosystem Support Program&apos;s Role
-                </PageSection>
+                <PageSection mb={6}>Ecosystem Support Program&apos;s Role</PageSection>
 
                 <PageText mb={1}>
                   As the public facing allocation arm of the Ethereum Foundation, ESP provides
