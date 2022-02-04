@@ -51,12 +51,12 @@ export default extendTheme({
           end: '#f3d1ee'
         }
       },
-      layout: {
+      applicants: {
         bgGradient: {
-          start: '#ffe5e2',
-          end: '#e4deff'
+          start: '#FFE9E0',
+          end: '#EDCDF9'
         },
-        rgba: 'rgba(228, 222, 255, 0)'
+        rgba: 'rgba(237, 205, 249, 0)'
       },
       option: '#ffefec',
       uploadProposal: 'rgba(189, 189, 189, 0.2)',
