@@ -16,7 +16,9 @@ const OfficeHoursApply: NextPage = () => {
         <Stack mb={12}>
           <Stack>
             <section id='description'>
-              <PageSubheading mb={8}>Apply to Small Grants</PageSubheading>
+              <PageSubheading mb={8} textAlign='center'>
+                Apply to Small Grants
+              </PageSubheading>
 
               <PageText>
                 Answer the following questions thoughtfully and thoroughly. The information you

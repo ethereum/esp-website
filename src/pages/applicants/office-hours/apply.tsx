@@ -15,7 +15,9 @@ const OfficeHoursApply: NextPage = () => {
       <Box bg='white' position='relative' py={{ md: 12 }} px={{ md: 6, lg: 64 }}>
         <Stack mb={4}>
           <section id='description'>
-            <PageSubheading mb={8}>Apply to Office Hours</PageSubheading>
+            <PageSubheading mb={8} textAlign='center'>
+              Apply to Office Hours
+            </PageSubheading>
 
             <PageText mb={6}>
               If you have questions before submitting a grant application, or need support other

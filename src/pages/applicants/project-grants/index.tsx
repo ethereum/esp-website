@@ -1,6 +1,7 @@
 import { Accordion, Box, Flex, Link, ListItem, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { ReadyToApply } from '../../../components';
 
 import {
   ApplicantsSidebar,
@@ -9,15 +10,14 @@ import {
   PageSection,
   PageSubheading,
   PageText,
-  ProcessStep,
-  StepArrow,
-  StepHeader
+  ProcessStep
 } from '../../../components/UI';
 
 import {
   ETHEREUM_COMMUNITY_URL,
   ETHEREUM_GRANTS_URL,
   ETHRESEARCH_URL,
+  PROJECT_GRANTS_URL,
   SIDEBAR_PROJECT_GRANTS_LINKS
 } from '../../../constants';
 
@@ -338,6 +338,12 @@ const ProjectGrants: NextPage = () => {
                     </PageText>
                   </FAQItem>
                 </Accordion>
+              </section>
+
+              <section id='apply'>
+                <Stack mt={6}>
+                  <ReadyToApply link={`${PROJECT_GRANTS_URL}/apply`} />
+                </Stack>
               </section>
             </Stack>
           </Box>

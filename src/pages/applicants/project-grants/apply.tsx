@@ -19,7 +19,9 @@ const ProjectGrantsApply: NextPage = () => {
         <Stack mb={12}>
           <Stack mb={8}>
             <section id='description'>
-              <PageSubheading mb={8}>Apply to Project grants</PageSubheading>
+              <PageSubheading mb={8} textAlign='center'>
+                Apply to Project grants
+              </PageSubheading>
 
               <PageText>
                 This webform collects basic information about you and your project. You&apos;ll also
