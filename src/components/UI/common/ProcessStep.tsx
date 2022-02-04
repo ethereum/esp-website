@@ -5,11 +5,11 @@ import { PageText, StepArrow, StepHeader } from '../';
 
 interface Props {
   title: string;
-  arrow?: boolean;
+  withArrow?: boolean;
 }
 
 // TODO: fix this layout
-export const ProcessStep: FC<Props> = ({ title, arrow, children }) => {
+export const ProcessStep: FC<Props> = ({ title, withArrow, children }) => {
   return (
     <Flex direction='column'>
       <Flex alignItems='center' direction={{ base: 'column', md: 'row' }} mb={{ md: 8 }}>
@@ -18,7 +18,7 @@ export const ProcessStep: FC<Props> = ({ title, arrow, children }) => {
         <PageText w={{ md: '68%' }}>{children}</PageText>
       </Flex>
 
-      {arrow && (
+      {withArrow && (
         <Box>
           <StepArrow />
         </Box>

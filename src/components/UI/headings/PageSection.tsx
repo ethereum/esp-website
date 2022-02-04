@@ -9,7 +9,7 @@ export const PageSection: FC<HeadingProps> = ({ children, ...props }) => {
       fontSize='22px'
       fontWeight={700}
       lineHeight='29px'
-      textAlign='center'
+      textAlign={{ base: 'center', md: 'left' }}
       variant='page-section'
       {...props}
     >
