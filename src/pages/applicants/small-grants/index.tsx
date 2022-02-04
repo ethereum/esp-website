@@ -4,20 +4,20 @@ import Head from 'next/head';
 import { ReadyToApply } from '../../../components';
 
 import {
-  ApplicantsSidebar,
+  ApplicationAttentionMsg,
   FAQItem,
   List,
   PageSection,
   PageSubheading,
-  PageText,
-  ProcessStep
+  PageText
 } from '../../../components/UI';
+import { ApplicantsSidebar } from '../../../components/UI/common/ApplicantsSidebar';
+import { ProcessStep } from '../../../components/UI/common/ProcessStep';
 
 import {
   ETHEREUM_COMMUNITY_URL,
   ETHEREUM_GRANTS_URL,
   ETHRESEARCH_URL,
-  OFFICE_HOURS_URL,
   SIDEBAR_SMALL_GRANTS_LINKS,
   SMALL_GRANTS_URL
 } from '../../../constants';
@@ -35,7 +35,7 @@ const SmallGrants: NextPage = () => {
           <ApplicantsSidebar sidebarLinks={SIDEBAR_SMALL_GRANTS_LINKS} />
 
           <Box w={{ lg: '70%' }} pl={{ lg: 20 }} pr={{ lg: 12 }}>
-            <Stack mb={8}>
+            <Stack mb={-6}>
               <section id='description'>
                 <PageSubheading mb={8}>Small Grants</PageSubheading>
 
@@ -68,20 +68,12 @@ const SmallGrants: NextPage = () => {
                     </ListItem>
                   </List>
                 </Stack>
+              </section>
+            </Stack>
 
-                <PageText>
-                  If you&apos;re uncertain about any part of your application, please feel free to
-                  reach out through{' '}
-                  <Link
-                    fontWeight={700}
-                    color='brand.orange.100'
-                    href={OFFICE_HOURS_URL}
-                    _hover={{ textDecoration: 'none' }}
-                  >
-                    Office Hours
-                  </Link>{' '}
-                  to get your questions answered before submitting.
-                </PageText>
+            <Stack mb={20}>
+              <section id='attention'>
+                <ApplicationAttentionMsg />
               </section>
             </Stack>
 

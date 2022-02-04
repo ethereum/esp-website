@@ -178,7 +178,7 @@ export const OfficeHoursForm: FC = () => {
         </FormControl>
 
         {individualOrTeam === TEAM && (
-          <FormControl id='company-control' isRequired mb={8} ml={{ md: 40 }} w='auto'>
+          <FormControl id='company-control' isRequired mb={8} w='auto'>
             <FormLabel htmlFor='company' mb={1}>
               <PageText display='inline' fontSize='input'>
                 Name of organization or entity
@@ -386,8 +386,8 @@ export const OfficeHoursForm: FC = () => {
           isRequired
           mt={8}
           mb={20}
-          w={{ md: '50%' }}
-          pr={{ md: 6 }}
+          // w={{ md: '50%' }}
+          // pr={{ md: 6 }}
         >
           <FormLabel htmlFor='timezone'>
             <PageText display='inline' fontSize='input'>

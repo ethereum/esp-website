@@ -2,7 +2,7 @@ import { Box, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
-import { ApplicationAttentionMsg, PageSubheading, PageText } from '../../../components/UI';
+import { PageSubheading, PageText } from '../../../components/UI';
 
 const OfficeHoursApply: NextPage = () => {
   return (
@@ -25,12 +25,6 @@ const OfficeHoursApply: NextPage = () => {
                 provide now is what we&apos;ll use to make a final decision on whether to award a
                 grant.
               </PageText>
-            </section>
-          </Stack>
-
-          <Stack>
-            <section id='attention'>
-              <ApplicationAttentionMsg />
             </section>
           </Stack>
         </Stack>

@@ -3,13 +3,11 @@ import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
 
 import { AboutDescription, ImportantText } from '../UI';
-import { ReadyToApply } from '../ReadyToApply';
 
 import {
   ABOUT_URL,
   ABOUT_TABS,
   ABOUT_TABS_MAP,
-  APPLICANTS_PAGES,
   HOW_WE_SUPPORT_URL,
   WHO_WE_SUPPORT_URL
 } from '../../constants';

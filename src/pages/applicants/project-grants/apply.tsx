@@ -3,7 +3,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 
 import { ButtonLink } from '../../../components';
-import { ApplicationAttentionMsg, PageSubheading, PageText } from '../../../components/UI';
+import { PageSubheading, PageText } from '../../../components/UI';
 
 import { API_DOWNLOAD_APPLICATION_URL } from '../../../constants';
 
@@ -44,12 +44,6 @@ const ProjectGrantsApply: NextPage = () => {
                   width='268px'
                 />
               </Center>
-            </section>
-          </Stack>
-
-          <Stack>
-            <section id='attention'>
-              <ApplicationAttentionMsg />
             </section>
           </Stack>
         </Stack>

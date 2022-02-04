@@ -5,6 +5,7 @@ import { ReadyToApply } from '../../../components';
 
 import {
   ApplicantsSidebar,
+  ApplicationAttentionMsg,
   FAQItem,
   List,
   PageSection,
@@ -34,7 +35,7 @@ const ProjectGrants: NextPage = () => {
           <ApplicantsSidebar sidebarLinks={SIDEBAR_PROJECT_GRANTS_LINKS} />
 
           <Box w={{ lg: '70%' }} pl={{ lg: 20 }} pr={{ lg: 12 }}>
-            <Stack mb={8}>
+            <Stack mb={2}>
               <section id='description'>
                 <PageSubheading mb={8}>Project grants</PageSubheading>
 
@@ -62,6 +63,12 @@ const ProjectGrants: NextPage = () => {
                     </ListItem>
                   </List>
                 </Stack>
+              </section>
+            </Stack>
+
+            <Stack mb={20}>
+              <section id='attention'>
+                <ApplicationAttentionMsg />
               </section>
             </Stack>
 
