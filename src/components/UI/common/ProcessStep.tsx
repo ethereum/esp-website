@@ -12,7 +12,7 @@ interface Props {
 export const ProcessStep: FC<Props> = ({ title, arrow, children }) => {
   return (
     <Flex direction='column'>
-      <Flex alignItems='center' direction={{ base: 'column', md: 'row' }} mb={8}>
+      <Flex alignItems='center' direction={{ base: 'column', md: 'row' }} mb={{ md: 8 }}>
         <StepHeader>{title}</StepHeader>
 
         <PageText w={{ md: '68%' }}>{children}</PageText>
