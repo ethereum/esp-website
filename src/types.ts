@@ -66,6 +66,15 @@ export interface NavLink {
   text: string;
 }
 
+export interface Grant {
+  Quarter: string;
+  Category: string;
+  Project: string;
+  Recipient: string;
+  Description: string;
+  Twitter: string;
+}
+
 export interface SidebarLink {
   text: string;
   href: string;

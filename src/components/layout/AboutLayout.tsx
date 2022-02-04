@@ -2,20 +2,21 @@ import { Flex, Stack, Tab, TabList, Tabs } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
 
-import { ApplicantsDescription, ImportantText } from '../UI';
+import { AboutDescription, ImportantText } from '../UI';
+import { ReadyToApply } from '../ReadyToApply';
 
 import {
-  APPLICANTS_TABS,
-  APPLICANTS_TABS_MAP,
-  APPLICANTS_URL,
-  OFFICE_HOURS_URL,
-  PROJECT_GRANTS_URL,
-  SMALL_GRANTS_URL
+  ABOUT_URL,
+  ABOUT_TABS,
+  ABOUT_TABS_MAP,
+  APPLICANTS_PAGES,
+  HOW_WE_SUPPORT_URL,
+  WHO_WE_SUPPORT_URL
 } from '../../constants';
 
-export const ApplicantsLayout: FC = ({ children }) => {
+export const AboutLayout: FC = ({ children }) => {
   const router = useRouter();
-  const [tabIndex, setTabIndex] = useState(APPLICANTS_TABS_MAP[router.pathname]);
+  const [tabIndex, setTabIndex] = useState(ABOUT_TABS_MAP[router.pathname]);
 
   const handleChange = (index: number) => {
     setTabIndex(index);
@@ -24,7 +25,7 @@ export const ApplicantsLayout: FC = ({ children }) => {
       case 0:
         router.push(
           {
-            pathname: APPLICANTS_URL
+            pathname: ABOUT_URL
           },
           undefined,
           { scroll: false }
@@ -34,7 +35,7 @@ export const ApplicantsLayout: FC = ({ children }) => {
       case 1:
         router.push(
           {
-            pathname: OFFICE_HOURS_URL
+            pathname: WHO_WE_SUPPORT_URL
           },
           undefined,
           { scroll: false }
@@ -44,17 +45,7 @@ export const ApplicantsLayout: FC = ({ children }) => {
       case 2:
         router.push(
           {
-            pathname: SMALL_GRANTS_URL
-          },
-          undefined,
-          { scroll: false }
-        );
-        break;
-
-      case 3:
-        router.push(
-          {
-            pathname: PROJECT_GRANTS_URL
+            pathname: HOW_WE_SUPPORT_URL
           },
           undefined,
           { scroll: false }
@@ -68,16 +59,14 @@ export const ApplicantsLayout: FC = ({ children }) => {
 
   return (
     <>
-      <Stack mb={5} px={{ base: 5, md: 12 }} py={3}>
+      <Stack mb={5} px={5} py={3}>
         <section id='hero'>
-          <ApplicantsDescription />
+          <AboutDescription />
         </section>
       </Stack>
 
       <Flex
-        mb={{ base: 10, md: 0 }}
-        mx={{ md: 12 }}
-        px={{ md: 2 }}
+        mb={10}
         backgroundColor='white'
         overflowX='auto'
         borderBottom='1px solid'
@@ -91,8 +80,8 @@ export const ApplicantsLayout: FC = ({ children }) => {
           variant='unstyled'
           isLazy
         >
-          <TabList whiteSpace='nowrap' h='64px' pl={6}>
-            {APPLICANTS_TABS.map(tabElement => (
+          <TabList whiteSpace='nowrap' h='64px'>
+            {ABOUT_TABS.map(tabElement => (
               <Tab
                 key={tabElement}
                 px={0}
@@ -112,7 +101,7 @@ export const ApplicantsLayout: FC = ({ children }) => {
         </Tabs>
       </Flex>
 
-      <Stack px={{ base: 5, md: 12 }}>
+      <Stack px={5}>
         <Stack mb={8}>{children}</Stack>
       </Stack>
     </>

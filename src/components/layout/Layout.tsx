@@ -4,10 +4,11 @@ import { useRouter } from 'next/router';
 
 import { Footer, FooterBackgroundImage, HomepageHero } from '../UI';
 import { Forms, NewsletterSignup } from '../forms';
-import { ApplicantsLayout } from '../layout';
+
+import { AboutLayout, ApplicantsLayout } from '../layout';
 import { Nav } from '../../components';
 
-import { APPLICANTS_URL, HOME_URL } from '../../constants';
+import { ABOUT_URL, APPLICANTS_URL, HOME_URL } from '../../constants';
 
 export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
   const router = useRouter();
@@ -30,6 +31,14 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
         <Box mt={-6}>
           <main>
             <ApplicantsLayout>{children}</ApplicantsLayout>
+          </main>
+        </Box>
+      )}
+
+      {router.pathname.startsWith(ABOUT_URL) && (
+        <Box mt={-6}>
+          <main>
+            <AboutLayout>{children}</AboutLayout>
           </main>
         </Box>
       )}
