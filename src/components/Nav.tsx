@@ -116,7 +116,7 @@ export const Nav: FC = () => {
                     <ImportantText
                       color='brand.ready.text'
                       display='inline'
-                      mr={2}
+                      mr={nav.href === ESP_BLOG_URL ? 0 : 2}
                       sx={
                         selectedLink(router.pathname, nav.href)
                           ? { borderBottom: '10px solid', borderBottomColor: 'brand.accent' }
