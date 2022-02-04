@@ -65,3 +65,8 @@ export interface NavLink {
   href: Href;
   text: string;
 }
+
+export interface SidebarLink {
+  text: string;
+  href: string;
+}
