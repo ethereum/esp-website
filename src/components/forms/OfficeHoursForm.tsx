@@ -82,45 +82,48 @@ export const OfficeHoursForm: FC = () => {
       px={5}
       pt={8}
       pb={20}
+      borderRadius={{ md: '10px' }}
     >
       <form id='office-hours-form' onSubmit={handleSubmit(onSubmit)}>
-        <FormControl id='first-name-control' isRequired mb={8}>
-          <FormLabel htmlFor='firstName'>
-            <PageText display='inline' fontSize='input'>
-              First Name
-            </PageText>
-          </FormLabel>
-          <Input
-            id='first-name'
-            type='text'
-            bg='white'
-            borderRadius={0}
-            borderColor='brand.border'
-            h='56px'
-            _placeholder={{ fontSize: 'input' }}
-            color='brand.paragraph'
-            fontSize='input'
-          />
-        </FormControl>
+        <Flex direction={{ base: 'column', md: 'row' }}>
+          <FormControl id='first-name-control' isRequired mb={8} mr={{ md: 12 }}>
+            <FormLabel htmlFor='firstName'>
+              <PageText display='inline' fontSize='input'>
+                First Name
+              </PageText>
+            </FormLabel>
+            <Input
+              id='first-name'
+              type='text'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              h='56px'
+              _placeholder={{ fontSize: 'input' }}
+              color='brand.paragraph'
+              fontSize='input'
+            />
+          </FormControl>
 
-        <FormControl id='last-name-control' isRequired mb={8}>
-          <FormLabel htmlFor='lastName'>
-            <PageText display='inline' fontSize='input'>
-              Last Name
-            </PageText>
-          </FormLabel>
-          <Input
-            id='last-name'
-            type='text'
-            bg='white'
-            borderRadius={0}
-            borderColor='brand.border'
-            h='56px'
-            _placeholder={{ fontSize: 'input' }}
-            color='brand.paragraph'
-            fontSize='input'
-          />
-        </FormControl>
+          <FormControl id='last-name-control' isRequired mb={8}>
+            <FormLabel htmlFor='lastName'>
+              <PageText display='inline' fontSize='input'>
+                Last Name
+              </PageText>
+            </FormLabel>
+            <Input
+              id='last-name'
+              type='text'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              h='56px'
+              _placeholder={{ fontSize: 'input' }}
+              color='brand.paragraph'
+              fontSize='input'
+            />
+          </FormControl>
+        </Flex>
 
         <FormControl id='email-control' isRequired mb={8}>
           <FormLabel htmlFor='email'>
@@ -141,7 +144,7 @@ export const OfficeHoursForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl id='individual-or-team-control' isRequired mb={8}>
+        <FormControl id='individual-or-team-control' isRequired mb={{ base: 8, md: 2 }}>
           <FormLabel htmlFor='individualOrTeam' mb={4}>
             <PageText display='inline' fontSize='input'>
               Are you submitting on behalf of a team, or as an individual?
@@ -175,7 +178,7 @@ export const OfficeHoursForm: FC = () => {
         </FormControl>
 
         {individualOrTeam === TEAM && (
-          <FormControl id='company-control' isRequired mb={8}>
+          <FormControl id='company-control' isRequired mb={8} ml={{ md: 40 }} w='auto'>
             <FormLabel htmlFor='company' mb={1}>
               <PageText display='inline' fontSize='input'>
                 Name of organization or entity
@@ -350,7 +353,13 @@ export const OfficeHoursForm: FC = () => {
         </FormControl>
 
         {reasonForMeeting.includes(OTHER) && (
-          <FormControl id='other-reason-for-meeting-control' isRequired mb={8}>
+          <FormControl
+            id='other-reason-for-meeting-control'
+            isRequired
+            mb={8}
+            ml={{ md: 6 }}
+            w='auto'
+          >
             <FormLabel htmlFor='otherReasonForMeeting'>
               <PageText display='inline' fontSize='input'>
                 Reason for meeting

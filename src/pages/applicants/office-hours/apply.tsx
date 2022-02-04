@@ -12,7 +12,7 @@ const OfficeHoursApply: NextPage = () => {
         <meta name='description' content='Office Hours Application' />
       </Head>
 
-      <Box bg='white' position='relative' py={{ md: 12 }}>
+      <Box bg='white' position='relative' py={{ md: 12 }} px={{ md: 6, lg: 64 }}>
         <Stack mb={4}>
           <section id='description'>
             <PageSubheading mb={8}>Apply to Office Hours</PageSubheading>

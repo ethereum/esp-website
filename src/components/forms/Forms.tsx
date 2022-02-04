@@ -1,4 +1,4 @@
-import { Stack } from '@chakra-ui/react';
+import { Box, Stack } from '@chakra-ui/react';
 import { FC } from 'react';
 import { useRouter } from 'next/router';
 
@@ -16,7 +16,11 @@ export const Forms: FC = () => {
   return (
     <Stack id='forms'>
       {router.pathname === PROJECT_GRANTS_APPLY_URL && <ProjectGrantsForm />}
-      {router.pathname === OFFICE_HOURS_APPLY_URL && <OfficeHoursForm />}
+      {router.pathname === OFFICE_HOURS_APPLY_URL && (
+        <Box px={{ md: 16, lg: 72 }}>
+          <OfficeHoursForm />
+        </Box>
+      )}
       {router.pathname === SMALL_GRANTS_APPLY_URL && <SmallGrantsForm />}
     </Stack>
   );
