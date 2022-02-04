@@ -19,8 +19,6 @@ export const APPLICANTS_PAGES = [OFFICE_HOURS_URL, SMALL_GRANTS_URL, PROJECT_GRA
 export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
 export const OFFICE_HOURS_APPLY_URL = '/applicants/office-hours/apply';
 export const SMALL_GRANTS_APPLY_URL = '/applicants/small-grants/apply';
-export const PROJECT_GRANTS_DOWNLOAD_FILE_URL =
-  'https://ipfs.chainsafe.io/ipfs/QmQ6TWeRS2z5pMsKsZgeBiCdZwNM1wctno9ESYkZUkNKi4';
 
 // thank you pages
 export const PROJECT_GRANTS_THANK_YOU_PAGE_URL = '/applicants/project-grants/thank-you';
@@ -47,9 +45,9 @@ export const ESP_BLOG_URL = 'https://blog.ethereum.org/category/ecosystem-suppor
 export const ESP_TWITTER_URL = 'https://twitter.com/EF_ESP';
 export const ESP_EMAIL_ADDRESS = 'mailto:esp@ethereum.org';
 
-// tabs
+// applicants tabs
 export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Small Grants', 'Project Grants'];
-export const TABS_MAP: TabsMap = {
+export const APPLICANTS_TABS_MAP: TabsMap = {
   [APPLICANTS_URL]: 0,
   [OFFICE_HOURS_URL]: 1,
   [SMALL_GRANTS_URL]: 2,
@@ -60,6 +58,14 @@ export const TABS_MAP: TabsMap = {
   [SMALL_GRANTS_THANK_YOU_PAGE_URL]: 2,
   [PROJECT_GRANTS_APPLY_URL]: 3,
   [PROJECT_GRANTS_THANK_YOU_PAGE_URL]: 3
+};
+
+// about tabs
+export const ABOUT_TABS = ['What We Support', 'Who We Support', 'How We Support'];
+export const ABOUT_TABS_MAP: TabsMap = {
+  [ABOUT_URL]: 0,
+  [WHO_WE_SUPPORT_URL]: 1,
+  [HOW_WE_SUPPORT_URL]: 2
 };
 
 // nav
@@ -75,3 +81,6 @@ export const ETHRESEARCH_URL = 'https://ethresear.ch/';
 
 // api
 export const API_DOWNLOAD_APPLICATION_URL = '/api/download-application';
+
+// grants list
+export const CURRENT_GRANTS_QUARTERS = ['3', '4'];

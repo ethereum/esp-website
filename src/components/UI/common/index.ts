@@ -1,3 +1,4 @@
+export * from './AboutDescription';
 export * from './ApplicantsDescription';
 export * from './ApplicationAttentionMsg';
 export * from './ApplicationTypeCard';

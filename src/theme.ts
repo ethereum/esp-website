@@ -33,6 +33,7 @@ export default extendTheme({
         100: '#e5e5e5',
         200: '#a1a0ba'
       },
+      granteesListDivider: '#ddd',
       footer: {
         bgGradient: {
           start: '#e07861',
