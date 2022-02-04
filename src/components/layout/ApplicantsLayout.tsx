@@ -3,10 +3,8 @@ import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
 
 import { ApplicantsDescription, ImportantText } from '../UI';
-import { ReadyToApply } from '../ReadyToApply';
 
 import {
-  APPLICANTS_PAGES,
   APPLICANTS_TABS,
   APPLICANTS_URL,
   OFFICE_HOURS_URL,
@@ -116,14 +114,6 @@ export const ApplicantsLayout: FC = ({ children }) => {
 
       <Stack px={{ base: 5, md: 12 }}>
         <Stack mb={8}>{children}</Stack>
-
-        {APPLICANTS_PAGES.some(path => router.pathname === path) && (
-          <Stack>
-            <section id='apply'>
-              <ReadyToApply link={`${router.pathname}/apply`} />
-            </section>
-          </Stack>
-        )}
       </Stack>
     </>
   );

@@ -1,6 +1,7 @@
 import { Accordion, Box, Flex, Link, ListItem, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { ReadyToApply } from '../../../components';
 
 import {
   ApplicantsSidebar,
@@ -20,7 +21,8 @@ import {
   ETHEREUM_JOBS_URL,
   ETHEREUM_ORG_URL,
   ABOUT_URL,
-  SIDEBAR_OFFICE_HOURS_LINKS
+  SIDEBAR_OFFICE_HOURS_LINKS,
+  OFFICE_HOURS_URL
 } from '../../../constants';
 
 const OfficeHours: NextPage = () => {
@@ -317,6 +319,12 @@ const OfficeHours: NextPage = () => {
                     </PageText>
                   </FAQItem>
                 </Accordion>
+              </section>
+
+              <section id='apply'>
+                <Stack mt={6}>
+                  <ReadyToApply link={`${OFFICE_HOURS_URL}/apply`} />
+                </Stack>
               </section>
             </Stack>
           </Box>
