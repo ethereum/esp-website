@@ -29,6 +29,33 @@ export const SIDEBAR_OFFICE_HOURS_LINKS: SidebarLink[] = [
   { text: 'FAQ', href: `${OFFICE_HOURS_URL}/#faq` },
   { text: 'Apply', href: `${OFFICE_HOURS_URL}/#apply` }
 ];
+export const SIDEBAR_PROJECT_GRANTS_LINKS: SidebarLink[] = [
+  { text: 'Summary', href: `${PROJECT_GRANTS_URL}/#description` },
+  { text: 'Process', href: `${PROJECT_GRANTS_URL}/#process` },
+  { text: 'Requirements', href: `${PROJECT_GRANTS_URL}/#requirements` },
+  { text: 'Eligibility', href: `${PROJECT_GRANTS_URL}/#eligibility` },
+  { text: 'What is NOT eligible', href: `${PROJECT_GRANTS_URL}/#what-is-not-eligible` },
+  {
+    text: 'Tips for submitting a great application',
+    href: `${PROJECT_GRANTS_URL}/#tips-application`
+  },
+  { text: 'FAQ', href: `${PROJECT_GRANTS_URL}/#faq` },
+  { text: 'Apply', href: `${PROJECT_GRANTS_URL}/#apply` }
+];
+export const SIDEBAR_SMALL_GRANTS_LINKS: SidebarLink[] = [
+  { text: 'Summary', href: `${SMALL_GRANTS_URL}/#description` },
+  { text: 'Process', href: `${SMALL_GRANTS_URL}/#process` },
+  { text: 'Requirements', href: `${SMALL_GRANTS_URL}/#requirements` },
+  { text: 'Eligibility', href: `${SMALL_GRANTS_URL}/#eligibility` },
+  { text: 'What is NOT eligible', href: `${SMALL_GRANTS_URL}/#what-is-not-eligible` },
+
+  {
+    text: 'Tips for submitting a great application',
+    href: `${OFFICE_HOURS_URL}/#tips-application`
+  },
+  { text: 'FAQ', href: `${OFFICE_HOURS_URL}/#faq` },
+  { text: 'Apply', href: `${OFFICE_HOURS_URL}/#apply` }
+];
 
 // apply forms
 export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
