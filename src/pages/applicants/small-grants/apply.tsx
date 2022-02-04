@@ -1,4 +1,4 @@
-import { Stack } from '@chakra-ui/react';
+import { Box, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
@@ -12,25 +12,27 @@ const OfficeHoursApply: NextPage = () => {
         <meta name='description' content='Small Grants Application' />
       </Head>
 
-      <Stack mb={12}>
-        <Stack>
-          <section id='description'>
-            <PageSubheading mb={8}>Apply to Small Grants</PageSubheading>
+      <Box bg='white' position='relative' py={{ md: 12 }}>
+        <Stack mb={12}>
+          <Stack>
+            <section id='description'>
+              <PageSubheading mb={8}>Apply to Small Grants</PageSubheading>
 
-            <PageText>
-              Answer the following questions thoughtfully and thoroughly. The information you
-              provide now is what we&apos;ll use to make a final decision on whether to award a
-              grant.
-            </PageText>
-          </section>
-        </Stack>
+              <PageText>
+                Answer the following questions thoughtfully and thoroughly. The information you
+                provide now is what we&apos;ll use to make a final decision on whether to award a
+                grant.
+              </PageText>
+            </section>
+          </Stack>
 
-        <Stack>
-          <section id='attention'>
-            <ApplicationAttentionMsg />
-          </section>
+          <Stack>
+            <section id='attention'>
+              <ApplicationAttentionMsg />
+            </section>
+          </Stack>
         </Stack>
-      </Stack>
+      </Box>
     </>
   );
 };
