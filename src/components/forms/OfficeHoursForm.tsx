@@ -381,7 +381,14 @@ export const OfficeHoursForm: FC = () => {
           </FormControl>
         )}
 
-        <FormControl id='timezone-control' isRequired mt={8} mb={20}>
+        <FormControl
+          id='timezone-control'
+          isRequired
+          mt={8}
+          mb={20}
+          w={{ md: '50%' }}
+          pr={{ md: 6 }}
+        >
           <FormLabel htmlFor='timezone'>
             <PageText display='inline' fontSize='input'>
               Your Time Zone

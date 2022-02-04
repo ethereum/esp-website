@@ -15,13 +15,21 @@ export const Forms: FC = () => {
 
   return (
     <Stack id='forms'>
-      {router.pathname === PROJECT_GRANTS_APPLY_URL && <ProjectGrantsForm />}
+      {router.pathname === PROJECT_GRANTS_APPLY_URL && (
+        <Box px={{ md: 16, lg: 72 }}>
+          <ProjectGrantsForm />
+        </Box>
+      )}
       {router.pathname === OFFICE_HOURS_APPLY_URL && (
         <Box px={{ md: 16, lg: 72 }}>
           <OfficeHoursForm />
         </Box>
       )}
-      {router.pathname === SMALL_GRANTS_APPLY_URL && <SmallGrantsForm />}
+      {router.pathname === SMALL_GRANTS_APPLY_URL && (
+        <Box px={{ md: 16, lg: 72 }}>
+          <SmallGrantsForm />
+        </Box>
+      )}
     </Stack>
   );
 };

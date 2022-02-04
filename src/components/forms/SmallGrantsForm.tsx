@@ -90,45 +90,48 @@ export const SmallGrantsForm: FC = () => {
       px={5}
       pt={8}
       pb={20}
+      borderRadius={{ md: '10px' }}
     >
       <form id='office-hours-form' onSubmit={handleSubmit(onSubmit)}>
-        <FormControl id='first-name-control' isRequired mb={8}>
-          <FormLabel htmlFor='firstName'>
-            <PageText display='inline' fontSize='input'>
-              First name
-            </PageText>
-          </FormLabel>
-          <Input
-            id='first-name'
-            type='text'
-            bg='white'
-            borderRadius={0}
-            borderColor='brand.border'
-            h='56px'
-            _placeholder={{ fontSize: 'input' }}
-            color='brand.paragraph'
-            fontSize='input'
-          />
-        </FormControl>
+        <Flex direction={{ base: 'column', md: 'row' }}>
+          <FormControl id='first-name-control' isRequired mb={8} mr={{ md: 12 }}>
+            <FormLabel htmlFor='firstName'>
+              <PageText display='inline' fontSize='input'>
+                First name
+              </PageText>
+            </FormLabel>
+            <Input
+              id='first-name'
+              type='text'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              h='56px'
+              _placeholder={{ fontSize: 'input' }}
+              color='brand.paragraph'
+              fontSize='input'
+            />
+          </FormControl>
 
-        <FormControl id='last-name-control' isRequired mb={8}>
-          <FormLabel htmlFor='lastName'>
-            <PageText display='inline' fontSize='input'>
-              Last name
-            </PageText>
-          </FormLabel>
-          <Input
-            id='last-name'
-            type='text'
-            bg='white'
-            borderRadius={0}
-            borderColor='brand.border'
-            h='56px'
-            _placeholder={{ fontSize: 'input' }}
-            color='brand.paragraph'
-            fontSize='input'
-          />
-        </FormControl>
+          <FormControl id='last-name-control' isRequired mb={8}>
+            <FormLabel htmlFor='lastName'>
+              <PageText display='inline' fontSize='input'>
+                Last name
+              </PageText>
+            </FormLabel>
+            <Input
+              id='last-name'
+              type='text'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              h='56px'
+              _placeholder={{ fontSize: 'input' }}
+              color='brand.paragraph'
+              fontSize='input'
+            />
+          </FormControl>
+        </Flex>
 
         <FormControl id='email-control' isRequired mb={8}>
           <FormLabel htmlFor='email'>
@@ -149,7 +152,7 @@ export const SmallGrantsForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl id='individual-or-team-control' isRequired mb={8}>
+        <FormControl id='individual-or-team-control' isRequired mb={{ base: 8, md: 2 }}>
           <FormLabel htmlFor='individualOrTeam' mb={4}>
             <PageText display='inline' fontSize='input'>
               Are you submitting on behalf of a team, or as an individual?
@@ -183,7 +186,7 @@ export const SmallGrantsForm: FC = () => {
         </FormControl>
 
         {individualOrTeam === TEAM && (
-          <FormControl id='company-control' isRequired mb={8}>
+          <FormControl id='company-control' isRequired mb={8} ml={{ md: 40 }} w='auto'>
             <FormLabel htmlFor='company'>
               <PageText display='inline' fontSize='input'>
                 Name of organization or entity
@@ -484,7 +487,13 @@ export const SmallGrantsForm: FC = () => {
                 />
               </FormControl>
 
-              <FormControl id='project-requested-amount-control' isRequired mb={8}>
+              <FormControl
+                id='project-requested-amount-control'
+                isRequired
+                mb={8}
+                w={{ md: '50%' }}
+                pr={{ md: 6 }}
+              >
                 <FormLabel htmlFor='projectRequestedAmount' mb={1}>
                   <PageText display='inline' fontSize='input'>
                     Requested Amount
@@ -921,7 +930,7 @@ export const SmallGrantsForm: FC = () => {
               />
             </FormControl>
 
-            <FormControl id='event-type-control' isRequired mb={8}>
+            <FormControl id='event-type-control' isRequired mb={8} w={{ md: '50%' }} pr={{ md: 6 }}>
               <FormLabel htmlFor='eventType'>
                 <PageText display='inline' fontSize='input'>
                   What type of event is this?
@@ -939,7 +948,13 @@ export const SmallGrantsForm: FC = () => {
               />
             </FormControl>
 
-            <FormControl id='event-format-control' isRequired mb={8}>
+            <FormControl
+              id='event-format-control'
+              isRequired
+              mb={8}
+              w={{ md: '50%' }}
+              pr={{ md: 6 }}
+            >
               <FormLabel htmlFor='eventFormat'>
                 <PageText display='inline' fontSize='input'>
                   Is your event in-person or online?
@@ -957,7 +972,12 @@ export const SmallGrantsForm: FC = () => {
               />
             </FormControl>
 
-            <FormControl id='expected-attendees-control' isRequired mb={8}>
+            <FormControl
+              id='expected-attendees-control'
+              isRequiredmb={8}
+              w={{ md: '50%' }}
+              pr={{ md: 6 }}
+            >
               <FormLabel htmlFor='expectedAttendees' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   Expected number of attendees/registrants
@@ -1086,7 +1106,13 @@ export const SmallGrantsForm: FC = () => {
               />
             </FormControl>
 
-            <FormControl id='event-requested-amount-control' isRequired mb={8}>
+            <FormControl
+              id='event-requested-amount-control'
+              isRequired
+              mb={8}
+              w={{ md: '50%' }}
+              pr={{ md: 6 }}
+            >
               <FormLabel htmlFor='eventRequestedAmount' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   Requested Sponsorship Amount

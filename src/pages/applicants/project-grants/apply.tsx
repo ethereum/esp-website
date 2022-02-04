@@ -15,7 +15,7 @@ const ProjectGrantsApply: NextPage = () => {
         <meta name='description' content='Project Grants Application' />
       </Head>
 
-      <Box bg='white' position='relative' py={{ md: 12 }}>
+      <Box bg='white' position='relative' py={{ md: 12 }} px={{ md: 6, lg: 64 }}>
         <Stack mb={12}>
           <Stack mb={8}>
             <section id='description'>
