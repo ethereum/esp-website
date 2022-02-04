@@ -13,7 +13,7 @@ const ProjectGrantsThankYou: NextPage = () => {
         <meta name='robots' content='noindex' />
       </Head>
 
-      <Box bg='white' position='relative' py={{ md: 12 }}>
+      <Box bg='white' position='relative' py={{ md: 12 }} px={{ md: 6, lg: 64 }}>
         <ThankYouBody grantType='Project Grants' />
 
         <Center>
