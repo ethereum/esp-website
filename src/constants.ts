@@ -1,4 +1,4 @@
-import { NavLink, TabsMap } from './types';
+import { NavLink, SidebarLink, TabsMap } from './types';
 
 // home
 export const HOME_URL = '/';
@@ -14,6 +14,11 @@ export const OFFICE_HOURS_URL = '/applicants/office-hours';
 export const SMALL_GRANTS_URL = '/applicants/small-grants';
 export const PROJECT_GRANTS_URL = '/applicants/project-grants';
 export const APPLICANTS_PAGES = [OFFICE_HOURS_URL, SMALL_GRANTS_URL, PROJECT_GRANTS_URL];
+export const SIDEBAR_APPLICANTS_LINKS: SidebarLink[] = [
+  { text: 'Mission and Scope', href: '/applicants#mission-and-scope' },
+  { text: 'How we support', href: '/applicants#how-we-support' },
+  { text: 'Application types', href: '/applicants#application-types' }
+];
 
 // apply forms
 export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
