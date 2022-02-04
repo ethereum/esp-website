@@ -119,7 +119,7 @@ export const ApplicantsLayout: FC = ({ children }) => {
 
         {APPLICANTS_PAGES.some(path => router.pathname === path) && (
           <Stack>
-            <section id='ready-to-apply'>
+            <section id='apply'>
               <ReadyToApply link={`${router.pathname}/apply`} />
             </section>
           </Stack>

@@ -15,9 +15,19 @@ export const SMALL_GRANTS_URL = '/applicants/small-grants';
 export const PROJECT_GRANTS_URL = '/applicants/project-grants';
 export const APPLICANTS_PAGES = [OFFICE_HOURS_URL, SMALL_GRANTS_URL, PROJECT_GRANTS_URL];
 export const SIDEBAR_APPLICANTS_LINKS: SidebarLink[] = [
-  { text: 'Mission and Scope', href: '/applicants#mission-and-scope' },
-  { text: 'How we support', href: '/applicants#how-we-support' },
-  { text: 'Application types', href: '/applicants#application-types' }
+  { text: 'Mission and Scope', href: `${APPLICANTS_URL}/#mission-and-scope` },
+  { text: 'How we support', href: `${APPLICANTS_URL}/#how-we-support` },
+  { text: 'Application types', href: `${APPLICANTS_URL}/#application-types` }
+];
+export const SIDEBAR_OFFICE_HOURS_LINKS: SidebarLink[] = [
+  { text: 'Summary', href: `${OFFICE_HOURS_URL}/#description` },
+  { text: 'Process', href: `${OFFICE_HOURS_URL}/#process` },
+  { text: 'Eligibility', href: `${OFFICE_HOURS_URL}/#eligibility` },
+  { text: 'What we offer', href: `${OFFICE_HOURS_URL}/#what-we-offer` },
+  { text: "What we DON'T offer", href: `${OFFICE_HOURS_URL}/#what-we-dont-offer` },
+  { text: 'Before submitting', href: `${OFFICE_HOURS_URL}/#before-submitting` },
+  { text: 'FAQ', href: `${OFFICE_HOURS_URL}/#faq` },
+  { text: 'Apply', href: `${OFFICE_HOURS_URL}/#apply` }
 ];
 
 // apply forms
