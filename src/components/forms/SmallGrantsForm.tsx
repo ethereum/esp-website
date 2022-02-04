@@ -152,7 +152,11 @@ export const SmallGrantsForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl id='individual-or-team-control' isRequired mb={{ base: 8, md: 2 }}>
+        <FormControl
+          id='individual-or-team-control'
+          isRequired
+          mb={individualOrTeam === TEAM ? 4 : 8}
+        >
           <FormLabel htmlFor='individualOrTeam' mb={4}>
             <PageText display='inline' fontSize='input'>
               Are you submitting on behalf of a team, or as an individual?
@@ -186,7 +190,7 @@ export const SmallGrantsForm: FC = () => {
         </FormControl>
 
         {individualOrTeam === TEAM && (
-          <FormControl id='company-control' isRequired mb={8} ml={{ md: 40 }} w='auto'>
+          <FormControl id='company-control' isRequired mb={8}>
             <FormLabel htmlFor='company'>
               <PageText display='inline' fontSize='input'>
                 Name of organization or entity
@@ -284,7 +288,7 @@ export const SmallGrantsForm: FC = () => {
         <FormControl id='project-category-control' isRequired mb={8}>
           <FormLabel htmlFor='projectCategory'>
             <PageText display='inline' fontSize='input'>
-              Project Category
+              Project category
             </PageText>
           </FormLabel>
 
@@ -496,7 +500,7 @@ export const SmallGrantsForm: FC = () => {
               >
                 <FormLabel htmlFor='projectRequestedAmount' mb={1}>
                   <PageText display='inline' fontSize='input'>
-                    Requested Amount
+                    Requested amount
                   </PageText>
                 </FormLabel>
 
@@ -930,51 +934,48 @@ export const SmallGrantsForm: FC = () => {
               />
             </FormControl>
 
-            <FormControl id='event-type-control' isRequired mb={8} w={{ md: '50%' }} pr={{ md: 6 }}>
-              <FormLabel htmlFor='eventType'>
-                <PageText display='inline' fontSize='input'>
-                  What type of event is this?
-                </PageText>
-              </FormLabel>
+            <Flex direction={{ base: 'column', md: 'row' }}>
+              <FormControl id='event-type-control' isRequired mb={8} mr={{ md: 12 }}>
+                <FormLabel htmlFor='eventType'>
+                  <PageText display='inline' fontSize='input'>
+                    What type of event is this?
+                  </PageText>
+                </FormLabel>
 
-              <Select
-                id='event-type'
-                options={EVENT_TYPE_OPTIONS}
-                components={{ DropdownIndicator }}
-                placeholder='Select'
-                closeMenuOnSelect={true}
-                selectedOptionColor='brand.option'
-                chakraStyles={chakraStyles}
-              />
-            </FormControl>
+                <Select
+                  id='event-type'
+                  options={EVENT_TYPE_OPTIONS}
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
+              </FormControl>
 
-            <FormControl
-              id='event-format-control'
-              isRequired
-              mb={8}
-              w={{ md: '50%' }}
-              pr={{ md: 6 }}
-            >
-              <FormLabel htmlFor='eventFormat'>
-                <PageText display='inline' fontSize='input'>
-                  Is your event in-person or online?
-                </PageText>
-              </FormLabel>
+              <FormControl id='event-format-control' isRequired mb={8}>
+                <FormLabel htmlFor='eventFormat'>
+                  <PageText display='inline' fontSize='input'>
+                    Is your event in-person or online?
+                  </PageText>
+                </FormLabel>
 
-              <Select
-                id='event-format'
-                options={EVENT_FORMAT_OPTIONS}
-                components={{ DropdownIndicator }}
-                placeholder='Select'
-                closeMenuOnSelect={true}
-                selectedOptionColor='brand.option'
-                chakraStyles={chakraStyles}
-              />
-            </FormControl>
+                <Select
+                  id='event-format'
+                  options={EVENT_FORMAT_OPTIONS}
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
+              </FormControl>
+            </Flex>
 
             <FormControl
               id='expected-attendees-control'
-              isRequiredmb={8}
+              isRequired
+              mb={8}
               w={{ md: '50%' }}
               pr={{ md: 6 }}
             >
@@ -1005,7 +1006,7 @@ export const SmallGrantsForm: FC = () => {
             <FormControl id='target-audience-control' isRequired mb={8}>
               <FormLabel htmlFor='targetAudience' mb={1}>
                 <PageText display='inline' fontSize='input'>
-                  Target Audience
+                  Target audience
                 </PageText>
               </FormLabel>
 
@@ -1115,7 +1116,7 @@ export const SmallGrantsForm: FC = () => {
             >
               <FormLabel htmlFor='eventRequestedAmount' mb={1}>
                 <PageText display='inline' fontSize='input'>
-                  Requested Sponsorship Amount
+                  Requested sponsorship amount
                 </PageText>
               </FormLabel>
 

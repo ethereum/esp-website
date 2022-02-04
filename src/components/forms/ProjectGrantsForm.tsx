@@ -79,7 +79,7 @@ export const ProjectGrantsForm: FC = () => {
           <FormControl id='first-name-control' isRequired mb={8} mr={{ md: 12 }}>
             <FormLabel htmlFor='firstName' mb={1}>
               <PageText display='inline' fontSize='input'>
-                First Name
+                First name
               </PageText>
             </FormLabel>
 
@@ -104,7 +104,7 @@ export const ProjectGrantsForm: FC = () => {
           <FormControl id='last-name-control' isRequired mb={8} mt={{ md: 8 }}>
             <FormLabel htmlFor='lastName'>
               <PageText display='inline' fontSize='input'>
-                Last Name
+                Last name
               </PageText>
             </FormLabel>
             <Input
@@ -281,7 +281,7 @@ export const ProjectGrantsForm: FC = () => {
         <FormControl id='team-profile-control' isRequired mb={8}>
           <FormLabel htmlFor='teamProfile' mb={1}>
             <PageText display='inline' fontSize='input'>
-              Team Profile
+              Team profile
             </PageText>
           </FormLabel>
 
@@ -310,7 +310,7 @@ export const ProjectGrantsForm: FC = () => {
         <FormControl id='project-summary-control' isRequired mb={8}>
           <FormLabel htmlFor='projectSummary' mb={1}>
             <PageText display='inline' fontSize='input'>
-              Brief Project Summary
+              Brief project summary
             </PageText>
           </FormLabel>
 
@@ -339,7 +339,7 @@ export const ProjectGrantsForm: FC = () => {
         <FormControl id='project-category-control' isRequired mb={8}>
           <FormLabel htmlFor='projectCategory' mb={1}>
             <PageText display='inline' fontSize='input'>
-              Project Category
+              Project category
             </PageText>
           </FormLabel>
 
@@ -369,7 +369,7 @@ export const ProjectGrantsForm: FC = () => {
         >
           <FormLabel htmlFor='requestedAmount' mb={1}>
             <PageText display='inline' fontSize='input'>
-              Requested Amount
+              Requested amount
             </PageText>
           </FormLabel>
 
@@ -434,10 +434,10 @@ export const ProjectGrantsForm: FC = () => {
           </FormControl>
         </Flex>
 
-        <FormControl id='timezone-control' isRequired mb={8} w={{ md: '50%' }} pr={{ md: 6 }}>
+        <FormControl id='timezone-control' isRequired mb={8}>
           <FormLabel htmlFor='timezone' mb={1}>
             <PageText display='inline' fontSize='input'>
-              Your Time Zone
+              Your time zone
             </PageText>
           </FormLabel>
 

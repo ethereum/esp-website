@@ -89,7 +89,7 @@ export const OfficeHoursForm: FC = () => {
           <FormControl id='first-name-control' isRequired mb={8} mr={{ md: 12 }}>
             <FormLabel htmlFor='firstName'>
               <PageText display='inline' fontSize='input'>
-                First Name
+                First name
               </PageText>
             </FormLabel>
             <Input
@@ -108,7 +108,7 @@ export const OfficeHoursForm: FC = () => {
           <FormControl id='last-name-control' isRequired mb={8}>
             <FormLabel htmlFor='lastName'>
               <PageText display='inline' fontSize='input'>
-                Last Name
+                Last name
               </PageText>
             </FormLabel>
             <Input
@@ -144,7 +144,11 @@ export const OfficeHoursForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl id='individual-or-team-control' isRequired mb={{ base: 8, md: 2 }}>
+        <FormControl
+          id='individual-or-team-control'
+          isRequired
+          mb={individualOrTeam === TEAM ? 4 : 8}
+        >
           <FormLabel htmlFor='individualOrTeam' mb={4}>
             <PageText display='inline' fontSize='input'>
               Are you submitting on behalf of a team, or as an individual?
@@ -178,7 +182,7 @@ export const OfficeHoursForm: FC = () => {
         </FormControl>
 
         {individualOrTeam === TEAM && (
-          <FormControl id='company-control' isRequired mb={8} w='auto'>
+          <FormControl id='company-control' isRequired mb={8}>
             <FormLabel htmlFor='company' mb={1}>
               <PageText display='inline' fontSize='input'>
                 Name of organization or entity
@@ -232,7 +236,7 @@ export const OfficeHoursForm: FC = () => {
 
         <FormControl id='project-summary-control' mb={8}>
           <FormLabel htmlFor='projectSummary' mb={1}>
-            <PageText fontSize='input'>Brief Project Summary</PageText>
+            <PageText fontSize='input'>Brief project summary</PageText>
           </FormLabel>
 
           <PageText as='small' fontSize='helpText' color='brand.helpText'>
@@ -285,7 +289,7 @@ export const OfficeHoursForm: FC = () => {
         <FormControl id='project-category-control' isRequired mb={8}>
           <FormLabel htmlFor='projectCategory' mb={1}>
             <PageText display='inline' fontSize='input'>
-              Project Category
+              Project category
             </PageText>
           </FormLabel>
 
@@ -353,13 +357,7 @@ export const OfficeHoursForm: FC = () => {
         </FormControl>
 
         {reasonForMeeting.includes(OTHER) && (
-          <FormControl
-            id='other-reason-for-meeting-control'
-            isRequired
-            mb={8}
-            ml={{ md: 6 }}
-            w='auto'
-          >
+          <FormControl id='other-reason-for-meeting-control' isRequired mb={8}>
             <FormLabel htmlFor='otherReasonForMeeting'>
               <PageText display='inline' fontSize='input'>
                 Reason for meeting
@@ -381,17 +379,10 @@ export const OfficeHoursForm: FC = () => {
           </FormControl>
         )}
 
-        <FormControl
-          id='timezone-control'
-          isRequired
-          mt={8}
-          mb={20}
-          // w={{ md: '50%' }}
-          // pr={{ md: 6 }}
-        >
+        <FormControl id='timezone-control' isRequired mt={8} mb={20}>
           <FormLabel htmlFor='timezone'>
             <PageText display='inline' fontSize='input'>
-              Your Time Zone
+              Your time zone
             </PageText>
           </FormLabel>
 
