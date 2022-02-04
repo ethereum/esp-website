@@ -1,5 +1,3 @@
-import { list } from '@chakra-ui/react';
-import { AboutDescription } from './../UI/common/AboutDescription';
 // project categories
 export const PROJECT_CATEGORY_OPTIONS = [
   { value: 'Community and education', label: 'Community and education' },
