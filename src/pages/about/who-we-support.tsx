@@ -12,6 +12,7 @@ import { CURRENT_GRANTS_QUARTERS, ESP_BLOG_URL } from '../../constants';
 import { Grant } from '../../types';
 
 // getStaticProps runs server-side only (on build-time)
+// https://nextjs.org/docs/basic-features/data-fetching/get-static-props#write-server-side-code-directly
 export const getStaticProps: GetStaticProps = async context => {
   const grants = await axios
     .get(process.env.GOOGLE_GRANTS_SHEET_API_URL!)
