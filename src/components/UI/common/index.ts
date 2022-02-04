@@ -5,4 +5,5 @@ export * from './ApplicationTypeCard';
 export * from './DropdownIndicator';
 export * from './Footer';
 export * from './FooterBackgroundImage';
+export * from './ProcessStep';
 export * from './ThankYouBody';
