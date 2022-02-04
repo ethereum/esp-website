@@ -58,6 +58,12 @@ export default extendTheme({
         },
         rgba: 'rgba(237, 205, 249, 0)'
       },
+      sidebar: {
+        bgGradient: {
+          start: '#fff3eb',
+          end: 'rgba(255, 243, 235, 0)'
+        }
+      },
       option: '#ffefec',
       uploadProposal: 'rgba(189, 189, 189, 0.2)',
       helpText: '#7c7ba1',
