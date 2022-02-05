@@ -37,7 +37,7 @@ const OfficeHours: NextPage = () => {
         <Flex>
           <ApplicantsSidebar sidebarLinks={SIDEBAR_OFFICE_HOURS_LINKS} />
 
-          <Box w={{ lg: '70%' }} pl={{ lg: 20 }} pr={{ lg: 12 }}>
+          <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
             <Stack mb={8}>
               <section id='description'>
                 <PageSubheading mb={8}>Office Hours</PageSubheading>

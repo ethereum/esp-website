@@ -34,8 +34,8 @@ const SmallGrants: NextPage = () => {
         <Flex>
           <ApplicantsSidebar sidebarLinks={SIDEBAR_SMALL_GRANTS_LINKS} />
 
-          <Box w={{ lg: '70%' }} pl={{ lg: 20 }} pr={{ lg: 12 }}>
-            <Stack mb={-6}>
+          <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
+            <Stack mb={-4}>
               <section id='description'>
                 <PageSubheading mb={8}>Small Grants</PageSubheading>
 

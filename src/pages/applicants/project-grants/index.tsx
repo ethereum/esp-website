@@ -34,7 +34,7 @@ const ProjectGrants: NextPage = () => {
         <Flex>
           <ApplicantsSidebar sidebarLinks={SIDEBAR_PROJECT_GRANTS_LINKS} />
 
-          <Box w={{ lg: '70%' }} pl={{ lg: 20 }} pr={{ lg: 12 }}>
+          <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
             <Stack mb={2}>
               <section id='description'>
                 <PageSubheading mb={8}>Project grants</PageSubheading>

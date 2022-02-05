@@ -37,7 +37,7 @@ const Applicants: NextPage = () => {
         <Flex>
           <ApplicantsSidebar sidebarLinks={SIDEBAR_APPLICANTS_LINKS} />
 
-          <Box w={{ lg: '70%' }} pl={{ lg: 20 }} pr={{ lg: 12 }}>
+          <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
             <Stack mb={8}>
               <PageSubheading mb={6}>ESP Grants and Support Overview</PageSubheading>
 
@@ -62,11 +62,11 @@ const Applicants: NextPage = () => {
                   all kinds.
                 </PageText>
 
-                <Center mb={12} w={{ base: '100%', md: '670px', lg: '100%' }}>
+                <Center mb={12}>
                   <Flex direction={{ base: 'column', md: 'row' }}>
                     <Stack mr={{ base: 0, md: 10 }} mb={{ base: 2, md: 0 }}>
                       <Flex>
-                        <Box mr={4}>
+                        <Box mr={4} flexShrink={0}>
                           <Image
                             src={softwareDevelopersSVG}
                             alt='Software and protocol developers vector'
@@ -80,7 +80,7 @@ const Applicants: NextPage = () => {
                       </Flex>
 
                       <Flex>
-                        <Box mr={4}>
+                        <Box mr={4} flexShrink={0}>
                           <Image
                             src={researchersSVG}
                             alt='Researchers vector'
@@ -94,7 +94,7 @@ const Applicants: NextPage = () => {
                       </Flex>
 
                       <Flex>
-                        <Box mr={4}>
+                        <Box mr={4} flexShrink={0}>
                           <Image src={academicsSVG} alt='Academics vector' height={36} width={40} />
                         </Box>
                         <Flex h='36px' alignItems='center'>
@@ -105,7 +105,7 @@ const Applicants: NextPage = () => {
 
                     <Stack>
                       <Flex>
-                        <Box mr={4}>
+                        <Box mr={4} flexShrink={0}>
                           <Image
                             src={communityOrganizersSVG}
                             alt='Community organizers vector'
@@ -119,7 +119,7 @@ const Applicants: NextPage = () => {
                       </Flex>
 
                       <Flex>
-                        <Box mr={4}>
+                        <Box mr={4} flexShrink={0}>
                           <Image src={designersSVG} alt='Designers vector' height={38} width={40} />
                         </Box>
                         <Flex h='38px' alignItems='center'>
@@ -128,7 +128,7 @@ const Applicants: NextPage = () => {
                       </Flex>
 
                       <Flex>
-                        <Box mr={4}>
+                        <Box mr={4} flexShrink={0}>
                           <Image
                             src={otherGrantsProgramsSVG}
                             alt='Other grant programs and public goods funding platforms vector'
