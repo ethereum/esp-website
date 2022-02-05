@@ -1,18 +1,20 @@
 import { Box, Flex, Link } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import NextLink from 'next/link';
-import { useRouter } from 'next/router';
 
-import { PageText } from '..';
+import { PageText } from './UI';
 
-import { SidebarLink } from '../../../types';
+import { SidebarLink } from '../types';
 
 interface Props {
   sidebarLinks: SidebarLink[];
 }
 
 export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks }) => {
-  const router = useRouter();
+  const [clicked, setClicked] = useState('');
+
+  const handleClicked = (link: string) => setClicked(link);
+  const isActiveLink = (idx: number, href: string) => (!clicked && idx === 0) || clicked === href;
 
   return (
     <Flex
@@ -27,17 +29,17 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks }) => {
       alignSelf='flex-start'
       h='100vh'
     >
-      {sidebarLinks.map(({ text, href }) => (
+      {sidebarLinks.map(({ text, href }, idx) => (
         <Flex key={text} alignItems='center' mb={1}>
           <Box
             borderLeft='5px solid'
-            borderLeftColor={router.asPath === href ? 'brand.accent' : 'transparent'}
+            borderLeftColor={isActiveLink(idx, href) ? 'brand.accent' : 'transparent'}
             h='18px'
           />
 
-          <Box pl={3}>
+          <Box pl={3} onClick={() => handleClicked(href)}>
             <NextLink href={href}>
-              <Link href={href} _hover={{ textDecoration: 'none' }} _selected={{ color: 'blue' }}>
+              <Link href={href} _hover={{ textDecoration: 'none' }}>
                 <PageText fontWeight={400} lineHeight='28px' color='brand.orange.100'>
                   {text}
                 </PageText>

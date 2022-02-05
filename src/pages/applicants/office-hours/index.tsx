@@ -4,7 +4,6 @@ import Head from 'next/head';
 import { ReadyToApply } from '../../../components';
 
 import {
-  ApplicantsSidebar,
   FAQItem,
   List,
   PageSection,
@@ -12,6 +11,7 @@ import {
   PageText,
   ProcessStep
 } from '../../../components/UI';
+import { ApplicantsSidebar } from '../../../components';
 
 import {
   EF_JOBS_URL,

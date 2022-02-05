@@ -4,7 +4,6 @@ import Head from 'next/head';
 import { ReadyToApply } from '../../../components';
 
 import {
-  ApplicantsSidebar,
   ApplicationAttentionMsg,
   FAQItem,
   List,
@@ -13,6 +12,7 @@ import {
   PageText,
   ProcessStep
 } from '../../../components/UI';
+import { ApplicantsSidebar } from '../../../components';
 
 import {
   ETHEREUM_COMMUNITY_URL,

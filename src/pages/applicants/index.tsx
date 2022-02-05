@@ -3,13 +3,8 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 import Head from 'next/head';
 
-import {
-  ApplicantsSidebar,
-  ApplicationTypeCard,
-  PageSection,
-  PageSubheading,
-  PageText
-} from '../../components/UI';
+import { ApplicationTypeCard, PageSection, PageSubheading, PageText } from '../../components/UI';
+import { ApplicantsSidebar } from '../../components';
 
 import softwareDevelopersSVG from '../../public/images/software-developers-vector.svg';
 import researchersSVG from '../../public/images/researchers-vector.svg';

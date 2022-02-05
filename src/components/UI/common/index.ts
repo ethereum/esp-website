@@ -1,6 +1,5 @@
 export * from './AboutDescription';
 export * from './ApplicantsDescription';
-export * from './ApplicantsSidebar';
 export * from './ApplicationAttentionMsg';
 export * from './ApplicationTypeCard';
 export * from './DropdownIndicator';

@@ -9,10 +9,10 @@ import {
   List,
   PageSection,
   PageSubheading,
-  PageText
+  PageText,
+  ProcessStep
 } from '../../../components/UI';
-import { ApplicantsSidebar } from '../../../components/UI/common/ApplicantsSidebar';
-import { ProcessStep } from '../../../components/UI/common/ProcessStep';
+import { ApplicantsSidebar } from '../../../components/ApplicantsSidebar';
 
 import {
   ETHEREUM_COMMUNITY_URL,
