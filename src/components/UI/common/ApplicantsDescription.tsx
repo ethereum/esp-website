@@ -26,7 +26,6 @@ export const ApplicantsDescription: FC = () => {
           src={applicantsHero}
           alt='Kid watching plants grow'
           objectFit='cover'
-          quality={85}
           priority={true}
         />
       </Box>
