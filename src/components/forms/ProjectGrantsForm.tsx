@@ -4,6 +4,7 @@ import {
   Button,
   ButtonProps,
   Center,
+  Fade,
   Flex,
   FormControl,
   FormLabel,
@@ -84,7 +85,7 @@ export const ProjectGrantsForm: FC = () => {
             </FormLabel>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              This should be the main contact we&apos;ll be talking to.
+              The main contact we&apos;ll be talking to.
             </PageText>
 
             <Input
@@ -365,7 +366,7 @@ export const ProjectGrantsForm: FC = () => {
           isRequired
           mb={8}
           w={{ md: '50%' }}
-          pr={{ md: 6 }}
+          pr={{ lg: 6 }}
         >
           <FormLabel htmlFor='requestedAmount' mb={1}>
             <PageText display='inline' fontSize='input'>
@@ -477,8 +478,12 @@ export const ProjectGrantsForm: FC = () => {
           />
         </FormControl>
 
-        {(referralSource as ReferralSource).value === OTHER && (
-          <FormControl id='referred-control' mb={12}>
+        <Fade in={(referralSource as ReferralSource).value === OTHER} delay={0.25}>
+          <FormControl
+            id='referred-control'
+            mb={12}
+            display={(referralSource as ReferralSource).value === OTHER ? 'block' : 'none'}
+          >
             <FormLabel htmlFor='referred' mb={1}>
               <PageText fontSize='input'>
                 Did anyone recommend that you contact Ecosystem Support?
@@ -502,7 +507,7 @@ export const ProjectGrantsForm: FC = () => {
               mt={3}
             />
           </FormControl>
-        )}
+        </Fade>
 
         <Flex
           bgColor='brand.uploadProposal'

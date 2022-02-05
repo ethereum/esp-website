@@ -4,6 +4,7 @@ import {
   Button,
   ButtonProps,
   Center,
+  Fade,
   Flex,
   FormControl,
   FormLabel,
@@ -189,8 +190,13 @@ export const SmallGrantsForm: FC = () => {
           </RadioGroup>
         </FormControl>
 
-        {individualOrTeam === TEAM && (
-          <FormControl id='company-control' isRequired mb={8}>
+        <Fade in={individualOrTeam === TEAM} delay={0.25}>
+          <FormControl
+            id='company-control'
+            isRequired
+            mb={8}
+            display={individualOrTeam === TEAM ? 'block' : 'none'}
+          >
             <FormLabel htmlFor='company'>
               <PageText display='inline' fontSize='input'>
                 Name of organization or entity
@@ -209,7 +215,7 @@ export const SmallGrantsForm: FC = () => {
               fontSize='input'
             />
           </FormControl>
-        )}
+        </Fade>
 
         <FormControl id='individual-or-team-summary-control' isRequired mb={8}>
           <FormLabel htmlFor='individualOrTeamSummary' mb={1}>
@@ -304,476 +310,492 @@ export const SmallGrantsForm: FC = () => {
           />
         </FormControl>
 
-        {(projectCategory as ProjectCategory).value !== COMMUNITY_EVENT &&
-          (projectCategory as ProjectCategory).value !== '' && (
-            <>
-              <FormControl id='project-name-control' isRequired mt={8} mb={8}>
-                <FormLabel htmlFor='projectName' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Project name
-                  </PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  A short, concise title of what you&apos;re working on.
+        <Fade
+          in={
+            (projectCategory as ProjectCategory).value !== COMMUNITY_EVENT &&
+            (projectCategory as ProjectCategory).value !== ''
+          }
+          delay={0.25}
+        >
+          <Box
+            display={
+              (projectCategory as ProjectCategory).value !== COMMUNITY_EVENT &&
+              (projectCategory as ProjectCategory).value !== ''
+                ? 'block'
+                : 'none'
+            }
+          >
+            <FormControl id='project-name-control' isRequired mt={8} mb={8}>
+              <FormLabel htmlFor='projectName' mb={1}>
+                <PageText display='inline' fontSize='input'>
+                  Project name
                 </PageText>
+              </FormLabel>
 
-                <Input
-                  id='project-name'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  mt={3}
-                />
-              </FormControl>
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                A short, concise title of what you&apos;re working on.
+              </PageText>
 
-              <FormControl id='project-repo-control' mb={8}>
-                <FormLabel htmlFor='projectRepo' mb={1}>
-                  <PageText fontSize='input'>Project repo</PageText>
-                </FormLabel>
+              <Input
+                id='project-name'
+                type='text'
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                h='56px'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+                mt={3}
+              />
+            </FormControl>
 
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Github, Radicle, etc.
+            <FormControl id='project-repo-control' mb={8}>
+              <FormLabel htmlFor='projectRepo' mb={1}>
+                <PageText fontSize='input'>Project repo</PageText>
+              </FormLabel>
+
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Github, Radicle, etc.
+              </PageText>
+
+              <Input
+                id='project-repo'
+                type='text'
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                h='56px'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+                mt={3}
+              />
+            </FormControl>
+
+            <FormControl id='previous-work-control' isRequired mb={8}>
+              <FormLabel htmlFor='previousWork' mb={1}>
+                <PageText display='inline' fontSize='input'>
+                  Previous work
                 </PageText>
+              </FormLabel>
 
-                <Input
-                  id='project-repo'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  mt={3}
-                />
-              </FormControl>
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Please provide links to published code, research, or other documentation of what
+                you&apos;ve worked on.
+              </PageText>
 
-              <FormControl id='previous-work-control' isRequired mb={8}>
-                <FormLabel htmlFor='previousWork' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Previous work
-                  </PageText>
-                </FormLabel>
+              <Textarea
+                id='previous-work'
+                // TODO: change this when input validation is added
+                // value={''}
+                // onChange={() => {}}
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+                h='150px'
+                mt={3}
+              />
+            </FormControl>
 
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Please provide links to published code, research, or other documentation of what
-                  you&apos;ve worked on.
+            <FormControl id='other-links-control' mb={8}>
+              <FormLabel htmlFor='otherLinks' mb={1}>
+                <PageText fontSize='input'>Other links</PageText>
+              </FormLabel>
+
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                If you have a demo or published work, show us your stuff!
+              </PageText>
+
+              <Textarea
+                id='other-links'
+                // TODO: change this when input validation is added
+                // value={''}
+                // onChange={() => {}}
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+                h='150px'
+                mt={3}
+              />
+            </FormControl>
+
+            <FormControl id='project-description-control' isRequired mb={8}>
+              <FormLabel htmlFor='projectDescription' mb={1}>
+                <PageText display='inline' fontSize='input'>
+                  What is the project?
                 </PageText>
+              </FormLabel>
 
-                <Textarea
-                  id='previous-work'
-                  // TODO: change this when input validation is added
-                  // value={''}
-                  // onChange={() => {}}
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  h='150px'
-                  mt={3}
-                />
-              </FormControl>
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Describe the main concept and components of the proposed work.
+              </PageText>
 
-              <FormControl id='other-links-control' mb={8}>
-                <FormLabel htmlFor='otherLinks' mb={1}>
-                  <PageText fontSize='input'>Other links</PageText>
-                </FormLabel>
+              <Textarea
+                id='project-description'
+                // TODO: change this when input validation is added
+                // value={''}
+                // onChange={() => {}}
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+                h='150px'
+                mt={3}
+              />
+            </FormControl>
 
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  If you have a demo or published work, show us your stuff!
+            <FormControl id='why-is-project-important-control' isRequired mb={8}>
+              <FormLabel htmlFor='whyIsProjectImportant' mb={1}>
+                <PageText display='inline' fontSize='input'>
+                  Why is your project important?
                 </PageText>
+              </FormLabel>
 
-                <Textarea
-                  id='other-links'
-                  // TODO: change this when input validation is added
-                  // value={''}
-                  // onChange={() => {}}
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  h='150px'
-                  mt={3}
-                />
-              </FormControl>
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                How do you know people need what you&apos;re making? Why is this project important
+                for your target demographic/problem area?
+              </PageText>
 
-              <FormControl id='project-description-control' isRequired mb={8}>
-                <FormLabel htmlFor='projectDescription' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    What is the project?
-                  </PageText>
-                </FormLabel>
+              <Textarea
+                id='why-is-project-important'
+                // TODO: change this when input validation is added
+                // value={''}
+                // onChange={() => {}}
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+                h='150px'
+                mt={3}
+              />
+            </FormControl>
 
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Describe the main concept and components of the proposed work.
+            <FormControl id='how-does-your-project-differ-control' isRequired mb={8}>
+              <FormLabel htmlFor='howDoesYourProjectDiffer' mb={1}>
+                <PageText display='inline' fontSize='input'>
+                  How does your project differ from similar ones?
                 </PageText>
+              </FormLabel>
 
-                <Textarea
-                  id='project-description'
-                  // TODO: change this when input validation is added
-                  // value={''}
-                  // onChange={() => {}}
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  h='150px'
-                  mt={3}
-                />
-              </FormControl>
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                What other solutions are being worked on, and what alternatives do people currently
+                rely on? Do you have unique expertise/perspective?
+              </PageText>
 
-              <FormControl id='why-is-project-important-control' isRequired mb={8}>
-                <FormLabel htmlFor='whyIsProjectImportant' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Why is your project important?
-                  </PageText>
-                </FormLabel>
+              <Textarea
+                id='how-does-your-project-differ'
+                // TODO: change this when input validation is added
+                // value={''}
+                // onChange={() => {}}
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+                h='150px'
+                mt={3}
+              />
+            </FormControl>
 
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  How do you know people need what you&apos;re making? Why is this project important
-                  for your target demographic/problem area?
+            <FormControl
+              id='project-requested-amount-control'
+              isRequired
+              mb={8}
+              w={{ md: '50%' }}
+              pr={{ lg: 6 }}
+            >
+              <FormLabel htmlFor='projectRequestedAmount' mb={1}>
+                <PageText display='inline' fontSize='input'>
+                  Requested amount
                 </PageText>
+              </FormLabel>
 
-                <Textarea
-                  id='why-is-project-important'
-                  // TODO: change this when input validation is added
-                  // value={''}
-                  // onChange={() => {}}
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  h='150px'
-                  mt={3}
-                />
-              </FormControl>
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Ex: EUR 10,000.
+              </PageText>
 
-              <FormControl id='how-does-your-project-differ-control' isRequired mb={8}>
-                <FormLabel htmlFor='howDoesYourProjectDiffer' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    How does your project differ from similar ones?
-                  </PageText>
-                </FormLabel>
+              <Input
+                id='project-requested-amount'
+                type='text'
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                h='56px'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+                mt={3}
+              />
+            </FormControl>
 
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  What other solutions are being worked on, and what alternatives do people
-                  currently rely on? Do you have unique expertise/perspective?
+            <FormControl id='proposed-timeline-control' isRequired mb={8}>
+              <FormLabel htmlFor='proposedTimeline' mb={1}>
+                <PageText display='inline' fontSize='input'>
+                  Proposed tasks, roadmap and budget
                 </PageText>
+              </FormLabel>
 
-                <Textarea
-                  id='how-does-your-project-differ'
-                  // TODO: change this when input validation is added
-                  // value={''}
-                  // onChange={() => {}}
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  h='150px'
-                  mt={3}
-                />
-              </FormControl>
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Give us an itemized breakdown of how you&apos;ll be using the requested funds.
+                Provide a brief timeline of the expected work and estimated budget. For each month
+                or stage of work, list: main objectives, tasks that need to be completed to reach
+                each objective, deliverables, and anticipated budget.
+              </PageText>
 
-              <FormControl
-                id='project-requested-amount-control'
-                isRequired
-                mb={8}
-                w={{ md: '50%' }}
-                pr={{ md: 6 }}
+              <Textarea
+                id='proposed-timeline'
+                // TODO: change this when input validation is added
+                // value={''}
+                // onChange={() => {}}
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+                h='150px'
+                mt={3}
+              />
+            </FormControl>
+
+            <FormControl id='is-your-project-public-good-control' isRequired mb={8}>
+              <FormLabel htmlFor='isYourProjectPublicGood' mb={1}>
+                <PageText display='inline' fontSize='input'>
+                  Is your project a public good?
+                </PageText>
+              </FormLabel>
+
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                If so, how?
+              </PageText>
+
+              <Textarea
+                id='is-your-project-public-good'
+                // TODO: change this when input validation is added
+                // value={''}
+                // onChange={() => {}}
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+                h='150px'
+                mt={3}
+              />
+            </FormControl>
+
+            <FormControl id='is-open-source-control' isRequired mb={8}>
+              <FormLabel htmlFor='isOpenSource' mb={1}>
+                <PageText display='inline' fontSize='input'>
+                  Is your project open source?
+                </PageText>
+              </FormLabel>
+
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                If not, why not?
+              </PageText>
+
+              <Textarea
+                id='is-open-source'
+                // TODO: change this when input validation is added
+                // value={''}
+                // onChange={() => {}}
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+                h='150px'
+                mt={3}
+              />
+            </FormControl>
+
+            <FormControl id='future-plans-control' isRequired mb={8}>
+              <FormLabel htmlFor='futurePlans' mb={1}>
+                <PageText display='inline' fontSize='input'>
+                  What are your plans after the grant is completed?
+                </PageText>
+              </FormLabel>
+
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                How do you aim to be sustainable after the grant? Alternatively, tell us why this
+                project doesn&apos;t need to be sustainable!
+              </PageText>
+
+              <Textarea
+                id='future-plans'
+                // TODO: change this when input validation is added
+                // value={''}
+                // onChange={() => {}}
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+                h='150px'
+                mt={3}
+              />
+            </FormControl>
+
+            <FormControl id='alternative-work-control' isRequired mb={8}>
+              <FormLabel htmlFor='alternativeWork'>
+                <PageText display='inline' fontSize='input'>
+                  If you didn&apos;t work on this project, what would you work on instead?
+                </PageText>
+              </FormLabel>
+              <Textarea
+                id='alternative-work'
+                // TODO: change this when input validation is added
+                // value={''}
+                // onChange={() => {}}
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+                h='150px'
+              />
+            </FormControl>
+
+            <FormControl id='repeat-applicant-control' isRequired mb={8}>
+              <FormLabel htmlFor='individualOrTeam' mb={2}>
+                <PageText display='inline' fontSize='input'>
+                  Have you previously applied to ESP with this same idea or project?
+                </PageText>
+              </FormLabel>
+
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Has anything changed? If you&apos;re considering reapplying, we recommend signing up
+                for Office Hours first before restarting the application process.
+              </PageText>
+
+              <RadioGroup
+                id='repeat-applicant'
+                onChange={handleRepeatApplicant}
+                value={repeatApplicant}
+                fontSize='input'
+                colorScheme='white'
+                mt={4}
               >
-                <FormLabel htmlFor='projectRequestedAmount' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Requested amount
-                  </PageText>
-                </FormLabel>
+                <Stack direction='row'>
+                  <Radio
+                    id='repeat-applicant-no'
+                    size='lg'
+                    name='repeatApplicant'
+                    value='No'
+                    defaultChecked
+                    mr={8}
+                  >
+                    <PageText fontSize='input'>No</PageText>
+                  </Radio>
 
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Ex: EUR 10,000.
+                  <Radio id='repeat-applicant-yes' size='lg' name='repeatApplicant' value='Yes'>
+                    <PageText fontSize='input'>Yes</PageText>
+                  </Radio>
+                </Stack>
+              </RadioGroup>
+            </FormControl>
+
+            <FormControl id='progress-since-previous-application-control' isRequired mb={8}>
+              <FormLabel htmlFor='progressSincePreviousApplication'>
+                <PageText display='inline' fontSize='input'>
+                  If you&apos;ve applied previously with the same idea, how much progress have you
+                  made since the last time you applied?
                 </PageText>
+              </FormLabel>
+              <Textarea
+                id='progress-since-previous-application'
+                // TODO: change this when input validation is added
+                // value={''}
+                // onChange={() => {}}
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+                h='150px'
+              />
+            </FormControl>
 
-                <Input
-                  id='project-requested-amount'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  mt={3}
-                />
-              </FormControl>
-
-              <FormControl id='proposed-timeline-control' isRequired mb={8}>
-                <FormLabel htmlFor='proposedTimeline' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Proposed tasks, roadmap and budget
-                  </PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Give us an itemized breakdown of how you&apos;ll be using the requested funds.
-                  Provide a brief timeline of the expected work and estimated budget. For each month
-                  or stage of work, list: main objectives, tasks that need to be completed to reach
-                  each objective, deliverables, and anticipated budget.
+            <FormControl id='applied-previously-control' isRequired mb={8}>
+              <FormLabel htmlFor='appliedPreviously' mb={1}>
+                <PageText display='inline' fontSize='input'>
+                  Have you applied for or received other funding?
                 </PageText>
+              </FormLabel>
 
-                <Textarea
-                  id='proposed-timeline'
-                  // TODO: change this when input validation is added
-                  // value={''}
-                  // onChange={() => {}}
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  h='150px'
-                  mt={3}
-                />
-              </FormControl>
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                If so, where else did you get funding from?
+              </PageText>
 
-              <FormControl id='is-your-project-public-good-control' isRequired mb={8}>
-                <FormLabel htmlFor='isYourProjectPublicGood' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Is your project a public good?
-                  </PageText>
-                </FormLabel>
+              <Textarea
+                id='applied-previously'
+                // TODO: change this when input validation is added
+                // value={''}
+                // onChange={() => {}}
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+                h='150px'
+                mt={3}
+              />
+            </FormControl>
 
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  If so, how?
-                </PageText>
+            <FormControl id='project-additional-info-control' mb={8}>
+              <FormLabel htmlFor='projectAdditionalInfo' mb={1}>
+                <PageText fontSize='input'>Anything else you&apos;d like to share?</PageText>
+              </FormLabel>
 
-                <Textarea
-                  id='is-your-project-public-good'
-                  // TODO: change this when input validation is added
-                  // value={''}
-                  // onChange={() => {}}
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  h='150px'
-                  mt={3}
-                />
-              </FormControl>
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Is there anything we should know about that hasn&apos;t been covered by the
+                questions above? You also have the option to link any supporting documents or
+                relevant sites here.
+              </PageText>
 
-              <FormControl id='is-open-source-control' isRequired mb={8}>
-                <FormLabel htmlFor='isOpenSource' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Is your project open source?
-                  </PageText>
-                </FormLabel>
+              <Textarea
+                id='project-additional-info'
+                // TODO: change this when input validation is added
+                // value={''}
+                // onChange={() => {}}
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+                h='150px'
+                mt={3}
+              />
+            </FormControl>
+          </Box>
+        </Fade>
 
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  If not, why not?
-                </PageText>
-
-                <Textarea
-                  id='is-open-source'
-                  // TODO: change this when input validation is added
-                  // value={''}
-                  // onChange={() => {}}
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  h='150px'
-                  mt={3}
-                />
-              </FormControl>
-
-              <FormControl id='future-plans-control' isRequired mb={8}>
-                <FormLabel htmlFor='futurePlans' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    What are your plans after the grant is completed?
-                  </PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  How do you aim to be sustainable after the grant? Alternatively, tell us why this
-                  project doesn&apos;t need to be sustainable!
-                </PageText>
-
-                <Textarea
-                  id='future-plans'
-                  // TODO: change this when input validation is added
-                  // value={''}
-                  // onChange={() => {}}
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  h='150px'
-                  mt={3}
-                />
-              </FormControl>
-
-              <FormControl id='alternative-work-control' isRequired mb={8}>
-                <FormLabel htmlFor='alternativeWork'>
-                  <PageText display='inline' fontSize='input'>
-                    If you didn&apos;t work on this project, what would you work on instead?
-                  </PageText>
-                </FormLabel>
-                <Textarea
-                  id='alternative-work'
-                  // TODO: change this when input validation is added
-                  // value={''}
-                  // onChange={() => {}}
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  h='150px'
-                />
-              </FormControl>
-
-              <FormControl id='repeat-applicant-control' isRequired mb={8}>
-                <FormLabel htmlFor='individualOrTeam' mb={2}>
-                  <PageText display='inline' fontSize='input'>
-                    Have you previously applied to ESP with this same idea or project?
-                  </PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Has anything changed? If you&apos;re considering reapplying, we recommend signing
-                  up for Office Hours first before restarting the application process.
-                </PageText>
-
-                <RadioGroup
-                  id='repeat-applicant'
-                  onChange={handleRepeatApplicant}
-                  value={repeatApplicant}
-                  fontSize='input'
-                  colorScheme='white'
-                  mt={4}
-                >
-                  <Stack direction='row'>
-                    <Radio
-                      id='repeat-applicant-no'
-                      size='lg'
-                      name='repeatApplicant'
-                      value='No'
-                      defaultChecked
-                      mr={8}
-                    >
-                      <PageText fontSize='input'>No</PageText>
-                    </Radio>
-
-                    <Radio id='repeat-applicant-yes' size='lg' name='repeatApplicant' value='Yes'>
-                      <PageText fontSize='input'>Yes</PageText>
-                    </Radio>
-                  </Stack>
-                </RadioGroup>
-              </FormControl>
-
-              <FormControl id='progress-since-previous-application-control' isRequired mb={8}>
-                <FormLabel htmlFor='progressSincePreviousApplication'>
-                  <PageText display='inline' fontSize='input'>
-                    If you&apos;ve applied previously with the same idea, how much progress have you
-                    made since the last time you applied?
-                  </PageText>
-                </FormLabel>
-                <Textarea
-                  id='progress-since-previous-application'
-                  // TODO: change this when input validation is added
-                  // value={''}
-                  // onChange={() => {}}
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  h='150px'
-                />
-              </FormControl>
-
-              <FormControl id='applied-previously-control' isRequired mb={8}>
-                <FormLabel htmlFor='appliedPreviously' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Have you applied for or received other funding?
-                  </PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  If so, where else did you get funding from?
-                </PageText>
-
-                <Textarea
-                  id='applied-previously'
-                  // TODO: change this when input validation is added
-                  // value={''}
-                  // onChange={() => {}}
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  h='150px'
-                  mt={3}
-                />
-              </FormControl>
-
-              <FormControl id='project-additional-info-control' mb={8}>
-                <FormLabel htmlFor='projectAdditionalInfo' mb={1}>
-                  <PageText fontSize='input'>Anything else you&apos;d like to share?</PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Is there anything we should know about that hasn&apos;t been covered by the
-                  questions above? You also have the option to link any supporting documents or
-                  relevant sites here.
-                </PageText>
-
-                <Textarea
-                  id='project-additional-info'
-                  // TODO: change this when input validation is added
-                  // value={''}
-                  // onChange={() => {}}
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  h='150px'
-                  mt={3}
-                />
-              </FormControl>
-            </>
-          )}
-
-        {(projectCategory as ProjectCategory).value === COMMUNITY_EVENT && (
-          <>
+        <Fade in={(projectCategory as ProjectCategory).value === COMMUNITY_EVENT} delay={0.25}>
+          <Box
+            display={
+              (projectCategory as ProjectCategory).value === COMMUNITY_EVENT ? 'block' : 'none'
+            }
+          >
             <FormControl id='event-name-control' isRequired mb={8}>
               <FormLabel htmlFor='eventName' mb={1}>
                 <PageText display='inline' fontSize='input'>
@@ -934,7 +956,7 @@ export const SmallGrantsForm: FC = () => {
               />
             </FormControl>
 
-            <Flex direction={{ base: 'column', md: 'row' }}>
+            <Flex direction={{ base: 'column', lg: 'row' }}>
               <FormControl id='event-type-control' isRequired mb={8} mr={{ md: 12 }}>
                 <FormLabel htmlFor='eventType'>
                   <PageText display='inline' fontSize='input'>
@@ -977,7 +999,7 @@ export const SmallGrantsForm: FC = () => {
               isRequired
               mb={8}
               w={{ md: '50%' }}
-              pr={{ md: 6 }}
+              pr={{ lg: 6 }}
             >
               <FormLabel htmlFor='expectedAttendees' mb={1}>
                 <PageText display='inline' fontSize='input'>
@@ -1112,7 +1134,7 @@ export const SmallGrantsForm: FC = () => {
               isRequired
               mb={8}
               w={{ md: '50%' }}
-              pr={{ md: 6 }}
+              pr={{ lg: 6 }}
             >
               <FormLabel htmlFor='eventRequestedAmount' mb={1}>
                 <PageText display='inline' fontSize='input'>
@@ -1176,8 +1198,8 @@ export const SmallGrantsForm: FC = () => {
                 way.
               </PageText>
             </Stack>
-          </>
-        )}
+          </Box>
+        </Fade>
 
         <Center>
           <Box id='submit-application' position='relative'>

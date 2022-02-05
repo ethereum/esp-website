@@ -6,6 +6,7 @@ import {
   Center,
   Checkbox,
   CheckboxGroup,
+  Fade,
   Flex,
   FormControl,
   FormLabel,
@@ -181,8 +182,13 @@ export const OfficeHoursForm: FC = () => {
           </RadioGroup>
         </FormControl>
 
-        {individualOrTeam === TEAM && (
-          <FormControl id='company-control' isRequired mb={8}>
+        <Fade in={individualOrTeam === TEAM} delay={0.25}>
+          <FormControl
+            id='company-control'
+            isRequired
+            mb={8}
+            display={individualOrTeam === TEAM ? 'block' : 'none'}
+          >
             <FormLabel htmlFor='company' mb={1}>
               <PageText display='inline' fontSize='input'>
                 Name of organization or entity
@@ -208,7 +214,7 @@ export const OfficeHoursForm: FC = () => {
               mt={3}
             />
           </FormControl>
-        )}
+        </Fade>
 
         <FormControl id='project-name-control' mt={8} mb={8}>
           <FormLabel htmlFor='projectName' mb={1}>
@@ -356,8 +362,13 @@ export const OfficeHoursForm: FC = () => {
           </CheckboxGroup>
         </FormControl>
 
-        {reasonForMeeting.includes(OTHER) && (
-          <FormControl id='other-reason-for-meeting-control' isRequired mb={8}>
+        <Fade in={reasonForMeeting.includes(OTHER)} delay={0.25}>
+          <FormControl
+            id='other-reason-for-meeting-control'
+            isRequired
+            mb={8}
+            display={reasonForMeeting.includes(OTHER) ? 'block' : 'none'}
+          >
             <FormLabel htmlFor='otherReasonForMeeting'>
               <PageText display='inline' fontSize='input'>
                 Reason for meeting
@@ -377,7 +388,7 @@ export const OfficeHoursForm: FC = () => {
               h='150px'
             />
           </FormControl>
-        )}
+        </Fade>
 
         <FormControl id='timezone-control' isRequired mt={8} mb={20}>
           <FormLabel htmlFor='timezone'>
