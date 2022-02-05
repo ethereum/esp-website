@@ -9,8 +9,8 @@ import applicantsHero from '../../../public/images/applicants-hero.svg';
 
 export const ApplicantsDescription: FC = () => {
   return (
-    <Flex direction={{ base: 'column', md: 'row' }}>
-      <Box mr={{ md: 40 }} w='100%'>
+    <Flex direction={{ base: 'column', md: 'row' }} pr={{ lg: 32 }}>
+      <Box mr={{ md: 6, lg: 40 }}>
         <PageHeading mb={4} ml={-1}>
           For Applicants
         </PageHeading>
@@ -21,7 +21,7 @@ export const ApplicantsDescription: FC = () => {
         </PageText>
       </Box>
 
-      <Box mt={{ base: 8, md: -20 }} w='100%'>
+      <Box mt={{ base: 8, md: -24 }} mx={{ base: 'auto', md: 0 }} flexShrink={0}>
         <Image
           src={applicantsHero}
           alt='Kid watching plants grow'

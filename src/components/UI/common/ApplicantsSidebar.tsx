@@ -37,7 +37,7 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks }) => {
 
           <Box pl={3}>
             <NextLink href={href}>
-              <Link href={href} _hover={{ textDecoration: 'none' }}>
+              <Link href={href} _hover={{ textDecoration: 'none' }} _selected={{ color: 'blue' }}>
                 <PageText fontWeight={400} lineHeight='28px' color='brand.orange.100'>
                   {text}
                 </PageText>
