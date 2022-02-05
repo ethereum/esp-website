@@ -13,7 +13,6 @@ export const APPLICANTS_URL = '/applicants';
 export const OFFICE_HOURS_URL = '/applicants/office-hours';
 export const SMALL_GRANTS_URL = '/applicants/small-grants';
 export const PROJECT_GRANTS_URL = '/applicants/project-grants';
-export const APPLICANTS_PAGES = [SMALL_GRANTS_URL, PROJECT_GRANTS_URL];
 export const SIDEBAR_APPLICANTS_LINKS: SidebarLink[] = [
   { text: 'Mission and Scope', href: `${APPLICANTS_URL}/#mission-and-scope` },
   { text: 'How we support', href: `${APPLICANTS_URL}/#how-we-support` },

@@ -69,9 +69,9 @@ export const ProjectGrantsForm: FC = () => {
     <Stack
       w='100%'
       bgGradient='linear(to-br, brand.newsletter.bgGradient.start 10%, brand.newsletter.bgGradient.end 100%)'
-      px={5}
-      pt={8}
-      pb={20}
+      px={{ base: 5, md: 12 }}
+      pt={{ base: 8, md: 12 }}
+      pb={{ base: 20, md: 16 }}
       borderRadius={{ md: '10px' }}
     >
       <form id='project-grants-form' onSubmit={handleSubmit(onSubmit)}>
@@ -504,29 +504,32 @@ export const ProjectGrantsForm: FC = () => {
           </FormControl>
         )}
 
-        <PageText as='small' fontSize='helpText' color='brand.helpText'>
-          If you already have a proposal or document you&apos;d ike to share, please upload it here.
-          This is optional, but highly recommended.
-        </PageText>
+        <Flex
+          bgColor='brand.uploadProposal'
+          justifyContent='space-evenly'
+          alignItems='center'
+          cursor='pointer'
+          py={9}
+          px={{ base: 6, md: 16 }}
+          mt={12}
+          mb={12}
+        >
+          <Box mr={6} flexShrink={0}>
+            <Image src={uploadSVG} alt='Upload file' height={42} width={44} />
+          </Box>
 
-        <Center mt={3} mb={12}>
-          <Flex
-            h='136px'
-            w='100%'
-            bgColor='brand.uploadProposal'
-            justifyContent='center'
-            alignItems='center'
-            cursor='pointer'
-          >
-            <Box mr={5}>
-              <Image src={uploadSVG} alt='Upload file' height={42} width={44} />
-            </Box>
-
-            <PageText fontSize='input' fontWeight={400} lineHeight='21px' maxW='220px'>
-              Upload the proposal. Click here or drag file to this box.
+          <Stack>
+            <PageText fontSize='input' fontWeight={400} lineHeight='21px' mb={-1}>
+              <strong>Upload the proposal.</strong> Click here or drag file to this box.
             </PageText>
-          </Flex>
-        </Center>
+
+            <PageText as='small' fontSize='helpText' color='brand.helpText' lineHeight='17px'>
+              If you already have a proposal or document you&apos;d ike to share, please upload it
+              here. This is optional, but highly recommended.
+            </PageText>
+          </Stack>
+        </Flex>
+
         <Center>
           <Box id='submit-application' position='relative'>
             <MotionBox

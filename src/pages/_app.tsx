@@ -38,7 +38,7 @@ function MyApp({ Component, pageProps }: AppProps) {
               ? 'linear(to-b, brand.applicants.bgGradient.start 0%, brand.applicants.bgGradient.end 81.77%, brand.applicants.rgba 100%)'
               : undefined
           }
-          h={{ base: '600px', lg: '877px' }}
+          h={{ base: '600px', lg: router.pathname === HOME_URL ? '877px' : '600px' }}
         >
           <Component {...pageProps} />
         </Layout>

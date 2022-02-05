@@ -87,9 +87,9 @@ export const SmallGrantsForm: FC = () => {
     <Stack
       w='100%'
       bgGradient='linear(to-b, brand.newsletter.bgGradient.start 10%, brand.newsletter.bgGradient.end 100%)'
-      px={5}
-      pt={8}
-      pb={20}
+      px={{ base: 5, md: 12 }}
+      pt={{ base: 8, md: 12 }}
+      pb={{ base: 20, md: 16 }}
       borderRadius={{ md: '10px' }}
     >
       <form id='office-hours-form' onSubmit={handleSubmit(onSubmit)}>

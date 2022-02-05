@@ -12,8 +12,8 @@ const OfficeHoursApply: NextPage = () => {
         <meta name='description' content='Small Grants Application' />
       </Head>
 
-      <Box bg='white' position='relative' py={{ md: 12 }} px={{ md: 6, lg: 64 }}>
-        <Stack mb={12}>
+      <Box bg='white' position='relative' py={{ md: 12 }} px={{ md: 24, lg: 32, xl: 72 }}>
+        <Stack>
           <Stack>
             <section id='description'>
               <PageSubheading mb={8} textAlign='center'>
