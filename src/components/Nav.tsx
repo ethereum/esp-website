@@ -119,7 +119,11 @@ export const Nav: FC = () => {
                       mr={nav.href === ESP_BLOG_URL ? 0 : 2}
                       sx={
                         selectedLink(router.pathname, nav.href)
-                          ? { borderBottom: '10px solid', borderBottomColor: 'brand.accent' }
+                          ? {
+                              borderBottom: '10px solid',
+                              borderBottomColor: 'brand.accent',
+                              transition: 'border-width 0.16s ease-in-out'
+                            }
                           : undefined
                       }
                     >
