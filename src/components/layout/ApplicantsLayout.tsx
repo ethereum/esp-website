@@ -2,7 +2,9 @@ import { Flex, Stack, Tab, TabList, Tabs } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
 
-import { ApplicantsDescription, ImportantText } from '../UI';
+import { Description, ImportantText } from '../UI';
+
+import applicantsHero from '../../public/images/applicants-hero.svg';
 
 import {
   APPLICANTS_TABS,
@@ -70,14 +72,20 @@ export const ApplicantsLayout: FC = ({ children }) => {
     <>
       <Stack mb={5} px={{ base: 5, md: 12 }} py={3}>
         <section id='hero'>
-          <ApplicantsDescription />
+          <Description
+            title='For Applicants'
+            img={{ src: applicantsHero, alt: 'Kid watching plants grow' }}
+          >
+            Whether you&apos;re working on a specific project, or you&apos;re still exploring
+            possibilities, you can connect with our team for guidance.
+          </Description>
         </section>
       </Stack>
 
       <Flex
         mb={{ base: 10, md: 0 }}
         mx={{ md: 12 }}
-        px={{ md: 2 }}
+        px={{ md: 4 }}
         backgroundColor='white'
         overflowX='auto'
         borderBottom='1px solid'
