@@ -81,7 +81,7 @@ const SmallGrants: NextPage = () => {
               <section id='process'>
                 <PageSection mb={6}>Process</PageSection>
 
-                <Stack spacing={{ base: 5, md: 10 }}>
+                <Stack spacing={3}>
                   <ProcessStep title='Application' withArrow>
                     Just fill out the online form! Make sure you have read and understood our scope
                     and criteria below. After submitting, you&apos;ll receive a confirmation email

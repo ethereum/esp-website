@@ -80,7 +80,7 @@ const OfficeHours: NextPage = () => {
               <section id='process'>
                 <PageSection mb={6}>Process</PageSection>
 
-                <Stack spacing={{ base: 5, md: 10 }}>
+                <Stack spacing={3}>
                   <ProcessStep title='Request' withArrow>
                     Submit the form on the next page to request an office hours appointment. We may
                     contact you for clarification if your request appears to be out of scope.

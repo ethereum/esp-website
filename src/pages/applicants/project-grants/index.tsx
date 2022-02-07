@@ -76,7 +76,7 @@ const ProjectGrants: NextPage = () => {
               <section id='process'>
                 <PageSection mb={6}>Process</PageSection>
 
-                <Stack spacing={{ base: 5, md: 10 }}>
+                <Stack spacing={3}>
                   <ProcessStep title='Apply' withArrow>
                     You&apos;ll need to fill out the form on the next page as well as a long-form
                     application where you&apos;ll go into depth about your goals, motivations, plans

@@ -1,4 +1,4 @@
-import { Box, Flex } from '@chakra-ui/react';
+import { Grid, GridItem } from '@chakra-ui/react';
 import { FC } from 'react';
 
 import { PageText, StepArrow, StepHeader } from '../';
@@ -8,21 +8,16 @@ interface Props {
   withArrow?: boolean;
 }
 
-// TODO: fix this layout
 export const ProcessStep: FC<Props> = ({ title, withArrow, children }) => {
   return (
-    <Flex direction='column'>
-      <Flex alignItems='center' direction={{ base: 'column', md: 'row' }} mb={{ md: 8 }}>
+    <Grid templateColumns={{ base: 'repeat(1, 1fr)', md: '203px 1fr' }}>
+      <GridItem alignSelf='center'>
         <StepHeader>{title}</StepHeader>
-
-        <PageText w={{ md: '68%' }}>{children}</PageText>
-      </Flex>
-
-      {withArrow && (
-        <Box>
-          <StepArrow />
-        </Box>
-      )}
-    </Flex>
+      </GridItem>
+      <GridItem alignSelf='center'>
+        <PageText pl={{ md: 12 }}>{children}</PageText>
+      </GridItem>
+      {withArrow && <GridItem justifySelf='center'>{<StepArrow />}</GridItem>}
+    </Grid>
   );
 };

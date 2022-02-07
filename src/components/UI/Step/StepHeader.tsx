@@ -13,7 +13,6 @@ export const StepHeader: FC<HeadingProps> = ({ children }) => {
       borderRadius='10px'
       bgGradient='linear(to-br, brand.faq.bgGradient.start 10%, brand.faq.bgGradient.end 100%)'
       mb={{ base: 4, md: 0 }}
-      mr={{ md: 12 }}
     >
       <StepHeading>{children}</StepHeading>
     </Flex>
