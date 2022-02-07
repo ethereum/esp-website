@@ -76,50 +76,56 @@ export const ProjectGrantsForm: FC = () => {
       borderRadius={{ md: '10px' }}
     >
       <form id='project-grants-form' onSubmit={handleSubmit(onSubmit)}>
-        <Flex direction={{ base: 'column', md: 'row' }}>
-          <FormControl id='first-name-control' isRequired mb={8} mr={{ md: 12 }}>
-            <FormLabel htmlFor='firstName' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                First name
-              </PageText>
-            </FormLabel>
+        <Flex direction='column' mb={8}>
+          <Flex direction={{ base: 'column', md: 'row' }} mb={3}>
+            <FormControl id='first-name-control' isRequired mr={{ md: 12 }} mb={{ base: 8, md: 0 }}>
+              <FormLabel htmlFor='firstName'>
+                <PageText display='inline' fontSize='input'>
+                  First name
+                </PageText>
+              </FormLabel>
 
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              The main contact we&apos;ll be talking to.
-            </PageText>
+              {/* <PageText as='small' fontSize='helpText' color='brand.helpText'>
+              This should be the main contact we&apos;ll be talking to.
+            </PageText> */}
 
-            <Input
-              id='first-name'
-              type='text'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-            />
-          </FormControl>
+              <Input
+                id='first-name'
+                type='text'
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                h='56px'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+                // mt={3}
+              />
+            </FormControl>
 
-          <FormControl id='last-name-control' isRequired mb={8} mt={{ md: 8 }}>
-            <FormLabel htmlFor='lastName'>
-              <PageText display='inline' fontSize='input'>
-                Last name
-              </PageText>
-            </FormLabel>
-            <Input
-              id='last-name'
-              type='text'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-            />
-          </FormControl>
+            <FormControl id='last-name-control' isRequired>
+              <FormLabel htmlFor='lastName'>
+                <PageText display='inline' fontSize='input'>
+                  Last name
+                </PageText>
+              </FormLabel>
+              <Input
+                id='last-name'
+                type='text'
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                h='56px'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+              />
+            </FormControl>
+          </Flex>
+
+          <PageText as='small' fontSize='helpText' color='brand.helpText'>
+            This should be the main contact we&apos;ll be talking to.
+          </PageText>
         </Flex>
 
         <FormControl id='email-control' isRequired mb={8}>
@@ -392,47 +398,48 @@ export const ProjectGrantsForm: FC = () => {
           />
         </FormControl>
 
-        <Flex direction={{ base: 'column', md: 'row' }}>
-          <FormControl id='city-control' mb={8} mr={{ md: 12 }}>
-            <FormLabel htmlFor='city' mb={1}>
-              <PageText fontSize='input'>City</PageText>
-            </FormLabel>
+        <Flex direction='column' mb={8}>
+          <Flex direction={{ base: 'column', md: 'row' }} mb={3}>
+            <FormControl id='city-control' mr={{ md: 12 }} mb={{ base: 8, md: 0 }}>
+              <FormLabel htmlFor='city'>
+                <PageText fontSize='input'>City</PageText>
+              </FormLabel>
 
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Where is your team located?
-            </PageText>
+              <Input
+                id='city'
+                type='text'
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                h='56px'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+              />
+            </FormControl>
 
-            <Input
-              id='city'
-              type='text'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-            />
-          </FormControl>
+            <FormControl id='country-control' isRequired>
+              <FormLabel htmlFor='country'>
+                <PageText display='inline' fontSize='input'>
+                  Country
+                </PageText>
+              </FormLabel>
 
-          <FormControl id='country-control' isRequired mb={8} mt={{ md: 8 }}>
-            <FormLabel htmlFor='country'>
-              <PageText display='inline' fontSize='input'>
-                Country
-              </PageText>
-            </FormLabel>
+              <Select
+                id='country'
+                options={COUNTRY_OPTIONS}
+                components={{ DropdownIndicator }}
+                placeholder='Select'
+                closeMenuOnSelect={true}
+                selectedOptionColor='brand.option'
+                chakraStyles={chakraStyles}
+              />
+            </FormControl>
+          </Flex>
 
-            <Select
-              id='country'
-              options={COUNTRY_OPTIONS}
-              components={{ DropdownIndicator }}
-              placeholder='Select'
-              closeMenuOnSelect={true}
-              selectedOptionColor='brand.option'
-              chakraStyles={chakraStyles}
-            />
-          </FormControl>
+          <PageText as='small' fontSize='helpText' color='brand.helpText'>
+            Where is your team located?
+          </PageText>
         </Flex>
 
         <FormControl id='timezone-control' isRequired mb={8}>
