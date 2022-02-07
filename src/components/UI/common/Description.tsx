@@ -5,8 +5,6 @@ import Image from 'next/image';
 import { PageHeading } from '../headings';
 import { PageText } from '../text';
 
-import applicantsHero from '../../../public/images/applicants-hero.svg';
-
 interface Props {
   title: string;
   img: {
