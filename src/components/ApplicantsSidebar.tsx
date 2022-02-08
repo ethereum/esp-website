@@ -28,7 +28,7 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks }) => {
       top={0}
       position='sticky'
       alignSelf='flex-start'
-      h='75vh'
+      h='45vh'
     >
       {sidebarLinks.map(({ text, href }, idx) => (
         <Flex key={text} alignItems='center' mb={1}>
