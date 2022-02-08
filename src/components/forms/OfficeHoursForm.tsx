@@ -18,7 +18,7 @@ import {
 } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
 import { FC, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -40,15 +40,23 @@ import {
 } from './constants';
 import { OFFICE_HOURS_THANK_YOU_PAGE_URL } from '../../constants';
 
-import {
-  IndividualOrTeam,
-  OfficeHoursFormData,
-  ProjectGrantsFormData,
-  ReasonForMeeting
-} from '../../types';
+import { IndividualOrTeam, ReasonForMeeting } from '../../types';
 
 const MotionBox = motion<BoxProps>(Box);
 const MotionButton = motion<ButtonProps>(Button);
+
+interface OfficeHoursFormData {
+  // SF API: FirstName
+  firstName: string;
+  // SF API: LastName
+  lastName: string;
+  // SF API: Email
+  email: string;
+  // SF API: Individual_or_Team__c
+  individualOrTeam: IndividualOrTeam;
+  // SF API: Company
+  company: string;
+}
 
 export const OfficeHoursForm: FC = () => {
   const [individualOrTeam, setIndividualOrTeam] = useState<IndividualOrTeam>('Individual');
@@ -57,19 +65,39 @@ export const OfficeHoursForm: FC = () => {
   const {
     handleSubmit,
     register,
+    control,
     formState: { errors, isValid },
     reset
-  } = useForm<ProjectGrantsFormData>({
+  } = useForm<OfficeHoursFormData>({
     mode: 'onChange'
   });
   const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
 
   const onSubmit = (data: OfficeHoursFormData) => {
-    router.push(OFFICE_HOURS_THANK_YOU_PAGE_URL);
-  };
+    console.log({ data });
 
-  const handleRadioButton = (value: IndividualOrTeam) => {
-    setIndividualOrTeam(value);
+    // const requestOptions: RequestInit = {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({
+    //     ...data
+    //     // recordTypeFlag: 'alpha'
+    //   })
+    // };
+
+    // fetch('/api/office-hours', requestOptions)
+    //   .then(res => {
+    //     if (res.ok) {
+    //       console.log({ res });
+    //       router.push(OFFICE_HOURS_THANK_YOU_PAGE_URL);
+    //     } else {
+    //       // TODO: toast notification for error
+    //       throw new Error('Network response was not OK');
+    //     }
+    //   })
+    //   .catch(err =>
+    //     console.error('There has been a problem with your fetch operation: ', err.message)
+    //   );
   };
 
   const handleCheckbox = (value: ReasonForMeeting) => {
@@ -100,9 +128,12 @@ export const OfficeHoursForm: FC = () => {
               borderRadius={0}
               borderColor='brand.border'
               h='56px'
-              _placeholder={{ fontSize: 'input' }}
               color='brand.paragraph'
               fontSize='input'
+              {...register('firstName', {
+                required: true,
+                maxLength: 40
+              })}
             />
           </FormControl>
 
@@ -119,9 +150,9 @@ export const OfficeHoursForm: FC = () => {
               borderRadius={0}
               borderColor='brand.border'
               h='56px'
-              _placeholder={{ fontSize: 'input' }}
               color='brand.paragraph'
               fontSize='input'
+              {...register('lastName', { required: true, maxLength: 80 })}
             />
           </FormControl>
         </Flex>
@@ -139,84 +170,92 @@ export const OfficeHoursForm: FC = () => {
             borderRadius={0}
             borderColor='brand.border'
             h='56px'
-            _placeholder={{ fontSize: 'input' }}
             color='brand.paragraph'
             fontSize='input'
+            {...register('email', { required: true })}
           />
         </FormControl>
 
-        <FormControl
-          id='individual-or-team-control'
-          isRequired
-          mb={individualOrTeam === TEAM ? 4 : 8}
-        >
-          <FormLabel htmlFor='individualOrTeam' mb={4}>
-            <PageText display='inline' fontSize='input'>
-              Are you submitting on behalf of a team, or as an individual?
-            </PageText>
-          </FormLabel>
+        {/* If the component doesn't expose input's ref, we should use the Controller component, */}
+        {/* which will take care of the registration process (https://react-hook-form.com/get-started#IntegratingwithUIlibraries) */}
+        <Controller
+          name='individualOrTeam'
+          control={control}
+          rules={{ required: true }}
+          defaultValue='Individual'
+          render={({ field: { onChange, value } }) => (
+            <FormControl id='individual-or-team-control' isRequired mb={value === TEAM ? 4 : 8}>
+              <FormLabel htmlFor='individualOrTeam' mb={4}>
+                <PageText display='inline' fontSize='input'>
+                  Are you submitting on behalf of a team, or as an individual?
+                </PageText>
+              </FormLabel>
 
-          <RadioGroup
-            id='individual-or-team'
-            onChange={handleRadioButton}
-            value={individualOrTeam}
-            fontSize='input'
-            colorScheme='white'
-          >
-            <Stack direction='row'>
-              <Radio
-                id='individual'
-                size='lg'
-                name='individualOrTeam'
-                value='Individual'
-                defaultChecked
-                mr={8}
+              <RadioGroup
+                id='individual-or-team'
+                onChange={(value: IndividualOrTeam) => {
+                  onChange(value);
+                  setIndividualOrTeam(value);
+                }}
+                value={value}
+                fontSize='input'
+                colorScheme='white'
               >
-                <PageText fontSize='input'>Individual</PageText>
-              </Radio>
+                <Stack direction='row'>
+                  <Radio
+                    id='individual'
+                    size='lg'
+                    name='individualOrTeam'
+                    value='Individual'
+                    defaultChecked
+                    mr={8}
+                  >
+                    <PageText fontSize='input'>Individual</PageText>
+                  </Radio>
 
-              <Radio id='team' size='lg' name='individualOrTeam' value='Team'>
-                <PageText fontSize='input'>Team</PageText>
-              </Radio>
-            </Stack>
-          </RadioGroup>
-        </FormControl>
+                  <Radio id='team' size='lg' name='individualOrTeam' value='Team'>
+                    <PageText fontSize='input'>Team</PageText>
+                  </Radio>
+                </Stack>
+              </RadioGroup>
+            </FormControl>
+          )}
+        />
 
-        <Fade in={individualOrTeam === TEAM} delay={0.25}>
-          <FormControl
-            id='company-control'
-            isRequired
-            mb={8}
-            display={individualOrTeam === TEAM ? 'block' : 'none'}
-          >
-            <FormLabel htmlFor='company' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Name of organization or entity
+        <Box display={individualOrTeam === TEAM ? 'block' : 'none'}>
+          <Fade in={individualOrTeam === TEAM} delay={0.25}>
+            <FormControl id='company-control' isRequired={individualOrTeam === TEAM} mb={8}>
+              <FormLabel htmlFor='company' mb={1}>
+                <PageText display='inline' fontSize='input'>
+                  Name of organization or entity
+                </PageText>
+              </FormLabel>
+
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Name of your team or entity you&apos;re submitting for. If your organization
+                doesn&apos;t have a formal name, just try to describe it in a few words!
               </PageText>
-            </FormLabel>
 
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Name of your team or entity you&apos;re submitting for. If your organization
-              doesn&apos;t have a formal name, just try to describe it in a few words!
-            </PageText>
+              <Input
+                id='company'
+                type='text'
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                h='56px'
+                color='brand.paragraph'
+                fontSize='input'
+                mt={3}
+                {...register('company', {
+                  required: individualOrTeam === TEAM,
+                  maxLength: 255
+                })}
+              />
+            </FormControl>
+          </Fade>
+        </Box>
 
-            <Input
-              id='company'
-              type='text'
-              placeholder="Enter the name of organization or entity you're submitting for"
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-            />
-          </FormControl>
-        </Fade>
-
-        <FormControl id='project-name-control' mt={8} mb={8}>
+        {/* <FormControl id='project-name-control' mt={8} mb={8}>
           <FormLabel htmlFor='projectName' mb={1}>
             <PageText fontSize='input'>Project name</PageText>
           </FormLabel>
@@ -233,14 +272,13 @@ export const OfficeHoursForm: FC = () => {
             borderRadius={0}
             borderColor='brand.border'
             h='56px'
-            _placeholder={{ fontSize: 'input' }}
             color='brand.paragraph'
             fontSize='input'
             mt={3}
           />
-        </FormControl>
+        </FormControl> */}
 
-        <FormControl id='project-summary-control' mb={8}>
+        {/* <FormControl id='project-summary-control' mb={8}>
           <FormLabel htmlFor='projectSummary' mb={1}>
             <PageText fontSize='input'>Brief project summary</PageText>
           </FormLabel>
@@ -258,15 +296,14 @@ export const OfficeHoursForm: FC = () => {
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
-            _placeholder={{ fontSize: 'input' }}
             color='brand.paragraph'
             fontSize='input'
             h='150px'
             mt={3}
           />
-        </FormControl>
+        </FormControl> */}
 
-        <FormControl id='additional-info-control' mb={8}>
+        {/* <FormControl id='additional-info-control' mb={8}>
           <FormLabel htmlFor='additionalInfo' mb={1}>
             <PageText fontSize='input'>Where can we learn more?</PageText>
           </FormLabel>
@@ -284,15 +321,14 @@ export const OfficeHoursForm: FC = () => {
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
-            _placeholder={{ fontSize: 'input' }}
             color='brand.paragraph'
             fontSize='input'
             h='150px'
             mt={3}
           />
-        </FormControl>
+        </FormControl> */}
 
-        <FormControl id='project-category-control' isRequired mb={8}>
+        {/* <FormControl id='project-category-control' isRequired mb={8}>
           <FormLabel htmlFor='projectCategory' mb={1}>
             <PageText display='inline' fontSize='input'>
               Project category
@@ -314,9 +350,9 @@ export const OfficeHoursForm: FC = () => {
               chakraStyles={chakraStyles}
             />
           </Box>
-        </FormControl>
+        </FormControl> */}
 
-        <FormControl id='how-did-you-hear-about-ESP-control' isRequired mb={8}>
+        {/* <FormControl id='how-did-you-hear-about-ESP-control' isRequired mb={8}>
           <FormLabel htmlFor='howDidYouHearAboutESP'>
             <PageText display='inline' fontSize='input'>
               How did you hear about the Ecosystem Support Program?
@@ -332,9 +368,9 @@ export const OfficeHoursForm: FC = () => {
             selectedOptionColor='brand.option'
             chakraStyles={chakraStyles}
           />
-        </FormControl>
+        </FormControl> */}
 
-        <FormControl id='reason-for-meeting-control' isRequired mb={2}>
+        {/* <FormControl id='reason-for-meeting-control' isRequired mb={2}>
           <FormLabel htmlFor='reasonForMeeting'>
             <PageText display='inline' fontSize='input'>
               What can we help you with? You may choose more than one reason.
@@ -360,9 +396,9 @@ export const OfficeHoursForm: FC = () => {
               </Checkbox>
             </Stack>
           </CheckboxGroup>
-        </FormControl>
+        </FormControl> */}
 
-        <Fade in={reasonForMeeting.includes(OTHER)} delay={0.25}>
+        {/* <Fade in={reasonForMeeting.includes(OTHER)} delay={0.25}>
           <FormControl
             id='other-reason-for-meeting-control'
             isRequired
@@ -382,15 +418,14 @@ export const OfficeHoursForm: FC = () => {
               bg='white'
               borderRadius={0}
               borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
               color='brand.paragraph'
               fontSize='input'
               h='150px'
             />
           </FormControl>
-        </Fade>
+        </Fade> */}
 
-        <FormControl id='timezone-control' isRequired mt={8} mb={20}>
+        {/* <FormControl id='timezone-control' isRequired mt={8} mb={20}>
           <FormLabel htmlFor='timezone'>
             <PageText display='inline' fontSize='input'>
               Your time zone
@@ -406,7 +441,7 @@ export const OfficeHoursForm: FC = () => {
             selectedOptionColor='brand.option'
             chakraStyles={chakraStyles}
           />
-        </FormControl>
+        </FormControl> */}
 
         <Center>
           <Box id='submit-application' position='relative'>
