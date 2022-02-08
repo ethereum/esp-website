@@ -82,13 +82,13 @@ const SmallGrants: NextPage = () => {
                 <PageSection mb={6}>Process</PageSection>
 
                 <Stack spacing={3}>
-                  <ProcessStep title='Application' withArrow>
+                  <ProcessStep title='Application'>
                     Just fill out the online form! Make sure you have read and understood our scope
                     and criteria below. After submitting, you&apos;ll receive a confirmation email
                     within two business days.
                   </ProcessStep>
 
-                  <ProcessStep title='Evaluation' withArrow>
+                  <ProcessStep title='Evaluation'>
                     Every submission is read and considered by the ESP team. You most likely
                     won&apos;t hear from us during the evaluation process for a small grant
                     application, but you&apos;re always welcome to get in touch - just reply to the
@@ -96,17 +96,17 @@ const SmallGrants: NextPage = () => {
                     know.
                   </ProcessStep>
 
-                  <ProcessStep title='Decision' withArrow>
+                  <ProcessStep title='Decision'>
                     Unless we reach out to clarify anything on your application, you can expect to
                     hear back from us with a final decision around two weeks after you submit it.
                   </ProcessStep>
 
-                  <ProcessStep title='Activation' withArrow>
+                  <ProcessStep title='Activation'>
                     We sign a grant agreement, complete KYC and send funds in fiat, ETH or DAI - and
                     you get to work!
                   </ProcessStep>
 
-                  <ProcessStep title='Completion'>
+                  <ProcessStep title='Completion' isLastStep>
                     Once you&apos;ve completed work on your grant, you&apos;ll share the results in
                     a report, blog post or video.
                   </ProcessStep>

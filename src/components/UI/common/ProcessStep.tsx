@@ -5,10 +5,10 @@ import { PageText, StepArrow, StepHeader } from '../';
 
 interface Props {
   title: string;
-  withArrow?: boolean;
+  isLastStep?: boolean;
 }
 
-export const ProcessStep: FC<Props> = ({ title, withArrow, children }) => {
+export const ProcessStep: FC<Props> = ({ title, isLastStep, children }) => {
   return (
     <Grid templateColumns={{ base: 'repeat(1, 1fr)', md: '203px 1fr' }}>
       <GridItem alignSelf='center'>
@@ -17,7 +17,7 @@ export const ProcessStep: FC<Props> = ({ title, withArrow, children }) => {
       <GridItem alignSelf='center'>
         <PageText pl={{ md: 12 }}>{children}</PageText>
       </GridItem>
-      {withArrow && <GridItem justifySelf='center'>{<StepArrow />}</GridItem>}
+      {!isLastStep && <GridItem justifySelf='center'>{<StepArrow />}</GridItem>}
     </Grid>
   );
 };

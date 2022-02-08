@@ -14,7 +14,7 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks }) => {
   const [clicked, setClicked] = useState('');
 
   const handleClicked = (link: string) => setClicked(link);
-  // set the fist link from the sidebar as acive by default
+  // set the first link from the sidebar as acive by default
   const isActiveLink = (idx: number, href: string) => (!clicked && idx === 0) || clicked === href;
 
   return (

@@ -81,23 +81,23 @@ const OfficeHours: NextPage = () => {
                 <PageSection mb={6}>Process</PageSection>
 
                 <Stack spacing={3}>
-                  <ProcessStep title='Request' withArrow>
+                  <ProcessStep title='Request'>
                     Submit the form on the next page to request an office hours appointment. We may
                     contact you for clarification if your request appears to be out of scope.
                   </ProcessStep>
 
-                  <ProcessStep title='Schedule' withArrow>
+                  <ProcessStep title='Schedule'>
                     If it seems like a fit, we&apos;ll get in touch to set up a time, then send you
                     a calendar invite with a call link.
                   </ProcessStep>
 
-                  <ProcessStep title='Prepare' withArrow>
+                  <ProcessStep title='Prepare'>
                     The more specific you are about what you need, the better we&apos;ll be able to
                     help you! Read through the section below to make sure you understand what we can
                     and can&apos;t do in these sessions.
                   </ProcessStep>
 
-                  <ProcessStep title='Meet'>
+                  <ProcessStep title='Meet' isLastStep>
                     You&apos;ll have an informal 20-minute video call with a member of the ESP team.
                   </ProcessStep>
                 </Stack>

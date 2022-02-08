@@ -77,7 +77,7 @@ const ProjectGrants: NextPage = () => {
                 <PageSection mb={6}>Process</PageSection>
 
                 <Stack spacing={3}>
-                  <ProcessStep title='Apply' withArrow>
+                  <ProcessStep title='Apply'>
                     You&apos;ll need to fill out the form on the next page as well as a long-form
                     application where you&apos;ll go into depth about your goals, motivations, plans
                     and intended impact. Make sure you have read and understood our scope and
@@ -85,7 +85,7 @@ const ProjectGrants: NextPage = () => {
                     submitting, you&apos;ll receive a confirmation email within two business days.
                   </ProcessStep>
 
-                  <ProcessStep title='Evaluate and refine' withArrow>
+                  <ProcessStep title='Evaluate and refine'>
                     If we determine that a project is in scope for ESP support, we&apos;ll begin a
                     deeper evaluation of the project&apos;s technical approach, potential impact,
                     risks, and other factors. Our next steps might include gathering more
@@ -93,14 +93,14 @@ const ProjectGrants: NextPage = () => {
                     rescope the project proposal.
                   </ProcessStep>
 
-                  <ProcessStep title='Decision' withArrow>
+                  <ProcessStep title='Decision'>
                     Once the proposal is finalized, we&apos;ll make an allocation decision based on
                     our assessment as well as input received from advisors. Decision time for a
                     project grant application varies depending on scope and complexity, and may take
                     a few months from when the application was first submitted.
                   </ProcessStep>
 
-                  <ProcessStep title='Activation'>
+                  <ProcessStep title='Activation' isLastStep>
                     We sign a grant agreement, complete KYC and send funds in fiat, ETH or DAI - and
                     you get to work! You&apos;ll have a point of contact at the EF who will check in
                     with you regularly as you progress with your work.
