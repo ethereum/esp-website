@@ -45,8 +45,6 @@ export const HomepageHero: FC = () => {
             alt='People gathered around the Ethereum tree'
             layout='responsive'
             objectFit='cover'
-            quality={85}
-            priority={true}
           />
         </Box>
 
@@ -57,8 +55,7 @@ export const HomepageHero: FC = () => {
               alt='People gathered around the Ethereum tree'
               layout='fill'
               objectFit='cover'
-              quality={85}
-              priority={true}
+              // quality={85}
             />
           </Box>
 

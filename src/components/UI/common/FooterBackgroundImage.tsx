@@ -14,7 +14,6 @@ export const FooterBackgroundImage: FC = () => {
           alt='People gathered around the Ethereum tree'
           layout='responsive'
           objectFit='cover'
-          quality={85}
         />
       </Box>
 

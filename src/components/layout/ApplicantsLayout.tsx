@@ -2,11 +2,11 @@ import { Flex, Stack, Tab, TabList, Tabs } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
 
-import { ApplicantsDescription, ImportantText } from '../UI';
-import { ReadyToApply } from '../ReadyToApply';
+import { Description, ImportantText } from '../UI';
+
+import applicantsHero from '../../public/images/applicants-hero.svg';
 
 import {
-  APPLICANTS_PAGES,
   APPLICANTS_TABS,
   APPLICANTS_TABS_MAP,
   APPLICANTS_URL,
@@ -70,14 +70,22 @@ export const ApplicantsLayout: FC = ({ children }) => {
 
   return (
     <>
-      <Stack mb={5} px={5} py={3}>
+      <Stack mb={5} px={{ base: 5, md: 12 }} py={3}>
         <section id='hero'>
-          <ApplicantsDescription />
+          <Description
+            title='For Applicants'
+            img={{ src: applicantsHero, alt: 'Kid watching plants grow' }}
+          >
+            Whether you&apos;re working on a specific project, or you&apos;re still exploring
+            possibilities, you can connect with our team for guidance.
+          </Description>
         </section>
       </Stack>
 
       <Flex
-        mb={10}
+        mb={{ base: 10, md: 0 }}
+        mx={{ md: 12 }}
+        px={{ md: 4 }}
         backgroundColor='white'
         overflowX='auto'
         borderBottom='1px solid'
@@ -91,7 +99,7 @@ export const ApplicantsLayout: FC = ({ children }) => {
           variant='unstyled'
           isLazy
         >
-          <TabList whiteSpace='nowrap' h='64px'>
+          <TabList whiteSpace='nowrap' h='64px' pl={6}>
             {APPLICANTS_TABS.map(tabElement => (
               <Tab
                 key={tabElement}
@@ -112,16 +120,8 @@ export const ApplicantsLayout: FC = ({ children }) => {
         </Tabs>
       </Flex>
 
-      <Stack px={5}>
+      <Stack px={{ base: 5, md: 12 }}>
         <Stack mb={8}>{children}</Stack>
-
-        {APPLICANTS_PAGES.some(path => router.pathname === path) && (
-          <Stack>
-            <section id='ready-to-apply'>
-              <ReadyToApply link={`${router.pathname}/apply`} />
-            </section>
-          </Stack>
-        )}
       </Stack>
     </>
   );

@@ -6,6 +6,7 @@ import {
   Center,
   Checkbox,
   CheckboxGroup,
+  Fade,
   Flex,
   FormControl,
   FormLabel,
@@ -79,48 +80,51 @@ export const OfficeHoursForm: FC = () => {
     <Stack
       w='100%'
       bgGradient='linear(to-br, brand.newsletter.bgGradient.start 10%, brand.newsletter.bgGradient.end 100%)'
-      px={5}
-      pt={8}
-      pb={20}
+      px={{ base: 5, md: 12 }}
+      pt={{ base: 8, md: 12 }}
+      pb={{ base: 20, md: 16 }}
+      borderRadius={{ md: '10px' }}
     >
       <form id='office-hours-form' onSubmit={handleSubmit(onSubmit)}>
-        <FormControl id='first-name-control' isRequired mb={8}>
-          <FormLabel htmlFor='firstName'>
-            <PageText display='inline' fontSize='input'>
-              First Name
-            </PageText>
-          </FormLabel>
-          <Input
-            id='first-name'
-            type='text'
-            bg='white'
-            borderRadius={0}
-            borderColor='brand.border'
-            h='56px'
-            _placeholder={{ fontSize: 'input' }}
-            color='brand.paragraph'
-            fontSize='input'
-          />
-        </FormControl>
+        <Flex direction={{ base: 'column', md: 'row' }}>
+          <FormControl id='first-name-control' isRequired mb={8} mr={{ md: 12 }}>
+            <FormLabel htmlFor='firstName'>
+              <PageText display='inline' fontSize='input'>
+                First name
+              </PageText>
+            </FormLabel>
+            <Input
+              id='first-name'
+              type='text'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              h='56px'
+              _placeholder={{ fontSize: 'input' }}
+              color='brand.paragraph'
+              fontSize='input'
+            />
+          </FormControl>
 
-        <FormControl id='last-name-control' isRequired mb={8}>
-          <FormLabel htmlFor='lastName'>
-            <PageText display='inline' fontSize='input'>
-              Last Name
-            </PageText>
-          </FormLabel>
-          <Input
-            id='last-name'
-            type='text'
-            bg='white'
-            borderRadius={0}
-            borderColor='brand.border'
-            h='56px'
-            _placeholder={{ fontSize: 'input' }}
-            color='brand.paragraph'
-            fontSize='input'
-          />
-        </FormControl>
+          <FormControl id='last-name-control' isRequired mb={8}>
+            <FormLabel htmlFor='lastName'>
+              <PageText display='inline' fontSize='input'>
+                Last name
+              </PageText>
+            </FormLabel>
+            <Input
+              id='last-name'
+              type='text'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              h='56px'
+              _placeholder={{ fontSize: 'input' }}
+              color='brand.paragraph'
+              fontSize='input'
+            />
+          </FormControl>
+        </Flex>
 
         <FormControl id='email-control' isRequired mb={8}>
           <FormLabel htmlFor='email'>
@@ -141,7 +145,11 @@ export const OfficeHoursForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl id='individual-or-team-control' isRequired mb={8}>
+        <FormControl
+          id='individual-or-team-control'
+          isRequired
+          mb={individualOrTeam === TEAM ? 4 : 8}
+        >
           <FormLabel htmlFor='individualOrTeam' mb={4}>
             <PageText display='inline' fontSize='input'>
               Are you submitting on behalf of a team, or as an individual?
@@ -174,8 +182,13 @@ export const OfficeHoursForm: FC = () => {
           </RadioGroup>
         </FormControl>
 
-        {individualOrTeam === TEAM && (
-          <FormControl id='company-control' isRequired mb={8}>
+        <Fade in={individualOrTeam === TEAM} delay={0.25}>
+          <FormControl
+            id='company-control'
+            isRequired
+            mb={8}
+            display={individualOrTeam === TEAM ? 'block' : 'none'}
+          >
             <FormLabel htmlFor='company' mb={1}>
               <PageText display='inline' fontSize='input'>
                 Name of organization or entity
@@ -201,7 +214,7 @@ export const OfficeHoursForm: FC = () => {
               mt={3}
             />
           </FormControl>
-        )}
+        </Fade>
 
         <FormControl id='project-name-control' mt={8} mb={8}>
           <FormLabel htmlFor='projectName' mb={1}>
@@ -229,7 +242,7 @@ export const OfficeHoursForm: FC = () => {
 
         <FormControl id='project-summary-control' mb={8}>
           <FormLabel htmlFor='projectSummary' mb={1}>
-            <PageText fontSize='input'>Brief Project Summary</PageText>
+            <PageText fontSize='input'>Brief project summary</PageText>
           </FormLabel>
 
           <PageText as='small' fontSize='helpText' color='brand.helpText'>
@@ -282,7 +295,7 @@ export const OfficeHoursForm: FC = () => {
         <FormControl id='project-category-control' isRequired mb={8}>
           <FormLabel htmlFor='projectCategory' mb={1}>
             <PageText display='inline' fontSize='input'>
-              Project Category
+              Project category
             </PageText>
           </FormLabel>
 
@@ -349,8 +362,13 @@ export const OfficeHoursForm: FC = () => {
           </CheckboxGroup>
         </FormControl>
 
-        {reasonForMeeting.includes(OTHER) && (
-          <FormControl id='other-reason-for-meeting-control' isRequired mb={8}>
+        <Fade in={reasonForMeeting.includes(OTHER)} delay={0.25}>
+          <FormControl
+            id='other-reason-for-meeting-control'
+            isRequired
+            mb={8}
+            display={reasonForMeeting.includes(OTHER) ? 'block' : 'none'}
+          >
             <FormLabel htmlFor='otherReasonForMeeting'>
               <PageText display='inline' fontSize='input'>
                 Reason for meeting
@@ -370,12 +388,12 @@ export const OfficeHoursForm: FC = () => {
               h='150px'
             />
           </FormControl>
-        )}
+        </Fade>
 
         <FormControl id='timezone-control' isRequired mt={8} mb={20}>
           <FormLabel htmlFor='timezone'>
             <PageText display='inline' fontSize='input'>
-              Your Time Zone
+              Your time zone
             </PageText>
           </FormLabel>
 

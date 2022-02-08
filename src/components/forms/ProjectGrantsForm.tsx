@@ -4,6 +4,7 @@ import {
   Button,
   ButtonProps,
   Center,
+  Fade,
   Flex,
   FormControl,
   FormLabel,
@@ -69,54 +70,63 @@ export const ProjectGrantsForm: FC = () => {
     <Stack
       w='100%'
       bgGradient='linear(to-br, brand.newsletter.bgGradient.start 10%, brand.newsletter.bgGradient.end 100%)'
-      px={5}
-      pt={8}
-      pb={20}
+      px={{ base: 5, md: 12 }}
+      pt={{ base: 8, md: 12 }}
+      pb={{ base: 20, md: 16 }}
+      borderRadius={{ md: '10px' }}
     >
       <form id='project-grants-form' onSubmit={handleSubmit(onSubmit)}>
-        <FormControl id='first-name-control' isRequired mb={8}>
-          <FormLabel htmlFor='firstName' mb={1}>
-            <PageText display='inline' fontSize='input'>
-              First Name
-            </PageText>
-          </FormLabel>
+        <Flex direction='column' mb={8}>
+          <Flex direction={{ base: 'column', md: 'row' }} mb={3}>
+            <FormControl id='first-name-control' isRequired mr={{ md: 12 }} mb={{ base: 8, md: 0 }}>
+              <FormLabel htmlFor='firstName'>
+                <PageText display='inline' fontSize='input'>
+                  First name
+                </PageText>
+              </FormLabel>
+
+              {/* <PageText as='small' fontSize='helpText' color='brand.helpText'>
+              This should be the main contact we&apos;ll be talking to.
+            </PageText> */}
+
+              <Input
+                id='first-name'
+                type='text'
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                h='56px'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+                // mt={3}
+              />
+            </FormControl>
+
+            <FormControl id='last-name-control' isRequired>
+              <FormLabel htmlFor='lastName'>
+                <PageText display='inline' fontSize='input'>
+                  Last name
+                </PageText>
+              </FormLabel>
+              <Input
+                id='last-name'
+                type='text'
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                h='56px'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+              />
+            </FormControl>
+          </Flex>
 
           <PageText as='small' fontSize='helpText' color='brand.helpText'>
             This should be the main contact we&apos;ll be talking to.
           </PageText>
-
-          <Input
-            id='first-name'
-            type='text'
-            bg='white'
-            borderRadius={0}
-            borderColor='brand.border'
-            h='56px'
-            _placeholder={{ fontSize: 'input' }}
-            color='brand.paragraph'
-            fontSize='input'
-            mt={3}
-          />
-        </FormControl>
-
-        <FormControl id='last-name-control' isRequired mb={8}>
-          <FormLabel htmlFor='lastName'>
-            <PageText display='inline' fontSize='input'>
-              Last Name
-            </PageText>
-          </FormLabel>
-          <Input
-            id='last-name'
-            type='text'
-            bg='white'
-            borderRadius={0}
-            borderColor='brand.border'
-            h='56px'
-            _placeholder={{ fontSize: 'input' }}
-            color='brand.paragraph'
-            fontSize='input'
-          />
-        </FormControl>
+        </Flex>
 
         <FormControl id='email-control' isRequired mb={8}>
           <FormLabel htmlFor='email'>
@@ -278,7 +288,7 @@ export const ProjectGrantsForm: FC = () => {
         <FormControl id='team-profile-control' isRequired mb={8}>
           <FormLabel htmlFor='teamProfile' mb={1}>
             <PageText display='inline' fontSize='input'>
-              Team Profile
+              Team profile
             </PageText>
           </FormLabel>
 
@@ -307,7 +317,7 @@ export const ProjectGrantsForm: FC = () => {
         <FormControl id='project-summary-control' isRequired mb={8}>
           <FormLabel htmlFor='projectSummary' mb={1}>
             <PageText display='inline' fontSize='input'>
-              Brief Project Summary
+              Brief project summary
             </PageText>
           </FormLabel>
 
@@ -336,7 +346,7 @@ export const ProjectGrantsForm: FC = () => {
         <FormControl id='project-category-control' isRequired mb={8}>
           <FormLabel htmlFor='projectCategory' mb={1}>
             <PageText display='inline' fontSize='input'>
-              Project Category
+              Project category
             </PageText>
           </FormLabel>
 
@@ -357,10 +367,16 @@ export const ProjectGrantsForm: FC = () => {
           </Box>
         </FormControl>
 
-        <FormControl id='requested-amount-control' isRequired mb={8}>
+        <FormControl
+          id='requested-amount-control'
+          isRequired
+          mb={8}
+          w={{ md: '50%' }}
+          pr={{ lg: 6 }}
+        >
           <FormLabel htmlFor='requestedAmount' mb={1}>
             <PageText display='inline' fontSize='input'>
-              Requested Amount
+              Requested amount
             </PageText>
           </FormLabel>
 
@@ -382,51 +398,54 @@ export const ProjectGrantsForm: FC = () => {
           />
         </FormControl>
 
-        <FormControl id='city-control' mb={8}>
-          <FormLabel htmlFor='city' mb={1}>
-            <PageText fontSize='input'>City</PageText>
-          </FormLabel>
+        <Flex direction='column' mb={8}>
+          <Flex direction={{ base: 'column', md: 'row' }} mb={3}>
+            <FormControl id='city-control' mr={{ md: 12 }} mb={{ base: 8, md: 0 }}>
+              <FormLabel htmlFor='city'>
+                <PageText fontSize='input'>City</PageText>
+              </FormLabel>
+
+              <Input
+                id='city'
+                type='text'
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                h='56px'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+              />
+            </FormControl>
+
+            <FormControl id='country-control' isRequired>
+              <FormLabel htmlFor='country'>
+                <PageText display='inline' fontSize='input'>
+                  Country
+                </PageText>
+              </FormLabel>
+
+              <Select
+                id='country'
+                options={COUNTRY_OPTIONS}
+                components={{ DropdownIndicator }}
+                placeholder='Select'
+                closeMenuOnSelect={true}
+                selectedOptionColor='brand.option'
+                chakraStyles={chakraStyles}
+              />
+            </FormControl>
+          </Flex>
 
           <PageText as='small' fontSize='helpText' color='brand.helpText'>
             Where is your team located?
           </PageText>
-
-          <Input
-            id='city'
-            type='text'
-            bg='white'
-            borderRadius={0}
-            borderColor='brand.border'
-            h='56px'
-            _placeholder={{ fontSize: 'input' }}
-            color='brand.paragraph'
-            fontSize='input'
-            mt={3}
-          />
-        </FormControl>
-
-        <FormControl id='country-control' isRequired mb={8}>
-          <FormLabel htmlFor='country'>
-            <PageText display='inline' fontSize='input'>
-              Country
-            </PageText>
-          </FormLabel>
-
-          <Select
-            id='country'
-            options={COUNTRY_OPTIONS}
-            components={{ DropdownIndicator }}
-            placeholder='Select'
-            closeMenuOnSelect={true}
-            selectedOptionColor='brand.option'
-            chakraStyles={chakraStyles}
-          />
-        </FormControl>
+        </Flex>
 
         <FormControl id='timezone-control' isRequired mb={8}>
           <FormLabel htmlFor='timezone' mb={1}>
             <PageText display='inline' fontSize='input'>
-              Your Time Zone
+              Your time zone
             </PageText>
           </FormLabel>
 
@@ -466,8 +485,12 @@ export const ProjectGrantsForm: FC = () => {
           />
         </FormControl>
 
-        {(referralSource as ReferralSource).value === OTHER && (
-          <FormControl id='referred-control' mb={12}>
+        <Fade in={(referralSource as ReferralSource).value === OTHER} delay={0.25}>
+          <FormControl
+            id='referred-control'
+            mb={12}
+            display={(referralSource as ReferralSource).value === OTHER ? 'block' : 'none'}
+          >
             <FormLabel htmlFor='referred' mb={1}>
               <PageText fontSize='input'>
                 Did anyone recommend that you contact Ecosystem Support?
@@ -491,31 +514,34 @@ export const ProjectGrantsForm: FC = () => {
               mt={3}
             />
           </FormControl>
-        )}
+        </Fade>
 
-        <PageText as='small' fontSize='helpText' color='brand.helpText'>
-          If you already have a proposal or document you&apos;d ike to share, please upload it here.
-          This is optional, but highly recommended.
-        </PageText>
+        <Flex
+          bgColor='brand.uploadProposal'
+          justifyContent='space-evenly'
+          alignItems='center'
+          cursor='pointer'
+          py={9}
+          px={{ base: 6, md: 16 }}
+          mt={12}
+          mb={12}
+        >
+          <Box mr={6} flexShrink={0}>
+            <Image src={uploadSVG} alt='Upload file' height={42} width={44} />
+          </Box>
 
-        <Center mt={3} mb={12}>
-          <Flex
-            h='136px'
-            w='100%'
-            bgColor='brand.uploadProposal'
-            justifyContent='center'
-            alignItems='center'
-            cursor='pointer'
-          >
-            <Box mr={5}>
-              <Image src={uploadSVG} alt='Upload file' height={42} width={44} />
-            </Box>
-
-            <PageText fontSize='input' fontWeight={400} lineHeight='21px' maxW='220px'>
-              Upload the proposal. Click here or drag file to this box.
+          <Stack>
+            <PageText fontSize='input' fontWeight={400} lineHeight='21px' mb={-1}>
+              <strong>Upload the proposal.</strong> Click here or drag file to this box.
             </PageText>
-          </Flex>
-        </Center>
+
+            <PageText as='small' fontSize='helpText' color='brand.helpText' lineHeight='17px'>
+              If you already have a proposal or document you&apos;d ike to share, please upload it
+              here. This is optional, but highly recommended.
+            </PageText>
+          </Stack>
+        </Flex>
+
         <Center>
           <Box id='submit-application' position='relative'>
             <MotionBox

@@ -1,5 +1,5 @@
 import axios from 'redaxios';
-import { Link, Stack } from '@chakra-ui/react';
+import { Box, Link, Stack } from '@chakra-ui/react';
 import type { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import Papa from 'papaparse';
@@ -25,7 +25,7 @@ export const getStaticProps: GetStaticProps = async context => {
         });
       });
     })
-    .catch(err => console.log(err.toJSON()));
+    .catch(err => console.error(err.toJSON()));
 
   return {
     props: {
@@ -51,51 +51,57 @@ const WhoWeSupport: NextPage<Props> = ({ grants }) => {
         />
       </Head>
 
-      <Stack spacing={10}>
-        <section id='supporting-builders'>
-          <PageSection mb={6}>Supporting Builders</PageSection>
+      <Box bg='white' position='relative' px={{ md: 20, lg: 60 }} py={{ md: 12 }}>
+        <Stack spacing={10}>
+          <section id='supporting-builders'>
+            <PageSection mb={6} textAlign='center'>
+              Supporting Builders
+            </PageSection>
 
-          <PageText mb={6}>
-            ESP funding is generally directed toward supporting builders rather than directly
-            impacting end users. We don&apos;t often fund dapps or front-end platforms, although
-            this is not a hard rule and there are exceptions - for example, where an application
-            serves as a research or educational tool, or a reference implementation of a new
-            standard.
-          </PageText>
+            <PageText mb={6}>
+              ESP funding is generally directed toward supporting builders rather than directly
+              impacting end users. We don&apos;t often fund dapps or front-end platforms, although
+              this is not a hard rule and there are exceptions - for example, where an application
+              serves as a research or educational tool, or a reference implementation of a new
+              standard.
+            </PageText>
 
-          <PageText mb={6}>
-            Our grantees come from all over the world and represent many different backgrounds,
-            disciplines and levels of experience. We have supported individuals and teams of all
-            kinds - companies, DAOs, nonprofits, institutions, academics, developers, educators,
-            community organizers and more.
-          </PageText>
+            <PageText mb={6}>
+              Our grantees come from all over the world and represent many different backgrounds,
+              disciplines and levels of experience. We have supported individuals and teams of all
+              kinds - companies, DAOs, nonprofits, institutions, academics, developers, educators,
+              community organizers and more.
+            </PageText>
 
-          <PageText>
-            Our{' '}
-            <Link
-              fontWeight={700}
-              color='brand.orange.100'
-              href={ESP_BLOG_URL}
-              _hover={{ textDecoration: 'none' }}
-            >
-              blog
-            </Link>{' '}
-            also features monthly roundups which showcase grantees&apos; progress after their grants
-            are awarded and go into more detail about their background and work.
-          </PageText>
-        </section>
+            <PageText>
+              Our{' '}
+              <Link
+                fontWeight={700}
+                color='brand.orange.100'
+                href={ESP_BLOG_URL}
+                _hover={{ textDecoration: 'none' }}
+              >
+                blog
+              </Link>{' '}
+              also features monthly roundups which showcase grantees&apos; progress after their
+              grants are awarded and go into more detail about their background and work.
+            </PageText>
+          </section>
 
-        <section id='latest-grantees'>
-          <PageSection mb={6}>Latest Grantees</PageSection>
+          <section id='latest-grantees'>
+            <PageSection mb={6} textAlign='center'>
+              Latest Grantees
+            </PageSection>
 
-          <PageText mb={16}>
-            This is only a small sample – we&apos;ll highlight a few at a time and rotate
-            periodically, so make sure to check back once in a while for updates!
-          </PageText>
+            <PageText mb={16}>
+              This is only a small sample – we&apos;ll highlight a few at a time and rotate
+              periodically, so make sure to check back once in a while for updates!
+            </PageText>
 
-          <LatestGranteesList grantsList={grantsList} />
-        </section>
-      </Stack>
+            <LatestGranteesList grantsList={grantsList} />
+          </section>
+        </Stack>
+      </Box>
     </>
   );
 };

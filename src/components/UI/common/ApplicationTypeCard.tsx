@@ -16,15 +16,14 @@ export const ApplicationTypeCard: FC<Props> = ({ title, link, children }) => {
     <Stack
       borderRadius='10px'
       bgGradient='linear(to-br, brand.ready.bgGradient.start 10%, brand.ready.bgGradient.end 100%)'
-      h={{ xs: '100%', md: '182px' }}
       w='100%'
       justifyContent='center'
     >
       <Flex
         alignItems='center'
         direction={{ base: 'column', md: 'row' }}
-        px={6}
-        py={{ xs: 10, md: 0 }}
+        px={{ base: 6, lg: 12 }}
+        py={10}
       >
         <Stack mb={6} mr={{ base: 0, md: 12 }}>
           <ImportantText color='brand.heading' textAlign={{ base: 'center', md: 'left' }} mb={2}>

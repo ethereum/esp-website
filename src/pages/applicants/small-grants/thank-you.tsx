@@ -1,4 +1,4 @@
-import { Center } from '@chakra-ui/react';
+import { Box, Center } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
@@ -13,11 +13,13 @@ const SmallGrantsThankYou: NextPage = () => {
         <meta name='robots' content='noindex' />
       </Head>
 
-      <ThankYouBody grantType='Small Grants' />
+      <Box bg='white' position='relative' py={{ md: 12 }} px={{ md: 20, lg: 24, xl: 72 }}>
+        <ThankYouBody grantType='Small Grants' />
 
-      <Center>
-        <PlaceholderImage height='250px' width='360px' />
-      </Center>
+        <Center>
+          <PlaceholderImage height='250px' width='360px' />
+        </Center>
+      </Box>
     </>
   );
 };

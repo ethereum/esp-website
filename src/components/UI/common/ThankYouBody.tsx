@@ -26,7 +26,9 @@ export const ThankYouBody: FC<Props> = ({ grantType }) => {
           Thank you!
         </Heading>
 
-        <PageSubheading mb={16}>for applying to {grantType}</PageSubheading>
+        <PageSubheading mb={16} textAlign='center'>
+          for applying to {grantType}
+        </PageSubheading>
 
         <PageText mb={6}>
           You should receive a confirmation email from us within 2 business days. If you have any

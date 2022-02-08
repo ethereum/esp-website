@@ -8,11 +8,11 @@ export const StepHeader: FC<HeadingProps> = ({ children }) => {
     <Flex
       justifyContent='center'
       alignItems='center'
-      h='50px'
-      maxW='100%'
+      h={{ base: '50px', md: '78px' }}
+      w={{ base: '100%', md: '203px' }}
       borderRadius='10px'
       bgGradient='linear(to-br, brand.faq.bgGradient.start 10%, brand.faq.bgGradient.end 100%)'
-      mb={4}
+      mb={{ base: 4, md: 0 }}
     >
       <StepHeading>{children}</StepHeading>
     </Flex>

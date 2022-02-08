@@ -45,7 +45,9 @@ export const ButtonLink: FC<Props> = ({ label, link, width, isApplyButton }) => 
           onMouseEnter={() => setButtonHovered(true)}
           onMouseLeave={() => setButtonHovered(false)}
         >
-          <ImportantText color='white'>{label}</ImportantText>
+          <ImportantText color='white' as='h2'>
+            {label}
+          </ImportantText>
 
           {isApplyButton && (
             <Flex position='absolute' left={36}>

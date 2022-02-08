@@ -9,7 +9,7 @@ export const PageSubheading: FC<HeadingProps> = ({ children, ...props }) => {
       fontSize='h2'
       fontWeight={400}
       lineHeight='29px'
-      textAlign='center'
+      textAlign={{ base: 'center', md: 'left' }}
       {...props}
     >
       {children}

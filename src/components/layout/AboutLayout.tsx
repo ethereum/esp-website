@@ -2,17 +2,17 @@ import { Flex, Stack, Tab, TabList, Tabs } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
 
-import { AboutDescription, ImportantText } from '../UI';
-import { ReadyToApply } from '../ReadyToApply';
+import { Description, ImportantText } from '../UI';
 
 import {
   ABOUT_URL,
   ABOUT_TABS,
   ABOUT_TABS_MAP,
-  APPLICANTS_PAGES,
   HOW_WE_SUPPORT_URL,
   WHO_WE_SUPPORT_URL
 } from '../../constants';
+
+import applicantsHero from '../../public/images/applicants-hero.svg';
 
 export const AboutLayout: FC = ({ children }) => {
   const router = useRouter();
@@ -59,14 +59,23 @@ export const AboutLayout: FC = ({ children }) => {
 
   return (
     <>
-      <Stack mb={5} px={5} py={3}>
+      <Stack mb={5} px={{ base: 5, md: 12 }} py={3}>
         <section id='hero'>
-          <AboutDescription />
+          <Description
+            title='About ESP'
+            img={{ src: applicantsHero, alt: 'Kid watching plants grow' }}
+          >
+            We provide grants and other support for open source projects that strengthen
+            Ethereum&apos;s foundations, with a particular focus on builder tools, infrastructure,
+            research and public goods.
+          </Description>
         </section>
       </Stack>
 
       <Flex
-        mb={10}
+        mb={{ base: 10, md: 0 }}
+        mx={{ md: 12 }}
+        px={{ md: 10 }}
         backgroundColor='white'
         overflowX='auto'
         borderBottom='1px solid'
@@ -101,7 +110,7 @@ export const AboutLayout: FC = ({ children }) => {
         </Tabs>
       </Flex>
 
-      <Stack px={5}>
+      <Stack px={{ base: 5, md: 12 }}>
         <Stack mb={8}>{children}</Stack>
       </Stack>
     </>

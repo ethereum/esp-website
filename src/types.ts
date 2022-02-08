@@ -74,3 +74,8 @@ export interface Grant {
   Description: string;
   Twitter: string;
 }
+
+export interface SidebarLink {
+  text: string;
+  href: string;
+}
