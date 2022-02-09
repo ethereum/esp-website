@@ -54,10 +54,17 @@ export default extendTheme({
       },
       applicants: {
         bgGradient: {
-          start: '#FFE9E0',
-          end: '#EDCDF9'
+          start: '#ffe9e0',
+          end: '#edcdf9'
         },
         rgba: 'rgba(237, 205, 249, 0)'
+      },
+      about: {
+        bgGradient: {
+          start: '#e8edff',
+          end: '#ffd1e7'
+        },
+        rgba: 'rgba(255, 209, 231, 0)'
       },
       sidebar: {
         bgGradient: {
