@@ -61,7 +61,10 @@ export const AboutLayout: FC = ({ children }) => {
     <>
       <Stack mb={5} px={{ base: 5, md: 12 }} py={3}>
         <section id='hero'>
-          <Description title='About ESP' img={{ src: aboutHero, alt: 'Kid watching plants grow' }}>
+          <Description
+            title='About ESP'
+            img={{ src: aboutHero, alt: 'People reading about the ESP' }}
+          >
             We provide grants and other support for open source projects that strengthen
             Ethereum&apos;s foundations, with a particular focus on builder tools, infrastructure,
             research and public goods.
@@ -70,6 +73,7 @@ export const AboutLayout: FC = ({ children }) => {
       </Stack>
 
       <Flex
+        mt={-12}
         mb={{ base: 10, md: 0 }}
         mx={{ md: 12 }}
         px={{ md: 10 }}

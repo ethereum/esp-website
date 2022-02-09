@@ -17,7 +17,7 @@ export const Description: FC<Props> = ({ title, img, children }) => {
   const { src, alt } = img;
 
   return (
-    <Flex direction={{ base: 'column', md: 'row' }} pr={{ lg: 32 }}>
+    <Flex direction={{ base: 'column', lg: 'row' }} pr={{ lg: 32 }} mb={1}>
       <Box ml={{ md: 16 }} mr={{ md: 6, lg: 40 }}>
         <PageHeading mb={4} ml={-1}>
           {title}
