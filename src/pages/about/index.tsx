@@ -18,7 +18,6 @@ const About: NextPage = () => {
         />
       </Head>
 
-      {/* <Box bg='white' position='relative' py={{ md: 12 }}> */}
       <Box bg='white' position='relative' px={{ md: 20, lg: 60 }} py={{ md: 12 }}>
         <Stack mb={12}>
           <section id='our-scope'>
@@ -48,7 +47,6 @@ const About: NextPage = () => {
           <Image src={aboutSVG} alt='Watering the garden of grants categories' objectFit='cover' />
         </Center>
       </Box>
-      {/* </Box> */}
     </>
   );
 };
