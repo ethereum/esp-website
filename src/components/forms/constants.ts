@@ -3,7 +3,10 @@ export const PROJECT_CATEGORY_OPTIONS = [
   { value: 'Community and education', label: 'Community and education' },
   { value: 'Community event', label: 'Community event' },
   { value: 'Consensus layer', label: 'Consensus layer' },
-  { value: 'Cryptography and zkp', label: 'Cryptography and zkp' },
+  {
+    value: 'Cryptography and zero knowledge proofs',
+    label: 'Cryptography and zero knowledge proofs'
+  },
   { value: 'Developer experience and tooling', label: 'Developer experience and tooling' },
   { value: 'Execution layer', label: 'Execution layer' },
   { value: 'General research', label: 'General research' },
