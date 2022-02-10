@@ -55,7 +55,6 @@ export const HomepageHero: FC = () => {
               alt='People gathered around the Ethereum tree'
               layout='fill'
               objectFit='cover'
-              // quality={85}
             />
           </Box>
 
