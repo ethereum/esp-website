@@ -10,6 +10,7 @@ import {
   Stack,
   useToast
 } from '@chakra-ui/react';
+import type { UseToastOptions } from '@chakra-ui/react';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
@@ -20,8 +21,19 @@ import { PageText } from '../UI/text';
 import { useShadowAnimation } from '../../hooks';
 import { NewsletterFormData } from '../../types';
 
+import { API_NEWSLETTER_SIGNUP_URL } from '../../constants';
+
 const MotionBox = motion<BoxProps>(Box);
 const MotionButton = motion<ButtonProps>(Button);
+
+const toastOptions: UseToastOptions = {
+  position: 'top-right',
+  duration: 5000,
+  isClosable: true,
+  containerStyle: {
+    fontFamily: 'fonts.heading'
+  }
+};
 
 export const NewsletterSignup: FC = () => {
   const {
@@ -35,29 +47,42 @@ export const NewsletterSignup: FC = () => {
   const toast = useToast();
   const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
 
-  const onSubmit = (data: NewsletterFormData) => {
+  const onSubmit = async (data: NewsletterFormData) => {
     if (errors.email) {
       toast({
-        position: 'top-right',
+        ...toastOptions,
         title: 'Email is not valid, please try again.',
-        status: 'error',
-        duration: 5000,
-        isClosable: true,
-        containerStyle: {
-          fontFamily: 'fonts.heading'
-        }
+        status: 'error'
       });
     } else {
-      toast({
-        position: 'top-right',
-        title: 'Success!',
-        status: 'success',
-        duration: 5000,
-        isClosable: true,
-        containerStyle: {
-          fontFamily: 'fonts.heading'
+      try {
+        const response = await fetch(API_NEWSLETTER_SIGNUP_URL, {
+          method: 'POST',
+          body: data.email
+        });
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          toast({
+            ...toastOptions,
+            title: errorText,
+            status: 'error'
+          });
+          return;
         }
-      });
+
+        toast({
+          ...toastOptions,
+          title: 'You have signed up correctly!',
+          status: 'success'
+        });
+      } catch (error) {
+        toast({
+          ...toastOptions,
+          title: 'Something unexpected happened, try again',
+          status: 'error'
+        });
+      }
     }
 
     reset();
