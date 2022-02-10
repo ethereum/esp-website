@@ -44,6 +44,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         Additional_Information__c,
         Category__c,
         Referral_Source__c,
+        // TODO: enable these fields when available on SF's sandbox
         // Reason_for_meeting__c
         // Reason_for_meeting_if_Other__c
         Time_Zone__c

@@ -14,7 +14,8 @@ import {
   Radio,
   RadioGroup,
   Stack,
-  Textarea
+  Textarea,
+  useToast
 } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
 import { FC, useState } from 'react';
@@ -40,28 +41,17 @@ import {
 } from './constants';
 import { OFFICE_HOURS_THANK_YOU_PAGE_URL } from '../../constants';
 
-import { IndividualOrTeam, ReasonForMeeting } from '../../types';
+import { IndividualOrTeam, OfficeHoursFormData, ReasonForMeeting } from '../../types';
+import { api } from './api';
 
 const MotionBox = motion<BoxProps>(Box);
 const MotionButton = motion<ButtonProps>(Button);
-
-interface OfficeHoursFormData {
-  // SF API: FirstName
-  firstName: string;
-  // SF API: LastName
-  lastName: string;
-  // SF API: Email
-  email: string;
-  // SF API: Individual_or_Team__c
-  individualOrTeam: IndividualOrTeam;
-  // SF API: Company
-  company: string;
-}
 
 export const OfficeHoursForm: FC = () => {
   const [individualOrTeam, setIndividualOrTeam] = useState<IndividualOrTeam>('Individual');
   const [reasonForMeeting, setReasonForMeeting] = useState<ReasonForMeeting>(['']);
   const router = useRouter();
+  const toast = useToast();
   const {
     handleSubmit,
     register,
@@ -76,28 +66,40 @@ export const OfficeHoursForm: FC = () => {
   const onSubmit = (data: OfficeHoursFormData) => {
     console.log({ data });
 
-    // const requestOptions: RequestInit = {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({
-    //     ...data
-    //     // recordTypeFlag: 'alpha'
-    //   })
-    // };
+    api.officeHours
+      .submit(data)
+      .then(res => {
+        if (res.ok) {
+          router.push(OFFICE_HOURS_THANK_YOU_PAGE_URL);
+        } else {
+          toast({
+            position: 'top-right',
+            title: 'Something went wrong while submitting, please try again.',
+            status: 'error',
+            duration: 5000,
+            isClosable: true,
+            containerStyle: {
+              fontFamily: 'fonts.heading'
+            }
+          });
 
-    // fetch('/api/office-hours', requestOptions)
-    //   .then(res => {
-    //     if (res.ok) {
-    //       console.log({ res });
-    //       router.push(OFFICE_HOURS_THANK_YOU_PAGE_URL);
-    //     } else {
-    //       // TODO: toast notification for error
-    //       throw new Error('Network response was not OK');
-    //     }
-    //   })
-    //   .catch(err =>
-    //     console.error('There has been a problem with your fetch operation: ', err.message)
-    //   );
+          throw new Error('Network response was not OK');
+        }
+      })
+      .catch(err => {
+        console.error('There has been a problem with your operation: ', err.message);
+
+        toast({
+          position: 'top-right',
+          title: 'Something went wrong while submitting, please try again.',
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+          containerStyle: {
+            fontFamily: 'fonts.heading'
+          }
+        });
+      });
   };
 
   const handleCheckbox = (value: ReasonForMeeting) => {
@@ -132,9 +134,22 @@ export const OfficeHoursForm: FC = () => {
               fontSize='input'
               {...register('firstName', {
                 required: true,
-                maxLength: 40
+                maxLength: { value: 40, message: 'error message' }
               })}
             />
+
+            <Box mt={1}>
+              {errors?.firstName?.type === 'required' && (
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  First name is required.
+                </PageText>
+              )}
+              {errors?.firstName?.type === 'maxLength' && (
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  First name cannot exceed 40 characters.
+                </PageText>
+              )}
+            </Box>
           </FormControl>
 
           <FormControl id='last-name-control' isRequired mb={8}>
@@ -154,6 +169,19 @@ export const OfficeHoursForm: FC = () => {
               fontSize='input'
               {...register('lastName', { required: true, maxLength: 80 })}
             />
+
+            <Box mt={1}>
+              {errors?.lastName?.type === 'required' && (
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Last name is required.
+                </PageText>
+              )}
+              {errors?.lastName?.type === 'maxLength' && (
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Last name cannot exceed 80 characters.
+                </PageText>
+              )}
+            </Box>
           </FormControl>
         </Flex>
 
@@ -174,6 +202,14 @@ export const OfficeHoursForm: FC = () => {
             fontSize='input'
             {...register('email', { required: true })}
           />
+
+          <Box mt={1}>
+            {errors?.email?.type === 'required' && (
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Email is required.
+              </PageText>
+            )}
+          </Box>
         </FormControl>
 
         {/* If the component doesn't expose input's ref, we should use the Controller component, */}
@@ -251,11 +287,24 @@ export const OfficeHoursForm: FC = () => {
                   maxLength: 255
                 })}
               />
+
+              <Box mt={1}>
+                {errors?.company?.type === 'required' && (
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Organization name is required.
+                  </PageText>
+                )}
+                {errors?.company?.type === 'maxLength' && (
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Organization name cannot exceed 255 characters.
+                  </PageText>
+                )}
+              </Box>
             </FormControl>
           </Fade>
         </Box>
 
-        {/* <FormControl id='project-name-control' mt={8} mb={8}>
+        <FormControl id='project-name-control' mb={8}>
           <FormLabel htmlFor='projectName' mb={1}>
             <PageText fontSize='input'>Project name</PageText>
           </FormLabel>
@@ -275,12 +324,23 @@ export const OfficeHoursForm: FC = () => {
             color='brand.paragraph'
             fontSize='input'
             mt={3}
+            {...register('projectName', {
+              maxLength: 255
+            })}
           />
-        </FormControl> */}
 
-        {/* <FormControl id='project-summary-control' mb={8}>
-          <FormLabel htmlFor='projectSummary' mb={1}>
-            <PageText fontSize='input'>Brief project summary</PageText>
+          <Box mt={1}>
+            {errors?.projectName?.type === 'maxLength' && (
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Project name cannot exceed 255 characters.
+              </PageText>
+            )}
+          </Box>
+        </FormControl>
+
+        <FormControl id='project-description-control' mb={8}>
+          <FormLabel htmlFor='projectDescription' mb={1}>
+            <PageText fontSize='input'>What is your project about?</PageText>
           </FormLabel>
 
           <PageText as='small' fontSize='helpText' color='brand.helpText'>
@@ -289,10 +349,7 @@ export const OfficeHoursForm: FC = () => {
           </PageText>
 
           <Textarea
-            id='project-summary'
-            // TODO: change this when input validation is added
-            // value={''}
-            // onChange={() => {}}
+            id='project-description'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -300,10 +357,21 @@ export const OfficeHoursForm: FC = () => {
             fontSize='input'
             h='150px'
             mt={3}
+            {...register('projectDescription', {
+              maxLength: 32768
+            })}
           />
-        </FormControl> */}
 
-        {/* <FormControl id='additional-info-control' mb={8}>
+          <Box mt={1}>
+            {errors?.projectDescription?.type === 'maxLength' && (
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Project description cannot exceed 32768 characters.
+              </PageText>
+            )}
+          </Box>
+        </FormControl>
+
+        <FormControl id='additional-info-control' mb={8}>
           <FormLabel htmlFor='additionalInfo' mb={1}>
             <PageText fontSize='input'>Where can we learn more?</PageText>
           </FormLabel>
@@ -315,9 +383,6 @@ export const OfficeHoursForm: FC = () => {
 
           <Textarea
             id='additional-info'
-            // TODO: change this when input validation is added
-            // value={''}
-            // onChange={() => {}}
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -325,123 +390,221 @@ export const OfficeHoursForm: FC = () => {
             fontSize='input'
             h='150px'
             mt={3}
+            {...register('additionalInfo', {
+              maxLength: 32768
+            })}
           />
-        </FormControl> */}
 
-        {/* <FormControl id='project-category-control' isRequired mb={8}>
-          <FormLabel htmlFor='projectCategory' mb={1}>
-            <PageText display='inline' fontSize='input'>
-              Project category
-            </PageText>
-          </FormLabel>
-
-          <PageText as='small' fontSize='helpText' color='brand.helpText'>
-            Choose what category your project best fits into.
-          </PageText>
-
-          <Box mt={3}>
-            <Select
-              id='project-category-select'
-              options={PROJECT_CATEGORY_OPTIONS}
-              components={{ DropdownIndicator }}
-              placeholder='Select'
-              closeMenuOnSelect={true}
-              selectedOptionColor='brand.option'
-              chakraStyles={chakraStyles}
-            />
-          </Box>
-        </FormControl> */}
-
-        {/* <FormControl id='how-did-you-hear-about-ESP-control' isRequired mb={8}>
-          <FormLabel htmlFor='howDidYouHearAboutESP'>
-            <PageText display='inline' fontSize='input'>
-              How did you hear about the Ecosystem Support Program?
-            </PageText>
-          </FormLabel>
-
-          <Select
-            id='how-did-you-hear-about-ESP-select'
-            options={HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS}
-            components={{ DropdownIndicator }}
-            placeholder='Select'
-            closeMenuOnSelect={true}
-            selectedOptionColor='brand.option'
-            chakraStyles={chakraStyles}
-          />
-        </FormControl> */}
-
-        {/* <FormControl id='reason-for-meeting-control' isRequired mb={2}>
-          <FormLabel htmlFor='reasonForMeeting'>
-            <PageText display='inline' fontSize='input'>
-              What can we help you with? You may choose more than one reason.
-            </PageText>
-          </FormLabel>
-
-          <CheckboxGroup colorScheme='white' onChange={handleCheckbox} value={reasonForMeeting}>
-            <Stack>
-              <Checkbox id='project-feedback' value='Project feedback or advice'>
-                <PageText fontSize='input'>Project feedback or advice</PageText>
-              </Checkbox>
-              <Checkbox id='questions-about-esp' value='Questions about ESP'>
-                <PageText fontSize='input'>Questions about ESP</PageText>
-              </Checkbox>
-              <Checkbox id='questions-about-applying' value='Questions about applying for a grant'>
-                <PageText fontSize='input'>Questions about applying for a grant</PageText>
-              </Checkbox>
-              <Checkbox id='how-to-contribute' value='How to contribute to Ethereum'>
-                <PageText fontSize='input'>How to contribute to Ethereum</PageText>
-              </Checkbox>
-              <Checkbox id='other' value='Other'>
-                <PageText fontSize='input'>Other</PageText>
-              </Checkbox>
-            </Stack>
-          </CheckboxGroup>
-        </FormControl> */}
-
-        {/* <Fade in={reasonForMeeting.includes(OTHER)} delay={0.25}>
-          <FormControl
-            id='other-reason-for-meeting-control'
-            isRequired
-            mb={8}
-            display={reasonForMeeting.includes(OTHER) ? 'block' : 'none'}
-          >
-            <FormLabel htmlFor='otherReasonForMeeting'>
-              <PageText display='inline' fontSize='input'>
-                Reason for meeting
+          <Box mt={1}>
+            {errors?.projectName?.type === 'maxLength' && (
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Additional info cannot exceed 32768 characters.
               </PageText>
-            </FormLabel>
-            <Textarea
-              id='other-reason-for-meeting'
-              // TODO: change this when input validation is added
-              // value={''}
-              // onChange={() => {}}
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-            />
-          </FormControl>
-        </Fade> */}
+            )}
+          </Box>
+        </FormControl>
 
-        {/* <FormControl id='timezone-control' isRequired mt={8} mb={20}>
-          <FormLabel htmlFor='timezone'>
-            <PageText display='inline' fontSize='input'>
-              Your time zone
-            </PageText>
-          </FormLabel>
+        <Controller
+          name='projectCategory'
+          control={control}
+          rules={{ required: true, validate: selected => selected.value !== '' }}
+          defaultValue={{ value: '', label: '' }}
+          render={({ field: { onChange, value } }) => (
+            <FormControl id='project-category-control' isRequired mb={8}>
+              <FormLabel htmlFor='projectCategory' mb={1}>
+                <PageText display='inline' fontSize='input'>
+                  Project category
+                </PageText>
+              </FormLabel>
 
-          <Select
-            id='timezone'
-            options={TIMEZONE_OPTIONS}
-            components={{ DropdownIndicator }}
-            placeholder='Select'
-            closeMenuOnSelect={true}
-            selectedOptionColor='brand.option'
-            chakraStyles={chakraStyles}
-          />
-        </FormControl> */}
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Choose what category your project best fits into.
+              </PageText>
+
+              <Box mt={3}>
+                <Select
+                  id='project-category-select'
+                  options={PROJECT_CATEGORY_OPTIONS}
+                  value={value}
+                  onChange={onChange}
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
+              </Box>
+
+              <Box mt={1}>
+                {errors?.projectCategory && (
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Project category is required.
+                  </PageText>
+                )}
+              </Box>
+            </FormControl>
+          )}
+        />
+
+        <Controller
+          name='howDidYouHearAboutESP'
+          control={control}
+          rules={{ required: true, validate: selected => selected.value !== '' }}
+          defaultValue={{ value: '', label: '' }}
+          render={({ field: { onChange, value } }) => (
+            <FormControl id='how-did-you-hear-about-ESP-control' isRequired mb={8}>
+              <FormLabel htmlFor='howDidYouHearAboutESP'>
+                <PageText display='inline' fontSize='input'>
+                  How did you hear about the Ecosystem Support Program?
+                </PageText>
+              </FormLabel>
+
+              <Select
+                id='how-did-you-hear-about-ESP-select'
+                options={HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS}
+                value={value}
+                onChange={onChange}
+                components={{ DropdownIndicator }}
+                placeholder='Select'
+                closeMenuOnSelect={true}
+                selectedOptionColor='brand.option'
+                chakraStyles={chakraStyles}
+              />
+
+              <Box mt={1}>
+                {errors?.howDidYouHearAboutESP && (
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Referral source is required.
+                  </PageText>
+                )}
+              </Box>
+            </FormControl>
+          )}
+        />
+
+        {/* TODO: enable this input when available on SF's sandbox, otherwise submission will fail */}
+        {/* <Controller
+          name='reasonForMeeting'
+          control={control}
+          rules={{ required: true, validate: selected => selected.length > 0 }}
+          defaultValue={[]}
+          render={({ field: { onChange, value } }) => (
+            <FormControl id='reason-for-meeting-control' isRequired mb={2}>
+              <FormLabel htmlFor='reasonForMeeting'>
+                <PageText display='inline' fontSize='input'>
+                  What can we help you with? You may choose more than one reason.
+                </PageText>
+              </FormLabel>
+
+              <CheckboxGroup
+                colorScheme='white'
+                onChange={(value: ReasonForMeeting) => {
+                  onChange(value);
+                  handleCheckbox(value);
+                }}
+                value={value}
+              >
+                <Stack>
+                  <Checkbox id='project-feedback' value='Project feedback or advice'>
+                    <PageText fontSize='input'>Project feedback or advice</PageText>
+                  </Checkbox>
+                  <Checkbox id='questions-about-esp' value='Questions about ESP'>
+                    <PageText fontSize='input'>Questions about ESP</PageText>
+                  </Checkbox>
+                  <Checkbox
+                    id='questions-about-applying'
+                    value='Questions about applying for a grant'
+                  >
+                    <PageText fontSize='input'>Questions about applying for a grant</PageText>
+                  </Checkbox>
+                  <Checkbox id='how-to-contribute' value='How to contribute to Ethereum'>
+                    <PageText fontSize='input'>How to contribute to Ethereum</PageText>
+                  </Checkbox>
+                  <Checkbox id='other' value='Other'>
+                    <PageText fontSize='input'>Other</PageText>
+                  </Checkbox>
+                </Stack>
+              </CheckboxGroup>
+
+              <Box mt={1}>
+                {errors?.reasonForMeeting && (
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Choose at least one reason.
+                  </PageText>
+                )}
+              </Box>
+            </FormControl>
+          )}
+        /> */}
+
+        {/* TODO: enable this input when available on SF's sandbox, otherwise submission will fail */}
+        {/* <Box display={reasonForMeeting.includes(OTHER) ? 'block' : 'none'}>
+          <Fade in={reasonForMeeting.includes(OTHER)} delay={0.25}>
+            <FormControl id='other-reason-for-meeting-control' mb={8}>
+              <FormLabel htmlFor='otherReasonForMeeting'>
+                <PageText display='inline' fontSize='input'>
+                  Reason for meeting
+                </PageText>
+              </FormLabel>
+              <Textarea
+                id='other-reason-for-meeting'
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                color='brand.paragraph'
+                fontSize='input'
+                h='150px'
+                {...register('otherReasonForMeeting', {
+                  maxLength: 32768
+                })}
+              />
+
+              <Box mt={1}>
+            {errors?.otherReasonForMeeting?.type === 'maxLength' && (
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Reason for meeting cannot exceed 32768 characters.
+              </PageText>
+            )}
+          </Box>
+            </FormControl>
+          </Fade>
+        </Box> */}
+
+        <Controller
+          name='timezone'
+          control={control}
+          rules={{ required: true, validate: selected => selected.value !== '' }}
+          defaultValue={{ value: '', label: '' }}
+          render={({ field: { onChange, value } }) => (
+            <FormControl id='timezone-control' isRequired mt={8} mb={20}>
+              <FormLabel htmlFor='timezone'>
+                <PageText display='inline' fontSize='input'>
+                  Your time zone
+                </PageText>
+              </FormLabel>
+
+              <Select
+                id='timezone'
+                options={TIMEZONE_OPTIONS}
+                value={value}
+                onChange={onChange}
+                components={{ DropdownIndicator }}
+                placeholder='Select'
+                closeMenuOnSelect={true}
+                selectedOptionColor='brand.option'
+                chakraStyles={chakraStyles}
+              />
+
+              <Box mt={1}>
+                {errors?.timezone && (
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Time zone is required.
+                  </PageText>
+                )}
+              </Box>
+            </FormControl>
+          )}
+        />
 
         <Center>
           <Box id='submit-application' position='relative'>
