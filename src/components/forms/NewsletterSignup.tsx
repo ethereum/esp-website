@@ -63,6 +63,12 @@ export const NewsletterSignup: FC = () => {
 
         if (!response.ok) {
           const errorText = await response.text();
+
+          // only display server error details to the user when they are 400 class errors
+          if (response.status < 400 || response.status > 499) {
+            throw new Error(errorText);
+          }
+
           toast({
             ...toastOptions,
             title: errorText,
