@@ -79,13 +79,13 @@ export const NewsletterSignup: FC = () => {
 
         toast({
           ...toastOptions,
-          title: 'You have signed up correctly!',
+          title: 'Thank you for sign up',
           status: 'success'
         });
       } catch (error) {
         toast({
           ...toastOptions,
-          title: 'Something unexpected happened, try again',
+          title: 'Something went wrong. Please try again',
           status: 'error'
         });
       }
