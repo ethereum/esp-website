@@ -4,3 +4,224 @@
 
 [build.environment]
   NODE_VERSION = "12.22.0"
+
+# Legacy pages from current site
+
+# Root langs routes
+
+[[redirects]]
+  from = "/en"
+  to = "/"
+  force = true
+[[redirects]]
+  from = "/es"
+  to = "/"
+  force = true
+[[redirects]]
+  from = "/zh"
+  to = "/"
+  force = true
+
+# Redirect old pages under a lang route
+
+[[redirects]]
+  from = "/*/support/"
+  to = "/about/"
+  force = true
+[[redirects]]
+  from = "/*/wishlist/"
+  to = "/about/"
+  force = true
+[[redirects]]
+  from = "/*/projects/"
+  to = "/about/who-we-support/"
+  force = true
+[[redirects]]
+  from = "/*/projects/circom/"
+  to = "/about/who-we-support/"
+  force = true
+[[redirects]]
+  from = "/*/projects/ethereum-on-arm/"
+  to = "/about/who-we-support/"
+  force = true
+[[redirects]]
+  from = "/*/projects/ethers-js/"
+  to = "/about/who-we-support/"
+  force = true
+[[redirects]]
+  from = "/*/projects/nethermind/"
+  to = "/about/who-we-support/"
+  force = true
+[[redirects]]
+  from = "/*/projects/turbo-geth/"
+  to = "/about/who-we-support/"
+  force = true
+[[redirects]]
+  from = "/*/projects/uniswap/"
+  to = "/about/who-we-support/"
+  force = true
+[[redirects]]
+  from = "/*/cookie-policy/"
+  to = "/cookie-policy/"
+  force = true
+[[redirects]]
+  from = "/*/faq/"
+  to = "/"
+  force = true
+[[redirects]]
+  from = "/*/grants/"
+  to = "/"
+  force = true
+[[redirects]]
+  from = "/*/guide/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/*/guide/evaluation/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/*/guide/funding/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/*/guide/inquiry/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/*/guide/onboarding/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/*/guide/proposal/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/*/guide/support/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/*/inquire/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/*/rollup-grants/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/*/local-grants/honduras/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/*/devcon-grants/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/*/local-grants/colombia/"
+  to = "/applicants/"
+  force = true
+
+# Special cases where we can't use the * operator because it generates an
+# infinite loop of redirects
+
+# The only /about page is in english
+
+[[redirects]]
+  from = "/en/about/"
+  to = "/about/"
+  force = true
+
+# Redirect old pages with no lang specified
+
+[[redirects]]
+  from = "/support/"
+  to = "/about/"
+  force = true
+[[redirects]]
+  from = "/wishlist/"
+  to = "/about/"
+  force = true
+[[redirects]]
+  from = "/projects/"
+  to = "/about/who-we-support/"
+  force = true
+[[redirects]]
+  from = "/projects/circom/"
+  to = "/about/who-we-support/"
+  force = true
+[[redirects]]
+  from = "/projects/ethereum-on-arm/"
+  to = "/about/who-we-support/"
+  force = true
+[[redirects]]
+  from = "/projects/ethers-js/"
+  to = "/about/who-we-support/"
+  force = true
+[[redirects]]
+  from = "/projects/nethermind/"
+  to = "/about/who-we-support/"
+  force = true
+[[redirects]]
+  from = "/projects/turbo-geth/"
+  to = "/about/who-we-support/"
+  force = true
+[[redirects]]
+  from = "/projects/uniswap/"
+  to = "/about/who-we-support/"
+  force = true
+[[redirects]]
+  from = "/faq/"
+  to = "/"
+  force = true
+[[redirects]]
+  from = "/grants/"
+  to = "/"
+  force = true
+[[redirects]]
+  from = "/guide/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/guide/evaluation/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/guide/funding/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/guide/inquiry/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/guide/onboarding/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/guide/proposal/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/guide/support/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/inquire/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/rollup-grants/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/local-grants/honduras/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/devcon-grants/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/local-grants/colombia/"
+  to = "/applicants/"
+  force = true
