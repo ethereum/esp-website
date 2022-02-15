@@ -59,7 +59,7 @@ export const OfficeHoursForm: FC = () => {
     formState: { errors, isValid },
     reset
   } = useForm<OfficeHoursFormData>({
-    mode: 'onChange'
+    mode: 'onBlur'
   });
   const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
 
@@ -70,6 +70,7 @@ export const OfficeHoursForm: FC = () => {
       .submit(data)
       .then(res => {
         if (res.ok) {
+          reset();
           router.push(OFFICE_HOURS_THANK_YOU_PAGE_URL);
         } else {
           toast({
@@ -86,20 +87,7 @@ export const OfficeHoursForm: FC = () => {
           throw new Error('Network response was not OK');
         }
       })
-      .catch(err => {
-        console.error('There has been a problem with your operation: ', err.message);
-
-        toast({
-          position: 'top-right',
-          title: 'Something went wrong while submitting, please try again.',
-          status: 'error',
-          duration: 5000,
-          isClosable: true,
-          containerStyle: {
-            fontFamily: 'fonts.heading'
-          }
-        });
-      });
+      .catch(err => console.error('There has been a problem with your operation: ', err.message));
   };
 
   const handleCheckbox = (value: ReasonForMeeting) => {
@@ -134,7 +122,7 @@ export const OfficeHoursForm: FC = () => {
               fontSize='input'
               {...register('firstName', {
                 required: true,
-                maxLength: { value: 40, message: 'error message' }
+                maxLength: 40
               })}
             />
 
@@ -409,7 +397,7 @@ export const OfficeHoursForm: FC = () => {
           control={control}
           rules={{ required: true, validate: selected => selected.value !== '' }}
           defaultValue={{ value: '', label: '' }}
-          render={({ field: { onChange, value } }) => (
+          render={({ field: { onChange } }) => (
             <FormControl id='project-category-control' isRequired mb={8}>
               <FormLabel htmlFor='projectCategory' mb={1}>
                 <PageText display='inline' fontSize='input'>
@@ -425,7 +413,6 @@ export const OfficeHoursForm: FC = () => {
                 <Select
                   id='project-category-select'
                   options={PROJECT_CATEGORY_OPTIONS}
-                  value={value}
                   onChange={onChange}
                   components={{ DropdownIndicator }}
                   placeholder='Select'
@@ -451,7 +438,7 @@ export const OfficeHoursForm: FC = () => {
           control={control}
           rules={{ required: true, validate: selected => selected.value !== '' }}
           defaultValue={{ value: '', label: '' }}
-          render={({ field: { onChange, value } }) => (
+          render={({ field: { onChange } }) => (
             <FormControl id='how-did-you-hear-about-ESP-control' isRequired mb={8}>
               <FormLabel htmlFor='howDidYouHearAboutESP'>
                 <PageText display='inline' fontSize='input'>
@@ -462,7 +449,6 @@ export const OfficeHoursForm: FC = () => {
               <Select
                 id='how-did-you-hear-about-ESP-select'
                 options={HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS}
-                value={value}
                 onChange={onChange}
                 components={{ DropdownIndicator }}
                 placeholder='Select'
@@ -482,8 +468,7 @@ export const OfficeHoursForm: FC = () => {
           )}
         />
 
-        {/* TODO: enable this input when available on SF's sandbox, otherwise submission will fail */}
-        {/* <Controller
+        <Controller
           name='reasonForMeeting'
           control={control}
           rules={{ required: true, validate: selected => selected.length > 0 }}
@@ -535,10 +520,9 @@ export const OfficeHoursForm: FC = () => {
               </Box>
             </FormControl>
           )}
-        /> */}
+        />
 
-        {/* TODO: enable this input when available on SF's sandbox, otherwise submission will fail */}
-        {/* <Box display={reasonForMeeting.includes(OTHER) ? 'block' : 'none'}>
+        <Box display={reasonForMeeting.includes(OTHER) ? 'block' : 'none'}>
           <Fade in={reasonForMeeting.includes(OTHER)} delay={0.25}>
             <FormControl id='other-reason-for-meeting-control' mb={8}>
               <FormLabel htmlFor='otherReasonForMeeting'>
@@ -560,22 +544,22 @@ export const OfficeHoursForm: FC = () => {
               />
 
               <Box mt={1}>
-            {errors?.otherReasonForMeeting?.type === 'maxLength' && (
-              <PageText as='small' fontSize='helpText' color='red.500'>
-                Reason for meeting cannot exceed 32768 characters.
-              </PageText>
-            )}
-          </Box>
+                {errors?.otherReasonForMeeting?.type === 'maxLength' && (
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Reason for meeting cannot exceed 32768 characters.
+                  </PageText>
+                )}
+              </Box>
             </FormControl>
           </Fade>
-        </Box> */}
+        </Box>
 
         <Controller
           name='timezone'
           control={control}
           rules={{ required: true, validate: selected => selected.value !== '' }}
           defaultValue={{ value: '', label: '' }}
-          render={({ field: { onChange, value } }) => (
+          render={({ field: { onChange } }) => (
             <FormControl id='timezone-control' isRequired mt={8} mb={20}>
               <FormLabel htmlFor='timezone'>
                 <PageText display='inline' fontSize='input'>
@@ -586,7 +570,6 @@ export const OfficeHoursForm: FC = () => {
               <Select
                 id='timezone'
                 options={TIMEZONE_OPTIONS}
-                value={value}
                 onChange={onChange}
                 components={{ DropdownIndicator }}
                 placeholder='Select'

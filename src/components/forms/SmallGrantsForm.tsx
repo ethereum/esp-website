@@ -272,9 +272,11 @@ export const SmallGrantsForm: FC = () => {
           <FormLabel htmlFor='twitter'>
             <PageText fontSize='input'>Twitter</PageText>
           </FormLabel>
+
           <PageText fontSize='input' position='absolute' bottom='15.5px' left={4} zIndex={9}>
             @
           </PageText>
+
           <Input
             id='twitter'
             type='text'
