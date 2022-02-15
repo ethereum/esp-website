@@ -40,6 +40,7 @@ export type ProjectGrantsFormData = {
   timezone: Timezone; // SF API: Time_Zone__c
   howDidYouHearAboutESP: ReferralSource; // SF API: Referral_Source__c
   referralSourceIfOther: string; // SF API: Referral_Source_if_Other__c
+  referrals: string; // SF API: Referrals__c
   uploadProposal: ProposalFile;
 };
 
