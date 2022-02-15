@@ -16,6 +16,7 @@
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@fontsource/libre-franklin": "^4.5.0",
+    "@mailchimp/mailchimp_marketing": "^3.0.74",
     "chakra-react-select": "^3.0.1",
     "chakra-ui-markdown-renderer": "^4.0.0",
     "focus-visible": "^5.2.0",
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "@types/jsforce": "^1.9.37",
+    "@types/mailchimp__mailchimp_marketing": "^3.0.3",
     "@types/node": "17.0.0",
     "@types/papaparse": "^5.3.2",
     "@types/react": "17.0.37",
