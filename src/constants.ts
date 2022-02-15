@@ -125,3 +125,6 @@ export const API_DOWNLOAD_APPLICATION_URL = '/api/download-application';
 
 // grants list
 export const CURRENT_GRANTS_QUARTERS = ['3', '4'];
+
+// proposal upload
+export const MAX_PROPOSAL_FILE_SIZE = 2147483648;
