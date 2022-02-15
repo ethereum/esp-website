@@ -26,8 +26,11 @@ const SmallGrants: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Ethereum Ecosystem Program | Small Grants</title>
-        <meta name='description' content='Small Grants' />
+        <title>Small Grants | Ethereum Foundation Ecosystem Support Program</title>
+        <meta
+          name='description'
+          content='Learn more about applying for Small Grants from the Ecosystem Support Program: criteria, how to apply and tips for submitting a great application'
+        />
       </Head>
 
       <Box bg='white' position='relative' py={{ md: 12 }}>

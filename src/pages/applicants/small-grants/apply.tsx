@@ -8,8 +8,11 @@ const OfficeHoursApply: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Ethereum Ecosystem Program | Small Grants Application</title>
-        <meta name='description' content='Small Grants Application' />
+        <title>Small Grants Application | Ethereum Foundation Ecosystem Support Program</title>
+        <meta
+          name='description'
+          content='Submit an application for a Small Grant from the Ecosystem Support Program'
+        />
       </Head>
 
       <Box bg='white' position='relative' py={{ md: 12 }} px={{ md: 24, lg: 32, xl: 72 }}>

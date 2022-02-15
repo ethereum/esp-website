@@ -11,8 +11,11 @@ const ProjectGrantsApply: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Ethereum Ecosystem Program | Project Grants Application</title>
-        <meta name='description' content='Project Grants Application' />
+        <title>Project Grants Application | Ethereum Foundation Ecosystem Support Program</title>
+        <meta
+          name='description'
+          content='Submit an application for a Project Grant from the Ecosystem Support Program'
+        />
       </Head>
 
       <Box bg='white' position='relative' py={{ md: 12 }} px={{ md: 24, lg: 32, xl: 72 }}>

@@ -10,10 +10,10 @@ const HowWeSupport: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Who We Support | Ethereum Foundation Ecosystem Support Program</title>
+        <title>How We Support | Ethereum Foundation Ecosystem Support Program</title>
         <meta
           name='description'
-          content='We support builders from many different backgrounds, all over the world. See a list of our latest grantees!'
+          content="We provide grants and other support for open source projects that strengthen Ethereum's foundations, with a particular focus on builder tools, infrastructure, research and public goods"
         />
       </Head>
 

@@ -18,8 +18,11 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Ethereum Ecosystem Program | Homepage</title>
-        <meta name='description' content='Homepage' />
+        <title>Home | Ethereum Foundation Ecosystem Support Program</title>
+        <meta
+          name='description'
+          content='The Ecosystem Support Program provides grants and other support to the builders of the Ethereum ecosystem'
+        />
       </Head>
 
       <Box mx={{ md: 12 }} bg='white' position='relative'>

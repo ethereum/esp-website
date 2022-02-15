@@ -8,7 +8,9 @@ const SmallGrantsThankYou: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Ethereum Ecosystem Program | Thank you for applying to Small Grants</title>
+        <title>
+          Thank you for applying to Small Grants | Ethereum Foundation Ecosystem Support Program
+        </title>
         <meta name='description' content='Thank you for applying to Small Grants' />
         <meta name='robots' content='noindex' />
       </Head>
