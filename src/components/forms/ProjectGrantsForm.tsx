@@ -9,12 +9,15 @@ import {
   FormControl,
   FormLabel,
   Input,
+  InputGroup,
   Stack,
-  Textarea
+  Textarea,
+  useToast
 } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
-import { FC, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { FC, useState, useRef, useCallback } from 'react';
+import { useDropzone } from 'react-dropzone';
+import { Controller, useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -35,15 +38,22 @@ import {
   PROJECT_CATEGORY_OPTIONS,
   TIMEZONE_OPTIONS
 } from './constants';
-import { PROJECT_GRANTS_THANK_YOU_PAGE_URL } from '../../constants';
+import { MAX_PROPOSAL_FILE_SIZE, PROJECT_GRANTS_THANK_YOU_PAGE_URL } from '../../constants';
 
-import { ProjectGrantsFormData, ReferralSource } from '../../types';
+import { ProjectGrantsFormData, ProposalFile, ReferralSource } from '../../types';
+import { api } from './api';
 
 const MotionBox = motion<BoxProps>(Box);
 const MotionButton = motion<ButtonProps>(Button);
 
 export const ProjectGrantsForm: FC = () => {
   const router = useRouter();
+  const toast = useToast();
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [fileName, setFileName] = useState('');
+  const [selectedFile, setSelectedFile] = useState<null | File>(null);
+  const [maxFileSizeExceeded, setMaxFileSizeExceeded] = useState(false);
+
   const [referralSource, setReferralSource] = useState<ReferralSource | unknown>({
     value: '',
     label: ''
@@ -51,19 +61,109 @@ export const ProjectGrantsForm: FC = () => {
   const {
     handleSubmit,
     register,
+    control,
+    setValue,
     formState: { errors, isValid },
     reset
   } = useForm<ProjectGrantsFormData>({
-    mode: 'onChange'
+    mode: 'onBlur'
   });
   const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
 
+  const onDrop = useCallback(
+    files => {
+      const file = files[0];
+
+      if (file.size > MAX_PROPOSAL_FILE_SIZE) {
+        setMaxFileSizeExceeded(true);
+        return;
+      }
+
+      setFileName(file.name);
+
+      console.log({ file });
+
+      const reader = new FileReader();
+      // we have to encode the file content as base64 to be able to upload it
+      reader.readAsDataURL(file);
+
+      reader.onabort = () => console.log('File reading was aborted.');
+      reader.onerror = () => console.error('File reading has failed.');
+      reader.onload = () => {
+        const base64 = reader.result as string;
+        console.log({ base64 });
+
+        const uploadedFile: ProposalFile = {
+          name: file.name,
+          type: file.type,
+          // remove `data:*/*;base64,` to retrieve the base64 encoded string only
+          content: base64.split('base64,')[1] as string,
+          path: file.path
+        };
+
+        console.log({ uploadedFile });
+
+        setValue('uploadProposal', uploadedFile, { shouldValidate: true });
+      };
+
+      toast({
+        position: 'top-right',
+        title: 'Proposal uploaded!',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+        containerStyle: {
+          fontFamily: 'fonts.heading'
+        }
+      });
+    },
+    [setValue, toast]
+  );
+  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+
   const onSubmit = (data: ProjectGrantsFormData) => {
-    router.push(PROJECT_GRANTS_THANK_YOU_PAGE_URL);
+    console.log({ data });
+
+    api.projectGrants
+      .submit(data)
+      .then(res => {
+        if (res.ok) {
+          reset();
+          router.push(PROJECT_GRANTS_THANK_YOU_PAGE_URL);
+        } else {
+          toast({
+            position: 'top-right',
+            title: 'Something went wrong while submitting, please try again.',
+            status: 'error',
+            duration: 5000,
+            isClosable: true,
+            containerStyle: {
+              fontFamily: 'fonts.heading'
+            }
+          });
+
+          throw new Error('Network response was not OK');
+        }
+      })
+      .catch(err => console.error('There has been a problem with your operation: ', err.message));
   };
 
   const handleReferralSource = (source: ReferralSource | unknown) => {
     setReferralSource(source);
+  };
+
+  const handleUploadClick = () => inputRef.current?.click();
+
+  const handleFileInput = (e: any) => {
+    const file = e.target.files[0];
+
+    setSelectedFile(file);
+    console.log({ selectedFile });
+  };
+
+  const removeFile = () => {
+    setSelectedFile(null);
+    setFileName('');
   };
 
   return (
@@ -85,10 +185,6 @@ export const ProjectGrantsForm: FC = () => {
                 </PageText>
               </FormLabel>
 
-              {/* <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              This should be the main contact we&apos;ll be talking to.
-            </PageText> */}
-
               <Input
                 id='first-name'
                 type='text'
@@ -99,8 +195,24 @@ export const ProjectGrantsForm: FC = () => {
                 _placeholder={{ fontSize: 'input' }}
                 color='brand.paragraph'
                 fontSize='input'
-                // mt={3}
+                {...register('firstName', {
+                  required: true,
+                  maxLength: 40
+                })}
               />
+
+              <Box mt={1}>
+                {errors?.firstName?.type === 'required' && (
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    First name is required.
+                  </PageText>
+                )}
+                {errors?.firstName?.type === 'maxLength' && (
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    First name cannot exceed 40 characters.
+                  </PageText>
+                )}
+              </Box>
             </FormControl>
 
             <FormControl id='last-name-control' isRequired>
@@ -119,13 +231,29 @@ export const ProjectGrantsForm: FC = () => {
                 _placeholder={{ fontSize: 'input' }}
                 color='brand.paragraph'
                 fontSize='input'
+                {...register('lastName', { required: true, maxLength: 80 })}
               />
+
+              <Box mt={1}>
+                {errors?.lastName?.type === 'required' && (
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Last name is required.
+                  </PageText>
+                )}
+                {errors?.lastName?.type === 'maxLength' && (
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Last name cannot exceed 80 characters.
+                  </PageText>
+                )}
+              </Box>
             </FormControl>
           </Flex>
 
-          <PageText as='small' fontSize='helpText' color='brand.helpText'>
-            This should be the main contact we&apos;ll be talking to.
-          </PageText>
+          {!errors?.firstName && !errors?.lastName && (
+            <PageText as='small' fontSize='helpText' color='brand.helpText'>
+              This should be the main contact we&apos;ll be talking to.
+            </PageText>
+          )}
         </Flex>
 
         <FormControl id='email-control' isRequired mb={8}>
@@ -144,11 +272,20 @@ export const ProjectGrantsForm: FC = () => {
             _placeholder={{ fontSize: 'input' }}
             color='brand.paragraph'
             fontSize='input'
+            {...register('email', { required: true })}
           />
+
+          <Box mt={1}>
+            {errors?.email?.type === 'required' && (
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Email is required.
+              </PageText>
+            )}
+          </Box>
         </FormControl>
 
-        <FormControl id='organization-name-control' isRequired mb={8}>
-          <FormLabel htmlFor='organizationName' mb={1}>
+        <FormControl id='company-control' isRequired mb={8}>
+          <FormLabel htmlFor='company' mb={1}>
             <PageText display='inline' fontSize='input'>
               Organization name
             </PageText>
@@ -160,7 +297,7 @@ export const ProjectGrantsForm: FC = () => {
           </PageText>
 
           <Input
-            id='organization-name'
+            id='company'
             type='text'
             bg='white'
             borderRadius={0}
@@ -170,7 +307,24 @@ export const ProjectGrantsForm: FC = () => {
             color='brand.paragraph'
             fontSize='input'
             mt={3}
+            {...register('company', {
+              required: true,
+              maxLength: 255
+            })}
           />
+
+          <Box mt={1}>
+            {errors?.company?.type === 'required' && (
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Organization name is required.
+              </PageText>
+            )}
+            {errors?.company?.type === 'maxLength' && (
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Organization name cannot exceed 255 characters.
+              </PageText>
+            )}
+          </Box>
         </FormControl>
 
         <FormControl id='project-name-control' isRequired mb={8}>
@@ -195,7 +349,24 @@ export const ProjectGrantsForm: FC = () => {
             color='brand.paragraph'
             fontSize='input'
             mt={3}
+            {...register('projectName', {
+              required: true,
+              maxLength: 255
+            })}
           />
+
+          <Box mt={1}>
+            {errors?.projectName?.type === 'required' && (
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Project name is required.
+              </PageText>
+            )}
+            {errors?.projectName?.type === 'maxLength' && (
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Project name cannot exceed 255 characters.
+              </PageText>
+            )}
+          </Box>
         </FormControl>
 
         <FormControl id='website-control' mb={8}>
@@ -224,7 +395,18 @@ export const ProjectGrantsForm: FC = () => {
             fontSize='input'
             pl={16}
             mt={3}
+            {...register('website', {
+              maxLength: 255
+            })}
           />
+
+          <Box mt={1}>
+            {errors?.website?.type === 'maxLength' && (
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Website cannot exceed 255 characters.
+              </PageText>
+            )}
+          </Box>
         </FormControl>
 
         <FormControl id='github-control' mb={8}>
@@ -253,7 +435,18 @@ export const ProjectGrantsForm: FC = () => {
             fontSize='input'
             pl={36}
             mt={3}
+            {...register('github', {
+              maxLength: 255
+            })}
           />
+
+          <Box mt={1}>
+            {errors?.github?.type === 'maxLength' && (
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                GitHub URL cannot exceed 255 characters.
+              </PageText>
+            )}
+          </Box>
         </FormControl>
 
         <FormControl id='twitter-control' mb={8}>
@@ -265,7 +458,7 @@ export const ProjectGrantsForm: FC = () => {
           </PageText>
 
           <PageText as='small' fontSize='helpText' color='brand.helpText'>
-            GitHub or other public repository of the project or related work.
+            Twitter handle for your team or project.
           </PageText>
 
           <Input
@@ -282,7 +475,18 @@ export const ProjectGrantsForm: FC = () => {
             fontSize='input'
             pl={8}
             mt={3}
+            {...register('twitter', {
+              maxLength: 16
+            })}
           />
+
+          <Box mt={1}>
+            {errors?.twitter?.type === 'maxLength' && (
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Twitter handle cannot exceed 16 characters.
+              </PageText>
+            )}
+          </Box>
         </FormControl>
 
         <FormControl id='team-profile-control' isRequired mb={8}>
@@ -300,9 +504,6 @@ export const ProjectGrantsForm: FC = () => {
 
           <Textarea
             id='team-profile'
-            // TODO: change this when input validation is added
-            // value={''}
-            // onChange={() => {}}
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -311,11 +512,28 @@ export const ProjectGrantsForm: FC = () => {
             fontSize='input'
             h='150px'
             mt={3}
+            {...register('teamProfile', {
+              required: true,
+              maxLength: 32768
+            })}
           />
+
+          <Box mt={1}>
+            {errors?.teamProfile?.type === 'required' && (
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Team profile is required.
+              </PageText>
+            )}
+            {errors?.teamProfile?.type === 'maxLength' && (
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Team profile cannot exceed 32768 characters.
+              </PageText>
+            )}
+          </Box>
         </FormControl>
 
-        <FormControl id='project-summary-control' isRequired mb={8}>
-          <FormLabel htmlFor='projectSummary' mb={1}>
+        <FormControl id='project-description-control' isRequired mb={8}>
+          <FormLabel htmlFor='projectDescription' mb={1}>
             <PageText display='inline' fontSize='input'>
               Brief project summary
             </PageText>
@@ -328,10 +546,7 @@ export const ProjectGrantsForm: FC = () => {
           </PageText>
 
           <Textarea
-            id='project-summary'
-            // TODO: change this when input validation is added
-            // value={''}
-            // onChange={() => {}}
+            id='project-description'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -340,32 +555,58 @@ export const ProjectGrantsForm: FC = () => {
             fontSize='input'
             h='150px'
             mt={3}
+            {...register('projectDescription', {
+              required: true,
+              maxLength: 32768
+            })}
           />
-        </FormControl>
 
-        <FormControl id='project-category-control' isRequired mb={8}>
-          <FormLabel htmlFor='projectCategory' mb={1}>
-            <PageText display='inline' fontSize='input'>
-              Project category
-            </PageText>
-          </FormLabel>
-
-          <PageText as='small' fontSize='helpText' color='brand.helpText'>
-            Please choose a category that your project best fits in.
-          </PageText>
-
-          <Box mt={3}>
-            <Select
-              id='project-category'
-              options={PROJECT_CATEGORY_OPTIONS}
-              components={{ DropdownIndicator }}
-              placeholder='Select'
-              closeMenuOnSelect={true}
-              selectedOptionColor='brand.option'
-              chakraStyles={chakraStyles}
-            />
+          <Box mt={1}>
+            {errors?.projectDescription?.type === 'required' && (
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Project description is required.
+              </PageText>
+            )}
+            {errors?.projectDescription?.type === 'maxLength' && (
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Project description cannot exceed 32768 characters.
+              </PageText>
+            )}
           </Box>
         </FormControl>
+
+        <Controller
+          name='projectCategory'
+          control={control}
+          rules={{ required: true, validate: selected => selected.value !== '' }}
+          defaultValue={{ value: '', label: '' }}
+          render={({ field: { onChange } }) => (
+            <FormControl id='project-category-control' isRequired mb={8}>
+              <FormLabel htmlFor='projectCategory' mb={1}>
+                <PageText display='inline' fontSize='input'>
+                  Project category
+                </PageText>
+              </FormLabel>
+
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Please choose a category that your project best fits in.
+              </PageText>
+
+              <Box mt={3}>
+                <Select
+                  id='project-category'
+                  options={PROJECT_CATEGORY_OPTIONS}
+                  onChange={onChange}
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
+              </Box>
+            </FormControl>
+          )}
+        />
 
         <FormControl
           id='requested-amount-control'
@@ -395,7 +636,24 @@ export const ProjectGrantsForm: FC = () => {
             color='brand.paragraph'
             fontSize='input'
             mt={3}
+            {...register('requestedAmount', {
+              required: true,
+              maxLength: 20
+            })}
           />
+
+          <Box mt={1}>
+            {errors?.projectDescription?.type === 'required' && (
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Requested amount is required.
+              </PageText>
+            )}
+            {errors?.projectDescription?.type === 'maxLength' && (
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Requested amount cannot exceed 20 characters.
+              </PageText>
+            )}
+          </Box>
         </FormControl>
 
         <Flex direction='column' mb={8}>
@@ -415,26 +673,45 @@ export const ProjectGrantsForm: FC = () => {
                 _placeholder={{ fontSize: 'input' }}
                 color='brand.paragraph'
                 fontSize='input'
+                {...register('city', {
+                  maxLength: 255
+                })}
               />
+
+              <Box mt={1}>
+                {errors?.city?.type === 'maxLength' && (
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    City name cannot exceed 32768 characters.
+                  </PageText>
+                )}
+              </Box>
             </FormControl>
 
-            <FormControl id='country-control' isRequired>
-              <FormLabel htmlFor='country'>
-                <PageText display='inline' fontSize='input'>
-                  Country
-                </PageText>
-              </FormLabel>
+            <Controller
+              name='country'
+              control={control}
+              defaultValue={{ value: '', label: '' }}
+              render={({ field: { onChange } }) => (
+                <FormControl id='country-control'>
+                  <FormLabel htmlFor='country'>
+                    <PageText display='inline' fontSize='input'>
+                      Country
+                    </PageText>
+                  </FormLabel>
 
-              <Select
-                id='country'
-                options={COUNTRY_OPTIONS}
-                components={{ DropdownIndicator }}
-                placeholder='Select'
-                closeMenuOnSelect={true}
-                selectedOptionColor='brand.option'
-                chakraStyles={chakraStyles}
-              />
-            </FormControl>
+                  <Select
+                    id='country'
+                    options={COUNTRY_OPTIONS}
+                    onChange={onChange}
+                    components={{ DropdownIndicator }}
+                    placeholder='Select'
+                    closeMenuOnSelect={true}
+                    selectedOptionColor='brand.option'
+                    chakraStyles={chakraStyles}
+                  />
+                </FormControl>
+              )}
+            />
           </Flex>
 
           <PageText as='small' fontSize='helpText' color='brand.helpText'>
@@ -442,105 +719,161 @@ export const ProjectGrantsForm: FC = () => {
           </PageText>
         </Flex>
 
-        <FormControl id='timezone-control' isRequired mb={8}>
-          <FormLabel htmlFor='timezone' mb={1}>
-            <PageText display='inline' fontSize='input'>
-              Your time zone
-            </PageText>
-          </FormLabel>
+        <Controller
+          name='timezone'
+          control={control}
+          rules={{ required: true, validate: selected => selected.value !== '' }}
+          defaultValue={{ value: '', label: '' }}
+          render={({ field: { onChange } }) => (
+            <FormControl id='timezone-control' isRequired mb={8}>
+              <FormLabel htmlFor='timezone' mb={1}>
+                <PageText display='inline' fontSize='input'>
+                  Your time zone
+                </PageText>
+              </FormLabel>
 
-          <PageText as='small' fontSize='helpText' color='brand.helpText'>
-            Please choose your current time zone to help us schedule calls.
-          </PageText>
-
-          <Box mt={3}>
-            <Select
-              id='timezone'
-              options={TIMEZONE_OPTIONS}
-              components={{ DropdownIndicator }}
-              placeholder='Select'
-              closeMenuOnSelect={true}
-              selectedOptionColor='brand.option'
-              chakraStyles={chakraStyles}
-            />
-          </Box>
-        </FormControl>
-
-        <FormControl id='how-did-you-hear-about-ESP-control' isRequired mb={8}>
-          <FormLabel htmlFor='howDidYouHearAboutESP'>
-            <PageText display='inline' fontSize='input'>
-              How did you hear about the Ecosystem Support Program?
-            </PageText>
-          </FormLabel>
-
-          <Select
-            id='how-did-you-hear-about-ESP'
-            options={HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS}
-            components={{ DropdownIndicator }}
-            placeholder='Select'
-            closeMenuOnSelect={true}
-            selectedOptionColor='brand.option'
-            chakraStyles={chakraStyles}
-            onChange={handleReferralSource}
-          />
-        </FormControl>
-
-        <Fade in={(referralSource as ReferralSource).value === OTHER} delay={0.25}>
-          <FormControl
-            id='referred-control'
-            mb={12}
-            display={(referralSource as ReferralSource).value === OTHER ? 'block' : 'none'}
-          >
-            <FormLabel htmlFor='referred' mb={1}>
-              <PageText fontSize='input'>
-                Did anyone recommend that you contact Ecosystem Support?
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Please choose your current time zone to help us schedule calls.
               </PageText>
+
+              <Box mt={3}>
+                <Select
+                  id='timezone'
+                  options={TIMEZONE_OPTIONS}
+                  onChange={onChange}
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
+              </Box>
+
+              <Box mt={1}>
+                {errors?.timezone && (
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Time zone is required.
+                  </PageText>
+                )}
+              </Box>
+            </FormControl>
+          )}
+        />
+
+        <Controller
+          name='howDidYouHearAboutESP'
+          control={control}
+          defaultValue={{ value: '', label: '' }}
+          render={({ field: { onChange } }) => (
+            <FormControl id='how-did-you-hear-about-ESP-control' isRequired mb={8}>
+              <FormLabel htmlFor='howDidYouHearAboutESP'>
+                <PageText display='inline' fontSize='input'>
+                  How did you hear about the Ecosystem Support Program?
+                </PageText>
+              </FormLabel>
+
+              <Select
+                id='how-did-you-hear-about-ESP'
+                options={HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS}
+                components={{ DropdownIndicator }}
+                placeholder='Select'
+                closeMenuOnSelect={true}
+                selectedOptionColor='brand.option'
+                chakraStyles={chakraStyles}
+                onChange={handleReferralSource}
+              />
+            </FormControl>
+          )}
+        />
+
+        <Box display={(referralSource as ReferralSource).value === OTHER ? 'block' : 'none'}>
+          <Fade in={(referralSource as ReferralSource).value === OTHER} delay={0.25}>
+            <FormControl id='referral-source-if-other-control' mb={12}>
+              <FormLabel htmlFor='referralSourceIfOther' mb={1}>
+                <PageText fontSize='input'>
+                  Did anyone recommend that you contact Ecosystem Support?
+                </PageText>
+              </FormLabel>
+
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Please write the name of the person who recommended that you apply.
+              </PageText>
+
+              <Input
+                id='referral-source-if-other'
+                type='text'
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                h='56px'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+                mt={3}
+                {...register('referralSourceIfOther', {
+                  maxLength: 255
+                })}
+              />
+            </FormControl>
+          </Fade>
+        </Box>
+
+        <FormControl id='upload-proposal' {...getRootProps()}>
+          <InputGroup>
+            <FormLabel htmlFor='uploadProposal'>
+              <Input
+                id='upload-proposal'
+                type='file'
+                role='button'
+                aria-label='File Upload'
+                hidden
+                {...getInputProps({ name: 'base64' })}
+                onChange={handleFileInput}
+              />
             </FormLabel>
+            <Flex
+              bgColor='brand.uploadProposal'
+              justifyContent='space-evenly'
+              alignItems='center'
+              cursor='pointer'
+              py={9}
+              px={{ base: 6, md: 16 }}
+              mt={12}
+              mb={12}
+              onClick={handleUploadClick}
+            >
+              <Box mr={6} flexShrink={0}>
+                <Image src={uploadSVG} alt='Upload file' height={42} width={44} />
+              </Box>
 
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Please write the name of the person who recommended that you apply.
-            </PageText>
+              <Stack>
+                <PageText fontSize='input' fontWeight={400} lineHeight='21px' mb={-1}>
+                  <strong>Upload the proposal.</strong> Click here or drag file to this box.
+                </PageText>
 
-            <Input
-              id='referred'
-              type='text'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-            />
-          </FormControl>
-        </Fade>
+                <PageText as='small' fontSize='helpText' color='brand.helpText' lineHeight='17px'>
+                  If you already have a proposal or document you&apos;d ike to share, please upload
+                  it here. This is optional, but highly recommended.
+                </PageText>
 
-        <Flex
-          bgColor='brand.uploadProposal'
-          justifyContent='space-evenly'
-          alignItems='center'
-          cursor='pointer'
-          py={9}
-          px={{ base: 6, md: 16 }}
-          mt={12}
-          mb={12}
-        >
-          <Box mr={6} flexShrink={0}>
-            <Image src={uploadSVG} alt='Upload file' height={42} width={44} />
-          </Box>
+                {errors?.uploadProposal && (
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    File size cannot exceed 2GB.
+                  </PageText>
+                )}
 
-          <Stack>
-            <PageText fontSize='input' fontWeight={400} lineHeight='21px' mb={-1}>
-              <strong>Upload the proposal.</strong> Click here or drag file to this box.
-            </PageText>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText' lineHeight='17px'>
-              If you already have a proposal or document you&apos;d ike to share, please upload it
-              here. This is optional, but highly recommended.
-            </PageText>
-          </Stack>
-        </Flex>
+                {fileName.length > 0 && (
+                  <Flex alignItems='center'>
+                    <PageText mr={4}>{fileName}</PageText>
+                    <Button type='reset' onClick={removeFile} px={2} border='1px solid #7c7ba1'>
+                      X
+                    </Button>
+                  </Flex>
+                )}
+              </Stack>
+            </Flex>
+          </InputGroup>
+        </FormControl>
 
         <Center>
           <Box id='submit-application' position='relative'>
@@ -550,7 +883,7 @@ export const ProjectGrantsForm: FC = () => {
               w='310px'
               position='absolute'
               animate={shadowBoxControl}
-              opacity={!isValid ? 0 : 1}
+              // opacity={!isValid ? 0 : 1}
             />
 
             <MotionButton
@@ -559,12 +892,12 @@ export const ProjectGrantsForm: FC = () => {
               py={7}
               borderRadius={0}
               type='submit'
-              isDisabled={!isValid}
+              // isDisabled={!isValid}
               _hover={{ bg: 'brand.hover' }}
               whileHover={{ x: -1.5, y: -1.5 }}
               onMouseEnter={() => setButtonHovered(true)}
               onMouseLeave={() => setButtonHovered(false)}
-              pointerEvents={!isValid ? 'none' : 'auto'}
+              // pointerEvents={!isValid ? 'none' : 'auto'}
             >
               <ImportantText color='white'>Submit Application</ImportantText>
 
