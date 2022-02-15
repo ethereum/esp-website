@@ -1,4 +1,5 @@
 import {
+  COUNTRY_OPTIONS,
   HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
   PROJECT_CATEGORY_OPTIONS,
   REASONS_FOR_MEETING,
@@ -14,24 +15,32 @@ export type NewsletterFormData = {
   email: string;
 };
 
+export interface ProposalFile {
+  name: string;
+  type: string;
+  content: string;
+  path: string;
+}
+
 export type ProjectGrantsFormData = {
-  projectName: string;
-  organizationName: string;
-  website: string;
-  github: string;
-  twitter: string;
-  teamProfile: string;
-  projectSummary: string;
-  projectCategory: string;
-  requestedAmount: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  city: string;
-  country: string;
-  timezone: string;
-  howDidYouHearAboutESP: string;
-  recommendation: string;
+  firstName: string; // SF API: FirstName
+  lastName: string; // SF API: LastName
+  email: string; // SF API: Email
+  company: string; // SF API: Company
+  projectName: string; // SF API: Project_Name__c
+  website: string; // SF API: Website
+  github: string; // SF API: Github_Link__c
+  twitter: string; // SF API: Twitter__c
+  teamProfile: string; // SF API: Team_Profile__c
+  projectDescription: string; // SF API: Project_Description__c
+  projectCategory: ProjectCategory; // SF API: Project_Category__c
+  requestedAmount: string; // SF API: Requested_Amount__c
+  city: string; // SF API: npsp__CompanyCity__c
+  country: Country; // SF API: npsp__CompanyCountry__c
+  timezone: Timezone; // SF API: Time_Zone__c
+  howDidYouHearAboutESP: ReferralSource; // SF API: Referral_Source__c
+  referralSourceIfOther: string; // SF API: Referral_Source_if_Other__c
+  uploadProposal: ProposalFile;
 };
 
 export interface OfficeHoursFormData {
@@ -57,6 +66,8 @@ export type RepeatApplicant = 'Yes' | 'No';
 export type ReasonForMeeting = typeof REASONS_FOR_MEETING;
 
 export type ProjectCategory = typeof PROJECT_CATEGORY_OPTIONS[number];
+
+export type Country = typeof COUNTRY_OPTIONS[number];
 
 export type ReferralSource = typeof HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS[number];
 
