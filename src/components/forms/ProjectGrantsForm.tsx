@@ -81,8 +81,6 @@ export const ProjectGrantsForm: FC = () => {
 
       setFileName(file.name);
 
-      console.log({ file });
-
       const reader = new FileReader();
       // we have to encode the file content as base64 to be able to upload it
       reader.readAsDataURL(file);
@@ -91,17 +89,14 @@ export const ProjectGrantsForm: FC = () => {
       reader.onerror = () => console.error('File reading has failed.');
       reader.onload = () => {
         const base64 = reader.result as string;
-        console.log({ base64 });
 
         const uploadedFile: ProposalFile = {
           name: file.name,
           type: file.type,
-          // remove `data:*/*;base64,` to retrieve the base64 encoded string only
+          // `data:*/*;base64,` needs to be removed to retrieve the base64 encoded string only
           content: base64.split('base64,')[1] as string,
           path: file.path
         };
-
-        console.log({ uploadedFile });
 
         setValue('uploadProposal', uploadedFile, { shouldValidate: true });
       };
@@ -122,8 +117,6 @@ export const ProjectGrantsForm: FC = () => {
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   const onSubmit = (data: ProjectGrantsFormData) => {
-    console.log({ data });
-
     api.projectGrants
       .submit(data)
       .then(res => {
@@ -158,7 +151,6 @@ export const ProjectGrantsForm: FC = () => {
     const file = e.target.files[0];
 
     setSelectedFile(file);
-    console.log({ selectedFile });
   };
 
   const removeFile = () => {
@@ -681,7 +673,7 @@ export const ProjectGrantsForm: FC = () => {
               <Box mt={1}>
                 {errors?.city?.type === 'maxLength' && (
                   <PageText as='small' fontSize='helpText' color='red.500'>
-                    City name cannot exceed 32768 characters.
+                    City name cannot exceed 255 characters.
                   </PageText>
                 )}
               </Box>
@@ -780,7 +772,10 @@ export const ProjectGrantsForm: FC = () => {
                 closeMenuOnSelect={true}
                 selectedOptionColor='brand.option'
                 chakraStyles={chakraStyles}
-                onChange={handleReferralSource}
+                onChange={(selected: any) => {
+                  onChange(selected);
+                  handleReferralSource(selected.value);
+                }}
               />
             </FormControl>
           )}
@@ -788,17 +783,10 @@ export const ProjectGrantsForm: FC = () => {
 
         <Box display={(referralSource as ReferralSource).value === OTHER ? 'block' : 'none'}>
           <Fade in={(referralSource as ReferralSource).value === OTHER} delay={0.25}>
-            <FormControl id='referral-source-if-other-control' mb={12}>
-              <FormLabel htmlFor='referralSourceIfOther' mb={1}>
-                <PageText fontSize='input'>
-                  Did anyone recommend that you contact Ecosystem Support?
-                </PageText>
+            <FormControl id='referral-source-if-other-control' mb={8}>
+              <FormLabel htmlFor='referralSourceIfOther'>
+                <PageText fontSize='input'>If Other, explain how</PageText>
               </FormLabel>
-
-              <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                Please write the name of the person who recommended that you apply.
-              </PageText>
-
               <Input
                 id='referral-source-if-other'
                 type='text'
@@ -814,9 +802,53 @@ export const ProjectGrantsForm: FC = () => {
                   maxLength: 255
                 })}
               />
+
+              <Box mt={1}>
+                {errors?.referralSourceIfOther?.type === 'maxLength' && (
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Referral source cannot exceed 255 characters.
+                  </PageText>
+                )}
+              </Box>
             </FormControl>
           </Fade>
         </Box>
+
+        <FormControl id='referrals' mb={12}>
+          <FormLabel htmlFor='referrals' mb={1}>
+            <PageText fontSize='input'>
+              Did anyone recommend that you contact Ecosystem Support?
+            </PageText>
+          </FormLabel>
+
+          <PageText as='small' fontSize='helpText' color='brand.helpText'>
+            Please write the name of the person who recommended that you apply.
+          </PageText>
+
+          <Input
+            id='referrals'
+            type='text'
+            bg='white'
+            borderRadius={0}
+            borderColor='brand.border'
+            h='56px'
+            _placeholder={{ fontSize: 'input' }}
+            color='brand.paragraph'
+            fontSize='input'
+            mt={3}
+            {...register('referrals', {
+              maxLength: 150
+            })}
+          />
+
+          <Box mt={1}>
+            {errors?.referralSourceIfOther?.type === 'maxLength' && (
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Referral name cannot exceed 150 characters.
+              </PageText>
+            )}
+          </Box>
+        </FormControl>
 
         <FormControl id='upload-proposal' {...getRootProps()}>
           <InputGroup>

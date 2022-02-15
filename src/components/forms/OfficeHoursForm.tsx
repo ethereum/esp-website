@@ -64,8 +64,6 @@ export const OfficeHoursForm: FC = () => {
   const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
 
   const onSubmit = (data: OfficeHoursFormData) => {
-    console.log({ data });
-
     api.officeHours
       .submit(data)
       .then(res => {

@@ -21,16 +21,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     timezone: Time_Zone__c,
     howDidYouHearAboutESP: Referral_Source__c,
     referralSourceIfOther: Referral_Source_if_Other__c,
+    referrals: Referrals__c,
     uploadProposal
   } = body;
-  const { SF_LOGIN_URL, SF_USERNAME, SF_PASSWORD, SF_SECURITY_TOKEN } = process.env;
+  const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
+    process.env;
 
   const conn = new jsforce.Connection({
     // you can change loginUrl to connect to sandbox or prerelease env.
-    loginUrl: SF_LOGIN_URL
+    loginUrl: SF_PROD_LOGIN_URL
   });
 
-  conn.login(SF_USERNAME!, `${SF_PASSWORD}${SF_SECURITY_TOKEN}`, err => {
+  conn.login(SF_PROD_USERNAME!, `${SF_PROD_PASSWORD}${SF_PROD_SECURITY_TOKEN}`, err => {
     if (err) {
       return console.error(err);
     }
@@ -57,7 +59,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         npsp__CompanyCountry__c,
         Time_Zone__c,
         Referral_Source__c,
-        Referral_Source_if_Other__c
+        Referral_Source_if_Other__c,
+        Referrals__c
         // TODO: add RecordTypeId when defined
       },
       (err, ret) => {

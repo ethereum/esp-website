@@ -18,14 +18,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     otherReasonForMeeting: Reason_for_meeting_if_Other__c,
     timezone: Time_Zone__c
   } = body;
-  const { SF_LOGIN_URL, SF_USERNAME, SF_PASSWORD, SF_SECURITY_TOKEN } = process.env;
+  const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
+    process.env;
 
   const conn = new jsforce.Connection({
     // you can change loginUrl to connect to sandbox or prerelease env.
-    loginUrl: SF_LOGIN_URL
+    loginUrl: SF_PROD_LOGIN_URL
   });
 
-  conn.login(SF_USERNAME!, `${SF_PASSWORD}${SF_SECURITY_TOKEN}`, err => {
+  conn.login(SF_PROD_USERNAME!, `${SF_PROD_PASSWORD}${SF_PROD_SECURITY_TOKEN}`, err => {
     if (err) {
       return console.error(err);
     }
