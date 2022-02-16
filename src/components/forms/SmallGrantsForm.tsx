@@ -40,10 +40,10 @@ import { SMALL_GRANTS_THANK_YOU_PAGE_URL } from '../../constants';
 
 import {
   IndividualOrTeam,
-  OfficeHoursFormData,
   ProjectCategory,
   ProjectGrantsFormData,
-  RepeatApplicant
+  RepeatApplicant,
+  SmallGrantsFormData
 } from '../../types';
 
 const MotionBox = motion<BoxProps>(Box);
@@ -64,11 +64,11 @@ export const SmallGrantsForm: FC = () => {
     formState: { errors, isValid },
     reset
   } = useForm<ProjectGrantsFormData>({
-    mode: 'onChange'
+    mode: 'onBlur'
   });
   const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
 
-  const onSubmit = (data: OfficeHoursFormData) => {
+  const onSubmit = (data: SmallGrantsFormData) => {
     router.push(SMALL_GRANTS_THANK_YOU_PAGE_URL);
   };
 
@@ -111,7 +111,26 @@ export const SmallGrantsForm: FC = () => {
               _placeholder={{ fontSize: 'input' }}
               color='brand.paragraph'
               fontSize='input'
+              {...register('firstName', {
+                required: true,
+                maxLength: 40
+              })}
             />
+
+            {errors?.firstName?.type === 'required' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  First name is required.
+                </PageText>
+              </Box>
+            )}
+            {errors?.firstName?.type === 'maxLength' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  First name cannot exceed 40 characters.
+                </PageText>
+              </Box>
+            )}
           </FormControl>
 
           <FormControl id='last-name-control' isRequired mb={8}>
@@ -130,7 +149,23 @@ export const SmallGrantsForm: FC = () => {
               _placeholder={{ fontSize: 'input' }}
               color='brand.paragraph'
               fontSize='input'
+              {...register('lastName', { required: true, maxLength: 80 })}
             />
+
+            {errors?.lastName?.type === 'required' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Last name is required.
+                </PageText>
+              </Box>
+            )}
+            {errors?.lastName?.type === 'maxLength' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Last name cannot exceed 80 characters.
+                </PageText>
+              </Box>
+            )}
           </FormControl>
         </Flex>
 
@@ -150,7 +185,16 @@ export const SmallGrantsForm: FC = () => {
             _placeholder={{ fontSize: 'input' }}
             color='brand.paragraph'
             fontSize='input'
+            {...register('email', { required: true })}
           />
+
+          {errors?.email?.type === 'required' && (
+            <Box mt={1}>
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Email is required.
+              </PageText>
+            </Box>
+          )}
         </FormControl>
 
         <FormControl
