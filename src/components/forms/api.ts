@@ -1,3 +1,4 @@
+import { addTimestamp } from './../../utils/addTimestamp';
 import { OfficeHoursFormData, ProjectGrantsFormData } from '../../types';
 
 export const api = {
@@ -8,6 +9,7 @@ export const api = {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...data,
+          email: addTimestamp(data.email),
           projectCategory: data.projectCategory.value,
           howDidYouHearAboutESP: data.howDidYouHearAboutESP.value,
           // Multipickist values (reasonForMeeting) in SF are stored in a string that separates each value by a semicolon
@@ -27,12 +29,13 @@ export const api = {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...data,
+          email: addTimestamp(data.email),
           website: `https://${data.website}`,
           github: `https://github.com/${data.github}`,
-          projectCategory: data.projectCategory.value,
+          // projectCategory: data.projectCategory.value,
           country: data.country.value,
-          timezone: data.timezone.value,
-          howDidYouHearAboutESP: data.howDidYouHearAboutESP.value
+          timezone: data.timezone.value
+          // howDidYouHearAboutESP: data.howDidYouHearAboutESP.value
           // TODO: add recordTypeFlag when defined
         })
       };
