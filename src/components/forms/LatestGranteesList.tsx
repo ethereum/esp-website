@@ -8,7 +8,7 @@ import { FC } from 'react';
 import { PageText, StepHeading } from '../UI';
 import { GrantsListTheme } from './GrantsListTheme';
 
-import granteesTwitterLogoSVG from '../../public/images/grantees-twitter-logo.svg';
+import granteesTwitterLogoSVG from '../../../public/images/grantees-twitter-logo.svg';
 
 import { Grant } from '../../types';
 

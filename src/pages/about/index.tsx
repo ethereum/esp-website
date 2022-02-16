@@ -5,7 +5,7 @@ import Head from 'next/head';
 
 import { PageSection, PageText } from '../../components/UI';
 
-import aboutSVG from '../../public/images/about.svg';
+import aboutSVG from '../../../public/images/about.svg';
 
 const About: NextPage = () => {
   return (

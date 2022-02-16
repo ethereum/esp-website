@@ -12,7 +12,7 @@ import {
   WHO_WE_SUPPORT_URL
 } from '../../constants';
 
-import aboutHero from '../../public/images/about-hero.svg';
+import aboutHero from '../../../public/images/about-hero.svg';
 
 export const AboutLayout: FC = ({ children }) => {
   const router = useRouter();

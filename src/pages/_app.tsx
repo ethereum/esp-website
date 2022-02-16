@@ -14,9 +14,9 @@ import '@fontsource/libre-franklin/300.css';
 import '@fontsource/libre-franklin/400.css';
 import '@fontsource/libre-franklin/700.css';
 
-import favicon from '../public/images/favicon.ico';
-import favicon16 from '../public/images/favicon-16x16.png';
-import favicon32 from '../public/images/favicon-32x32.png';
+import favicon from '../../public/images/favicon.ico';
+import favicon16 from '../../public/images/favicon-16x16.png';
+import favicon32 from '../../public/images/favicon-32x32.png';
 
 import { ABOUT_URL, APPLICANTS_URL, HOME_URL } from '../constants';
 

@@ -6,12 +6,12 @@ import Head from 'next/head';
 import { ApplicationTypeCard, PageSection, PageSubheading, PageText } from '../../components/UI';
 import { ApplicantsSidebar } from '../../components';
 
-import softwareDevelopersSVG from '../../public/images/software-developers-vector.svg';
-import researchersSVG from '../../public/images/researchers-vector.svg';
-import academicsSVG from '../../public/images/academics-vector.svg';
-import communityOrganizersSVG from '../../public/images/community-organizers-vector.svg';
-import designersSVG from '../../public/images/designers-vector.svg';
-import otherGrantsProgramsSVG from '../../public/images/other-grant-programs-vector.svg';
+import softwareDevelopersSVG from '../../../public/images/software-developers-vector.svg';
+import researchersSVG from '../../../public/images/researchers-vector.svg';
+import academicsSVG from '../../../public/images/academics-vector.svg';
+import communityOrganizersSVG from '../../../public/images/community-organizers-vector.svg';
+import designersSVG from '../../../public/images/designers-vector.svg';
+import otherGrantsProgramsSVG from '../../../public/images/other-grant-programs-vector.svg';
 
 import {
   OFFICE_HOURS_URL,

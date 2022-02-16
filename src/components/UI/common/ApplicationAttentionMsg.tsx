@@ -4,7 +4,7 @@ import { FC } from 'react';
 
 import { PageText } from '../text';
 
-import attentionSVG from '../../../public/images/attention.svg';
+import attentionSVG from '../../../../public/images/attention.svg';
 
 import { OFFICE_HOURS_URL } from '../../../constants';
 
