@@ -13,7 +13,7 @@ import { ABOUT_URL, APPLICANTS_URL, HOME_URL } from '../../constants';
 export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
   const router = useRouter();
 
-  function renderContent(): ReactNode {
+  const renderContent = (): ReactNode => {
     if (router.pathname === HOME_URL) {
       return (
         <>
@@ -45,7 +45,7 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
     }
 
     return children;
-  }
+  };
 
   return (
     <Container maxW='100%' p={0} {...props}>
