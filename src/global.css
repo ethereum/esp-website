@@ -3,9 +3,9 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('./public/fonts/MaisonNeueMono-Bold.ttf') format('truetype'),
-    url('./public/fonts/MaisonNeueMono-Bold.woff2') format('woff2'),
-    url('./public/fonts/MaisonNeueMono-Bold.woff') format('woff');
+  src: url('/fonts/MaisonNeueMono-Bold.ttf') format('truetype'),
+    url('/fonts/MaisonNeueMono-Bold.woff2') format('woff2'),
+    url('/fonts/MaisonNeueMono-Bold.woff') format('woff');
 }
 
 html {

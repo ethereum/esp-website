@@ -5,12 +5,12 @@ import Head from 'next/head';
 
 import { HomeAboutCard, PageSection, PageText } from '../components/UI';
 
-import smallSucculentSVG from '../public/images/small-succulent.svg';
-import mediumSucculentSVG from '../public/images/medium-succulent.svg';
-import bigSucculentSVG from '../public/images/big-succulent.svg';
-import whatWeSupportTreeSVG from '../public/images/what-we-support-tree.svg';
-import whoWeSupportRootsSVG from '../public/images/who-we-support-roots.svg';
-import howWeSupportRootsSVG from '../public/images/how-we-support-roots.svg';
+import smallSucculentSVG from '../../public/images/small-succulent.svg';
+import mediumSucculentSVG from '../../public/images/medium-succulent.svg';
+import bigSucculentSVG from '../../public/images/big-succulent.svg';
+import whatWeSupportTreeSVG from '../../public/images/what-we-support-tree.svg';
+import whoWeSupportRootsSVG from '../../public/images/who-we-support-roots.svg';
+import howWeSupportRootsSVG from '../../public/images/how-we-support-roots.svg';
 
 import { ABOUT_URL, HOW_WE_SUPPORT_URL, WHO_WE_SUPPORT_URL } from '../constants';
 
