@@ -841,7 +841,7 @@ export const ProjectGrantsForm: FC = () => {
         <Controller
           name='uploadProposal'
           control={control}
-          rules={{ validate: file => file.size < MAX_PROPOSAL_FILE_SIZE }}
+          rules={{ validate: file => (file ? file.size < MAX_PROPOSAL_FILE_SIZE : true) }}
           defaultValue={undefined}
           render={({ field: { onChange } }) => (
             <FormControl id='upload-proposal' {...getRootProps()}>
