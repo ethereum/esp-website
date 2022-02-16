@@ -18,6 +18,7 @@ export type NewsletterFormData = {
 export interface ProposalFile {
   name: string;
   type: string;
+  size: number;
   content: string;
   path: string;
 }

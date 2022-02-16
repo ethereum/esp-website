@@ -15,7 +15,7 @@ import {
   useToast
 } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
-import { FC, useState, useRef, useCallback } from 'react';
+import { FC, MouseEvent, useState, useRef, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Controller, useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
@@ -42,6 +42,7 @@ import { MAX_PROPOSAL_FILE_SIZE, PROJECT_GRANTS_THANK_YOU_PAGE_URL } from '../..
 
 import { ProjectGrantsFormData, ProposalFile, ReferralSource } from '../../types';
 import { api } from './api';
+import { RemoveIcon } from '../UI/icons';
 
 const MotionBox = motion<BoxProps>(Box);
 const MotionButton = motion<ButtonProps>(Button);
@@ -50,9 +51,7 @@ export const ProjectGrantsForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const [fileName, setFileName] = useState('');
   const [selectedFile, setSelectedFile] = useState<null | File>(null);
-  const [maxFileSizeExceeded, setMaxFileSizeExceeded] = useState(false);
 
   const [referralSource, setReferralSource] = useState<ReferralSource | unknown>({
     value: '',
@@ -74,12 +73,7 @@ export const ProjectGrantsForm: FC = () => {
     files => {
       const file = files[0];
 
-      if (file.size > MAX_PROPOSAL_FILE_SIZE) {
-        setMaxFileSizeExceeded(true);
-        return;
-      }
-
-      setFileName(file.name);
+      setSelectedFile(file);
 
       const reader = new FileReader();
       // we have to encode the file content as base64 to be able to upload it
@@ -93,6 +87,7 @@ export const ProjectGrantsForm: FC = () => {
         const uploadedFile: ProposalFile = {
           name: file.name,
           type: file.type,
+          size: file.size,
           // `data:*/*;base64,` needs to be removed to retrieve the base64 encoded string only
           content: base64.split('base64,')[1] as string,
           path: file.path
@@ -141,21 +136,14 @@ export const ProjectGrantsForm: FC = () => {
       .catch(err => console.error('There has been a problem with your operation: ', err.message));
   };
 
-  const handleReferralSource = (source: ReferralSource | unknown) => {
+  const handleReferralSource = (source: ReferralSource) => {
     setReferralSource(source);
   };
 
   const handleUploadClick = () => inputRef.current?.click();
-
-  const handleFileInput = (e: any) => {
-    const file = e.target.files[0];
-
-    setSelectedFile(file);
-  };
-
-  const removeFile = () => {
+  const removeFile = (e: MouseEvent<HTMLInputElement>) => {
+    e.stopPropagation();
     setSelectedFile(null);
-    setFileName('');
   };
 
   return (
@@ -567,7 +555,7 @@ export const ProjectGrantsForm: FC = () => {
           </Box>
         </FormControl>
 
-        <Controller
+        {/* <Controller
           name='projectCategory'
           control={control}
           rules={{ required: true, validate: selected => selected.value !== '' }}
@@ -598,7 +586,7 @@ export const ProjectGrantsForm: FC = () => {
               </Box>
             </FormControl>
           )}
-        />
+        /> */}
 
         <FormControl
           id='requested-amount-control'
@@ -752,12 +740,12 @@ export const ProjectGrantsForm: FC = () => {
           )}
         />
 
-        <Controller
+        {/* <Controller
           name='howDidYouHearAboutESP'
           control={control}
           defaultValue={{ value: '', label: '' }}
           render={({ field: { onChange } }) => (
-            <FormControl id='how-did-you-hear-about-ESP-control' isRequired mb={8}>
+            <FormControl id='how-did-you-hear-about-ESP-control' mb={8}>
               <FormLabel htmlFor='howDidYouHearAboutESP'>
                 <PageText display='inline' fontSize='input'>
                   How did you hear about the Ecosystem Support Program?
@@ -774,18 +762,18 @@ export const ProjectGrantsForm: FC = () => {
                 chakraStyles={chakraStyles}
                 onChange={(selected: any) => {
                   onChange(selected);
-                  handleReferralSource(selected.value);
+                  handleReferralSource(selected);
                 }}
               />
             </FormControl>
           )}
-        />
+        /> */}
 
-        <Box display={(referralSource as ReferralSource).value === OTHER ? 'block' : 'none'}>
+        {/* <Box display={(referralSource as ReferralSource).value === OTHER ? 'block' : 'none'}>
           <Fade in={(referralSource as ReferralSource).value === OTHER} delay={0.25}>
             <FormControl id='referral-source-if-other-control' mb={8}>
               <FormLabel htmlFor='referralSourceIfOther'>
-                <PageText fontSize='input'>If Other, explain how</PageText>
+                <PageText fontSize='input'>If other, explain how</PageText>
               </FormLabel>
               <Input
                 id='referral-source-if-other'
@@ -812,7 +800,7 @@ export const ProjectGrantsForm: FC = () => {
               </Box>
             </FormControl>
           </Fade>
-        </Box>
+        </Box> */}
 
         <FormControl id='referrals' mb={12}>
           <FormLabel htmlFor='referrals' mb={1}>
@@ -850,62 +838,92 @@ export const ProjectGrantsForm: FC = () => {
           </Box>
         </FormControl>
 
-        <FormControl id='upload-proposal' {...getRootProps()}>
-          <InputGroup>
-            <FormLabel htmlFor='uploadProposal'>
-              <Input
-                id='upload-proposal'
-                type='file'
-                role='button'
-                aria-label='File Upload'
-                hidden
-                {...getInputProps({ name: 'base64' })}
-                onChange={handleFileInput}
-              />
-            </FormLabel>
-            <Flex
-              bgColor='brand.uploadProposal'
-              justifyContent='space-evenly'
-              alignItems='center'
-              cursor='pointer'
-              py={9}
-              px={{ base: 6, md: 16 }}
-              mt={12}
-              mb={12}
-              onClick={handleUploadClick}
-            >
-              <Box mr={6} flexShrink={0}>
-                <Image src={uploadSVG} alt='Upload file' height={42} width={44} />
-              </Box>
+        <Controller
+          name='uploadProposal'
+          control={control}
+          rules={{ validate: file => file.size < MAX_PROPOSAL_FILE_SIZE }}
+          defaultValue={undefined}
+          render={({ field: { onChange } }) => (
+            <FormControl id='upload-proposal' {...getRootProps()}>
+              <InputGroup>
+                <Input
+                  id='upload-proposal'
+                  type='file'
+                  role='button'
+                  aria-label='File Upload'
+                  hidden
+                  {...getInputProps({ name: 'base64' })}
+                  onChange={onChange}
+                />
+                <Box
+                  bgColor='brand.uploadProposal'
+                  justifyContent='space-evenly'
+                  py={9}
+                  px={{ base: 6, md: 16 }}
+                  mt={12}
+                  mb={12}
+                >
+                  <Flex
+                    alignItems='center'
+                    cursor='pointer'
+                    onClick={handleUploadClick}
+                    mb={selectedFile ? 4 : 0}
+                  >
+                    <Box mr={6} flexShrink={0}>
+                      <Image src={uploadSVG} alt='Upload file' height={42} width={44} />
+                    </Box>
 
-              <Stack>
-                <PageText fontSize='input' fontWeight={400} lineHeight='21px' mb={-1}>
-                  <strong>Upload the proposal.</strong> Click here or drag file to this box.
-                </PageText>
+                    <Stack>
+                      <FormLabel htmlFor='uploadProposal'>
+                        <PageText fontSize='input' fontWeight={400} lineHeight='21px' mb={-1}>
+                          <strong>Upload the proposal.</strong> Click here or drag file to this box.
+                        </PageText>
+                      </FormLabel>
 
-                <PageText as='small' fontSize='helpText' color='brand.helpText' lineHeight='17px'>
-                  If you already have a proposal or document you&apos;d ike to share, please upload
-                  it here. This is optional, but highly recommended.
-                </PageText>
-
-                {errors?.uploadProposal && (
-                  <PageText as='small' fontSize='helpText' color='red.500'>
-                    File size cannot exceed 2GB.
-                  </PageText>
-                )}
-
-                {fileName.length > 0 && (
-                  <Flex alignItems='center'>
-                    <PageText mr={4}>{fileName}</PageText>
-                    <Button type='reset' onClick={removeFile} px={2} border='1px solid #7c7ba1'>
-                      X
-                    </Button>
+                      <PageText
+                        as='small'
+                        fontSize='helpText'
+                        color='brand.helpText'
+                        lineHeight='17px'
+                        display='inline-block'
+                        mb={2}
+                      >
+                        If you already have a proposal or document you&apos;d ike to share, please
+                        upload it here. This is optional, but highly recommended.
+                      </PageText>
+                    </Stack>
                   </Flex>
-                )}
-              </Stack>
-            </Flex>
-          </InputGroup>
-        </FormControl>
+
+                  {selectedFile && errors?.uploadProposal && (
+                    <Box ml={'68px'} mb={2}>
+                      <PageText as='small' fontSize='helpText' color='red.500'>
+                        File size cannot exceed 2GB.
+                      </PageText>
+                    </Box>
+                  )}
+
+                  {selectedFile && (
+                    <Flex
+                      alignItems='center'
+                      justifyContent='space-between'
+                      bg='rgba(35, 34, 100, .1)'
+                      w='175px'
+                      h='36px'
+                      ml={'68px'}
+                      pl={4}
+                      borderRadius='5px'
+                    >
+                      <PageText>{selectedFile.name}</PageText>
+                      <Flex role='button' onClick={removeFile} px={3}>
+                        <RemoveIcon />
+                      </Flex>
+                    </Flex>
+                  )}
+                </Box>
+              </InputGroup>
+            </FormControl>
+          )}
+        />
 
         <Center>
           <Box id='submit-application' position='relative'>
@@ -915,7 +933,7 @@ export const ProjectGrantsForm: FC = () => {
               w='310px'
               position='absolute'
               animate={shadowBoxControl}
-              // opacity={!isValid ? 0 : 1}
+              opacity={!isValid ? 0 : 1}
             />
 
             <MotionButton
@@ -924,12 +942,12 @@ export const ProjectGrantsForm: FC = () => {
               py={7}
               borderRadius={0}
               type='submit'
-              // isDisabled={!isValid}
+              isDisabled={!isValid}
               _hover={{ bg: 'brand.hover' }}
               whileHover={{ x: -1.5, y: -1.5 }}
               onMouseEnter={() => setButtonHovered(true)}
               onMouseLeave={() => setButtonHovered(false)}
-              // pointerEvents={!isValid ? 'none' : 'auto'}
+              pointerEvents={!isValid ? 'none' : 'auto'}
             >
               <ImportantText color='white'>Submit Application</ImportantText>
 
