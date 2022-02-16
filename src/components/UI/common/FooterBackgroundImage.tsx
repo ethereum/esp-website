@@ -2,8 +2,8 @@ import { Box } from '@chakra-ui/react';
 import Image from 'next/image';
 import { FC } from 'react';
 
-import footerBackground from '../../../public/images/footer-background.svg';
-import footerBackgroundMobile from '../../../public/images/footer-background-mobile.svg';
+import footerBackground from '../../../../public/images/footer-background.svg';
+import footerBackgroundMobile from '../../../../public/images/footer-background-mobile.svg';
 
 export const FooterBackgroundImage: FC = () => {
   return (

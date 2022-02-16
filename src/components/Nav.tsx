@@ -26,7 +26,7 @@ import { CloseIcon, HamburgerIcon, NavLinkIcon } from './UI/icons';
 
 import { selectedLink } from '../utils';
 
-import logoSVG from '../public/images/esp-logo.svg';
+import logoSVG from '../../public/images/esp-logo.svg';
 
 import { ESP_BLOG_URL, ETHEREUM_ORG_URL, HOME_URL, NAV_LINKS } from '../constants';
 

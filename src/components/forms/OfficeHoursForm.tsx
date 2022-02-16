@@ -29,7 +29,7 @@ import { useShadowAnimation } from '../../hooks';
 
 import { chakraStyles } from './selectStyles';
 
-import planeVectorSVG from '../../public/images/plane-vector.svg';
+import planeVectorSVG from '../../../public/images/plane-vector.svg';
 
 import {
   HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,

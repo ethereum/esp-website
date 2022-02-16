@@ -4,7 +4,7 @@ import { FC, useState } from 'react';
 
 import { Description, ImportantText } from '../UI';
 
-import applicantsHero from '../../public/images/applicants-hero.svg';
+import applicantsHero from '../../../public/images/applicants-hero.svg';
 
 import {
   APPLICANTS_TABS,

@@ -7,7 +7,7 @@ import { ImportantText } from './UI/headings';
 
 import { useShadowAnimation } from '../hooks';
 
-import planeVectorSVG from '../public/images/plane-vector.svg';
+import planeVectorSVG from '../../public/images/plane-vector.svg';
 
 const MotionBox = motion<BoxProps>(Box);
 const MotionFlex = motion<FlexProps>(Flex);

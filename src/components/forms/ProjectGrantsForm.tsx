@@ -25,8 +25,8 @@ import { useShadowAnimation } from '../../hooks';
 
 import { chakraStyles } from './selectStyles';
 
-import planeVectorSVG from '../../public/images/plane-vector.svg';
-import uploadSVG from '../../public/images/upload.svg';
+import planeVectorSVG from '../../../public/images/plane-vector.svg';
+import uploadSVG from '../../../public/images/upload.svg';
 
 import {
   COUNTRY_OPTIONS,

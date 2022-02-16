@@ -5,9 +5,9 @@ import { FC } from 'react';
 import { ImportantText } from '../headings';
 import { PageText } from '../text';
 
-import efLogoSVG from '../../../public/images/ef-logo.svg';
-import githubLogoSVG from '../../../public/images/github-logo.svg';
-import twitterLogoSVG from '../../../public/images/twitter-logo.svg';
+import efLogoSVG from '../../../../public/images/ef-logo.svg';
+import githubLogoSVG from '../../../../public/images/github-logo.svg';
+import twitterLogoSVG from '../../../../public/images/twitter-logo.svg';
 
 import {
   ABOUT_URL,
