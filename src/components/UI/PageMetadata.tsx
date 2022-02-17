@@ -18,5 +18,3 @@ export const PageMetadata: FC<Props> = ({ title, description }) => {
     </Head>
   );
 };
-
-export default PageMetadata;
