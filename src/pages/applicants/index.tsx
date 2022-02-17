@@ -24,7 +24,7 @@ const Applicants: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Applicant Overview | Ethereum Foundation Ecosystem Support Program</title>
+        <title>Applicants Overview | Ethereum Foundation Ecosystem Support Program</title>
         <meta
           name='description'
           content="Information about the Ecosystem Support Program's mission, scope and types of support we offer for potential grant applicants"
