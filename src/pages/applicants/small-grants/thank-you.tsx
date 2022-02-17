@@ -7,10 +7,7 @@ import { PageMetadata, PlaceholderImage, ThankYouBody } from '../../../component
 const SmallGrantsThankYou: NextPage = () => {
   return (
     <>
-      <PageMetadata
-        title='Thank you for applying to Small Grants'
-        description='Thank you for applying to Small Grants'
-      />
+      <PageMetadata title='Thank you' description='Thank you for applying to Small Grants' />
       <Head>
         <meta name='robots' content='noindex' />
       </Head>
