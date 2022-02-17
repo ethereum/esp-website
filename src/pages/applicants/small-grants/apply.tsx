@@ -1,19 +1,15 @@
 import { Box, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
-import Head from 'next/head';
 
-import { PageSubheading, PageText } from '../../../components/UI';
+import { PageMetadata, PageSubheading, PageText } from '../../../components/UI';
 
 const OfficeHoursApply: NextPage = () => {
   return (
     <>
-      <Head>
-        <title>Small Grants Application | Ethereum Foundation Ecosystem Support Program</title>
-        <meta
-          name='description'
-          content='Submit an application for a Small Grant from the Ecosystem Support Program'
-        />
-      </Head>
+      <PageMetadata
+        title='Small Grants Application'
+        description='Submit an application for a Small Grant from the Ecosystem Support Program'
+      />
 
       <Box bg='white' position='relative' py={{ md: 12 }} px={{ md: 24, lg: 32, xl: 72 }}>
         <Stack>

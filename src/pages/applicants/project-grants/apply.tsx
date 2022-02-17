@@ -1,22 +1,18 @@
 import { Box, Center, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
-import Head from 'next/head';
 
 import { ButtonLink } from '../../../components';
-import { PageSubheading, PageText } from '../../../components/UI';
+import { PageMetadata, PageSubheading, PageText } from '../../../components/UI';
 
 import { API_DOWNLOAD_APPLICATION_URL } from '../../../constants';
 
 const ProjectGrantsApply: NextPage = () => {
   return (
     <>
-      <Head>
-        <title>Project Grants Application | Ethereum Foundation Ecosystem Support Program</title>
-        <meta
-          name='description'
-          content='Submit an application for a Project Grant from the Ecosystem Support Program'
-        />
-      </Head>
+      <PageMetadata
+        title='Project Grants Application'
+        description='Submit an application for a Project Grant from the Ecosystem Support Program'
+      />
 
       <Box bg='white' position='relative' py={{ md: 12 }} px={{ md: 24, lg: 32, xl: 72 }}>
         <Stack>

@@ -9,7 +9,8 @@ import {
   PageSection,
   PageSubheading,
   PageText,
-  ProcessStep
+  ProcessStep,
+  PageMetadata
 } from '../../../components/UI';
 import { ApplicantsSidebar } from '../../../components';
 
@@ -28,13 +29,10 @@ import {
 const OfficeHours: NextPage = () => {
   return (
     <>
-      <Head>
-        <title>Office Hours | Ethereum Foundation Ecosystem Support Program</title>
-        <meta
-          name='description'
-          content='Connect with a member of the Ecosystem Support team for support other than funding, including help with a grant application'
-        />
-      </Head>
+      <PageMetadata
+        title='Office Hours'
+        description='Connect with a member of the Ecosystem Support team for support other than funding, including help with a grant application'
+      />
 
       <Box bg='white' position='relative' py={{ md: 12 }}>
         <Flex>
