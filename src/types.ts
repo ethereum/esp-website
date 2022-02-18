@@ -13,10 +13,6 @@ export interface TabsMap {
   [name: string]: number;
 }
 
-export type NewsletterFormData = {
-  email: string;
-};
-
 export interface ProposalFile {
   name: string;
   type: string;
@@ -24,6 +20,10 @@ export interface ProposalFile {
   content: string;
   path: string;
 }
+
+export type NewsletterFormData = {
+  email: string;
+};
 
 export type ProjectGrantsFormData = {
   firstName: string; // SF API: FirstName
@@ -73,9 +73,7 @@ export type SmallGrantsFormData = {
   progress: string; // SF API: Progress__c
   otherFunding: string; // SF API: Other_Funding__c
   eventName: string; // SF API: Project_Name__c
-
   eventDate: Date; // SF API: Sponsorship_Date__c
-
   eventPreviousWork: string; // SF API: Previous_Work__c
   sponsorshipLink: string; // SF API: Sponsorship_Link__c
   sponsorshipDetails: string; // SF API: Sponsorship_Details__c
