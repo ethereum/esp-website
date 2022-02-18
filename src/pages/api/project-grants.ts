@@ -45,8 +45,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         FirstName,
         LastName,
         Email,
-        // Company is a required field in SF, we're using the Name as default value if no company provided
-        Company: Company === 'N/A' ? `${FirstName} ${LastName}` : Company,
+        Company,
         Project_Name__c,
         Website,
         Github_Link__c,
@@ -61,14 +60,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         Referral_Source__c,
         Referral_Source_if_Other__c,
         Referrals__c
-        // TODO: add RecordTypeId when defined
+        // TODO: add RecordTypeId: 'Project Grants' when defined
       },
       (err, ret) => {
         if (err || !ret.success) {
           console.error(err);
           res.status(400).json({ status: 'fail' });
         } else {
-          console.log(`Lead with ID: ${ret.id} has been created!`);
+          console.log(`Project Grants Lead with ID: ${ret.id} has been created!`);
 
           createdLeadID = ret.id;
           console.log({ createdLeadID });

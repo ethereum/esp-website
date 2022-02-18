@@ -37,8 +37,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         FirstName,
         LastName,
         Email,
-        // Company is a required field in SF, we're using the Name as default value if no company provided
-        Company: Company === '' ? `${FirstName} ${LastName}` : Company,
+        Company,
         Individual_or_Team__c,
         Project_Name__c,
         Project_Description__c,
@@ -48,14 +47,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         Reason_for_meeting__c,
         Reason_for_meeting_if_Other__c,
         Time_Zone__c
-        // TODO: add RecordTypeId when defined
+        // TODO: add RecordTypeId: 'Office Hours' when defined
       },
       (err, ret) => {
         if (err || !ret.success) {
           console.error(err);
           res.status(400).json({ status: 'fail' });
         } else {
-          console.log(`Lead with ID: ${ret.id} has been created!`);
+          console.log(`Office Hours Lead with ID: ${ret.id} has been created!`);
 
           res.status(200).json({ status: 'ok' });
         }
