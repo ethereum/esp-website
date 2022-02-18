@@ -926,16 +926,17 @@ export const ProjectGrantsForm: FC = () => {
 
                   {selectedFile && (
                     <Flex
+                      display='inline-flex'
                       alignItems='center'
                       justifyContent='space-between'
                       bg='rgba(35, 34, 100, .1)'
-                      w='175px'
-                      h='36px'
+                      minW='175px'
                       ml={{ base: '68px', xl2: '100px' }}
                       pl={4}
+                      py={2}
                       borderRadius='5px'
                     >
-                      <PageText>{selectedFile.name}</PageText>
+                      <PageText mr={2}>{selectedFile.name}</PageText>
                       <Flex role='button' onClick={removeFile} px={3}>
                         <RemoveIcon />
                       </Flex>
