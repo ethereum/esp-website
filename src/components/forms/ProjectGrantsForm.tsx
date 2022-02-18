@@ -64,6 +64,7 @@ export const ProjectGrantsForm: FC = () => {
   const {
     handleSubmit,
     register,
+    trigger,
     control,
     setValue,
     formState: { errors, isValid },
@@ -736,7 +737,10 @@ export const ProjectGrantsForm: FC = () => {
                 <Select
                   id='timezone'
                   options={TIMEZONE_OPTIONS}
-                  onChange={onChange}
+                  onChange={value => {
+                    onChange(value);
+                    trigger('timezone');
+                  }}
                   components={{ DropdownIndicator }}
                   placeholder='Select'
                   closeMenuOnSelect={true}
