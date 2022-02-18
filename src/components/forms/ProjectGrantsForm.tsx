@@ -24,6 +24,7 @@ import { useRouter } from 'next/router';
 
 import { DropdownIndicator, ImportantText, PageText } from '../UI';
 
+import { api } from './api';
 import { useShadowAnimation } from '../../hooks';
 
 import { chakraStyles } from './selectStyles';
@@ -38,10 +39,13 @@ import {
   PROJECT_CATEGORY_OPTIONS,
   TIMEZONE_OPTIONS
 } from './constants';
-import { MAX_PROPOSAL_FILE_SIZE, PROJECT_GRANTS_THANK_YOU_PAGE_URL } from '../../constants';
+import {
+  MAX_PROPOSAL_FILE_SIZE,
+  PROJECT_GRANTS_THANK_YOU_PAGE_URL,
+  TOAST_OPTIONS
+} from '../../constants';
 
 import { ProjectGrantsFormData, ProposalFile, ReferralSource } from '../../types';
-import { api } from './api';
 import { RemoveIcon } from '../UI/icons';
 
 const MotionBox = motion<BoxProps>(Box);
@@ -76,7 +80,7 @@ export const ProjectGrantsForm: FC = () => {
       setSelectedFile(file);
 
       const reader = new FileReader();
-      // we have to encode the file content as base64 to be able to upload it
+      // we have to encode the file content as base64 to be able to upload it to SF
       reader.readAsDataURL(file);
 
       reader.onabort = () => console.log('File reading was aborted.');
@@ -97,14 +101,9 @@ export const ProjectGrantsForm: FC = () => {
       };
 
       toast({
-        position: 'top-right',
+        ...TOAST_OPTIONS,
         title: 'Proposal uploaded!',
-        status: 'success',
-        duration: 5000,
-        isClosable: true,
-        containerStyle: {
-          fontFamily: 'fonts.heading'
-        }
+        status: 'success'
       });
     },
     [setValue, toast]
@@ -120,14 +119,9 @@ export const ProjectGrantsForm: FC = () => {
           router.push(PROJECT_GRANTS_THANK_YOU_PAGE_URL);
         } else {
           toast({
-            position: 'top-right',
+            ...TOAST_OPTIONS,
             title: 'Something went wrong while submitting, please try again.',
-            status: 'error',
-            duration: 5000,
-            isClosable: true,
-            containerStyle: {
-              fontFamily: 'fonts.heading'
-            }
+            status: 'error'
           });
 
           throw new Error('Network response was not OK');
@@ -181,18 +175,20 @@ export const ProjectGrantsForm: FC = () => {
                 })}
               />
 
-              <Box mt={1}>
-                {errors?.firstName?.type === 'required' && (
+              {errors?.firstName?.type === 'required' && (
+                <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
                     First name is required.
                   </PageText>
-                )}
-                {errors?.firstName?.type === 'maxLength' && (
+                </Box>
+              )}
+              {errors?.firstName?.type === 'maxLength' && (
+                <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
                     First name cannot exceed 40 characters.
                   </PageText>
-                )}
-              </Box>
+                </Box>
+              )}
             </FormControl>
 
             <FormControl id='last-name-control' isRequired>
@@ -214,18 +210,20 @@ export const ProjectGrantsForm: FC = () => {
                 {...register('lastName', { required: true, maxLength: 80 })}
               />
 
-              <Box mt={1}>
-                {errors?.lastName?.type === 'required' && (
+              {errors?.lastName?.type === 'required' && (
+                <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
                     Last name is required.
                   </PageText>
-                )}
-                {errors?.lastName?.type === 'maxLength' && (
+                </Box>
+              )}
+              {errors?.lastName?.type === 'maxLength' && (
+                <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
                     Last name cannot exceed 80 characters.
                   </PageText>
-                )}
-              </Box>
+                </Box>
+              )}
             </FormControl>
           </Flex>
 
@@ -255,13 +253,13 @@ export const ProjectGrantsForm: FC = () => {
             {...register('email', { required: true })}
           />
 
-          <Box mt={1}>
-            {errors?.email?.type === 'required' && (
+          {errors?.email?.type === 'required' && (
+            <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
                 Email is required.
               </PageText>
-            )}
-          </Box>
+            </Box>
+          )}
         </FormControl>
 
         <FormControl id='company-control' isRequired mb={8}>
@@ -293,18 +291,20 @@ export const ProjectGrantsForm: FC = () => {
             })}
           />
 
-          <Box mt={1}>
-            {errors?.company?.type === 'required' && (
+          {errors?.company?.type === 'required' && (
+            <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
                 Organization name is required.
               </PageText>
-            )}
-            {errors?.company?.type === 'maxLength' && (
+            </Box>
+          )}
+          {errors?.company?.type === 'maxLength' && (
+            <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
                 Organization name cannot exceed 255 characters.
               </PageText>
-            )}
-          </Box>
+            </Box>
+          )}
         </FormControl>
 
         <FormControl id='project-name-control' isRequired mb={8}>
@@ -335,18 +335,20 @@ export const ProjectGrantsForm: FC = () => {
             })}
           />
 
-          <Box mt={1}>
-            {errors?.projectName?.type === 'required' && (
+          {errors?.projectName?.type === 'required' && (
+            <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
                 Project name is required.
               </PageText>
-            )}
-            {errors?.projectName?.type === 'maxLength' && (
+            </Box>
+          )}
+          {errors?.projectName?.type === 'maxLength' && (
+            <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
                 Project name cannot exceed 255 characters.
               </PageText>
-            )}
-          </Box>
+            </Box>
+          )}
         </FormControl>
 
         <FormControl id='website-control' mb={8}>
@@ -380,13 +382,13 @@ export const ProjectGrantsForm: FC = () => {
             })}
           />
 
-          <Box mt={1}>
-            {errors?.website?.type === 'maxLength' && (
+          {errors?.website?.type === 'maxLength' && (
+            <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
                 Website cannot exceed 255 characters.
               </PageText>
-            )}
-          </Box>
+            </Box>
+          )}
         </FormControl>
 
         <FormControl id='github-control' mb={8}>
@@ -420,13 +422,13 @@ export const ProjectGrantsForm: FC = () => {
             })}
           />
 
-          <Box mt={1}>
-            {errors?.github?.type === 'maxLength' && (
+          {errors?.github?.type === 'maxLength' && (
+            <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
                 GitHub URL cannot exceed 255 characters.
               </PageText>
-            )}
-          </Box>
+            </Box>
+          )}
         </FormControl>
 
         <FormControl id='twitter-control' mb={8}>
@@ -460,13 +462,13 @@ export const ProjectGrantsForm: FC = () => {
             })}
           />
 
-          <Box mt={1}>
-            {errors?.twitter?.type === 'maxLength' && (
+          {errors?.twitter?.type === 'maxLength' && (
+            <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
                 Twitter handle cannot exceed 16 characters.
               </PageText>
-            )}
-          </Box>
+            </Box>
+          )}
         </FormControl>
 
         <FormControl id='team-profile-control' isRequired mb={8}>
@@ -498,18 +500,20 @@ export const ProjectGrantsForm: FC = () => {
             })}
           />
 
-          <Box mt={1}>
-            {errors?.teamProfile?.type === 'required' && (
+          {errors?.teamProfile?.type === 'required' && (
+            <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
                 Team profile is required.
               </PageText>
-            )}
-            {errors?.teamProfile?.type === 'maxLength' && (
+            </Box>
+          )}
+          {errors?.teamProfile?.type === 'maxLength' && (
+            <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
                 Team profile cannot exceed 32768 characters.
               </PageText>
-            )}
-          </Box>
+            </Box>
+          )}
         </FormControl>
 
         <FormControl id='project-description-control' isRequired mb={8}>
@@ -541,21 +545,23 @@ export const ProjectGrantsForm: FC = () => {
             })}
           />
 
-          <Box mt={1}>
-            {errors?.projectDescription?.type === 'required' && (
+          {errors?.projectDescription?.type === 'required' && (
+            <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
                 Project description is required.
               </PageText>
-            )}
-            {errors?.projectDescription?.type === 'maxLength' && (
+            </Box>
+          )}
+          {errors?.projectDescription?.type === 'maxLength' && (
+            <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
                 Project description cannot exceed 32768 characters.
               </PageText>
-            )}
-          </Box>
+            </Box>
+          )}
         </FormControl>
 
-        {/* <Controller
+        <Controller
           name='projectCategory'
           control={control}
           rules={{ required: true, validate: selected => selected.value !== '' }}
@@ -586,7 +592,7 @@ export const ProjectGrantsForm: FC = () => {
               </Box>
             </FormControl>
           )}
-        /> */}
+        />
 
         <FormControl
           id='requested-amount-control'
@@ -622,18 +628,20 @@ export const ProjectGrantsForm: FC = () => {
             })}
           />
 
-          <Box mt={1}>
-            {errors?.projectDescription?.type === 'required' && (
+          {errors?.projectDescription?.type === 'required' && (
+            <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
                 Requested amount is required.
               </PageText>
-            )}
-            {errors?.projectDescription?.type === 'maxLength' && (
+            </Box>
+          )}
+          {errors?.projectDescription?.type === 'maxLength' && (
+            <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
                 Requested amount cannot exceed 20 characters.
               </PageText>
-            )}
-          </Box>
+            </Box>
+          )}
         </FormControl>
 
         <Flex direction='column' mb={8}>
@@ -658,13 +666,13 @@ export const ProjectGrantsForm: FC = () => {
                 })}
               />
 
-              <Box mt={1}>
-                {errors?.city?.type === 'maxLength' && (
+              {errors?.city?.type === 'maxLength' && (
+                <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
                     City name cannot exceed 255 characters.
                   </PageText>
-                )}
-              </Box>
+                </Box>
+              )}
             </FormControl>
 
             <Controller
@@ -729,18 +737,18 @@ export const ProjectGrantsForm: FC = () => {
                 />
               </Box>
 
-              <Box mt={1}>
-                {errors?.timezone && (
+              {errors?.timezone && (
+                <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
                     Time zone is required.
                   </PageText>
-                )}
-              </Box>
+                </Box>
+              )}
             </FormControl>
           )}
         />
 
-        {/* <Controller
+        <Controller
           name='howDidYouHearAboutESP'
           control={control}
           defaultValue={{ value: '', label: '' }}
@@ -767,9 +775,9 @@ export const ProjectGrantsForm: FC = () => {
               />
             </FormControl>
           )}
-        /> */}
+        />
 
-        {/* <Box display={(referralSource as ReferralSource).value === OTHER ? 'block' : 'none'}>
+        <Box display={(referralSource as ReferralSource).value === OTHER ? 'block' : 'none'}>
           <Fade in={(referralSource as ReferralSource).value === OTHER} delay={0.25}>
             <FormControl id='referral-source-if-other-control' mb={8}>
               <FormLabel htmlFor='referralSourceIfOther'>
@@ -791,16 +799,16 @@ export const ProjectGrantsForm: FC = () => {
                 })}
               />
 
-              <Box mt={1}>
-                {errors?.referralSourceIfOther?.type === 'maxLength' && (
+              {errors?.referralSourceIfOther?.type === 'maxLength' && (
+                <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
                     Referral source cannot exceed 255 characters.
                   </PageText>
-                )}
-              </Box>
+                </Box>
+              )}
             </FormControl>
           </Fade>
-        </Box> */}
+        </Box>
 
         <FormControl id='referrals' mb={12}>
           <FormLabel htmlFor='referrals' mb={1}>
@@ -829,13 +837,13 @@ export const ProjectGrantsForm: FC = () => {
             })}
           />
 
-          <Box mt={1}>
-            {errors?.referralSourceIfOther?.type === 'maxLength' && (
+          {errors?.referralSourceIfOther?.type === 'maxLength' && (
+            <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
                 Referral name cannot exceed 150 characters.
               </PageText>
-            )}
-          </Box>
+            </Box>
+          )}
         </FormControl>
 
         <Controller
@@ -856,6 +864,7 @@ export const ProjectGrantsForm: FC = () => {
                   onChange={onChange}
                 />
                 <Box
+                  cursor='pointer'
                   bgColor='brand.uploadProposal'
                   justifyContent='space-evenly'
                   py={9}
@@ -863,12 +872,7 @@ export const ProjectGrantsForm: FC = () => {
                   mt={12}
                   mb={12}
                 >
-                  <Flex
-                    alignItems='center'
-                    cursor='pointer'
-                    onClick={handleUploadClick}
-                    mb={selectedFile ? 4 : 0}
-                  >
+                  <Flex alignItems='center' onClick={handleUploadClick} mb={selectedFile ? 4 : 0}>
                     <Box mr={6} flexShrink={0}>
                       <Image src={uploadSVG} alt='Upload file' height={42} width={44} />
                     </Box>

@@ -26,6 +26,7 @@ import { useRouter } from 'next/router';
 
 import { DropdownIndicator, ImportantText, PageText } from '../UI';
 
+import { api } from './api';
 import { useShadowAnimation } from '../../hooks';
 
 import { chakraStyles } from './selectStyles';
@@ -39,10 +40,9 @@ import {
   TEAM,
   TIMEZONE_OPTIONS
 } from './constants';
-import { OFFICE_HOURS_THANK_YOU_PAGE_URL } from '../../constants';
+import { OFFICE_HOURS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
 import { IndividualOrTeam, OfficeHoursFormData, ReasonForMeeting } from '../../types';
-import { api } from './api';
 
 const MotionBox = motion<BoxProps>(Box);
 const MotionButton = motion<ButtonProps>(Button);
@@ -72,14 +72,9 @@ export const OfficeHoursForm: FC = () => {
           router.push(OFFICE_HOURS_THANK_YOU_PAGE_URL);
         } else {
           toast({
-            position: 'top-right',
+            ...TOAST_OPTIONS,
             title: 'Something went wrong while submitting, please try again.',
-            status: 'error',
-            duration: 5000,
-            isClosable: true,
-            containerStyle: {
-              fontFamily: 'fonts.heading'
-            }
+            status: 'error'
           });
 
           throw new Error('Network response was not OK');
@@ -124,18 +119,20 @@ export const OfficeHoursForm: FC = () => {
               })}
             />
 
-            <Box mt={1}>
-              {errors?.firstName?.type === 'required' && (
+            {errors?.firstName?.type === 'required' && (
+              <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
                   First name is required.
                 </PageText>
-              )}
-              {errors?.firstName?.type === 'maxLength' && (
+              </Box>
+            )}
+            {errors?.firstName?.type === 'maxLength' && (
+              <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
                   First name cannot exceed 40 characters.
                 </PageText>
-              )}
-            </Box>
+              </Box>
+            )}
           </FormControl>
 
           <FormControl id='last-name-control' isRequired mb={8}>
@@ -156,18 +153,20 @@ export const OfficeHoursForm: FC = () => {
               {...register('lastName', { required: true, maxLength: 80 })}
             />
 
-            <Box mt={1}>
-              {errors?.lastName?.type === 'required' && (
+            {errors?.lastName?.type === 'required' && (
+              <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
                   Last name is required.
                 </PageText>
-              )}
-              {errors?.lastName?.type === 'maxLength' && (
+              </Box>
+            )}
+            {errors?.lastName?.type === 'maxLength' && (
+              <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
                   Last name cannot exceed 80 characters.
                 </PageText>
-              )}
-            </Box>
+              </Box>
+            )}
           </FormControl>
         </Flex>
 
@@ -189,13 +188,13 @@ export const OfficeHoursForm: FC = () => {
             {...register('email', { required: true })}
           />
 
-          <Box mt={1}>
-            {errors?.email?.type === 'required' && (
+          {errors?.email?.type === 'required' && (
+            <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
                 Email is required.
               </PageText>
-            )}
-          </Box>
+            </Box>
+          )}
         </FormControl>
 
         {/* If the component doesn't expose input's ref, we should use the Controller component, */}
@@ -274,18 +273,20 @@ export const OfficeHoursForm: FC = () => {
                 })}
               />
 
-              <Box mt={1}>
-                {errors?.company?.type === 'required' && (
+              {errors?.company?.type === 'required' && (
+                <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
                     Organization name is required.
                   </PageText>
-                )}
-                {errors?.company?.type === 'maxLength' && (
+                </Box>
+              )}
+              {errors?.company?.type === 'maxLength' && (
+                <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
                     Organization name cannot exceed 255 characters.
                   </PageText>
-                )}
-              </Box>
+                </Box>
+              )}
             </FormControl>
           </Fade>
         </Box>
@@ -315,13 +316,13 @@ export const OfficeHoursForm: FC = () => {
             })}
           />
 
-          <Box mt={1}>
-            {errors?.projectName?.type === 'maxLength' && (
+          {errors?.projectName?.type === 'maxLength' && (
+            <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
                 Project name cannot exceed 255 characters.
               </PageText>
-            )}
-          </Box>
+            </Box>
+          )}
         </FormControl>
 
         <FormControl id='project-description-control' mb={8}>
@@ -348,13 +349,13 @@ export const OfficeHoursForm: FC = () => {
             })}
           />
 
-          <Box mt={1}>
-            {errors?.projectDescription?.type === 'maxLength' && (
+          {errors?.projectDescription?.type === 'maxLength' && (
+            <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
                 Project description cannot exceed 32768 characters.
               </PageText>
-            )}
-          </Box>
+            </Box>
+          )}
         </FormControl>
 
         <FormControl id='additional-info-control' mb={8}>
@@ -381,13 +382,13 @@ export const OfficeHoursForm: FC = () => {
             })}
           />
 
-          <Box mt={1}>
-            {errors?.projectName?.type === 'maxLength' && (
+          {errors?.projectName?.type === 'maxLength' && (
+            <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
                 Additional info cannot exceed 32768 characters.
               </PageText>
-            )}
-          </Box>
+            </Box>
+          )}
         </FormControl>
 
         <Controller
@@ -420,13 +421,13 @@ export const OfficeHoursForm: FC = () => {
                 />
               </Box>
 
-              <Box mt={1}>
-                {errors?.projectCategory && (
+              {errors?.projectCategory && (
+                <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
                     Project category is required.
                   </PageText>
-                )}
-              </Box>
+                </Box>
+              )}
             </FormControl>
           )}
         />
@@ -455,13 +456,13 @@ export const OfficeHoursForm: FC = () => {
                 chakraStyles={chakraStyles}
               />
 
-              <Box mt={1}>
-                {errors?.howDidYouHearAboutESP && (
+              {errors?.howDidYouHearAboutESP && (
+                <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
                     Referral source is required.
                   </PageText>
-                )}
-              </Box>
+                </Box>
+              )}
             </FormControl>
           )}
         />
@@ -509,13 +510,13 @@ export const OfficeHoursForm: FC = () => {
                 </Stack>
               </CheckboxGroup>
 
-              <Box mt={1}>
-                {errors?.reasonForMeeting && (
+              {errors?.reasonForMeeting && (
+                <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
                     Choose at least one reason.
                   </PageText>
-                )}
-              </Box>
+                </Box>
+              )}
             </FormControl>
           )}
         />
@@ -541,13 +542,13 @@ export const OfficeHoursForm: FC = () => {
                 })}
               />
 
-              <Box mt={1}>
-                {errors?.otherReasonForMeeting?.type === 'maxLength' && (
+              {errors?.otherReasonForMeeting?.type === 'maxLength' && (
+                <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
                     Reason for meeting cannot exceed 32768 characters.
                   </PageText>
-                )}
-              </Box>
+                </Box>
+              )}
             </FormControl>
           </Fade>
         </Box>
@@ -576,13 +577,13 @@ export const OfficeHoursForm: FC = () => {
                 chakraStyles={chakraStyles}
               />
 
-              <Box mt={1}>
-                {errors?.timezone && (
+              {errors?.timezone && (
+                <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
                     Time zone is required.
                   </PageText>
-                )}
-              </Box>
+                </Box>
+              )}
             </FormControl>
           )}
         />
