@@ -422,7 +422,7 @@ export const SmallGrantsForm: FC = () => {
           control={control}
           rules={{ required: true, validate: selected => selected.value !== '' }}
           defaultValue={{ value: '', label: '' }}
-          render={({ field: { onChange } }) => (
+          render={({ field: { onChange }, fieldState: { error } }) => (
             <FormControl id='project-category-control' isRequired mb={8}>
               <FormLabel htmlFor='projectCategory'>
                 <PageText display='inline' fontSize='input'>
@@ -443,6 +443,14 @@ export const SmallGrantsForm: FC = () => {
                 selectedOptionColor='brand.option'
                 chakraStyles={chakraStyles}
               />
+
+              {error && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Project category is required.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
           )}
         />

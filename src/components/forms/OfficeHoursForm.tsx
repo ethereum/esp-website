@@ -396,7 +396,7 @@ export const OfficeHoursForm: FC = () => {
           control={control}
           rules={{ required: true, validate: selected => selected.value !== '' }}
           defaultValue={{ value: '', label: '' }}
-          render={({ field: { onChange } }) => (
+          render={({ field: { onChange }, fieldState: { error } }) => (
             <FormControl id='project-category-control' isRequired mb={8}>
               <FormLabel htmlFor='projectCategory' mb={1}>
                 <PageText display='inline' fontSize='input'>
@@ -421,7 +421,7 @@ export const OfficeHoursForm: FC = () => {
                 />
               </Box>
 
-              {errors?.projectCategory && (
+              {error && (
                 <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
                     Project category is required.
@@ -437,7 +437,7 @@ export const OfficeHoursForm: FC = () => {
           control={control}
           rules={{ required: true, validate: selected => selected.value !== '' }}
           defaultValue={{ value: '', label: '' }}
-          render={({ field: { onChange } }) => (
+          render={({ field: { onChange }, fieldState: { error } }) => (
             <FormControl id='how-did-you-hear-about-ESP-control' isRequired mb={8}>
               <FormLabel htmlFor='howDidYouHearAboutESP'>
                 <PageText display='inline' fontSize='input'>
@@ -456,7 +456,7 @@ export const OfficeHoursForm: FC = () => {
                 chakraStyles={chakraStyles}
               />
 
-              {errors?.howDidYouHearAboutESP && (
+              {error && (
                 <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
                     Referral source is required.
@@ -558,7 +558,7 @@ export const OfficeHoursForm: FC = () => {
           control={control}
           rules={{ required: true, validate: selected => selected.value !== '' }}
           defaultValue={{ value: '', label: '' }}
-          render={({ field: { onChange } }) => (
+          render={({ field: { onChange }, fieldState: { error } }) => (
             <FormControl id='timezone-control' isRequired mt={8} mb={20}>
               <FormLabel htmlFor='timezone'>
                 <PageText display='inline' fontSize='input'>
@@ -577,7 +577,7 @@ export const OfficeHoursForm: FC = () => {
                 chakraStyles={chakraStyles}
               />
 
-              {errors?.timezone && (
+              {error && (
                 <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
                     Time zone is required.

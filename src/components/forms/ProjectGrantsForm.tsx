@@ -566,7 +566,7 @@ export const ProjectGrantsForm: FC = () => {
           control={control}
           rules={{ required: true, validate: selected => selected.value !== '' }}
           defaultValue={{ value: '', label: '' }}
-          render={({ field: { onChange } }) => (
+          render={({ field: { onChange }, fieldState: { error } }) => (
             <FormControl id='project-category-control' isRequired mb={8}>
               <FormLabel htmlFor='projectCategory' mb={1}>
                 <PageText display='inline' fontSize='input'>
@@ -589,6 +589,14 @@ export const ProjectGrantsForm: FC = () => {
                   selectedOptionColor='brand.option'
                   chakraStyles={chakraStyles}
                 />
+
+                {error && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Project category is required.
+                    </PageText>
+                  </Box>
+                )}
               </Box>
             </FormControl>
           )}
@@ -712,7 +720,7 @@ export const ProjectGrantsForm: FC = () => {
           control={control}
           rules={{ required: true, validate: selected => selected.value !== '' }}
           defaultValue={{ value: '', label: '' }}
-          render={({ field: { onChange } }) => (
+          render={({ field: { onChange }, fieldState: { error } }) => (
             <FormControl id='timezone-control' isRequired mb={8}>
               <FormLabel htmlFor='timezone' mb={1}>
                 <PageText display='inline' fontSize='input'>
@@ -737,7 +745,7 @@ export const ProjectGrantsForm: FC = () => {
                 />
               </Box>
 
-              {errors?.timezone && (
+              {error && (
                 <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
                     Time zone is required.
