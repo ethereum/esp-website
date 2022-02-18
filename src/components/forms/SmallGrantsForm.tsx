@@ -1368,7 +1368,11 @@ export const SmallGrantsForm: FC = () => {
               <Controller
                 name='eventType'
                 control={control}
-                rules={{ required: isAnEvent, validate: selected => selected.value !== '' }}
+                rules={{
+                  required: isAnEvent,
+                  validate: selected =>
+                    (!isAnEvent && selected.value === '') || (isAnEvent && selected.value !== '')
+                }}
                 defaultValue={{ value: '', label: '' }}
                 render={({ field: { onChange }, fieldState: { error } }) => (
                   <FormControl
@@ -1410,7 +1414,8 @@ export const SmallGrantsForm: FC = () => {
                 control={control}
                 rules={{
                   required: isAnEvent,
-                  validate: selected => isAnEvent && selected.value !== ''
+                  validate: selected =>
+                    (!isAnEvent && selected.value === '') || (isAnEvent && selected.value !== '')
                 }}
                 defaultValue={{ value: '', label: '' }}
                 render={({ field: { onChange }, fieldState: { error } }) => (
