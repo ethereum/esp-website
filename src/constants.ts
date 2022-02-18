@@ -1,6 +1,9 @@
 import { UseToastOptions } from '@chakra-ui/react';
 import { NavLink, SidebarLink, TabsMap } from './types';
 
+// metadata
+export const HEAD_TITLE = 'Ethereum Foundation ESP';
+
 // home
 export const HOME_URL = '/';
 

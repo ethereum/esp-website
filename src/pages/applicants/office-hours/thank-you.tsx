@@ -2,14 +2,13 @@ import { Box, Center } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
-import { PlaceholderImage, ThankYouBody } from '../../../components/UI';
+import { PageMetadata, PlaceholderImage, ThankYouBody } from '../../../components/UI';
 
 const OfficeHoursThankYou: NextPage = () => {
   return (
     <>
+      <PageMetadata title='Thank you' description='Thank you for applying to Office Hours' />
       <Head>
-        <title>Ethereum Ecosystem Program | Thank you for applying to Office Hours</title>
-        <meta name='description' content='Thank you for applying to Office Hours' />
         <meta name='robots' content='noindex' />
       </Head>
 

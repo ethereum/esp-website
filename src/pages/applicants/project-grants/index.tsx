@@ -1,12 +1,12 @@
 import { Accordion, Box, Flex, Link, ListItem, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
-import Head from 'next/head';
 import { ReadyToApply } from '../../../components';
 
 import {
   ApplicationAttentionMsg,
   FAQItem,
   List,
+  PageMetadata,
   PageSection,
   PageSubheading,
   PageText,
@@ -25,10 +25,10 @@ import {
 const ProjectGrants: NextPage = () => {
   return (
     <>
-      <Head>
-        <title>Ethereum Ecosystem Program | Project Grants</title>
-        <meta name='description' content='Project Grants' />
-      </Head>
+      <PageMetadata
+        title='Project Grants'
+        description='Learn more about applying for Project Grants from the Ecosystem Support Program: criteria, how to apply and tips for submitting a great application'
+      />
 
       <Box bg='white' position='relative' py={{ md: 12 }}>
         <Flex>
