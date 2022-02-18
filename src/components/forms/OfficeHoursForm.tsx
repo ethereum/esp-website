@@ -55,6 +55,7 @@ export const OfficeHoursForm: FC = () => {
   const {
     handleSubmit,
     register,
+    trigger,
     control,
     formState: { errors, isValid },
     reset
@@ -569,7 +570,10 @@ export const OfficeHoursForm: FC = () => {
               <Select
                 id='timezone'
                 options={TIMEZONE_OPTIONS}
-                onChange={onChange}
+                onChange={value => {
+                  onChange(value);
+                  trigger('timezone');
+                }}
                 components={{ DropdownIndicator }}
                 placeholder='Select'
                 closeMenuOnSelect={true}
