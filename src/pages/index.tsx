@@ -1,9 +1,8 @@
 import { Box, Flex, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
-import Head from 'next/head';
 
-import { HomeAboutCard, PageSection, PageText } from '../components/UI';
+import { HomeAboutCard, PageMetadata, PageSection, PageText } from '../components/UI';
 
 import smallSucculentSVG from '../../public/images/small-succulent.svg';
 import mediumSucculentSVG from '../../public/images/medium-succulent.svg';
@@ -17,10 +16,10 @@ import { ABOUT_URL, HOW_WE_SUPPORT_URL, WHO_WE_SUPPORT_URL } from '../constants'
 const Home: NextPage = () => {
   return (
     <>
-      <Head>
-        <title>Ethereum Ecosystem Program | Homepage</title>
-        <meta name='description' content='Homepage' />
-      </Head>
+      <PageMetadata
+        title='Home'
+        description='The Ecosystem Support Program provides grants and other support to the builders of the Ethereum ecosystem'
+      />
 
       <Box mx={{ md: 12 }} bg='white' position='relative'>
         <Stack spacing={10} mb={8} px={{ base: 5, md: 9 }} py={{ base: 3, md: 12 }}>

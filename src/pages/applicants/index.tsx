@@ -1,9 +1,14 @@
 import { Box, Center, Flex, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
-import Head from 'next/head';
 
-import { ApplicationTypeCard, PageSection, PageSubheading, PageText } from '../../components/UI';
+import {
+  ApplicationTypeCard,
+  PageMetadata,
+  PageSection,
+  PageSubheading,
+  PageText
+} from '../../components/UI';
 import { ApplicantsSidebar } from '../../components';
 
 import softwareDevelopersSVG from '../../../public/images/software-developers-vector.svg';
@@ -23,10 +28,10 @@ import {
 const Applicants: NextPage = () => {
   return (
     <>
-      <Head>
-        <title>Ethereum Ecosystem Program | Applicants Overview</title>
-        <meta name='description' content='Applicants Overview' />
-      </Head>
+      <PageMetadata
+        title='Applicants Overview'
+        description="Information about the Ecosystem Support Program's mission, scope and types of support we offer for potential grant applicants"
+      />
 
       <Box bg='white' position='relative' py={{ md: 12 }}>
         <Flex>

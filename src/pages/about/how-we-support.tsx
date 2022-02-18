@@ -1,21 +1,17 @@
 import { Box, Link, ListItem, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
-import Head from 'next/head';
 
-import { List, PageSection, PageText } from '../../components/UI';
+import { List, PageSection, PageText, PageMetadata } from '../../components/UI';
 
 import { OFFICE_HOURS_URL } from '../../constants';
 
 const HowWeSupport: NextPage = () => {
   return (
     <>
-      <Head>
-        <title>Who We Support | Ethereum Foundation Ecosystem Support Program</title>
-        <meta
-          name='description'
-          content='We support builders from many different backgrounds, all over the world. See a list of our latest grantees!'
-        />
-      </Head>
+      <PageMetadata
+        title='How We Support'
+        description="We provide grants and other support for open source projects that strengthen Ethereum's foundations, with a particular focus on builder tools, infrastructure, research and public goods"
+      />
 
       <Box bg='white' position='relative' px={{ md: 20, lg: 60 }} py={{ md: 12 }}>
         <Stack spacing={10}>

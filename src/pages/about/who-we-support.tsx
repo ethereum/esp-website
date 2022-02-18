@@ -1,11 +1,10 @@
 import axios from 'redaxios';
 import { Box, Link, Stack } from '@chakra-ui/react';
 import type { GetStaticProps, NextPage } from 'next';
-import Head from 'next/head';
 import Papa from 'papaparse';
 
 import { LatestGranteesList } from '../../components/forms';
-import { PageSection, PageText } from '../../components/UI';
+import { PageSection, PageText, PageMetadata } from '../../components/UI';
 
 import { CURRENT_GRANTS_QUARTERS, ESP_BLOG_URL } from '../../constants';
 
@@ -43,13 +42,10 @@ const WhoWeSupport: NextPage<Props> = ({ grants }) => {
 
   return (
     <>
-      <Head>
-        <title>Who We Support | Ethereum Foundation Ecosystem Support Program</title>
-        <meta
-          name='description'
-          content='We support builders from many different backgrounds, all over the world. See a list of our latest grantees!'
-        />
-      </Head>
+      <PageMetadata
+        title='Who We Support'
+        description='We support builders from many different backgrounds, all over the world. See a list of our latest grantees!'
+      />
 
       <Box bg='white' position='relative' px={{ md: 20, lg: 60 }} py={{ md: 12 }}>
         <Stack spacing={10}>

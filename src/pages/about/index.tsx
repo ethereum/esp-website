@@ -1,22 +1,18 @@
 import { Box, Center, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
-import Head from 'next/head';
 
-import { PageSection, PageText } from '../../components/UI';
+import { PageSection, PageText, PageMetadata } from '../../components/UI';
 
 import aboutSVG from '../../../public/images/about.svg';
 
 const About: NextPage = () => {
   return (
     <>
-      <Head>
-        <title>What We Support | Ethereum Foundation Ecosystem Support Program</title>
-        <meta
-          name='description'
-          content="We provide grants and other support for open source projects that strengthen Ethereum's foundations, with a particular focus on builder tools, infrastructure, research and public goods."
-        />
-      </Head>
+      <PageMetadata
+        title='What We Support'
+        description="We provide grants and other support for open source projects that strengthen Ethereum's foundations, with a particular focus on builder tools, infrastructure, research and public goods."
+      />
 
       <Box bg='white' position='relative' px={{ md: 20, lg: 60 }} py={{ md: 12 }}>
         <Stack mb={12}>
