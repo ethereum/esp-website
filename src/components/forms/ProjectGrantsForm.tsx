@@ -872,6 +872,7 @@ export const ProjectGrantsForm: FC = () => {
                   onChange={onChange}
                 />
                 <Box
+                  w='100%'
                   cursor='pointer'
                   bgColor='brand.uploadProposal'
                   justifyContent='space-evenly'
@@ -880,7 +881,12 @@ export const ProjectGrantsForm: FC = () => {
                   mt={12}
                   mb={12}
                 >
-                  <Flex alignItems='center' onClick={handleUploadClick} mb={selectedFile ? 4 : 0}>
+                  <Flex
+                    alignItems='center'
+                    justifyContent='center'
+                    onClick={handleUploadClick}
+                    mb={selectedFile ? 4 : 0}
+                  >
                     <Box mr={6} flexShrink={0}>
                       <Image src={uploadSVG} alt='Upload file' height={42} width={44} />
                     </Box>
