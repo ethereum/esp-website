@@ -927,7 +927,7 @@ export const ProjectGrantsForm: FC = () => {
                       bg='rgba(35, 34, 100, .1)'
                       w='175px'
                       h='36px'
-                      ml={'68px'}
+                      ml={{ base: '68px', xl2: '100px' }}
                       pl={4}
                       borderRadius='5px'
                     >

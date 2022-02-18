@@ -32,7 +32,7 @@ export const api = {
         })
       };
 
-      return fetch(API_OFFICE_HOURS, officeHoursRequestOptions).then(res => res);
+      return fetch(API_OFFICE_HOURS, officeHoursRequestOptions);
     }
   },
   projectGrants: {
@@ -53,7 +53,7 @@ export const api = {
         })
       };
 
-      return fetch(API_PROJECT_GRANTS, projectGrantsRequestOptions).then(res => res);
+      return fetch(API_PROJECT_GRANTS, projectGrantsRequestOptions);
     }
   },
   smallGrants: {
@@ -76,7 +76,7 @@ export const api = {
       return fetch(
         isAProject ? API_SMALL_GRANTS_PROJECT : API_SMALL_GRANTS_EVENT,
         smallGrantsRequestOptions
-      ).then(res => res);
+      );
     }
   }
 };
