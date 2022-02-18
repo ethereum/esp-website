@@ -49,9 +49,39 @@ export type OfficeHoursFormData = {
   timezone: string;
 };
 
+export type GranteeFinanceFormData = {
+  // these fields map to SF's Contract object fields
+  paymentPreference: PaymentPreference; // SF API: ???
+  beneficiaryName: string; // SF API: Beneficiary_Name__c
+  contactEmail: string; // SF API: User_Email__c
+  notes: string; // SF API: ??? Transfer_Notes__c maybe?
+  granteeSecurityID: string; // SF API: ???
+
+  // ETH/DAI
+  tokenPreference: TokenPreference; // SF API: ???
+
+  // ETH
+  ethAddress: string; // SF API: ETH_Address__c
+
+  // DAI
+  daiAddress: string; // SF API: DAI_Address__c
+
+  // FIAT
+  beneficiaryAddress: string; // SF API: Beneficiary_Address__c
+  fiatCurrencyCode: string; // SF API: Fiat_Currency__c
+  bankName: string; // SF API: Bank_Name__c
+  bankAddress: string; // SF API: Bank_Address__c
+  IBAN: string; // SF API: IBAN_Account_Number__c
+  SWIFTCode: string; // SF API: SWIFT_Code_BIC__c ??? required?
+};
+
 export type IndividualOrTeam = 'Individual' | 'Team';
 
 export type RepeatApplicant = 'Yes' | 'No';
+
+export type PaymentPreference = 'ETH/DAI' | 'Fiat' | '';
+
+export type TokenPreference = 'ETH' | 'DAI';
 
 export type ReasonForMeeting = typeof REASONS_FOR_MEETING;
 
