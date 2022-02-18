@@ -44,6 +44,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel='icon' type='image/x-icon' href={favicon.src} />
         <link rel='icon' type='image/png' sizes='32x32' href={favicon32.src} />
         <link rel='icon' type='image/png' sizes='16x16' href={favicon16.src} />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
       </Head>
 
       <ChakraProvider theme={theme}>

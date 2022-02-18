@@ -10,7 +10,6 @@ import {
   Stack,
   useToast
 } from '@chakra-ui/react';
-import type { UseToastOptions } from '@chakra-ui/react';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
@@ -21,19 +20,10 @@ import { PageText } from '../UI/text';
 import { useShadowAnimation } from '../../hooks';
 import { NewsletterFormData } from '../../types';
 
-import { API_NEWSLETTER_SIGNUP_URL } from '../../constants';
+import { API_NEWSLETTER_SIGNUP_URL, TOAST_OPTIONS } from '../../constants';
 
 const MotionBox = motion<BoxProps>(Box);
 const MotionButton = motion<ButtonProps>(Button);
-
-const toastOptions: UseToastOptions = {
-  position: 'top-right',
-  duration: 5000,
-  isClosable: true,
-  containerStyle: {
-    fontFamily: 'fonts.heading'
-  }
-};
 
 export const NewsletterSignup: FC = () => {
   const {
@@ -50,7 +40,7 @@ export const NewsletterSignup: FC = () => {
   const onSubmit = async (data: NewsletterFormData) => {
     if (errors.email) {
       toast({
-        ...toastOptions,
+        ...TOAST_OPTIONS,
         title: 'Email is not valid, please try again.',
         status: 'error'
       });
@@ -70,7 +60,7 @@ export const NewsletterSignup: FC = () => {
           }
 
           toast({
-            ...toastOptions,
+            ...TOAST_OPTIONS,
             title: errorText,
             status: 'error'
           });
@@ -78,13 +68,13 @@ export const NewsletterSignup: FC = () => {
         }
 
         toast({
-          ...toastOptions,
+          ...TOAST_OPTIONS,
           title: 'Thank you for sign up',
           status: 'success'
         });
       } catch (error) {
         toast({
-          ...toastOptions,
+          ...TOAST_OPTIONS,
           title: 'Something went wrong. Please try again',
           status: 'error'
         });

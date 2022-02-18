@@ -27,7 +27,7 @@ export const Description: FC<Props> = ({ title, img, children }) => {
       </Box>
 
       <Box mt={{ base: 8, md: -24 }} mx={{ base: 'auto', lg: 0 }} flexShrink={0}>
-        <Image src={src} alt={alt} objectFit='cover' priority={true} />
+        <Image src={src} alt={alt} objectFit='cover' priority />
       </Box>
     </Flex>
   );

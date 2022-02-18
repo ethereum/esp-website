@@ -37,7 +37,6 @@ export const HomepageHero: FC = () => {
           <ButtonLink label='Learn more' link={APPLICANTS_URL} width='177px' />
         </Flex>
       </Stack>
-
       <Box>
         <Box display={{ base: 'block', md: 'none' }}>
           <Image
@@ -55,7 +54,6 @@ export const HomepageHero: FC = () => {
               alt='People gathered around the Ethereum tree'
               layout='fill'
               objectFit='cover'
-              // quality={85}
             />
           </Box>
 

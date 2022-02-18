@@ -1,3 +1,4 @@
+import { UseToastOptions } from '@chakra-ui/react';
 import { NavLink, SidebarLink, TabsMap } from './types';
 
 // metadata
@@ -129,3 +130,16 @@ export const API_NEWSLETTER_SIGNUP_URL = '/api/newsletter-signup';
 
 // grants list
 export const CURRENT_GRANTS_QUARTERS = ['3', '4'];
+
+// proposal upload
+export const MAX_PROPOSAL_FILE_SIZE = 2147483648;
+
+// toast options
+export const TOAST_OPTIONS: UseToastOptions = {
+  position: 'top-right',
+  duration: 5000,
+  isClosable: true,
+  containerStyle: {
+    fontFamily: 'fonts.heading'
+  }
+};

@@ -12,17 +12,19 @@ import {
   Radio,
   RadioGroup,
   Stack,
-  Textarea
+  Textarea,
+  useToast
 } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
 import { FC, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import { DropdownIndicator, ImportantText, PageText } from '../UI';
 
+import { api } from './api';
 import { useShadowAnimation } from '../../hooks';
 
 import { chakraStyles } from './selectStyles';
@@ -36,52 +38,63 @@ import {
   PROJECT_CATEGORY_OPTIONS,
   TEAM
 } from './constants';
-import { SMALL_GRANTS_THANK_YOU_PAGE_URL } from '../../constants';
+import { SMALL_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
 import {
   IndividualOrTeam,
-  OfficeHoursFormData,
   ProjectCategory,
-  ProjectGrantsFormData,
-  RepeatApplicant
+  RepeatApplicant,
+  SmallGrantsFormData
 } from '../../types';
 
 const MotionBox = motion<BoxProps>(Box);
 const MotionButton = motion<ButtonProps>(Button);
 
 export const SmallGrantsForm: FC = () => {
+  const router = useRouter();
+  const toast = useToast();
   const [individualOrTeam, setIndividualOrTeam] = useState<IndividualOrTeam>('Individual');
-  const [repeatApplicant, setRepeatApplicant] = useState('No');
+  const [repeatApplicant, setRepeatApplicant] = useState<RepeatApplicant>('No');
   // `unknown` comes from react-select required typings (https://stackoverflow.com/a/54370057)
   const [projectCategory, setProjectCategory] = useState<ProjectCategory | unknown>({
     value: '',
     label: ''
   });
-  const router = useRouter();
   const {
     handleSubmit,
     register,
+    control,
     formState: { errors, isValid },
     reset
-  } = useForm<ProjectGrantsFormData>({
-    mode: 'onChange'
+  } = useForm<SmallGrantsFormData>({
+    mode: 'onBlur'
   });
   const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
 
-  const onSubmit = (data: OfficeHoursFormData) => {
-    router.push(SMALL_GRANTS_THANK_YOU_PAGE_URL);
-  };
+  const isAProject =
+    (projectCategory as ProjectCategory).value !== COMMUNITY_EVENT &&
+    (projectCategory as ProjectCategory).value !== '';
 
-  const handleIndividualOrTeam = (value: IndividualOrTeam) => {
-    setIndividualOrTeam(value);
-  };
+  const isAnEvent = (projectCategory as ProjectCategory).value === COMMUNITY_EVENT;
 
-  const handleRepeatApplicant = (value: RepeatApplicant) => {
-    setRepeatApplicant(value);
-  };
+  const onSubmit = (data: SmallGrantsFormData) => {
+    api.smallGrants
+      .submit(data, isAProject)
+      .then(res => {
+        if (res.ok) {
+          reset();
+          router.push(SMALL_GRANTS_THANK_YOU_PAGE_URL);
+        } else {
+          toast({
+            ...TOAST_OPTIONS,
+            title: 'Something went wrong while submitting, please try again.',
+            status: 'error'
+          });
 
-  const handleProjectCategory = (category: ProjectCategory | unknown) => {
-    setProjectCategory(category);
+          throw new Error('Network response was not OK');
+        }
+      })
+      .catch(err => console.error('There has been a problem with your operation: ', err.message));
   };
 
   return (
@@ -93,7 +106,7 @@ export const SmallGrantsForm: FC = () => {
       pb={{ base: 20, md: 16 }}
       borderRadius={{ md: '10px' }}
     >
-      <form id='office-hours-form' onSubmit={handleSubmit(onSubmit)}>
+      <form id='small-grants-form' onSubmit={handleSubmit(onSubmit)}>
         <Flex direction={{ base: 'column', md: 'row' }}>
           <FormControl id='first-name-control' isRequired mb={8} mr={{ md: 12 }}>
             <FormLabel htmlFor='firstName'>
@@ -111,7 +124,26 @@ export const SmallGrantsForm: FC = () => {
               _placeholder={{ fontSize: 'input' }}
               color='brand.paragraph'
               fontSize='input'
+              {...register('firstName', {
+                required: true,
+                maxLength: 40
+              })}
             />
+
+            {errors?.firstName?.type === 'required' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  First name is required.
+                </PageText>
+              </Box>
+            )}
+            {errors?.firstName?.type === 'maxLength' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  First name cannot exceed 40 characters.
+                </PageText>
+              </Box>
+            )}
           </FormControl>
 
           <FormControl id='last-name-control' isRequired mb={8}>
@@ -130,7 +162,23 @@ export const SmallGrantsForm: FC = () => {
               _placeholder={{ fontSize: 'input' }}
               color='brand.paragraph'
               fontSize='input'
+              {...register('lastName', { required: true, maxLength: 80 })}
             />
+
+            {errors?.lastName?.type === 'required' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Last name is required.
+                </PageText>
+              </Box>
+            )}
+            {errors?.lastName?.type === 'maxLength' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Last name cannot exceed 80 characters.
+                </PageText>
+              </Box>
+            )}
           </FormControl>
         </Flex>
 
@@ -150,72 +198,110 @@ export const SmallGrantsForm: FC = () => {
             _placeholder={{ fontSize: 'input' }}
             color='brand.paragraph'
             fontSize='input'
+            {...register('email', { required: true })}
           />
-        </FormControl>
 
-        <FormControl
-          id='individual-or-team-control'
-          isRequired
-          mb={individualOrTeam === TEAM ? 4 : 8}
-        >
-          <FormLabel htmlFor='individualOrTeam' mb={4}>
-            <PageText display='inline' fontSize='input'>
-              Are you submitting on behalf of a team, or as an individual?
-            </PageText>
-          </FormLabel>
-
-          <RadioGroup
-            id='individual-or-team'
-            onChange={handleIndividualOrTeam}
-            value={individualOrTeam}
-            fontSize='input'
-            colorScheme='white'
-          >
-            <Stack direction='row'>
-              <Radio
-                id='individual'
-                size='lg'
-                name='individualOrTeam'
-                value='Individual'
-                defaultChecked
-                mr={8}
-              >
-                <PageText fontSize='input'>Individual</PageText>
-              </Radio>
-
-              <Radio id='team' size='lg' name='individualOrTeam' value='Team'>
-                <PageText fontSize='input'>Team</PageText>
-              </Radio>
-            </Stack>
-          </RadioGroup>
-        </FormControl>
-
-        <Fade in={individualOrTeam === TEAM} delay={0.25}>
-          <FormControl
-            id='company-control'
-            isRequired
-            mb={8}
-            display={individualOrTeam === TEAM ? 'block' : 'none'}
-          >
-            <FormLabel htmlFor='company'>
-              <PageText display='inline' fontSize='input'>
-                Name of organization or entity
+          {errors?.email?.type === 'required' && (
+            <Box mt={1}>
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Email is required.
               </PageText>
-            </FormLabel>
-            <Input
-              id='company'
-              type='text'
-              placeholder="Enter the name of organization or entity you're submitting for"
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-            />
-          </FormControl>
-        </Fade>
+            </Box>
+          )}
+        </FormControl>
+
+        {/* If the component doesn't expose input's ref, we should use the Controller component, */}
+        {/* which will take care of the registration process (https://react-hook-form.com/get-started#IntegratingwithUIlibraries) */}
+        <Controller
+          name='individualOrTeam'
+          control={control}
+          rules={{ required: true }}
+          defaultValue='Individual'
+          render={({ field: { onChange, value } }) => (
+            <FormControl
+              id='individual-or-team-control'
+              isRequired
+              mb={individualOrTeam === TEAM ? 4 : 8}
+            >
+              <FormLabel htmlFor='individualOrTeam' mb={4}>
+                <PageText display='inline' fontSize='input'>
+                  Are you submitting on behalf of a team, or as an individual?
+                </PageText>
+              </FormLabel>
+
+              <RadioGroup
+                id='individual-or-team'
+                onChange={(value: IndividualOrTeam) => {
+                  onChange(value);
+                  setIndividualOrTeam(value);
+                }}
+                value={value}
+                fontSize='input'
+                colorScheme='white'
+              >
+                <Stack direction='row'>
+                  <Radio
+                    id='individual'
+                    size='lg'
+                    name='individualOrTeam'
+                    value='Individual'
+                    defaultChecked
+                    mr={8}
+                  >
+                    <PageText fontSize='input'>Individual</PageText>
+                  </Radio>
+
+                  <Radio id='team' size='lg' name='individualOrTeam' value='Team'>
+                    <PageText fontSize='input'>Team</PageText>
+                  </Radio>
+                </Stack>
+              </RadioGroup>
+            </FormControl>
+          )}
+        />
+
+        <Box display={individualOrTeam === TEAM ? 'block' : 'none'}>
+          <Fade in={individualOrTeam === TEAM} delay={0.25}>
+            <FormControl id='company-control' isRequired={individualOrTeam === TEAM} mb={8}>
+              <FormLabel htmlFor='company'>
+                <PageText display='inline' fontSize='input'>
+                  Name of organization or entity
+                </PageText>
+              </FormLabel>
+              <Input
+                id='company'
+                type='text'
+                placeholder="Enter the name of organization or entity you're submitting for"
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                h='56px'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+                {...register('company', {
+                  required: individualOrTeam === TEAM,
+                  maxLength: 255
+                })}
+              />
+
+              {errors?.company?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Organization name is required.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.company?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Organization name cannot exceed 255 characters.
+                  </PageText>
+                </Box>
+              )}
+            </FormControl>
+          </Fade>
+        </Box>
 
         <FormControl id='individual-or-team-summary-control' isRequired mb={8}>
           <FormLabel htmlFor='individualOrTeamSummary' mb={1}>
@@ -231,9 +317,6 @@ export const SmallGrantsForm: FC = () => {
 
           <Textarea
             id='individual-or-team-summary'
-            // TODO: change this when input validation is added
-            // value={''}
-            // onChange={() => {}}
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -242,7 +325,26 @@ export const SmallGrantsForm: FC = () => {
             fontSize='input'
             h='150px'
             mt={3}
+            {...register('individualOrTeamSummary', {
+              required: true,
+              maxLength: 32768
+            })}
           />
+
+          {errors?.individualOrTeamSummary?.type === 'required' && (
+            <Box mt={1}>
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Team summary is required.
+              </PageText>
+            </Box>
+          )}
+          {errors?.individualOrTeamSummary?.type === 'maxLength' && (
+            <Box mt={1}>
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Team summary cannot exceed 32768 characters.
+              </PageText>
+            </Box>
+          )}
         </FormControl>
 
         <FormControl id='website-control' mb={8}>
@@ -265,16 +367,29 @@ export const SmallGrantsForm: FC = () => {
             color='brand.paragraph'
             fontSize='input'
             pl={16}
+            {...register('website', {
+              maxLength: 255
+            })}
           />
+
+          {errors?.website?.type === 'maxLength' && (
+            <Box mt={1}>
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Website cannot exceed 255 characters.
+              </PageText>
+            </Box>
+          )}
         </FormControl>
 
         <FormControl id='twitter-control' mb={8}>
           <FormLabel htmlFor='twitter'>
             <PageText fontSize='input'>Twitter</PageText>
           </FormLabel>
+
           <PageText fontSize='input' position='absolute' bottom='15.5px' left={4} zIndex={9}>
             @
           </PageText>
+
           <Input
             id='twitter'
             type='text'
@@ -288,44 +403,61 @@ export const SmallGrantsForm: FC = () => {
             color='brand.paragraph'
             fontSize='input'
             pl={8}
+            {...register('twitter', {
+              maxLength: 16
+            })}
           />
+
+          {errors?.twitter?.type === 'maxLength' && (
+            <Box mt={1}>
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Twitter handle cannot exceed 16 characters.
+              </PageText>
+            </Box>
+          )}
         </FormControl>
 
-        <FormControl id='project-category-control' isRequired mb={8}>
-          <FormLabel htmlFor='projectCategory'>
-            <PageText display='inline' fontSize='input'>
-              Project category
-            </PageText>
-          </FormLabel>
+        <Controller
+          name='projectCategory'
+          control={control}
+          rules={{ required: true, validate: selected => selected.value !== '' }}
+          defaultValue={{ value: '', label: '' }}
+          render={({ field: { onChange }, fieldState: { error } }) => (
+            <FormControl id='project-category-control' isRequired mb={8}>
+              <FormLabel htmlFor='projectCategory'>
+                <PageText display='inline' fontSize='input'>
+                  Project category
+                </PageText>
+              </FormLabel>
 
-          <Select
-            id='project-category'
-            options={PROJECT_CATEGORY_OPTIONS}
-            components={{ DropdownIndicator }}
-            placeholder='Select'
-            closeMenuOnSelect={true}
-            selectedOptionColor='brand.option'
-            chakraStyles={chakraStyles}
-            onChange={handleProjectCategory}
-          />
-        </FormControl>
+              <Select
+                id='project-category'
+                options={PROJECT_CATEGORY_OPTIONS}
+                onChange={value => {
+                  onChange(value);
+                  setProjectCategory(value);
+                }}
+                components={{ DropdownIndicator }}
+                placeholder='Select'
+                closeMenuOnSelect={true}
+                selectedOptionColor='brand.option'
+                chakraStyles={chakraStyles}
+              />
 
-        <Fade
-          in={
-            (projectCategory as ProjectCategory).value !== COMMUNITY_EVENT &&
-            (projectCategory as ProjectCategory).value !== ''
-          }
-          delay={0.25}
-        >
-          <Box
-            display={
-              (projectCategory as ProjectCategory).value !== COMMUNITY_EVENT &&
-              (projectCategory as ProjectCategory).value !== ''
-                ? 'block'
-                : 'none'
-            }
-          >
-            <FormControl id='project-name-control' isRequired mt={8} mb={8}>
+              {error && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Project category is required.
+                  </PageText>
+                </Box>
+              )}
+            </FormControl>
+          )}
+        />
+
+        <Box display={isAProject ? 'block' : 'none'}>
+          <Fade in={isAProject} delay={0.25}>
+            <FormControl id='project-name-control' isRequired={isAProject} mt={8} mb={8}>
               <FormLabel htmlFor='projectName' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   Project name
@@ -347,7 +479,26 @@ export const SmallGrantsForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 mt={3}
+                {...register('projectName', {
+                  required: isAProject,
+                  maxLength: 255
+                })}
               />
+
+              {errors?.projectName?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Project name is required.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.projectName?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Project name cannot exceed 255 characters.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
 
             <FormControl id='project-repo-control' mb={8}>
@@ -370,11 +521,22 @@ export const SmallGrantsForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 mt={3}
+                {...register('projectRepo', {
+                  maxLength: 255
+                })}
               />
+
+              {errors?.projectRepo?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Repo name cannot exceed 255 characters.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
 
-            <FormControl id='previous-work-control' isRequired mb={8}>
-              <FormLabel htmlFor='previousWork' mb={1}>
+            <FormControl id='project-previous-work-control' isRequired={isAProject} mb={8}>
+              <FormLabel htmlFor='projectPreviousWork' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   Previous work
                 </PageText>
@@ -386,10 +548,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Textarea
-                id='previous-work'
-                // TODO: change this when input validation is added
-                // value={''}
-                // onChange={() => {}}
+                id='project-previous-work'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -398,35 +557,29 @@ export const SmallGrantsForm: FC = () => {
                 fontSize='input'
                 h='150px'
                 mt={3}
+                {...register('projectPreviousWork', {
+                  required: isAProject,
+                  maxLength: 32768
+                })}
               />
+
+              {errors?.projectPreviousWork?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Previous work is required.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.projectPreviousWork?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Previous work cannot exceed 32768 characters.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
 
-            <FormControl id='other-links-control' mb={8}>
-              <FormLabel htmlFor='otherLinks' mb={1}>
-                <PageText fontSize='input'>Other links</PageText>
-              </FormLabel>
-
-              <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                If you have a demo or published work, show us your stuff!
-              </PageText>
-
-              <Textarea
-                id='other-links'
-                // TODO: change this when input validation is added
-                // value={''}
-                // onChange={() => {}}
-                bg='white'
-                borderRadius={0}
-                borderColor='brand.border'
-                _placeholder={{ fontSize: 'input' }}
-                color='brand.paragraph'
-                fontSize='input'
-                h='150px'
-                mt={3}
-              />
-            </FormControl>
-
-            <FormControl id='project-description-control' isRequired mb={8}>
+            <FormControl id='project-description-control' isRequired={isAProject} mb={8}>
               <FormLabel htmlFor='projectDescription' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   What is the project?
@@ -439,9 +592,6 @@ export const SmallGrantsForm: FC = () => {
 
               <Textarea
                 id='project-description'
-                // TODO: change this when input validation is added
-                // value={''}
-                // onChange={() => {}}
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -450,10 +600,29 @@ export const SmallGrantsForm: FC = () => {
                 fontSize='input'
                 h='150px'
                 mt={3}
+                {...register('projectDescription', {
+                  required: isAProject,
+                  maxLength: 32768
+                })}
               />
+
+              {errors?.projectDescription?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Project description is required.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.projectDescription?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Project description cannot exceed 32768 characters.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
 
-            <FormControl id='why-is-project-important-control' isRequired mb={8}>
+            <FormControl id='why-is-project-important-control' isRequired={isAProject} mb={8}>
               <FormLabel htmlFor='whyIsProjectImportant' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   Why is your project important?
@@ -467,9 +636,6 @@ export const SmallGrantsForm: FC = () => {
 
               <Textarea
                 id='why-is-project-important'
-                // TODO: change this when input validation is added
-                // value={''}
-                // onChange={() => {}}
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -478,10 +644,29 @@ export const SmallGrantsForm: FC = () => {
                 fontSize='input'
                 h='150px'
                 mt={3}
+                {...register('whyIsProjectImportant', {
+                  required: isAProject,
+                  maxLength: 32768
+                })}
               />
+
+              {errors?.whyIsProjectImportant?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Project impact is required.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.whyIsProjectImportant?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Project impact cannot exceed 32768 characters.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
 
-            <FormControl id='how-does-your-project-differ-control' isRequired mb={8}>
+            <FormControl id='how-does-your-project-differ-control' isRequired={isAProject} mb={8}>
               <FormLabel htmlFor='howDoesYourProjectDiffer' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   How does your project differ from similar ones?
@@ -495,9 +680,6 @@ export const SmallGrantsForm: FC = () => {
 
               <Textarea
                 id='how-does-your-project-differ'
-                // TODO: change this when input validation is added
-                // value={''}
-                // onChange={() => {}}
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -506,12 +688,31 @@ export const SmallGrantsForm: FC = () => {
                 fontSize='input'
                 h='150px'
                 mt={3}
+                {...register('howDoesYourProjectDiffer', {
+                  required: isAProject,
+                  maxLength: 32768
+                })}
               />
+
+              {errors?.howDoesYourProjectDiffer?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    How is your project different is required.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.howDoesYourProjectDiffer?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    How is your project different cannot exceed 32768 characters.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
 
             <FormControl
               id='project-requested-amount-control'
-              isRequired
+              isRequired={isAProject}
               mb={8}
               w={{ md: '50%' }}
               pr={{ lg: 6 }}
@@ -537,10 +738,29 @@ export const SmallGrantsForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 mt={3}
+                {...register('projectRequestedAmount', {
+                  required: isAProject,
+                  maxLength: 20
+                })}
               />
+
+              {errors?.projectRequestedAmount?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Requested amount is required.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.projectRequestedAmount?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Requested amount cannot exceed 20 characters.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
 
-            <FormControl id='proposed-timeline-control' isRequired mb={8}>
+            <FormControl id='proposed-timeline-control' isRequired={isAProject} mb={8}>
               <FormLabel htmlFor='proposedTimeline' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   Proposed tasks, roadmap and budget
@@ -556,9 +776,6 @@ export const SmallGrantsForm: FC = () => {
 
               <Textarea
                 id='proposed-timeline'
-                // TODO: change this when input validation is added
-                // value={''}
-                // onChange={() => {}}
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -567,10 +784,29 @@ export const SmallGrantsForm: FC = () => {
                 fontSize='input'
                 h='150px'
                 mt={3}
+                {...register('proposedTimeline', {
+                  required: isAProject,
+                  maxLength: 32768
+                })}
               />
+
+              {errors?.proposedTimeline?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Proposed timeline is required.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.proposedTimeline?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Proposed timeline cannot exceed 32768 characters.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
 
-            <FormControl id='is-your-project-public-good-control' isRequired mb={8}>
+            <FormControl id='is-your-project-public-good-control' isRequired={isAProject} mb={8}>
               <FormLabel htmlFor='isYourProjectPublicGood' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   Is your project a public good?
@@ -583,9 +819,6 @@ export const SmallGrantsForm: FC = () => {
 
               <Textarea
                 id='is-your-project-public-good'
-                // TODO: change this when input validation is added
-                // value={''}
-                // onChange={() => {}}
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -594,10 +827,29 @@ export const SmallGrantsForm: FC = () => {
                 fontSize='input'
                 h='150px'
                 mt={3}
+                {...register('isYourProjectPublicGood', {
+                  required: isAProject,
+                  maxLength: 32768
+                })}
               />
+
+              {errors?.isYourProjectPublicGood?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Is your project public good is required.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.isYourProjectPublicGood?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Is your project public good cannot exceed 32768 characters.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
 
-            <FormControl id='is-open-source-control' isRequired mb={8}>
+            <FormControl id='is-open-source-control' isRequired={isAProject} mb={8}>
               <FormLabel htmlFor='isOpenSource' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   Is your project open source?
@@ -610,9 +862,6 @@ export const SmallGrantsForm: FC = () => {
 
               <Textarea
                 id='is-open-source'
-                // TODO: change this when input validation is added
-                // value={''}
-                // onChange={() => {}}
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -621,11 +870,30 @@ export const SmallGrantsForm: FC = () => {
                 fontSize='input'
                 h='150px'
                 mt={3}
+                {...register('isOpenSource', {
+                  required: isAProject,
+                  maxLength: 32768
+                })}
               />
+
+              {errors?.isOpenSource?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Is your project open source is required.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.isOpenSource?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Is your project open source cannot exceed 32768 characters.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
 
-            <FormControl id='future-plans-control' isRequired mb={8}>
-              <FormLabel htmlFor='futurePlans' mb={1}>
+            <FormControl id='sustainability-plan-control' isRequired={isAProject} mb={8}>
+              <FormLabel htmlFor='sustainabilityPlan' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   What are your plans after the grant is completed?
                 </PageText>
@@ -637,10 +905,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Textarea
-                id='future-plans'
-                // TODO: change this when input validation is added
-                // value={''}
-                // onChange={() => {}}
+                id='sustainability-plan'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -649,20 +914,36 @@ export const SmallGrantsForm: FC = () => {
                 fontSize='input'
                 h='150px'
                 mt={3}
+                {...register('sustainabilityPlan', {
+                  required: isAProject,
+                  maxLength: 32768
+                })}
               />
+
+              {errors?.sustainabilityPlan?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Sustainability plan is required.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.sustainabilityPlan?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Sustainability plan cannot exceed 32768 characters.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
 
-            <FormControl id='alternative-work-control' isRequired mb={8}>
-              <FormLabel htmlFor='alternativeWork'>
+            <FormControl id='other-projects-control' isRequired={isAProject} mb={8}>
+              <FormLabel htmlFor='otherProjects'>
                 <PageText display='inline' fontSize='input'>
                   If you didn&apos;t work on this project, what would you work on instead?
                 </PageText>
               </FormLabel>
               <Textarea
-                id='alternative-work'
-                // TODO: change this when input validation is added
-                // value={''}
-                // onChange={() => {}}
+                id='other-projects'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -670,72 +951,126 @@ export const SmallGrantsForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 h='150px'
+                {...register('otherProjects', {
+                  required: isAProject,
+                  maxLength: 32768
+                })}
               />
+
+              {errors?.otherProjects?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Other projects is required.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.otherProjects?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Other projects cannot exceed 32768 characters.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
 
-            <FormControl id='repeat-applicant-control' isRequired mb={8}>
-              <FormLabel htmlFor='individualOrTeam' mb={2}>
-                <PageText display='inline' fontSize='input'>
-                  Have you previously applied to ESP with this same idea or project?
-                </PageText>
-              </FormLabel>
+            <Controller
+              name='repeatApplicant'
+              control={control}
+              rules={{ required: isAProject }}
+              defaultValue='No'
+              render={({ field: { onChange, value } }) => (
+                <FormControl id='repeat-applicant-control' isRequired={isAProject} mb={8}>
+                  <FormLabel htmlFor='repeatApplicant' mb={2}>
+                    <PageText display='inline' fontSize='input'>
+                      Have you previously applied to ESP with this same idea or project?
+                    </PageText>
+                  </FormLabel>
 
-              <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                Has anything changed? If you&apos;re considering reapplying, we recommend signing up
-                for Office Hours first before restarting the application process.
-              </PageText>
+                  <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                    Has anything changed? If you&apos;re considering reapplying, we recommend
+                    signing up for Office Hours first before restarting the application process.
+                  </PageText>
 
-              <RadioGroup
-                id='repeat-applicant'
-                onChange={handleRepeatApplicant}
-                value={repeatApplicant}
-                fontSize='input'
-                colorScheme='white'
-                mt={4}
-              >
-                <Stack direction='row'>
-                  <Radio
-                    id='repeat-applicant-no'
-                    size='lg'
-                    name='repeatApplicant'
-                    value='No'
-                    defaultChecked
-                    mr={8}
+                  <RadioGroup
+                    id='repeat-applicant'
+                    onChange={(value: RepeatApplicant) => {
+                      onChange(value);
+                      setRepeatApplicant(value);
+                    }}
+                    value={value}
+                    fontSize='input'
+                    colorScheme='white'
+                    mt={4}
                   >
-                    <PageText fontSize='input'>No</PageText>
-                  </Radio>
+                    <Stack direction='row'>
+                      <Radio
+                        id='repeat-applicant-no'
+                        size='lg'
+                        name='repeatApplicant'
+                        value='No'
+                        defaultChecked
+                        mr={8}
+                      >
+                        <PageText fontSize='input'>No</PageText>
+                      </Radio>
 
-                  <Radio id='repeat-applicant-yes' size='lg' name='repeatApplicant' value='Yes'>
-                    <PageText fontSize='input'>Yes</PageText>
-                  </Radio>
-                </Stack>
-              </RadioGroup>
-            </FormControl>
+                      <Radio id='repeat-applicant-yes' size='lg' name='repeatApplicant' value='Yes'>
+                        <PageText fontSize='input'>Yes</PageText>
+                      </Radio>
+                    </Stack>
+                  </RadioGroup>
+                </FormControl>
+              )}
+            />
 
-            <FormControl id='progress-since-previous-application-control' isRequired mb={8}>
-              <FormLabel htmlFor='progressSincePreviousApplication'>
-                <PageText display='inline' fontSize='input'>
-                  If you&apos;ve applied previously with the same idea, how much progress have you
-                  made since the last time you applied?
-                </PageText>
-              </FormLabel>
-              <Textarea
-                id='progress-since-previous-application'
-                // TODO: change this when input validation is added
-                // value={''}
-                // onChange={() => {}}
-                bg='white'
-                borderRadius={0}
-                borderColor='brand.border'
-                _placeholder={{ fontSize: 'input' }}
-                color='brand.paragraph'
-                fontSize='input'
-                h='150px'
-              />
-            </FormControl>
+            <Box display={repeatApplicant === 'Yes' ? 'block' : 'none'}>
+              <Fade in={repeatApplicant === 'Yes'} delay={0.25}>
+                <FormControl
+                  id='progress'
+                  isRequired={isAProject && repeatApplicant === 'Yes'}
+                  mb={8}
+                >
+                  <FormLabel htmlFor='progress'>
+                    <PageText display='inline' fontSize='input'>
+                      If you&apos;ve applied previously with the same idea, how much progress have
+                      you made since the last time you applied?
+                    </PageText>
+                  </FormLabel>
+                  <Textarea
+                    id='progress'
+                    bg='white'
+                    borderRadius={0}
+                    borderColor='brand.border'
+                    _placeholder={{ fontSize: 'input' }}
+                    color='brand.paragraph'
+                    fontSize='input'
+                    h='150px'
+                    {...register('progress', {
+                      required: isAProject && repeatApplicant === 'Yes',
+                      maxLength: 32768
+                    })}
+                  />
 
-            <FormControl id='applied-previously-control' isRequired mb={8}>
-              <FormLabel htmlFor='appliedPreviously' mb={1}>
+                  {errors?.progress?.type === 'required' && (
+                    <Box mt={1}>
+                      <PageText as='small' fontSize='helpText' color='red.500'>
+                        Progress is required.
+                      </PageText>
+                    </Box>
+                  )}
+                  {errors?.progress?.type === 'maxLength' && (
+                    <Box mt={1}>
+                      <PageText as='small' fontSize='helpText' color='red.500'>
+                        Progress cannot exceed 32768 characters.
+                      </PageText>
+                    </Box>
+                  )}
+                </FormControl>
+              </Fade>
+            </Box>
+
+            <FormControl id='other-funding-control' isRequired={isAProject} mb={8}>
+              <FormLabel htmlFor='otherFunding' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   Have you applied for or received other funding?
                 </PageText>
@@ -746,10 +1081,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Textarea
-                id='applied-previously'
-                // TODO: change this when input validation is added
-                // value={''}
-                // onChange={() => {}}
+                id='other-funding'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -758,45 +1090,33 @@ export const SmallGrantsForm: FC = () => {
                 fontSize='input'
                 h='150px'
                 mt={3}
+                {...register('otherFunding', {
+                  required: isAProject,
+                  maxLength: 32768
+                })}
               />
+
+              {errors?.otherFunding?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Other funding data is required.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.otherFunding?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Other funding data cannot exceed 32768 characters.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
+          </Fade>
+        </Box>
 
-            <FormControl id='project-additional-info-control' mb={8}>
-              <FormLabel htmlFor='projectAdditionalInfo' mb={1}>
-                <PageText fontSize='input'>Anything else you&apos;d like to share?</PageText>
-              </FormLabel>
-
-              <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                Is there anything we should know about that hasn&apos;t been covered by the
-                questions above? You also have the option to link any supporting documents or
-                relevant sites here.
-              </PageText>
-
-              <Textarea
-                id='project-additional-info'
-                // TODO: change this when input validation is added
-                // value={''}
-                // onChange={() => {}}
-                bg='white'
-                borderRadius={0}
-                borderColor='brand.border'
-                _placeholder={{ fontSize: 'input' }}
-                color='brand.paragraph'
-                fontSize='input'
-                h='150px'
-                mt={3}
-              />
-            </FormControl>
-          </Box>
-        </Fade>
-
-        <Fade in={(projectCategory as ProjectCategory).value === COMMUNITY_EVENT} delay={0.25}>
-          <Box
-            display={
-              (projectCategory as ProjectCategory).value === COMMUNITY_EVENT ? 'block' : 'none'
-            }
-          >
-            <FormControl id='event-name-control' isRequired mb={8}>
+        <Box display={isAnEvent ? 'block' : 'none'}>
+          <Fade in={isAnEvent} delay={0.25}>
+            <FormControl id='event-name-control' isRequired={isAnEvent} mb={8}>
               <FormLabel htmlFor='eventName' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   Event name
@@ -818,10 +1138,29 @@ export const SmallGrantsForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 mt={3}
+                {...register('eventName', {
+                  required: isAnEvent,
+                  maxLength: 255
+                })}
               />
+
+              {errors?.eventName?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Event name is required.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.eventName?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Event name cannot exceed 255 characters.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
 
-            <FormControl id='event-date-control' isRequired mb={8}>
+            <FormControl id='event-date-control' isRequired={isAnEvent} mb={8}>
               <FormLabel htmlFor='eventDate' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   Event date
@@ -829,10 +1168,9 @@ export const SmallGrantsForm: FC = () => {
               </FormLabel>
 
               <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                Please enter the first date of your event (MM/DD/YYYY)
+                Please enter the first date of your event (DD/MM/YYYY)
               </PageText>
 
-              {/* TODO: convert date to 'MM/DD/YYYY' format before submitting */}
               <Input
                 id='event-date'
                 type='date'
@@ -844,11 +1182,22 @@ export const SmallGrantsForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 mt={3}
+                {...register('eventDate', {
+                  required: isAnEvent
+                })}
               />
+
+              {errors?.eventDate?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Event date is required.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
 
-            <FormControl id='previous-work-control' isRequired mb={8}>
-              <FormLabel htmlFor='previousWork' mb={1}>
+            <FormControl id='event-previous-work-control' isRequired={isAnEvent} mb={8}>
+              <FormLabel htmlFor='eventPreviousWork' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   List of any previous events you&apos;ve organized
                 </PageText>
@@ -859,10 +1208,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Textarea
-                id='previous-work'
-                // TODO: change this when input validation is added
-                // value={''}
-                // onChange={() => {}}
+                id='event-previous-work'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -871,7 +1217,26 @@ export const SmallGrantsForm: FC = () => {
                 fontSize='input'
                 h='150px'
                 mt={3}
+                {...register('eventPreviousWork', {
+                  required: isAnEvent,
+                  maxLength: 32768
+                })}
               />
+
+              {errors?.eventPreviousWork?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Previous work is required.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.eventPreviousWork?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Previous work cannot exceed 32768 characters.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
 
             <FormControl id='sponsorship-link-control' mb={8}>
@@ -896,10 +1261,21 @@ export const SmallGrantsForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 mt={3}
+                {...register('sponsorshipLink', {
+                  maxLength: 255
+                })}
               />
+
+              {errors?.eventName?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    URL cannot exceed 255 characters.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
 
-            <FormControl id='sponsorship-details-control' isRequired mb={8}>
+            <FormControl id='sponsorship-details-control' isRequired={isAnEvent} mb={8}>
               <FormLabel htmlFor='sponsorshipDetails' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   Describe your event
@@ -914,9 +1290,6 @@ export const SmallGrantsForm: FC = () => {
 
               <Textarea
                 id='sponsorship-details'
-                // TODO: change this when input validation is added
-                // value={''}
-                // onChange={() => {}}
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -925,10 +1298,29 @@ export const SmallGrantsForm: FC = () => {
                 fontSize='input'
                 h='150px'
                 mt={3}
+                {...register('sponsorshipDetails', {
+                  required: isAnEvent,
+                  maxLength: 32768
+                })}
               />
+
+              {errors?.sponsorshipDetails?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Event details are required.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.sponsorshipDetails?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Event details cannot exceed 32768 characters.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
 
-            <FormControl id='sponsorship-topics-control' isRequired mb={8}>
+            <FormControl id='sponsorship-topics-control' isRequired={isAnEvent} mb={8}>
               <FormLabel htmlFor='sponsorshipTopics' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   Event topics
@@ -942,9 +1334,6 @@ export const SmallGrantsForm: FC = () => {
 
               <Textarea
                 id='sponsorship-topics'
-                // TODO: change this when input validation is added
-                // value={''}
-                // onChange={() => {}}
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -953,50 +1342,116 @@ export const SmallGrantsForm: FC = () => {
                 fontSize='input'
                 h='150px'
                 mt={3}
+                {...register('sponsorshipTopics', {
+                  required: isAnEvent,
+                  maxLength: 32768
+                })}
               />
+
+              {errors?.sponsorshipTopics?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Event topics are required.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.sponsorshipTopics?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Event topics cannot exceed 32768 characters.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
 
             <Flex direction={{ base: 'column', lg: 'row' }}>
-              <FormControl id='event-type-control' isRequired mb={8} mr={{ md: 12 }}>
-                <FormLabel htmlFor='eventType'>
-                  <PageText display='inline' fontSize='input'>
-                    What type of event is this?
-                  </PageText>
-                </FormLabel>
+              <Controller
+                name='eventType'
+                control={control}
+                rules={{
+                  required: isAnEvent,
+                  validate: selected =>
+                    (!isAnEvent && selected.value === '') || (isAnEvent && selected.value !== '')
+                }}
+                defaultValue={{ value: '', label: '' }}
+                render={({ field: { onChange }, fieldState: { error } }) => (
+                  <FormControl
+                    id='event-type-control'
+                    isRequired={isAnEvent}
+                    mb={8}
+                    mr={{ md: 12 }}
+                  >
+                    <FormLabel htmlFor='eventType'>
+                      <PageText display='inline' fontSize='input'>
+                        What type of event is this?
+                      </PageText>
+                    </FormLabel>
 
-                <Select
-                  id='event-type'
-                  options={EVENT_TYPE_OPTIONS}
-                  components={{ DropdownIndicator }}
-                  placeholder='Select'
-                  closeMenuOnSelect={true}
-                  selectedOptionColor='brand.option'
-                  chakraStyles={chakraStyles}
-                />
-              </FormControl>
+                    <Select
+                      id='event-type'
+                      options={EVENT_TYPE_OPTIONS}
+                      onChange={onChange}
+                      components={{ DropdownIndicator }}
+                      placeholder='Select'
+                      closeMenuOnSelect={true}
+                      selectedOptionColor='brand.option'
+                      chakraStyles={chakraStyles}
+                    />
 
-              <FormControl id='event-format-control' isRequired mb={8}>
-                <FormLabel htmlFor='eventFormat'>
-                  <PageText display='inline' fontSize='input'>
-                    Is your event in-person or online?
-                  </PageText>
-                </FormLabel>
+                    {error && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Event type is required.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
+                )}
+              />
 
-                <Select
-                  id='event-format'
-                  options={EVENT_FORMAT_OPTIONS}
-                  components={{ DropdownIndicator }}
-                  placeholder='Select'
-                  closeMenuOnSelect={true}
-                  selectedOptionColor='brand.option'
-                  chakraStyles={chakraStyles}
-                />
-              </FormControl>
+              <Controller
+                name='eventFormat'
+                control={control}
+                rules={{
+                  required: isAnEvent,
+                  validate: selected =>
+                    (!isAnEvent && selected.value === '') || (isAnEvent && selected.value !== '')
+                }}
+                defaultValue={{ value: '', label: '' }}
+                render={({ field: { onChange }, fieldState: { error } }) => (
+                  <FormControl id='event-format-control' isRequired={isAnEvent} mb={8}>
+                    <FormLabel htmlFor='eventFormat'>
+                      <PageText display='inline' fontSize='input'>
+                        Is your event in-person or online?
+                      </PageText>
+                    </FormLabel>
+
+                    <Select
+                      id='event-format'
+                      options={EVENT_FORMAT_OPTIONS}
+                      onChange={onChange}
+                      components={{ DropdownIndicator }}
+                      placeholder='Select'
+                      closeMenuOnSelect={true}
+                      selectedOptionColor='brand.option'
+                      chakraStyles={chakraStyles}
+                    />
+
+                    {error && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Event format is required.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
+                )}
+              />
             </Flex>
 
             <FormControl
               id='expected-attendees-control'
-              isRequired
+              isRequired={isAnEvent}
               mb={8}
               w={{ md: '50%' }}
               pr={{ lg: 6 }}
@@ -1022,10 +1477,29 @@ export const SmallGrantsForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 mt={3}
+                {...register('expectedAttendees', {
+                  required: isAnEvent,
+                  maxLength: 18
+                })}
               />
+
+              {errors?.expectedAttendees?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Expected number is required.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.expectedAttendees?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Expected number cannot exceed 18 characters.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
 
-            <FormControl id='target-audience-control' isRequired mb={8}>
+            <FormControl id='target-audience-control' isRequired={isAnEvent} mb={8}>
               <FormLabel htmlFor='targetAudience' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   Target audience
@@ -1038,9 +1512,6 @@ export const SmallGrantsForm: FC = () => {
 
               <Textarea
                 id='target-audience'
-                // TODO: change this when input validation is added
-                // value={''}
-                // onChange={() => {}}
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -1049,10 +1520,29 @@ export const SmallGrantsForm: FC = () => {
                 fontSize='input'
                 h='150px'
                 mt={3}
+                {...register('targetAudience', {
+                  required: isAnEvent,
+                  maxLength: 3000
+                })}
               />
+
+              {errors?.targetAudience?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Target audience is required.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.targetAudience?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Target audience cannot exceed 3000 characters.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
 
-            <FormControl id='confirmed-speakers-control' isRequired mb={8}>
+            <FormControl id='confirmed-speakers-control' isRequired={isAnEvent} mb={8}>
               <FormLabel htmlFor='confirmedSpeakers' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   List any confirmed speakers
@@ -1066,9 +1556,6 @@ export const SmallGrantsForm: FC = () => {
 
               <Textarea
                 id='confirmed-speakers'
-                // TODO: change this when input validation is added
-                // value={''}
-                // onChange={() => {}}
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -1077,10 +1564,29 @@ export const SmallGrantsForm: FC = () => {
                 fontSize='input'
                 h='150px'
                 mt={3}
+                {...register('confirmedSpeakers', {
+                  required: isAnEvent,
+                  maxLength: 32768
+                })}
               />
+
+              {errors?.confirmedSpeakers?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Confirmed speakers list is required.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.confirmedSpeakers?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Confirmed speakers list cannot exceed 32768 characters.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
 
-            <FormControl id='confirmed-sponsors-control' isRequired mb={8}>
+            <FormControl id='confirmed-sponsors-control' isRequired={isAnEvent} mb={8}>
               <FormLabel htmlFor='confirmedSponsors'>
                 <PageText display='inline' fontSize='input'>
                   List any confirmed sponsors
@@ -1088,9 +1594,6 @@ export const SmallGrantsForm: FC = () => {
               </FormLabel>
               <Textarea
                 id='confirmed-sponsors'
-                // TODO: change this when input validation is added
-                // value={''}
-                // onChange={() => {}}
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -1098,11 +1601,30 @@ export const SmallGrantsForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 h='150px'
+                {...register('confirmedSponsors', {
+                  required: isAnEvent,
+                  maxLength: 32768
+                })}
               />
+
+              {errors?.confirmedSponsors?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Confirmed sponsors list is required.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.confirmedSponsors?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Confirmed sponsors list cannot exceed 32768 characters.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
 
-            <FormControl id='event-proposed-timeline-control' isRequired mb={8}>
-              <FormLabel htmlFor='eventProposedTimeline' mb={1}>
+            <FormControl id='event-budget-breakdown-control' isRequired={isAnEvent} mb={8}>
+              <FormLabel htmlFor='eventBudgetBreakdown' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   Budget breakdown
                 </PageText>
@@ -1114,10 +1636,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Textarea
-                id='event-proposed-timeline'
-                // TODO: change this when input validation is added
-                // value={''}
-                // onChange={() => {}}
+                id='event-budget-breakdown'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -1126,12 +1645,31 @@ export const SmallGrantsForm: FC = () => {
                 fontSize='input'
                 h='150px'
                 mt={3}
+                {...register('eventBudgetBreakdown', {
+                  required: isAnEvent,
+                  maxLength: 32768
+                })}
               />
+
+              {errors?.eventBudgetBreakdown?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Budget breakdown is required.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.eventBudgetBreakdown?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Budget breakdown cannot exceed 32768 characters.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
 
             <FormControl
               id='event-requested-amount-control'
-              isRequired
+              isRequired={isAnEvent}
               mb={8}
               w={{ md: '50%' }}
               pr={{ lg: 6 }}
@@ -1157,49 +1695,74 @@ export const SmallGrantsForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 mt={3}
+                {...register('eventRequestedAmount', {
+                  required: isAnEvent,
+                  maxLength: 255
+                })}
               />
+
+              {errors?.eventRequestedAmount?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Requested amount is required.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.eventRequestedAmount?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Requested amount cannot exceed 255 characters.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
+          </Fade>
+        </Box>
 
-            <FormControl id='event-additional-info-control' mb={8}>
-              <FormLabel htmlFor='eventAdditionalInfo' mb={1}>
-                <PageText fontSize='input'>Anything else you&apos;d like to share?</PageText>
-              </FormLabel>
+        <FormControl id='additional-info-control' mb={8}>
+          <FormLabel htmlFor='additionalInfo' mb={1}>
+            <PageText fontSize='input'>Anything else you&apos;d like to share?</PageText>
+          </FormLabel>
 
-              <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                Is there anything we should know about that hasn&apos;t been covered by the
-                questions above? You also have the option to link any supporting documents or
-                relevant sites here.
+          <PageText as='small' fontSize='helpText' color='brand.helpText'>
+            Is there anything we should know about that hasn&apos;t been covered by the questions
+            above? You also have the option to link any supporting documents or relevant sites here.
+          </PageText>
+
+          <Textarea
+            id='additional-info'
+            bg='white'
+            borderRadius={0}
+            borderColor='brand.border'
+            _placeholder={{ fontSize: 'input' }}
+            color='brand.paragraph'
+            fontSize='input'
+            h='150px'
+            mt={3}
+            {...register('additionalInfo', {
+              maxLength: 32768
+            })}
+          />
+
+          {errors?.additionalInfo?.type === 'maxLength' && (
+            <Box mt={1}>
+              <PageText as='small' fontSize='helpText' color='red.500'>
+                Additional info cannot exceed 32768 characters.
               </PageText>
+            </Box>
+          )}
+        </FormControl>
 
-              <Textarea
-                id='event-additional-info'
-                // TODO: change this when input validation is added
-                // value={''}
-                // onChange={() => {}}
-                bg='white'
-                borderRadius={0}
-                borderColor='brand.border'
-                _placeholder={{ fontSize: 'input' }}
-                color='brand.paragraph'
-                fontSize='input'
-                h='150px'
-                mt={3}
-              />
-            </FormControl>
+        <Stack display={isAnEvent ? 'block' : 'none'} mb={10}>
+          <PageText fontSize='input' fontWeight={700} mb={-1}>
+            NOTE:
+          </PageText>
 
-            <Stack mb={10}>
-              <PageText fontSize='input' fontWeight={700} mb={-1}>
-                NOTE:
-              </PageText>
-
-              <PageText fontSize='input'>
-                Event sponsorships are <strong>not</strong> grants - there are some key differences
-                in the way they are administered - but the application process starts in the same
-                way.
-              </PageText>
-            </Stack>
-          </Box>
-        </Fade>
+          <PageText fontSize='input'>
+            Event sponsorships are <strong>not</strong> grants - there are some key differences in
+            the way they are administered - but the application process starts in the same way.
+          </PageText>
+        </Stack>
 
         <Center>
           <Box id='submit-application' position='relative'>
