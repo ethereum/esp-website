@@ -1,7 +1,9 @@
+import { useEffect } from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { init } from '@socialgouv/matomo-next';
 
 import { Layout } from '../components/layout';
 
@@ -22,6 +24,13 @@ import { ABOUT_URL, APPLICANTS_URL, HOME_URL } from '../constants';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
+
+  useEffect(() => {
+    init({
+      url: process.env.NEXT_PUBLIC_MATOMO_URL!,
+      siteId: process.env.NEXT_PUBLIC_MATOMO_SITE_ID!
+    });
+  }, []);
 
   const bgGradient = router.pathname.startsWith(APPLICANTS_URL)
     ? 'linear(to-b, brand.applicants.bgGradient.start 0%, brand.applicants.bgGradient.end 81.77%, brand.applicants.rgba 100%)'

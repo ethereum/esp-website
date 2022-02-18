@@ -17,6 +17,7 @@
     "@emotion/styled": "^11",
     "@fontsource/libre-franklin": "^4.5.0",
     "@mailchimp/mailchimp_marketing": "^3.0.74",
+    "@socialgouv/matomo-next": "^1.2.2",
     "chakra-react-select": "^3.0.1",
     "chakra-ui-markdown-renderer": "^4.0.0",
     "focus-visible": "^5.2.0",
