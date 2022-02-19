@@ -5,7 +5,7 @@ import { FC } from 'react';
 import { PageSubheading } from '../UI';
 import { ButtonLink } from '../../components';
 
-import homepageHero from '../../../public/images/homepage-hero.svg';
+import homepageHero from '../../../public/images/homepage-hero.png';
 import homepageHeroMobile from '../../../public/images/homepage-hero-mobile.svg';
 
 import { APPLICANTS_URL } from '../../constants';
@@ -54,6 +54,7 @@ export const HomepageHero: FC = () => {
               alt='People gathered around the Ethereum tree'
               layout='fill'
               objectFit='cover'
+              placeholder='blur'
             />
           </Box>
 
