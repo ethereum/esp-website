@@ -73,7 +73,10 @@ export default extendTheme({
         }
       },
       option: '#ffefec',
-      uploadProposal: 'rgba(189, 189, 189, 0.2)',
+      upload: {
+        bg: 'rgba(189, 189, 189, 0.2)',
+        filename: 'rgba(35, 34, 100, .1)'
+      },
       helpText: '#7c7ba1',
       warning: '#f0f6fd',
       homepageHero: '#f8e8fc',
