@@ -17,7 +17,7 @@ import {
   useToast
 } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
-import { FC, MouseEvent, useState, useRef, useCallback } from 'react';
+import { FC, MouseEvent, useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Controller, useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
@@ -56,7 +56,6 @@ const MotionButton = motion<ButtonProps>(Button);
 export const ProjectGrantsForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
-  const inputRef = useRef<HTMLInputElement | null>(null);
   const [selectedFile, setSelectedFile] = useState<null | File>(null);
 
   const [referralSource, setReferralSource] = useState<ReferralSource | unknown>({
@@ -137,8 +136,7 @@ export const ProjectGrantsForm: FC = () => {
     setReferralSource(source);
   };
 
-  const handleUploadClick = () => inputRef.current?.click();
-  const removeFile = (e: MouseEvent<HTMLInputElement>) => {
+  const handleRemoveFile = (e: MouseEvent<HTMLInputElement>) => {
     e.stopPropagation();
     setSelectedFile(null);
   };
@@ -874,8 +872,8 @@ export const ProjectGrantsForm: FC = () => {
                   role='button'
                   aria-label='File Upload'
                   hidden
-                  {...getInputProps({ name: 'base64' })}
                   onChange={onChange}
+                  {...getInputProps({ name: 'base64' })}
                 />
                 <Box
                   w='100%'
@@ -886,7 +884,6 @@ export const ProjectGrantsForm: FC = () => {
                   px={{ base: 6, md: 16 }}
                   mt={12}
                   mb={12}
-                  onClick={handleUploadClick}
                 >
                   <Grid>
                     <GridItem alignSelf='center'>
@@ -937,7 +934,7 @@ export const ProjectGrantsForm: FC = () => {
                           borderRadius='5px'
                         >
                           <PageText mr={2}>{selectedFile.name}</PageText>
-                          <Flex role='button' onClick={removeFile} px={3}>
+                          <Flex role='button' onClick={handleRemoveFile} px={3}>
                             <RemoveIcon />
                           </Flex>
                         </Flex>
