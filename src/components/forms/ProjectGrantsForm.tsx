@@ -8,6 +8,8 @@ import {
   Flex,
   FormControl,
   FormLabel,
+  Grid,
+  GridItem,
   Input,
   InputGroup,
   Stack,
@@ -878,70 +880,70 @@ export const ProjectGrantsForm: FC = () => {
                 <Box
                   w='100%'
                   cursor='pointer'
-                  bgColor='brand.uploadProposal'
+                  bgColor='brand.upload.bg'
                   justifyContent='space-evenly'
                   py={9}
                   px={{ base: 6, md: 16 }}
                   mt={12}
                   mb={12}
+                  onClick={handleUploadClick}
                 >
-                  <Flex
-                    alignItems='center'
-                    justifyContent='center'
-                    onClick={handleUploadClick}
-                    mb={selectedFile ? 4 : 0}
-                  >
-                    <Box mr={6} flexShrink={0}>
-                      <Image src={uploadSVG} alt='Upload file' height={42} width={44} />
-                    </Box>
+                  <Grid>
+                    <GridItem alignSelf='center'>
+                      <Box mr={6} flexShrink={0}>
+                        <Image src={uploadSVG} alt='Upload file' height={42} width={44} />
+                      </Box>
+                    </GridItem>
+                    <GridItem mb={selectedFile ? 4 : 0}>
+                      <Stack>
+                        <FormLabel htmlFor='uploadProposal'>
+                          <PageText fontSize='input' fontWeight={400} lineHeight='21px' mb={-1}>
+                            <strong>Upload the proposal.</strong> Click here or drag file to this
+                            box.
+                          </PageText>
+                        </FormLabel>
 
-                    <Stack>
-                      <FormLabel htmlFor='uploadProposal'>
-                        <PageText fontSize='input' fontWeight={400} lineHeight='21px' mb={-1}>
-                          <strong>Upload the proposal.</strong> Click here or drag file to this box.
+                        <PageText
+                          as='small'
+                          fontSize='helpText'
+                          color='brand.helpText'
+                          lineHeight='17px'
+                          display='inline-block'
+                          mb={2}
+                        >
+                          If you already have a proposal or document you&apos;d ike to share, please
+                          upload it here. This is optional, but highly recommended.
                         </PageText>
-                      </FormLabel>
+                      </Stack>
 
-                      <PageText
-                        as='small'
-                        fontSize='helpText'
-                        color='brand.helpText'
-                        lineHeight='17px'
-                        display='inline-block'
-                        mb={2}
-                      >
-                        If you already have a proposal or document you&apos;d ike to share, please
-                        upload it here. This is optional, but highly recommended.
-                      </PageText>
-                    </Stack>
-                  </Flex>
-
-                  {selectedFile && errors?.uploadProposal && (
-                    <Box ml={'68px'} mb={2}>
-                      <PageText as='small' fontSize='helpText' color='red.500'>
-                        File size cannot exceed 2GB.
-                      </PageText>
-                    </Box>
-                  )}
-
-                  {selectedFile && (
-                    <Flex
-                      display='inline-flex'
-                      alignItems='center'
-                      justifyContent='space-between'
-                      bg='rgba(35, 34, 100, .1)'
-                      minW='175px'
-                      ml={{ base: '68px', xl2: '100px' }}
-                      pl={4}
-                      py={2}
-                      borderRadius='5px'
-                    >
-                      <PageText mr={2}>{selectedFile.name}</PageText>
-                      <Flex role='button' onClick={removeFile} px={3}>
-                        <RemoveIcon />
-                      </Flex>
-                    </Flex>
-                  )}
+                      {selectedFile && errors?.uploadProposal && (
+                        <Box mt={1}>
+                          <PageText as='small' fontSize='helpText' color='red.500'>
+                            File size cannot exceed 2GB.
+                          </PageText>
+                        </Box>
+                      )}
+                    </GridItem>
+                    <GridItem colStart={2}>
+                      {selectedFile && (
+                        <Flex
+                          display='inline-flex'
+                          alignItems='center'
+                          justifyContent='space-between'
+                          bg='brand.upload.filename'
+                          minW='175px'
+                          pl={4}
+                          py={2}
+                          borderRadius='5px'
+                        >
+                          <PageText mr={2}>{selectedFile.name}</PageText>
+                          <Flex role='button' onClick={removeFile} px={3}>
+                            <RemoveIcon />
+                          </Flex>
+                        </Flex>
+                      )}
+                    </GridItem>
+                  </Grid>
                 </Box>
               </InputGroup>
             </FormControl>
