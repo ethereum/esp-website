@@ -13,7 +13,7 @@ export interface TabsMap {
   [name: string]: number;
 }
 
-export interface APIMap {
+export interface GranteeFinanceAPIMap {
   [preference: string]: string;
 }
 

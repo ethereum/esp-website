@@ -4,9 +4,7 @@ import { addTimestamp, getGitHub, getWebsite } from '../../utils';
 import { OfficeHoursFormData, ProjectGrantsFormData, SmallGrantsFormData } from '../../types';
 
 import {
-  API_GRANTEE_FINANCE_DAI,
-  API_GRANTEE_FINANCE_ETH,
-  API_GRANTEE_FINANCE_FIAT,
+  API_GRANTEE_FINANCE_URLS,
   API_OFFICE_HOURS,
   API_PROJECT_GRANTS,
   API_SMALL_GRANTS_EVENT,
@@ -94,14 +92,7 @@ export const api = {
         })
       };
 
-      return fetch(
-        preference === 'ETH'
-          ? API_GRANTEE_FINANCE_ETH
-          : preference === 'DAI'
-          ? API_GRANTEE_FINANCE_DAI
-          : API_GRANTEE_FINANCE_FIAT,
-        granteeFinanceRequestOptions
-      );
+      return fetch(API_GRANTEE_FINANCE_URLS[preference], granteeFinanceRequestOptions);
     }
   }
 };
