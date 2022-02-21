@@ -23,8 +23,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return console.error(err);
     }
 
-    // Single record upsert
-    conn.sobject('Contract').upsert(
+    // Single record update
+    conn.sobject('Contract').update(
       [
         {
           Beneficiary_Name__c,
