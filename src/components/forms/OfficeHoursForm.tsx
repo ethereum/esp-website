@@ -616,7 +616,9 @@ export const OfficeHoursForm: FC = () => {
               onMouseLeave={() => setButtonHovered(false)}
               pointerEvents={!isValid ? 'none' : 'auto'}
             >
-              <ImportantText color='white'>Submit Application</ImportantText>
+              <ImportantText as='h3' color='white'>
+                Submit Application
+              </ImportantText>
 
               <Flex pl={5}>
                 <Image src={planeVectorSVG} alt='paper plane vector' height='29px' width='32px' />
