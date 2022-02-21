@@ -36,7 +36,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     ? 'linear(to-b, brand.applicants.bgGradient.start 0%, brand.applicants.bgGradient.end 81.77%, brand.applicants.rgba 100%)'
     : router.pathname.startsWith(ABOUT_URL)
     ? 'linear(to-b, brand.about.bgGradient.start 0%, brand.about.bgGradient.end 77.6%, brand.about.rgba 100%)'
-    : undefined;
+    : 'linear(to-b, brand.applicants.bgGradient.start, brand.about.rgba)';
 
   return (
     <>
