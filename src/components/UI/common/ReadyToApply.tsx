@@ -1,7 +1,7 @@
 import { Center, Heading, Stack } from '@chakra-ui/react';
 import { FC } from 'react';
 
-import { ButtonLink } from '../components';
+import { ButtonLink } from '../..';
 
 interface Props {
   link: string;
