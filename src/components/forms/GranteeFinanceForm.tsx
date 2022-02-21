@@ -12,7 +12,8 @@ import {
   Radio,
   RadioGroup,
   Stack,
-  Textarea
+  Textarea,
+  useToast
 } from '@chakra-ui/react';
 import { FC, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -22,20 +23,14 @@ import { useRouter } from 'next/router';
 
 import { ImportantText, PageText } from '../UI';
 
+import { api } from './api';
 import { useShadowAnimation } from '../../hooks';
 
 import planeVectorSVG from '../../../public/images/plane-vector.svg';
 
-import { OFFICE_HOURS_THANK_YOU_PAGE_URL } from '../../constants';
+import { GRANTEE_FINANCE_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
-import {
-  IndividualOrTeam,
-  GranteeFinanceFormData,
-  ProjectGrantsFormData,
-  ReasonForMeeting,
-  TokenPreference,
-  PaymentPreference
-} from '../../types';
+import { GranteeFinanceFormData, TokenPreference, PaymentPreference } from '../../types';
 
 const MotionBox = motion<BoxProps>(Box);
 const MotionButton = motion<ButtonProps>(Button);
@@ -43,8 +38,8 @@ const MotionButton = motion<ButtonProps>(Button);
 export const GranteeFinanceForm: FC = () => {
   const [paymentPreference, setPaymentPreference] = useState<PaymentPreference>('');
   const [tokenPreference, setTokenPreference] = useState<TokenPreference>('ETH');
-  // const [reasonForMeeting, setReasonForMeeting] = useState<ReasonForMeeting>(['']);
   const router = useRouter();
+  const toast = useToast();
   const {
     handleSubmit,
     register,
@@ -61,15 +56,29 @@ export const GranteeFinanceForm: FC = () => {
   const receivesFiat = paymentPreference === 'Fiat';
   const preferETH = receivesCrypto && tokenPreference === 'ETH';
   const preferDAI = receivesCrypto && tokenPreference === 'DAI';
+  const preference = preferETH ? 'ETH' : preferDAI ? 'DAI' : 'Fiat';
 
   const onSubmit = (data: GranteeFinanceFormData) => {
-    // router.push(OFFICE_HOURS_THANK_YOU_PAGE_URL);
     console.log({ data });
-  };
 
-  // const handleRadioButton = (value: IndividualOrTeam) => {
-  //   setIndividualOrTeam(value);
-  // };
+    // api.granteeFinance
+    //   .submit(data, preference)
+    //   .then(res => {
+    //     if (res.ok) {
+    //       reset();
+    //       router.push(GRANTEE_FINANCE_THANK_YOU_PAGE_URL);
+    //     } else {
+    //       toast({
+    //         ...TOAST_OPTIONS,
+    //         title: 'Something went wrong while submitting, please try again.',
+    //         status: 'error'
+    //       });
+
+    //       throw new Error('Network response was not OK');
+    //     }
+    //   })
+    //   .catch(err => console.error('There has been a problem with your operation: ', err.message));
+  };
 
   console.log(errors);
   console.log(isValid);
@@ -682,7 +691,7 @@ export const GranteeFinanceForm: FC = () => {
                   w='310px'
                   position='absolute'
                   animate={shadowBoxControl}
-                  // opacity={!isValid ? 0 : 1}
+                  opacity={!isValid ? 0 : 1}
                 />
 
                 <MotionButton
@@ -691,12 +700,12 @@ export const GranteeFinanceForm: FC = () => {
                   py={7}
                   borderRadius={0}
                   type='submit'
-                  // isDisabled={!isValid}
+                  isDisabled={!isValid}
                   _hover={{ bg: 'brand.hover' }}
                   whileHover={{ x: -1.5, y: -1.5 }}
                   onMouseEnter={() => setButtonHovered(true)}
                   onMouseLeave={() => setButtonHovered(false)}
-                  // pointerEvents={isValid ? 'auto' : 'none'}
+                  pointerEvents={isValid ? 'auto' : 'none'}
                 >
                   <ImportantText color='white'>Submit Application</ImportantText>
 
