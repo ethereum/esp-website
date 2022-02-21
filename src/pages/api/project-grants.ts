@@ -42,24 +42,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Single record creation
     conn.sobject('Lead').create(
       {
-        FirstName,
-        LastName,
-        Email,
-        Company,
-        Project_Name__c,
-        Website,
-        Github_Link__c,
-        Twitter__c,
-        Team_Profile__c,
-        Project_Description__c,
-        Category__c,
-        Requested_Amount__c,
-        npsp__CompanyCity__c,
-        npsp__CompanyCountry__c,
-        Time_Zone__c,
-        Referral_Source__c,
-        Referral_Source_if_Other__c,
-        Referrals__c
+        FirstName: FirstName.trim(),
+        LastName: LastName.trim(),
+        Email: Email.trim(),
+        Company: Company.trim(),
+        Project_Name__c: Project_Name__c.trim(),
+        Website: Website.trim(),
+        Github_Link__c: Github_Link__c.trim(),
+        Twitter__c: Twitter__c.trim(),
+        Team_Profile__c: Team_Profile__c.trim(),
+        Project_Description__c: Project_Description__c.trim(),
+        Category__c: Category__c.trim(),
+        Requested_Amount__c: Requested_Amount__c.trim(),
+        npsp__CompanyCity__c: npsp__CompanyCity__c.trim(),
+        npsp__CompanyCountry__c: npsp__CompanyCountry__c.trim(),
+        Time_Zone__c: Time_Zone__c.trim(),
+        Referral_Source__c: Referral_Source__c.trim(),
+        Referral_Source_if_Other__c: Referral_Source_if_Other__c.trim(),
+        Referrals__c: Referrals__c.trim()
         // TODO: add RecordTypeId: 'Project Grants' when defined
       },
       (err, ret) => {

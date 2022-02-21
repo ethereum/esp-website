@@ -34,19 +34,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Single record creation
     conn.sobject('Lead').create(
       {
-        FirstName,
-        LastName,
-        Email,
-        Company,
-        Individual_or_Team__c,
-        Project_Name__c,
-        Project_Description__c,
-        Additional_Information__c,
-        Category__c,
-        Referral_Source__c,
-        Reason_for_meeting__c,
-        Reason_for_meeting_if_Other__c,
-        Time_Zone__c
+        FirstName: FirstName.trim(),
+        LastName: LastName.trim(),
+        Email: Email.trim(),
+        Company: Company.trim(),
+        Individual_or_Team__c: Individual_or_Team__c.trim(),
+        Project_Name__c: Project_Name__c.trim(),
+        Project_Description__c: Project_Description__c.trim(),
+        Additional_Information__c: Additional_Information__c.trim(),
+        Category__c: Category__c.trim(),
+        Referral_Source__c: Referral_Source__c.trim(),
+        Reason_for_meeting__c: Reason_for_meeting__c.trim(),
+        Reason_for_meeting_if_Other__c: Reason_for_meeting_if_Other__c.trim(),
+        Time_Zone__c: Time_Zone__c.trim()
         // TODO: add RecordTypeId: 'Office Hours' when defined
       },
       (err, ret) => {
