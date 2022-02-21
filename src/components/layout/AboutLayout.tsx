@@ -90,7 +90,7 @@ export const AboutLayout: FC = ({ children }) => {
           variant='unstyled'
           isLazy
         >
-          <TabList whiteSpace='nowrap' h='64px'>
+          <TabList whiteSpace='nowrap' h='64px' role='tablist'>
             {ABOUT_TABS.map(tabElement => (
               <Tab
                 key={tabElement}
@@ -103,8 +103,12 @@ export const AboutLayout: FC = ({ children }) => {
                   borderBottom: '10px solid',
                   borderBottomColor: 'brand.accent'
                 }}
+                role='tab'
+                aria-controls=''
               >
-                <ImportantText color='brand.ready.text'>{tabElement}</ImportantText>
+                <ImportantText as='h2' color='brand.ready.text'>
+                  {tabElement}
+                </ImportantText>
               </Tab>
             ))}
           </TabList>

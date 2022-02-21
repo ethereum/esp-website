@@ -1,18 +1,18 @@
 import { Accordion, Box, Flex, Link, ListItem, Stack } from '@chakra-ui/react';
+import { useInView } from 'react-intersection-observer';
 import type { NextPage } from 'next';
-import Head from 'next/head';
-import { ReadyToApply } from '../../../components';
 
 import {
+  ApplicantsSidebar,
   FAQItem,
   List,
   PageSection,
   PageSubheading,
   PageText,
   ProcessStep,
-  PageMetadata
+  PageMetadata,
+  ReadyToApply
 } from '../../../components/UI';
-import { ApplicantsSidebar } from '../../../components';
 
 import {
   EF_JOBS_URL,
@@ -27,6 +27,17 @@ import {
 } from '../../../constants';
 
 const OfficeHours: NextPage = () => {
+  // `threshold` option allows us to control the % of visibility required before triggering the Intersection Observer
+  // https://react-intersection-observer.vercel.app/?path=/story/introduction--page#options
+  const [ref, inView] = useInView({ threshold: 0.5 });
+  const [ref2, inView2] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref3, inView3] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref4, inView4] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref5, inView5] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref6, inView6] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref8, inView8] = useInView({ threshold: 0, initialInView: false });
+
   return (
     <>
       <PageMetadata
@@ -36,11 +47,14 @@ const OfficeHours: NextPage = () => {
 
       <Box bg='white' position='relative' py={{ md: 12 }}>
         <Flex>
-          <ApplicantsSidebar sidebarLinks={SIDEBAR_OFFICE_HOURS_LINKS} />
+          <ApplicantsSidebar
+            sidebarLinks={SIDEBAR_OFFICE_HOURS_LINKS}
+            sectionsInView={[inView, inView2, inView3, inView4, inView5, inView6, inView7, inView8]}
+          />
 
           <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
             <Stack mb={8}>
-              <section id='description'>
+              <section id='description' ref={ref}>
                 <PageSubheading mb={8}>Office Hours</PageSubheading>
 
                 <PageText mb={6}>
@@ -78,7 +92,7 @@ const OfficeHours: NextPage = () => {
             </Stack>
 
             <Stack spacing={10}>
-              <section id='process'>
+              <section id='process' ref={ref2}>
                 <PageSection mb={6}>Process</PageSection>
 
                 <Stack spacing={3}>
@@ -104,7 +118,7 @@ const OfficeHours: NextPage = () => {
                 </Stack>
               </section>
 
-              <section id='eligibility'>
+              <section id='eligibility' ref={ref3}>
                 <PageSection mb={6}>Eligibility</PageSection>
 
                 <PageText mb={6}>
@@ -147,7 +161,7 @@ const OfficeHours: NextPage = () => {
                 </List>
               </section>
 
-              <section id='what-we-offer'>
+              <section id='what-we-offer' ref={ref4}>
                 <PageSection mb={6}>What we offer</PageSection>
 
                 <PageText mb={6}>
@@ -181,7 +195,7 @@ const OfficeHours: NextPage = () => {
                 </PageText>
               </section>
 
-              <section id='what-we-dont-offer'>
+              <section id='what-we-dont-offer' ref={ref5}>
                 <PageSection mb={6}>What we DON&apos;T offer</PageSection>
 
                 <List>
@@ -194,7 +208,7 @@ const OfficeHours: NextPage = () => {
                 </List>
               </section>
 
-              <section id='before-submitting'>
+              <section id='before-submitting' ref={ref6}>
                 <PageSection mb={6}>Before submitting</PageSection>
 
                 <PageText>
@@ -272,7 +286,7 @@ const OfficeHours: NextPage = () => {
                 </List>
               </section>
 
-              <section id='faq'>
+              <section id='faq' ref={ref7}>
                 <PageSection mb={6}>FAQ</PageSection>
 
                 <Accordion allowToggle>
@@ -299,7 +313,7 @@ const OfficeHours: NextPage = () => {
                 </Accordion>
               </section>
 
-              <section id='apply'>
+              <section id='apply' ref={ref8}>
                 <Stack mt={6}>
                   <ReadyToApply link={`${OFFICE_HOURS_URL}/apply`} />
                 </Stack>

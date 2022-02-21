@@ -106,7 +106,7 @@ export const OfficeHoursForm: FC = () => {
               </PageText>
             </FormLabel>
             <Input
-              id='first-name'
+              id='firstName'
               type='text'
               bg='white'
               borderRadius={0}
@@ -143,7 +143,7 @@ export const OfficeHoursForm: FC = () => {
               </PageText>
             </FormLabel>
             <Input
-              id='last-name'
+              id='lastName'
               type='text'
               bg='white'
               borderRadius={0}
@@ -214,7 +214,7 @@ export const OfficeHoursForm: FC = () => {
               </FormLabel>
 
               <RadioGroup
-                id='individual-or-team'
+                id='individualOrTeam'
                 onChange={(value: IndividualOrTeam) => {
                   onChange(value);
                   setIndividualOrTeam(value);
@@ -303,7 +303,7 @@ export const OfficeHoursForm: FC = () => {
           </PageText>
 
           <Input
-            id='project-name'
+            id='projectName'
             type='text'
             bg='white'
             borderRadius={0}
@@ -337,7 +337,7 @@ export const OfficeHoursForm: FC = () => {
           </PageText>
 
           <Textarea
-            id='project-description'
+            id='projectDescription'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -370,7 +370,7 @@ export const OfficeHoursForm: FC = () => {
           </PageText>
 
           <Textarea
-            id='additional-info'
+            id='additionalInfo'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -411,7 +411,7 @@ export const OfficeHoursForm: FC = () => {
 
               <Box mt={3}>
                 <Select
-                  id='project-category-select'
+                  id='projectCategory'
                   options={PROJECT_CATEGORY_OPTIONS}
                   onChange={onChange}
                   components={{ DropdownIndicator }}
@@ -447,7 +447,7 @@ export const OfficeHoursForm: FC = () => {
               </FormLabel>
 
               <Select
-                id='how-did-you-hear-about-ESP-select'
+                id='howDidYouHearAboutESP'
                 options={HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS}
                 onChange={onChange}
                 components={{ DropdownIndicator }}
@@ -531,7 +531,7 @@ export const OfficeHoursForm: FC = () => {
                 </PageText>
               </FormLabel>
               <Textarea
-                id='other-reason-for-meeting'
+                id='otherReasonForMeeting'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -616,7 +616,9 @@ export const OfficeHoursForm: FC = () => {
               onMouseLeave={() => setButtonHovered(false)}
               pointerEvents={!isValid ? 'none' : 'auto'}
             >
-              <ImportantText color='white'>Submit Application</ImportantText>
+              <ImportantText as='h3' color='white'>
+                Submit Application
+              </ImportantText>
 
               <Flex pl={5}>
                 <Image src={planeVectorSVG} alt='paper plane vector' height='29px' width='32px' />

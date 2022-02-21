@@ -108,8 +108,9 @@ export const NewsletterSignup: FC = () => {
       <Stack w={{ base: '100%', md: '85%' }}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Flex direction={{ base: 'column', md: 'row' }}>
-            <FormControl id='email' isRequired mb={{ base: 3, md: 0 }}>
+            <FormControl id='email-control' isRequired mb={{ base: 3, md: 0 }}>
               <Input
+                id='newsletter-email'
                 type='email'
                 placeholder='Enter your email'
                 bg='white'

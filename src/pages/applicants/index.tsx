@@ -1,15 +1,16 @@
 import { Box, Center, Flex, Stack } from '@chakra-ui/react';
+import { useInView } from 'react-intersection-observer';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 
 import {
+  ApplicantsSidebar,
   ApplicationTypeCard,
   PageMetadata,
   PageSection,
   PageSubheading,
   PageText
 } from '../../components/UI';
-import { ApplicantsSidebar } from '../../components';
 
 import softwareDevelopersSVG from '../../../public/images/software-developers-vector.svg';
 import researchersSVG from '../../../public/images/researchers-vector.svg';
@@ -26,6 +27,12 @@ import {
 } from '../../constants';
 
 const Applicants: NextPage = () => {
+  // `threshold` option allows us to control the % of visibility required before triggering the Intersection Observer
+  // https://react-intersection-observer.vercel.app/?path=/story/introduction--page#options
+  const [ref, inView] = useInView({ threshold: 0.3 });
+  const [ref2, inView2] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref3, inView3] = useInView({ threshold: 0, initialInView: false });
+
   return (
     <>
       <PageMetadata
@@ -35,13 +42,16 @@ const Applicants: NextPage = () => {
 
       <Box bg='white' position='relative' py={{ md: 12 }}>
         <Flex>
-          <ApplicantsSidebar sidebarLinks={SIDEBAR_APPLICANTS_LINKS} />
+          <ApplicantsSidebar
+            sidebarLinks={SIDEBAR_APPLICANTS_LINKS}
+            sectionsInView={[inView, inView2, inView3]}
+          />
 
           <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
             <Stack mb={8}>
               <PageSubheading mb={6}>ESP Grants and Support Overview</PageSubheading>
 
-              <section id='mission-and-scope'>
+              <section id='mission-and-scope' ref={ref}>
                 <PageSection mb={6}>Mission and Scope</PageSection>
 
                 <PageText mb={6}>
@@ -155,7 +165,7 @@ const Applicants: NextPage = () => {
             </Stack>
 
             <Stack spacing={10}>
-              <section id='how-we-support'>
+              <section id='how-we-support' ref={ref2}>
                 <PageSection mb={6}>How we support</PageSection>
 
                 <PageText mb={6}>
@@ -179,7 +189,7 @@ const Applicants: NextPage = () => {
                 </PageText>
               </section>
 
-              <section id='application-types'>
+              <section id='application-types' ref={ref3}>
                 <PageSection mb={6}>Application types</PageSection>
 
                 <PageText mb={6}>
@@ -193,28 +203,28 @@ const Applicants: NextPage = () => {
                   make sure you provide the appropriate information and context for us to make an
                   informed decision on how to proceed with your application.
                 </PageText>
+
+                <Center>
+                  <Stack spacing={4}>
+                    <ApplicationTypeCard title='Office Hours' link={OFFICE_HOURS_URL}>
+                      Office Hours are a chance to connect directly with a member of the EF&apos;s
+                      Ecosystem Support team for support other than funding, including support with
+                      the process of submitting a grant application.
+                    </ApplicationTypeCard>
+
+                    <ApplicationTypeCard title='Small Grants' link={SMALL_GRANTS_URL}>
+                      Small grants, capped at $30,000, have a streamlined application and evaluation
+                      process to deliver a decision around two weeks after submission.
+                    </ApplicationTypeCard>
+
+                    <ApplicationTypeCard title='Project Grants' link={PROJECT_GRANTS_URL}>
+                      Project grants have no specific funding cap, and undergo a more intensive
+                      process of review and potentially rescoping. Timelines vary widely depending
+                      on scope and complexity.
+                    </ApplicationTypeCard>
+                  </Stack>
+                </Center>
               </section>
-
-              <Center>
-                <Stack spacing={4}>
-                  <ApplicationTypeCard title='Office Hours' link={OFFICE_HOURS_URL}>
-                    Office Hours are a chance to connect directly with a member of the EF&apos;s
-                    Ecosystem Support team for support other than funding, including support with
-                    the process of submitting a grant application.
-                  </ApplicationTypeCard>
-
-                  <ApplicationTypeCard title='Small Grants' link={SMALL_GRANTS_URL}>
-                    Small grants, capped at $30,000, have a streamlined application and evaluation
-                    process to deliver a decision around two weeks after submission.
-                  </ApplicationTypeCard>
-
-                  <ApplicationTypeCard title='Project Grants' link={PROJECT_GRANTS_URL}>
-                    Project grants have no specific funding cap, and undergo a more intensive
-                    process of review and potentially rescoping. Timelines vary widely depending on
-                    scope and complexity.
-                  </ApplicationTypeCard>
-                </Stack>
-              </Center>
             </Stack>
           </Box>
         </Flex>

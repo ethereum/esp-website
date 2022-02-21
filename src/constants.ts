@@ -51,13 +51,12 @@ export const SIDEBAR_SMALL_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Requirements', href: `${SMALL_GRANTS_URL}/#requirements` },
   { text: 'Eligibility', href: `${SMALL_GRANTS_URL}/#eligibility` },
   { text: 'What is NOT eligible', href: `${SMALL_GRANTS_URL}/#what-is-not-eligible` },
-
   {
     text: 'Tips for submitting a great application',
-    href: `${OFFICE_HOURS_URL}/#tips-application`
+    href: `${SMALL_GRANTS_URL}/#tips-application`
   },
-  { text: 'FAQ', href: `${OFFICE_HOURS_URL}/#faq` },
-  { text: 'Apply', href: `${OFFICE_HOURS_URL}/#apply` }
+  { text: 'FAQ', href: `${SMALL_GRANTS_URL}/#faq` },
+  { text: 'Apply', href: `${SMALL_GRANTS_URL}/#apply` }
 ];
 
 // apply forms

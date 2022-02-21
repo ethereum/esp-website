@@ -1,4 +1,4 @@
-import { Box, Flex, Stack } from '@chakra-ui/react';
+import { Box, Flex, Grid, GridItem, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 
@@ -53,7 +53,7 @@ const Home: NextPage = () => {
           </Flex>
 
           <section id='stats'>
-            <Flex
+            <Box
               justifyContent='center'
               alignItems='center'
               direction='column'
@@ -62,21 +62,24 @@ const Home: NextPage = () => {
               borderTopColor='brand.heading'
               borderBottom='5px solid'
               borderBottomColor='brand.heading'
-              px={2}
+              px={{ base: 2, lg: 40 }}
+              pt={7}
             >
-              <Flex direction={{ base: 'column', lg: 'row' }} mt={8} justifyContent='flex-start'>
-                <Flex justifyContent='center' alignItems='center' mb={10} mr={{ lg: 24 }}>
-                  <Flex justifyContent='center' ml={{ xs: '-10px', sm: '-21px' }}>
-                    <Stack w='150px' alignItems='center'>
-                      <Image
-                        src={smallSucculentSVG}
-                        alt='small succulent plant representing allocation in 2019'
-                        height='67.83px'
-                        width='71.48px'
-                      />
-                    </Stack>
-                  </Flex>
-
+              <Grid
+                templateColumns={{ base: 'repeat(2, auto)', lg: 'repeat(6, auto)' }}
+                rowGap={10}
+                justifyContent='space-evenly'
+              >
+                <GridItem alignSelf='center' justifySelf='center' mr={{ lg: 2, xl: 0 }}>
+                  <Box>
+                    <Image
+                      src={smallSucculentSVG}
+                      alt='small succulent plant representing allocation in 2019'
+                      layout='fixed'
+                    />
+                  </Box>
+                </GridItem>
+                <GridItem alignSelf='center' mr={{ lg: 16 }} w='100%'>
                   <Stack>
                     <PageSection as='h4' textAlign='left' mb={2}>
                       2019
@@ -99,20 +102,17 @@ const Home: NextPage = () => {
                       68 projects
                     </PageText>
                   </Stack>
-                </Flex>
-
-                <Flex justifyContent='center' alignItems='center' mb={10} mr={{ lg: 24 }}>
-                  <Flex justifyContent='center' ml={{ xs: '-10px', sm: '-4px' }}>
-                    <Stack w='150px'>
-                      <Image
-                        src={mediumSucculentSVG}
-                        alt='medium succulent plant representing allocation in 2020'
-                        height='91.93px'
-                        width='96.79px'
-                      />
-                    </Stack>
-                  </Flex>
-
+                </GridItem>
+                <GridItem alignSelf='center' justifySelf='center' mr={{ lg: 2, xl: 0 }}>
+                  <Box>
+                    <Image
+                      src={mediumSucculentSVG}
+                      alt='medium succulent plant representing allocation in 2020'
+                      layout='fixed'
+                    />
+                  </Box>
+                </GridItem>
+                <GridItem alignSelf='center' mr={{ lg: 16 }}>
                   <Stack>
                     <PageSection as='h4' textAlign='left' mb={2}>
                       2020
@@ -135,20 +135,22 @@ const Home: NextPage = () => {
                       99 projects
                     </PageText>
                   </Stack>
-                </Flex>
-
-                <Flex justifyContent='center' alignItems='center' mb={8}>
-                  <Flex justifyContent='center' ml={{ xs: '-8px', sm: '5px' }} mr={{ lg: 4 }}>
-                    <Stack w='150px'>
-                      <Image
-                        src={bigSucculentSVG}
-                        alt='big opened succulent plant representing allocation in 2021'
-                        height='122.29px'
-                        width='131px'
-                      />
-                    </Stack>
-                  </Flex>
-
+                </GridItem>
+                <GridItem
+                  alignSelf='center'
+                  justifySelf='center'
+                  mr={{ lg: 2, xl: 0 }}
+                  mb={{ base: 8, lg: 0 }}
+                >
+                  <Box>
+                    <Image
+                      src={bigSucculentSVG}
+                      alt='big opened succulent plant representing allocation in 2021'
+                      layout='fixed'
+                    />
+                  </Box>
+                </GridItem>
+                <GridItem alignSelf='center' mb={{ base: 8, lg: 0 }}>
                   <Stack>
                     <PageSection as='h4' textAlign='left' mb={2}>
                       2021
@@ -171,15 +173,15 @@ const Home: NextPage = () => {
                       136 projects
                     </PageText>
                   </Stack>
-                </Flex>
-              </Flex>
+                </GridItem>
+              </Grid>
 
-              <Stack>
+              <Stack mt={{ lg: 7 }}>
                 <PageText fontSize='input' textAlign='center' p={4}>
                   * ESP grants and support are not inclusive of all EF allocations
                 </PageText>
               </Stack>
-            </Flex>
+            </Box>
           </section>
 
           <section id='what-we-support'>

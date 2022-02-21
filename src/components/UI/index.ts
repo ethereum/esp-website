@@ -4,7 +4,6 @@ export * from './headings';
 export * from './HomepageHero';
 export * from './HomeAboutCard';
 export * from './List';
-export * from './PlaceholderImage';
 export * from './Step';
 export * from './text';
 export * from './PageMetadata';

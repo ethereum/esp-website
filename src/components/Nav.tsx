@@ -117,12 +117,16 @@ export const Nav: FC = () => {
                       color='brand.ready.text'
                       display='inline'
                       mr={nav.href === ESP_BLOG_URL ? 0 : 2}
+                      _hover={{
+                        borderBottom: '10px solid',
+                        borderBottomColor: 'brand.accent',
+                        transition: 'border-width 0.16s ease-in-out'
+                      }}
                       sx={
                         selectedLink(router.pathname, nav.href)
                           ? {
                               borderBottom: '10px solid',
-                              borderBottomColor: 'brand.accent',
-                              transition: 'border-width 0.16s ease-in-out'
+                              borderBottomColor: 'brand.accent'
                             }
                           : undefined
                       }

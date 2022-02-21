@@ -8,6 +8,8 @@ import {
   Flex,
   FormControl,
   FormLabel,
+  Grid,
+  GridItem,
   Input,
   InputGroup,
   Stack,
@@ -15,7 +17,7 @@ import {
   useToast
 } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
-import { FC, MouseEvent, useState, useRef, useCallback } from 'react';
+import { FC, MouseEvent, useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Controller, useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
@@ -54,7 +56,6 @@ const MotionButton = motion<ButtonProps>(Button);
 export const ProjectGrantsForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
-  const inputRef = useRef<HTMLInputElement | null>(null);
   const [selectedFile, setSelectedFile] = useState<null | File>(null);
 
   const [referralSource, setReferralSource] = useState<ReferralSource | unknown>({
@@ -135,8 +136,7 @@ export const ProjectGrantsForm: FC = () => {
     setReferralSource(source);
   };
 
-  const handleUploadClick = () => inputRef.current?.click();
-  const removeFile = (e: MouseEvent<HTMLInputElement>) => {
+  const handleRemoveFile = (e: MouseEvent<HTMLInputElement>) => {
     e.stopPropagation();
     setSelectedFile(null);
   };
@@ -161,7 +161,7 @@ export const ProjectGrantsForm: FC = () => {
               </FormLabel>
 
               <Input
-                id='first-name'
+                id='firstName'
                 type='text'
                 bg='white'
                 borderRadius={0}
@@ -199,7 +199,7 @@ export const ProjectGrantsForm: FC = () => {
                 </PageText>
               </FormLabel>
               <Input
-                id='last-name'
+                id='lastName'
                 type='text'
                 bg='white'
                 borderRadius={0}
@@ -320,7 +320,7 @@ export const ProjectGrantsForm: FC = () => {
           </PageText>
 
           <Input
-            id='project-name'
+            id='projectName'
             type='text'
             bg='white'
             borderRadius={0}
@@ -486,7 +486,7 @@ export const ProjectGrantsForm: FC = () => {
           </PageText>
 
           <Textarea
-            id='team-profile'
+            id='teamProfile'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -531,7 +531,7 @@ export const ProjectGrantsForm: FC = () => {
           </PageText>
 
           <Textarea
-            id='project-description'
+            id='projectDescription'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -581,7 +581,7 @@ export const ProjectGrantsForm: FC = () => {
 
               <Box mt={3}>
                 <Select
-                  id='project-category'
+                  id='projectCategory'
                   options={PROJECT_CATEGORY_OPTIONS}
                   onChange={onChange}
                   components={{ DropdownIndicator }}
@@ -621,7 +621,7 @@ export const ProjectGrantsForm: FC = () => {
           </PageText>
 
           <Input
-            id='requested-amount'
+            id='requestedAmount'
             type='text'
             bg='white'
             borderRadius={0}
@@ -773,7 +773,7 @@ export const ProjectGrantsForm: FC = () => {
               </FormLabel>
 
               <Select
-                id='how-did-you-hear-about-ESP'
+                id='howDidYouHearAboutESP'
                 options={HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS}
                 components={{ DropdownIndicator }}
                 placeholder='Select'
@@ -796,7 +796,7 @@ export const ProjectGrantsForm: FC = () => {
                 <PageText fontSize='input'>If other, explain how</PageText>
               </FormLabel>
               <Input
-                id='referral-source-if-other'
+                id='referralSourceIfOther'
                 type='text'
                 bg='white'
                 borderRadius={0}
@@ -867,80 +867,80 @@ export const ProjectGrantsForm: FC = () => {
             <FormControl id='upload-proposal' {...getRootProps()}>
               <InputGroup>
                 <Input
-                  id='upload-proposal'
+                  id='uploadProposal'
                   type='file'
                   role='button'
                   aria-label='File Upload'
                   hidden
-                  {...getInputProps({ name: 'base64' })}
                   onChange={onChange}
+                  {...getInputProps({ name: 'base64' })}
                 />
                 <Box
                   w='100%'
                   cursor='pointer'
-                  bgColor='brand.uploadProposal'
+                  bgColor='brand.upload.bg'
                   justifyContent='space-evenly'
                   py={9}
                   px={{ base: 6, md: 16 }}
                   mt={12}
                   mb={12}
                 >
-                  <Flex
-                    alignItems='center'
-                    justifyContent='center'
-                    onClick={handleUploadClick}
-                    mb={selectedFile ? 4 : 0}
-                  >
-                    <Box mr={6} flexShrink={0}>
-                      <Image src={uploadSVG} alt='Upload file' height={42} width={44} />
-                    </Box>
+                  <Grid>
+                    <GridItem alignSelf='center'>
+                      <Box mr={6} flexShrink={0}>
+                        <Image src={uploadSVG} alt='Upload file' height={42} width={44} />
+                      </Box>
+                    </GridItem>
+                    <GridItem mb={selectedFile ? 4 : 0}>
+                      <Stack>
+                        <FormLabel htmlFor='uploadProposal'>
+                          <PageText fontSize='input' fontWeight={400} lineHeight='21px' mb={-1}>
+                            <strong>Upload the proposal.</strong> Click here or drag file to this
+                            box.
+                          </PageText>
+                        </FormLabel>
 
-                    <Stack>
-                      <FormLabel htmlFor='uploadProposal'>
-                        <PageText fontSize='input' fontWeight={400} lineHeight='21px' mb={-1}>
-                          <strong>Upload the proposal.</strong> Click here or drag file to this box.
+                        <PageText
+                          as='small'
+                          fontSize='helpText'
+                          color='brand.helpText'
+                          lineHeight='17px'
+                          display='inline-block'
+                          mb={2}
+                        >
+                          If you already have a proposal or document you&apos;d ike to share, please
+                          upload it here. This is optional, but highly recommended.
                         </PageText>
-                      </FormLabel>
+                      </Stack>
 
-                      <PageText
-                        as='small'
-                        fontSize='helpText'
-                        color='brand.helpText'
-                        lineHeight='17px'
-                        display='inline-block'
-                        mb={2}
-                      >
-                        If you already have a proposal or document you&apos;d ike to share, please
-                        upload it here. This is optional, but highly recommended.
-                      </PageText>
-                    </Stack>
-                  </Flex>
-
-                  {selectedFile && errors?.uploadProposal && (
-                    <Box ml={'68px'} mb={2}>
-                      <PageText as='small' fontSize='helpText' color='red.500'>
-                        File size cannot exceed 2GB.
-                      </PageText>
-                    </Box>
-                  )}
-
-                  {selectedFile && (
-                    <Flex
-                      alignItems='center'
-                      justifyContent='space-between'
-                      bg='rgba(35, 34, 100, .1)'
-                      w='175px'
-                      h='36px'
-                      ml={{ base: '68px', xl2: '100px' }}
-                      pl={4}
-                      borderRadius='5px'
-                    >
-                      <PageText>{selectedFile.name}</PageText>
-                      <Flex role='button' onClick={removeFile} px={3}>
-                        <RemoveIcon />
-                      </Flex>
-                    </Flex>
-                  )}
+                      {selectedFile && errors?.uploadProposal && (
+                        <Box mt={1}>
+                          <PageText as='small' fontSize='helpText' color='red.500'>
+                            File size cannot exceed 2GB.
+                          </PageText>
+                        </Box>
+                      )}
+                    </GridItem>
+                    <GridItem colStart={2}>
+                      {selectedFile && (
+                        <Flex
+                          display='inline-flex'
+                          alignItems='center'
+                          justifyContent='space-between'
+                          bg='brand.upload.filename'
+                          minW='175px'
+                          pl={4}
+                          py={2}
+                          borderRadius='5px'
+                        >
+                          <PageText mr={2}>{selectedFile.name}</PageText>
+                          <Flex role='button' onClick={handleRemoveFile} px={3}>
+                            <RemoveIcon />
+                          </Flex>
+                        </Flex>
+                      )}
+                    </GridItem>
+                  </Grid>
                 </Box>
               </InputGroup>
             </FormControl>
@@ -971,7 +971,9 @@ export const ProjectGrantsForm: FC = () => {
               onMouseLeave={() => setButtonHovered(false)}
               pointerEvents={!isValid ? 'none' : 'auto'}
             >
-              <ImportantText color='white'>Submit Application</ImportantText>
+              <ImportantText as='h3' color='white'>
+                Submit Application
+              </ImportantText>
 
               <Flex pl={5}>
                 <Image src={planeVectorSVG} alt='paper plane vector' height='29px' width='32px' />
