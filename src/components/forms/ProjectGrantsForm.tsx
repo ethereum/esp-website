@@ -161,7 +161,7 @@ export const ProjectGrantsForm: FC = () => {
               </FormLabel>
 
               <Input
-                id='first-name'
+                id='firstName'
                 type='text'
                 bg='white'
                 borderRadius={0}
@@ -199,7 +199,7 @@ export const ProjectGrantsForm: FC = () => {
                 </PageText>
               </FormLabel>
               <Input
-                id='last-name'
+                id='lastName'
                 type='text'
                 bg='white'
                 borderRadius={0}
@@ -320,7 +320,7 @@ export const ProjectGrantsForm: FC = () => {
           </PageText>
 
           <Input
-            id='project-name'
+            id='projectName'
             type='text'
             bg='white'
             borderRadius={0}
@@ -486,7 +486,7 @@ export const ProjectGrantsForm: FC = () => {
           </PageText>
 
           <Textarea
-            id='team-profile'
+            id='teamProfile'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -531,7 +531,7 @@ export const ProjectGrantsForm: FC = () => {
           </PageText>
 
           <Textarea
-            id='project-description'
+            id='projectDescription'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -581,7 +581,7 @@ export const ProjectGrantsForm: FC = () => {
 
               <Box mt={3}>
                 <Select
-                  id='project-category'
+                  id='projectCategory'
                   options={PROJECT_CATEGORY_OPTIONS}
                   onChange={onChange}
                   components={{ DropdownIndicator }}
@@ -621,7 +621,7 @@ export const ProjectGrantsForm: FC = () => {
           </PageText>
 
           <Input
-            id='requested-amount'
+            id='requestedAmount'
             type='text'
             bg='white'
             borderRadius={0}
@@ -773,7 +773,7 @@ export const ProjectGrantsForm: FC = () => {
               </FormLabel>
 
               <Select
-                id='how-did-you-hear-about-ESP'
+                id='howDidYouHearAboutESP'
                 options={HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS}
                 components={{ DropdownIndicator }}
                 placeholder='Select'
@@ -796,7 +796,7 @@ export const ProjectGrantsForm: FC = () => {
                 <PageText fontSize='input'>If other, explain how</PageText>
               </FormLabel>
               <Input
-                id='referral-source-if-other'
+                id='referralSourceIfOther'
                 type='text'
                 bg='white'
                 borderRadius={0}
@@ -867,7 +867,7 @@ export const ProjectGrantsForm: FC = () => {
             <FormControl id='upload-proposal' {...getRootProps()}>
               <InputGroup>
                 <Input
-                  id='upload-proposal'
+                  id='uploadProposal'
                   type='file'
                   role='button'
                   aria-label='File Upload'

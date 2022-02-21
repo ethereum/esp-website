@@ -115,7 +115,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
             </FormLabel>
             <Input
-              id='first-name'
+              id='firstName'
               type='text'
               bg='white'
               borderRadius={0}
@@ -153,7 +153,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
             </FormLabel>
             <Input
-              id='last-name'
+              id='lastName'
               type='text'
               bg='white'
               borderRadius={0}
@@ -230,7 +230,7 @@ export const SmallGrantsForm: FC = () => {
               </FormLabel>
 
               <RadioGroup
-                id='individual-or-team'
+                id='individualOrTeam'
                 onChange={(value: IndividualOrTeam) => {
                   onChange(value);
                   setIndividualOrTeam(value);
@@ -316,7 +316,7 @@ export const SmallGrantsForm: FC = () => {
           </PageText>
 
           <Textarea
-            id='individual-or-team-summary'
+            id='individualOrTeamSummary'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
@@ -431,7 +431,7 @@ export const SmallGrantsForm: FC = () => {
               </FormLabel>
 
               <Select
-                id='project-category'
+                id='projectCategory'
                 options={PROJECT_CATEGORY_OPTIONS}
                 onChange={value => {
                   onChange(value);
@@ -469,7 +469,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Input
-                id='project-name'
+                id='projectName'
                 type='text'
                 bg='white'
                 borderRadius={0}
@@ -511,7 +511,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Input
-                id='project-repo'
+                id='projectRepo'
                 type='text'
                 bg='white'
                 borderRadius={0}
@@ -548,7 +548,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Textarea
-                id='project-previous-work'
+                id='projectPreviousWork'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -591,7 +591,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Textarea
-                id='project-description'
+                id='projectDescription'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -635,7 +635,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Textarea
-                id='why-is-project-important'
+                id='whyIsProjectImportant'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -679,7 +679,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Textarea
-                id='how-does-your-project-differ'
+                id='howDoesYourProjectDiffer'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -728,7 +728,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Input
-                id='project-requested-amount'
+                id='projectRequestedAmount'
                 type='text'
                 bg='white'
                 borderRadius={0}
@@ -775,7 +775,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Textarea
-                id='proposed-timeline'
+                id='proposedTimeline'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -818,7 +818,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Textarea
-                id='is-your-project-public-good'
+                id='isYourProjectPublicGood'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -861,7 +861,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Textarea
-                id='is-open-source'
+                id='isOpenSource'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -905,7 +905,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Textarea
-                id='sustainability-plan'
+                id='sustainabilityPlan'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -943,7 +943,7 @@ export const SmallGrantsForm: FC = () => {
                 </PageText>
               </FormLabel>
               <Textarea
-                id='other-projects'
+                id='otherProjects'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -992,7 +992,7 @@ export const SmallGrantsForm: FC = () => {
                   </PageText>
 
                   <RadioGroup
-                    id='repeat-applicant'
+                    id='repeatApplicant'
                     onChange={(value: RepeatApplicant) => {
                       onChange(value);
                       setRepeatApplicant(value);
@@ -1081,7 +1081,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Textarea
-                id='other-funding'
+                id='otherFunding'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -1128,7 +1128,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Input
-                id='event-name'
+                id='eventName'
                 type='text'
                 bg='white'
                 borderRadius={0}
@@ -1172,7 +1172,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Input
-                id='event-date'
+                id='eventDate'
                 type='date'
                 bg='white'
                 borderRadius={0}
@@ -1208,7 +1208,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Textarea
-                id='event-previous-work'
+                id='eventPreviousWork'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -1251,7 +1251,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Input
-                id='sponsorship-link'
+                id='sponsorshipLink'
                 type='text'
                 bg='white'
                 borderRadius={0}
@@ -1289,7 +1289,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Textarea
-                id='sponsorship-details'
+                id='sponsorshipDetails'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -1333,7 +1333,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Textarea
-                id='sponsorship-topics'
+                id='sponsorshipTopics'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -1388,7 +1388,7 @@ export const SmallGrantsForm: FC = () => {
                     </FormLabel>
 
                     <Select
-                      id='event-type'
+                      id='eventType'
                       options={EVENT_TYPE_OPTIONS}
                       onChange={onChange}
                       components={{ DropdownIndicator }}
@@ -1427,7 +1427,7 @@ export const SmallGrantsForm: FC = () => {
                     </FormLabel>
 
                     <Select
-                      id='event-format'
+                      id='eventFormat'
                       options={EVENT_FORMAT_OPTIONS}
                       onChange={onChange}
                       components={{ DropdownIndicator }}
@@ -1467,7 +1467,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Input
-                id='expected-attendees'
+                id='expectedAttendees'
                 type='number'
                 bg='white'
                 borderRadius={0}
@@ -1511,7 +1511,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Textarea
-                id='target-audience'
+                id='targetAudience'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -1555,7 +1555,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Textarea
-                id='confirmed-speakers'
+                id='confirmedSpeakers'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -1593,7 +1593,7 @@ export const SmallGrantsForm: FC = () => {
                 </PageText>
               </FormLabel>
               <Textarea
-                id='confirmed-sponsors'
+                id='confirmedSponsors'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -1636,7 +1636,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Textarea
-                id='event-budget-breakdown'
+                id='eventBudgetBreakdown'
                 bg='white'
                 borderRadius={0}
                 borderColor='brand.border'
@@ -1685,7 +1685,7 @@ export const SmallGrantsForm: FC = () => {
               </PageText>
 
               <Input
-                id='event-requested-amount'
+                id='eventRequestedAmount'
                 type='text'
                 bg='white'
                 borderRadius={0}
@@ -1730,7 +1730,7 @@ export const SmallGrantsForm: FC = () => {
           </PageText>
 
           <Textarea
-            id='additional-info'
+            id='additionalInfo'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
