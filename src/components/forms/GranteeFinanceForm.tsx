@@ -557,7 +557,7 @@ export const GranteeFinanceForm: FC = () => {
               )}
             </FormControl>
 
-            <FormControl id='swift-code-control' isRequired={receivesFiat} mb={8}>
+            <FormControl id='swift-code-control' mb={8}>
               <FormLabel htmlFor='SWIFTCode' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   Bank SWIFT code
@@ -581,16 +581,9 @@ export const GranteeFinanceForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 mt={3}
-                {...register('SWIFTCode', { required: receivesFiat, maxLength: 50 })}
+                {...register('SWIFTCode', { maxLength: 50 })}
               />
 
-              {errors?.SWIFTCode?.type === 'required' && (
-                <Box mt={1}>
-                  <PageText as='small' fontSize='helpText' color='red.500'>
-                    SWIFT code is required.
-                  </PageText>
-                </Box>
-              )}
               {errors?.SWIFTCode?.type === 'maxLength' && (
                 <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
