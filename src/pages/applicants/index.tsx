@@ -29,7 +29,7 @@ import {
 const Applicants: NextPage = () => {
   // `threshold` option allows us to control the % of visibility required before triggering the Intersection Observer
   // https://react-intersection-observer.vercel.app/?path=/story/introduction--page#options
-  const [ref, inView] = useInView({ threshold: 0.5 });
+  const [ref, inView] = useInView({ threshold: 0.3 });
   const [ref2, inView2] = useInView({ threshold: 0.5, initialInView: false });
   const [ref3, inView3] = useInView({ threshold: 0, initialInView: false });
 
