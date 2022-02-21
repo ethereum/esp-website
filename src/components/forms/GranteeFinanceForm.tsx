@@ -283,7 +283,11 @@ export const GranteeFinanceForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 mt={3}
-                {...register('ethAddress', { required: preferETH, maxLength: 50 })}
+                {...register('ethAddress', {
+                  required: preferETH,
+                  maxLength: 50,
+                  pattern: /^(0x){1}[0-9a-fA-F]{40}$/
+                })}
               />
 
               {errors?.ethAddress?.type === 'required' && (
@@ -297,6 +301,13 @@ export const GranteeFinanceForm: FC = () => {
                 <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
                     ETH address cannot exceed 50 characters.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.ethAddress?.type === 'pattern' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    ETH address must have a valid format.
                   </PageText>
                 </Box>
               )}
@@ -329,7 +340,11 @@ export const GranteeFinanceForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 mt={3}
-                {...register('daiAddress', { required: preferDAI, maxLength: 50 })}
+                {...register('daiAddress', {
+                  required: preferDAI,
+                  maxLength: 50,
+                  pattern: /^(0x){1}[0-9a-fA-F]{40}$/
+                })}
               />
 
               {errors?.daiAddress?.type === 'required' && (
@@ -343,6 +358,13 @@ export const GranteeFinanceForm: FC = () => {
                 <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
                     ETH address cannot exceed 50 characters.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.daiAddress?.type === 'pattern' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    DAI address must have a valid format.
                   </PageText>
                 </Box>
               )}
