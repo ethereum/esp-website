@@ -203,28 +203,28 @@ const Applicants: NextPage = () => {
                   make sure you provide the appropriate information and context for us to make an
                   informed decision on how to proceed with your application.
                 </PageText>
+
+                <Center>
+                  <Stack spacing={4}>
+                    <ApplicationTypeCard title='Office Hours' link={OFFICE_HOURS_URL}>
+                      Office Hours are a chance to connect directly with a member of the EF&apos;s
+                      Ecosystem Support team for support other than funding, including support with
+                      the process of submitting a grant application.
+                    </ApplicationTypeCard>
+
+                    <ApplicationTypeCard title='Small Grants' link={SMALL_GRANTS_URL}>
+                      Small grants, capped at $30,000, have a streamlined application and evaluation
+                      process to deliver a decision around two weeks after submission.
+                    </ApplicationTypeCard>
+
+                    <ApplicationTypeCard title='Project Grants' link={PROJECT_GRANTS_URL}>
+                      Project grants have no specific funding cap, and undergo a more intensive
+                      process of review and potentially rescoping. Timelines vary widely depending
+                      on scope and complexity.
+                    </ApplicationTypeCard>
+                  </Stack>
+                </Center>
               </section>
-
-              <Center>
-                <Stack spacing={4}>
-                  <ApplicationTypeCard title='Office Hours' link={OFFICE_HOURS_URL}>
-                    Office Hours are a chance to connect directly with a member of the EF&apos;s
-                    Ecosystem Support team for support other than funding, including support with
-                    the process of submitting a grant application.
-                  </ApplicationTypeCard>
-
-                  <ApplicationTypeCard title='Small Grants' link={SMALL_GRANTS_URL}>
-                    Small grants, capped at $30,000, have a streamlined application and evaluation
-                    process to deliver a decision around two weeks after submission.
-                  </ApplicationTypeCard>
-
-                  <ApplicationTypeCard title='Project Grants' link={PROJECT_GRANTS_URL}>
-                    Project grants have no specific funding cap, and undergo a more intensive
-                    process of review and potentially rescoping. Timelines vary widely depending on
-                    scope and complexity.
-                  </ApplicationTypeCard>
-                </Stack>
-              </Center>
             </Stack>
           </Box>
         </Flex>
