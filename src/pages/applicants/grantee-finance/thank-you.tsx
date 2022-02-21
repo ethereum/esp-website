@@ -4,7 +4,7 @@ import Head from 'next/head';
 
 import { PageMetadata, PageSubheading, PageText } from '../../../components/UI';
 
-const OfficeHoursThankYou: NextPage = () => {
+const GranteeFinanceThankYou: NextPage = () => {
   return (
     <>
       <PageMetadata title='Thank you' description='Grantee Finance form.' />
@@ -41,4 +41,4 @@ const OfficeHoursThankYou: NextPage = () => {
   );
 };
 
-export default OfficeHoursThankYou;
+export default GranteeFinanceThankYou;
