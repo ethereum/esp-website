@@ -51,14 +51,14 @@ export type OfficeHoursFormData = {
 
 export type GranteeFinanceFormData = {
   // these fields map to SF's Contract object fields
-  paymentPreference: PaymentPreference; // SF API: ???
+  paymentPreference: PaymentPreference;
   beneficiaryName: string; // SF API: Beneficiary_Name__c
   contactEmail: string; // SF API: User_Email__c
-  notes: string; // SF API: ??? Transfer_Notes__c maybe?
-  granteeSecurityID: string; // SF API: ???
+  notes: string; // SF API: Transfer_Notes__c
+  granteeSecurityID: string; // SF API: Contract_ID__c
 
   // ETH/DAI
-  tokenPreference: TokenPreference; // SF API: ???
+  tokenPreference: TokenPreference;
 
   // ETH
   ethAddress: string; // SF API: ETH_Address__c
@@ -72,7 +72,7 @@ export type GranteeFinanceFormData = {
   bankName: string; // SF API: Bank_Name__c
   bankAddress: string; // SF API: Bank_Address__c
   IBAN: string; // SF API: IBAN_Account_Number__c
-  SWIFTCode: string; // SF API: SWIFT_Code_BIC__c ??? required?
+  SWIFTCode: string; // SF API: SWIFT_Code_BIC__c
 };
 
 export type IndividualOrTeam = 'Individual' | 'Team';

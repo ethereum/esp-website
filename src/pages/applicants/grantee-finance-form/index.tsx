@@ -1,5 +1,6 @@
 import { Box, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
+import Head from 'next/head';
 
 import { PageMetadata, PageSubheading, PageText } from '../../../components/UI';
 
@@ -11,6 +12,9 @@ const GranteeFinancePage: NextPage = () => {
         // TODO: add description
         description=''
       />
+      <Head>
+        <meta name='robots' content='noindex' />
+      </Head>
 
       <Box bg='white' position='relative' py={{ md: 12 }} px={{ md: 24, lg: 32, xl: 72 }}>
         <Stack>

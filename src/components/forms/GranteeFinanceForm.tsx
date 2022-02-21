@@ -4,8 +4,6 @@ import {
   Button,
   ButtonProps,
   Center,
-  Checkbox,
-  CheckboxGroup,
   Fade,
   Flex,
   FormControl,
@@ -16,28 +14,18 @@ import {
   Stack,
   Textarea
 } from '@chakra-ui/react';
-import { Select } from 'chakra-react-select';
 import { FC, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import { DropdownIndicator, ImportantText, PageText } from '../UI';
+import { ImportantText, PageText } from '../UI';
 
 import { useShadowAnimation } from '../../hooks';
 
-import { chakraStyles } from './selectStyles';
-
 import planeVectorSVG from '../../../public/images/plane-vector.svg';
 
-import {
-  HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
-  OTHER,
-  PROJECT_CATEGORY_OPTIONS,
-  TEAM,
-  TIMEZONE_OPTIONS
-} from './constants';
 import { OFFICE_HOURS_THANK_YOU_PAGE_URL } from '../../constants';
 
 import {
@@ -83,10 +71,6 @@ export const GranteeFinanceForm: FC = () => {
   //   setIndividualOrTeam(value);
   // };
 
-  // const handleCheckbox = (value: ReasonForMeeting) => {
-  //   setReasonForMeeting(value);
-  // };
-
   return (
     <Stack
       w='100%'
@@ -117,7 +101,7 @@ export const GranteeFinanceForm: FC = () => {
               </FormLabel>
 
               <RadioGroup
-                id='eth-dai-or-fiat'
+                id='ethDaiOrFiat'
                 onChange={(value: PaymentPreference) => {
                   onChange(value);
                   setPaymentPreference(value);
@@ -154,7 +138,7 @@ export const GranteeFinanceForm: FC = () => {
               </PageText>
 
               <Input
-                id='beneficiary-name'
+                id='beneficiaryName'
                 type='text'
                 bg='white'
                 borderRadius={0}
@@ -195,7 +179,7 @@ export const GranteeFinanceForm: FC = () => {
               </PageText>
 
               <Input
-                id='contact-email'
+                id='contactEmail'
                 type='email'
                 bg='white'
                 borderRadius={0}
@@ -234,7 +218,7 @@ export const GranteeFinanceForm: FC = () => {
                   </FormLabel>
 
                   <RadioGroup
-                    id='token-preference'
+                    id='tokenPreference'
                     onChange={(value: TokenPreference) => {
                       onChange(value);
                       setTokenPreference(value);
@@ -274,7 +258,7 @@ export const GranteeFinanceForm: FC = () => {
               </PageText>
 
               <Input
-                id='eth-address'
+                id='ethAddress'
                 type='text'
                 bg='white'
                 borderRadius={0}
@@ -320,7 +304,7 @@ export const GranteeFinanceForm: FC = () => {
               </PageText>
 
               <Input
-                id='dai-address'
+                id='daiAddress'
                 type='text'
                 bg='white'
                 borderRadius={0}
@@ -365,7 +349,7 @@ export const GranteeFinanceForm: FC = () => {
               </PageText>
 
               <Input
-                id='beneficiary-address'
+                id='beneficiaryAddress'
                 type='text'
                 bg='white'
                 borderRadius={0}
@@ -406,7 +390,7 @@ export const GranteeFinanceForm: FC = () => {
               </PageText>
 
               <Input
-                id='fiat-currency-code'
+                id='fiatCurrencyCode'
                 type='text'
                 bg='white'
                 borderRadius={0}
@@ -447,7 +431,7 @@ export const GranteeFinanceForm: FC = () => {
               </PageText>
 
               <Input
-                id='bank-name'
+                id='bankName'
                 type='text'
                 bg='white'
                 borderRadius={0}
@@ -488,7 +472,7 @@ export const GranteeFinanceForm: FC = () => {
               </PageText>
 
               <Input
-                id='bank-address'
+                id='bankAddress'
                 type='text'
                 bg='white'
                 borderRadius={0}
@@ -572,7 +556,7 @@ export const GranteeFinanceForm: FC = () => {
               </PageText>
 
               <Input
-                id='swift-code'
+                id='SWIFTCode'
                 type='text'
                 bg='white'
                 borderRadius={0}
@@ -655,7 +639,7 @@ export const GranteeFinanceForm: FC = () => {
               </PageText>
 
               <Input
-                id='grantee-security-id'
+                id='granteeSecurityID'
                 type='text'
                 bg='white'
                 borderRadius={0}
