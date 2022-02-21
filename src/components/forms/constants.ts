@@ -1,3 +1,5 @@
+import { GranteeFinanceAPIMap } from './../../types';
+
 // project categories
 export const PROJECT_CATEGORY_OPTIONS = [
   { value: 'Community and education', label: 'Community and education' },
@@ -1450,3 +1452,11 @@ export const API_OFFICE_HOURS = '/api/office-hours';
 export const API_PROJECT_GRANTS = '/api/project-grants';
 export const API_SMALL_GRANTS_PROJECT = '/api/small-grants/project';
 export const API_SMALL_GRANTS_EVENT = '/api/small-grants/event';
+export const API_GRANTEE_FINANCE_ETH = '/api/grantee-finance/eth';
+export const API_GRANTEE_FINANCE_DAI = '/api/grantee-finance/dai';
+export const API_GRANTEE_FINANCE_FIAT = '/api/grantee-finance/fiat';
+export const API_GRANTEE_FINANCE_URLS: GranteeFinanceAPIMap = {
+  ETH: API_GRANTEE_FINANCE_ETH,
+  DAI: API_GRANTEE_FINANCE_DAI,
+  Fiat: API_GRANTEE_FINANCE_FIAT
+};
