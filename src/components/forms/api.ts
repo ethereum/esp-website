@@ -87,6 +87,7 @@ export const api = {
     submit: (data: GranteeFinanceFormData, preference: string) => {
       const granteeFinanceRequestOptions: RequestInit = {
         ...methodOptions,
+        method: 'PUT',
         body: JSON.stringify({
           ...data,
           contactEmail: addTimestamp(data.contactEmail)

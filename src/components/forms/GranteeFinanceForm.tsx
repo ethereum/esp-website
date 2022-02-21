@@ -59,29 +59,32 @@ export const GranteeFinanceForm: FC = () => {
   const preference = preferETH ? 'ETH' : preferDAI ? 'DAI' : 'Fiat';
 
   const onSubmit = (data: GranteeFinanceFormData) => {
-    console.log({ data });
+    api.granteeFinance
+      .submit(data, preference)
+      .then(res => {
+        if (res.ok) {
+          reset();
+          router.push(GRANTEE_FINANCE_THANK_YOU_PAGE_URL);
+        } else {
+          if (res.status === 404) {
+            toast({
+              ...TOAST_OPTIONS,
+              title: 'Please make sure the Security Grantee ID is correct.',
+              status: 'error'
+            });
+          } else {
+            toast({
+              ...TOAST_OPTIONS,
+              title: 'Something went wrong while submitting, please try again.',
+              status: 'error'
+            });
 
-    // api.granteeFinance
-    //   .submit(data, preference)
-    //   .then(res => {
-    //     if (res.ok) {
-    //       reset();
-    //       router.push(GRANTEE_FINANCE_THANK_YOU_PAGE_URL);
-    //     } else {
-    //       toast({
-    //         ...TOAST_OPTIONS,
-    //         title: 'Something went wrong while submitting, please try again.',
-    //         status: 'error'
-    //       });
-
-    //       throw new Error('Network response was not OK');
-    //     }
-    //   })
-    //   .catch(err => console.error('There has been a problem with your operation: ', err.message));
+            throw new Error('Network response was not OK');
+          }
+        }
+      })
+      .catch(err => console.error('There has been a problem with your operation: ', err.message));
   };
-
-  console.log(errors);
-  console.log(isValid);
 
   return (
     <Stack
