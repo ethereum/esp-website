@@ -71,6 +71,7 @@ export const SMALL_GRANTS_THANK_YOU_PAGE_URL = '/applicants/small-grants/thank-y
 
 // ethereum ecosystem
 export const ETHEREUM_ORG_URL = 'https://ethereum.org/';
+export const ETHEREUM_COOKIE_POLICY_URL = 'https://ethereum.org/en/cookie-policy/';
 export const ETHEREUM_PRIVACY_POLICY_URL = 'https://ethereum.org/en/privacy-policy/';
 export const ETHEREUM_TERMS_OF_USE_URL = 'https://ethereum.org/en/terms-of-use/';
 export const ETHEREUM_GITHUB_URL = 'https://github.com/ethereum';
