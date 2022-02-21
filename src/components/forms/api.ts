@@ -1,8 +1,12 @@
+import { GranteeFinanceFormData } from './../../types';
 import { addTimestamp, getGitHub, getWebsite } from '../../utils';
 
 import { OfficeHoursFormData, ProjectGrantsFormData, SmallGrantsFormData } from '../../types';
 
 import {
+  API_GRANTEE_FINANCE_DAI,
+  API_GRANTEE_FINANCE_ETH,
+  API_GRANTEE_FINANCE_FIAT,
   API_OFFICE_HOURS,
   API_PROJECT_GRANTS,
   API_SMALL_GRANTS_EVENT,
@@ -76,6 +80,26 @@ export const api = {
       return fetch(
         isAProject ? API_SMALL_GRANTS_PROJECT : API_SMALL_GRANTS_EVENT,
         smallGrantsRequestOptions
+      );
+    }
+  },
+  granteeFinance: {
+    submit: (data: GranteeFinanceFormData, preference: string) => {
+      const granteeFinanceRequestOptions: RequestInit = {
+        ...methodOptions,
+        body: JSON.stringify({
+          ...data,
+          contactEmail: addTimestamp(data.contactEmail)
+        })
+      };
+
+      return fetch(
+        preference === 'ETH'
+          ? API_GRANTEE_FINANCE_ETH
+          : preference === 'DAI'
+          ? API_GRANTEE_FINANCE_DAI
+          : API_GRANTEE_FINANCE_FIAT,
+        granteeFinanceRequestOptions
       );
     }
   }
