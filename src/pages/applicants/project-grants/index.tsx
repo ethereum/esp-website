@@ -1,8 +1,9 @@
 import { Accordion, Box, Flex, Link, ListItem, Stack } from '@chakra-ui/react';
+import { useInView } from 'react-intersection-observer';
 import type { NextPage } from 'next';
-import { ReadyToApply } from '../../../components';
 
 import {
+  ApplicantsSidebar,
   ApplicationAttentionMsg,
   FAQItem,
   List,
@@ -10,9 +11,9 @@ import {
   PageSection,
   PageSubheading,
   PageText,
-  ProcessStep
+  ProcessStep,
+  ReadyToApply
 } from '../../../components/UI';
-import { ApplicantsSidebar } from '../../../components';
 
 import {
   ETHEREUM_COMMUNITY_URL,
@@ -23,6 +24,17 @@ import {
 } from '../../../constants';
 
 const ProjectGrants: NextPage = () => {
+  // `threshold` option allows us to control the % of visibility required before triggering the Intersection Observer
+  // https://react-intersection-observer.vercel.app/?path=/story/introduction--page#options
+  const [ref, inView] = useInView({ threshold: 0.5 });
+  const [ref2, inView2] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref3, inView3] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref4, inView4] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref5, inView5] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref6, inView6] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref8, inView8] = useInView({ threshold: 0, initialInView: false });
+
   return (
     <>
       <PageMetadata
@@ -32,11 +44,14 @@ const ProjectGrants: NextPage = () => {
 
       <Box bg='white' position='relative' py={{ md: 12 }}>
         <Flex>
-          <ApplicantsSidebar sidebarLinks={SIDEBAR_PROJECT_GRANTS_LINKS} />
+          <ApplicantsSidebar
+            sidebarLinks={SIDEBAR_PROJECT_GRANTS_LINKS}
+            sectionsInView={[inView, inView2, inView3, inView4, inView5, inView6, inView7, inView8]}
+          />
 
           <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
             <Stack mb={2}>
-              <section id='description'>
+              <section id='description' ref={ref}>
                 <PageSubheading mb={8}>Project grants</PageSubheading>
 
                 <PageText mb={6}>
@@ -73,7 +88,7 @@ const ProjectGrants: NextPage = () => {
             </Stack>
 
             <Stack spacing={10}>
-              <section id='process'>
+              <section id='process' ref={ref2}>
                 <PageSection mb={6}>Process</PageSection>
 
                 <Stack spacing={3}>
@@ -108,7 +123,7 @@ const ProjectGrants: NextPage = () => {
                 </Stack>
               </section>
 
-              <section id='requirements'>
+              <section id='requirements' ref={ref3}>
                 <PageSection mb={6}>Requirements</PageSection>
 
                 <PageText mb={6}>
@@ -129,7 +144,7 @@ const ProjectGrants: NextPage = () => {
                 </List>
               </section>
 
-              <section id='eligibility'>
+              <section id='eligibility' ref={ref4}>
                 <PageSection mb={6}>Eligibility</PageSection>
 
                 <PageText mb={6}>
@@ -155,7 +170,7 @@ const ProjectGrants: NextPage = () => {
                 </List>
               </section>
 
-              <section id='what-is-not-eligible'>
+              <section id='what-is-not-eligible' ref={ref5}>
                 <PageSection mb={6}>What is NOT eligible</PageSection>
 
                 <List>
@@ -173,7 +188,7 @@ const ProjectGrants: NextPage = () => {
                 </List>
               </section>
 
-              <section id='tips-application'>
+              <section id='tips-application' ref={ref6}>
                 <PageSection mb={6}>Tips for submitting a great application</PageSection>
 
                 <PageText mb={6}>
@@ -239,7 +254,7 @@ const ProjectGrants: NextPage = () => {
                 </List>
               </section>
 
-              <section id='faq'>
+              <section id='faq' ref={ref7}>
                 <PageSection mb={6}>FAQ</PageSection>
 
                 <Accordion allowToggle>
@@ -347,7 +362,7 @@ const ProjectGrants: NextPage = () => {
                 </Accordion>
               </section>
 
-              <section id='apply'>
+              <section id='apply' ref={ref8}>
                 <Stack mt={6}>
                   <ReadyToApply link={`${PROJECT_GRANTS_URL}/apply`} />
                 </Stack>
