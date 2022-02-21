@@ -14,6 +14,7 @@ import {
   APPLICANTS_URL,
   ESP_BLOG_URL,
   ESP_TWITTER_URL,
+  ETHEREUM_COOKIE_POLICY_URL,
   ETHEREUM_GITHUB_URL,
   ETHEREUM_ORG_URL,
   ETHEREUM_PRIVACY_POLICY_URL,
@@ -81,7 +82,7 @@ export const Footer: FC = () => {
                 Terms of Use
               </ImportantText>
             </Link>
-            <Link href='#' _hover={{ textDecoration: 'none' }}>
+            <Link href={ETHEREUM_COOKIE_POLICY_URL} isExternal _hover={{ textDecoration: 'none' }}>
               <ImportantText color='white' textAlign={{ base: 'center', lg: 'left' }}>
                 Cookie Policy
               </ImportantText>
