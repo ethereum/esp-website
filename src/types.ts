@@ -13,6 +13,10 @@ export interface TabsMap {
   [name: string]: number;
 }
 
+export interface APIMap {
+  [preference: string]: string;
+}
+
 export interface ProposalFile {
   name: string;
   type: string;
