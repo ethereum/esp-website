@@ -581,7 +581,7 @@ export const GranteeFinanceForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 mt={3}
-                {...register('SWIFTCode', { maxLength: 50 })}
+                {...register('SWIFTCode', { maxLength: 100 })}
               />
 
               {errors?.SWIFTCode?.type === 'maxLength' && (
