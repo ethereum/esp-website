@@ -71,6 +71,9 @@ export const GranteeFinanceForm: FC = () => {
   //   setIndividualOrTeam(value);
   // };
 
+  console.log(errors);
+  console.log(isValid);
+
   return (
     <Stack
       w='100%'
@@ -202,15 +205,15 @@ export const GranteeFinanceForm: FC = () => {
           </Fade>
         </Box>
 
-        <Box display={paymentPreference === 'ETH/DAI' ? 'block' : 'none'}>
-          <Fade in={paymentPreference === 'ETH/DAI'} delay={0.25}>
+        <Box display={receivesCrypto ? 'block' : 'none'}>
+          <Fade in={receivesCrypto} delay={0.25}>
             <Controller
               name='tokenPreference'
               control={control}
-              rules={{ required: true }}
+              rules={{ required: receivesCrypto }}
               defaultValue='ETH'
               render={({ field: { onChange, value } }) => (
-                <FormControl id='token-preference-control' isRequired mb={8}>
+                <FormControl id='token-preference-control' isRequired={receivesCrypto} mb={8}>
                   <FormLabel htmlFor='tokenPreference' mb={4}>
                     <PageText display='inline' fontSize='input'>
                       Token payment preference
@@ -268,7 +271,7 @@ export const GranteeFinanceForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 mt={3}
-                {...register('ethAddress', { required: true, maxLength: 50 })}
+                {...register('ethAddress', { required: preferETH, maxLength: 50 })}
               />
 
               {errors?.ethAddress?.type === 'required' && (
@@ -314,7 +317,7 @@ export const GranteeFinanceForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 mt={3}
-                {...register('daiAddress', { required: true, maxLength: 50 })}
+                {...register('daiAddress', { required: preferDAI, maxLength: 50 })}
               />
 
               {errors?.daiAddress?.type === 'required' && (
@@ -359,7 +362,7 @@ export const GranteeFinanceForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 mt={3}
-                {...register('beneficiaryAddress', { required: true, maxLength: 255 })}
+                {...register('beneficiaryAddress', { required: receivesFiat, maxLength: 255 })}
               />
 
               {errors?.beneficiaryAddress?.type === 'required' && (
@@ -400,7 +403,7 @@ export const GranteeFinanceForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 mt={3}
-                {...register('fiatCurrencyCode', { required: true, maxLength: 3 })}
+                {...register('fiatCurrencyCode', { required: receivesFiat, maxLength: 3 })}
               />
 
               {errors?.fiatCurrencyCode?.type === 'required' && (
@@ -441,7 +444,7 @@ export const GranteeFinanceForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 mt={3}
-                {...register('bankName', { required: true, maxLength: 100 })}
+                {...register('bankName', { required: receivesFiat, maxLength: 100 })}
               />
 
               {errors?.bankName?.type === 'required' && (
@@ -482,7 +485,7 @@ export const GranteeFinanceForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 mt={3}
-                {...register('bankAddress', { required: true, maxLength: 255 })}
+                {...register('bankAddress', { required: receivesFiat, maxLength: 255 })}
               />
 
               {errors?.bankAddress?.type === 'required' && (
@@ -523,7 +526,7 @@ export const GranteeFinanceForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 mt={3}
-                {...register('IBAN', { required: true, maxLength: 50 })}
+                {...register('IBAN', { required: receivesFiat, maxLength: 50 })}
               />
 
               {errors?.IBAN?.type === 'required' && (
@@ -566,7 +569,7 @@ export const GranteeFinanceForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 mt={3}
-                {...register('SWIFTCode', { required: true, maxLength: 50 })}
+                {...register('SWIFTCode', { required: receivesFiat, maxLength: 50 })}
               />
 
               {errors?.SWIFTCode?.type === 'required' && (
@@ -679,7 +682,7 @@ export const GranteeFinanceForm: FC = () => {
                   w='310px'
                   position='absolute'
                   animate={shadowBoxControl}
-                  opacity={!isValid ? 0 : 1}
+                  // opacity={!isValid ? 0 : 1}
                 />
 
                 <MotionButton
@@ -688,12 +691,12 @@ export const GranteeFinanceForm: FC = () => {
                   py={7}
                   borderRadius={0}
                   type='submit'
-                  isDisabled={!isValid}
+                  // isDisabled={!isValid}
                   _hover={{ bg: 'brand.hover' }}
                   whileHover={{ x: -1.5, y: -1.5 }}
                   onMouseEnter={() => setButtonHovered(true)}
                   onMouseLeave={() => setButtonHovered(false)}
-                  pointerEvents={!isValid ? 'none' : 'auto'}
+                  // pointerEvents={isValid ? 'auto' : 'none'}
                 >
                   <ImportantText color='white'>Submit Application</ImportantText>
 
