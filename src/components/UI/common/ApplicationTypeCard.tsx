@@ -26,7 +26,12 @@ export const ApplicationTypeCard: FC<Props> = ({ title, link, children }) => {
         py={10}
       >
         <Stack mb={6} mr={{ base: 0, md: 12 }}>
-          <ImportantText color='brand.heading' textAlign={{ base: 'center', md: 'left' }} mb={2}>
+          <ImportantText
+            as='h3'
+            color='brand.heading'
+            textAlign={{ base: 'center', md: 'left' }}
+            mb={2}
+          >
             {title}
           </ImportantText>
 
