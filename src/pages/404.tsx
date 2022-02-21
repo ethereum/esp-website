@@ -11,7 +11,7 @@ const PageNotFound: NextPage = () => {
         <meta name='description' content='Page Not Found' />
       </Head>
 
-      <Center textAlign='center' my={{ md: 12, lg: 24, xl: 32 }}>
+      <Center textAlign='center' my={32}>
         <Box>
           <Heading as='h1' color='brand.heading' fontSize='h1' fontWeight={100}>
             404.
