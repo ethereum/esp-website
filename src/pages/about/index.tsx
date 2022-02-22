@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 import { PageSection, PageText, PageMetadata } from '../../components/UI';
 
-import aboutSVG from '../../../public/images/about.svg';
+import aboutSVG from '../../../public/images/about.png';
 
 const About: NextPage = () => {
   return (
@@ -40,7 +40,14 @@ const About: NextPage = () => {
         </Stack>
 
         <Center>
-          <Image src={aboutSVG} alt='Watering the garden of grants categories' objectFit='cover' />
+          <Image
+            src={aboutSVG}
+            alt='Watering the garden of grants categories'
+            width={800}
+            height={573}
+            objectFit='cover'
+            placeholder='blur'
+          />
         </Center>
       </Box>
     </>
