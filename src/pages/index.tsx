@@ -191,11 +191,13 @@ const Home: NextPage = () => {
               title='What we support'
               link={ABOUT_URL}
             >
-              We award dozens of grants each quarter, across a variety of categories. We support{' '}
-              <strong>open source projects</strong> that strengthen Ethereum&apos;s foundations,
-              with a particular focus on builder tools, infrastructure, research, community
-              resources and other public goods. Funding is generally directed toward supporting
-              builders rather than end users.
+              <PageText mb={6}>
+                We award dozens of grants each quarter, across a variety of categories. We support{' '}
+                <strong>open source projects</strong> that strengthen Ethereum&apos;s foundations,
+                with a particular focus on builder tools, infrastructure, research, community
+                resources and other public goods. Funding is generally directed toward supporting
+                builders rather than end users.
+              </PageText>
             </HomeAboutCard>
           </section>
 
@@ -206,10 +208,12 @@ const Home: NextPage = () => {
               title='Who We Support'
               link={WHO_WE_SUPPORT_URL}
             >
-              Our grantees come from all over the world and represent many different backgrounds,
-              disciplines and levels of experience. We have supported individuals and teams of all
-              kinds - companies, DAOs, nonprofits, institutions, academics, developers, educators,
-              community organizers and more. Learn more and see a list of recent grantees.
+              <PageText mb={6}>
+                Our grantees come from all over the world and represent many different backgrounds,
+                disciplines and levels of experience. We have supported individuals and teams of all
+                kinds - companies, DAOs, nonprofits, institutions, academics, developers, educators,
+                community organizers and more. Learn more and see a list of recent grantees.
+              </PageText>
             </HomeAboutCard>
           </section>
 

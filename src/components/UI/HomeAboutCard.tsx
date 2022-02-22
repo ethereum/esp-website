@@ -35,7 +35,7 @@ export const HomeAboutCard: FC<Props> = ({ bgGradient, img, title, link, childre
         </Stack>
 
         <Stack w={{ md: '50%' }}>
-          <PageText mb={6}>{children}</PageText>
+          <Box mb={6}>{children}</Box>
 
           <Flex justifyContent={{ base: 'center', md: 'flex-start' }}>
             <ButtonLink label='Read more' link={link} width='247px' />
