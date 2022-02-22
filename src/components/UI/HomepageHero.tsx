@@ -6,7 +6,7 @@ import { PageSubheading } from '../UI';
 import { ButtonLink } from '../../components';
 
 import homepageHero from '../../../public/images/homepage-hero.png';
-import homepageHeroMobile from '../../../public/images/homepage-hero-mobile.svg';
+import homepageHeroMobile from '../../../public/images/homepage-hero-mobile.png';
 
 import { APPLICANTS_URL } from '../../constants';
 
@@ -44,6 +44,9 @@ export const HomepageHero: FC = () => {
             alt='People gathered around the Ethereum tree'
             layout='responsive'
             objectFit='cover'
+            width={450}
+            height={427}
+            placeholder='blur'
           />
         </Box>
 
