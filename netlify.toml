@@ -21,6 +21,7 @@
 
 [build.environment]
   NODE_VERSION = "12.21.0"
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
 
 
 # DEPLOY CONTEXTS
