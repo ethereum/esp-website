@@ -62,15 +62,19 @@ const Home: NextPage = () => {
               borderTopColor='brand.heading'
               borderBottom='5px solid'
               borderBottomColor='brand.heading'
-              px={{ base: 2, lg: 40 }}
+              px={{ base: 2, lg: 20, xl: 10 }}
               pt={7}
             >
               <Grid
-                templateColumns={{ base: 'repeat(2, auto)', lg: 'repeat(6, auto)' }}
+                templateColumns={{
+                  base: 'repeat(2, auto)',
+                  lg: 'repeat(6, auto)',
+                  xl: 'repeat(6, 1fr)'
+                }}
                 rowGap={10}
                 justifyContent='space-evenly'
               >
-                <GridItem alignSelf='center' justifySelf='center' mr={{ lg: 2, xl: 0 }}>
+                <GridItem alignSelf='center' justifySelf='center' mr={{ lg: 6, xl: 0 }}>
                   <Box>
                     <Image
                       src={smallSucculentSVG}
@@ -79,7 +83,7 @@ const Home: NextPage = () => {
                     />
                   </Box>
                 </GridItem>
-                <GridItem alignSelf='center' mr={{ lg: 16 }} w='100%'>
+                <GridItem alignSelf='center' mr={{ lg: 20, xl: 12 }}>
                   <Stack>
                     <PageSection as='h4' textAlign='left' mb={2}>
                       2019
@@ -103,7 +107,7 @@ const Home: NextPage = () => {
                     </PageText>
                   </Stack>
                 </GridItem>
-                <GridItem alignSelf='center' justifySelf='center' mr={{ lg: 2, xl: 0 }}>
+                <GridItem alignSelf='center' justifySelf='center' mr={{ lg: 6, xl: 0 }}>
                   <Box>
                     <Image
                       src={mediumSucculentSVG}
@@ -112,7 +116,7 @@ const Home: NextPage = () => {
                     />
                   </Box>
                 </GridItem>
-                <GridItem alignSelf='center' mr={{ lg: 16 }}>
+                <GridItem alignSelf='center' mr={{ lg: 20, xl: 12 }}>
                   <Stack>
                     <PageSection as='h4' textAlign='left' mb={2}>
                       2020
@@ -139,7 +143,7 @@ const Home: NextPage = () => {
                 <GridItem
                   alignSelf='center'
                   justifySelf='center'
-                  mr={{ lg: 2, xl: 0 }}
+                  mr={{ lg: 6, xl: 0 }}
                   mb={{ base: 8, lg: 0 }}
                 >
                   <Box>
