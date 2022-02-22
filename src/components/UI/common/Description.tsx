@@ -8,13 +8,15 @@ import { PageText } from '../text';
 interface Props {
   title: string;
   img: {
-    src: string;
+    src: string | StaticImageData;
     alt: string;
+    width: number;
+    height: number;
   };
 }
 
 export const Description: FC<Props> = ({ title, img, children }) => {
-  const { src, alt } = img;
+  const { src, alt, width, height } = img;
 
   return (
     <Flex direction={{ base: 'column', lg: 'row' }} pr={{ lg: 32 }} mb={1}>
@@ -27,7 +29,15 @@ export const Description: FC<Props> = ({ title, img, children }) => {
       </Box>
 
       <Box mt={{ base: 8, md: -24 }} mx={{ base: 'auto', lg: 0 }} flexShrink={0}>
-        <Image src={src} alt={alt} objectFit='cover' priority />
+        <Image
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          objectFit='cover'
+          placeholder='blur'
+          priority
+        />
       </Box>
     </Flex>
   );
