@@ -4,7 +4,7 @@ import type { NextPage } from 'next';
 import { ButtonLink } from '../../../components';
 import { PageMetadata, PageSubheading, PageText } from '../../../components/UI';
 
-import { API_DOWNLOAD_APPLICATION_URL } from '../../../constants';
+import { DOWNLOAD_APPLICATION_URL } from '../../../constants';
 
 const ProjectGrantsApply: NextPage = () => {
   return (
@@ -39,7 +39,7 @@ const ProjectGrantsApply: NextPage = () => {
               <Center>
                 <ButtonLink
                   label='Download Application'
-                  link={API_DOWNLOAD_APPLICATION_URL}
+                  link={DOWNLOAD_APPLICATION_URL}
                   width='268px'
                 />
               </Center>

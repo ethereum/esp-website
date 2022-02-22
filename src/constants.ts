@@ -129,7 +129,7 @@ export const NAV_LINKS: NavLink[] = [
 export const ETHRESEARCH_URL = 'https://ethresear.ch/';
 
 // api
-export const API_DOWNLOAD_APPLICATION_URL = '/api/download-application';
+export const DOWNLOAD_APPLICATION_URL = '/projectGrantsApplication.docx';
 export const API_NEWSLETTER_SIGNUP_URL = '/api/newsletter-signup';
 
 // grants list
