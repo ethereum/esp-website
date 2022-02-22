@@ -59,8 +59,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         Time_Zone__c: Time_Zone__c.trim(),
         Referral_Source__c: Referral_Source__c.trim(),
         Referral_Source_if_Other__c: Referral_Source_if_Other__c.trim(),
-        Referrals__c: Referrals__c.trim()
-        // TODO: add RecordTypeId: 'Project Grants' when defined
+        Referrals__c: Referrals__c.trim(),
+        RecordTypeId: process.env.SF_RECORD_TYPE_PROJECT_GRANTS
       },
       (err, ret) => {
         if (err || !ret.success) {

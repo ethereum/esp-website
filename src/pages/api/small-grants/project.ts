@@ -72,8 +72,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         Repeat_Applicant__c: Repeat_Applicant__c.trim(),
         Progress__c: Progress__c.trim(),
         Other_Funding__c: Other_Funding__c.trim(),
-        Additional_Information__c: Additional_Information__c.trim()
-        // TODO: add RecordTypeId: 'Small Grants' when defined
+        Additional_Information__c: Additional_Information__c.trim(),
+        RecordTypeId: process.env.SF_RECORD_TYPE_SMALL_GRANTS
       },
       (err, ret) => {
         if (err || !ret.success) {

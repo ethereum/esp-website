@@ -46,8 +46,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         Referral_Source__c: Referral_Source__c.trim(),
         Reason_for_meeting__c: Reason_for_meeting__c.trim(),
         Reason_for_meeting_if_Other__c: Reason_for_meeting_if_Other__c.trim(),
-        Time_Zone__c: Time_Zone__c.trim()
-        // TODO: add RecordTypeId: 'Office Hours' when defined
+        Time_Zone__c: Time_Zone__c.trim(),
+        RecordTypeId: process.env.SF_RECORD_TYPE_OFFICE_HOURS
       },
       (err, ret) => {
         if (err || !ret.success) {

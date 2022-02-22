@@ -70,8 +70,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         Confirmed_Sponsors__c: Confirmed_Sponsors__c.trim(),
         Proposed_Timeline__c: Proposed_Timeline__c.trim(),
         Sponsorship_Monetary_Request__c: Sponsorship_Monetary_Request__c.trim(),
-        Additional_Information__c: Additional_Information__c.trim()
-        // TODO: add RecordTypeId: 'Sponsorships' when defined
+        Additional_Information__c: Additional_Information__c.trim(),
+        RecordTypeId: process.env.SF_RECORD_TYPE_SPONSORSHIPS
       },
       (err, ret) => {
         if (err || !ret.success) {
