@@ -39,7 +39,7 @@ export const LatestGranteesList: FC<Props> = ({ grantsList }) => {
               .filter(({ Category }) => Category === grantCategory)
               .map(grant => (
                 <Stack
-                  key={grant.Project}
+                  key={grant.Description}
                   py={6}
                   borderBottom='1px solid'
                   borderColor='brand.granteesListDivider'
