@@ -2,8 +2,8 @@ import { Box } from '@chakra-ui/react';
 import Image from 'next/image';
 import { FC } from 'react';
 
-import footerBackground from '../../../../public/images/footer-background.svg';
-import footerBackgroundMobile from '../../../../public/images/footer-background-mobile.svg';
+import footerBackground from '../../../../public/images/footer-background.png';
+import footerBackgroundMobile from '../../../../public/images/footer-background-mobile.png';
 
 export const FooterBackgroundImage: FC = () => {
   return (
@@ -14,6 +14,10 @@ export const FooterBackgroundImage: FC = () => {
           alt='People gathered around the Ethereum tree'
           layout='responsive'
           objectFit='cover'
+          width={450}
+          height={200}
+          placeholder='blur'
+          quality={90}
         />
       </Box>
 
@@ -23,7 +27,10 @@ export const FooterBackgroundImage: FC = () => {
           alt='People gathered around the Ethereum tree'
           layout='responsive'
           objectFit='cover'
-          quality={85}
+          width={1440}
+          height={335}
+          placeholder='blur'
+          quality={90}
         />
       </Box>
     </Box>
