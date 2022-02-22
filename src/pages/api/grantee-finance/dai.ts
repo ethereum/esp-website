@@ -48,7 +48,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             console.error(err);
             res.status(400).json({ status: 'fail' });
           } else {
-            console.log(`Contract with ID: ${Contract_ID__c} has been succesfully updated!`);
+            console.log(`Contract with ID: ${Contract_ID__c} has been successfully updated!`);
 
             res.status(200).json({ status: 'ok' });
           }

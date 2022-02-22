@@ -86,7 +86,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 res.status(400).json({ status: 'fail' });
               } else {
                 console.log({ uploadedFile });
-                console.log(`Document has been uploaded succesfully!`);
+                console.log(`Document has been uploaded successfully!`);
 
                 const contentDocument = await conn
                   .sobject<{
