@@ -8,14 +8,18 @@ import { ButtonLink } from '../../components';
 interface Props {
   bgGradient: string;
   img: {
-    src: string;
+    src: string | StaticImageData;
     alt: string;
+    width: number;
+    height: number;
   };
   title: string;
   link: string;
 }
 
 export const HomeAboutCard: FC<Props> = ({ bgGradient, img, title, link, children }) => {
+  const { src, alt, width, height } = img;
+
   return (
     <Stack borderRadius='10px' bgGradient={bgGradient} w='100%' justifyContent='center'>
       <Flex
@@ -30,7 +34,16 @@ export const HomeAboutCard: FC<Props> = ({ bgGradient, img, title, link, childre
           </PageSection>
 
           <Box>
-            <Image src={img.src} alt={img.alt} layout='responsive' objectFit='cover' quality={85} />
+            <Image
+              src={src}
+              alt={alt}
+              width={width}
+              height={height}
+              layout='responsive'
+              objectFit='cover'
+              placeholder='blur'
+              quality={85}
+            />
           </Box>
         </Stack>
 

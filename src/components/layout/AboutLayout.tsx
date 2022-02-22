@@ -12,7 +12,7 @@ import {
   WHO_WE_SUPPORT_URL
 } from '../../constants';
 
-import aboutHero from '../../../public/images/about-hero.svg';
+import aboutHero from '../../../public/images/about-hero.png';
 
 export const AboutLayout: FC = ({ children }) => {
   const router = useRouter();
@@ -63,7 +63,7 @@ export const AboutLayout: FC = ({ children }) => {
         <section id='hero'>
           <Description
             title='About ESP'
-            img={{ src: aboutHero, alt: 'People reading about the ESP' }}
+            img={{ src: aboutHero, alt: 'People reading about the ESP', width: 498, height: 296 }}
           >
             We provide grants and other support for open source projects that strengthen
             Ethereum&apos;s foundations, with a particular focus on builder tools, infrastructure,

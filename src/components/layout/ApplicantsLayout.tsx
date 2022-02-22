@@ -4,7 +4,7 @@ import { FC, useState } from 'react';
 
 import { Description, ImportantText } from '../UI';
 
-import applicantsHero from '../../../public/images/applicants-hero.svg';
+import applicantsHero from '../../../public/images/applicants-hero.png';
 
 import {
   APPLICANTS_TABS,
@@ -74,7 +74,7 @@ export const ApplicantsLayout: FC = ({ children }) => {
         <section id='hero'>
           <Description
             title='For Applicants'
-            img={{ src: applicantsHero, alt: 'Kid watching plants grow' }}
+            img={{ src: applicantsHero, alt: 'Kid watching plants grow', width: 450, height: 248 }}
           >
             Whether you&apos;re working on a specific project, or you&apos;re still exploring
             possibilities, you can connect with our team for guidance.

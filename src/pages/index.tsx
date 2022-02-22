@@ -7,9 +7,9 @@ import { HomeAboutCard, PageMetadata, PageSection, PageText } from '../component
 import smallSucculentSVG from '../../public/images/small-succulent.svg';
 import mediumSucculentSVG from '../../public/images/medium-succulent.svg';
 import bigSucculentSVG from '../../public/images/big-succulent.svg';
-import whatWeSupportTreeSVG from '../../public/images/what-we-support-tree.svg';
-import whoWeSupportRootsSVG from '../../public/images/who-we-support-roots.svg';
-import howWeSupportRootsSVG from '../../public/images/how-we-support-roots.svg';
+import whatWeSupportTree from '../../public/images/what-we-support-tree.png';
+import whoWeSupportRoots from '../../public/images/who-we-support-roots.png';
+import howWeSupportRoots from '../../public/images/how-we-support-roots.png';
 
 import { ABOUT_URL, HOW_WE_SUPPORT_URL, WHO_WE_SUPPORT_URL } from '../constants';
 
@@ -191,7 +191,12 @@ const Home: NextPage = () => {
           <section id='what-we-support'>
             <HomeAboutCard
               bgGradient='linear(to-br, brand.ready.bgGradient.start 10%, brand.ready.bgGradient.end 100%)'
-              img={{ src: whatWeSupportTreeSVG, alt: 'supported categories tree' }}
+              img={{
+                src: whatWeSupportTree,
+                alt: 'supported categories tree',
+                width: 540,
+                height: 311.098
+              }}
               title='What we support'
               link={ABOUT_URL}
             >
@@ -208,7 +213,12 @@ const Home: NextPage = () => {
           <section id='who-we-support'>
             <HomeAboutCard
               bgGradient='linear(to-br, brand.whoWeSupport.bgGradient.start 0%, brand.whoWeSupport.bgGradient.end 100%)'
-              img={{ src: whoWeSupportRootsSVG, alt: 'supported categories tree' }}
+              img={{
+                src: whoWeSupportRoots,
+                alt: 'supported categories tree',
+                width: 540,
+                height: 298.968
+              }}
               title='Who We Support'
               link={WHO_WE_SUPPORT_URL}
             >
@@ -225,8 +235,10 @@ const Home: NextPage = () => {
             <HomeAboutCard
               bgGradient='linear(to-br, brand.howWeSupport.bgGradient.start 2.29%, brand.howWeSupport.bgGradient.end 101.37%)'
               img={{
-                src: howWeSupportRootsSVG,
-                alt: 'people making research about supported categories'
+                src: howWeSupportRoots,
+                alt: 'people making research about supported categories',
+                width: 540,
+                height: 280.666
               }}
               title='How We Support'
               link={HOW_WE_SUPPORT_URL}
