@@ -916,7 +916,7 @@ export const ProjectGrantsForm: FC = () => {
                       {selectedFile && errors?.uploadProposal && (
                         <Box mt={1}>
                           <PageText as='small' fontSize='helpText' color='red.500'>
-                            File size cannot exceed 2GB.
+                            File size cannot exceed 4mb.
                           </PageText>
                         </Box>
                       )}
