@@ -135,8 +135,8 @@ export const API_NEWSLETTER_SIGNUP_URL = '/api/newsletter-signup';
 // grants list
 export const CURRENT_GRANTS_QUARTERS = ['3', '4'];
 
-// proposal upload
-export const MAX_PROPOSAL_FILE_SIZE = 2147483648;
+// proposal upload file size limit (4mb)
+export const MAX_PROPOSAL_FILE_SIZE = 4194304;
 
 // toast options
 export const TOAST_OPTIONS: UseToastOptions = {
