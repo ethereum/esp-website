@@ -1,5 +1,5 @@
 import { GranteeFinanceFormData } from './../../types';
-import { addTimestamp, getGitHub, getWebsite } from '../../utils';
+import { getGitHub, getWebsite } from '../../utils';
 
 import { OfficeHoursFormData, ProjectGrantsFormData, SmallGrantsFormData } from '../../types';
 
@@ -23,7 +23,6 @@ export const api = {
         ...methodOptions,
         body: JSON.stringify({
           ...data,
-          email: addTimestamp(data.email),
           // Company is a required field in SF, we're using the Name as default value if no company provided
           company: data.company === '' ? `${data.firstName} ${data.lastName}` : data.company,
           projectCategory: data.projectCategory.value,
@@ -43,7 +42,6 @@ export const api = {
         ...methodOptions,
         body: JSON.stringify({
           ...data,
-          email: addTimestamp(data.email),
           // Company is a required field in SF, we're using the Name as default value if no company provided
           company: data.company === 'N/A' ? `${data.firstName} ${data.lastName}` : data.company,
           website: getWebsite(data.website),
@@ -64,7 +62,6 @@ export const api = {
         ...methodOptions,
         body: JSON.stringify({
           ...data,
-          email: addTimestamp(data.email),
           // Company is a required field in SF, we're using the Name as default value if no company provided
           company: data.company === '' ? `${data.firstName} ${data.lastName}` : data.company,
           website: getWebsite(data.website),
@@ -87,8 +84,7 @@ export const api = {
         ...methodOptions,
         method: 'PUT',
         body: JSON.stringify({
-          ...data,
-          contactEmail: addTimestamp(data.contactEmail)
+          ...data
         })
       };
 
