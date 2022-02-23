@@ -14,30 +14,37 @@ This repository holds the codebase to our website, [esp.ethereum.foundation](htt
 
 ## Local development
 
-1. [Set up your development environment](https://www.gatsbyjs.org/tutorial/part-zero/)
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-2. Clone this project
+## Getting Started
 
-```
-$ git clone git@github.com:ethereum/esp-website.git && cd esp-website
-```
+First, run the development server:
 
-3. Install dependencies
-
-```
-$ yarn
+```bash
+npm run dev
+# or
+yarn dev
 ```
 
-4. Start developing!
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-```
-yarn develop
-```
+You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-## Learning Gatsby
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.org/). Here are some places to start:
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-- **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.org/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
+## Learning NextJS
 
-- **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.org/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+## Adding ChakraUI to a NextJS project
+
+[This](https://chakra-ui.com/guides/getting-started/nextjs-guide) is a very clear and step-by-step guide on it.
+
+## Learning ChakraUI
+
+We recommend checking the [official docs](https://chakra-ui.com/docs/getting-started).
