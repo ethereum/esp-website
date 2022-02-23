@@ -10,7 +10,7 @@ import LocalGrantsForm from "../components/LocalGrantsForm"
 import DevconGrantsForm from "../components/DevconGrantsForm"
 import ExpandableCard from "../components/ExpandableCard"
 import PageMetadata from "../components/PageMetadata"
-import { PageBody } from "../components/SharedStyledComponents"
+import { PageBody, FormHeader } from "../components/SharedStyledComponents"
 import * as styles from "../utils/styles"
 
 const Header1 = styled.h1`
@@ -65,18 +65,18 @@ const Header2 = styled.h2`
     vertical-align: middle;
     &:hover {
       display: initial;
-      /* fill: ${props => props.theme.colors.primary}; */
+      /* fill: ${(props) => props.theme.colors.primary}; */
     }
   }
 
   &:hover {
     a {
       display: initial;
-      /* fill: ${props => props.theme.colors.primary}; */
+      /* fill: ${(props) => props.theme.colors.primary}; */
     }
   }
 
-  /* @media (max-width: ${props => props.theme.breakpoints.m}) {
+  /* @media (max-width: ${(props) => props.theme.breakpoints.m}) {
     font-size: 1.25rem;
   } */
 `
@@ -111,14 +111,14 @@ const Header3 = styled.h3`
     vertical-align: middle;
     &:hover {
       display: initial;
-      /* fill: ${props => props.theme.colors.primary}; */
+      /* fill: ${(props) => props.theme.colors.primary}; */
     }
   }
 
   &:hover {
     a {
       display: initial;
-      /* fill: ${props => props.theme.colors.primary}; */
+      /* fill: ${(props) => props.theme.colors.primary}; */
     }
   }
 `
@@ -147,14 +147,14 @@ const Header4 = styled.h4`
     vertical-align: middle;
     &:hover {
       display: initial;
-      /* fill: ${props => props.theme.colors.primary}; */
+      /* fill: ${(props) => props.theme.colors.primary}; */
     }
   }
 
   &:hover {
     a {
       display: initial;
-      /* fill: ${props => props.theme.colors.primary}; */
+      /* fill: ${(props) => props.theme.colors.primary}; */
     }
   }
 `
@@ -177,10 +177,11 @@ const components = {
   DevconGrantsForm,
   ExpandableCard,
   Divider,
+  FormHeader,
 }
 
 const HeroImg = styled(Img)`
-  margin-bottom: ${props => (props.hasImgMargin ? `3rem` : `0`)};
+  margin-bottom: ${(props) => (props.hasImgMargin ? `3rem` : `0`)};
 `
 
 const StaticPage = ({ data: { mdx } }) => {
