@@ -3,7 +3,7 @@
   "private": false,
   "description": "The website for esp.ethereum.foundation",
   "version": "3.0.0",
-  "author": "Nicolás Quiroz <nh.quiroz@gmail.com>",
+  "author": "Nicolás Quiroz <nicolas.quiroz@ethereum.org>",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -53,9 +53,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ethereum/esp-website/tree/esp-redesign"
+    "url": "https://github.com/ethereum/esp-website"
   },
   "bugs": {
-    "url": "https://github.com/ethereum/esp-website/tree/esp-redesign/issues"
+    "url": "https://github.com/ethereum/esp-website/issues"
   }
 }
