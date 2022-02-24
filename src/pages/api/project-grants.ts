@@ -72,39 +72,41 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           createdLeadID = ret.id;
           console.log({ createdLeadID });
 
-          // Document upload
-          conn.sobject('ContentVersion').create(
-            {
-              Title: `[PROPOSAL] ${Project_Name__c} - ${createdLeadID}`,
-              PathOnClient: uploadProposal.path,
-              VersionData: uploadProposal.content // base64 encoded file content
-            },
-            async (err, uploadedFile) => {
-              if (err || !uploadedFile.success) {
-                console.error(err);
+          if (uploadProposal) {
+            // Document upload
+            conn.sobject('ContentVersion').create(
+              {
+                Title: `[PROPOSAL] ${Project_Name__c} - ${createdLeadID}`,
+                PathOnClient: uploadProposal.path,
+                VersionData: uploadProposal.content // base64 encoded file content
+              },
+              async (err, uploadedFile) => {
+                if (err || !uploadedFile.success) {
+                  console.error(err);
 
-                res.status(400).json({ status: 'fail' });
-              } else {
-                console.log({ uploadedFile });
-                console.log(`Document has been uploaded successfully!`);
+                  res.status(400).json({ status: 'fail' });
+                } else {
+                  console.log({ uploadedFile });
+                  console.log(`Document has been uploaded successfully!`);
 
-                const contentDocument = await conn
-                  .sobject<{
-                    Id: string;
-                    ContentDocumentId: string;
-                  }>('ContentVersion')
-                  .retrieve(uploadedFile.id);
+                  const contentDocument = await conn
+                    .sobject<{
+                      Id: string;
+                      ContentDocumentId: string;
+                    }>('ContentVersion')
+                    .retrieve(uploadedFile.id);
 
-                await conn.sobject('ContentDocumentLink').create({
-                  ContentDocumentId: contentDocument.ContentDocumentId,
-                  LinkedEntityId: createdLeadID,
-                  ShareType: 'V'
-                });
-
-                res.status(200).json({ status: 'ok' });
+                  await conn.sobject('ContentDocumentLink').create({
+                    ContentDocumentId: contentDocument.ContentDocumentId,
+                    LinkedEntityId: createdLeadID,
+                    ShareType: 'V'
+                  });
+                }
               }
-            }
-          );
+            );
+          }
+
+          res.status(200).json({ status: 'ok' });
         }
       }
     );
