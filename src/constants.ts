@@ -17,6 +17,7 @@ export const APPLICANTS_URL = '/applicants';
 export const OFFICE_HOURS_URL = '/applicants/office-hours';
 export const SMALL_GRANTS_URL = '/applicants/small-grants';
 export const PROJECT_GRANTS_URL = '/applicants/project-grants';
+export const ACADEMIC_GRANTS_URL = '/academic-grants';
 export const SIDEBAR_APPLICANTS_LINKS: SidebarLink[] = [
   { text: 'Mission and Scope', href: `${APPLICANTS_URL}/#mission-and-scope` },
   { text: 'How we support', href: `${APPLICANTS_URL}/#how-we-support` },
@@ -58,6 +59,17 @@ export const SIDEBAR_SMALL_GRANTS_LINKS: SidebarLink[] = [
   { text: 'FAQ', href: `${SMALL_GRANTS_URL}/#faq` },
   { text: 'Apply', href: `${SMALL_GRANTS_URL}/#apply` }
 ];
+export const SIDEBAR_ACADEMIC_GRANTS_LINKS: SidebarLink[] = [
+  { text: 'Summary', href: `${ACADEMIC_GRANTS_URL}/#description` },
+  { text: 'Submit proposal', href: `${ACADEMIC_GRANTS_URL}/#submit-proposal` },
+  { text: 'Deadline', href: `${ACADEMIC_GRANTS_URL}/#deadline` },
+  { text: 'Requirements', href: `${ACADEMIC_GRANTS_URL}/#requirements` },
+  { text: 'Selection criteria', href: `${ACADEMIC_GRANTS_URL}/#selection-criteria` },
+  { text: 'Wishlist', href: `${ACADEMIC_GRANTS_URL}/#wishlist` },
+  { text: 'Next steps and support', href: `${ACADEMIC_GRANTS_URL}/#next-steps-and-support` },
+  { text: 'FAQ', href: `${ACADEMIC_GRANTS_URL}/#faq` },
+  { text: 'Apply', href: `${ACADEMIC_GRANTS_URL}/#apply` }
+];
 
 // apply forms
 export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
@@ -93,6 +105,7 @@ export const EF_JOBS_URL = 'https://ethereum.bamboohr.com/jobs/';
 export const ESP_BLOG_URL = 'https://blog.ethereum.org/category/ecosystem-support-program/';
 export const ESP_TWITTER_URL = 'https://twitter.com/EF_ESP';
 export const ESP_EMAIL_ADDRESS = 'mailto:esp@ethereum.org';
+export const ACADEMIC_GRANTS_EMAIL_ADDRESS = 'mailto:academics-grants@ethereum.org';
 
 // applicants tabs
 export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Small Grants', 'Project Grants'];
