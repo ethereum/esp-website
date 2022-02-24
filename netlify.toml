@@ -5,6 +5,11 @@
 [build.environment]
   NODE_VERSION = "12.22.0"
 
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "https://matomo.ethereum.org"
+
 # Legacy pages from current site
 
 # Root langs routes
