@@ -862,7 +862,7 @@ export const ProjectGrantsForm: FC = () => {
           name='uploadProposal'
           control={control}
           rules={{ validate: file => (file ? file.size < MAX_PROPOSAL_FILE_SIZE : true) }}
-          defaultValue={undefined}
+          defaultValue={null}
           render={({ field: { onChange } }) => (
             <FormControl id='upload-proposal' {...getRootProps()}>
               <InputGroup>
