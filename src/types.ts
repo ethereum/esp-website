@@ -17,13 +17,13 @@ export interface GranteeFinanceAPIMap {
   [preference: string]: string;
 }
 
-export interface ProposalFile {
+export type ProposalFile = {
   name: string;
   type: string;
   size: number;
   content: string;
   path: string;
-}
+} | null;
 
 export type NewsletterFormData = {
   email: string;
