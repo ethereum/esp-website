@@ -7,7 +7,7 @@ import { PageMetadata, PageSubheading, PageText } from '../../../components/UI';
 const GranteeFinanceThankYou: NextPage = () => {
   return (
     <>
-      <PageMetadata title='Thank you' description='Grantee Finance form.' />
+      <PageMetadata title='Thank you' description='Thank you for your submission' />
       <Head>
         <meta name='robots' content='noindex' />
       </Head>
