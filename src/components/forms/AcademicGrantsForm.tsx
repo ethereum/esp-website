@@ -799,8 +799,8 @@ export const AcademicGrantsForm: FC = () => {
           </FormLabel>
 
           <PageText as='small' fontSize='helpText' color='brand.helpText'>
-            What are you hoping to accomplish with this grant scope? How do you define success for
-            this project? How do you measure success for the grant?
+            What are you hoping to accomplish with this grant scope? How do you define and measure
+            success for this project?
           </PageText>
 
           <Textarea
