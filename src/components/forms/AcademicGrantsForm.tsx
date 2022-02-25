@@ -51,6 +51,7 @@ export const AcademicGrantsForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
 
+  const [POCisAuthorisedSignatory, setPOCisAuthorisedSignatory] = useState('Yes');
   const [applyingAs, setApplyingAs] = useState<ApplyingAs | unknown>({
     value: '',
     label: ''
@@ -76,6 +77,10 @@ export const AcademicGrantsForm: FC = () => {
     router.push(ACADEMIC_GRANTS_THANK_YOU_PAGE_URL);
   };
 
+  const handlePOCisAuthorisedSignatory = (value: string) => {
+    setPOCisAuthorisedSignatory(value);
+  };
+
   const handleApplyingAs = (value: ApplyingAs) => {
     setApplyingAs(value);
   };
@@ -83,6 +88,8 @@ export const AcademicGrantsForm: FC = () => {
   const handleGrantsReferralSource = (source: GrantsReferralSource) => {
     setGrantsReferralSource(source);
   };
+
+  const notAuthorisedSignatory = POCisAuthorisedSignatory === 'No';
 
   return (
     <Stack
@@ -221,7 +228,10 @@ export const AcademicGrantsForm: FC = () => {
 
               <RadioGroup
                 id='POCisAuthorisedSignatory'
-                onChange={onChange}
+                onChange={value => {
+                  onChange(value);
+                  handlePOCisAuthorisedSignatory(value);
+                }}
                 value={value}
                 fontSize='input'
                 colorScheme='white'
@@ -253,50 +263,58 @@ export const AcademicGrantsForm: FC = () => {
           )}
         />
 
-        <FormControl id='authorisedSignatoryInformation-control' isRequired mb={8}>
-          <FormLabel htmlFor='authorisedSignatoryInformation' mb={1}>
-            <PageText display='inline' fontSize='input'>
-              Name, job title, and email address of the authorised signatory
-            </PageText>
-          </FormLabel>
+        <Box display={notAuthorisedSignatory ? 'block' : 'none'}>
+          <Fade in={notAuthorisedSignatory} delay={0.25}>
+            <FormControl
+              id='authorisedSignatoryInformation-control'
+              isRequired={notAuthorisedSignatory}
+              mb={8}
+            >
+              <FormLabel htmlFor='authorisedSignatoryInformation' mb={1}>
+                <PageText display='inline' fontSize='input'>
+                  Name, job title, and email address of the authorised signatory
+                </PageText>
+              </FormLabel>
 
-          <PageText as='small' fontSize='helpText' color='brand.helpText'>
-            e.g.: John Smith, CEO, john@mycompany.com. This is the person who will sign the
-            contract. They must be someone who can sign contracts on behalf of the entity.
-          </PageText>
-
-          <Input
-            id='authorisedSignatoryInformation'
-            type='text'
-            bg='white'
-            borderRadius={0}
-            borderColor='brand.border'
-            h='56px'
-            _placeholder={{ fontSize: 'input' }}
-            color='brand.paragraph'
-            fontSize='input'
-            mt={3}
-            {...register('authorisedSignatoryInformation', {
-              required: true,
-              maxLength: 255
-            })}
-          />
-
-          {errors?.authorisedSignatoryInformation?.type === 'required' && (
-            <Box mt={1}>
-              <PageText as='small' fontSize='helpText' color='red.500'>
-                Authorised Signatory Information is required.
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                e.g.: John Smith, CEO, john@mycompany.com. This is the person who will sign the
+                contract. They must be someone who can sign contracts on behalf of the entity.
               </PageText>
-            </Box>
-          )}
-          {errors?.authorisedSignatoryInformation?.type === 'maxLength' && (
-            <Box mt={1}>
-              <PageText as='small' fontSize='helpText' color='red.500'>
-                Authorised Signatory Information cannot exceed 255 characters.
-              </PageText>
-            </Box>
-          )}
-        </FormControl>
+
+              <Input
+                id='authorisedSignatoryInformation'
+                type='text'
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                h='56px'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+                mt={3}
+                {...register('authorisedSignatoryInformation', {
+                  required: notAuthorisedSignatory,
+                  maxLength: 255
+                })}
+              />
+
+              {errors?.authorisedSignatoryInformation?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Authorised Signatory Information is required.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.authorisedSignatoryInformation?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Authorised Signatory Information cannot exceed 255 characters.
+                  </PageText>
+                </Box>
+              )}
+            </FormControl>
+          </Fade>
+        </Box>
 
         <Controller
           name='applyingAs'
