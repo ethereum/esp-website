@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Box, ChakraProvider, Text } from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';

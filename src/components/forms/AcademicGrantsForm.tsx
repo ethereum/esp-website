@@ -51,6 +51,7 @@ export const AcademicGrantsForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
 
+  const [POCisAuthorisedSignatory, setPOCisAuthorisedSignatory] = useState('Yes');
   const [applyingAs, setApplyingAs] = useState<ApplyingAs | unknown>({
     value: '',
     label: ''
@@ -72,8 +73,27 @@ export const AcademicGrantsForm: FC = () => {
   const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
 
   const onSubmit = (data: AcademicGrantsFormData) => {
-    console.log({ data });
-    router.push(ACADEMIC_GRANTS_THANK_YOU_PAGE_URL);
+    api.academicGrants
+      .submit(data)
+      .then(res => {
+        if (res.ok) {
+          reset();
+          router.push(ACADEMIC_GRANTS_THANK_YOU_PAGE_URL);
+        } else {
+          toast({
+            ...TOAST_OPTIONS,
+            title: 'Something went wrong while submitting, please try again.',
+            status: 'error'
+          });
+
+          throw new Error('Network response was not OK');
+        }
+      })
+      .catch(err => console.error('There has been a problem with your operation: ', err.message));
+  };
+
+  const handlePOCisAuthorisedSignatory = (value: string) => {
+    setPOCisAuthorisedSignatory(value);
   };
 
   const handleApplyingAs = (value: ApplyingAs) => {
@@ -83,6 +103,8 @@ export const AcademicGrantsForm: FC = () => {
   const handleGrantsReferralSource = (source: GrantsReferralSource) => {
     setGrantsReferralSource(source);
   };
+
+  const notAuthorisedSignatory = POCisAuthorisedSignatory === 'No';
 
   return (
     <Stack
@@ -221,7 +243,10 @@ export const AcademicGrantsForm: FC = () => {
 
               <RadioGroup
                 id='POCisAuthorisedSignatory'
-                onChange={onChange}
+                onChange={value => {
+                  onChange(value);
+                  handlePOCisAuthorisedSignatory(value);
+                }}
                 value={value}
                 fontSize='input'
                 colorScheme='white'
@@ -253,50 +278,58 @@ export const AcademicGrantsForm: FC = () => {
           )}
         />
 
-        <FormControl id='authorisedSignatoryInformation-control' isRequired mb={8}>
-          <FormLabel htmlFor='authorisedSignatoryInformation' mb={1}>
-            <PageText display='inline' fontSize='input'>
-              Name, job title, and email address of the authorised signatory
-            </PageText>
-          </FormLabel>
+        <Box display={notAuthorisedSignatory ? 'block' : 'none'}>
+          <Fade in={notAuthorisedSignatory} delay={0.25}>
+            <FormControl
+              id='authorisedSignatoryInformation-control'
+              isRequired={notAuthorisedSignatory}
+              mb={8}
+            >
+              <FormLabel htmlFor='authorisedSignatoryInformation' mb={1}>
+                <PageText display='inline' fontSize='input'>
+                  Name, job title, and email address of the authorised signatory
+                </PageText>
+              </FormLabel>
 
-          <PageText as='small' fontSize='helpText' color='brand.helpText'>
-            e.g.: John Smith, CEO, john@mycompany.com. This is the person who will sign the
-            contract. They must be someone who can sign contracts on behalf of the entity.
-          </PageText>
-
-          <Input
-            id='authorisedSignatoryInformation'
-            type='text'
-            bg='white'
-            borderRadius={0}
-            borderColor='brand.border'
-            h='56px'
-            _placeholder={{ fontSize: 'input' }}
-            color='brand.paragraph'
-            fontSize='input'
-            mt={3}
-            {...register('authorisedSignatoryInformation', {
-              required: true,
-              maxLength: 255
-            })}
-          />
-
-          {errors?.authorisedSignatoryInformation?.type === 'required' && (
-            <Box mt={1}>
-              <PageText as='small' fontSize='helpText' color='red.500'>
-                Authorised Signatory Information is required.
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                e.g.: John Smith, CEO, john@mycompany.com. This is the person who will sign the
+                contract. They must be someone who can sign contracts on behalf of the entity.
               </PageText>
-            </Box>
-          )}
-          {errors?.authorisedSignatoryInformation?.type === 'maxLength' && (
-            <Box mt={1}>
-              <PageText as='small' fontSize='helpText' color='red.500'>
-                Authorised Signatory Information cannot exceed 255 characters.
-              </PageText>
-            </Box>
-          )}
-        </FormControl>
+
+              <Input
+                id='authorisedSignatoryInformation'
+                type='text'
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                h='56px'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+                mt={3}
+                {...register('authorisedSignatoryInformation', {
+                  required: notAuthorisedSignatory,
+                  maxLength: 255
+                })}
+              />
+
+              {errors?.authorisedSignatoryInformation?.type === 'required' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Authorised Signatory Information is required.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.authorisedSignatoryInformation?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Authorised Signatory Information cannot exceed 255 characters.
+                  </PageText>
+                </Box>
+              )}
+            </FormControl>
+          </Fade>
+        </Box>
 
         <Controller
           name='applyingAs'
@@ -419,9 +452,10 @@ export const AcademicGrantsForm: FC = () => {
         <Controller
           name='country'
           control={control}
+          rules={{ required: true, validate: selected => selected.value !== '' }}
           defaultValue={{ value: '', label: '' }}
-          render={({ field: { onChange } }) => (
-            <FormControl id='country-control' mb={8} w={{ md: '50%' }}>
+          render={({ field: { onChange }, fieldState: { error } }) => (
+            <FormControl id='country-control' mb={8} w={{ md: '50%' }} isRequired>
               <FormLabel htmlFor='country' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   Country
@@ -444,6 +478,14 @@ export const AcademicGrantsForm: FC = () => {
                   chakraStyles={chakraStyles}
                 />
               </Box>
+
+              {error && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Country is required.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
           )}
         />
@@ -718,13 +760,14 @@ export const AcademicGrantsForm: FC = () => {
 
           <Input
             id='projectPreviousWork'
+            type='text'
+            h='56px'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
             _placeholder={{ fontSize: 'input' }}
             color='brand.paragraph'
             fontSize='input'
-            h='150px'
             mt={3}
             {...register('projectPreviousWork', {
               required: true,
@@ -799,8 +842,8 @@ export const AcademicGrantsForm: FC = () => {
           </FormLabel>
 
           <PageText as='small' fontSize='helpText' color='brand.helpText'>
-            What are you hoping to accomplish with this grant scope? How do you define success for
-            this project? How do you measure success for the grant?
+            What are you hoping to accomplish with this grant scope? How do you define and measure
+            success for this project?
           </PageText>
 
           <Textarea
@@ -1082,10 +1125,11 @@ export const AcademicGrantsForm: FC = () => {
 
         <Controller
           name='howDidYouHearAboutGrantsWave'
+          rules={{ required: true, validate: selected => selected.value !== '' }}
           control={control}
           defaultValue={{ value: '', label: '' }}
           render={({ field: { onChange } }) => (
-            <FormControl id='howDidYouHearAboutGrantsWave-control' mb={8}>
+            <FormControl id='howDidYouHearAboutGrantsWave-control' isRequired mb={8}>
               <FormLabel htmlFor='howDidYouHearAboutGrantsWave'>
                 <PageText display='inline' fontSize='input'>
                   How did you hear about this wave of grants?

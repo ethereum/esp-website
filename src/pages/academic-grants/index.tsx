@@ -16,8 +16,8 @@ import {
 import {
   ACADEMIC_GRANTS_EMAIL_ADDRESS,
   HOME_URL,
-  ACADEMIC_GRANTS_URL,
-  SIDEBAR_ACADEMIC_GRANTS_LINKS
+  SIDEBAR_ACADEMIC_GRANTS_LINKS,
+  ACADEMIC_GRANTS_APPLY_URL
 } from '../../constants';
 
 const AcademicGrants: NextPage = () => {
@@ -142,7 +142,7 @@ const AcademicGrants: NextPage = () => {
                     <Link
                       fontWeight={700}
                       color='brand.orange.100'
-                      href={`${ACADEMIC_GRANTS_URL}/apply`}
+                      href={`${ACADEMIC_GRANTS_APPLY_URL}`}
                       isExternal
                       _hover={{ textDecoration: 'none' }}
                     >
@@ -345,7 +345,7 @@ const AcademicGrants: NextPage = () => {
 
                 <section id='apply' ref={ref9}>
                   <Stack mt={6}>
-                    <ReadyToApply link={`${ACADEMIC_GRANTS_URL}/apply`} />
+                    <ReadyToApply link={`${ACADEMIC_GRANTS_APPLY_URL}`} />
                   </Stack>
                 </section>
               </Stack>

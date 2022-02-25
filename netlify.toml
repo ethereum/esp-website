@@ -5,6 +5,11 @@
 [build.environment]
   NODE_VERSION = "12.22.0"
 
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "https://matomo.ethereum.org"
+
 # Legacy pages from current site
 
 # Root langs routes
@@ -124,11 +129,15 @@
 # Special cases where we can't use the * operator because it generates an
 # infinite loop of redirects
 
-# The only /about page is in english
+# Redirect English-only pages
 
 [[redirects]]
   from = "/en/about/"
   to = "/about/"
+  force = true
+[[redirects]]
+  from = "/en/grantee-finance-form"
+  to = "/applicants/grantee-finance"
   force = true
 
 # Redirect old pages with no lang specified

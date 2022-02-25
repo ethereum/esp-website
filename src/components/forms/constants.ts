@@ -1462,7 +1462,7 @@ export const HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE = [
 // academic grants
 export const APPLYING_AS_OPTIONS = [
   { value: 'An individual', label: 'An individual' },
-  { value: 'A University	', label: 'A University	' },
+  { value: 'A University', label: 'A University' },
   { value: 'A consortium of Universities', label: 'A consortium of Universities' },
   { value: 'A Think-Tank', label: 'A Think-Tank' },
   { value: 'A Research Center', label: 'A Research Center' },
@@ -1487,6 +1487,7 @@ export const API_OFFICE_HOURS = '/api/office-hours';
 export const API_PROJECT_GRANTS = '/api/project-grants';
 export const API_SMALL_GRANTS_PROJECT = '/api/small-grants/project';
 export const API_SMALL_GRANTS_EVENT = '/api/small-grants/event';
+export const API_ACADEMIC_GRANTS = '/api/academic-grants';
 export const API_GRANTEE_FINANCE_ETH = '/api/grantee-finance/eth';
 export const API_GRANTEE_FINANCE_DAI = '/api/grantee-finance/dai';
 export const API_GRANTEE_FINANCE_FIAT = '/api/grantee-finance/fiat';

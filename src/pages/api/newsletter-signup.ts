@@ -16,7 +16,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     await mailchimp.lists.addListMember(process.env.MAILCHIMP_LIST_ID!, {
       email_address: body,
-      status: 'subscribed'
+      status: 'subscribed',
+      merge_fields: {
+        NEWSLETTER: 'true'
+      }
     });
 
     res.status(200).end();

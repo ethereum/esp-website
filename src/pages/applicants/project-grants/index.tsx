@@ -19,7 +19,7 @@ import {
   ETHEREUM_COMMUNITY_URL,
   ETHEREUM_GRANTS_URL,
   ETHRESEARCH_URL,
-  PROJECT_GRANTS_URL,
+  PROJECT_GRANTS_APPLY_URL,
   SIDEBAR_PROJECT_GRANTS_LINKS
 } from '../../../constants';
 
@@ -364,7 +364,7 @@ const ProjectGrants: NextPage = () => {
 
               <section id='apply' ref={ref8}>
                 <Stack mt={6}>
-                  <ReadyToApply link={`${PROJECT_GRANTS_URL}/apply`} />
+                  <ReadyToApply link={`${PROJECT_GRANTS_APPLY_URL}`} />
                 </Stack>
               </section>
             </Stack>
