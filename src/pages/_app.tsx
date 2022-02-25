@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
-import { ChakraProvider } from '@chakra-ui/react';
+import { Box, ChakraProvider, Text } from '@chakra-ui/react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { init } from '@socialgouv/matomo-next';
 
 import { Layout } from '../components/layout';
+import { SiteBanner } from '../components/UI';
 
 import { getBg, getBgGradient, getLayoutHeight } from '../utils';
 
@@ -42,7 +43,17 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
 
       <ChakraProvider theme={theme}>
+        <SiteBanner to='/academic-grants'>
+          <Box fontSize='paragraph' textAlign='center'>
+            We have an open call application for ****.{' '}
+            <Text as='u' fontWeight={700}>
+              See the details and Apply.
+            </Text>
+          </Box>
+        </SiteBanner>
+
         <Layout
+          position='relative'
           bg={getBg(router.pathname)}
           bgGradient={getBgGradient(router.pathname)}
           h={{ base: '600px', lg: getLayoutHeight(router.pathname) }}

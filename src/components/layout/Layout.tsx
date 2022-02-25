@@ -1,4 +1,4 @@
-import { Box, Container, ContainerProps } from '@chakra-ui/react';
+import { Box, Container, ContainerProps, Text } from '@chakra-ui/react';
 import { FC, ReactNode } from 'react';
 import { useRouter } from 'next/router';
 
