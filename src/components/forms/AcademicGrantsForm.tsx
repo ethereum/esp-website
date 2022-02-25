@@ -71,8 +71,6 @@ export const AcademicGrantsForm: FC = () => {
   });
   const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
 
-  console.log(errors);
-
   const onSubmit = (data: AcademicGrantsFormData) => {
     console.log({ data });
     router.push(ACADEMIC_GRANTS_THANK_YOU_PAGE_URL);
