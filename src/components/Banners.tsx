@@ -8,7 +8,7 @@ import { ACADEMIC_GRANTS_URL } from '../constants';
 
 interface Props {}
 
-export const SiteBanners: FC<Props> = () => {
+export const Banners: FC<Props> = () => {
   const router = useRouter();
 
   if (!router.pathname.includes(ACADEMIC_GRANTS_URL)) {

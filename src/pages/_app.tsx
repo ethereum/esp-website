@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { init } from '@socialgouv/matomo-next';
 
 import { Layout } from '../components/layout';
-import { SiteBanners } from '../components';
+import { Banners } from '../components';
 
 import { getBg, getBgGradient, getLayoutHeight } from '../utils';
 
@@ -43,7 +43,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
 
       <ChakraProvider theme={theme}>
-        <SiteBanners />
+        <Banners />
 
         <Layout
           position='relative'
