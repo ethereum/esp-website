@@ -15,7 +15,7 @@ export const SiteBanners: FC<Props> = () => {
     return (
       <BannerClickeable to={ACADEMIC_GRANTS_URL}>
         <Box fontSize='paragraph' textAlign='center'>
-          We have an open call application for ****.{' '}
+          We have an open call application for Academic Grants Round.{' '}
           <Text as='u' fontWeight={700}>
             See the details and Apply.
           </Text>
