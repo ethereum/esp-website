@@ -1082,10 +1082,11 @@ export const AcademicGrantsForm: FC = () => {
 
         <Controller
           name='howDidYouHearAboutGrantsWave'
+          rules={{ required: true, validate: selected => selected.value !== '' }}
           control={control}
           defaultValue={{ value: '', label: '' }}
           render={({ field: { onChange } }) => (
-            <FormControl id='howDidYouHearAboutGrantsWave-control' mb={8}>
+            <FormControl id='howDidYouHearAboutGrantsWave-control' isRequired mb={8}>
               <FormLabel htmlFor='howDidYouHearAboutGrantsWave'>
                 <PageText display='inline' fontSize='input'>
                   How did you hear about this wave of grants?
