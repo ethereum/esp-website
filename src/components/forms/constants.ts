@@ -16,6 +16,20 @@ export const PROJECT_CATEGORY_OPTIONS = [
   { value: 'Other', label: 'Other' }
 ];
 
+export const ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS = [
+  { value: 'Economics', label: 'Economics' },
+  { value: 'Consensus layer', label: 'Consensus layer' },
+  { value: 'Formal Verification', label: 'Formal Verification' },
+  { value: 'Miner Extracted Value (MEV)', label: 'Miner Extracted Value (MEV)' },
+  {
+    value: 'Cryptography and zero knowledge proofs',
+    label: 'Cryptography and zero knowledge proofs'
+  },
+  { value: 'P2P networking', label: 'P2P networking' },
+  { value: 'Hardware', label: 'Hardware' },
+  { value: 'Other', label: 'Other' }
+];
+
 // events
 export const EVENT_TYPE_OPTIONS = [
   { value: 'Conference', label: 'Conference' },
@@ -29,6 +43,12 @@ export const EVENT_FORMAT_OPTIONS = [
   { value: 'In-person', label: 'In-person' },
   { value: 'Online', label: 'Online' },
   { value: 'Hybrid (both)', label: 'Hybrid (both)' }
+];
+
+export const WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS = [
+  { value: 'Yes', label: 'Yes' },
+  { value: 'No', label: 'No' },
+  { value: 'Maybe', label: 'Maybe' }
 ];
 
 // countries
@@ -1431,6 +1451,21 @@ export const HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS = [
   { value: 'ESP Newsletter', label: 'ESP Newsletter' },
   { value: 'Social Media', label: 'Social Media' },
   { value: 'Other team/projects in ecosystem', label: 'Other team/projects in ecosystem' },
+  { value: 'Other', label: 'Other' }
+];
+
+export const HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE = [
+  { value: 'Email received', label: 'Email received' },
+  ...HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS
+];
+
+// academic grants
+export const APPLYING_AS_OPTIONS = [
+  { value: 'An individual', label: 'An individual' },
+  { value: 'A University	', label: 'A University	' },
+  { value: 'A consortium of Universities', label: 'A consortium of Universities' },
+  { value: 'A Think-Tank', label: 'A Think-Tank' },
+  { value: 'A Research Center', label: 'A Research Center' },
   { value: 'Other', label: 'Other' }
 ];
 

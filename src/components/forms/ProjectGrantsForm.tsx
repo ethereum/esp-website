@@ -637,14 +637,14 @@ export const ProjectGrantsForm: FC = () => {
             })}
           />
 
-          {errors?.projectDescription?.type === 'required' && (
+          {errors?.requestedAmount?.type === 'required' && (
             <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
                 Requested amount is required.
               </PageText>
             </Box>
           )}
-          {errors?.projectDescription?.type === 'maxLength' && (
+          {errors?.requestedAmount?.type === 'maxLength' && (
             <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
                 Requested amount cannot exceed 20 characters.

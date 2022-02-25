@@ -1,3 +1,4 @@
+export * from './AcademicGrantsHero';
 export * from './common';
 export * from './FAQItem';
 export * from './headings';

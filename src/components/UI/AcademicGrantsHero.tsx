@@ -34,7 +34,7 @@ export const AcademicGrantsHero: FC = () => {
 
           <PageText textAlign='center'>
             The Ethereum Foundation is sponsoring a wave of grants to support academic work related
-            to Ethereum. This grants round has up to $750.000 in total available. Proposals are due{' '}
+            to Ethereum. This grants round has up to $750,000 in total available. Proposals are due{' '}
             <strong>April 22, 2022</strong>. Here are all the details you need.
           </PageText>
         </Stack>
@@ -67,7 +67,7 @@ export const AcademicGrantsHero: FC = () => {
           <Box
             mt={{ lg: 40 }}
             h={52}
-            bgGradient='linear(to-b, #ebd1fb 0%, rgba(235, 209, 251, 0) 100%)'
+            bgGradient='linear(to-b, #ebd1fb 0%, brand.academicGrantsRgba 100%)'
           />
         </Box>
       </Box>
