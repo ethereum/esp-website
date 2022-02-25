@@ -21,6 +21,7 @@ export const ApplicationTypeCard: FC<Props> = ({ title, link, children }) => {
     >
       <Flex
         alignItems='center'
+        justifyContent='space-between'
         direction={{ base: 'column', md: 'row' }}
         px={{ base: 6, lg: 12 }}
         py={10}
