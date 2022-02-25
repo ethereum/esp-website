@@ -74,7 +74,7 @@ const Home: NextPage = () => {
                 rowGap={10}
                 justifyContent='space-evenly'
               >
-                <GridItem alignSelf='center' justifySelf='center' mr={{ lg: 6, xl: 0 }}>
+                <GridItem alignSelf='center' justifySelf='center' mr={{ lg: 6, xl: 0, xl2: -20 }}>
                   <Box>
                     <Image
                       src={smallSucculentSVG}
@@ -107,7 +107,7 @@ const Home: NextPage = () => {
                     </PageText>
                   </Stack>
                 </GridItem>
-                <GridItem alignSelf='center' justifySelf='center' mr={{ lg: 6, xl: 0 }}>
+                <GridItem alignSelf='center' justifySelf='center' mr={{ lg: 6, xl: 0, xl2: -16 }}>
                   <Box>
                     <Image
                       src={mediumSucculentSVG}
@@ -143,7 +143,7 @@ const Home: NextPage = () => {
                 <GridItem
                   alignSelf='center'
                   justifySelf='center'
-                  mr={{ lg: 6, xl: 0 }}
+                  mr={{ lg: 6, xl: 0, xl2: -12 }}
                   mb={{ base: 8, lg: 0 }}
                 >
                   <Box>
