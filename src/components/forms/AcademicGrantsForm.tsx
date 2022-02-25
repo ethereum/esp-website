@@ -73,8 +73,23 @@ export const AcademicGrantsForm: FC = () => {
   const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
 
   const onSubmit = (data: AcademicGrantsFormData) => {
-    console.log({ data });
-    router.push(ACADEMIC_GRANTS_THANK_YOU_PAGE_URL);
+    api.academicGrants
+      .submit(data)
+      .then(res => {
+        if (res.ok) {
+          reset();
+          router.push(ACADEMIC_GRANTS_THANK_YOU_PAGE_URL);
+        } else {
+          toast({
+            ...TOAST_OPTIONS,
+            title: 'Something went wrong while submitting, please try again.',
+            status: 'error'
+          });
+
+          throw new Error('Network response was not OK');
+        }
+      })
+      .catch(err => console.error('There has been a problem with your operation: ', err.message));
   };
 
   const handlePOCisAuthorisedSignatory = (value: string) => {
@@ -736,13 +751,14 @@ export const AcademicGrantsForm: FC = () => {
 
           <Input
             id='projectPreviousWork'
+            type='text'
+            h='56px'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
             _placeholder={{ fontSize: 'input' }}
             color='brand.paragraph'
             fontSize='input'
-            h='150px'
             mt={3}
             {...register('projectPreviousWork', {
               required: true,

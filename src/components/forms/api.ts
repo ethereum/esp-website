@@ -4,6 +4,7 @@ import { getGitHub, getWebsite } from '../../utils';
 import { OfficeHoursFormData, ProjectGrantsFormData, SmallGrantsFormData } from '../../types';
 
 import {
+  API_ACADEMIC_GRANTS,
   API_GRANTEE_FINANCE_URLS,
   API_OFFICE_HOURS,
   API_PROJECT_GRANTS,
