@@ -7,7 +7,7 @@ export const Banner: FC<Props> = ({ children, ...props }) => {
   return (
     <Box
       w='100%'
-      minH='60px'
+      minH='50px'
       px={3}
       py={3}
       display='flex'
