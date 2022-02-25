@@ -1,7 +1,8 @@
-import { Box, Stack } from '@chakra-ui/react';
+import { Box, Link, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 
 import { PageMetadata, PageSubheading, PageText } from '../../components/UI';
+import { ACADEMIC_GRANTS_EMAIL_ADDRESS } from '../../constants';
 
 const AcademicGrantsApply: NextPage = () => {
   return (
@@ -24,16 +25,18 @@ const AcademicGrantsApply: NextPage = () => {
               Apply to Academic Grants
             </PageSubheading>
 
-            <PageText mb={6}>
-              <strong>[UPDATE THIS]</strong> If you have questions before submitting a grant
-              application, or need support other than funding, you can request a session with a
-              member of the ESP team. Please be specific about the type of help you&apos;re looking
-              for!
-            </PageText>
-
-            <PageText>
-              We may contact you for clarification if your request appears to be out of scope.
-              Otherwise, we&apos;ll get in touch to set up a time.
+            <PageText textAlign='center'>
+              If you have questions before submitting a grant application, you may contact us at{' '}
+              <Link
+                fontWeight={700}
+                color='brand.orange.100'
+                href={ACADEMIC_GRANTS_EMAIL_ADDRESS}
+                isExternal
+                _hover={{ textDecoration: 'none' }}
+              >
+                academics-grants@ethereum.org
+              </Link>
+              .
             </PageText>
           </section>
         </Stack>
