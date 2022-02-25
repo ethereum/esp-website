@@ -16,6 +16,7 @@ import { Nav } from '../../components';
 import {
   ABOUT_URL,
   ACADEMIC_GRANTS_APPLY_URL,
+  ACADEMIC_GRANTS_THANK_YOU_PAGE_URL,
   ACADEMIC_GRANTS_URL,
   APPLICANTS_URL,
   HOME_URL
@@ -65,7 +66,10 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       );
     }
 
-    if (router.pathname === ACADEMIC_GRANTS_APPLY_URL) {
+    if (
+      router.pathname === ACADEMIC_GRANTS_APPLY_URL ||
+      router.pathname === ACADEMIC_GRANTS_THANK_YOU_PAGE_URL
+    ) {
       return (
         <Box mt={-6}>
           <main>
