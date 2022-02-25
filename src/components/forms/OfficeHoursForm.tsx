@@ -383,7 +383,7 @@ export const OfficeHoursForm: FC = () => {
             })}
           />
 
-          {errors?.projectName?.type === 'maxLength' && (
+          {errors?.additionalInfo?.type === 'maxLength' && (
             <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
                 Additional info cannot exceed 32768 characters.
