@@ -452,9 +452,10 @@ export const AcademicGrantsForm: FC = () => {
         <Controller
           name='country'
           control={control}
+          rules={{ required: true, validate: selected => selected.value !== '' }}
           defaultValue={{ value: '', label: '' }}
-          render={({ field: { onChange } }) => (
-            <FormControl id='country-control' mb={8} w={{ md: '50%' }}>
+          render={({ field: { onChange }, fieldState: { error } }) => (
+            <FormControl id='country-control' mb={8} w={{ md: '50%' }} isRequired>
               <FormLabel htmlFor='country' mb={1}>
                 <PageText display='inline' fontSize='input'>
                   Country
@@ -477,6 +478,14 @@ export const AcademicGrantsForm: FC = () => {
                   chakraStyles={chakraStyles}
                 />
               </Box>
+
+              {error && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Country is required.
+                  </PageText>
+                </Box>
+              )}
             </FormControl>
           )}
         />
