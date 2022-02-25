@@ -10,6 +10,8 @@ import { SiteBanner } from '../components/UI';
 
 import { getBg, getBgGradient, getLayoutHeight } from '../utils';
 
+import { ACADEMIC_GRANTS_URL } from '../constants';
+
 import theme from '../theme';
 
 import '../global.css';
@@ -43,14 +45,16 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
 
       <ChakraProvider theme={theme}>
-        <SiteBanner to='/academic-grants'>
-          <Box fontSize='paragraph' textAlign='center'>
-            We have an open call application for ****.{' '}
-            <Text as='u' fontWeight={700}>
-              See the details and Apply.
-            </Text>
-          </Box>
-        </SiteBanner>
+        {!router.pathname.includes(ACADEMIC_GRANTS_URL) && (
+          <SiteBanner to={ACADEMIC_GRANTS_URL}>
+            <Box fontSize='paragraph' textAlign='center'>
+              We have an open call application for ****.{' '}
+              <Text as='u' fontWeight={700}>
+                See the details and Apply.
+              </Text>
+            </Box>
+          </SiteBanner>
+        )}
 
         <Layout
           position='relative'
