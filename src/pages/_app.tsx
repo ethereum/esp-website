@@ -6,11 +6,9 @@ import { useRouter } from 'next/router';
 import { init } from '@socialgouv/matomo-next';
 
 import { Layout } from '../components/layout';
-import { SiteBanner } from '../components/UI';
+import { SiteBanners } from '../components';
 
 import { getBg, getBgGradient, getLayoutHeight } from '../utils';
-
-import { ACADEMIC_GRANTS_URL } from '../constants';
 
 import theme from '../theme';
 
@@ -45,16 +43,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
 
       <ChakraProvider theme={theme}>
-        {!router.pathname.includes(ACADEMIC_GRANTS_URL) && (
-          <SiteBanner to={ACADEMIC_GRANTS_URL}>
-            <Box fontSize='paragraph' textAlign='center'>
-              We have an open call application for ****.{' '}
-              <Text as='u' fontWeight={700}>
-                See the details and Apply.
-              </Text>
-            </Box>
-          </SiteBanner>
-        )}
+        <SiteBanners />
 
         <Layout
           position='relative'

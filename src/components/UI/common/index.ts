@@ -8,4 +8,5 @@ export * from './FooterBackgroundImage';
 export * from './ProcessStep';
 export * from './ReadyToApply';
 export * from './ThankYouBody';
-export * from './SiteBanner';
+export * from './Banner';
+export * from './BannerClickeable';
