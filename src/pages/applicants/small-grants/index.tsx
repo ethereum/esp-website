@@ -20,7 +20,7 @@ import {
   ETHEREUM_GRANTS_URL,
   ETHRESEARCH_URL,
   SIDEBAR_SMALL_GRANTS_LINKS,
-  SMALL_GRANTS_URL
+  SMALL_GRANTS_APPLY_URL
 } from '../../../constants';
 
 const SmallGrants: NextPage = () => {
@@ -364,7 +364,7 @@ const SmallGrants: NextPage = () => {
 
               <section id='apply' ref={ref8}>
                 <Stack mt={6}>
-                  <ReadyToApply link={`${SMALL_GRANTS_URL}/apply`} />
+                  <ReadyToApply link={`${SMALL_GRANTS_APPLY_URL}`} />
                 </Stack>
               </section>
             </Stack>

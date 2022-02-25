@@ -23,7 +23,7 @@ import {
   ETHEREUM_ORG_URL,
   ABOUT_URL,
   SIDEBAR_OFFICE_HOURS_LINKS,
-  OFFICE_HOURS_URL
+  OFFICE_HOURS_APPLY_URL
 } from '../../../constants';
 
 const OfficeHours: NextPage = () => {
@@ -315,7 +315,7 @@ const OfficeHours: NextPage = () => {
 
               <section id='apply' ref={ref8}>
                 <Stack mt={6}>
-                  <ReadyToApply link={`${OFFICE_HOURS_URL}/apply`} />
+                  <ReadyToApply link={`${OFFICE_HOURS_APPLY_URL}`} />
                 </Stack>
               </section>
             </Stack>
