@@ -1,4 +1,4 @@
-import { GranteeFinanceFormData } from './../../types';
+import { AcademicGrantsFormData, GranteeFinanceFormData } from './../../types';
 import { getGitHub, getWebsite } from '../../utils';
 
 import { OfficeHoursFormData, ProjectGrantsFormData, SmallGrantsFormData } from '../../types';
@@ -89,6 +89,29 @@ export const api = {
       };
 
       return fetch(API_GRANTEE_FINANCE_URLS[preference], granteeFinanceRequestOptions);
+    }
+  },
+  academicGrants: {
+    submit: (data: AcademicGrantsFormData) => {
+      const academicGrantsRequestOptions: RequestInit = {
+        ...methodOptions,
+        body: JSON.stringify({
+          ...data,
+          POCisAuthorisedSignatory: data.POCisAuthorisedSignatory === 'Yes' ? true : false,
+          applyingAs: data.applyingAs.value,
+          // Company is a required field in SF, we're using the Name as default value if no company provided
+          company: data.company === 'N/A' ? `${data.firstName} ${data.lastName}` : data.company,
+          country: data.country.value,
+          timezone: data.timezone.value,
+          projectCategory: data.projectCategory.value,
+          howDidYouHearAboutGrantsWave: data.howDidYouHearAboutGrantsWave.value,
+          wouldYouShareYourResearch: data.wouldYouShareYourResearch.value,
+          repeatApplicant: data.repeatApplicant === 'Yes' ? true : false,
+          canTheEFReachOut: data.canTheEFReachOut === 'Yes' ? true : false
+        })
+      };
+
+      return fetch(API_ACADEMIC_GRANTS, academicGrantsRequestOptions);
     }
   }
 };
