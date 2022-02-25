@@ -70,6 +70,8 @@ export const colors = {
     helpText: '#7c7ba1',
     warning: '#f0f6fd',
     homepageHero: '#f8e8fc',
+    academicGrantsHero: '#fee8f0',
+    academicGrantsRgba: 'rgba(235, 209, 251, 0)',
     homepageWhiteBox: 'rgba(255, 255, 255, 0.6)',
     stats: {
       bgGradient: {

@@ -1,11 +1,15 @@
 import {
+  ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS,
+  APPLYING_AS_OPTIONS,
   COUNTRY_OPTIONS,
   EVENT_FORMAT_OPTIONS,
   EVENT_TYPE_OPTIONS,
   HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
+  HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE,
   PROJECT_CATEGORY_OPTIONS,
   REASONS_FOR_MEETING,
-  TIMEZONE_OPTIONS
+  TIMEZONE_OPTIONS,
+  WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS
 } from './components/forms/constants';
 import { ABOUT_URL, APPLICANTS_URL, ESP_BLOG_URL, HOME_URL } from './constants';
 
@@ -135,6 +139,42 @@ export interface OfficeHoursFormData {
   timezone: Timezone; // SF API: Time_Zone__c
 }
 
+export interface AcademicGrantsFormData {
+  firstName: string; // SF API: FirstName
+  lastName: string; // SF API: LastName
+  email: string; // SF API: Email
+  POCisAuthorisedSignatory: string; // SF API: POC_is_authorised_signatory__c
+  authorisedSignatoryInformation: string; // SF API: Authorised_Signatory_Information__c
+  applyingAs: ApplyingAs; // SF API: Applying_as_a__c
+  applyingAsOther: string; // SF API: Applying_as_Other__c
+  company: string; // SF API: Company
+  country: Country; // SF API: npsp__CompanyCountry__c
+  countriesOfTeam: string; // SF API: Countries_of_Team__c
+  timezone: Timezone; // SF API: Time_Zone__c
+  projectName: string; // SF API: Project_Name__c
+  projectDescription: string; // SF API: Project_Description__c
+  projectCategory: AcademicGrantsProjectCategory; // SF API: Category__c
+  teamProfile: string; // SF API: Team_Profile__c
+  projectPreviousWork: string; // SF API: Previous_Work__c
+  grantScope: string; // SF API: Grant_Scope__c
+  projectGoals: string; // SF API: Impact__c
+  problemBeingSolved: string; // SF API: Problem_Being_Solved__c
+  isYourProjectPublicGood: string; // SF API: Is_it_a_Public_Good__c
+  requestedAmount: string; // SF API: Requested_Amount__c
+  proposedTimeline: string; // SF API: Proposed_Timeline__c
+  challenges: string; // SF API: Challenges__c
+  additionalSupportRequests: string; // SF API: Additional_support_requests__c
+  howDidYouHearAboutGrantsWave: GrantsReferralSource; // SF API: Referral_Source__c
+  referralSourceIfOther: string; // SF API: Referral_Source_if_Other__c
+  wouldYouShareYourResearch: WouldYouShareYourResearch; // SF API: Would_you_share_your_research__c
+  linkedinProfile: string; // SF API: LinkedIn_Profile__c
+  twitter: string; // SF API: Twitter__c
+  telegram: string; // SF API: Alternative_Contact__c
+  repeatApplicant: string; // SF API: Repeat_Applicant__c
+  canTheEFReachOut: string; // SF API: Can_the_EF_reach_out__c
+  additionalInfo: string; // SF API: Additional_Information__c
+}
+
 export type IndividualOrTeam = 'Individual' | 'Team';
 
 export type RepeatApplicant = 'Yes' | 'No';
@@ -147,15 +187,23 @@ export type ReasonForMeeting = typeof REASONS_FOR_MEETING;
 
 export type ProjectCategory = typeof PROJECT_CATEGORY_OPTIONS[number];
 
+export type AcademicGrantsProjectCategory = typeof ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS[number];
+
 export type EventType = typeof EVENT_TYPE_OPTIONS[number];
 
 export type EventFormat = typeof EVENT_FORMAT_OPTIONS[number];
+
+export type WouldYouShareYourResearch = typeof WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS[number];
 
 export type Country = typeof COUNTRY_OPTIONS[number];
 
 export type ReferralSource = typeof HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS[number];
 
+export type GrantsReferralSource = typeof HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE[number];
+
 export type Timezone = typeof TIMEZONE_OPTIONS[number];
+
+export type ApplyingAs = typeof APPLYING_AS_OPTIONS[number];
 
 export type Href = typeof HOME_URL | typeof APPLICANTS_URL | typeof ABOUT_URL | typeof ESP_BLOG_URL;
 
