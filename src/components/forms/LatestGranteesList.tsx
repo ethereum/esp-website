@@ -80,7 +80,6 @@ export const LatestGranteesList: FC<Props> = ({ grantsList }) => {
                       children={grant.Description}
                       skipHtml
                     />
-                    {/* <PageText>{grant.Description}</PageText> */}
                   </Stack>
                 </Stack>
               ))}
