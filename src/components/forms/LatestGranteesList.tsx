@@ -6,7 +6,7 @@ import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
 import { FC } from 'react';
 
 import { PageText, StepHeading } from '../UI';
-import { GrantsListTheme } from './GrantsListTheme';
+import { GrantsListTitleTheme, GrantsListDescriptionTheme } from './GrantsListTheme';
 
 import granteesTwitterLogoSVG from '../../../public/images/grantees-twitter-logo.svg';
 
@@ -48,13 +48,13 @@ export const LatestGranteesList: FC<Props> = ({ grantsList }) => {
                   <Flex justifyContent='space-between'>
                     <Box display='inline' pr={4}>
                       <ReactMarkdown
-                        components={ChakraUIRenderer(GrantsListTheme)}
+                        components={ChakraUIRenderer(GrantsListTitleTheme)}
                         children={grant.Project}
                         skipHtml
                       />{' '}
                       {grant.Project && grant.Recipient && <PageText as='span'>by</PageText>}{' '}
                       <ReactMarkdown
-                        components={ChakraUIRenderer(GrantsListTheme)}
+                        components={ChakraUIRenderer(GrantsListTitleTheme)}
                         children={grant.Recipient}
                         skipHtml
                       />
@@ -75,7 +75,12 @@ export const LatestGranteesList: FC<Props> = ({ grantsList }) => {
                   </Flex>
 
                   <Stack>
-                    <PageText>{grant.Description}</PageText>
+                    <ReactMarkdown
+                      components={ChakraUIRenderer(GrantsListDescriptionTheme)}
+                      children={grant.Description}
+                      skipHtml
+                    />
+                    {/* <PageText>{grant.Description}</PageText> */}
                   </Stack>
                 </Stack>
               ))}
