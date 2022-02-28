@@ -29,7 +29,7 @@ export const AcademicGrantsHero: FC = () => {
             textAlign='center'
             mb={3}
           >
-            Academics Grants Round
+            Academic Grants Round
           </PageSubheading>
 
           <PageText textAlign='center'>

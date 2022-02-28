@@ -42,7 +42,7 @@ const AcademicGrantsThankYou: NextPage = () => {
                 isExternal
                 _hover={{ textDecoration: 'none' }}
               >
-                academics-grants@ethereum.org
+                academic-grants@ethereum.org
               </Link>
               .
             </PageText>

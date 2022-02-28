@@ -62,28 +62,28 @@ const AcademicGrants: NextPage = () => {
               <Stack mb={8} mt={{ base: 10, md: 0 }}>
                 <section id='description' ref={ref}>
                   <PageSubheading mb={8}>
-                    We&apos;re calling all those interested in creating knowledge around the
-                    Ethereum ecosystem!
+                    We&apos;re calling all those interested in expanding academic knowledge
+                    throughout the Ethereum ecosystem!
                   </PageSubheading>
 
                   <PageText mb={6}>
-                    Over recent years, the Ethereum community has grown immensely by putting
-                    together developers, investors, artists, companies and even governments with a
-                    shared vision of impact for this technology.
+                    The Ethereum community has grown immensely as developers, artists, companies,
+                    and even governments work together to make a positive impact with this
+                    technology.
                   </PageText>
 
                   <PageText mb={6}>
-                    With all the progress we&apos;ve made so far, we still lack formal academic
-                    research on Ethereum, specifically when it comes to zero-knowledge proofs,
-                    cryptography and applied cryptography, economics, computation, cybersecurity,
-                    protocol and consensus mechanisms, formal verification, P2P networking, and
-                    hardware, just to mention a few.
+                    With this grants round, the Ethereum Foundation welcomes more academics to the
+                    table to push forward formal academic research in related domains. Such domains
+                    include theoretical and applied cryptography and mathematics, zero-knowledge
+                    proofs, economics, computation, cybersecurity, protocol and consensus
+                    mechanisms, formal verification, P2P networking, and hardware, just to mention a
+                    few areas.
                   </PageText>
 
                   <PageText>
-                    The Ethereum Foundation is therefore opening this grants round targeting
-                    academia with the goal to stimulate open–source formal research related to
-                    Ethereum.
+                    The Ethereum Foundation is excited to expand Ethereum&apos;s reach across more
+                    of academia through this grants round.
                   </PageText>
                 </section>
               </Stack>
@@ -93,9 +93,10 @@ const AcademicGrants: NextPage = () => {
                   <PageSection mb={6}>Submit proposal</PageSection>
 
                   <PageText mb={6}>
-                    Individual researchers with academic background, research centers, universities,
-                    think-tanks, educators and other stakeholders interested in research related to
-                    Ethereum and its ecosystem are encouraged to apply.
+                    Individual researchers with academic backgrounds, research centers,
+                    universities, think-tanks, educators and other stakeholders interested in
+                    research on matters related to Ethereum and its ecosystem are encouraged to
+                    apply.
                   </PageText>
 
                   <PageText mb={6}>
@@ -118,14 +119,14 @@ const AcademicGrants: NextPage = () => {
                   </PageText>
 
                   <PageText mb={6}>
-                    We welcome any stage of research, whether it&apos;s a new research idea based on
-                    the wishlist, a follow-up of a research paper on Ethereum you already undertook,
-                    or a lab experiment.
+                    We welcome research at any stage, whether it&apos;s a new idea based on the
+                    wishlist, a project that furthers Ethereum-related research you&apos;ve already
+                    undertaken, or a lab experiment.
                   </PageText>
 
                   <PageText mb={6}>
-                    Grants will be awarded on a rolling basis and on a case-by-case. You may enter
-                    more than one proposal so long as each proposal is unique and meets the{' '}
+                    Grants will be awarded on a case-by-case and rolling basis. You may enter more
+                    than one proposal as long as each proposal is unique and meets the{' '}
                     <Link
                       fontWeight={700}
                       color='brand.orange.100'
@@ -156,9 +157,8 @@ const AcademicGrants: NextPage = () => {
                   <PageSection mb={6}>Deadline</PageSection>
 
                   <PageText mb={6}>
-                    The deadline for proposals is any time the day of{' '}
-                    <strong>Friday, April 22, 2022</strong>. We will follow-up with you about your
-                    submission by email.
+                    The deadline for proposals is <strong>Friday, April 22, 2022</strong>. We will
+                    follow-up regarding your submission by email.
                   </PageText>
                 </section>
 
@@ -182,7 +182,7 @@ const AcademicGrants: NextPage = () => {
 
                   <List>
                     <ListItem>Impact of the proposed research output.</ListItem>
-                    <ListItem>Quality and previous experience of the research team.</ListItem>
+                    <ListItem>Quality of work and experience of the research team.</ListItem>
                     <ListItem>Clarity, conciseness and organization of the proposal.</ListItem>
                     <ListItem>Contribution to the wishlist areas.</ListItem>
                     <ListItem>
@@ -200,8 +200,8 @@ const AcademicGrants: NextPage = () => {
 
                   <PageText mb={6}>
                     The Ethereum Foundation is interested in research and academic output in the
-                    following domain areas, but don’t let this restrict your creativity. Check out
-                    our{' '}
+                    following domain areas, but don&apos;t let this restrict your creativity. Check
+                    out our{' '}
                     <Link
                       fontWeight={700}
                       color='brand.orange.100'
@@ -227,17 +227,17 @@ const AcademicGrants: NextPage = () => {
                       isExternal
                       _hover={{ textDecoration: 'none' }}
                     >
-                      academics-grants@ethereum.org
+                      academic-grants@ethereum.org
                     </Link>
                     .
                   </PageText>
                 </section>
 
                 <section id='faq' ref={ref8}>
-                  <PageSection mb={6}>FAQ</PageSection>
+                  <PageSection mb={6}>Frequently asked questions</PageSection>
 
                   <Accordion allowToggle>
-                    <FAQItem question='Who can submit proposals for Academics Grants Round?'>
+                    <FAQItem question='Who can submit proposals for Academic Grants Round?'>
                       <PageText>
                         Academic institutions, consortia of universities, research centres,
                         universities, think-tanks and individuals with prior research experience.
@@ -247,7 +247,7 @@ const AcademicGrants: NextPage = () => {
                     <FAQItem question='What makes for a good proposal?'>
                       <PageText>
                         In short, we need enough information to understand your goals, the research
-                        problem you&apos;re wanting to tackle, the academic output, information on
+                        problem you&apos;re aiming to tackle, the academic output, information on
                         previous research work, who&apos;s involved and estimation regarding time
                         and budget. The more details you provide, the more likely we&apos;ll be able
                         to help.
@@ -279,7 +279,7 @@ const AcademicGrants: NextPage = () => {
                       <PageText>
                         If you have a follow-up idea of a previous research you conducted or if your
                         research is aligned with the wishlist domains, we want to hear about it! The
-                        goal is to advance knowledge that pushes forward the Ethereum ecosystem.
+                        goal is to advance knowledge that pushes the Ethereum ecosystem forward.
                       </PageText>
                     </FAQItem>
 
@@ -287,10 +287,10 @@ const AcademicGrants: NextPage = () => {
                       <PageText>
                         We are aiming to receive academic and formal research outputs, be it a
                         research paper, an experimental report or some sort of comprehensive
-                        research output. Whatever the output, the information should be open-sourced
-                        and available for the broader community to use. The Intelectual Property can
-                        still be owned by the research team, but it is key that the output is open
-                        source.
+                        research output. Whatever the output, the information should be open-source
+                        and available for the broader community to use. The Intellectual Property
+                        can still be owned by the research team, but it is key that the output is
+                        open source.
                       </PageText>
                     </FAQItem>
 
