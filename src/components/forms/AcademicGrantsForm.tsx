@@ -709,8 +709,8 @@ export const AcademicGrantsForm: FC = () => {
           </FormLabel>
 
           <PageText as='small' fontSize='helpText' color='brand.helpText'>
-            Who is working on this? Give us a bit of info and include relevant links if you have
-            any! Please provide some projects or research papers (ideally public and/or open
+            Who is working on this project? Give us a bit of info and include relevant links, if
+            available! Please provide other projects or research papers (ideally public and/or open
             source), engagements or other types of proof that your team has the necessary experience
             to undertake the project you are applying for.
           </PageText>
@@ -755,7 +755,7 @@ export const AcademicGrantsForm: FC = () => {
           </FormLabel>
 
           <PageText as='small' fontSize='helpText' color='brand.helpText'>
-            Any links for us to take a look at? E.g. research papers, blog posts, etc.
+            Any links for us to review? E.g. research papers, blog posts, etc.
           </PageText>
 
           <Input
@@ -842,8 +842,8 @@ export const AcademicGrantsForm: FC = () => {
           </FormLabel>
 
           <PageText as='small' fontSize='helpText' color='brand.helpText'>
-            What are you hoping to accomplish with this grant scope? How do you define and measure
-            success for this project?
+            What are you hoping to accomplish with this grant? How do you define and measure success
+            for this project?
           </PageText>
 
           <Textarea
@@ -1008,7 +1008,7 @@ export const AcademicGrantsForm: FC = () => {
           <PageText as='small' fontSize='helpText' color='brand.helpText'>
             Please include a brief explanation on the milestones/roadmap in a 3-6 months timeframe,
             along with expected deliverables. Also outline how the funds will be used for the
-            research project and or members of the team.
+            research project and/or members of the team.
           </PageText>
 
           <Textarea
@@ -1095,8 +1095,8 @@ export const AcademicGrantsForm: FC = () => {
           </FormLabel>
 
           <PageText as='small' fontSize='helpText' color='brand.helpText'>
-            Aside from funding and financial support, are there other resources you would need to be
-            successful?
+            Aside from funding and financial support, are there other resources that would help you
+            or your team succeed?
           </PageText>
 
           <Textarea
@@ -1204,8 +1204,8 @@ export const AcademicGrantsForm: FC = () => {
             <FormControl id='wouldYouShareYourResearch-control' mb={8}>
               <FormLabel htmlFor='wouldYouShareYourResearch'>
                 <PageText display='inline' fontSize='input'>
-                  If the opportunity presents, would you like to share your findings/research output
-                  in a Conference/Discord Talk?
+                  If the opportunity presents itself, would you like to share your findings/research
+                  output through a Conference/Discord talk?
                 </PageText>
               </FormLabel>
 
@@ -1429,8 +1429,8 @@ export const AcademicGrantsForm: FC = () => {
         <FormControl id='additional-info-control' mb={12}>
           <FormLabel htmlFor='additionalInfo' mb={1}>
             <PageText fontSize='input'>
-              Do you have any questions about this grants round or is there anything else you&apos;d
-              like to share?
+              Do you have any questions about this grants round, or is there anything else
+              you&apos;d like to share?
             </PageText>
           </FormLabel>
 
