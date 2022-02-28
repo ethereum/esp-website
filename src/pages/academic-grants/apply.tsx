@@ -8,8 +8,8 @@ const AcademicGrantsApply: NextPage = () => {
   return (
     <>
       <PageMetadata
-        title='Office Hours Request'
-        description='Submit a request for an Office Hours session with a member of the Ecosystem Support team'
+        title='Academic Grants Application'
+        description='Submit an application for an Academic Grant from the Ecosystem Support Program'
       />
 
       <Box
