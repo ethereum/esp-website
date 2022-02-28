@@ -38,11 +38,11 @@ const AcademicGrantsThankYou: NextPage = () => {
               <Link
                 fontWeight={700}
                 color='brand.orange.100'
-                href={ACADEMIC_GRANTS_EMAIL_ADDRESS}
+                href={`mailto:${ACADEMIC_GRANTS_EMAIL_ADDRESS}`}
                 isExternal
                 _hover={{ textDecoration: 'none' }}
               >
-                academic-grants@ethereum.org
+                {ACADEMIC_GRANTS_EMAIL_ADDRESS}
               </Link>
               .
             </PageText>

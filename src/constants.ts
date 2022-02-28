@@ -107,7 +107,7 @@ export const EF_JOBS_URL = 'https://ethereum.bamboohr.com/jobs/';
 export const ESP_BLOG_URL = 'https://blog.ethereum.org/category/ecosystem-support-program/';
 export const ESP_TWITTER_URL = 'https://twitter.com/EF_ESP';
 export const ESP_EMAIL_ADDRESS = 'mailto:esp@ethereum.org';
-export const ACADEMIC_GRANTS_EMAIL_ADDRESS = 'mailto:academic-grants@ethereum.org';
+export const ACADEMIC_GRANTS_EMAIL_ADDRESS = 'academic-grants@ethereum.org';
 
 // applicants tabs
 export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Small Grants', 'Project Grants'];
