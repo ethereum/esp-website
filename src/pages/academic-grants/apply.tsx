@@ -8,8 +8,8 @@ const AcademicGrantsApply: NextPage = () => {
   return (
     <>
       <PageMetadata
-        title='Office Hours Request'
-        description='Submit a request for an Office Hours session with a member of the Ecosystem Support team'
+        title='Academic Grants Application'
+        description='Submit an application for an Academic Grant from the Ecosystem Support Program'
       />
 
       <Box
@@ -30,11 +30,11 @@ const AcademicGrantsApply: NextPage = () => {
               <Link
                 fontWeight={700}
                 color='brand.orange.100'
-                href={ACADEMIC_GRANTS_EMAIL_ADDRESS}
+                href={`mailto:${ACADEMIC_GRANTS_EMAIL_ADDRESS}`}
                 isExternal
                 _hover={{ textDecoration: 'none' }}
               >
-                academics-grants@ethereum.org
+                {ACADEMIC_GRANTS_EMAIL_ADDRESS}
               </Link>
               .
             </PageText>

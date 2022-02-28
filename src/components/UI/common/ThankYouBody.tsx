@@ -36,11 +36,11 @@ export const ThankYouBody: FC<Props> = ({ grantType }) => {
           <Link
             fontWeight={700}
             color='brand.orange.100'
-            href={ESP_EMAIL_ADDRESS}
+            href={`mailto:${ESP_EMAIL_ADDRESS}`}
             isExternal
             _hover={{ textDecoration: 'none' }}
           >
-            esp@ethereum.org
+            {ESP_EMAIL_ADDRESS}
           </Link>
           .
         </PageText>

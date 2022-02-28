@@ -29,13 +29,14 @@ export const AcademicGrantsHero: FC = () => {
             textAlign='center'
             mb={3}
           >
-            Academics Grants Round
+            Academic Grants Round
           </PageSubheading>
 
           <PageText textAlign='center'>
-            The Ethereum Foundation is sponsoring a wave of grants to support academic work related
-            to Ethereum. This grants round has up to $750,000 in total available. Proposals are due{' '}
-            <strong>April 22, 2022</strong>. Here are all the details you need.
+            The Ethereum Foundation is sponsoring a wave of grants to support Ethereum-related
+            academic work. This grants round has up to $750,000 in total available. Proposals are
+            due <strong>April 22, 2022</strong>. All of the details you’ll need to apply can be
+            found below.
           </PageText>
         </Stack>
       </Center>
