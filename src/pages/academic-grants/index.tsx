@@ -37,7 +37,7 @@ const AcademicGrants: NextPage = () => {
     <>
       <PageMetadata
         title='Academic Grants Round'
-        description='Connect with a member of the Ecosystem Support team for support other than funding, including help with a grant application'
+        description='The Ethereum Foundation is sponsoring a wave of grants to support Ethereum-related academic work. Find all the details you need to apply here.'
       />
 
       <Box mx={{ md: 12 }} bg='white' position='relative' zIndex={1} mt={{ xl: 12 }}>
