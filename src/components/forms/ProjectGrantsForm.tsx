@@ -394,7 +394,7 @@ export const ProjectGrantsForm: FC = () => {
 
         <FormControl id='github-control' mb={8}>
           <FormLabel htmlFor='github' mb={1}>
-            <PageText fontSize='input'>GitHub</PageText>
+            <PageText fontSize='input'>Project Repo</PageText>
           </FormLabel>
           <PageText fontSize='input' position='absolute' bottom='15.5px' left={4} zIndex={9}>
             https://github.com/
