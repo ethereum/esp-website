@@ -66,10 +66,6 @@
   to = "/about/who-we-support/"
   force = true
 [[redirects]]
-  from = "/*/cookie-policy/"
-  to = "/cookie-policy/"
-  force = true
-[[redirects]]
   from = "/*/faq/"
   to = "/"
   force = true
