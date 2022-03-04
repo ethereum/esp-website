@@ -1,4 +1,10 @@
-import { ABOUT_URL, ACADEMIC_GRANTS_URL, APPLICANTS_URL, HOME_URL } from '../constants';
+import {
+  ABOUT_URL,
+  ACADEMIC_GRANTS_URL,
+  APPLICANTS_URL,
+  DEVCON_GRANTS_URL,
+  HOME_URL
+} from '../constants';
 
 export const getBgGradient = (path: string) => {
   // homepage gradient
@@ -16,8 +22,8 @@ export const getBgGradient = (path: string) => {
     return 'linear(to-b, brand.about.bgGradient.start 0%, brand.about.bgGradient.end 77.6%, brand.about.rgba 100%)';
   }
 
-  // academic grants gradient
-  if (path.startsWith(ACADEMIC_GRANTS_URL)) {
+  // academic & devcon grants gradient
+  if (path.startsWith(ACADEMIC_GRANTS_URL) || path.startsWith(DEVCON_GRANTS_URL)) {
     return 'linear(to-b, brand.academicGrantsHero 81.77%, brand.academicGrantsRgba 100%)';
   }
 
