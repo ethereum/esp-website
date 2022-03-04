@@ -52,6 +52,8 @@ export const DevconGrantsForm: FC = () => {
     label: ''
   });
 
+  const isInPerson = (eventFormat as EventFormat).value === EVENT_FORMAT_OPTIONS[0].value;
+
   const {
     handleSubmit,
     register,
@@ -82,8 +84,6 @@ export const DevconGrantsForm: FC = () => {
       })
       .catch(err => console.error('There has been a problem with your operation: ', err.message));
   };
-
-  const isInPerson = (eventFormat as EventFormat).value === EVENT_FORMAT_OPTIONS[0].value;
 
   return (
     <Stack
@@ -530,11 +530,8 @@ export const DevconGrantsForm: FC = () => {
           <Controller
             name='eventType'
             control={control}
-            rules={{
-              validate: selected => selected.value !== ''
-            }}
             defaultValue={{ value: '', label: '' }}
-            render={({ field: { onChange }, fieldState: { error } }) => (
+            render={({ field: { onChange } }) => (
               <FormControl id='event-type-control' isRequired mb={8} mr={{ md: 12 }}>
                 <FormLabel htmlFor='eventType'>
                   <PageText display='inline' fontSize='input'>
