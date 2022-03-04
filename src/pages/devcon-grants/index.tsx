@@ -64,12 +64,6 @@ const DevconGrants: NextPage = () => {
                 <section id='description' ref={ref}>
                   <PageSubheading mb={8}>Road to Devcon Meetup and Event Grants</PageSubheading>
 
-                  <PageText mb={8}>
-                    In an effort to support the growth of the Ethereum community in Colombia and
-                    LatAm in advance of Devcon, we would like to offer support (both monetary and
-                    otherwise) to meetups and events happening before Devcon. Read on for details.
-                  </PageText>
-
                   <PageText mb={6}>Calling all community organizers!</PageText>
 
                   <PageText mb={6}>

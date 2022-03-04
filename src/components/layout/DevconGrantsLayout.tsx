@@ -7,10 +7,9 @@ export const DevconGrantsLayout: FC = ({ children }) => {
   return (
     <Stack>
       <AcademicGrantsHero title='Devcon Grants Round'>
-        {/* TODO: update copy */}
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ut, necessitatibus, quidem
-        autem nam vitae quod, omnis repellat error est impedit iste delectus beatae voluptatem
-        accusamus explicabo magnam? Et, similique?
+        In an effort to promote edcuation around the Ethereum in Colombia and Latin America in
+        advance of Devcon, we would like to offer support (both monetary and otherwise) to meetups
+        and events happening in Latin America before Devcon. Read on for details.
       </AcademicGrantsHero>
 
       <Stack>{children}</Stack>
