@@ -5,7 +5,8 @@ export const chakraStyles: ChakraStylesConfig = {
     ...provided,
     background: 'white',
     borderColor: 'brand.border',
-    color: 'brand.paragraph'
+    color: 'brand.paragraph',
+    zIndex: 99
   }),
   control: provided => ({
     ...provided,
