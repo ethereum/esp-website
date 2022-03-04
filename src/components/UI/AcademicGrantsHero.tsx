@@ -9,7 +9,11 @@ import academicGrantsHeroMobile from '../../../public/images/academic-grants-her
 
 import { PageText } from './text';
 
-export const AcademicGrantsHero: FC = () => {
+interface Props {
+  title: string;
+}
+
+export const AcademicGrantsHero: FC<Props> = ({ title, children }) => {
   return (
     <Stack mb={{ base: -2, md: -60, xl: -72 }}>
       <Center h={{ md: '445px' }} alignItems={{ md: 'center' }}>
@@ -29,15 +33,10 @@ export const AcademicGrantsHero: FC = () => {
             textAlign='center'
             mb={3}
           >
-            Academic Grants Round
+            {title}
           </PageSubheading>
 
-          <PageText textAlign='center'>
-            The Ethereum Foundation is sponsoring a wave of grants to support Ethereum-related
-            academic work. This grants round has up to $750,000 in total available. Proposals are
-            due <strong>April 22, 2022</strong>. All of the details you’ll need to apply can be
-            found below.
-          </PageText>
+          <PageText textAlign='center'>{children}</PageText>
         </Stack>
       </Center>
 
