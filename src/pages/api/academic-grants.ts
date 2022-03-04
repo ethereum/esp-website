@@ -3,8 +3,8 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 import addRowToSpreadsheet from '../../utils/addRowToSpreadsheet';
 
-const googleSpreadsheetId = process.env.GOOGLE_SPREADSHEET_ID;
-const googleSheetName = process.env.GOOGLE_SHEET_NAME;
+const googleSpreadsheetId = process.env.GOOGLE_ACADEMIC_SPREADSHEET_ID;
+const googleSheetName = process.env.GOOGLE_ACADEMIC_SHEET_NAME;
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { body } = req;
