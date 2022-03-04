@@ -29,7 +29,8 @@ export const chakraStyles: ChakraStylesConfig = {
     ...provided,
     borderRadius: 0,
     mt: '1px',
-    boxShadow: 'select'
+    boxShadow: 'select',
+    zIndex: 99
   }),
   menuList: provided => ({
     ...provided,

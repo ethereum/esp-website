@@ -9,8 +9,6 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Radio,
-  RadioGroup,
   Stack,
   Textarea,
   useToast
@@ -52,7 +50,10 @@ export const DevconGrantsForm: FC = () => {
     label: ''
   });
 
-  const isInPerson = (eventFormat as EventFormat).value === EVENT_FORMAT_OPTIONS[0].value;
+  const isInPersonOrHibrid = [
+    EVENT_FORMAT_OPTIONS[0].value, // in person
+    EVENT_FORMAT_OPTIONS[2].value // hibrid
+  ].includes((eventFormat as EventFormat).value);
 
   const {
     handleSubmit,
@@ -595,8 +596,8 @@ export const DevconGrantsForm: FC = () => {
           />
         </Flex>
 
-        <Box display={isInPerson ? 'block' : 'none'}>
-          <Fade in={isInPerson} delay={0.25}>
+        <Box display={isInPersonOrHibrid ? 'block' : 'none'}>
+          <Fade in={isInPersonOrHibrid} delay={0.25}>
             <FormControl id='city-control' mr={{ md: 12 }} mb={8}>
               <FormLabel htmlFor='city'>
                 <PageText fontSize='input'>Event location</PageText>
