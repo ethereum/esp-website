@@ -77,7 +77,6 @@ export const SIDEBAR_DEVCON_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Eligibility', href: `${DEVCON_GRANTS_URL}/#eligibility` },
   { text: 'How to apply', href: `${DEVCON_GRANTS_URL}/#how-to-apply` },
   { text: 'Selection criteria', href: `${DEVCON_GRANTS_URL}/#selection-criteria` },
-  { text: 'Requirements', href: `${DEVCON_GRANTS_URL}/#requirements` },
   { text: 'Next steps and support', href: `${DEVCON_GRANTS_URL}/#next-steps-and-support` },
   { text: 'FAQ', href: `${DEVCON_GRANTS_URL}/#faq` },
   { text: 'Apply', href: `${DEVCON_GRANTS_URL}/#apply` }

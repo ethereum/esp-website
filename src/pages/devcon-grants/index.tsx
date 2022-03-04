@@ -31,8 +31,7 @@ const DevconGrants: NextPage = () => {
   const [ref5, inView5] = useInView({ threshold: 0.3, initialInView: false });
   const [ref6, inView6] = useInView({ threshold: 0.5, initialInView: false });
   const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref8, inView8] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref9, inView9] = useInView({ threshold: 0, initialInView: false });
+  const [ref8, inView8] = useInView({ threshold: 0, initialInView: false });
 
   return (
     <>
@@ -54,8 +53,7 @@ const DevconGrants: NextPage = () => {
                 inView5,
                 inView6,
                 inView7,
-                inView8,
-                inView9
+                inView8
               ]}
             />
 
@@ -153,29 +151,18 @@ const DevconGrants: NextPage = () => {
                   <PageSection mb={6}>Selection criteria</PageSection>
 
                   <List>
-                    <ListItem>Size and reach of target audience</ListItem>
-                    <ListItem>&quot;Get the word out&quot; strategy</ListItem>
-                    <ListItem>History of organizing successful events</ListItem>
-                    <ListItem>Purpose and impact of funding</ListItem>
+                    <ListItem>
+                      How big is the audience / how many people will the event reach?
+                    </ListItem>
+                    <ListItem>How does the plan aim to publicize and expand reach?</ListItem>
+                    <ListItem>
+                      Does the group have a history of organizing successful events?
+                    </ListItem>
+                    <ListItem>What is the purpose of the funding requested?</ListItem>
                   </List>
                 </section>
 
-                <section id='requirements' ref={ref6}>
-                  <PageSection mb={6}>Requirements</PageSection>
-
-                  <List>
-                    <ListItem>
-                      Please read eligibility criteria above to make sure your event is eligible
-                    </ListItem>
-                    <ListItem>
-                      Events may be held in any language, but we&apos;re currently only able to
-                      accept proposals in English, or Spanish
-                    </ListItem>
-                    <ListItem>Events must be publicly posted</ListItem>
-                  </List>
-                </section>
-
-                <section id='next-steps-and-support' ref={ref7}>
+                <section id='next-steps-and-support' ref={ref6}>
                   <PageSection mb={6}>Next steps and support</PageSection>
 
                   <PageText mb={6}>
@@ -193,7 +180,7 @@ const DevconGrants: NextPage = () => {
                   </PageText>
                 </section>
 
-                <section id='faq' ref={ref8}>
+                <section id='faq' ref={ref7}>
                   <PageSection mb={6}>Frequently asked questions</PageSection>
 
                   <Accordion allowToggle>
@@ -213,18 +200,32 @@ const DevconGrants: NextPage = () => {
                       </PageText>
                     </FAQItem>
 
+                    <FAQItem question='What are the requirements for the application?'>
+                      <List>
+                        <ListItem>
+                          Please read{' '}
+                          <Link
+                            fontWeight={700}
+                            color='brand.orange.100'
+                            href='#eligibility'
+                            _hover={{ textDecoration: 'none' }}
+                          >
+                            eligibility
+                          </Link>{' '}
+                          criteria above to make sure your event is eligible
+                        </ListItem>
+                        <ListItem>
+                          Events may be held in any language, but we&apos;re currently only able to
+                          accept proposals in English, or Spanish
+                        </ListItem>
+                        <ListItem>Events must be publicly posted</ListItem>
+                      </List>
+                    </FAQItem>
+
                     <FAQItem question='What stage of planning should I be in?'>
                       <PageText>
                         Your event should have a confirmed date. Other than that, any stage of
                         planning is fine!
-                      </PageText>
-                    </FAQItem>
-
-                    <FAQItem question='Am I required to have confirmed speakers or sponsors?'>
-                      <PageText>
-                        Nope! We understand that a lot of smaller events won&apos;t have a long list
-                        of speakers or other sponsors - but if you do have any speakers or sponsors
-                        lined up, please let us know.
                       </PageText>
                     </FAQItem>
 
@@ -246,7 +247,7 @@ const DevconGrants: NextPage = () => {
                   </Accordion>
                 </section>
 
-                <section id='apply' ref={ref9}>
+                <section id='apply' ref={ref8}>
                   <Stack mt={6}>
                     <ReadyToApply link={`${DEVCON_GRANTS_APPLY_URL}`} />
                   </Stack>
