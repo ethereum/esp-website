@@ -115,7 +115,7 @@
   force = true
 [[redirects]]
   from = "/*/devcon-grants/"
-  to = "/applicants/"
+  to = "/devcon-grants"
   force = true
 [[redirects]]
   from = "/*/local-grants/colombia/"

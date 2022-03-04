@@ -175,6 +175,32 @@ export interface AcademicGrantsFormData {
   additionalInfo: string; // SF API: Additional_Information__c
 }
 
+export interface DevconGrantsFormData {
+  firstName: string; // SF API: FirstName
+  lastName: string; // SF API: LastName
+  email: string; // SF API: Email
+  company: string; // SF API: Company
+  eventPreviousWork: string; // SF API: Previous_Work__c
+  teamProfile: string; // SF API: Team_Profile__c
+  eventName: string; // SF API: Project_Name__c
+  eventDate: Date; // SF API: Sponsorship_Date__c
+  sponsorshipLink: string; // SF API: Sponsorship_Link__c
+  sponsorshipDetails: string; // SF API: Sponsorship_Details__c
+  projectDescription: string; // SF API: Project_Description__c
+  eventType: EventType; // SF API: Type_of_Event__c
+  eventFormat: EventFormat; // SF API: In_Person__c
+  city: string; // SF API: npsp__CompanyCity__c
+  twitter: string; // SF API: Twitter__c
+  expectedAttendees: number; // SF API: Estimated_Number_of_Attendees__c
+  targetAudience: string; // SF API: Target_Audience__c
+  confirmedSpeakers: string; // SF API: Confirmed_Speakers__c
+  confirmedSponsors: string; // SF API: Confirmed_Sponsors__c
+  proposedTimeline: string; // SF API: Proposed_Timeline__c
+  requestedAmount: string; // SF API: Requested_Amount__c
+  additionalInfo: string; // SF API: Additional_Information__c
+  howDidYouHearAboutESP: ReferralSource; // SF API: Referral_Source__c
+}
+
 export type IndividualOrTeam = 'Individual' | 'Team';
 
 export type RepeatApplicant = 'Yes' | 'No';

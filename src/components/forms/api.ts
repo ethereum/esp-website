@@ -1,10 +1,15 @@
-import { AcademicGrantsFormData, GranteeFinanceFormData } from './../../types';
+import {
+  AcademicGrantsFormData,
+  DevconGrantsFormData,
+  GranteeFinanceFormData
+} from './../../types';
 import { getGitHub, getWebsite } from '../../utils';
 
 import { OfficeHoursFormData, ProjectGrantsFormData, SmallGrantsFormData } from '../../types';
 
 import {
   API_ACADEMIC_GRANTS,
+  API_DEVCON_GRANTS,
   API_GRANTEE_FINANCE_URLS,
   API_OFFICE_HOURS,
   API_PROJECT_GRANTS,
@@ -113,6 +118,23 @@ export const api = {
       };
 
       return fetch(API_ACADEMIC_GRANTS, academicGrantsRequestOptions);
+    }
+  },
+  devconGrants: {
+    submit: (data: DevconGrantsFormData) => {
+      const devconGrantsRequestOptions: RequestInit = {
+        ...methodOptions,
+        body: JSON.stringify({
+          ...data,
+          // Company is a required field in SF, we're using the Name as default value if no company provided
+          company: data.company === 'N/A' ? `${data.firstName} ${data.lastName}` : data.company,
+          eventType: data.eventType.value,
+          eventFormat: data.eventFormat.value,
+          howDidYouHearAboutESP: data.howDidYouHearAboutESP.value
+        })
+      };
+
+      return fetch(API_DEVCON_GRANTS, devconGrantsRequestOptions);
     }
   }
 };

@@ -19,8 +19,12 @@ import {
   ACADEMIC_GRANTS_THANK_YOU_PAGE_URL,
   ACADEMIC_GRANTS_URL,
   APPLICANTS_URL,
+  DEVCON_GRANTS_APPLY_URL,
+  DEVCON_GRANTS_THANK_YOU_PAGE_URL,
+  DEVCON_GRANTS_URL,
   HOME_URL
 } from '../../constants';
+import { DevconGrantsLayout } from './DevconGrantsLayout';
 
 export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
   const router = useRouter();
@@ -56,6 +60,16 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       );
     }
 
+    if (router.pathname === DEVCON_GRANTS_URL) {
+      return (
+        <Box mt={{ md: -10, lg: 0 }}>
+          <main>
+            <DevconGrantsLayout>{children}</DevconGrantsLayout>
+          </main>
+        </Box>
+      );
+    }
+
     if (router.pathname === ACADEMIC_GRANTS_URL) {
       return (
         <Box mt={{ md: -10, lg: 0 }}>
@@ -68,7 +82,9 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
 
     if (
       router.pathname === ACADEMIC_GRANTS_APPLY_URL ||
-      router.pathname === ACADEMIC_GRANTS_THANK_YOU_PAGE_URL
+      router.pathname === ACADEMIC_GRANTS_THANK_YOU_PAGE_URL ||
+      router.pathname === DEVCON_GRANTS_APPLY_URL ||
+      router.pathname === DEVCON_GRANTS_THANK_YOU_PAGE_URL
     ) {
       return (
         <Box mt={-6}>

@@ -18,6 +18,7 @@ export const OFFICE_HOURS_URL = '/applicants/office-hours';
 export const SMALL_GRANTS_URL = '/applicants/small-grants';
 export const PROJECT_GRANTS_URL = '/applicants/project-grants';
 export const ACADEMIC_GRANTS_URL = '/academic-grants';
+export const DEVCON_GRANTS_URL = '/devcon-grants';
 export const SIDEBAR_APPLICANTS_LINKS: SidebarLink[] = [
   { text: 'Mission and Scope', href: `${APPLICANTS_URL}/#mission-and-scope` },
   { text: 'How we support', href: `${APPLICANTS_URL}/#how-we-support` },
@@ -70,12 +71,23 @@ export const SIDEBAR_ACADEMIC_GRANTS_LINKS: SidebarLink[] = [
   { text: 'FAQ', href: `${ACADEMIC_GRANTS_URL}/#faq` },
   { text: 'Apply', href: `${ACADEMIC_GRANTS_URL}/#apply` }
 ];
+export const SIDEBAR_DEVCON_GRANTS_LINKS: SidebarLink[] = [
+  { text: 'Summary', href: `${DEVCON_GRANTS_URL}/#description` },
+  { text: 'Who', href: `${DEVCON_GRANTS_URL}/#who` },
+  { text: 'Eligibility', href: `${DEVCON_GRANTS_URL}/#eligibility` },
+  { text: 'How to apply', href: `${DEVCON_GRANTS_URL}/#how-to-apply` },
+  { text: 'Selection criteria', href: `${DEVCON_GRANTS_URL}/#selection-criteria` },
+  { text: 'Next steps and support', href: `${DEVCON_GRANTS_URL}/#next-steps-and-support` },
+  { text: 'FAQ', href: `${DEVCON_GRANTS_URL}/#faq` },
+  { text: 'Apply', href: `${DEVCON_GRANTS_URL}/#apply` }
+];
 
 // apply forms
 export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
 export const OFFICE_HOURS_APPLY_URL = '/applicants/office-hours/apply';
 export const SMALL_GRANTS_APPLY_URL = '/applicants/small-grants/apply';
 export const ACADEMIC_GRANTS_APPLY_URL = '/academic-grants/apply';
+export const DEVCON_GRANTS_APPLY_URL = '/devcon-grants/apply';
 
 // grantee finance form
 export const GRANTEE_FINANCE_URL = '/applicants/grantee-finance';
@@ -86,6 +98,7 @@ export const OFFICE_HOURS_THANK_YOU_PAGE_URL = '/applicants/office-hours/thank-y
 export const SMALL_GRANTS_THANK_YOU_PAGE_URL = '/applicants/small-grants/thank-you';
 export const GRANTEE_FINANCE_THANK_YOU_PAGE_URL = '/applicants/grantee-finance/thank-you';
 export const ACADEMIC_GRANTS_THANK_YOU_PAGE_URL = '/academic-grants/thank-you';
+export const DEVCON_GRANTS_THANK_YOU_PAGE_URL = '/devcon-grants/thank-you';
 
 // ethereum ecosystem
 export const ETHEREUM_ORG_URL = 'https://ethereum.org/';
@@ -108,6 +121,7 @@ export const ESP_BLOG_URL = 'https://blog.ethereum.org/category/ecosystem-suppor
 export const ESP_TWITTER_URL = 'https://twitter.com/EF_ESP';
 export const ESP_EMAIL_ADDRESS = 'esp@ethereum.org';
 export const ACADEMIC_GRANTS_EMAIL_ADDRESS = 'academic-grants@ethereum.org';
+export const DEVCON_GRANTS_EMAIL_ADDRESS = 'grants@devcon.org';
 
 // applicants tabs
 export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Small Grants', 'Project Grants'];

@@ -1266,7 +1266,7 @@ export const SmallGrantsForm: FC = () => {
                 })}
               />
 
-              {errors?.eventName?.type === 'maxLength' && (
+              {errors?.sponsorshipLink?.type === 'maxLength' && (
                 <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
                     URL cannot exceed 255 characters.
