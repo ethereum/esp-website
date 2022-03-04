@@ -38,7 +38,7 @@ const DevconGrants: NextPage = () => {
     <>
       <PageMetadata
         title='Devcon Round'
-        description='The Ethereum Foundation is sponsoring a wave of grants to support Ethereum-related academic work. Find all the details you need to apply here.'
+        description='Sponsorship grants funding online or in-person meetups and events leading up to Devcon.'
       />
 
       <Box mx={{ md: 12 }} bg='white' position='relative' zIndex={1} mt={{ xl: 12 }}>
