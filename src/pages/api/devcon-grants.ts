@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     company: Company,
     eventPreviousWork: Previous_Work__c,
     teamProfile: Team_Profile__c,
-    projectName: Project_Name__c,
+    eventName: Project_Name__c,
     eventDate: Sponsorship_Date__c,
     sponsorshipLink: Sponsorship_Link__c,
     sponsorshipDetails: Sponsorship_Details__c,

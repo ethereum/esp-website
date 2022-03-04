@@ -251,7 +251,7 @@ export const DevconGrantsForm: FC = () => {
           )}
         </FormControl>
 
-        <FormControl id='event-previous-work-control' isRequired mb={8}>
+        <FormControl id='event-previous-work-control' mb={8}>
           <FormLabel htmlFor='eventPreviousWork' mb={1}>
             <PageText display='inline' fontSize='input'>
               List of any previous events you&apos;ve organized
@@ -273,18 +273,10 @@ export const DevconGrantsForm: FC = () => {
             h='150px'
             mt={3}
             {...register('eventPreviousWork', {
-              required: true,
               maxLength: 32768
             })}
           />
 
-          {errors?.eventPreviousWork?.type === 'required' && (
-            <Box mt={1}>
-              <PageText as='small' fontSize='helpText' color='red.500'>
-                Previous work is required.
-              </PageText>
-            </Box>
-          )}
           {errors?.eventPreviousWork?.type === 'maxLength' && (
             <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
@@ -340,19 +332,19 @@ export const DevconGrantsForm: FC = () => {
           )}
         </FormControl>
 
-        <FormControl id='project-name-control' isRequired mb={8}>
-          <FormLabel htmlFor='projectName' mb={1}>
+        <FormControl id='event-name-control' isRequired mb={8}>
+          <FormLabel htmlFor='eventName' mb={1}>
             <PageText display='inline' fontSize='input'>
-              Project name
+              Event name
             </PageText>
           </FormLabel>
 
           <PageText as='small' fontSize='helpText' color='brand.helpText'>
-            This should be a concise description of the title of your project.
+            What&apos;s the official title of your event?
           </PageText>
 
           <Input
-            id='projectName'
+            id='eventName'
             type='text'
             bg='white'
             borderRadius={0}
@@ -362,23 +354,23 @@ export const DevconGrantsForm: FC = () => {
             color='brand.paragraph'
             fontSize='input'
             mt={3}
-            {...register('projectName', {
+            {...register('eventName', {
               required: true,
               maxLength: 255
             })}
           />
 
-          {errors?.projectName?.type === 'required' && (
+          {errors?.eventName?.type === 'required' && (
             <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
-                Project name is required.
+                Event name is required.
               </PageText>
             </Box>
           )}
-          {errors?.projectName?.type === 'maxLength' && (
+          {errors?.eventName?.type === 'maxLength' && (
             <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
-                Project name cannot exceed 255 characters.
+                Event name cannot exceed 255 characters.
               </PageText>
             </Box>
           )}
@@ -539,7 +531,6 @@ export const DevconGrantsForm: FC = () => {
             name='eventType'
             control={control}
             rules={{
-              required: true,
               validate: selected => selected.value !== ''
             }}
             defaultValue={{ value: '', label: '' }}
@@ -561,14 +552,6 @@ export const DevconGrantsForm: FC = () => {
                   selectedOptionColor='brand.option'
                   chakraStyles={chakraStyles}
                 />
-
-                {error && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Event type is required.
-                    </PageText>
-                  </Box>
-                )}
               </FormControl>
             )}
           />
@@ -619,7 +602,7 @@ export const DevconGrantsForm: FC = () => {
           <Fade in={isInPerson} delay={0.25}>
             <FormControl id='city-control' mr={{ md: 12 }} mb={8}>
               <FormLabel htmlFor='city'>
-                <PageText fontSize='input'>City</PageText>
+                <PageText fontSize='input'>Event location</PageText>
               </FormLabel>
 
               <Input
@@ -771,7 +754,7 @@ export const DevconGrantsForm: FC = () => {
           )}
         </FormControl>
 
-        <FormControl id='confirmed-speakers-control' isRequired mb={8}>
+        <FormControl id='confirmed-speakers-control' mb={8}>
           <FormLabel htmlFor='confirmedSpeakers' mb={1}>
             <PageText display='inline' fontSize='input'>
               List any confirmed speakers
@@ -794,18 +777,10 @@ export const DevconGrantsForm: FC = () => {
             h='150px'
             mt={3}
             {...register('confirmedSpeakers', {
-              required: true,
               maxLength: 32768
             })}
           />
 
-          {errors?.confirmedSpeakers?.type === 'required' && (
-            <Box mt={1}>
-              <PageText as='small' fontSize='helpText' color='red.500'>
-                Confirmed speakers list is required.
-              </PageText>
-            </Box>
-          )}
           {errors?.confirmedSpeakers?.type === 'maxLength' && (
             <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
@@ -815,7 +790,7 @@ export const DevconGrantsForm: FC = () => {
           )}
         </FormControl>
 
-        <FormControl id='confirmed-sponsors-control' isRequired mb={8}>
+        <FormControl id='confirmed-sponsors-control' mb={8}>
           <FormLabel htmlFor='confirmedSponsors'>
             <PageText display='inline' fontSize='input'>
               List any confirmed sponsors
@@ -831,18 +806,10 @@ export const DevconGrantsForm: FC = () => {
             fontSize='input'
             h='150px'
             {...register('confirmedSponsors', {
-              required: true,
               maxLength: 32768
             })}
           />
 
-          {errors?.confirmedSponsors?.type === 'required' && (
-            <Box mt={1}>
-              <PageText as='small' fontSize='helpText' color='red.500'>
-                Confirmed sponsors list is required.
-              </PageText>
-            </Box>
-          )}
           {errors?.confirmedSponsors?.type === 'maxLength' && (
             <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>

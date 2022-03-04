@@ -182,7 +182,7 @@ export interface DevconGrantsFormData {
   company: string; // SF API: Company
   eventPreviousWork: string; // SF API: Previous_Work__c
   teamProfile: string; // SF API: Team_Profile__c
-  projectName: string; // SF API: Project_Name__c
+  eventName: string; // SF API: Project_Name__c
   eventDate: Date; // SF API: Sponsorship_Date__c
   sponsorshipLink: string; // SF API: Sponsorship_Link__c
   sponsorshipDetails: string; // SF API: Sponsorship_Details__c
