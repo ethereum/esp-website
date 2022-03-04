@@ -7,11 +7,13 @@ import {
   GranteeFinanceForm,
   OfficeHoursForm,
   ProjectGrantsForm,
-  SmallGrantsForm
+  SmallGrantsForm,
+  DevconGrantsForm
 } from './';
 
 import {
   ACADEMIC_GRANTS_APPLY_URL,
+  DEVCON_GRANTS_APPLY_URL,
   GRANTEE_FINANCE_URL,
   OFFICE_HOURS_APPLY_URL,
   PROJECT_GRANTS_APPLY_URL,
@@ -46,6 +48,11 @@ export const Forms: FC = () => {
       {router.pathname === ACADEMIC_GRANTS_APPLY_URL && (
         <Box px={{ md: 24, lg: 32, xl: 72 }}>
           <AcademicGrantsForm />
+        </Box>
+      )}
+      {router.pathname === DEVCON_GRANTS_APPLY_URL && (
+        <Box px={{ md: 24, lg: 32, xl: 72 }}>
+          <DevconGrantsForm />
         </Box>
       )}
     </Stack>

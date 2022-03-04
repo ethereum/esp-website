@@ -2,14 +2,14 @@ import { Box, Link, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 
 import { PageMetadata, PageSubheading, PageText } from '../../components/UI';
-import { ACADEMIC_GRANTS_EMAIL_ADDRESS } from '../../constants';
+import { DEVCON_GRANTS_EMAIL_ADDRESS } from '../../constants';
 
-const AcademicGrantsApply: NextPage = () => {
+const DevconGrantsApply: NextPage = () => {
   return (
     <>
       <PageMetadata
-        title='Academic Grants Application'
-        description='Submit an application for an Academic Grant from the Ecosystem Support Program'
+        title='Devcon Grants Application'
+        description='Submit an application for an Devcon Grant from the Ecosystem Support Program'
       />
 
       <Box
@@ -22,7 +22,7 @@ const AcademicGrantsApply: NextPage = () => {
         <Stack>
           <section id='description'>
             <PageSubheading mb={8} textAlign='center'>
-              Apply to Academic Grants
+              Apply to Devcon Grants
             </PageSubheading>
 
             <PageText textAlign='center'>
@@ -30,11 +30,11 @@ const AcademicGrantsApply: NextPage = () => {
               <Link
                 fontWeight={700}
                 color='brand.orange.100'
-                href={`mailto:${ACADEMIC_GRANTS_EMAIL_ADDRESS}`}
+                href={`mailto:${DEVCON_GRANTS_EMAIL_ADDRESS}`}
                 isExternal
                 _hover={{ textDecoration: 'none' }}
               >
-                {ACADEMIC_GRANTS_EMAIL_ADDRESS}
+                {DEVCON_GRANTS_EMAIL_ADDRESS}
               </Link>
               .
             </PageText>
@@ -45,4 +45,4 @@ const AcademicGrantsApply: NextPage = () => {
   );
 };
 
-export default AcademicGrantsApply;
+export default DevconGrantsApply;
