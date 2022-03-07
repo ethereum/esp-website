@@ -90,7 +90,8 @@ export const api = {
         ...methodOptions,
         method: 'PUT',
         body: JSON.stringify({
-          ...data
+          ...data,
+          L2Payment: data.L2Payment === 'Yes' ? true : false
         })
       };
 
