@@ -21,14 +21,6 @@ export interface GranteeFinanceAPIMap {
   [preference: string]: string;
 }
 
-export type ProposalFile = {
-  name: string;
-  type: string;
-  size: number;
-  content: string;
-  path: string;
-} | null;
-
 export type NewsletterFormData = {
   email: string;
 };
@@ -52,7 +44,7 @@ export type ProjectGrantsFormData = {
   howDidYouHearAboutESP: ReferralSource; // SF API: Referral_Source__c
   referralSourceIfOther: string; // SF API: Referral_Source_if_Other__c
   referrals: string; // SF API: Referrals__c
-  uploadProposal: ProposalFile;
+  uploadProposal: File;
 };
 
 export type SmallGrantsFormData = {

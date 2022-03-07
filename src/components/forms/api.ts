@@ -44,19 +44,27 @@ export const api = {
   },
   projectGrants: {
     submit: (data: ProjectGrantsFormData) => {
+      const curatedData: { [key: string]: any } = {
+        ...data,
+        // Company is a required field in SF, we're using the Name as default value if no company provided
+        company: data.company === 'N/A' ? `${data.firstName} ${data.lastName}` : data.company,
+        website: getWebsite(data.website),
+        github: getGitHub(data.github),
+        projectCategory: data.projectCategory.value,
+        country: data.country.value,
+        timezone: data.timezone.value,
+        howDidYouHearAboutESP: data.howDidYouHearAboutESP.value
+      };
+
+      const formData = new FormData();
+
+      for (const name in data) {
+        formData.append(name, curatedData[name]);
+      }
+
       const projectGrantsRequestOptions: RequestInit = {
-        ...methodOptions,
-        body: JSON.stringify({
-          ...data,
-          // Company is a required field in SF, we're using the Name as default value if no company provided
-          company: data.company === 'N/A' ? `${data.firstName} ${data.lastName}` : data.company,
-          website: getWebsite(data.website),
-          github: getGitHub(data.github),
-          projectCategory: data.projectCategory.value,
-          country: data.country.value,
-          timezone: data.timezone.value,
-          howDidYouHearAboutESP: data.howDidYouHearAboutESP.value
-        })
+        method: 'POST',
+        body: formData
       };
 
       return fetch(API_PROJECT_GRANTS, projectGrantsRequestOptions);

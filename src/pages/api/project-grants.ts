@@ -1,68 +1,72 @@
+import fs from 'fs';
 import jsforce from 'jsforce';
 import { NextApiRequest, NextApiResponse } from 'next';
+import formidable, { File } from 'formidable';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { body } = req;
-  const {
-    firstName: FirstName,
-    lastName: LastName,
-    email: Email,
-    company: Company,
-    projectName: Project_Name__c,
-    website: Website,
-    github: Github_Link__c,
-    twitter: Twitter__c,
-    teamProfile: Team_Profile__c,
-    projectDescription: Project_Description__c,
-    projectCategory: Category__c,
-    requestedAmount: Requested_Amount__c,
-    city: npsp__CompanyCity__c,
-    country: npsp__CompanyCountry__c,
-    timezone: Time_Zone__c,
-    howDidYouHearAboutESP: Referral_Source__c,
-    referralSourceIfOther: Referral_Source_if_Other__c,
-    referrals: Referrals__c,
-    uploadProposal
-  } = body;
-  const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
-    process.env;
+  const form = formidable({});
 
-  const conn = new jsforce.Connection({
-    // you can change loginUrl to connect to sandbox or prerelease env.
-    loginUrl: SF_PROD_LOGIN_URL
-  });
-
-  conn.login(SF_PROD_USERNAME!, `${SF_PROD_PASSWORD}${SF_PROD_SECURITY_TOKEN}`, err => {
+  form.parse(req, (err, fields, files) => {
     if (err) {
-      return console.error(err);
+      res.status(400).json({ status: 'fail' });
+      return;
     }
 
-    let createdLeadID: string;
+    const fieldsSanitized = Object.keys(fields).reduce<typeof fields>((prev, key) => {
+      let value = fields[key];
+      if (typeof value === 'string') {
+        value = value.trim();
+      }
 
-    // Single record creation
-    conn.sobject('Lead').create(
-      {
-        FirstName: FirstName.trim(),
-        LastName: LastName.trim(),
-        Email: Email.trim(),
-        Company: Company.trim(),
-        Project_Name__c: Project_Name__c.trim(),
-        Website: Website.trim(),
-        Github_Link__c: Github_Link__c.trim(),
-        Twitter__c: Twitter__c.trim(),
-        Team_Profile__c: Team_Profile__c.trim(),
-        Project_Description__c: Project_Description__c.trim(),
-        Category__c: Category__c.trim(),
-        Requested_Amount__c: Requested_Amount__c.trim(),
-        npsp__CompanyCity__c: npsp__CompanyCity__c.trim(),
-        npsp__CompanyCountry__c: npsp__CompanyCountry__c.trim(),
-        Time_Zone__c: Time_Zone__c.trim(),
-        Referral_Source__c: Referral_Source__c.trim(),
-        Referral_Source_if_Other__c: Referral_Source_if_Other__c.trim(),
-        Referrals__c: Referrals__c.trim(),
-        RecordTypeId: process.env.SF_RECORD_TYPE_PROJECT_GRANTS
-      },
-      (err, ret) => {
+      return {
+        ...prev,
+        [key]: value
+      };
+    }, {});
+
+    const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
+      process.env;
+
+    const conn = new jsforce.Connection({
+      // you can change loginUrl to connect to sandbox or prerelease env.
+      loginUrl: SF_PROD_LOGIN_URL
+    });
+
+    const application = {
+      FirstName: fieldsSanitized.firstName,
+      LastName: fieldsSanitized.lastName,
+      Email: fieldsSanitized.email,
+      Company: fieldsSanitized.company,
+      Project_Name__c: fieldsSanitized.projectName,
+      Website: fieldsSanitized.website,
+      Github_Link__c: fieldsSanitized.github,
+      Twitter__c: fieldsSanitized.twitter,
+      Team_Profile__c: fieldsSanitized.teamProfile,
+      Project_Description__c: fieldsSanitized.projectDescription,
+      Category__c: fieldsSanitized.projectCategory,
+      Requested_Amount__c: fieldsSanitized.requestedAmount,
+      npsp__CompanyCity__c: fieldsSanitized.city,
+      npsp__CompanyCountry__c: fieldsSanitized.country,
+      Time_Zone__c: fieldsSanitized.timezone,
+      Referral_Source__c: fieldsSanitized.howDidYouHearAboutESP,
+      Referral_Source_if_Other__c: fieldsSanitized.referralSourceIfOther,
+      Referrals__c: fieldsSanitized.referrals,
+      RecordTypeId: process.env.SF_RECORD_TYPE_PROJECT_GRANTS
+    };
+
+    res.status(200).json({ status: 'ok' });
+
+    conn.login(SF_PROD_USERNAME!, `${SF_PROD_PASSWORD}${SF_PROD_SECURITY_TOKEN}`, err => {
+      if (err) {
+        return console.error(err);
+      }
+
+      let createdLeadID: string;
+
+      res.status(200).json({ status: 'ok' });
+
+      // Single record creation
+      conn.sobject('Lead').create(application, (err, ret) => {
         if (err || !ret.success) {
           console.error(err);
           res.status(400).json({ status: 'fail' });
@@ -72,13 +76,28 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           createdLeadID = ret.id;
           console.log({ createdLeadID });
 
+          const uploadProposal = files.uploadProposal as File;
+          console.log({ uploadProposal });
+
           if (uploadProposal) {
+            let uploadProposalContent;
+            try {
+              // turn file into base64 encoding
+              uploadProposalContent = fs.readFileSync(uploadProposal.filepath, {
+                encoding: 'base64'
+              });
+            } catch (error) {
+              console.error(error);
+              res.status(500).json({ status: 'fail' });
+              return;
+            }
+
             // Document upload
             conn.sobject('ContentVersion').create(
               {
-                Title: `[PROPOSAL] ${Project_Name__c} - ${createdLeadID}`,
-                PathOnClient: uploadProposal.path,
-                VersionData: uploadProposal.content // base64 encoded file content
+                Title: `[PROPOSAL] ${application.Project_Name__c} - ${createdLeadID}`,
+                PathOnClient: uploadProposal.originalFilename,
+                VersionData: uploadProposalContent // base64 encoded file content
               },
               async (err, uploadedFile) => {
                 if (err || !uploadedFile.success) {
@@ -108,15 +127,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
           res.status(200).json({ status: 'ok' });
         }
-      }
-    );
+      });
+    });
   });
 }
 
 export const config = {
   api: {
-    bodyParser: {
-      sizeLimit: '4mb'
-    }
+    bodyParser: false
   }
 };
