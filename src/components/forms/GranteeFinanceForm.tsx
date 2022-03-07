@@ -255,6 +255,47 @@ export const GranteeFinanceForm: FC = () => {
                 </FormControl>
               )}
             />
+
+            <Controller
+              name='l2Payment'
+              control={control}
+              rules={{ required: receivesCrypto }}
+              defaultValue='No'
+              render={({ field: { onChange, value } }) => (
+                <FormControl id='l2Payment-control' isRequired={receivesCrypto} mb={8}>
+                  <FormLabel htmlFor='l2Payment' mb={1}>
+                    <PageText display='inline' fontSize='input'>
+                      Layer 2 Payment
+                    </PageText>
+                  </FormLabel>
+
+                  <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                    Select &lsquo;Yes&rsquo; if you would like your payment to be processed on a
+                    Layer 2 network, versus the Ethereum Mainnet. The ESP team will be in touch to
+                    confirm which Layer 2 network.
+                  </PageText>
+
+                  <RadioGroup
+                    id='l2Payment'
+                    onChange={onChange}
+                    value={value}
+                    fontSize='input'
+                    colorScheme='white'
+                    mt={3}
+                  >
+                    <Stack direction='row'>
+                      <Radio id='ETH' size='lg' name='l2Payment' value='Yes' mr={8}>
+                        <PageText fontSize='input'>Yes</PageText>
+                      </Radio>
+
+                      <Radio id='team' size='lg' name='l2Payment' value='No'>
+                        <PageText fontSize='input'>No</PageText>
+                      </Radio>
+                    </Stack>
+                  </RadioGroup>
+                </FormControl>
+              )}
+            />
           </Fade>
         </Box>
 
