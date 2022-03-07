@@ -30,12 +30,7 @@ import planeVectorSVG from '../../../public/images/plane-vector.svg';
 
 import { GRANTEE_FINANCE_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
-import {
-  GranteeFinanceFormData,
-  TokenPreference,
-  PaymentPreference,
-  L2PaymentPreference
-} from '../../types';
+import { GranteeFinanceFormData, TokenPreference, PaymentPreference } from '../../types';
 
 const MotionBox = motion<BoxProps>(Box);
 const MotionButton = motion<ButtonProps>(Button);
@@ -268,11 +263,17 @@ export const GranteeFinanceForm: FC = () => {
               defaultValue='No'
               render={({ field: { onChange, value } }) => (
                 <FormControl id='L2Payment-control' isRequired={receivesCrypto} mb={8}>
-                  <FormLabel htmlFor='L2Payment' mb={4}>
+                  <FormLabel htmlFor='L2Payment' mb={1}>
                     <PageText display='inline' fontSize='input'>
                       Layer 2 Payment
                     </PageText>
                   </FormLabel>
+
+                  <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                    Select &lsquo;Yes&rsquo; if you would like your payment to be processed on a
+                    Layer 2 network, versus the Ethereum Mainnet. The ESP team will be in touch to
+                    confirm which Layer 2 network.
+                  </PageText>
 
                   <RadioGroup
                     id='L2Payment'
@@ -280,6 +281,7 @@ export const GranteeFinanceForm: FC = () => {
                     value={value}
                     fontSize='input'
                     colorScheme='white'
+                    mt={3}
                   >
                     <Stack direction='row'>
                       <Radio id='ETH' size='lg' name='L2Payment' value='Yes' mr={8}>
