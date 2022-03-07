@@ -9,7 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     notes: Transfer_Notes__c,
     daiAddress: DAI_Address__c,
     granteeSecurityID: Contract_ID__c,
-    L2Payment: Layer2_Payment__c
+    l2Payment: Layer2_Payment__c
   } = body;
   const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
     process.env;

@@ -91,7 +91,7 @@ export const api = {
         method: 'PUT',
         body: JSON.stringify({
           ...data,
-          L2Payment: data.L2Payment === 'Yes' ? true : false
+          L2Payment: data.l2Payment === 'Yes' ? true : false
         })
       };
 

@@ -257,13 +257,13 @@ export const GranteeFinanceForm: FC = () => {
             />
 
             <Controller
-              name='L2Payment'
+              name='l2Payment'
               control={control}
               rules={{ required: receivesCrypto }}
               defaultValue='No'
               render={({ field: { onChange, value } }) => (
-                <FormControl id='L2Payment-control' isRequired={receivesCrypto} mb={8}>
-                  <FormLabel htmlFor='L2Payment' mb={1}>
+                <FormControl id='l2Payment-control' isRequired={receivesCrypto} mb={8}>
+                  <FormLabel htmlFor='l2Payment' mb={1}>
                     <PageText display='inline' fontSize='input'>
                       Layer 2 Payment
                     </PageText>
@@ -276,7 +276,7 @@ export const GranteeFinanceForm: FC = () => {
                   </PageText>
 
                   <RadioGroup
-                    id='L2Payment'
+                    id='l2Payment'
                     onChange={onChange}
                     value={value}
                     fontSize='input'
@@ -284,11 +284,11 @@ export const GranteeFinanceForm: FC = () => {
                     mt={3}
                   >
                     <Stack direction='row'>
-                      <Radio id='ETH' size='lg' name='L2Payment' value='Yes' mr={8}>
+                      <Radio id='ETH' size='lg' name='l2Payment' value='Yes' mr={8}>
                         <PageText fontSize='input'>Yes</PageText>
                       </Radio>
 
-                      <Radio id='team' size='lg' name='L2Payment' value='No'>
+                      <Radio id='team' size='lg' name='l2Payment' value='No'>
                         <PageText fontSize='input'>No</PageText>
                       </Radio>
                     </Stack>

@@ -107,7 +107,7 @@ export type GranteeFinanceFormData = {
 
   // ETH/DAI
   tokenPreference: TokenPreference;
-  L2Payment: L2PaymentPreference;
+  l2Payment: L2PaymentPreference;
 
   // ETH
   ethAddress: string; // SF API: ETH_Address__c
