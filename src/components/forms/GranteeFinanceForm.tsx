@@ -30,7 +30,12 @@ import planeVectorSVG from '../../../public/images/plane-vector.svg';
 
 import { GRANTEE_FINANCE_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
-import { GranteeFinanceFormData, TokenPreference, PaymentPreference } from '../../types';
+import {
+  GranteeFinanceFormData,
+  TokenPreference,
+  PaymentPreference,
+  L2PaymentPreference
+} from '../../types';
 
 const MotionBox = motion<BoxProps>(Box);
 const MotionButton = motion<ButtonProps>(Button);
@@ -249,6 +254,40 @@ export const GranteeFinanceForm: FC = () => {
 
                       <Radio id='team' size='lg' name='tokenPreference' value='DAI'>
                         <PageText fontSize='input'>Receive DAI</PageText>
+                      </Radio>
+                    </Stack>
+                  </RadioGroup>
+                </FormControl>
+              )}
+            />
+
+            <Controller
+              name='L2Payment'
+              control={control}
+              rules={{ required: receivesCrypto }}
+              defaultValue='No'
+              render={({ field: { onChange, value } }) => (
+                <FormControl id='L2Payment-control' isRequired={receivesCrypto} mb={8}>
+                  <FormLabel htmlFor='L2Payment' mb={4}>
+                    <PageText display='inline' fontSize='input'>
+                      Layer 2 Payment
+                    </PageText>
+                  </FormLabel>
+
+                  <RadioGroup
+                    id='L2Payment'
+                    onChange={onChange}
+                    value={value}
+                    fontSize='input'
+                    colorScheme='white'
+                  >
+                    <Stack direction='row'>
+                      <Radio id='ETH' size='lg' name='L2Payment' value='Yes' mr={8}>
+                        <PageText fontSize='input'>Yes</PageText>
+                      </Radio>
+
+                      <Radio id='team' size='lg' name='L2Payment' value='No'>
+                        <PageText fontSize='input'>No</PageText>
                       </Radio>
                     </Stack>
                   </RadioGroup>
