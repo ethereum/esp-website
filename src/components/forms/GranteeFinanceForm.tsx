@@ -719,7 +719,7 @@ export const GranteeFinanceForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 mt={3}
-                {...register('granteeSecurityID', { required: true, maxLength: 255 })}
+                {...register('granteeSecurityID', { required: true, maxLength: 18 })}
               />
 
               {errors?.granteeSecurityID?.type === 'required' && (
@@ -732,7 +732,7 @@ export const GranteeFinanceForm: FC = () => {
               {errors?.granteeSecurityID?.type === 'maxLength' && (
                 <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
-                    Grantee Security ID cannot exceed 255 characters.
+                    Grantee Security ID cannot exceed 18 characters.
                   </PageText>
                 </Box>
               )}
