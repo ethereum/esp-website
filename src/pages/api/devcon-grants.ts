@@ -1,6 +1,11 @@
 import jsforce from 'jsforce';
 import { NextApiRequest, NextApiResponse } from 'next';
 
+import addRowToSpreadsheet from '../../utils/addRowToSpreadsheet';
+
+const googleSpreadsheetId = process.env.GOOGLE_DEVCON_SPREADSHEET_ID;
+const googleSheetName = process.env.GOOGLE_DEVCON_SHEET_NAME;
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { body } = req;
   const {
@@ -75,6 +80,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         console.error(err);
         res.status(400).json({ status: 'fail' });
         return;
+      }
+
+      // send submission data to a google spreadsheet
+      try {
+        await addRowToSpreadsheet(
+          {
+            id: googleSpreadsheetId!,
+            sheetName: googleSheetName!
+          },
+          application
+        );
+      } catch (err) {
+        // as this is something internal we don't want to show this error to the user
+        console.log(err);
       }
 
       console.log(`Devcon Grants Lead with ID: ${ret.id} has been created!`);
