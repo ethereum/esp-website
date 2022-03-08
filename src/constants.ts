@@ -156,6 +156,7 @@ export const NAV_LINKS: NavLink[] = [
 
 // external links
 export const ETHRESEARCH_URL = 'https://ethresear.ch/';
+export const DEVCON_URL = 'https://devcon.org/';
 
 // api
 export const DOWNLOAD_APPLICATION_URL = '/projectGrantsApplication.docx';
