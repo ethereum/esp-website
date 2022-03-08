@@ -10,6 +10,7 @@ import {
   APPLICANTS_TABS,
   APPLICANTS_TABS_MAP,
   APPLICANTS_URL,
+  GRANTEE_FINANCE_URL,
   OFFICE_HOURS_URL,
   PROJECT_GRANTS_URL,
   SMALL_GRANTS_URL
@@ -68,9 +69,11 @@ export const ApplicantsLayout: FC = ({ children }) => {
     }
   };
 
+  const isGranteeFinance = router.pathname === GRANTEE_FINANCE_URL;
+
   return (
     <>
-      <Stack mb={5} px={{ base: 5, md: 12 }} py={3}>
+      <Stack mb={5} px={{ base: 5, md: 12 }} py={3} display={!isGranteeFinance ? 'block' : 'none'}>
         <section id='hero'>
           <Description
             title='For Applicants'
@@ -98,6 +101,7 @@ export const ApplicantsLayout: FC = ({ children }) => {
           onChange={index => handleChange(index)}
           variant='unstyled'
           isLazy
+          display={!isGranteeFinance ? 'block' : 'none'}
         >
           <TabList whiteSpace='nowrap' h='64px' pl={6} role='tablist'>
             {APPLICANTS_TABS.map(tabElement => (
@@ -124,7 +128,7 @@ export const ApplicantsLayout: FC = ({ children }) => {
         </Tabs>
       </Flex>
 
-      <Stack px={{ base: 5, md: 12 }}>
+      <Stack px={{ base: !isGranteeFinance ? 5 : 0, md: 12 }}>
         <Stack mb={8}>{children}</Stack>
       </Stack>
     </>

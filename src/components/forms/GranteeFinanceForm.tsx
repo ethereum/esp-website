@@ -747,7 +747,7 @@ export const GranteeFinanceForm: FC = () => {
                 <MotionBox
                   backgroundColor='brand.button.shadow'
                   h='56px'
-                  w='310px'
+                  w='190px'
                   position='absolute'
                   animate={shadowBoxControl}
                   opacity={!isValid ? 0 : 1}
@@ -755,7 +755,7 @@ export const GranteeFinanceForm: FC = () => {
 
                 <MotionButton
                   backgroundColor='brand.accent'
-                  w='310px'
+                  w='190px'
                   py={7}
                   borderRadius={0}
                   type='submit'
@@ -766,7 +766,7 @@ export const GranteeFinanceForm: FC = () => {
                   onMouseLeave={() => setButtonHovered(false)}
                   pointerEvents={isValid ? 'auto' : 'none'}
                 >
-                  <ImportantText color='white'>Submit Application</ImportantText>
+                  <ImportantText color='white'>Submit</ImportantText>
 
                   <Flex pl={5}>
                     <Image
