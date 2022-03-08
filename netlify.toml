@@ -114,10 +114,6 @@
   to = "/applicants/"
   force = true
 [[redirects]]
-  from = "/*/devcon-grants/"
-  to = "/devcon-grants"
-  force = true
-[[redirects]]
   from = "/*/local-grants/colombia/"
   to = "/applicants/"
   force = true
@@ -134,6 +130,10 @@
 [[redirects]]
   from = "/en/grantee-finance-form"
   to = "/applicants/grantee-finance"
+  force = true
+[[redirects]]
+  from = "/en/devcon-grants/"
+  to = "/devcon-grants"
   force = true
 
 # Redirect old pages with no lang specified
@@ -220,10 +220,6 @@
   force = true
 [[redirects]]
   from = "/local-grants/honduras/"
-  to = "/applicants/"
-  force = true
-[[redirects]]
-  from = "/devcon-grants/"
   to = "/applicants/"
   force = true
 [[redirects]]
