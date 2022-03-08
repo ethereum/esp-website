@@ -17,7 +17,8 @@ import {
   SIDEBAR_DEVCON_GRANTS_LINKS,
   DEVCON_GRANTS_EMAIL_ADDRESS,
   APPLICANTS_URL,
-  DEVCON_GRANTS_APPLY_URL
+  DEVCON_GRANTS_APPLY_URL,
+  DEVCON_URL
 } from '../../constants';
 import { OrderedList } from '../../components/UI/OrderedList';
 
@@ -65,10 +66,20 @@ const DevconGrants: NextPage = () => {
                   <PageText mb={6}>Calling all community organizers!</PageText>
 
                   <PageText mb={6}>
-                    As much as we&apos;re looking forward to Devcon, it&apos;s far from the only
-                    place that the Ethereum community comes together. This past year has shown us
-                    just how much we depend on community-run events to keep us connected even while
-                    we&apos;re apart, and we want to support you in doing that crucial work.
+                    As much as we&apos;re looking forward to{' '}
+                    <Link
+                      fontWeight={700}
+                      color='brand.orange.100'
+                      href={DEVCON_URL}
+                      isExternal
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      Devcon
+                    </Link>
+                    , it&apos;s far from the only place that the Ethereum community comes together.
+                    This past year has shown us just how much we depend on community-run events to
+                    keep us connected even while we&apos;re apart, and we want to support you in
+                    doing that crucial work.
                   </PageText>
 
                   <PageText>

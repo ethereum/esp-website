@@ -107,6 +107,7 @@ export type GranteeFinanceFormData = {
 
   // ETH/DAI
   tokenPreference: TokenPreference;
+  l2Payment: L2PaymentPreference;
 
   // ETH
   ethAddress: string; // SF API: ETH_Address__c
@@ -204,6 +205,8 @@ export interface DevconGrantsFormData {
 export type IndividualOrTeam = 'Individual' | 'Team';
 
 export type RepeatApplicant = 'Yes' | 'No';
+
+export type L2PaymentPreference = RepeatApplicant;
 
 export type PaymentPreference = 'ETH/DAI' | 'Fiat' | '';
 
