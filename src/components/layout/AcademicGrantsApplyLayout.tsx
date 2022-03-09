@@ -11,7 +11,7 @@ export const AcademicGrantsApplyLayout: FC = ({ children }) => {
       <Stack mb={5} px={{ base: 5, md: 12 }} py={3}>
         <section id='hero'>
           <Description
-            title='For Applicants'
+            title='How to Apply'
             img={{
               src: applicantsHero,
               alt: 'Kid watching plants grow',
