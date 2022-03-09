@@ -54,16 +54,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       RecordTypeId: process.env.SF_RECORD_TYPE_PROJECT_GRANTS
     };
 
-    res.status(200).json({ status: 'ok' });
-
     conn.login(SF_PROD_USERNAME!, `${SF_PROD_PASSWORD}${SF_PROD_SECURITY_TOKEN}`, err => {
       if (err) {
         return console.error(err);
       }
 
       let createdLeadID: string;
-
-      res.status(200).json({ status: 'ok' });
 
       // Single record creation
       conn.sobject('Lead').create(application, (err, ret) => {
@@ -79,53 +75,56 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           const uploadProposal = files.uploadProposal as File;
           console.log({ uploadProposal });
 
-          if (uploadProposal) {
-            let uploadProposalContent;
-            try {
-              // turn file into base64 encoding
-              uploadProposalContent = fs.readFileSync(uploadProposal.filepath, {
-                encoding: 'base64'
-              });
-            } catch (error) {
-              console.error(error);
-              res.status(500).json({ status: 'fail' });
-              return;
-            }
-
-            // Document upload
-            conn.sobject('ContentVersion').create(
-              {
-                Title: `[PROPOSAL] ${application.Project_Name__c} - ${createdLeadID}`,
-                PathOnClient: uploadProposal.originalFilename,
-                VersionData: uploadProposalContent // base64 encoded file content
-              },
-              async (err, uploadedFile) => {
-                if (err || !uploadedFile.success) {
-                  console.error(err);
-
-                  res.status(400).json({ status: 'fail' });
-                } else {
-                  console.log({ uploadedFile });
-                  console.log(`Document has been uploaded successfully!`);
-
-                  const contentDocument = await conn
-                    .sobject<{
-                      Id: string;
-                      ContentDocumentId: string;
-                    }>('ContentVersion')
-                    .retrieve(uploadedFile.id);
-
-                  await conn.sobject('ContentDocumentLink').create({
-                    ContentDocumentId: contentDocument.ContentDocumentId,
-                    LinkedEntityId: createdLeadID,
-                    ShareType: 'V'
-                  });
-                }
-              }
-            );
+          if (!uploadProposal) {
+            res.status(200).json({ status: 'ok' });
+            return;
           }
 
-          res.status(200).json({ status: 'ok' });
+          let uploadProposalContent;
+          try {
+            // turn file into base64 encoding
+            uploadProposalContent = fs.readFileSync(uploadProposal.filepath, {
+              encoding: 'base64'
+            });
+          } catch (error) {
+            console.error(error);
+            res.status(500).json({ status: 'fail' });
+            return;
+          }
+
+          // Document upload
+          conn.sobject('ContentVersion').create(
+            {
+              Title: `[PROPOSAL] ${application.Project_Name__c} - ${createdLeadID}`,
+              PathOnClient: uploadProposal.originalFilename,
+              VersionData: uploadProposalContent // base64 encoded file content
+            },
+            async (err, uploadedFile) => {
+              if (err || !uploadedFile.success) {
+                console.error(err);
+
+                res.status(400).json({ status: 'fail' });
+              } else {
+                console.log({ uploadedFile });
+                console.log(`Document has been uploaded successfully!`);
+
+                const contentDocument = await conn
+                  .sobject<{
+                    Id: string;
+                    ContentDocumentId: string;
+                  }>('ContentVersion')
+                  .retrieve(uploadedFile.id);
+
+                await conn.sobject('ContentDocumentLink').create({
+                  ContentDocumentId: contentDocument.ContentDocumentId,
+                  LinkedEntityId: createdLeadID,
+                  ShareType: 'V'
+                });
+
+                res.status(200).json({ status: 'ok' });
+              }
+            }
+          );
         }
       });
     });
