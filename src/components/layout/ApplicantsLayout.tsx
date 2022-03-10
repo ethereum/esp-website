@@ -76,7 +76,7 @@ export const ApplicantsLayout: FC = ({ children }) => {
       <Stack mb={5} px={{ base: 5, md: 12 }} py={3} display={!isGranteeFinance ? 'block' : 'none'}>
         <section id='hero'>
           <Description
-            title='For Applicants'
+            title='How to Apply'
             img={{ src: applicantsHero, alt: 'Kid watching plants grow', width: 450, height: 248 }}
           >
             Whether you&apos;re working on a specific project, or you&apos;re still exploring

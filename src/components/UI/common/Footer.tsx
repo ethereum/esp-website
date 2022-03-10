@@ -56,7 +56,7 @@ export const Footer: FC = () => {
             </Link>
             <Link href={APPLICANTS_URL} _hover={{ textDecoration: 'none' }}>
               <ImportantText color='white' textAlign={{ base: 'center', lg: 'left' }}>
-                For Applicants
+                How to Apply
               </ImportantText>
             </Link>
             <Link href={ABOUT_URL} _hover={{ textDecoration: 'none' }}>
