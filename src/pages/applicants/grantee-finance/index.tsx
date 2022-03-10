@@ -16,7 +16,14 @@ const GranteeFinancePage: NextPage = () => {
         <meta name='robots' content='noindex' />
       </Head>
 
-      <Box bg='white' position='relative' py={{ md: 12 }} px={{ md: 24, lg: 32, xl: 72 }}>
+      <Box
+        bg='white'
+        position='relative'
+        pt={{ base: 12 }}
+        pb={{ base: 28, md: 32, lg: 16 }}
+        px={{ base: 5, md: 24, lg: 32, xl: 72 }}
+        mb={-8}
+      >
         <Stack>
           <section id='description'>
             <PageSubheading mb={8} textAlign='center'>

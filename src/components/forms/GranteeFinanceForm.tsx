@@ -56,11 +56,10 @@ export const GranteeFinanceForm: FC = () => {
   const receivesFiat = paymentPreference === 'Fiat';
   const preferETH = receivesCrypto && tokenPreference === 'ETH';
   const preferDAI = receivesCrypto && tokenPreference === 'DAI';
-  const preference = preferETH ? 'ETH' : preferDAI ? 'DAI' : 'Fiat';
 
   const onSubmit = (data: GranteeFinanceFormData) => {
     api.granteeFinance
-      .submit(data, preference)
+      .submit(data)
       .then(res => {
         if (res.ok) {
           reset();
@@ -249,6 +248,47 @@ export const GranteeFinanceForm: FC = () => {
 
                       <Radio id='team' size='lg' name='tokenPreference' value='DAI'>
                         <PageText fontSize='input'>Receive DAI</PageText>
+                      </Radio>
+                    </Stack>
+                  </RadioGroup>
+                </FormControl>
+              )}
+            />
+
+            <Controller
+              name='l2Payment'
+              control={control}
+              rules={{ required: receivesCrypto }}
+              defaultValue='No'
+              render={({ field: { onChange, value } }) => (
+                <FormControl id='l2Payment-control' isRequired={receivesCrypto} mb={8}>
+                  <FormLabel htmlFor='l2Payment' mb={1}>
+                    <PageText display='inline' fontSize='input'>
+                      Layer 2 Payment
+                    </PageText>
+                  </FormLabel>
+
+                  <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                    Select &lsquo;Yes&rsquo; if you would like your payment to be processed on a
+                    Layer 2 network, versus the Ethereum Mainnet. The ESP team will be in touch to
+                    confirm which Layer 2 network.
+                  </PageText>
+
+                  <RadioGroup
+                    id='l2Payment'
+                    onChange={onChange}
+                    value={value}
+                    fontSize='input'
+                    colorScheme='white'
+                    mt={3}
+                  >
+                    <Stack direction='row'>
+                      <Radio id='ETH' size='lg' name='l2Payment' value='Yes' mr={8}>
+                        <PageText fontSize='input'>Yes</PageText>
+                      </Radio>
+
+                      <Radio id='team' size='lg' name='l2Payment' value='No'>
+                        <PageText fontSize='input'>No</PageText>
                       </Radio>
                     </Stack>
                   </RadioGroup>
@@ -678,7 +718,7 @@ export const GranteeFinanceForm: FC = () => {
                 color='brand.paragraph'
                 fontSize='input'
                 mt={3}
-                {...register('granteeSecurityID', { required: true, maxLength: 255 })}
+                {...register('granteeSecurityID', { required: true, maxLength: 18 })}
               />
 
               {errors?.granteeSecurityID?.type === 'required' && (
@@ -691,7 +731,7 @@ export const GranteeFinanceForm: FC = () => {
               {errors?.granteeSecurityID?.type === 'maxLength' && (
                 <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
-                    Grantee Security ID cannot exceed 255 characters.
+                    Grantee Security ID cannot exceed 18 characters.
                   </PageText>
                 </Box>
               )}
@@ -706,7 +746,7 @@ export const GranteeFinanceForm: FC = () => {
                 <MotionBox
                   backgroundColor='brand.button.shadow'
                   h='56px'
-                  w='310px'
+                  w='190px'
                   position='absolute'
                   animate={shadowBoxControl}
                   opacity={!isValid ? 0 : 1}
@@ -714,7 +754,7 @@ export const GranteeFinanceForm: FC = () => {
 
                 <MotionButton
                   backgroundColor='brand.accent'
-                  w='310px'
+                  w='190px'
                   py={7}
                   borderRadius={0}
                   type='submit'
@@ -725,7 +765,7 @@ export const GranteeFinanceForm: FC = () => {
                   onMouseLeave={() => setButtonHovered(false)}
                   pointerEvents={isValid ? 'auto' : 'none'}
                 >
-                  <ImportantText color='white'>Submit Application</ImportantText>
+                  <ImportantText color='white'>Submit</ImportantText>
 
                   <Flex pl={5}>
                     <Image

@@ -149,13 +149,14 @@ export const ABOUT_TABS_MAP: TabsMap = {
 // nav
 export const NAV_LINKS: NavLink[] = [
   { href: HOME_URL, text: 'Home' },
-  { href: APPLICANTS_URL, text: 'For Applicants' },
+  { href: APPLICANTS_URL, text: 'How to Apply' },
   { href: ABOUT_URL, text: 'About ESP' },
   { href: ESP_BLOG_URL, text: 'Blog' }
 ];
 
 // external links
 export const ETHRESEARCH_URL = 'https://ethresear.ch/';
+export const DEVCON_URL = 'https://devcon.org/';
 
 // api
 export const DOWNLOAD_APPLICATION_URL = '/projectGrantsApplication.docx';
