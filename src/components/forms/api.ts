@@ -10,7 +10,7 @@ import { OfficeHoursFormData, ProjectGrantsFormData, SmallGrantsFormData } from 
 import {
   API_ACADEMIC_GRANTS,
   API_DEVCON_GRANTS,
-  API_GRANTEE_FINANCE_URLS,
+  API_GRANTEE_FINANCE,
   API_OFFICE_HOURS,
   API_PROJECT_GRANTS,
   API_SMALL_GRANTS_EVENT,
@@ -85,7 +85,7 @@ export const api = {
     }
   },
   granteeFinance: {
-    submit: (data: GranteeFinanceFormData, preference: string) => {
+    submit: (data: GranteeFinanceFormData) => {
       const granteeFinanceRequestOptions: RequestInit = {
         ...methodOptions,
         method: 'PUT',
@@ -95,7 +95,7 @@ export const api = {
         })
       };
 
-      return fetch(API_GRANTEE_FINANCE_URLS[preference], granteeFinanceRequestOptions);
+      return fetch(API_GRANTEE_FINANCE, granteeFinanceRequestOptions);
     }
   },
   academicGrants: {
