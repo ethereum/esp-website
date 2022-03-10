@@ -3,11 +3,16 @@ import jsforce from 'jsforce';
 import { NextApiRequest, NextApiResponse } from 'next';
 import formidable, { File } from 'formidable';
 
+import { MAX_PROPOSAL_FILE_SIZE } from '../../constants';
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const form = formidable({});
+  const form = formidable({
+    maxFileSize: MAX_PROPOSAL_FILE_SIZE
+  });
 
   form.parse(req, (err, fields, files) => {
     if (err) {
+      console.error(err);
       res.status(400).json({ status: 'fail' });
       return;
     }
