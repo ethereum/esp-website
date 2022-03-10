@@ -1,8 +1,5 @@
 import {
   Box,
-  BoxProps,
-  Button,
-  ButtonProps,
   Center,
   Fade,
   Flex,
@@ -18,18 +15,14 @@ import {
 import { Select } from 'chakra-react-select';
 import { FC, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import { DropdownIndicator, ImportantText, PageText } from '../UI';
+import { DropdownIndicator, PageText } from '../UI';
+import { SubmitButton } from '../SubmitButton';
 
 import { api } from './api';
-import { useShadowAnimation } from '../../hooks';
 
 import { chakraStyles } from './selectStyles';
-
-import planeVectorSVG from '../../../public/images/plane-vector.svg';
 
 import {
   COMMUNITY_EVENT,
@@ -47,14 +40,12 @@ import {
   SmallGrantsFormData
 } from '../../types';
 
-const MotionBox = motion<BoxProps>(Box);
-const MotionButton = motion<ButtonProps>(Button);
-
 export const SmallGrantsForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
   const [individualOrTeam, setIndividualOrTeam] = useState<IndividualOrTeam>('Individual');
   const [repeatApplicant, setRepeatApplicant] = useState<RepeatApplicant>('No');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   // `unknown` comes from react-select required typings (https://stackoverflow.com/a/54370057)
   const [projectCategory, setProjectCategory] = useState<ProjectCategory | unknown>({
     value: '',
@@ -69,7 +60,6 @@ export const SmallGrantsForm: FC = () => {
   } = useForm<SmallGrantsFormData>({
     mode: 'onBlur'
   });
-  const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
 
   const isAProject =
     (projectCategory as ProjectCategory).value !== COMMUNITY_EVENT &&
@@ -78,9 +68,13 @@ export const SmallGrantsForm: FC = () => {
   const isAnEvent = (projectCategory as ProjectCategory).value === COMMUNITY_EVENT;
 
   const onSubmit = (data: SmallGrantsFormData) => {
+    setIsSubmitting(true);
+
     api.smallGrants
       .submit(data, isAProject)
       .then(res => {
+        setIsSubmitting(false);
+
         if (res.ok) {
           reset();
           router.push(SMALL_GRANTS_THANK_YOU_PAGE_URL);
@@ -1765,38 +1759,13 @@ export const SmallGrantsForm: FC = () => {
         </Stack>
 
         <Center>
-          <Box id='submit-application' position='relative'>
-            <MotionBox
-              backgroundColor='brand.button.shadow'
-              h='56px'
-              w='310px'
-              position='absolute'
-              animate={shadowBoxControl}
-              opacity={!isValid ? 0 : 1}
-            />
-
-            <MotionButton
-              backgroundColor='brand.accent'
-              w='310px'
-              py={7}
-              borderRadius={0}
-              type='submit'
-              isDisabled={!isValid}
-              _hover={{ bg: 'brand.hover' }}
-              whileHover={{ x: -1.5, y: -1.5 }}
-              onMouseEnter={() => setButtonHovered(true)}
-              onMouseLeave={() => setButtonHovered(false)}
-              pointerEvents={!isValid ? 'none' : 'auto'}
-            >
-              <ImportantText as='h3' color='white'>
-                Submit Application
-              </ImportantText>
-
-              <Flex pl={5}>
-                <Image src={planeVectorSVG} alt='paper plane vector' height='29px' width='32px' />
-              </Flex>
-            </MotionButton>
-          </Box>
+          <SubmitButton
+            isValid={isValid}
+            isSubmitting={isSubmitting}
+            height='56px'
+            width='310px'
+            text='Submit Application'
+          />
         </Center>
       </form>
     </Stack>

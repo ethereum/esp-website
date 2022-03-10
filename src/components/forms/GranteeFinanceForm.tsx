@@ -1,11 +1,7 @@
 import {
   Box,
-  BoxProps,
-  Button,
-  ButtonProps,
   Center,
   Fade,
-  Flex,
   FormControl,
   FormLabel,
   Input,
@@ -17,29 +13,23 @@ import {
 } from '@chakra-ui/react';
 import { FC, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import { ImportantText, PageText } from '../UI';
+import { PageText } from '../UI';
+import { SubmitButton } from '../SubmitButton';
 
 import { api } from './api';
-import { useShadowAnimation } from '../../hooks';
-
-import planeVectorSVG from '../../../public/images/plane-vector.svg';
 
 import { GRANTEE_FINANCE_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
 import { GranteeFinanceFormData, TokenPreference, PaymentPreference } from '../../types';
-
-const MotionBox = motion<BoxProps>(Box);
-const MotionButton = motion<ButtonProps>(Button);
 
 export const GranteeFinanceForm: FC = () => {
   const [paymentPreference, setPaymentPreference] = useState<PaymentPreference>('');
   const [tokenPreference, setTokenPreference] = useState<TokenPreference>('ETH');
   const router = useRouter();
   const toast = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const {
     handleSubmit,
     register,
@@ -49,7 +39,6 @@ export const GranteeFinanceForm: FC = () => {
   } = useForm<GranteeFinanceFormData>({
     mode: 'onBlur'
   });
-  const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
 
   const hasPaymentPreferenceSet = paymentPreference !== '';
   const receivesCrypto = paymentPreference === 'ETH/DAI';
@@ -59,9 +48,13 @@ export const GranteeFinanceForm: FC = () => {
   const preference = preferETH ? 'ETH' : preferDAI ? 'DAI' : 'Fiat';
 
   const onSubmit = (data: GranteeFinanceFormData) => {
+    setIsSubmitting(true);
+
     api.granteeFinance
       .submit(data, preference)
       .then(res => {
+        setIsSubmitting(false);
+
         if (res.ok) {
           reset();
           router.push(GRANTEE_FINANCE_THANK_YOU_PAGE_URL);
@@ -743,41 +736,13 @@ export const GranteeFinanceForm: FC = () => {
         <Box display={hasPaymentPreferenceSet ? 'block' : 'none'}>
           <Fade in={hasPaymentPreferenceSet} delay={0.25}>
             <Center>
-              <Box id='submit-application' position='relative'>
-                <MotionBox
-                  backgroundColor='brand.button.shadow'
-                  h='56px'
-                  w='190px'
-                  position='absolute'
-                  animate={shadowBoxControl}
-                  opacity={!isValid ? 0 : 1}
-                />
-
-                <MotionButton
-                  backgroundColor='brand.accent'
-                  w='190px'
-                  py={7}
-                  borderRadius={0}
-                  type='submit'
-                  isDisabled={!isValid}
-                  _hover={{ bg: 'brand.hover' }}
-                  whileHover={{ x: -1.5, y: -1.5 }}
-                  onMouseEnter={() => setButtonHovered(true)}
-                  onMouseLeave={() => setButtonHovered(false)}
-                  pointerEvents={isValid ? 'auto' : 'none'}
-                >
-                  <ImportantText color='white'>Submit</ImportantText>
-
-                  <Flex pl={5}>
-                    <Image
-                      src={planeVectorSVG}
-                      alt='paper plane vector'
-                      height='29px'
-                      width='32px'
-                    />
-                  </Flex>
-                </MotionButton>
-              </Box>
+              <SubmitButton
+                isValid={isValid}
+                isSubmitting={isSubmitting}
+                height='56px'
+                width='190px'
+                text='Submit'
+              />
             </Center>
           </Fade>
         </Box>

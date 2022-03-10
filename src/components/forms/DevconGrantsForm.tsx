@@ -1,8 +1,5 @@
 import {
   Box,
-  BoxProps,
-  Button,
-  ButtonProps,
   Center,
   Fade,
   Flex,
@@ -16,18 +13,14 @@ import {
 import { Select } from 'chakra-react-select';
 import { FC, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import { DropdownIndicator, ImportantText, PageText } from '../UI';
+import { DropdownIndicator, PageText } from '../UI';
+import { SubmitButton } from '../SubmitButton';
 
 import { api } from './api';
-import { useShadowAnimation } from '../../hooks';
 
 import { chakraStyles } from './selectStyles';
-
-import planeVectorSVG from '../../../public/images/plane-vector.svg';
 
 import {
   EVENT_FORMAT_OPTIONS,
@@ -38,12 +31,10 @@ import { DEVCON_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants
 
 import { DevconGrantsFormData, EventFormat } from '../../types';
 
-const MotionBox = motion<BoxProps>(Box);
-const MotionButton = motion<ButtonProps>(Button);
-
 export const DevconGrantsForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [eventFormat, setEventFormat] = useState<EventFormat | unknown>({
     value: '',
@@ -64,12 +55,15 @@ export const DevconGrantsForm: FC = () => {
   } = useForm<DevconGrantsFormData>({
     mode: 'onBlur'
   });
-  const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
 
   const onSubmit = (data: DevconGrantsFormData) => {
+    setIsSubmitting(true);
+
     api.devconGrants
       .submit(data)
       .then(res => {
+        setIsSubmitting(false);
+
         if (res.ok) {
           reset();
           router.push(DEVCON_GRANTS_THANK_YOU_PAGE_URL);
@@ -977,38 +971,13 @@ export const DevconGrantsForm: FC = () => {
         />
 
         <Center>
-          <Box id='submit-application' position='relative'>
-            <MotionBox
-              backgroundColor='brand.button.shadow'
-              h='56px'
-              w='310px'
-              position='absolute'
-              animate={shadowBoxControl}
-              opacity={!isValid ? 0 : 1}
-            />
-
-            <MotionButton
-              backgroundColor='brand.accent'
-              w='310px'
-              py={7}
-              borderRadius={0}
-              type='submit'
-              isDisabled={!isValid}
-              _hover={{ bg: 'brand.hover' }}
-              whileHover={{ x: -1.5, y: -1.5 }}
-              onMouseEnter={() => setButtonHovered(true)}
-              onMouseLeave={() => setButtonHovered(false)}
-              pointerEvents={!isValid ? 'none' : 'auto'}
-            >
-              <ImportantText as='h3' color='white'>
-                Submit Application
-              </ImportantText>
-
-              <Flex pl={5}>
-                <Image src={planeVectorSVG} alt='paper plane vector' height='29px' width='32px' />
-              </Flex>
-            </MotionButton>
-          </Box>
+          <SubmitButton
+            isValid={isValid}
+            isSubmitting={isSubmitting}
+            height='56px'
+            width='310px'
+            text='Submit Application'
+          />
         </Center>
       </form>
     </Stack>
