@@ -17,10 +17,6 @@ export interface TabsMap {
   [name: string]: number;
 }
 
-export interface GranteeFinanceAPIMap {
-  [preference: string]: string;
-}
-
 export type ProposalFile = {
   name: string;
   type: string;
@@ -107,7 +103,7 @@ export type GranteeFinanceFormData = {
 
   // ETH/DAI
   tokenPreference: TokenPreference;
-  l2Payment: L2PaymentPreference;
+  l2Payment: L2PaymentPreference; // SF API: Layer2_Payment__c
 
   // ETH
   ethAddress: string; // SF API: ETH_Address__c
