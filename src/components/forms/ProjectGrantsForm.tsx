@@ -17,7 +17,7 @@ import {
   useToast
 } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
-import { FC, MouseEvent, useState, useCallback } from 'react';
+import { FC, MouseEvent, useState, useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Controller, useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
@@ -47,8 +47,11 @@ import {
   TOAST_OPTIONS
 } from '../../constants';
 
-import { ProjectGrantsFormData, ReferralSource } from '../../types';
+import { Form, ProjectGrantsFormData, ReferralSource } from '../../types';
 import { RemoveIcon } from '../UI/icons';
+import { ButtonCaptcha } from '..';
+
+interface ProjectGrantsForm extends ProjectGrantsFormData, Form {}
 
 const MotionBox = motion<BoxProps>(Box);
 const MotionButton = motion<ButtonProps>(Button);
@@ -69,11 +72,26 @@ export const ProjectGrantsForm: FC = () => {
     control,
     setValue,
     formState: { errors, isValid },
-    reset
-  } = useForm<ProjectGrantsFormData>({
+    reset,
+    getValues
+  } = useForm<ProjectGrantsForm>({
     mode: 'onBlur'
   });
   const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
+
+  useEffect(() => {
+    register('captchaToken', { required: true });
+  });
+
+  const onVerifyCaptcha = (token: string) => {
+    setValue('captchaToken', token, { shouldValidate: true });
+  };
+
+  const onExpireCaptcha = () => {
+    // when token expires, reset the captcha field
+    const { captchaToken, ...values } = getValues();
+    reset({ ...values });
+  };
 
   const onDrop = useCallback(
     files => {
@@ -93,7 +111,7 @@ export const ProjectGrantsForm: FC = () => {
   );
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
-  const onSubmit = (data: ProjectGrantsFormData) => {
+  const onSubmit = ({ captchaToken, ...data }: ProjectGrantsForm) => {
     api.projectGrants
       .submit(data)
       .then(res => {
@@ -926,6 +944,10 @@ export const ProjectGrantsForm: FC = () => {
             </FormControl>
           )}
         />
+
+        <Center mb={12}>
+          <ButtonCaptcha onVerify={onVerifyCaptcha} onExpire={onExpireCaptcha} />
+        </Center>
 
         <Center>
           <Box id='submit-application' position='relative'>

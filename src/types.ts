@@ -17,6 +17,10 @@ export interface TabsMap {
   [name: string]: number;
 }
 
+export interface Form {
+  captchaToken: string;
+}
+
 export type NewsletterFormData = {
   email: string;
 };
