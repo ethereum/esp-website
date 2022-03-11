@@ -40,7 +40,6 @@ import { AcademicGrantsFormData, ApplyingAs, GrantsReferralSource } from '../../
 export const AcademicGrantsForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [POCisAuthorisedSignatory, setPOCisAuthorisedSignatory] = useState('Yes');
   const [applyingAs, setApplyingAs] = useState<ApplyingAs | unknown>({
@@ -56,20 +55,16 @@ export const AcademicGrantsForm: FC = () => {
     register,
     trigger,
     control,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isSubmitting },
     reset
   } = useForm<AcademicGrantsFormData>({
     mode: 'onBlur'
   });
 
-  const onSubmit = (data: AcademicGrantsFormData) => {
-    setIsSubmitting(true);
-
-    api.academicGrants
+  const onSubmit = async (data: AcademicGrantsFormData) => {
+    return api.academicGrants
       .submit(data)
       .then(res => {
-        setIsSubmitting(false);
-
         if (res.ok) {
           reset();
           router.push(ACADEMIC_GRANTS_THANK_YOU_PAGE_URL);

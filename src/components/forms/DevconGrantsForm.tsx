@@ -34,7 +34,6 @@ import { DevconGrantsFormData, EventFormat } from '../../types';
 export const DevconGrantsForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [eventFormat, setEventFormat] = useState<EventFormat | unknown>({
     value: '',
@@ -50,20 +49,16 @@ export const DevconGrantsForm: FC = () => {
     handleSubmit,
     register,
     control,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isSubmitting },
     reset
   } = useForm<DevconGrantsFormData>({
     mode: 'onBlur'
   });
 
-  const onSubmit = (data: DevconGrantsFormData) => {
-    setIsSubmitting(true);
-
-    api.devconGrants
+  const onSubmit = async (data: DevconGrantsFormData) => {
+    return api.devconGrants
       .submit(data)
       .then(res => {
-        setIsSubmitting(false);
-
         if (res.ok) {
           reset();
           router.push(DEVCON_GRANTS_THANK_YOU_PAGE_URL);

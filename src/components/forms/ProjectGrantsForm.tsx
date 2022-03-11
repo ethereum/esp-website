@@ -49,7 +49,6 @@ export const ProjectGrantsForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
   const [selectedFile, setSelectedFile] = useState<null | File>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [referralSource, setReferralSource] = useState<ReferralSource | unknown>({
     value: '',
@@ -61,7 +60,7 @@ export const ProjectGrantsForm: FC = () => {
     trigger,
     control,
     setValue,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isSubmitting },
     reset
   } = useForm<ProjectGrantsFormData>({
     mode: 'onBlur'
@@ -104,14 +103,10 @@ export const ProjectGrantsForm: FC = () => {
   );
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
-  const onSubmit = (data: ProjectGrantsFormData) => {
-    setIsSubmitting(true);
-
-    api.projectGrants
+  const onSubmit = async (data: ProjectGrantsFormData) => {
+    return api.projectGrants
       .submit(data)
       .then(res => {
-        setIsSubmitting(false);
-
         if (res.ok) {
           reset();
           router.push(PROJECT_GRANTS_THANK_YOU_PAGE_URL);

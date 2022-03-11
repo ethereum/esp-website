@@ -29,12 +29,11 @@ export const GranteeFinanceForm: FC = () => {
   const [tokenPreference, setTokenPreference] = useState<TokenPreference>('ETH');
   const router = useRouter();
   const toast = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const {
     handleSubmit,
     register,
     control,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isSubmitting },
     reset
   } = useForm<GranteeFinanceFormData>({
     mode: 'onBlur'
@@ -47,14 +46,10 @@ export const GranteeFinanceForm: FC = () => {
   const preferDAI = receivesCrypto && tokenPreference === 'DAI';
   const preference = preferETH ? 'ETH' : preferDAI ? 'DAI' : 'Fiat';
 
-  const onSubmit = (data: GranteeFinanceFormData) => {
-    setIsSubmitting(true);
-
-    api.granteeFinance
+  const onSubmit = async (data: GranteeFinanceFormData) => {
+    return api.granteeFinance
       .submit(data, preference)
       .then(res => {
-        setIsSubmitting(false);
-
         if (res.ok) {
           reset();
           router.push(GRANTEE_FINANCE_THANK_YOU_PAGE_URL);

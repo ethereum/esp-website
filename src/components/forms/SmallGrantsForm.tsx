@@ -45,7 +45,6 @@ export const SmallGrantsForm: FC = () => {
   const toast = useToast();
   const [individualOrTeam, setIndividualOrTeam] = useState<IndividualOrTeam>('Individual');
   const [repeatApplicant, setRepeatApplicant] = useState<RepeatApplicant>('No');
-  const [isSubmitting, setIsSubmitting] = useState(false);
   // `unknown` comes from react-select required typings (https://stackoverflow.com/a/54370057)
   const [projectCategory, setProjectCategory] = useState<ProjectCategory | unknown>({
     value: '',
@@ -55,7 +54,7 @@ export const SmallGrantsForm: FC = () => {
     handleSubmit,
     register,
     control,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isSubmitting },
     reset
   } = useForm<SmallGrantsFormData>({
     mode: 'onBlur'
@@ -67,14 +66,10 @@ export const SmallGrantsForm: FC = () => {
 
   const isAnEvent = (projectCategory as ProjectCategory).value === COMMUNITY_EVENT;
 
-  const onSubmit = (data: SmallGrantsFormData) => {
-    setIsSubmitting(true);
-
-    api.smallGrants
+  const onSubmit = async (data: SmallGrantsFormData) => {
+    return api.smallGrants
       .submit(data, isAProject)
       .then(res => {
-        setIsSubmitting(false);
-
         if (res.ok) {
           reset();
           router.push(SMALL_GRANTS_THANK_YOU_PAGE_URL);

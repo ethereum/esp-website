@@ -39,7 +39,6 @@ import { IndividualOrTeam, OfficeHoursFormData, ReasonForMeeting } from '../../t
 export const OfficeHoursForm: FC = () => {
   const [individualOrTeam, setIndividualOrTeam] = useState<IndividualOrTeam>('Individual');
   const [reasonForMeeting, setReasonForMeeting] = useState<ReasonForMeeting>(['']);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const toast = useToast();
   const {
@@ -47,20 +46,16 @@ export const OfficeHoursForm: FC = () => {
     register,
     trigger,
     control,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isSubmitting },
     reset
   } = useForm<OfficeHoursFormData>({
     mode: 'onBlur'
   });
 
-  const onSubmit = (data: OfficeHoursFormData) => {
-    setIsSubmitting(true);
-
-    api.officeHours
+  const onSubmit = async (data: OfficeHoursFormData) => {
+    return api.officeHours
       .submit(data)
       .then(res => {
-        setIsSubmitting(false);
-
         if (res.ok) {
           reset();
           router.push(OFFICE_HOURS_THANK_YOU_PAGE_URL);
