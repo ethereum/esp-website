@@ -1,7 +1,5 @@
-import { SITE_URL } from './src/constants';
-
 module.exports = {
-  siteUrl: SITE_URL,
+  siteUrl: 'https://esp.ethereum.foundation',
   exclude: [
     '/applicants/grantee-finance/thank-you',
     '/applicants/office-hours/thank-you',
