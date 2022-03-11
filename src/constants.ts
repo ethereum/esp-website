@@ -6,6 +6,7 @@ export const HEAD_TITLE = 'Ethereum Foundation ESP';
 
 // home
 export const HOME_URL = '/';
+export const SITE_URL = 'https://esp.ethereum.foundation';
 
 // about
 export const ABOUT_URL = '/about';
