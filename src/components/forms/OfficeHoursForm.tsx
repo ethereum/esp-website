@@ -1,8 +1,5 @@
 import {
   Box,
-  BoxProps,
-  Button,
-  ButtonProps,
   Center,
   Checkbox,
   CheckboxGroup,
@@ -20,19 +17,14 @@ import {
 import { Select } from 'chakra-react-select';
 import { FC, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import { DropdownIndicator, ImportantText, PageText } from '../UI';
+import { DropdownIndicator, PageText } from '../UI';
+import { SubmitButton } from '../SubmitButton';
 
 import { api } from './api';
-import { useShadowAnimation } from '../../hooks';
 
 import { chakraStyles } from './selectStyles';
-
-import planeVectorSVG from '../../../public/images/plane-vector.svg';
-
 import {
   HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
   OTHER,
@@ -44,9 +36,6 @@ import { OFFICE_HOURS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants'
 
 import { IndividualOrTeam, OfficeHoursFormData, ReasonForMeeting } from '../../types';
 
-const MotionBox = motion<BoxProps>(Box);
-const MotionButton = motion<ButtonProps>(Button);
-
 export const OfficeHoursForm: FC = () => {
   const [individualOrTeam, setIndividualOrTeam] = useState<IndividualOrTeam>('Individual');
   const [reasonForMeeting, setReasonForMeeting] = useState<ReasonForMeeting>(['']);
@@ -57,15 +46,14 @@ export const OfficeHoursForm: FC = () => {
     register,
     trigger,
     control,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isSubmitting },
     reset
   } = useForm<OfficeHoursFormData>({
     mode: 'onBlur'
   });
-  const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
 
-  const onSubmit = (data: OfficeHoursFormData) => {
-    api.officeHours
+  const onSubmit = async (data: OfficeHoursFormData) => {
+    return api.officeHours
       .submit(data)
       .then(res => {
         if (res.ok) {
@@ -593,38 +581,13 @@ export const OfficeHoursForm: FC = () => {
         />
 
         <Center>
-          <Box id='submit-application' position='relative'>
-            <MotionBox
-              backgroundColor='brand.button.shadow'
-              h='56px'
-              w='310px'
-              position='absolute'
-              animate={shadowBoxControl}
-              opacity={!isValid ? 0 : 1}
-            />
-
-            <MotionButton
-              backgroundColor='brand.accent'
-              w='310px'
-              py={7}
-              borderRadius={0}
-              type='submit'
-              isDisabled={!isValid}
-              _hover={{ bg: 'brand.hover' }}
-              whileHover={{ x: -1.5, y: -1.5 }}
-              onMouseEnter={() => setButtonHovered(true)}
-              onMouseLeave={() => setButtonHovered(false)}
-              pointerEvents={!isValid ? 'none' : 'auto'}
-            >
-              <ImportantText as='h3' color='white'>
-                Submit Application
-              </ImportantText>
-
-              <Flex pl={5}>
-                <Image src={planeVectorSVG} alt='paper plane vector' height='29px' width='32px' />
-              </Flex>
-            </MotionButton>
-          </Box>
+          <SubmitButton
+            isValid={isValid}
+            isSubmitting={isSubmitting}
+            height='56px'
+            width='310px'
+            text='Submit Application'
+          />
         </Center>
       </form>
     </Stack>

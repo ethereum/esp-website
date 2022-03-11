@@ -1,8 +1,5 @@
 import {
   Box,
-  BoxProps,
-  Button,
-  ButtonProps,
   Center,
   Fade,
   Flex,
@@ -20,18 +17,16 @@ import { Select } from 'chakra-react-select';
 import { FC, MouseEvent, useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Controller, useForm } from 'react-hook-form';
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import { DropdownIndicator, ImportantText, PageText } from '../UI';
+import { DropdownIndicator, PageText } from '../UI';
+import { SubmitButton } from '../SubmitButton';
 
 import { api } from './api';
-import { useShadowAnimation } from '../../hooks';
 
 import { chakraStyles } from './selectStyles';
 
-import planeVectorSVG from '../../../public/images/plane-vector.svg';
 import uploadSVG from '../../../public/images/upload.svg';
 
 import {
@@ -50,9 +45,6 @@ import {
 import { ProjectGrantsFormData, ReferralSource } from '../../types';
 import { RemoveIcon } from '../UI/icons';
 
-const MotionBox = motion<BoxProps>(Box);
-const MotionButton = motion<ButtonProps>(Button);
-
 export const ProjectGrantsForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
@@ -68,12 +60,11 @@ export const ProjectGrantsForm: FC = () => {
     trigger,
     control,
     setValue,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isSubmitting },
     reset
   } = useForm<ProjectGrantsFormData>({
     mode: 'onBlur'
   });
-  const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
 
   const onDrop = useCallback(
     files => {
@@ -93,8 +84,8 @@ export const ProjectGrantsForm: FC = () => {
   );
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
-  const onSubmit = (data: ProjectGrantsFormData) => {
-    api.projectGrants
+  const onSubmit = async (data: ProjectGrantsFormData) => {
+    return api.projectGrants
       .submit(data)
       .then(res => {
         if (res.ok) {
@@ -928,38 +919,13 @@ export const ProjectGrantsForm: FC = () => {
         />
 
         <Center>
-          <Box id='submit-application' position='relative'>
-            <MotionBox
-              backgroundColor='brand.button.shadow'
-              h='56px'
-              w='310px'
-              position='absolute'
-              animate={shadowBoxControl}
-              opacity={!isValid ? 0 : 1}
-            />
-
-            <MotionButton
-              backgroundColor='brand.accent'
-              w='310px'
-              py={7}
-              borderRadius={0}
-              type='submit'
-              isDisabled={!isValid}
-              _hover={{ bg: 'brand.hover' }}
-              whileHover={{ x: -1.5, y: -1.5 }}
-              onMouseEnter={() => setButtonHovered(true)}
-              onMouseLeave={() => setButtonHovered(false)}
-              pointerEvents={!isValid ? 'none' : 'auto'}
-            >
-              <ImportantText as='h3' color='white'>
-                Submit Application
-              </ImportantText>
-
-              <Flex pl={5}>
-                <Image src={planeVectorSVG} alt='paper plane vector' height='29px' width='32px' />
-              </Flex>
-            </MotionButton>
-          </Box>
+          <SubmitButton
+            isValid={isValid}
+            isSubmitting={isSubmitting}
+            height='56px'
+            width='310px'
+            text='Submit Application'
+          />
         </Center>
       </form>
     </Stack>
