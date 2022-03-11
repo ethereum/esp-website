@@ -21,6 +21,7 @@
     "chakra-react-select": "^3.0.1",
     "chakra-ui-markdown-renderer": "^4.0.0",
     "focus-visible": "^5.2.0",
+    "formidable": "^2.0.1",
     "framer-motion": "^4",
     "google-spreadsheet": "^3.2.0",
     "jsforce": "^1.11.0",
@@ -35,6 +36,7 @@
     "redaxios": "^0.4.1"
   },
   "devDependencies": {
+    "@types/formidable": "^2.0.4",
     "@types/google-spreadsheet": "^3.1.5",
     "@types/jsforce": "^1.9.37",
     "@types/mailchimp__mailchimp_marketing": "^3.0.3",

@@ -42,7 +42,7 @@ import {
   TOAST_OPTIONS
 } from '../../constants';
 
-import { ProjectGrantsFormData, ProposalFile, ReferralSource } from '../../types';
+import { ProjectGrantsFormData, ReferralSource } from '../../types';
 import { RemoveIcon } from '../UI/icons';
 
 export const ProjectGrantsForm: FC = () => {
@@ -72,26 +72,7 @@ export const ProjectGrantsForm: FC = () => {
 
       setSelectedFile(file);
 
-      const reader = new FileReader();
-      // we have to encode the file content as base64 to be able to upload it to SF
-      reader.readAsDataURL(file);
-
-      reader.onabort = () => console.log('File reading was aborted.');
-      reader.onerror = () => console.error('File reading has failed.');
-      reader.onload = () => {
-        const base64 = reader.result as string;
-
-        const uploadedFile: ProposalFile = {
-          name: file.name,
-          type: file.type,
-          size: file.size,
-          // `data:*/*;base64,` needs to be removed to retrieve the base64 encoded string only
-          content: base64.split('base64,')[1] as string,
-          path: file.path
-        };
-
-        setValue('uploadProposal', uploadedFile, { shouldValidate: true });
-      };
+      setValue('uploadProposal', file, { shouldValidate: true });
 
       toast({
         ...TOAST_OPTIONS,
@@ -853,7 +834,6 @@ export const ProjectGrantsForm: FC = () => {
           name='uploadProposal'
           control={control}
           rules={{ validate: file => (file ? file.size < MAX_PROPOSAL_FILE_SIZE : true) }}
-          defaultValue={null}
           render={({ field: { onChange } }) => (
             <FormControl id='upload-proposal' {...getRootProps()}>
               <InputGroup>

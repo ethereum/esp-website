@@ -44,11 +44,10 @@ export const GranteeFinanceForm: FC = () => {
   const receivesFiat = paymentPreference === 'Fiat';
   const preferETH = receivesCrypto && tokenPreference === 'ETH';
   const preferDAI = receivesCrypto && tokenPreference === 'DAI';
-  const preference = preferETH ? 'ETH' : preferDAI ? 'DAI' : 'Fiat';
 
   const onSubmit = async (data: GranteeFinanceFormData) => {
     return api.granteeFinance
-      .submit(data, preference)
+      .submit(data)
       .then(res => {
         if (res.ok) {
           reset();

@@ -10,7 +10,7 @@ import { OfficeHoursFormData, ProjectGrantsFormData, SmallGrantsFormData } from 
 import {
   API_ACADEMIC_GRANTS,
   API_DEVCON_GRANTS,
-  API_GRANTEE_FINANCE_URLS,
+  API_GRANTEE_FINANCE,
   API_OFFICE_HOURS,
   API_PROJECT_GRANTS,
   API_SMALL_GRANTS_EVENT,
@@ -44,19 +44,27 @@ export const api = {
   },
   projectGrants: {
     submit: (data: ProjectGrantsFormData) => {
+      const curatedData: { [key: string]: any } = {
+        ...data,
+        // Company is a required field in SF, we're using the Name as default value if no company provided
+        company: data.company === 'N/A' ? `${data.firstName} ${data.lastName}` : data.company,
+        website: getWebsite(data.website),
+        github: getGitHub(data.github),
+        projectCategory: data.projectCategory.value,
+        country: data.country.value,
+        timezone: data.timezone.value,
+        howDidYouHearAboutESP: data.howDidYouHearAboutESP.value
+      };
+
+      const formData = new FormData();
+
+      for (const name in data) {
+        formData.append(name, curatedData[name]);
+      }
+
       const projectGrantsRequestOptions: RequestInit = {
-        ...methodOptions,
-        body: JSON.stringify({
-          ...data,
-          // Company is a required field in SF, we're using the Name as default value if no company provided
-          company: data.company === 'N/A' ? `${data.firstName} ${data.lastName}` : data.company,
-          website: getWebsite(data.website),
-          github: getGitHub(data.github),
-          projectCategory: data.projectCategory.value,
-          country: data.country.value,
-          timezone: data.timezone.value,
-          howDidYouHearAboutESP: data.howDidYouHearAboutESP.value
-        })
+        method: 'POST',
+        body: formData
       };
 
       return fetch(API_PROJECT_GRANTS, projectGrantsRequestOptions);
@@ -85,7 +93,7 @@ export const api = {
     }
   },
   granteeFinance: {
-    submit: (data: GranteeFinanceFormData, preference: string) => {
+    submit: (data: GranteeFinanceFormData) => {
       const granteeFinanceRequestOptions: RequestInit = {
         ...methodOptions,
         method: 'PUT',
@@ -95,7 +103,7 @@ export const api = {
         })
       };
 
-      return fetch(API_GRANTEE_FINANCE_URLS[preference], granteeFinanceRequestOptions);
+      return fetch(API_GRANTEE_FINANCE, granteeFinanceRequestOptions);
     }
   },
   academicGrants: {
