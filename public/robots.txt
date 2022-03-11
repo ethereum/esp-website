@@ -1,2 +1,5 @@
 User-agent: *
 Disallow: /api/
+
+Sitemap: https://esp.ethereum.foundation/sitemap.xml
+Sitemap: https://esp.ethereum.foundation/sitemap-0.xml
