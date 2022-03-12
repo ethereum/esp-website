@@ -17,7 +17,7 @@ export interface TabsMap {
   [name: string]: number;
 }
 
-export interface Form {
+export interface BasicForm {
   captchaToken: string;
 }
 
