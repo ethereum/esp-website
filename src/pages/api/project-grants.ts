@@ -44,7 +44,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       Company: fieldsSanitized.company,
       Project_Name__c: fieldsSanitized.projectName,
       Website: fieldsSanitized.website,
-      Github_Link__c: fieldsSanitized.github,
+      Github_Link__c: fieldsSanitized.projectRepo,
       Twitter__c: fieldsSanitized.twitter,
       Team_Profile__c: fieldsSanitized.teamProfile,
       Project_Description__c: fieldsSanitized.projectDescription,

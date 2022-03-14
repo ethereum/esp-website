@@ -364,41 +364,35 @@ export const ProjectGrantsForm: FC = () => {
           )}
         </FormControl>
 
-        <FormControl id='github-control' mb={8}>
-          <FormLabel htmlFor='github' mb={1}>
-            <PageText fontSize='input'>Project Repo</PageText>
+        <FormControl id='project-repo-control' mb={8}>
+          <FormLabel htmlFor='projectRepo' mb={1}>
+            <PageText fontSize='input'>Project repo</PageText>
           </FormLabel>
-          <PageText fontSize='input' position='absolute' bottom='15.5px' left={4} zIndex={9}>
-            https://github.com/
-          </PageText>
 
           <PageText as='small' fontSize='helpText' color='brand.helpText'>
             GitHub or other public repository of the project or related work.
           </PageText>
 
           <Input
-            id='github'
+            id='projectRepo'
             type='text'
-            placeholder='yourgithubaccount'
             bg='white'
             borderRadius={0}
             borderColor='brand.border'
             h='56px'
             _placeholder={{ fontSize: 'input' }}
-            position='relative'
             color='brand.paragraph'
             fontSize='input'
-            pl={36}
             mt={3}
-            {...register('github', {
+            {...register('projectRepo', {
               maxLength: 255
             })}
           />
 
-          {errors?.github?.type === 'maxLength' && (
+          {errors?.projectRepo?.type === 'maxLength' && (
             <Box mt={1}>
               <PageText as='small' fontSize='helpText' color='red.500'>
-                GitHub URL cannot exceed 255 characters.
+                Repo name cannot exceed 255 characters.
               </PageText>
             </Box>
           )}
