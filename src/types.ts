@@ -32,7 +32,7 @@ export interface ProjectGrantsFormData extends CaptchaForm {
   company: string; // SF API: Company
   projectName: string; // SF API: Project_Name__c
   website: string; // SF API: Website
-  github: string; // SF API: Github_Link__c
+  projectRepo: string; // SF API: Github_Link__c
   twitter: string; // SF API: Twitter__c
   teamProfile: string; // SF API: Team_Profile__c
   projectDescription: string; // SF API: Project_Description__c

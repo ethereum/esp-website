@@ -3,7 +3,7 @@
   publish = ".next"
 
 [build.environment]
-  NODE_VERSION = "12.22.0"
+  NODE_VERSION = "16.14.0"
 
 [[headers]]
   for = "/*"
