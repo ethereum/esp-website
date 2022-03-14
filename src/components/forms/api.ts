@@ -3,7 +3,7 @@ import {
   DevconGrantsFormData,
   GranteeFinanceFormData
 } from './../../types';
-import { getGitHub, getWebsite } from '../../utils';
+import { getWebsite } from '../../utils';
 
 import { OfficeHoursFormData, ProjectGrantsFormData, SmallGrantsFormData } from '../../types';
 
@@ -49,7 +49,6 @@ export const api = {
         // Company is a required field in SF, we're using the Name as default value if no company provided
         company: data.company === 'N/A' ? `${data.firstName} ${data.lastName}` : data.company,
         website: getWebsite(data.website),
-        github: getGitHub(data.github),
         projectCategory: data.projectCategory.value,
         country: data.country.value,
         timezone: data.timezone.value,
