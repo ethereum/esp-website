@@ -36,9 +36,7 @@ import {
 } from './constants';
 import { ACADEMIC_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
-import { AcademicGrantsFormData, ApplyingAs, BasicForm, GrantsReferralSource } from '../../types';
-
-interface AcademicGrantsFormForm extends AcademicGrantsFormData, BasicForm {}
+import { AcademicGrantsFormData, ApplyingAs, GrantsReferralSource } from '../../types';
 
 export const AcademicGrantsForm: FC = () => {
   const router = useRouter();
@@ -53,7 +51,7 @@ export const AcademicGrantsForm: FC = () => {
     value: '',
     label: ''
   });
-  const methods = useForm<AcademicGrantsFormForm>({
+  const methods = useForm<AcademicGrantsFormData>({
     mode: 'onBlur'
   });
   const {
@@ -65,7 +63,7 @@ export const AcademicGrantsForm: FC = () => {
     reset
   } = methods;
 
-  const onSubmit = async ({ captchaToken, ...data }: AcademicGrantsFormForm) => {
+  const onSubmit = async (data: AcademicGrantsFormData) => {
     return api.academicGrants
       .submit(data)
       .then(res => {

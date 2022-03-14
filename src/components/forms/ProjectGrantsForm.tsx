@@ -43,10 +43,8 @@ import {
   TOAST_OPTIONS
 } from '../../constants';
 
-import { BasicForm, ProjectGrantsFormData, ReferralSource } from '../../types';
+import { ProjectGrantsFormData, ReferralSource } from '../../types';
 import { RemoveIcon } from '../UI/icons';
-
-interface ProjectGrantsForm extends ProjectGrantsFormData, BasicForm {}
 
 export const ProjectGrantsForm: FC = () => {
   const router = useRouter();
@@ -58,7 +56,7 @@ export const ProjectGrantsForm: FC = () => {
     label: ''
   });
 
-  const methods = useForm<ProjectGrantsForm>({
+  const methods = useForm<ProjectGrantsFormData>({
     mode: 'onBlur'
   });
 
@@ -90,7 +88,7 @@ export const ProjectGrantsForm: FC = () => {
   );
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
-  const onSubmit = async ({ captchaToken, ...data }: ProjectGrantsForm) => {
+  const onSubmit = async (data: ProjectGrantsFormData) => {
     return api.projectGrants
       .submit(data)
       .then(res => {

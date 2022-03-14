@@ -17,7 +17,7 @@ export interface TabsMap {
   [name: string]: number;
 }
 
-export interface BasicForm {
+export interface CaptchaForm {
   captchaToken: string;
 }
 
@@ -25,7 +25,7 @@ export type NewsletterFormData = {
   email: string;
 };
 
-export type ProjectGrantsFormData = {
+export interface ProjectGrantsFormData extends CaptchaForm {
   firstName: string; // SF API: FirstName
   lastName: string; // SF API: LastName
   email: string; // SF API: Email
@@ -45,9 +45,9 @@ export type ProjectGrantsFormData = {
   referralSourceIfOther: string; // SF API: Referral_Source_if_Other__c
   referrals: string; // SF API: Referrals__c
   uploadProposal: File;
-};
+}
 
-export type SmallGrantsFormData = {
+export interface SmallGrantsFormData extends CaptchaForm {
   firstName: string; // SF API: FirstName
   lastName: string; // SF API: LastName
   email: string; // SF API: Email
@@ -87,9 +87,9 @@ export type SmallGrantsFormData = {
   eventBudgetBreakdown: string; // SF API: Proposed_Timeline__c
   eventRequestedAmount: string; // SF API: Sponsorship_Monetary_Request__c
   additionalInfo: string; // SF API: Additional_Information__c
-};
+}
 
-export type GranteeFinanceFormData = {
+export interface GranteeFinanceFormData extends CaptchaForm {
   // these fields map to SF's Contract object fields
   paymentPreference: PaymentPreference;
   beneficiaryName: string; // SF API: Beneficiary_Name__c
@@ -114,9 +114,9 @@ export type GranteeFinanceFormData = {
   bankAddress: string; // SF API: Bank_Address__c
   IBAN: string; // SF API: IBAN_Account_Number__c
   SWIFTCode: string; // SF API: SWIFT_Code_BIC__c
-};
+}
 
-export interface OfficeHoursFormData {
+export interface OfficeHoursFormData extends CaptchaForm {
   firstName: string; // SF API: FirstName
   lastName: string; // SF API: LastName
   email: string; // SF API: Email
@@ -132,7 +132,7 @@ export interface OfficeHoursFormData {
   timezone: Timezone; // SF API: Time_Zone__c
 }
 
-export interface AcademicGrantsFormData {
+export interface AcademicGrantsFormData extends CaptchaForm {
   firstName: string; // SF API: FirstName
   lastName: string; // SF API: LastName
   email: string; // SF API: Email
@@ -168,7 +168,7 @@ export interface AcademicGrantsFormData {
   additionalInfo: string; // SF API: Additional_Information__c
 }
 
-export interface DevconGrantsFormData {
+export interface DevconGrantsFormData extends CaptchaForm {
   firstName: string; // SF API: FirstName
   lastName: string; // SF API: LastName
   email: string; // SF API: Email

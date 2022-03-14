@@ -23,16 +23,14 @@ import { api } from './api';
 
 import { GRANTEE_FINANCE_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
-import { GranteeFinanceFormData, TokenPreference, PaymentPreference, BasicForm } from '../../types';
-
-interface GranteeFinanceFormForm extends GranteeFinanceFormData, BasicForm {}
+import { GranteeFinanceFormData, TokenPreference, PaymentPreference } from '../../types';
 
 export const GranteeFinanceForm: FC = () => {
   const [paymentPreference, setPaymentPreference] = useState<PaymentPreference>('');
   const [tokenPreference, setTokenPreference] = useState<TokenPreference>('ETH');
   const router = useRouter();
   const toast = useToast();
-  const methods = useForm<GranteeFinanceFormForm>({
+  const methods = useForm<GranteeFinanceFormData>({
     mode: 'onBlur'
   });
   const {
@@ -49,7 +47,7 @@ export const GranteeFinanceForm: FC = () => {
   const preferETH = receivesCrypto && tokenPreference === 'ETH';
   const preferDAI = receivesCrypto && tokenPreference === 'DAI';
 
-  const onSubmit = async ({ captchaToken, ...data }: GranteeFinanceFormForm) => {
+  const onSubmit = async (data: GranteeFinanceFormData) => {
     return api.granteeFinance
       .submit(data)
       .then(res => {

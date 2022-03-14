@@ -30,9 +30,7 @@ import {
 } from './constants';
 import { DEVCON_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
-import { BasicForm, DevconGrantsFormData, EventFormat } from '../../types';
-
-interface DevconGrantsFormForm extends DevconGrantsFormData, BasicForm {}
+import { DevconGrantsFormData, EventFormat } from '../../types';
 
 export const DevconGrantsForm: FC = () => {
   const router = useRouter();
@@ -48,7 +46,7 @@ export const DevconGrantsForm: FC = () => {
     EVENT_FORMAT_OPTIONS[2].value // hibrid
   ].includes((eventFormat as EventFormat).value);
 
-  const methods = useForm<DevconGrantsFormForm>({
+  const methods = useForm<DevconGrantsFormData>({
     mode: 'onBlur'
   });
   const {
@@ -59,7 +57,7 @@ export const DevconGrantsForm: FC = () => {
     reset
   } = methods;
 
-  const onSubmit = async ({ captchaToken, ...data }: DevconGrantsFormForm) => {
+  const onSubmit = async (data: DevconGrantsFormData) => {
     return api.devconGrants
       .submit(data)
       .then(res => {

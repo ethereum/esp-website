@@ -35,9 +35,7 @@ import {
 } from './constants';
 import { OFFICE_HOURS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
-import { BasicForm, IndividualOrTeam, OfficeHoursFormData, ReasonForMeeting } from '../../types';
-
-interface OfficeHoursForm extends OfficeHoursFormData, BasicForm {}
+import { IndividualOrTeam, OfficeHoursFormData, ReasonForMeeting } from '../../types';
 
 export const OfficeHoursForm: FC = () => {
   const [individualOrTeam, setIndividualOrTeam] = useState<IndividualOrTeam>('Individual');
@@ -45,7 +43,7 @@ export const OfficeHoursForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
 
-  const methods = useForm<OfficeHoursForm>({
+  const methods = useForm<OfficeHoursFormData>({
     mode: 'onBlur'
   });
   const {
@@ -57,7 +55,7 @@ export const OfficeHoursForm: FC = () => {
     reset
   } = methods;
 
-  const onSubmit = async ({ captchaToken, ...data }: OfficeHoursForm) => {
+  const onSubmit = async (data: OfficeHoursFormData) => {
     return api.officeHours
       .submit(data)
       .then(res => {

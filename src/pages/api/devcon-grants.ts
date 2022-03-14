@@ -2,11 +2,12 @@ import jsforce from 'jsforce';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 import addRowToSpreadsheet from '../../utils/addRowToSpreadsheet';
+import { verifyCaptcha } from '../../middlewares';
 
 const googleSpreadsheetId = process.env.GOOGLE_DEVCON_SPREADSHEET_ID;
 const googleSheetName = process.env.GOOGLE_DEVCON_SHEET_NAME;
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { body } = req;
   const {
     firstName: FirstName,
@@ -102,3 +103,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
   });
 }
+
+export default verifyCaptcha(handler);

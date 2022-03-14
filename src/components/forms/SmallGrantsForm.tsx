@@ -35,14 +35,11 @@ import {
 import { SMALL_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
 import {
-  BasicForm,
   IndividualOrTeam,
   ProjectCategory,
   RepeatApplicant,
   SmallGrantsFormData
 } from '../../types';
-
-interface SmallGrantsFormForm extends SmallGrantsFormData, BasicForm {}
 
 export const SmallGrantsForm: FC = () => {
   const router = useRouter();
@@ -55,7 +52,7 @@ export const SmallGrantsForm: FC = () => {
     label: ''
   });
 
-  const methods = useForm<SmallGrantsFormForm>({
+  const methods = useForm<SmallGrantsFormData>({
     mode: 'onBlur'
   });
   const {
@@ -72,7 +69,7 @@ export const SmallGrantsForm: FC = () => {
 
   const isAnEvent = (projectCategory as ProjectCategory).value === COMMUNITY_EVENT;
 
-  const onSubmit = async ({ captchaToken, ...data }: SmallGrantsFormForm) => {
+  const onSubmit = async (data: SmallGrantsFormData) => {
     return api.smallGrants
       .submit(data, isAProject)
       .then(res => {

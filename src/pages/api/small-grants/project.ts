@@ -1,7 +1,9 @@
 import jsforce from 'jsforce';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+import { verifyCaptcha } from '../../../middlewares';
+
+async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { body } = req;
   const {
     firstName: FirstName,
@@ -88,3 +90,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     );
   });
 }
+
+export default verifyCaptcha(handler);
