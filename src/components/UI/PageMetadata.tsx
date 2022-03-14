@@ -16,7 +16,7 @@ export const PageMetadata: FC<Props> = ({ title, description }) => {
       </title>
       <meta name='title' content={`${{ title }} | ${{ HEAD_TITLE }}`} />
       <meta name='description' content={description} />
-      <meta property='og:title' content={title} />
+      <meta property='og:title' content={`${{ title }} | ${{ HEAD_TITLE }}`} />
       <meta property='og:description' content={description} />
       <meta property='og:type' content='website' />
       <meta property='og:url' content='https://esp.ethereum.foundation/' />
