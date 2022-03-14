@@ -37,7 +37,7 @@ const Applicants: NextPage = () => {
     <>
       <PageMetadata
         title='Applicants Overview'
-        description="Information about the Ecosystem Support Program's mission, scope and types of support we offer for potential grant applicants"
+        description="Information about the Ecosystem Support Program's mission, scope and types of support we offer for potential grant applicants."
       />
 
       <Box bg='white' position='relative' py={{ md: 12 }}>

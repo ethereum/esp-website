@@ -39,7 +39,7 @@ const ProjectGrants: NextPage = () => {
     <>
       <PageMetadata
         title='Project Grants'
-        description='Learn more about applying for Project Grants from the Ecosystem Support Program: criteria, how to apply and tips for submitting a great application'
+        description='Learn more about applying for Project Grants from the Ecosystem Support Program: criteria, how to apply and tips for submitting a great application.'
       />
 
       <Box bg='white' position='relative' py={{ md: 12 }}>

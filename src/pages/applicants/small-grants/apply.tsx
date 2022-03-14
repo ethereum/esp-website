@@ -8,7 +8,7 @@ const OfficeHoursApply: NextPage = () => {
     <>
       <PageMetadata
         title='Small Grants Application'
-        description='Submit an application for a Small Grant from the Ecosystem Support Program'
+        description='Submit an application for a Small Grant from the Ecosystem Support Program.'
       />
 
       <Box bg='white' position='relative' py={{ md: 12 }} px={{ md: 24, lg: 32, xl: 72 }}>
