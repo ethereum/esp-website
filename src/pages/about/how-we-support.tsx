@@ -10,7 +10,7 @@ const HowWeSupport: NextPage = () => {
     <>
       <PageMetadata
         title='How We Support'
-        description="We provide grants and other support for open source projects that strengthen Ethereum's foundations, with a particular focus on builder tools, infrastructure, research and public goods"
+        description="We provide grants and other support for open source projects that strengthen Ethereum's foundations, with a particular focus on builder tools, infrastructure, research and public goods."
       />
 
       <Box bg='white' position='relative' px={{ md: 20, lg: 60 }} py={{ md: 12 }}>

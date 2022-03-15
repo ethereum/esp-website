@@ -8,7 +8,7 @@ import { DEVCON_GRANTS_EMAIL_ADDRESS } from '../../constants';
 const DevconGrantsThankYou: NextPage = () => {
   return (
     <>
-      <PageMetadata title='Thank you' description='Thank you for applying to Devcon Grants' />
+      <PageMetadata title='Thank you' description='Thank you for applying to Devcon Grants.' />
       <Head>
         <meta name='robots' content='noindex' />
       </Head>

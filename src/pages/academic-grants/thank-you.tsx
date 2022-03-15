@@ -8,7 +8,7 @@ import { ACADEMIC_GRANTS_EMAIL_ADDRESS } from '../../constants';
 const AcademicGrantsThankYou: NextPage = () => {
   return (
     <>
-      <PageMetadata title='Thank you' description='Thank you for applying to Academic Grants' />
+      <PageMetadata title='Thank you' description='Thank you for applying to Academic Grants.' />
       <Head>
         <meta name='robots' content='noindex' />
       </Head>
