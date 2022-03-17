@@ -160,7 +160,6 @@ export const DEVCON_URL = 'https://devcon.org/';
 
 // api
 export const DOWNLOAD_APPLICATION_URL = '/projectGrantsApplication.docx';
-export const API_NEWSLETTER_SIGNUP_URL = '/api/newsletter-signup';
 
 // grants list
 export const CURRENT_GRANTS_QUARTERS = ['3', '4'];
