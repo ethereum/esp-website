@@ -8,6 +8,7 @@ mailchimp.setConfig({
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { body, method } = req;
+  const { email } = body;
 
   if (method !== 'POST') {
     return res.status(405).end(`Method ${method} Not Allowed`);
@@ -15,7 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     await mailchimp.lists.addListMember(process.env.MAILCHIMP_LIST_ID!, {
-      email_address: body,
+      email_address: email,
       status: 'subscribed',
       merge_fields: {
         NEWSLETTER: 'true'
