@@ -73,6 +73,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       Additional_Information__c: Additional_Information__c.trim(),
       Referral_Source__c: Referral_Source__c.trim(),
       Proactive_Community_Grants_Round__c: 'Road to Devcon Event Grants', // this value is hardwired, depending on the type of grant round
+      Category__c: 'Community event', // this value is hardwired for Devcon Grants
       RecordTypeId: process.env.SF_RECORD_TYPE_SPONSORSHIPS!
     };
 
