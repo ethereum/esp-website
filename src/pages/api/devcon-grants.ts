@@ -68,6 +68,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       Confirmed_Sponsors__c: Confirmed_Sponsors__c.trim(),
       Proposed_Timeline__c: Proposed_Timeline__c.trim(),
       Requested_Amount__c: Requested_Amount__c.trim(),
+      // we're also mapping Requested_Amount__c to Sponsorship_Monetary_Request__c
+      Sponsorship_Monetary_Request__c: Requested_Amount__c.trim(),
       Additional_Information__c: Additional_Information__c.trim(),
       Referral_Source__c: Referral_Source__c.trim(),
       Proactive_Community_Grants_Round__c: 'Road to Devcon Event Grants', // this value is hardwired, depending on the type of grant round
