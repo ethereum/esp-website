@@ -1448,7 +1448,7 @@ export const HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS = [
   { value: 'Ethereum.org', label: 'Ethereum.org' },
   { value: 'ESP Newsletter', label: 'ESP Newsletter' },
   { value: 'Social Media', label: 'Social Media' },
-  { value: 'Other team/projects in ecosystem', label: 'Other team/projects in ecosystem' },
+  { value: 'Other team/project in ecosystem', label: 'Other team/project in ecosystem' },
   { value: 'Other', label: 'Other' }
 ];
 
