@@ -42,7 +42,7 @@ const OfficeHours: NextPage = () => {
     <>
       <PageMetadata
         title='Office Hours'
-        description='Connect with a member of the Ecosystem Support team for support other than funding, including help with a grant application'
+        description='Connect with a member of the Ecosystem Support team for support other than funding, including help with a grant application.'
       />
 
       <Box bg='white' position='relative' py={{ md: 12 }}>

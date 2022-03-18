@@ -1,16 +1,20 @@
 import {
   AcademicGrantsFormData,
   DevconGrantsFormData,
-  GranteeFinanceFormData
+  GranteeFinanceFormData,
+  NewsletterFormData,
+  OfficeHoursFormData,
+  ProjectGrantsFormData,
+  SmallGrantsFormData
 } from './../../types';
-import { getWebsite } from '../../utils';
 
-import { OfficeHoursFormData, ProjectGrantsFormData, SmallGrantsFormData } from '../../types';
+import { getWebsite } from '../../utils';
 
 import {
   API_ACADEMIC_GRANTS,
   API_DEVCON_GRANTS,
   API_GRANTEE_FINANCE,
+  API_NEWSLETTER_SIGNUP_URL,
   API_OFFICE_HOURS,
   API_PROJECT_GRANTS,
   API_SMALL_GRANTS_EVENT,
@@ -143,6 +147,18 @@ export const api = {
       };
 
       return fetch(API_DEVCON_GRANTS, devconGrantsRequestOptions);
+    }
+  },
+  newsletter: {
+    submit: (data: NewsletterFormData) => {
+      const newsletterRequestOptions: RequestInit = {
+        ...methodOptions,
+        body: JSON.stringify({
+          ...data
+        })
+      };
+
+      return fetch(API_NEWSLETTER_SIGNUP_URL, newsletterRequestOptions);
     }
   }
 };

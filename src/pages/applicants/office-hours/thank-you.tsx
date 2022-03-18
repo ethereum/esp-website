@@ -7,7 +7,7 @@ import { PageMetadata, ThankYouBody } from '../../../components/UI';
 const OfficeHoursThankYou: NextPage = () => {
   return (
     <>
-      <PageMetadata title='Thank you' description='Thank you for applying to Office Hours' />
+      <PageMetadata title='Thank you' description='Thank you for applying to Office Hours.' />
       <Head>
         <meta name='robots' content='noindex' />
       </Head>

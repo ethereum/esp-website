@@ -8,7 +8,7 @@ const OfficeHoursApply: NextPage = () => {
     <>
       <PageMetadata
         title='Office Hours Request'
-        description='Submit a request for an Office Hours session with a member of the Ecosystem Support team'
+        description='Submit a request for an Office Hours session with a member of the Ecosystem Support team.'
       />
 
       <Box bg='white' position='relative' py={{ md: 12 }} px={{ md: 24, lg: 32, xl: 72 }}>

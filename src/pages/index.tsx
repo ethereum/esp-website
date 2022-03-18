@@ -18,7 +18,7 @@ const Home: NextPage = () => {
     <>
       <PageMetadata
         title='Home'
-        description='The Ecosystem Support Program provides grants and other support to the builders of the Ethereum ecosystem'
+        description='The Ecosystem Support Program provides grants and other support to the builders of the Ethereum ecosystem.'
       />
 
       <Box mx={{ md: 12 }} bg='white' position='relative'>

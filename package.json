@@ -27,7 +27,7 @@
     "framer-motion": "^4",
     "google-spreadsheet": "^3.2.0",
     "jsforce": "^1.11.0",
-    "next": "12.0.7",
+    "next": "12.1.0",
     "next-sitemap": "^2.5.7",
     "papaparse": "^5.3.1",
     "react": "17.0.2",

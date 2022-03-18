@@ -161,7 +161,6 @@ export const HCAPTCHA_VERIFY_URL = 'https://hcaptcha.com/siteverify';
 
 // api
 export const DOWNLOAD_APPLICATION_URL = '/projectGrantsApplication.docx';
-export const API_NEWSLETTER_SIGNUP_URL = '/api/newsletter-signup';
 
 // grants list
 export const CURRENT_GRANTS_QUARTERS = ['3', '4'];

@@ -1448,7 +1448,7 @@ export const HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS = [
   { value: 'Ethereum.org', label: 'Ethereum.org' },
   { value: 'ESP Newsletter', label: 'ESP Newsletter' },
   { value: 'Social Media', label: 'Social Media' },
-  { value: 'Other team/projects in ecosystem', label: 'Other team/projects in ecosystem' },
+  { value: 'Other team/project in ecosystem', label: 'Other team/project in ecosystem' },
   { value: 'Other', label: 'Other' }
 ];
 
@@ -1488,3 +1488,4 @@ export const API_SMALL_GRANTS_EVENT = '/api/small-grants/event';
 export const API_ACADEMIC_GRANTS = '/api/academic-grants';
 export const API_DEVCON_GRANTS = '/api/devcon-grants';
 export const API_GRANTEE_FINANCE = '/api/grantee-finance';
+export const API_NEWSLETTER_SIGNUP_URL = '/api/newsletter-signup';

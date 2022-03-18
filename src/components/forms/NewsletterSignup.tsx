@@ -17,10 +17,11 @@ import { motion } from 'framer-motion';
 import { ImportantText } from '../UI/headings';
 import { PageText } from '../UI/text';
 
+import { api } from './api';
 import { useShadowAnimation } from '../../hooks';
 import { NewsletterFormData } from '../../types';
 
-import { API_NEWSLETTER_SIGNUP_URL, TOAST_OPTIONS } from '../../constants';
+import { TOAST_OPTIONS } from '../../constants';
 
 const MotionBox = motion<BoxProps>(Box);
 const MotionButton = motion<ButtonProps>(Button);
@@ -44,18 +45,27 @@ export const NewsletterSignup: FC = () => {
         title: 'Email is not valid, please try again.',
         status: 'error'
       });
-    } else {
-      try {
-        const response = await fetch(API_NEWSLETTER_SIGNUP_URL, {
-          method: 'POST',
-          body: data.email
-        });
 
-        if (!response.ok) {
-          const errorText = await response.text();
+      reset();
+      return;
+    }
+
+    return api.newsletter
+      .submit(data)
+      .then(async res => {
+        if (res.ok) {
+          toast({
+            ...TOAST_OPTIONS,
+            title: 'Thank you for sign up!',
+            status: 'success'
+          });
+
+          reset();
+        } else {
+          const errorText = await res.text();
 
           // only display server error details to the user when they are 400 class errors
-          if (response.status < 400 || response.status > 499) {
+          if (res.status < 400 || res.status > 499) {
             throw new Error(errorText);
           }
 
@@ -64,24 +74,21 @@ export const NewsletterSignup: FC = () => {
             title: errorText,
             status: 'error'
           });
-          return;
-        }
 
-        toast({
-          ...TOAST_OPTIONS,
-          title: 'Thank you for sign up',
-          status: 'success'
-        });
-      } catch (error) {
+          reset();
+        }
+      })
+      .catch(err => {
         toast({
           ...TOAST_OPTIONS,
           title: 'Something went wrong. Please try again',
           status: 'error'
         });
-      }
-    }
 
-    reset();
+        console.error('There has been a problem with your operation: ', err.message);
+
+        reset();
+      });
   };
 
   return (

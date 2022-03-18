@@ -9,7 +9,7 @@ const AcademicGrantsApply: NextPage = () => {
     <>
       <PageMetadata
         title='Academic Grants Application'
-        description='Submit an application for an Academic Grant from the Ecosystem Support Program'
+        description='Submit an application for an Academic Grant from the Ecosystem Support Program.'
       />
 
       <Box
