@@ -779,6 +779,11 @@
   resolved "https://registry.yarnpkg.com/@fontsource/libre-franklin/-/libre-franklin-4.5.0.tgz#6193cd6e5ef64b3d5a3c02420d79ea81a276c73e"
   integrity sha512-pFJyUqbnQhuyyOa84GoAqZacRp4CTaZehBWD5/g8TaJXzmV3uKJpDczfYafE+UnMKKW60RLNx0NCucrDMnn3Zg==
 
+"@hcaptcha/react-hcaptcha@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@hcaptcha/react-hcaptcha/-/react-hcaptcha-1.1.1.tgz#b7f9fef825fe52595e38b61f125dc8d87d2a5440"
+  integrity sha512-fydc0ob5NOEYiJPmohOmPqoBjLPhUokvMZBf1hOhrVcpMyZJbc1N/HPV4kysSayC34IQsaBRtEpswQFbHwe54w==
+
 "@humanwhocodes/config-array@^0.9.2":
   version "0.9.2"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.9.2.tgz#68be55c737023009dfc5fe245d51181bb6476914"

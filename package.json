@@ -17,6 +17,7 @@
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@fontsource/libre-franklin": "^4.5.0",
+    "@hcaptcha/react-hcaptcha": "^1.1.1",
     "@mailchimp/mailchimp_marketing": "^3.0.74",
     "@socialgouv/matomo-next": "^1.2.2",
     "chakra-react-select": "^3.0.1",
