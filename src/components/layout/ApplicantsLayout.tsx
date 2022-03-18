@@ -1,8 +1,8 @@
-import { Flex, Stack, Tab, TabList, Tabs } from '@chakra-ui/react';
+import { Stack } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { FC, useState } from 'react';
 
-import { Description, ImportantText } from '../UI';
+import { Description, NavigationTabs } from '../UI';
 
 import applicantsHero from '../../../public/images/applicants-hero.png';
 
@@ -85,48 +85,7 @@ export const ApplicantsLayout: FC = ({ children }) => {
         </section>
       </Stack>
 
-      <Flex
-        mb={{ base: 10, md: 0 }}
-        mx={{ md: 12 }}
-        px={{ md: 4 }}
-        backgroundColor='white'
-        overflowX='auto'
-        borderBottom='1px solid'
-        borderBottomColor='brand.divider.100'
-      >
-        <Tabs
-          id='tabbed-navigation'
-          align='center'
-          index={tabIndex}
-          onChange={index => handleChange(index)}
-          variant='unstyled'
-          isLazy
-          display={!isGranteeFinance ? 'block' : 'none'}
-        >
-          <TabList whiteSpace='nowrap' h='64px' pl={6} role='tablist'>
-            {APPLICANTS_TABS.map(tabElement => (
-              <Tab
-                key={tabElement}
-                px={0}
-                mx={6}
-                pb={0}
-                borderBottom='10px solid'
-                borderBottomColor='transparent'
-                _selected={{
-                  borderBottom: '10px solid',
-                  borderBottomColor: 'brand.accent'
-                }}
-                role='tab'
-                aria-controls=''
-              >
-                <ImportantText as='h2' color='brand.ready.text'>
-                  {tabElement}
-                </ImportantText>
-              </Tab>
-            ))}
-          </TabList>
-        </Tabs>
-      </Flex>
+      <NavigationTabs tabIndex={tabIndex} handleChange={handleChange} tabsList={APPLICANTS_TABS} />
 
       <Stack px={{ base: !isGranteeFinance ? 5 : 0, md: 12 }}>
         <Stack mb={8}>{children}</Stack>
