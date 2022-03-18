@@ -57,7 +57,7 @@ export const SubmitButton: FC<Props> = ({
         pointerEvents={!isValid ? 'none' : 'auto'}
       >
         <ImportantText as='h3' color='white'>
-          {isSubmitting ? 'Submitting...' : text}
+          {isSubmitting ? 'Submitting' : text}
         </ImportantText>
 
         <Flex pl={5}>
