@@ -45,6 +45,38 @@ The following list describes the main elements of the project structure:
 
 ## Salesforce Integration
 
+For the custom integration with the Salesforce API, we rely on the [JSforce](https://jsforce.github.io/) library. Some operations are not documented and were the result of lots of googling, SO and [Github issues scanning](https://github.com/jsforce/jsforce/issues).
+
+### Connected App
+
+To enable a custom API integration with Salesforce, you need to create a [Connected App](https://help.salesforce.com/s/articleView?id=sf.connected_app_overview.htm&type=5). You'll need an account with admin permissions. Go to `Setup > App Manager > New connected app` to create a new one.
+
+#### Configuration
+
+Check that your Connected App is configured with the following parameters
+
+- **Callback URL:** https://salesforce.com
+- **Selected OAuth Scopes:**
+  - Manage user data via APIs (api)
+  - Manage user data via Web browsers (web)
+  - Perform requests at any time (refresh_token, offline_access)
+- **Connected App policies:**
+  - IP Relaxation: Relax IP Restrictions
+  - Permitted Users: All users may self-authorized
+  - Refresh Token Policy: Refresh token is valid until revoked
+
+### Common issues
+
+Some common issues regarding Salesforce data types
+
+- `Picklist`: if you get the error
+
+```
+Error 'bad value for restricted picklist field' appears when a record is created
+```
+
+when creating a new record, try disabling the _'Restrict picklist to the values defined in the value set'_ option for the corresponding field.
+
 ## Grantees List data source
 
 The data published in the [Latest Grantees](https://esp.ethereum.foundation/about/who-we-support#latest-grantees) list is being pulled from a Google Spreadsheet mantained by the ESP Team. This document uses Markdown syntax as it's also being used as source for other pages.
