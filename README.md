@@ -23,6 +23,28 @@ The main stack used in the project includes:
 - [Framer Motion](https://www.framer.com/motion/) to animate buttons.
 - [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) for linting and code formatting.
 
+## Local development
+
+The project is bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app), with a custom scaffolding.
+
+### Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+
 ## Project Structure
 
 The following list describes the main elements of the project structure:
@@ -87,28 +109,6 @@ when creating a new record, try disabling the _'Restrict picklist to the values 
 The data published in the [Latest Grantees](https://esp.ethereum.foundation/about/who-we-support#latest-grantees) list is being pulled from a Google Spreadsheet mantained by the ESP Team. This document uses Markdown syntax as it's also being used as source for other pages.
 
 To accomplish that, we [publish the content of the document as CSV](https://support.google.com/a/users/answer/9308870?hl=en) and then render it in the `LatestGranteesList` component. This includes some parsing work, from CSV to JSON and then rendering the Markdown. This process happens server-side only, [on build time](https://nextjs.org/docs/basic-features/data-fetching/get-static-props), so the [resulting page](https://esp.ethereum.foundation/about/who-we-support) is completely static.
-
-## Local development
-
-The project is bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app), with a custom scaffolding.
-
-### Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
 ## Tutorials
 
