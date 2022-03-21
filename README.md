@@ -43,11 +43,19 @@ The following list describes the main elements of the project structure:
   - `global.css`: global stylesheet.
   - `types.ts`: contains the custom defined TypeScript types and interfaces.
 
+## Salesforce Integration
+
+## Grantees List data source
+
+The data published in the [Latest Grantees](https://esp.ethereum.foundation/about/who-we-support#latest-grantees) list is being pulled from a Google Spreadsheet mantained by the ESP Team. This document uses Markdown syntax as it's also being used as source for other pages.
+
+To accomplish that, we [publish the content of the document as CSV](https://support.google.com/a/users/answer/9308870?hl=en) and then render it in the `LatestGranteesList` component. This includes some parsing work, from CSV to JSON and then rendering the Markdown. This process happens server-side only, [on build time](https://nextjs.org/docs/basic-features/data-fetching/get-static-props), so the [resulting page](https://esp.ethereum.foundation/about/who-we-support) is completely static.
+
 ## Local development
 
 The project is bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app), with a custom scaffolding.
 
-## Getting Started
+### Getting Started
 
 First, run the development server:
 
@@ -65,17 +73,19 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learning NextJS
+## Tutorials
+
+### Learning NextJS
 
 To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## Adding ChakraUI to a NextJS project
+### Adding ChakraUI to a NextJS project
 
 [This](https://chakra-ui.com/guides/getting-started/nextjs-guide) is a very clear and step-by-step guide on it.
 
-## Learning ChakraUI
+### Learning ChakraUI
 
 We recommend checking the [official docs](https://chakra-ui.com/docs/getting-started).
