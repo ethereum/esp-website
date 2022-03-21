@@ -14,17 +14,38 @@ This repository holds the codebase to our website, [esp.ethereum.foundation](htt
 
 ## Stack
 
-This is the main stack used in the project:
+The main stack used in the project includes:
 
-- [Next.js](https://nextjs.org/)
-- TypeScript
-- [ChakraUI](https://chakra-ui.com/) as component library
-- [react-hook-form](https://react-hook-form.com/) to validate forms
-- [Framer Motion](https://www.framer.com/motion/) to animate buttons
+- [Next.js](https://nextjs.org/).
+- TypeScript.
+- [ChakraUI](https://chakra-ui.com/) as component library.
+- [react-hook-form](https://react-hook-form.com/) to validate forms.
+- [Framer Motion](https://www.framer.com/motion/) to animate buttons.
+- [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) for linting and code formatting.
+
+## Project Structure
+
+The following list describes the main elements of the project structure:
+
+- `public`: contains static assets like fonts and images.
+- `src`: contains the source code.
+  - `components`: React components.
+    - components with state are directly located inside `/components`.
+    - `forms`: components used in forms.
+    - `layout`: components used to contain and apply different layouts to different pages.
+    - `UI`: stateless (functional) components.
+  - `hooks`: custom hooks.
+  - `middlewares`: custom middlewares (required for captcha input validation).
+  - `pages`: includes components that renders to pages and [NextJS API Routes](https://nextjs.org/docs/api-routes/introduction).
+  - `theme`: contains the [Chakra UI custom theme](https://chakra-ui.com/docs/styled-system/theming/customize-theme), organized in `foundations` and `components` for better scaling.
+  - `utils`
+  - `constants.ts`: this is the _global_ constants file (we have another one for specific _form constants_), containg URLs and lists of elements we use across the site.
+  - `global.css`: global stylesheet.
+  - `types.ts`: contains the custom defined TypeScript types and interfaces.
 
 ## Local development
 
-This is a v project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+The project is bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app), with a custom scaffolding.
 
 ## Getting Started
 
