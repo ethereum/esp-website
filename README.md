@@ -17,7 +17,7 @@ This repository holds the codebase to our website, [esp.ethereum.foundation](htt
 The main stack used in the project includes:
 
 - [Next.js](https://nextjs.org/).
-- TypeScript.
+- [TypeScript](https://www.typescriptlang.org/).
 - [ChakraUI](https://chakra-ui.com/) as component library.
 - [react-hook-form](https://react-hook-form.com/) to validate forms.
 - [Framer Motion](https://www.framer.com/motion/) to animate buttons.
@@ -32,6 +32,7 @@ The following list describes the main elements of the project structure:
   - `components`: React components.
     - components with state are directly located inside `/components`.
     - `forms`: components used in forms.
+      - `api.ts`: this file contains the api fetching logic details used when submiting the forms data.
     - `layout`: components used to contain and apply different layouts to different pages.
     - `UI`: stateless (functional) components.
   - `hooks`: custom hooks.
@@ -76,6 +77,8 @@ Error 'bad value for restricted picklist field' appears when a record is created
 ```
 
 when creating a new record, try disabling the _'Restrict picklist to the values defined in the value set'_ option for the corresponding field.
+
+- `Checkbox`: besides how you're handling this input on the UI (e.g.: a radio button), Salesforce expects the value to be a boolean (`true`, `false`), so remember to convert the string before submitting the data.
 
 ## Grantees List data source
 
