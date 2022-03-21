@@ -12,9 +12,19 @@ The Ethereum Ecosystem Support Program exists to provide both financial and non-
 
 This repository holds the codebase to our website, [esp.ethereum.foundation](https://esp.ethereum.foundation)
 
+## Stack
+
+This is the main stack used in the project:
+
+- [Next.js](https://nextjs.org/)
+- TypeScript
+- [ChakraUI](https://chakra-ui.com/) as component library
+- [react-hook-form](https://react-hook-form.com/) to validate forms
+- [Framer Motion](https://www.framer.com/motion/) to animate buttons
+
 ## Local development
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a v project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
