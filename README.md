@@ -48,6 +48,8 @@ The following list describes the main elements of the project structure:
 
 For the custom integration with the Salesforce API, we rely on the [JSforce](https://jsforce.github.io/) library. Some operations are not documented and were the result of lots of googling, SO and [Github issues scanning](https://github.com/jsforce/jsforce/issues).
 
+The Salesfoce API field names (listed on `types.ts`) are defined in Salesforce for each corresponding object (Lead, Contract, etc).
+
 ### Connected App
 
 To enable a custom API integration with Salesforce, you need to create a [Connected App](https://help.salesforce.com/s/articleView?id=sf.connected_app_overview.htm&type=5). You'll need an account with admin permissions. Go to `Setup > App Manager > New connected app` to create a new one.
