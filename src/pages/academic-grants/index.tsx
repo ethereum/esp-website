@@ -17,7 +17,8 @@ import {
   ACADEMIC_GRANTS_EMAIL_ADDRESS,
   HOME_URL,
   SIDEBAR_ACADEMIC_GRANTS_LINKS,
-  ACADEMIC_GRANTS_APPLY_URL
+  ACADEMIC_GRANTS_APPLY_URL,
+  WHO_WE_SUPPORT_URL
 } from '../../constants';
 
 const AcademicGrants: NextPage = () => {
@@ -312,6 +313,97 @@ const AcademicGrants: NextPage = () => {
                       <PageText>
                         Project submissions will be evaluated on a rolling basis and contact will be
                         made with each applicant to inform about the evaluation outcome.
+                      </PageText>
+                    </FAQItem>
+
+                    <FAQItem question='What costs are eligible for the Academic Grants Round?'>
+                      <PageText>
+                        Costs related to academic research are eligible for the Academic Grants
+                        Round. We encourage you to itemize each cost on the budget section of the
+                        submission form.
+                      </PageText>
+                    </FAQItem>
+
+                    <FAQItem question='Is there any co-financing needed?'>
+                      <PageText>
+                        No, the Ethereum Foundation does not require co-financing. Grants will be
+                        100% covered by the Ethereum Foundation.
+                      </PageText>
+                    </FAQItem>
+
+                    <FAQItem question='What is the average grant size?'>
+                      <PageText>
+                        As projects may vary largely in duration, scope and outputs, grant amounts
+                        may also differ to a large extent. We suggest that you present a budget that
+                        covers your academic research and related outputs, itemizing each of the
+                        costs.
+                      </PageText>
+                    </FAQItem>
+
+                    <FAQItem question='Is the grant awarded in FIAT or in Crypto?'>
+                      <PageText>
+                        You may choose if you prefer receiving the grant in FIAT, ETH or DAI, but
+                        for the purposes of the project proposal and submission form, we kindly ask
+                        you to indicate the requested amount in FIAT.
+                      </PageText>
+                    </FAQItem>
+
+                    <FAQItem question='Is there guidance on how long projects should last?'>
+                      <PageText>
+                        Projects may vary in duration. We are estimating projects to last between
+                        6-12 months, but it is an indicative timeframe. We allow for some
+                        flexibility as projects may vary largely in domain, scope, outputs and
+                        researchers involved.
+                      </PageText>
+                    </FAQItem>
+
+                    <FAQItem question='Are only applications that address the wishlist considered for funding?'>
+                      <PageText>
+                        Ethereum-related research will be supported through the Academic Grants
+                        Rounds. Your proposal does not need to be addressing one of the wishlist
+                        areas. The wishlist should be seen as guidance on the most pressing issues
+                        we have identified but is not exhaustive.
+                      </PageText>
+                    </FAQItem>
+
+                    <FAQItem question='Can I submit more than one application or should I combine all the project ideas into one sole application?'>
+                      <PageText>
+                        You should submit one application per project idea/ wishlist area. Multiple
+                        applications per institution are accepted for the Academic Grants Round.
+                      </PageText>
+                    </FAQItem>
+
+                    <FAQItem question='Has this type of grant been awarded before by the Ethereum Foundation?'>
+                      <PageText>
+                        It is the first time the Ethereum Foundation is launching a specific grants
+                        round to support Ethereum-related academic research. However, we do have an
+                        ongoing support Program - the Ecosystem Support Program - which supports
+                        Ethereum related projects in various scopes.
+                      </PageText>
+                    </FAQItem>
+
+                    <FAQItem question='Can you provide an estimate on the number of project submissions and selected projects in previous Academic Grants rounds?'>
+                      <PageText>
+                        This is the first round of grants administered by the Ethereum Foundation
+                        that specifically supports academic research. However, the Ethereum
+                        Foundation has an ongoing support program - the Ecosystem Support Program -
+                        and you’ll be able to find some of the granted projects{' '}
+                        <Link
+                          fontWeight={700}
+                          color='brand.orange.100'
+                          href={WHO_WE_SUPPORT_URL}
+                          _hover={{ textDecoration: 'none' }}
+                        >
+                          here
+                        </Link>
+                        .
+                      </PageText>
+                    </FAQItem>
+
+                    <FAQItem question='Are Master students eligible to apply for the Academic Grants Round or is PhD level required?'>
+                      <PageText>
+                        Master&apos;s Students are eligible to apply for the grants round, should
+                        they have the academic support of supervisors. PhD level is not required.
                       </PageText>
                     </FAQItem>
 
