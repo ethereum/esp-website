@@ -158,7 +158,7 @@ const AcademicGrants: NextPage = () => {
                   <PageSection mb={6}>Deadline</PageSection>
 
                   <PageText mb={6}>
-                    The deadline for proposals is <strong>Friday, April 22, 2022</strong>. We will
+                    The deadline has been extended. Submit by <strong>May 8, 2022</strong>. We will
                     follow-up regarding your submission by email.
                   </PageText>
                 </section>
