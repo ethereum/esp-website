@@ -21,6 +21,14 @@ import {
   WHO_WE_SUPPORT_URL
 } from '../../constants';
 
+// Academic Grants Round is currently closed, so we return a 404 page instead
+export function getStaticProps() {
+  return {
+    // returns the default 404 page with a status code of 404
+    notFound: true
+  };
+}
+
 const AcademicGrants: NextPage = () => {
   // `threshold` option allows us to control the % of visibility required before triggering the Intersection Observer
   // https://react-intersection-observer.vercel.app/?path=/story/introduction--page#options

@@ -5,6 +5,14 @@ import Head from 'next/head';
 import { PageMetadata, PageSubheading, PageText } from '../../components/UI';
 import { ACADEMIC_GRANTS_EMAIL_ADDRESS } from '../../constants';
 
+// Academic Grants Round is currently closed, so we return a 404 page instead
+export function getStaticProps() {
+  return {
+    // returns the default 404 page with a status code of 404
+    notFound: true
+  };
+}
+
 const AcademicGrantsThankYou: NextPage = () => {
   return (
     <>
