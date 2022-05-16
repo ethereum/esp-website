@@ -226,3 +226,15 @@
   from = "/local-grants/colombia/"
   to = "/applicants/"
   force = true
+[[redirects]]
+  from = "/academic-grants/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/academic-grants/"
+  to = "/academic-grants/apply/"
+  force = true
+[[redirects]]
+  from = "/academic-grants/"
+  to = "/academic-grants/thank-you/"
+  force = true
