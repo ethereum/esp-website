@@ -112,9 +112,9 @@ export const GranteeFinanceForm: FC = () => {
                     onChange(value);
                     setPaymentPreference(value);
                     reset({
-                      paymentPreference: getValues('paymentPreference'),
-                      beneficiaryName: getValues('beneficiaryName'),
-                      contactEmail: getValues('contactEmail'),
+                      // keep paymentPreference, beneficiaryName, contactEmail, notes and granteeSecurityID
+                      // reset the other fields
+                      ...getValues(),
                       beneficiaryAddress: '',
                       fiatCurrencyCode: '',
                       bankName: '',
@@ -248,11 +248,9 @@ export const GranteeFinanceForm: FC = () => {
                         onChange(value);
                         setTokenPreference(value);
                         reset({
-                          paymentPreference: getValues('paymentPreference'),
-                          beneficiaryName: getValues('beneficiaryName'),
-                          contactEmail: getValues('contactEmail'),
-                          tokenPreference: getValues('tokenPreference'),
-                          l2Payment: getValues('l2Payment'),
+                          // keep paymentPreference, beneficiaryName, contactEmail, notes and granteeSecurityID
+                          // reset the other fields
+                          ...getValues(),
                           ethAddress: '',
                           daiAddress: ''
                         });
