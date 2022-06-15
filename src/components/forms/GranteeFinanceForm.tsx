@@ -38,7 +38,8 @@ export const GranteeFinanceForm: FC = () => {
     register,
     control,
     formState: { errors, isValid, isSubmitting },
-    reset
+    reset,
+    getValues
   } = methods;
 
   const hasPaymentPreferenceSet = paymentPreference !== '';
@@ -110,6 +111,21 @@ export const GranteeFinanceForm: FC = () => {
                   onChange={(value: PaymentPreference) => {
                     onChange(value);
                     setPaymentPreference(value);
+                    reset({
+                      paymentPreference: getValues('paymentPreference'),
+                      beneficiaryName: getValues('beneficiaryName'),
+                      contactEmail: getValues('contactEmail'),
+                      beneficiaryAddress: '',
+                      fiatCurrencyCode: '',
+                      bankName: '',
+                      bankAddress: '',
+                      IBAN: '',
+                      SWIFTCode: '',
+                      tokenPreference: 'ETH',
+                      l2Payment: 'No',
+                      ethAddress: '',
+                      daiAddress: ''
+                    });
                   }}
                   value={value}
                   fontSize='input'
@@ -231,6 +247,15 @@ export const GranteeFinanceForm: FC = () => {
                       onChange={(value: TokenPreference) => {
                         onChange(value);
                         setTokenPreference(value);
+                        reset({
+                          paymentPreference: getValues('paymentPreference'),
+                          beneficiaryName: getValues('beneficiaryName'),
+                          contactEmail: getValues('contactEmail'),
+                          tokenPreference: getValues('tokenPreference'),
+                          l2Payment: getValues('l2Payment'),
+                          ethAddress: '',
+                          daiAddress: ''
+                        });
                       }}
                       value={value}
                       fontSize='input'
