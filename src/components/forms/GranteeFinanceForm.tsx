@@ -38,7 +38,8 @@ export const GranteeFinanceForm: FC = () => {
     register,
     control,
     formState: { errors, isValid, isSubmitting },
-    reset
+    reset,
+    getValues
   } = methods;
 
   const hasPaymentPreferenceSet = paymentPreference !== '';
@@ -110,6 +111,21 @@ export const GranteeFinanceForm: FC = () => {
                   onChange={(value: PaymentPreference) => {
                     onChange(value);
                     setPaymentPreference(value);
+                    reset({
+                      // keep paymentPreference, beneficiaryName, contactEmail, notes and granteeSecurityID
+                      // reset the other fields
+                      ...getValues(),
+                      beneficiaryAddress: '',
+                      fiatCurrencyCode: '',
+                      bankName: '',
+                      bankAddress: '',
+                      IBAN: '',
+                      SWIFTCode: '',
+                      tokenPreference: 'ETH',
+                      l2Payment: 'No',
+                      ethAddress: '',
+                      daiAddress: ''
+                    });
                   }}
                   value={value}
                   fontSize='input'
@@ -231,6 +247,13 @@ export const GranteeFinanceForm: FC = () => {
                       onChange={(value: TokenPreference) => {
                         onChange(value);
                         setTokenPreference(value);
+                        reset({
+                          // keep paymentPreference, beneficiaryName, contactEmail, notes and granteeSecurityID
+                          // reset the other fields
+                          ...getValues(),
+                          ethAddress: '',
+                          daiAddress: ''
+                        });
                       }}
                       value={value}
                       fontSize='input'
