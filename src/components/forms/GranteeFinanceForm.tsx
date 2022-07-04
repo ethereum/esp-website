@@ -5,6 +5,7 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Link,
   Radio,
   RadioGroup,
   Stack,
@@ -21,7 +22,11 @@ import { Captcha } from '.';
 
 import { api } from './api';
 
-import { GRANTEE_FINANCE_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
+import {
+  ESP_EMAIL_ADDRESS,
+  GRANTEE_FINANCE_THANK_YOU_PAGE_URL,
+  TOAST_OPTIONS
+} from '../../constants';
 
 import { GranteeFinanceFormData, TokenPreference, PaymentPreference } from '../../types';
 
@@ -605,7 +610,21 @@ export const GranteeFinanceForm: FC = () => {
                 </FormLabel>
 
                 <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Provide an International Bank Account Number (IBAN).
+                  Provide an International Bank Account Number (IBAN). If your bank does not provide
+                  an IBAN, provide your Bank Account Number. Confirm with your bank ahead of time
+                  that they can receive International Wire Transfers from a Swiss bank. If your bank
+                  is unable to receive international wire transfers, you will need to choose a
+                  different payment method. Contact{' '}
+                  <Link
+                    fontWeight={700}
+                    color='brand.orange.100'
+                    href={`mailto:${ESP_EMAIL_ADDRESS}`}
+                    isExternal
+                    _hover={{ textDecoration: 'none' }}
+                  >
+                    {ESP_EMAIL_ADDRESS}
+                  </Link>{' '}
+                  if you have more questions.
                 </PageText>
 
                 <Input
