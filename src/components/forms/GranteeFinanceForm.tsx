@@ -564,20 +564,20 @@ export const GranteeFinanceForm: FC = () => {
                 </FormLabel>
 
                 <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Branch address of receiving bank.
+                  Branch address of receiving bank. Please provide the full Billing Address of the
+                  bank. Ex: 390 Madison Ave, New York, NY 10017 United States.
                 </PageText>
 
-                <Input
+                <Textarea
                   id='bankAddress'
-                  type='text'
                   bg='white'
                   borderRadius={0}
                   borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
                   color='brand.paragraph'
                   fontSize='input'
+                  h='72px'
                   mt={3}
+                  resize='none'
                   {...register('bankAddress', { required: receivesFiat, maxLength: 255 })}
                 />
 
