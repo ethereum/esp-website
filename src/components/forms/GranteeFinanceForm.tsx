@@ -479,47 +479,6 @@ export const GranteeFinanceForm: FC = () => {
                 )}
               </FormControl>
 
-              <FormControl id='fiat-currency-code-control' isRequired={receivesFiat} mb={8}>
-                <FormLabel htmlFor='fiatCurrencyCode' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Fiat currency code
-                  </PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Code of the currency you&apos;d like to receive funds, e.g. EUR, USD, JPY.
-                </PageText>
-
-                <Input
-                  id='fiatCurrencyCode'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  mt={3}
-                  {...register('fiatCurrencyCode', { required: receivesFiat, maxLength: 3 })}
-                />
-
-                {errors?.fiatCurrencyCode?.type === 'required' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Currency code is required.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.fiatCurrencyCode?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Currency code cannot exceed 3 characters.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
-
               <FormControl id='bank-name-control' isRequired={receivesFiat} mb={8}>
                 <FormLabel htmlFor='bankName' mb={1}>
                   <PageText display='inline' fontSize='input'>
@@ -657,7 +616,7 @@ export const GranteeFinanceForm: FC = () => {
                 )}
               </FormControl>
 
-              <FormControl id='swift-code-control' mb={8}>
+              <FormControl id='swift-code-control' isRequired={receivesFiat} mb={8}>
                 <FormLabel htmlFor='SWIFTCode' mb={1}>
                   <PageText display='inline' fontSize='input'>
                     Bank SWIFT code
@@ -681,13 +640,61 @@ export const GranteeFinanceForm: FC = () => {
                   color='brand.paragraph'
                   fontSize='input'
                   mt={3}
-                  {...register('SWIFTCode', { maxLength: 100 })}
+                  {...register('SWIFTCode', { required: receivesFiat, maxLength: 100 })}
                 />
 
+                {errors?.SWIFTCode?.type === 'required' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      SWIFT code is required.
+                    </PageText>
+                  </Box>
+                )}
                 {errors?.SWIFTCode?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
                       SWIFT code cannot exceed 100 characters.
+                    </PageText>
+                  </Box>
+                )}
+              </FormControl>
+
+              <FormControl id='fiat-currency-code-control' isRequired={receivesFiat} mb={8}>
+                <FormLabel htmlFor='fiatCurrencyCode' mb={1}>
+                  <PageText display='inline' fontSize='input'>
+                    Fiat currency code
+                  </PageText>
+                </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  Code of the currency you&apos;d like to receive funds, e.g. EUR, USD, JPY.
+                </PageText>
+
+                <Input
+                  id='fiatCurrencyCode'
+                  type='text'
+                  bg='white'
+                  borderRadius={0}
+                  borderColor='brand.border'
+                  h='56px'
+                  _placeholder={{ fontSize: 'input' }}
+                  color='brand.paragraph'
+                  fontSize='input'
+                  mt={3}
+                  {...register('fiatCurrencyCode', { required: receivesFiat, maxLength: 3 })}
+                />
+
+                {errors?.fiatCurrencyCode?.type === 'required' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Currency code is required.
+                    </PageText>
+                  </Box>
+                )}
+                {errors?.fiatCurrencyCode?.type === 'maxLength' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Currency code cannot exceed 3 characters.
                     </PageText>
                   </Box>
                 )}
