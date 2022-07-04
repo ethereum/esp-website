@@ -441,19 +441,20 @@ export const GranteeFinanceForm: FC = () => {
 
                 <PageText as='small' fontSize='helpText' color='brand.helpText'>
                   Personal or business address of the individual or entity receiving the funds.
+                  Please provide the full Billing Address. Ex: 100 Smith Street, Chicago, IL 60607
+                  United States.
                 </PageText>
 
-                <Input
+                <Textarea
                   id='beneficiaryAddress'
-                  type='text'
                   bg='white'
                   borderRadius={0}
                   borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
                   color='brand.paragraph'
                   fontSize='input'
+                  h='72px'
                   mt={3}
+                  resize='none'
                   {...register('beneficiaryAddress', { required: receivesFiat, maxLength: 255 })}
                 />
 
