@@ -487,7 +487,7 @@ export const GranteeFinanceForm: FC = () => {
                 </FormLabel>
 
                 <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Code of the currency you&apos;d like to receive funds, e.g. EUR, USD, RUB.
+                  Code of the currency you&apos;d like to receive funds, e.g. EUR, USD, JPY.
                 </PageText>
 
                 <Input
