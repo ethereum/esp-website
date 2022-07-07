@@ -1,8 +1,6 @@
 import {
   Box,
   Center,
-  Checkbox,
-  CheckboxGroup,
   Fade,
   Flex,
   FormControl,
@@ -28,18 +26,18 @@ import { api } from './api';
 import { chakraStyles } from './selectStyles';
 import {
   HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
-  OTHER,
   PROJECT_CATEGORY_OPTIONS,
   TEAM,
-  TIMEZONE_OPTIONS
+  PROJECT_FEEDBACK,
+  TIMEZONE_OPTIONS,
 } from './constants';
 import { OFFICE_HOURS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
-import { IndividualOrTeam, OfficeHoursFormData, ReasonForMeeting } from '../../types';
+import { IndividualOrTeam, OfficeHoursFormData, OfficeHoursRequest } from '../../types';
 
 export const OfficeHoursForm: FC = () => {
   const [individualOrTeam, setIndividualOrTeam] = useState<IndividualOrTeam>('Individual');
-  const [reasonForMeeting, setReasonForMeeting] = useState<ReasonForMeeting>(['']);
+  const [officeHoursRequest, setOfficeHoursRequest] = useState<OfficeHoursRequest>('Advice');
   const router = useRouter();
   const toast = useToast();
 
@@ -73,10 +71,6 @@ export const OfficeHoursForm: FC = () => {
         }
       })
       .catch(err => console.error('There has been a problem with your operation: ', err.message));
-  };
-
-  const handleCheckbox = (value: ReasonForMeeting) => {
-    setReasonForMeeting(value);
   };
 
   return (
@@ -284,146 +278,234 @@ export const OfficeHoursForm: FC = () => {
             </Fade>
           </Box>
 
-          <FormControl id='project-name-control' mb={8}>
-            <FormLabel htmlFor='projectName' mb={1}>
-              <PageText fontSize='input'>Project name</PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              If you&apos;re not asking for help on a project, or simply don&apos;t have a title
-              yet, you can write &quot;N/A&quot;.
-            </PageText>
-
-            <Input
-              id='projectName'
-              type='text'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-              {...register('projectName', {
-                maxLength: 255
-              })}
-            />
-
-            {errors?.projectName?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Project name cannot exceed 255 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='project-description-control' mb={8}>
-            <FormLabel htmlFor='projectDescription' mb={1}>
-              <PageText fontSize='input'>What is your project about?</PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              If you have a project you&apos;d like to discuss, give us a short summary of what you
-              are hoping to accomplish. Just a paragraph will do.
-            </PageText>
-
-            <Textarea
-              id='projectDescription'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('projectDescription', {
-                maxLength: 32768
-              })}
-            />
-
-            {errors?.projectDescription?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Project description cannot exceed 32768 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='additional-info-control' mb={8}>
-            <FormLabel htmlFor='additionalInfo' mb={1}>
-              <PageText fontSize='input'>Where can we learn more?</PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Please share links to any relevant Github repos, social media, websites, published
-              work or professional profiles.
-            </PageText>
-
-            <Textarea
-              id='additionalInfo'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('additionalInfo', {
-                maxLength: 32768
-              })}
-            />
-
-            {errors?.additionalInfo?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Additional info cannot exceed 32768 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
 
           <Controller
-            name='projectCategory'
+            name='officeHoursRequest'
             control={control}
-            rules={{ required: true, validate: selected => selected.value !== '' }}
-            defaultValue={{ value: '', label: '' }}
-            render={({ field: { onChange }, fieldState: { error } }) => (
-              <FormControl id='project-category-control' isRequired mb={8}>
-                <FormLabel htmlFor='projectCategory' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Project category
+            rules={{ required: true }}
+            defaultValue='Advice'
+            render={({ field: { onChange, value } }) => (
+              <FormControl id='office-hours-request-control' isRequired mb={value === PROJECT_FEEDBACK ? 4 : 8}>
+                <FormLabel htmlFor='officeHoursRequest' mb={2}>
+                  <PageText display='inline' fontSize='input' mb={1}>
+                    Office Hours Request
                   </PageText>
                 </FormLabel>
 
                 <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Choose what category your project best fits into.
+                  Choose from the options
                 </PageText>
 
-                <Box mt={3}>
-                  <Select
-                    id='projectCategory'
-                    options={PROJECT_CATEGORY_OPTIONS}
-                    onChange={onChange}
-                    components={{ DropdownIndicator }}
-                    placeholder='Select'
-                    closeMenuOnSelect={true}
-                    selectedOptionColor='brand.option'
-                    chakraStyles={chakraStyles}
-                  />
-                </Box>
+                <RadioGroup
+                  id='officeHoursRequest'
+                  onChange={(value: OfficeHoursRequest) => {
+                    onChange(value);
+                    setOfficeHoursRequest(value);
+                  }}
+                  value={value}
+                  fontSize='input'
+                  colorScheme='white'
+                  mt={3}
+                >
+                  <Stack direction='row'>
+                    <Radio
+                      id='advice'
+                      size='lg'
+                      name='officeHoursRequest'
+                      value='Advice'
+                      defaultChecked
+                      mr={8}
+                    >
+                      <PageText fontSize='input'>Advice</PageText>
+                    </Radio>
 
-                {error && (
+                    <Radio id='project-feedback' size='lg' name='officeHoursRequest' value='Project feedback'>
+                      <PageText fontSize='input'>Project feedback</PageText>
+                    </Radio>
+                  </Stack>
+                </RadioGroup>
+              </FormControl>
+            )}
+          />
+
+          <Box display={officeHoursRequest === PROJECT_FEEDBACK ? 'block' : 'none'}>
+            <Fade in={officeHoursRequest === PROJECT_FEEDBACK} delay={0.25}>
+              <FormControl
+                id='project-name-control'
+                isRequired={officeHoursRequest === PROJECT_FEEDBACK}
+                mb={8}
+              >
+                <FormLabel htmlFor='projectName' mb={1}>
+                  <PageText display='inline' fontSize='input'>Project name</PageText>
+                </FormLabel>
+
+                <Input
+                  id='projectName'
+                  type='text'
+                  bg='white'
+                  borderRadius={0}
+                  borderColor='brand.border'
+                  h='56px'
+                  color='brand.paragraph'
+                  fontSize='input'
+                  mt={3}
+                  {...register('projectName', {
+                    required: officeHoursRequest === PROJECT_FEEDBACK,
+                    maxLength: 255
+                  })}
+                />
+
+                {errors?.projectName?.type === 'required' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Project category is required.
+                      Project name is required.
+                    </PageText>
+                  </Box>
+                )}
+                {errors?.projectName?.type === 'maxLength' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Project name cannot exceed 255 characters.
                     </PageText>
                   </Box>
                 )}
               </FormControl>
-            )}
-          />
+
+              <FormControl
+                id='project-description-control'
+                isRequired={officeHoursRequest === PROJECT_FEEDBACK}
+                mb={8}
+              >
+                <FormLabel htmlFor='projectDescription' mb={1}>
+                  <PageText display='inline' fontSize='input'>What is your project about?</PageText>
+                </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  Give us a short summary of what you are hoping to accomplish. Just a paragraph will do.
+                </PageText>
+
+                <Textarea
+                  id='projectDescription'
+                  bg='white'
+                  borderRadius={0}
+                  borderColor='brand.border'
+                  color='brand.paragraph'
+                  fontSize='input'
+                  h='150px'
+                  mt={3}
+                  {...register('projectDescription', {
+                    required: officeHoursRequest === PROJECT_FEEDBACK,
+                    maxLength: 32768
+                  })}
+                />
+
+                {errors?.projectDescription?.type === 'required' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Project description is required..
+                    </PageText>
+                  </Box>
+                )}
+                {errors?.projectDescription?.type === 'maxLength' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Project description cannot exceed 32768 characters.
+                    </PageText>
+                  </Box>
+                )}
+              </FormControl>
+
+              <FormControl
+                id='additional-info-control'
+                isRequired={officeHoursRequest === PROJECT_FEEDBACK}
+                mb={8}
+              >
+                <FormLabel htmlFor='additionalInfo' mb={1}>
+                  <PageText display='inline' fontSize='input'>Where can we learn more?</PageText>
+                </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  Please share links to any relevant Github repos, social media, websites, published
+                  work or professional profiles.
+                </PageText>
+
+                <Textarea
+                  id='additionalInfo'
+                  bg='white'
+                  borderRadius={0}
+                  borderColor='brand.border'
+                  color='brand.paragraph'
+                  fontSize='input'
+                  h='150px'
+                  mt={3}
+                  {...register('additionalInfo', {
+                    required: officeHoursRequest === PROJECT_FEEDBACK,
+                    maxLength: 32768
+                  })}
+                />
+
+                {errors?.additionalInfo?.type === 'required' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Some additional resources are required.
+                    </PageText>
+                  </Box>
+                )}
+                {errors?.additionalInfo?.type === 'maxLength' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Additional info cannot exceed 32768 characters.
+                    </PageText>
+                  </Box>
+                )}
+              </FormControl>
+
+              <Controller
+                name='projectCategory'
+                control={control}
+                rules={{ required: officeHoursRequest === PROJECT_FEEDBACK, validate: selected => selected.value !== '' }}
+                defaultValue={{ value: '', label: '' }}
+                render={({ field: { onChange }, fieldState: { error } }) => (
+                  <FormControl
+                    id='project-category-control'
+                    isRequired={officeHoursRequest === PROJECT_FEEDBACK}
+                    mb={8}
+                  >
+                    <FormLabel htmlFor='projectCategory' mb={1}>
+                      <PageText display='inline' fontSize='input'>
+                        Project category
+                      </PageText>
+                    </FormLabel>
+
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      Choose what category your project best fits into.
+                    </PageText>
+
+                    <Box mt={3}>
+                      <Select
+                        id='projectCategory'
+                        options={PROJECT_CATEGORY_OPTIONS}
+                        onChange={onChange}
+                        components={{ DropdownIndicator }}
+                        placeholder='Select'
+                        closeMenuOnSelect={true}
+                        selectedOptionColor='brand.option'
+                        chakraStyles={chakraStyles}
+                      />
+                    </Box>
+
+                    {error && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Project category is required.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
+                )}
+              />
+            </Fade>
+          </Box>
 
           <Controller
             name='howDidYouHearAboutESP'
@@ -460,91 +542,47 @@ export const OfficeHoursForm: FC = () => {
             )}
           />
 
-          <Controller
-            name='reasonForMeeting'
-            control={control}
-            rules={{ required: true, validate: selected => selected.length > 0 }}
-            defaultValue={[]}
-            render={({ field: { onChange, value } }) => (
-              <FormControl id='reason-for-meeting-control' isRequired mb={2}>
-                <FormLabel htmlFor='reasonForMeeting'>
-                  <PageText display='inline' fontSize='input'>
-                    What can we help you with? You may choose more than one reason.
-                  </PageText>
-                </FormLabel>
+          <FormControl id='other-reason-for-meeting-control' mb={8} isRequired>
+            <FormLabel htmlFor='otherReasonForMeeting'>
+              <PageText display='inline' fontSize='input'>
+                How are you hoping ESP can help?
+              </PageText>
+            </FormLabel>
 
-                <CheckboxGroup
-                  colorScheme='white'
-                  onChange={(value: ReasonForMeeting) => {
-                    onChange(value);
-                    handleCheckbox(value);
-                  }}
-                  value={value}
-                >
-                  <Stack>
-                    <Checkbox id='project-feedback' value='Project feedback or advice'>
-                      <PageText fontSize='input'>Project feedback or advice</PageText>
-                    </Checkbox>
-                    <Checkbox id='questions-about-esp' value='Questions about ESP'>
-                      <PageText fontSize='input'>Questions about ESP</PageText>
-                    </Checkbox>
-                    <Checkbox
-                      id='questions-about-applying'
-                      value='Questions about applying for a grant'
-                    >
-                      <PageText fontSize='input'>Questions about applying for a grant</PageText>
-                    </Checkbox>
-                    <Checkbox id='how-to-contribute' value='How to contribute to Ethereum'>
-                      <PageText fontSize='input'>How to contribute to Ethereum</PageText>
-                    </Checkbox>
-                    <Checkbox id='other' value='Other'>
-                      <PageText fontSize='input'>Other</PageText>
-                    </Checkbox>
-                  </Stack>
-                </CheckboxGroup>
+            <PageText as='small' fontSize='helpText' color='brand.helpText'>
+              Please list any specific questions or details that would expedite the call.
+            </PageText>
 
-                {errors?.reasonForMeeting && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Choose at least one reason.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
+            <Textarea
+              id='otherReasonForMeeting'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              color='brand.paragraph'
+              fontSize='input'
+              mt={3}
+              h='150px'
+              {...register('otherReasonForMeeting', {
+                required: true,
+                maxLength: 32768
+              })}
+            />
+
+            {errors?.otherReasonForMeeting?.type === 'required' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Questions or details are required.
+                </PageText>
+              </Box>
             )}
-          />
-
-          <Box display={reasonForMeeting.includes(OTHER) ? 'block' : 'none'}>
-            <Fade in={reasonForMeeting.includes(OTHER)} delay={0.25}>
-              <FormControl id='other-reason-for-meeting-control' mb={8}>
-                <FormLabel htmlFor='otherReasonForMeeting'>
-                  <PageText display='inline' fontSize='input'>
-                    Reason for meeting
-                  </PageText>
-                </FormLabel>
-                <Textarea
-                  id='otherReasonForMeeting'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  color='brand.paragraph'
-                  fontSize='input'
-                  h='150px'
-                  {...register('otherReasonForMeeting', {
-                    maxLength: 32768
-                  })}
-                />
-
-                {errors?.otherReasonForMeeting?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Reason for meeting cannot exceed 32768 characters.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
-            </Fade>
-          </Box>
+            {errors?.otherReasonForMeeting?.type === 'maxLength' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Reason for meeting cannot exceed 32768 characters.
+                </PageText>
+              </Box>
+            )}
+          </FormControl>
 
           <Controller
             name='timezone'
