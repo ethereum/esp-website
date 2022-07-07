@@ -41,6 +41,9 @@ export const OfficeHoursForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
 
+  const isTeam = individualOrTeam === TEAM
+  const requestingFeedback = officeHoursRequest === PROJECT_FEEDBACK
+
   const methods = useForm<OfficeHoursFormData>({
     mode: 'onBlur'
   });
@@ -100,10 +103,7 @@ export const OfficeHoursForm: FC = () => {
                 h='56px'
                 color='brand.paragraph'
                 fontSize='input'
-                {...register('firstName', {
-                  required: true,
-                  maxLength: 40
-                })}
+                {...register('firstName', { required: true, maxLength: 40 })}
               />
 
               {errors?.firstName?.type === 'required' && (
@@ -230,9 +230,9 @@ export const OfficeHoursForm: FC = () => {
             )}
           />
 
-          <Box display={individualOrTeam === TEAM ? 'block' : 'none'}>
-            <Fade in={individualOrTeam === TEAM} delay={0.25}>
-              <FormControl id='company-control' isRequired={individualOrTeam === TEAM} mb={8}>
+          <Box display={isTeam ? 'block' : 'none'}>
+            <Fade in={isTeam} delay={0.25}>
+              <FormControl id='company-control' isRequired={isTeam} mb={8}>
                 <FormLabel htmlFor='company' mb={1}>
                   <PageText display='inline' fontSize='input'>
                     Name of organization or entity
@@ -255,7 +255,7 @@ export const OfficeHoursForm: FC = () => {
                   fontSize='input'
                   mt={3}
                   {...register('company', {
-                    required: individualOrTeam === TEAM,
+                    required: isTeam,
                     maxLength: 255
                   })}
                 />
@@ -319,8 +319,8 @@ export const OfficeHoursForm: FC = () => {
                       <PageText fontSize='input'>Advice</PageText>
                     </Radio>
 
-                    <Radio id='project-feedback' size='lg' name='officeHoursRequest' value='Project feedback'>
-                      <PageText fontSize='input'>Project feedback</PageText>
+                    <Radio id='project-feedback' size='lg' name='officeHoursRequest' value={PROJECT_FEEDBACK}>
+                      <PageText fontSize='input'>{PROJECT_FEEDBACK}</PageText>
                     </Radio>
                   </Stack>
                 </RadioGroup>
@@ -328,11 +328,11 @@ export const OfficeHoursForm: FC = () => {
             )}
           />
 
-          <Box display={officeHoursRequest === PROJECT_FEEDBACK ? 'block' : 'none'}>
-            <Fade in={officeHoursRequest === PROJECT_FEEDBACK} delay={0.25}>
+          <Box display={requestingFeedback ? 'block' : 'none'}>
+            <Fade in={requestingFeedback} delay={0.25}>
               <FormControl
                 id='project-name-control'
-                isRequired={officeHoursRequest === PROJECT_FEEDBACK}
+                isRequired={requestingFeedback}
                 mb={8}
               >
                 <FormLabel htmlFor='projectName' mb={1}>
@@ -350,7 +350,7 @@ export const OfficeHoursForm: FC = () => {
                   fontSize='input'
                   mt={3}
                   {...register('projectName', {
-                    required: officeHoursRequest === PROJECT_FEEDBACK,
+                    required: requestingFeedback,
                     maxLength: 255
                   })}
                 />
@@ -373,7 +373,7 @@ export const OfficeHoursForm: FC = () => {
 
               <FormControl
                 id='project-description-control'
-                isRequired={officeHoursRequest === PROJECT_FEEDBACK}
+                isRequired={requestingFeedback}
                 mb={8}
               >
                 <FormLabel htmlFor='projectDescription' mb={1}>
@@ -394,7 +394,7 @@ export const OfficeHoursForm: FC = () => {
                   h='150px'
                   mt={3}
                   {...register('projectDescription', {
-                    required: officeHoursRequest === PROJECT_FEEDBACK,
+                    required: requestingFeedback,
                     maxLength: 32768
                   })}
                 />
@@ -417,7 +417,7 @@ export const OfficeHoursForm: FC = () => {
 
               <FormControl
                 id='additional-info-control'
-                isRequired={officeHoursRequest === PROJECT_FEEDBACK}
+                isRequired={requestingFeedback}
                 mb={8}
               >
                 <FormLabel htmlFor='additionalInfo' mb={1}>
@@ -439,7 +439,7 @@ export const OfficeHoursForm: FC = () => {
                   h='150px'
                   mt={3}
                   {...register('additionalInfo', {
-                    required: officeHoursRequest === PROJECT_FEEDBACK,
+                    required: requestingFeedback,
                     maxLength: 32768
                   })}
                 />
@@ -463,12 +463,15 @@ export const OfficeHoursForm: FC = () => {
               <Controller
                 name='projectCategory'
                 control={control}
-                rules={{ required: officeHoursRequest === PROJECT_FEEDBACK, validate: selected => selected.value !== '' }}
+                rules={{
+                  required: requestingFeedback,
+                  validate: selected => selected.value !== '' || !requestingFeedback
+                }}
                 defaultValue={{ value: '', label: '' }}
                 render={({ field: { onChange }, fieldState: { error } }) => (
                   <FormControl
                     id='project-category-control'
-                    isRequired={officeHoursRequest === PROJECT_FEEDBACK}
+                    isRequired={requestingFeedback}
                     mb={8}
                   >
                     <FormLabel htmlFor='projectCategory' mb={1}>
