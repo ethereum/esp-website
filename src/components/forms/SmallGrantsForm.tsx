@@ -26,11 +26,12 @@ import { api } from './api';
 import { chakraStyles } from './selectStyles';
 
 import {
+  HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
   COMMUNITY_EVENT,
   EVENT_FORMAT_OPTIONS,
   EVENT_TYPE_OPTIONS,
   PROJECT_CATEGORY_OPTIONS,
-  TEAM
+  TEAM,
 } from './constants';
 import { SMALL_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
@@ -422,6 +423,12 @@ export const SmallGrantsForm: FC = () => {
                     Project category
                   </PageText>
                 </FormLabel>
+
+                <Box mb={2}>
+                  <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                    Please choose a category that your project best fits in. Additional questions will appear based on your selection.
+                  </PageText>
+                </Box>
 
                 <Select
                   id='projectCategory'
@@ -1111,6 +1118,41 @@ export const SmallGrantsForm: FC = () => {
               </FormControl>
             </Fade>
           </Box>
+
+          <Controller
+            name='howDidYouHearAboutESP'
+            control={control}
+            defaultValue={{ value: '', label: '' }}
+            rules={{ required: true, validate: selected => selected.value !== '' }}
+            render={({ field: { onChange }, fieldState: { error } }) => (
+              <FormControl id='how-did-you-hear-about-ESP-control' isRequired mb={8}>
+                <FormLabel htmlFor='howDidYouHearAboutESP'>
+                  <PageText display='inline' fontSize='input'>
+                    How did you hear about the Ecosystem Support Program?
+                  </PageText>
+                </FormLabel>
+
+                <Select
+                  id='howDidYouHearAboutESP'
+                  options={HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS}
+                  onChange={onChange}
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
+
+                {error && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Referral source is required.
+                    </PageText>
+                  </Box>
+                )}
+              </FormControl>
+            )}
+          />
 
           <Box display={isAnEvent ? 'block' : 'none'}>
             <Fade in={isAnEvent} delay={0.25}>

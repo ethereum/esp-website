@@ -72,6 +72,7 @@ export interface SmallGrantsFormData extends CaptchaForm {
   repeatApplicant: string; // SF API: Repeat_Applicant__c
   progress: string; // SF API: Progress__c
   otherFunding: string; // SF API: Other_Funding__c
+  howDidYouHearAboutESP: ReferralSource; // SF API: Referral_Source__c
   eventName: string; // SF API: Project_Name__c
   eventDate: Date; // SF API: Sponsorship_Date__c
   eventPreviousWork: string; // SF API: Previous_Work__c
