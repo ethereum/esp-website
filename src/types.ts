@@ -1,5 +1,6 @@
 import {
   ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS,
+  PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS,
   APPLYING_AS_OPTIONS,
   COUNTRY_OPTIONS,
   EVENT_FORMAT_OPTIONS,
@@ -209,6 +210,8 @@ export type ReasonForMeeting = typeof REASONS_FOR_MEETING;
 export type ProjectCategory = typeof PROJECT_CATEGORY_OPTIONS[number];
 
 export type AcademicGrantsProjectCategory = typeof ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS[number];
+
+export type ProjectGrantsProjectCategory = typeof PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS[number];
 
 export type EventType = typeof EVENT_TYPE_OPTIONS[number];
 

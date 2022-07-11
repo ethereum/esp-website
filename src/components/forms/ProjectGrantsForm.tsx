@@ -34,7 +34,7 @@ import {
   COUNTRY_OPTIONS,
   HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
   OTHER,
-  PROJECT_CATEGORY_OPTIONS,
+  PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS,
   TIMEZONE_OPTIONS
 } from './constants';
 import {
@@ -558,7 +558,7 @@ export const ProjectGrantsForm: FC = () => {
                 <Box mt={3}>
                   <Select
                     id='projectCategory'
-                    options={PROJECT_CATEGORY_OPTIONS}
+                    options={PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS}
                     onChange={onChange}
                     components={{ DropdownIndicator }}
                     placeholder='Select'

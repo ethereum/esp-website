@@ -14,6 +14,20 @@ export const PROJECT_CATEGORY_OPTIONS = [
   { value: 'Other', label: 'Other' }
 ];
 
+export const PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS = [
+  { value: 'Community and education', label: 'Community and education' },
+  { value: 'Consensus layer', label: 'Consensus layer' },
+  {
+    value: 'Cryptography and zero knowledge proofs',
+    label: 'Cryptography and zero knowledge proofs'
+  },
+  { value: 'Developer experience and tooling', label: 'Developer experience and tooling' },
+  { value: 'Execution layer', label: 'Execution layer' },
+  { value: 'General research', label: 'General research' },
+  { value: 'Layer 2', label: 'Layer 2' },
+  { value: 'Other', label: 'Other' }
+];
+
 export const ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Economics', label: 'Economics' },
   { value: 'Consensus layer', label: 'Consensus layer' },
