@@ -196,7 +196,7 @@ export interface DevconGrantsFormData extends CaptchaForm {
 
 export type IndividualOrTeam = 'Individual' | 'Team';
 
-export type OfficeHoursRequest = `Project feedback` | 'Advice';
+export type OfficeHoursRequest = 'Project feedback' | 'Advice';
 
 export type RepeatApplicant = 'Yes' | 'No';
 
