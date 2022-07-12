@@ -65,6 +65,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     RecordTypeId: process.env.SF_RECORD_TYPE_PROJECT_GRANTS
   };
   console.log({ application });
+  return; // Disable SF for debugging
   conn.login(SF_PROD_USERNAME!, `${SF_PROD_PASSWORD}${SF_PROD_SECURITY_TOKEN}`, err => {
     if (err) {
       return console.error(err);
