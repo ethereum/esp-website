@@ -42,7 +42,7 @@ export const OfficeHoursForm: FC = () => {
   const toast = useToast();
 
   const isTeam = individualOrTeam === TEAM
-  const requestingFeedback = officeHoursRequest === PROJECT_FEEDBACK
+  const isRequestingProjectFeedback = officeHoursRequest === PROJECT_FEEDBACK
 
   const methods = useForm<OfficeHoursFormData>({
     mode: 'onBlur'
@@ -328,11 +328,11 @@ export const OfficeHoursForm: FC = () => {
             )}
           />
 
-          <Box display={requestingFeedback ? 'block' : 'none'}>
-            <Fade in={requestingFeedback} delay={0.25}>
+          <Box display={isRequestingProjectFeedback ? 'block' : 'none'}>
+            <Fade in={isRequestingProjectFeedback} delay={0.25}>
               <FormControl
                 id='project-name-control'
-                isRequired={requestingFeedback}
+                isRequired={isRequestingProjectFeedback}
                 mb={8}
               >
                 <FormLabel htmlFor='projectName' mb={1}>
@@ -350,7 +350,7 @@ export const OfficeHoursForm: FC = () => {
                   fontSize='input'
                   mt={3}
                   {...register('projectName', {
-                    required: requestingFeedback,
+                    required: isRequestingProjectFeedback,
                     maxLength: 255
                   })}
                 />
@@ -373,7 +373,7 @@ export const OfficeHoursForm: FC = () => {
 
               <FormControl
                 id='project-description-control'
-                isRequired={requestingFeedback}
+                isRequired={isRequestingProjectFeedback}
                 mb={8}
               >
                 <FormLabel htmlFor='projectDescription' mb={1}>
@@ -394,7 +394,7 @@ export const OfficeHoursForm: FC = () => {
                   h='150px'
                   mt={3}
                   {...register('projectDescription', {
-                    required: requestingFeedback,
+                    required: isRequestingProjectFeedback,
                     maxLength: 32768
                   })}
                 />
@@ -417,7 +417,7 @@ export const OfficeHoursForm: FC = () => {
 
               <FormControl
                 id='additional-info-control'
-                isRequired={requestingFeedback}
+                isRequired={isRequestingProjectFeedback}
                 mb={8}
               >
                 <FormLabel htmlFor='additionalInfo' mb={1}>
@@ -439,7 +439,7 @@ export const OfficeHoursForm: FC = () => {
                   h='150px'
                   mt={3}
                   {...register('additionalInfo', {
-                    required: requestingFeedback,
+                    required: isRequestingProjectFeedback,
                     maxLength: 32768
                   })}
                 />
@@ -464,14 +464,14 @@ export const OfficeHoursForm: FC = () => {
                 name='projectCategory'
                 control={control}
                 rules={{
-                  required: requestingFeedback,
-                  validate: selected => selected.value !== '' || !requestingFeedback
+                  required: isRequestingProjectFeedback,
+                  validate: selected => selected.value !== '' || !isRequestingProjectFeedback
                 }}
                 defaultValue={{ value: '', label: '' }}
                 render={({ field: { onChange }, fieldState: { error } }) => (
                   <FormControl
                     id='project-category-control'
-                    isRequired={requestingFeedback}
+                    isRequired={isRequestingProjectFeedback}
                     mb={8}
                   >
                     <FormLabel htmlFor='projectCategory' mb={1}>
