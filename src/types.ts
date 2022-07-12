@@ -48,19 +48,24 @@ export interface ProjectGrantsFormData extends CaptchaForm {
 }
 
 export interface SmallGrantsFormData extends CaptchaForm {
+  // General
   firstName: string; // SF API: FirstName
   lastName: string; // SF API: LastName
   email: string; // SF API: Email
   individualOrTeam: IndividualOrTeam; // SF API: Individual_or_Team__c
   company: string; // SF API: Company
-  individualOrTeamSummary: string; // SF API: Team_Profile__c
   website: string; // SF API: Website
   twitter: string; // SF API: Twitter__c
   projectCategory: ProjectCategory; // SF API: Category__c
+  individualOrTeamSummary: string; // SF API: Team_Profile__c
+  howDidYouHearAboutESP: ReferralSource; // SF API: Referral_Source__c
+  additionalInfo: string; // SF API: Additional_Information__c
+  // Project specific
   projectName: string; // SF API: Project_Name__c
   projectRepo: string; // SF API: Github_Link__c
   projectPreviousWork: string; // SF API: Previous_Work__c
   projectDescription: string; // SF API: Project_Description__c
+  problemBeingSolved: string; // SF API: Problem_Being_Solved__c
   whyIsProjectImportant: string; // SF API: Impact__c
   howDoesYourProjectDiffer: string; // SF API: How_is_it_different__c
   projectRequestedAmount: string; // SF API: Requested_Amount__c
@@ -72,7 +77,7 @@ export interface SmallGrantsFormData extends CaptchaForm {
   repeatApplicant: string; // SF API: Repeat_Applicant__c
   progress: string; // SF API: Progress__c
   otherFunding: string; // SF API: Other_Funding__c
-  howDidYouHearAboutESP: ReferralSource; // SF API: Referral_Source__c
+  // Event specific
   eventName: string; // SF API: Project_Name__c
   eventDate: Date; // SF API: Sponsorship_Date__c
   eventPreviousWork: string; // SF API: Previous_Work__c
@@ -87,7 +92,6 @@ export interface SmallGrantsFormData extends CaptchaForm {
   confirmedSponsors: string; // SF API: Confirmed_Sponsors__c
   eventBudgetBreakdown: string; // SF API: Proposed_Timeline__c
   eventRequestedAmount: string; // SF API: Sponsorship_Monetary_Request__c
-  additionalInfo: string; // SF API: Additional_Information__c
 }
 
 export interface GranteeFinanceFormData extends CaptchaForm {

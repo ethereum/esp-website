@@ -6,15 +6,18 @@ import { verifyCaptcha } from '../../../middlewares';
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { body } = req;
   const {
+    // General
     firstName: FirstName,
     lastName: LastName,
     email: Email,
     individualOrTeam: Individual_or_Team__c,
     company: Company,
-    individualOrTeamSummary: Team_Profile__c,
     website: Website,
     twitter: Twitter__c,
     projectCategory: Category__c,
+    individualOrTeamSummary: Team_Profile__c,
+    additionalInfo: Additional_Information__c,
+    // Event specific (see project.ts for Projects)
     eventName: Project_Name__c,
     eventDate: Sponsorship_Date__c,
     eventPreviousWork: Previous_Work__c,
@@ -28,8 +31,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     confirmedSpeakers: Confirmed_Speakers__c,
     confirmedSponsors: Confirmed_Sponsors__c,
     eventBudgetBreakdown: Proposed_Timeline__c,
-    eventRequestedAmount: Sponsorship_Monetary_Request__c,
-    additionalInfo: Additional_Information__c
+    eventRequestedAmount: Sponsorship_Monetary_Request__c
   } = body;
   const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
     process.env;
@@ -54,10 +56,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         Email: Email.trim(),
         Individual_or_Team__c: Individual_or_Team__c.trim(),
         Company: Company.trim(),
-        Team_Profile__c: Team_Profile__c.trim(),
         Website: Website.trim(),
         Twitter__c: Twitter__c.trim(),
         Category__c: Category__c.trim(),
+        Team_Profile__c: Team_Profile__c.trim(),
+        Additional_Information__c: Additional_Information__c.trim(),
         Project_Name__c: Project_Name__c.trim(),
         Sponsorship_Date__c: Sponsorship_Date__c.trim(),
         Previous_Work__c: Previous_Work__c.trim(),
@@ -72,7 +75,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         Confirmed_Sponsors__c: Confirmed_Sponsors__c.trim(),
         Proposed_Timeline__c: Proposed_Timeline__c.trim(),
         Sponsorship_Monetary_Request__c: Sponsorship_Monetary_Request__c.trim(),
-        Additional_Information__c: Additional_Information__c.trim(),
         RecordTypeId: process.env.SF_RECORD_TYPE_SPONSORSHIPS
       },
       (err, ret) => {
