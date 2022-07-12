@@ -1803,6 +1803,41 @@ export const SmallGrantsForm: FC = () => {
             )}
           />
 
+          <FormControl id='referrals-control' mb={8}>
+            <FormLabel htmlFor='referrals' mb={1}>
+              <PageText fontSize='input'>
+                Did anyone recommend that you submit an application to the Ecosystem Support Program? If so, who?
+              </PageText>
+            </FormLabel>
+
+            <PageText as='small' fontSize='helpText' color='brand.helpText'>
+              Please submit the person&apos;s name only. This is not required.
+            </PageText>
+
+            <Textarea
+              id='referrals'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              _placeholder={{ fontSize: 'input' }}
+              color='brand.paragraph'
+              fontSize='input'
+              h='150px'
+              mt={3}
+              {...register('referrals', {
+                maxLength: 32768
+              })}
+            />
+
+            {errors?.referrals?.type === 'maxLength' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Additional info cannot exceed 32768 characters.
+                </PageText>
+              </Box>
+            )}
+          </FormControl>
+
           <FormControl id='additional-info-control' mb={8}>
             <FormLabel htmlFor='additionalInfo' mb={1}>
               <PageText fontSize='input'>Anything else you&apos;d like to share?</PageText>

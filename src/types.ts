@@ -59,6 +59,7 @@ export interface SmallGrantsFormData extends CaptchaForm {
   projectCategory: ProjectCategory; // SF API: Category__c
   individualOrTeamSummary: string; // SF API: Team_Profile__c
   howDidYouHearAboutESP: ReferralSource; // SF API: Referral_Source__c
+  referrals: string; // SF API: Referrals__c
   additionalInfo: string; // SF API: Additional_Information__c
   // Project specific
   projectName: string; // SF API: Project_Name__c
