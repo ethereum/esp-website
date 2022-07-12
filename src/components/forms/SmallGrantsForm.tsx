@@ -411,6 +411,7 @@ export const SmallGrantsForm: FC = () => {
             )}
           </FormControl>
 
+          {/* Below controller determines `isAProject` and `isAnEvent` values */}
           <Controller
             name='projectCategory'
             control={control}
@@ -617,6 +618,49 @@ export const SmallGrantsForm: FC = () => {
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
                       Project description cannot exceed 32768 characters.
+                    </PageText>
+                  </Box>
+                )}
+              </FormControl>
+
+              <FormControl id='problem-being-solved-control' isRequired={isAProject} mb={8}>
+                <FormLabel htmlFor='problemBeingSolved' mb={1}>
+                  <PageText display='inline' fontSize='input'>
+                    What problem(s) are being solved by within the scope of the grant?
+                  </PageText>
+                </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  What is the specific problems, research questions, or needs you are trying to address?
+                </PageText>
+
+                <Textarea
+                  id='problemBeingSolved'
+                  bg='white'
+                  borderRadius={0}
+                  borderColor='brand.border'
+                  _placeholder={{ fontSize: 'input' }}
+                  color='brand.paragraph'
+                  fontSize='input'
+                  h='150px'
+                  mt={3}
+                  {...register('problemBeingSolved', {
+                    required: isAProject,
+                    maxLength: 32768
+                  })}
+                />
+
+                {errors?.problemBeingSolved?.type === 'required' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Problems being addressed is required.
+                    </PageText>
+                  </Box>
+                )}
+                {errors?.problemBeingSolved?.type === 'maxLength' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Problems cannot exceed 32768 characters.
                     </PageText>
                   </Box>
                 )}
@@ -1118,41 +1162,6 @@ export const SmallGrantsForm: FC = () => {
               </FormControl>
             </Fade>
           </Box>
-
-          <Controller
-            name='howDidYouHearAboutESP'
-            control={control}
-            defaultValue={{ value: '', label: '' }}
-            rules={{ required: true, validate: selected => selected.value !== '' }}
-            render={({ field: { onChange }, fieldState: { error } }) => (
-              <FormControl id='how-did-you-hear-about-ESP-control' isRequired mb={8}>
-                <FormLabel htmlFor='howDidYouHearAboutESP'>
-                  <PageText display='inline' fontSize='input'>
-                    How did you hear about the Ecosystem Support Program?
-                  </PageText>
-                </FormLabel>
-
-                <Select
-                  id='howDidYouHearAboutESP'
-                  options={HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS}
-                  onChange={onChange}
-                  components={{ DropdownIndicator }}
-                  placeholder='Select'
-                  closeMenuOnSelect={true}
-                  selectedOptionColor='brand.option'
-                  chakraStyles={chakraStyles}
-                />
-
-                {error && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Referral source is required.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
-            )}
-          />
 
           <Box display={isAnEvent ? 'block' : 'none'}>
             <Fade in={isAnEvent} delay={0.25}>
@@ -1758,6 +1767,41 @@ export const SmallGrantsForm: FC = () => {
               </FormControl>
             </Fade>
           </Box>
+
+          <Controller
+            name='howDidYouHearAboutESP'
+            control={control}
+            defaultValue={{ value: '', label: '' }}
+            rules={{ required: true, validate: selected => selected.value !== '' }}
+            render={({ field: { onChange }, fieldState: { error } }) => (
+              <FormControl id='how-did-you-hear-about-ESP-control' isRequired mb={8}>
+                <FormLabel htmlFor='howDidYouHearAboutESP'>
+                  <PageText display='inline' fontSize='input'>
+                    How did you hear about the Ecosystem Support Program?
+                  </PageText>
+                </FormLabel>
+
+                <Select
+                  id='howDidYouHearAboutESP'
+                  options={HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS}
+                  onChange={onChange}
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
+
+                {error && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Referral source is required.
+                    </PageText>
+                  </Box>
+                )}
+              </FormControl>
+            )}
+          />
 
           <FormControl id='additional-info-control' mb={8}>
             <FormLabel htmlFor='additionalInfo' mb={1}>
