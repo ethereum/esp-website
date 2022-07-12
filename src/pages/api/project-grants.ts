@@ -8,7 +8,7 @@ import { MAX_PROPOSAL_FILE_SIZE } from '../../constants';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { fields = {}, files = {} } = req;
-
+  console.log({ fields });
   const fieldsSanitized = Object.keys(fields).reduce<typeof fields>((prev, key) => {
     let value = fields[key];
     if (typeof value === 'string') {
@@ -64,7 +64,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     Referrals__c: fieldsSanitized.referrals,
     RecordTypeId: process.env.SF_RECORD_TYPE_PROJECT_GRANTS
   };
-
+  console.log({ application });
   conn.login(SF_PROD_USERNAME!, `${SF_PROD_PASSWORD}${SF_PROD_SECURITY_TOKEN}`, err => {
     if (err) {
       return console.error(err);

@@ -60,16 +60,19 @@ export const api = {
         repeatApplicant: data.repeatApplicant === 'Yes'
       };
 
+      console.log({ curatedData });
       const formData = new FormData();
 
       for (const name in data) {
         formData.append(name, curatedData[name]);
       }
+      console.log({ formData });
 
       const projectGrantsRequestOptions: RequestInit = {
         method: 'POST',
         body: formData
       };
+      console.log({ passedToAPI: projectGrantsRequestOptions });
 
       return fetch(API_PROJECT_GRANTS, projectGrantsRequestOptions);
     }
