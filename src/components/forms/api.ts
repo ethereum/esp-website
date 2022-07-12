@@ -56,7 +56,8 @@ export const api = {
         projectCategory: data.projectCategory.value,
         country: data.country.value,
         timezone: data.timezone.value,
-        howDidYouHearAboutESP: data.howDidYouHearAboutESP.value
+        howDidYouHearAboutESP: data.howDidYouHearAboutESP.value,
+        repeatApplicant: data.repeatApplicant === 'Yes'
       };
 
       const formData = new FormData();
