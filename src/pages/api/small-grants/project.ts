@@ -16,6 +16,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     twitter: Twitter__c,
     projectCategory: Category__c,
     individualOrTeamSummary: Team_Profile__c,
+    howDidYouHearAboutESP: Referral_Source__c,
     additionalInfo: Additional_Information__c,
     // Project specific (see event.ts for Events)
     projectName: Project_Name__c,
@@ -33,8 +34,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     otherProjects: Other_Projects__c,
     repeatApplicant: Repeat_Applicant__c,
     progress: Progress__c,
-    otherFunding: Other_Funding__c,
-    howDidYouHearAboutESP: Referral_Source__c
+    otherFunding: Other_Funding__c
   } = body;
   const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
     process.env;
@@ -63,6 +63,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         Twitter__c: Twitter__c.trim(),
         Category__c: Category__c.trim(),
         Team_Profile__c: Team_Profile__c.trim(),
+        Referral_Source__c: Referral_Source__c.trim(),
         Additional_Information__c: Additional_Information__c.trim(),
         Project_Name__c: Project_Name__c.trim(),
         Github_Link__c: Github_Link__c.trim(),
@@ -80,7 +81,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         Repeat_Applicant__c: Repeat_Applicant__c.trim(),
         Progress__c: Progress__c.trim(),
         Other_Funding__c: Other_Funding__c.trim(),
-        Referral_Source__c: Referral_Source__c.trim(),
         RecordTypeId: process.env.SF_RECORD_TYPE_SMALL_GRANTS
       },
       (err, ret) => {

@@ -16,6 +16,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     twitter: Twitter__c,
     projectCategory: Category__c,
     individualOrTeamSummary: Team_Profile__c,
+    howDidYouHearAboutESP: Referral_Source__c,
     additionalInfo: Additional_Information__c,
     // Event specific (see project.ts for Projects)
     eventName: Project_Name__c,
@@ -60,6 +61,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         Twitter__c: Twitter__c.trim(),
         Category__c: Category__c.trim(),
         Team_Profile__c: Team_Profile__c.trim(),
+        Referral_Source__c: Referral_Source__c.trim(),
         Additional_Information__c: Additional_Information__c.trim(),
         Project_Name__c: Project_Name__c.trim(),
         Sponsorship_Date__c: Sponsorship_Date__c.trim(),

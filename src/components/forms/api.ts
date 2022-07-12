@@ -85,7 +85,8 @@ export const api = {
           projectCategory: data.projectCategory.value,
           repeatApplicant: data.repeatApplicant === 'Yes',
           eventType: data.eventType.value,
-          eventFormat: data.eventFormat.value
+          eventFormat: data.eventFormat.value,
+          howDidYouHearAboutESP: data.howDidYouHearAboutESP.value
         })
       };
 
