@@ -78,7 +78,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         Is_it_Open_Source__c: Is_it_Open_Source__c.trim(),
         Sustainability_Plan__c: Sustainability_Plan__c.trim(),
         Other_Projects__c: Other_Projects__c.trim(),
-        Repeat_Applicant__c: Repeat_Applicant__c.trim(),
+        Repeat_Applicant__c,
         Progress__c: Progress__c.trim(),
         Other_Funding__c: Other_Funding__c.trim(),
         RecordTypeId: process.env.SF_RECORD_TYPE_SMALL_GRANTS
