@@ -26,11 +26,12 @@ import { api } from './api';
 import { chakraStyles } from './selectStyles';
 
 import {
+  HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
   COMMUNITY_EVENT,
   EVENT_FORMAT_OPTIONS,
   EVENT_TYPE_OPTIONS,
   PROJECT_CATEGORY_OPTIONS,
-  TEAM
+  TEAM,
 } from './constants';
 import { SMALL_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
@@ -410,6 +411,7 @@ export const SmallGrantsForm: FC = () => {
             )}
           </FormControl>
 
+          {/* Below controller determines `isAProject` and `isAnEvent` values */}
           <Controller
             name='projectCategory'
             control={control}
@@ -422,6 +424,12 @@ export const SmallGrantsForm: FC = () => {
                     Project category
                   </PageText>
                 </FormLabel>
+
+                <Box mb={2}>
+                  <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                    Please choose a category that your project best fits in. Additional questions will appear based on your selection.
+                  </PageText>
+                </Box>
 
                 <Select
                   id='projectCategory'
@@ -610,6 +618,49 @@ export const SmallGrantsForm: FC = () => {
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
                       Project description cannot exceed 32768 characters.
+                    </PageText>
+                  </Box>
+                )}
+              </FormControl>
+
+              <FormControl id='problem-being-solved-control' isRequired={isAProject} mb={8}>
+                <FormLabel htmlFor='problemBeingSolved' mb={1}>
+                  <PageText display='inline' fontSize='input'>
+                    What problem(s) are being solved by within the scope of the grant?
+                  </PageText>
+                </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  What is the specific problems, research questions, or needs you are trying to address?
+                </PageText>
+
+                <Textarea
+                  id='problemBeingSolved'
+                  bg='white'
+                  borderRadius={0}
+                  borderColor='brand.border'
+                  _placeholder={{ fontSize: 'input' }}
+                  color='brand.paragraph'
+                  fontSize='input'
+                  h='150px'
+                  mt={3}
+                  {...register('problemBeingSolved', {
+                    required: isAProject,
+                    maxLength: 32768
+                  })}
+                />
+
+                {errors?.problemBeingSolved?.type === 'required' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Problems being addressed is required.
+                    </PageText>
+                  </Box>
+                )}
+                {errors?.problemBeingSolved?.type === 'maxLength' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Problems being addressed cannot exceed 32768 characters.
                     </PageText>
                   </Box>
                 )}
@@ -1716,6 +1767,77 @@ export const SmallGrantsForm: FC = () => {
               </FormControl>
             </Fade>
           </Box>
+
+          <Controller
+            name='howDidYouHearAboutESP'
+            control={control}
+            defaultValue={{ value: '', label: '' }}
+            rules={{ required: true, validate: selected => selected.value !== '' }}
+            render={({ field: { onChange }, fieldState: { error } }) => (
+              <FormControl id='how-did-you-hear-about-ESP-control' isRequired mb={8}>
+                <FormLabel htmlFor='howDidYouHearAboutESP'>
+                  <PageText display='inline' fontSize='input'>
+                    How did you hear about the Ecosystem Support Program?
+                  </PageText>
+                </FormLabel>
+
+                <Select
+                  id='howDidYouHearAboutESP'
+                  options={HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS}
+                  onChange={onChange}
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
+
+                {error && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Referral source is required.
+                    </PageText>
+                  </Box>
+                )}
+              </FormControl>
+            )}
+          />
+
+          <FormControl id='referrals-control' mb={8}>
+            <FormLabel htmlFor='referrals' mb={1}>
+              <PageText fontSize='input'>
+                Did anyone recommend that you submit an application to the Ecosystem Support Program? If so, who?
+              </PageText>
+            </FormLabel>
+
+            <PageText as='small' fontSize='helpText' color='brand.helpText'>
+              Please submit the person&apos;s name only. This is not required.
+            </PageText>
+
+            <Input
+              id='referrals'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              type='text'
+              h='56px'
+              mt={3}
+              position='relative'
+              color='brand.paragraph'
+              fontSize='input'
+              {...register('referrals', {
+                maxLength: 150
+              })}
+            />
+
+            {errors?.referrals?.type === 'maxLength' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Referrals info cannot exceed 150 characters.
+                </PageText>
+              </Box>
+            )}
+          </FormControl>
 
           <FormControl id='additional-info-control' mb={8}>
             <FormLabel htmlFor='additionalInfo' mb={1}>

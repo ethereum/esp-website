@@ -81,9 +81,10 @@ export const api = {
           company: data.company === '' ? `${data.firstName} ${data.lastName}` : data.company,
           website: getWebsite(data.website),
           projectCategory: data.projectCategory.value,
-          repeatApplicant: data.repeatApplicant === 'Yes' ? true : false,
+          repeatApplicant: data.repeatApplicant === 'Yes',
           eventType: data.eventType.value,
-          eventFormat: data.eventFormat.value
+          eventFormat: data.eventFormat.value,
+          howDidYouHearAboutESP: data.howDidYouHearAboutESP.value
         })
       };
 
