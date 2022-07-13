@@ -1,5 +1,6 @@
 import { Box, Link } from '@chakra-ui/react';
 import type { NextPage } from 'next';
+import { PROJECT_GRANTS_URL } from "../../../constants"
 
 import { PageMetadata, PageSubheading, PageText } from '../../../components/UI';
 
@@ -25,7 +26,7 @@ const ProjectGrantsApply: NextPage = () => {
             <Link
               fontWeight={700}
               color='brand.orange.100'
-              href="/applicants/project-grants#faq"
+              href={`${PROJECT_GRANTS_URL}/#faq`}
             >
               Project Grants FAQ
             </Link>{' '}
