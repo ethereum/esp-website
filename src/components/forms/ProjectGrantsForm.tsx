@@ -1323,9 +1323,10 @@ export const ProjectGrantsForm: FC = () => {
           <Controller
             name='howDidYouHearAboutESP'
             control={control}
+            rules={{ required: true }}
             defaultValue={{ value: '', label: '' }}
             render={({ field: { onChange } }) => (
-              <FormControl id='how-did-you-hear-about-ESP-control' mb={8}>
+              <FormControl id='how-did-you-hear-about-ESP-control' isRequired mb={8}>
                 <FormLabel htmlFor='howDidYouHearAboutESP'>
                   <PageText display='inline' fontSize='input'>
                     How did you hear about the Ecosystem Support Program?
