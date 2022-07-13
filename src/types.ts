@@ -1,5 +1,6 @@
 import {
   ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS,
+  PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS,
   APPLYING_AS_OPTIONS,
   COUNTRY_OPTIONS,
   EVENT_FORMAT_OPTIONS,
@@ -35,9 +36,23 @@ export interface ProjectGrantsFormData extends CaptchaForm {
   projectRepo: string; // SF API: Github_Link__c
   twitter: string; // SF API: Twitter__c
   teamProfile: string; // SF API: Team_Profile__c
-  projectDescription: string; // SF API: Project_Description__c
   projectCategory: ProjectCategory; // SF API: Category__c
+  projectDescription: string; // SF API: Project_Description__c
+  progress: string; // SF API: Progress__c
+  problemBeingSolved: string; // SF API: Problem_Being_Solved__c
+  proposedTimeline: string; // SF API: Proposed_Timeline__c
   requestedAmount: string; // SF API: Requested_Amount__c
+  whyIsProjectImportant: string; // SF API: Impact__c
+  howDoesYourProjectDiffer: string; // SF API: How_is_it_different__c
+  isYourProjectPublicGood: string; // SF API: Is_it_a_Public_Good__c
+  isOpenSource: string; // SF API: Is_it_Open_Source__c
+  whyEthereum: string; // SF API: Why_Ethereum__c
+  challenges: string; // SF API: Challenges__c
+  sustainabilityPlan: string; // SF API: Sustainability_Plan__c
+  otherProjects: string; // SF API: Other_Projects__c
+  repeatApplicant: string; // SF API: Repeat_Applicant__c
+  otherFunding: string; // SF API: Other_Funding__c
+  additionalInfo: string; // SF API: Additional_Information__c
   city: string; // SF API: npsp__CompanyCity__c
   country: Country; // SF API: npsp__CompanyCountry__c
   timezone: Timezone; // SF API: Time_Zone__c
@@ -217,6 +232,8 @@ export type ReasonForMeeting = typeof REASONS_FOR_MEETING;
 export type ProjectCategory = typeof PROJECT_CATEGORY_OPTIONS[number];
 
 export type AcademicGrantsProjectCategory = typeof ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS[number];
+
+export type ProjectGrantsProjectCategory = typeof PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS[number];
 
 export type EventType = typeof EVENT_TYPE_OPTIONS[number];
 

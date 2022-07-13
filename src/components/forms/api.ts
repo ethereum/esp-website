@@ -54,7 +54,8 @@ export const api = {
         projectCategory: data.projectCategory.value,
         country: data.country.value,
         timezone: data.timezone.value,
-        howDidYouHearAboutESP: data.howDidYouHearAboutESP.value
+        howDidYouHearAboutESP: data.howDidYouHearAboutESP.value,
+        repeatApplicant: data.repeatApplicant === 'Yes'
       };
 
       const formData = new FormData();
@@ -101,7 +102,7 @@ export const api = {
         method: 'PUT',
         body: JSON.stringify({
           ...data,
-          l2Payment: data.l2Payment === 'Yes' ? true : false
+          l2Payment: data.l2Payment === 'Yes'
         })
       };
 
@@ -114,7 +115,7 @@ export const api = {
         ...methodOptions,
         body: JSON.stringify({
           ...data,
-          POCisAuthorisedSignatory: data.POCisAuthorisedSignatory === 'Yes' ? true : false,
+          POCisAuthorisedSignatory: data.POCisAuthorisedSignatory === 'Yes',
           applyingAs: data.applyingAs.value,
           // Company is a required field in SF, we're using the Name as default value if no company provided
           company: data.company === 'N/A' ? `${data.firstName} ${data.lastName}` : data.company,
@@ -123,8 +124,8 @@ export const api = {
           projectCategory: data.projectCategory.value,
           howDidYouHearAboutGrantsWave: data.howDidYouHearAboutGrantsWave.value,
           wouldYouShareYourResearch: data.wouldYouShareYourResearch.value,
-          repeatApplicant: data.repeatApplicant === 'Yes' ? true : false,
-          canTheEFReachOut: data.canTheEFReachOut === 'Yes' ? true : false
+          repeatApplicant: data.repeatApplicant === 'Yes',
+          canTheEFReachOut: data.canTheEFReachOut === 'Yes'
         })
       };
 
