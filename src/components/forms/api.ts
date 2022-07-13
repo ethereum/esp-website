@@ -37,8 +37,6 @@ export const api = {
           company: data.company === '' ? `${data.firstName} ${data.lastName}` : data.company,
           projectCategory: data.projectCategory.value,
           howDidYouHearAboutESP: data.howDidYouHearAboutESP.value,
-          // Multipickist values (reasonForMeeting) in SF are stored in a string that separates each value by a semicolon
-          reasonForMeeting: data.reasonForMeeting.join('; '),
           timezone: data.timezone.value
         })
       };

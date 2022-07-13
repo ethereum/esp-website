@@ -122,13 +122,13 @@ export interface OfficeHoursFormData extends CaptchaForm {
   email: string; // SF API: Email
   individualOrTeam: IndividualOrTeam; // SF API: Individual_or_Team__c
   company: string; // SF API: Company
+  officeHoursRequest: OfficeHoursRequest; // SF API: Office_Hours_Request__c
   projectName: string; // SF API: Project_Name__c
   projectDescription: string; // SF API: Project_Description__c
   additionalInfo: string; // SF API: Additional_Information__c
   projectCategory: ProjectCategory; // SF API: Category__c
-  howDidYouHearAboutESP: ReferralSource; // SF API: Referral_Source__c
-  reasonForMeeting: ReasonForMeeting; // SF API: Reason_for_meeting__c
   otherReasonForMeeting: string; // SF API: Reason_for_meeting_if_Other__c
+  howDidYouHearAboutESP: ReferralSource; // SF API: Referral_Source__c
   timezone: Timezone; // SF API: Time_Zone__c
 }
 
@@ -195,6 +195,8 @@ export interface DevconGrantsFormData extends CaptchaForm {
 }
 
 export type IndividualOrTeam = 'Individual' | 'Team';
+
+export type OfficeHoursRequest = 'Project feedback' | 'Advice';
 
 export type RepeatApplicant = 'Yes' | 'No';
 
