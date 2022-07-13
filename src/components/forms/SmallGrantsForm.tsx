@@ -660,7 +660,7 @@ export const SmallGrantsForm: FC = () => {
                 {errors?.problemBeingSolved?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Problems cannot exceed 32768 characters.
+                      Problems being addressed cannot exceed 32768 characters.
                     </PageText>
                   </Box>
                 )}
@@ -1833,7 +1833,7 @@ export const SmallGrantsForm: FC = () => {
             {errors?.referrals?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Additional info cannot exceed 32768 characters.
+                  Referrals info cannot exceed 150 characters.
                 </PageText>
               </Box>
             )}
