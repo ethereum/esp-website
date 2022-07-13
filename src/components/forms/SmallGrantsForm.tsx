@@ -1814,18 +1814,19 @@ export const SmallGrantsForm: FC = () => {
               Please submit the person&apos;s name only. This is not required.
             </PageText>
 
-            <Textarea
+            <Input
               id='referrals'
               bg='white'
               borderRadius={0}
               borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
+              type='text'
+              h='56px'
+              mt={3}
+              position='relative'
               color='brand.paragraph'
               fontSize='input'
-              h='150px'
-              mt={3}
               {...register('referrals', {
-                maxLength: 32768
+                maxLength: 150
               })}
             />
 
