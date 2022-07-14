@@ -24,9 +24,13 @@ const OfficeHoursApply: NextPage = () => {
               Office Hours. Please be specific about the type of help you&apos;re looking for.
             </PageText>
 
-            <PageText>
+            <PageText mb={6}>
               We may reject Office Hour requests or contact you for clarification if the request
               appears to be out of scope.
+            </PageText>
+
+            <PageText>
+              For feedback about whether your project is eligible for a grant, click the Project Feedback button.
             </PageText>
           </section>
         </Stack>
