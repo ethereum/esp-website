@@ -293,7 +293,7 @@ export const OfficeHoursForm: FC = () => {
                 </FormLabel>
 
                 <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Choose from the options
+                  Choose from the options below. For feedback about whether your project is eligible for a grant, click the Project Feedback button.
                 </PageText>
 
                 <RadioGroup
