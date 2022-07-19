@@ -25,7 +25,9 @@ import { api } from './api';
 
 import { chakraStyles } from './selectStyles';
 import {
+  ADVICE,
   HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
+  INDIVIDUAL,
   PROJECT_CATEGORY_OPTIONS,
   TEAM,
   PROJECT_FEEDBACK,
@@ -36,7 +38,7 @@ import { OFFICE_HOURS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants'
 import { IndividualOrTeam, OfficeHoursFormData, OfficeHoursRequest } from '../../types';
 
 export const OfficeHoursForm: FC = () => {
-  const [individualOrTeam, setIndividualOrTeam] = useState<IndividualOrTeam>('Individual');
+  const [individualOrTeam, setIndividualOrTeam] = useState<IndividualOrTeam>(INDIVIDUAL);
   const [officeHoursRequest, setOfficeHoursRequest] =
     useState<OfficeHoursRequest>(PROJECT_FEEDBACK);
   const router = useRouter();
@@ -191,7 +193,7 @@ export const OfficeHoursForm: FC = () => {
             name='individualOrTeam'
             control={control}
             rules={{ required: true }}
-            defaultValue='Individual'
+            defaultValue={INDIVIDUAL}
             render={({ field: { onChange, value } }) => (
               <FormControl id='individual-or-team-control' isRequired mb={value === TEAM ? 4 : 8}>
                 <FormLabel htmlFor='individualOrTeam' mb={4}>
@@ -215,11 +217,11 @@ export const OfficeHoursForm: FC = () => {
                       id='individual'
                       size='lg'
                       name='individualOrTeam'
-                      value='Individual'
+                      value={INDIVIDUAL}
                       defaultChecked
                       mr={8}
                     >
-                      <PageText fontSize='input'>Individual</PageText>
+                      <PageText fontSize='input'>{INDIVIDUAL}</PageText>
                     </Radio>
 
                     <Radio id='team' size='lg' name='individualOrTeam' value='Team'>
@@ -313,8 +315,8 @@ export const OfficeHoursForm: FC = () => {
                   mt={3}
                 >
                   <Stack direction='row'>
-                    <Radio id='advice' size='lg' name='officeHoursRequest' value='Advice' mr={8}>
-                      <PageText fontSize='input'>Advice</PageText>
+                    <Radio id='advice' size='lg' name='officeHoursRequest' value={ADVICE} mr={8}>
+                      <PageText fontSize='input'>{ADVICE}</PageText>
                     </Radio>
 
                     <Radio
