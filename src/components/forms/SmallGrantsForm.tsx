@@ -27,11 +27,12 @@ import { chakraStyles } from './selectStyles';
 
 import {
   HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
+  INDIVIDUAL,
   COMMUNITY_EVENT,
   EVENT_FORMAT_OPTIONS,
   EVENT_TYPE_OPTIONS,
   PROJECT_CATEGORY_OPTIONS,
-  TEAM,
+  TEAM
 } from './constants';
 import { SMALL_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
@@ -45,7 +46,7 @@ import {
 export const SmallGrantsForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
-  const [individualOrTeam, setIndividualOrTeam] = useState<IndividualOrTeam>('Individual');
+  const [individualOrTeam, setIndividualOrTeam] = useState<IndividualOrTeam>(INDIVIDUAL);
   const [repeatApplicant, setRepeatApplicant] = useState<RepeatApplicant>('No');
   // `unknown` comes from react-select required typings (https://stackoverflow.com/a/54370057)
   const [projectCategory, setProjectCategory] = useState<ProjectCategory | unknown>({
@@ -210,7 +211,7 @@ export const SmallGrantsForm: FC = () => {
             name='individualOrTeam'
             control={control}
             rules={{ required: true }}
-            defaultValue='Individual'
+            defaultValue={INDIVIDUAL}
             render={({ field: { onChange, value } }) => (
               <FormControl
                 id='individual-or-team-control'
@@ -238,7 +239,7 @@ export const SmallGrantsForm: FC = () => {
                       id='individual'
                       size='lg'
                       name='individualOrTeam'
-                      value='Individual'
+                      value={INDIVIDUAL}
                       defaultChecked
                       mr={8}
                     >
@@ -427,7 +428,8 @@ export const SmallGrantsForm: FC = () => {
 
                 <Box mb={2}>
                   <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                    Please choose a category that your project best fits in. Additional questions will appear based on your selection.
+                    Please choose a category that your project best fits in. Additional questions
+                    will appear based on your selection.
                   </PageText>
                 </Box>
 
@@ -631,7 +633,8 @@ export const SmallGrantsForm: FC = () => {
                 </FormLabel>
 
                 <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  What is the specific problems, research questions, or needs you are trying to address?
+                  What is the specific problems, research questions, or needs you are trying to
+                  address?
                 </PageText>
 
                 <Textarea
@@ -1806,7 +1809,8 @@ export const SmallGrantsForm: FC = () => {
           <FormControl id='referrals-control' mb={8}>
             <FormLabel htmlFor='referrals' mb={1}>
               <PageText fontSize='input'>
-                Did anyone recommend that you submit an application to the Ecosystem Support Program? If so, who?
+                Did anyone recommend that you submit an application to the Ecosystem Support
+                Program? If so, who?
               </PageText>
             </FormLabel>
 

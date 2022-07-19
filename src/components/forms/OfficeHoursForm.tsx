@@ -25,24 +25,27 @@ import { api } from './api';
 
 import { chakraStyles } from './selectStyles';
 import {
+  ADVICE,
   HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
+  INDIVIDUAL,
   PROJECT_CATEGORY_OPTIONS,
   TEAM,
   PROJECT_FEEDBACK,
-  TIMEZONE_OPTIONS,
+  TIMEZONE_OPTIONS
 } from './constants';
 import { OFFICE_HOURS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
 import { IndividualOrTeam, OfficeHoursFormData, OfficeHoursRequest } from '../../types';
 
 export const OfficeHoursForm: FC = () => {
-  const [individualOrTeam, setIndividualOrTeam] = useState<IndividualOrTeam>('Individual');
-  const [officeHoursRequest, setOfficeHoursRequest] = useState<OfficeHoursRequest>('Advice');
+  const [individualOrTeam, setIndividualOrTeam] = useState<IndividualOrTeam>(INDIVIDUAL);
+  const [officeHoursRequest, setOfficeHoursRequest] =
+    useState<OfficeHoursRequest>(PROJECT_FEEDBACK);
   const router = useRouter();
   const toast = useToast();
 
-  const isTeam = individualOrTeam === TEAM
-  const isRequestingProjectFeedback = officeHoursRequest === PROJECT_FEEDBACK
+  const isTeam = individualOrTeam === TEAM;
+  const isRequestingProjectFeedback = officeHoursRequest === PROJECT_FEEDBACK;
 
   const methods = useForm<OfficeHoursFormData>({
     mode: 'onBlur'
@@ -190,7 +193,7 @@ export const OfficeHoursForm: FC = () => {
             name='individualOrTeam'
             control={control}
             rules={{ required: true }}
-            defaultValue='Individual'
+            defaultValue={INDIVIDUAL}
             render={({ field: { onChange, value } }) => (
               <FormControl id='individual-or-team-control' isRequired mb={value === TEAM ? 4 : 8}>
                 <FormLabel htmlFor='individualOrTeam' mb={4}>
@@ -214,11 +217,11 @@ export const OfficeHoursForm: FC = () => {
                       id='individual'
                       size='lg'
                       name='individualOrTeam'
-                      value='Individual'
+                      value={INDIVIDUAL}
                       defaultChecked
                       mr={8}
                     >
-                      <PageText fontSize='input'>Individual</PageText>
+                      <PageText fontSize='input'>{INDIVIDUAL}</PageText>
                     </Radio>
 
                     <Radio id='team' size='lg' name='individualOrTeam' value='Team'>
@@ -278,14 +281,17 @@ export const OfficeHoursForm: FC = () => {
             </Fade>
           </Box>
 
-
           <Controller
             name='officeHoursRequest'
             control={control}
             rules={{ required: true }}
-            defaultValue='Advice'
+            defaultValue={PROJECT_FEEDBACK}
             render={({ field: { onChange, value } }) => (
-              <FormControl id='office-hours-request-control' isRequired mb={value === PROJECT_FEEDBACK ? 4 : 8}>
+              <FormControl
+                id='office-hours-request-control'
+                isRequired
+                mb={value === PROJECT_FEEDBACK ? 4 : 8}
+              >
                 <FormLabel htmlFor='officeHoursRequest' mb={2}>
                   <PageText display='inline' fontSize='input' mb={1}>
                     Office Hours Request
@@ -293,7 +299,8 @@ export const OfficeHoursForm: FC = () => {
                 </FormLabel>
 
                 <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Choose from the options below. For feedback about whether your project is eligible for a grant, click the Project Feedback button.
+                  Choose from the options below. For feedback about whether your project is eligible
+                  for a grant, click the Project Feedback button.
                 </PageText>
 
                 <RadioGroup
@@ -308,18 +315,17 @@ export const OfficeHoursForm: FC = () => {
                   mt={3}
                 >
                   <Stack direction='row'>
-                    <Radio
-                      id='advice'
-                      size='lg'
-                      name='officeHoursRequest'
-                      value='Advice'
-                      defaultChecked
-                      mr={8}
-                    >
-                      <PageText fontSize='input'>Advice</PageText>
+                    <Radio id='advice' size='lg' name='officeHoursRequest' value={ADVICE} mr={8}>
+                      <PageText fontSize='input'>{ADVICE}</PageText>
                     </Radio>
 
-                    <Radio id='project-feedback' size='lg' name='officeHoursRequest' value={PROJECT_FEEDBACK}>
+                    <Radio
+                      id='project-feedback'
+                      size='lg'
+                      name='officeHoursRequest'
+                      value={PROJECT_FEEDBACK}
+                      defaultChecked
+                    >
                       <PageText fontSize='input'>{PROJECT_FEEDBACK}</PageText>
                     </Radio>
                   </Stack>
@@ -336,7 +342,9 @@ export const OfficeHoursForm: FC = () => {
                 mb={8}
               >
                 <FormLabel htmlFor='projectName' mb={1}>
-                  <PageText display='inline' fontSize='input'>Project name</PageText>
+                  <PageText display='inline' fontSize='input'>
+                    Project name
+                  </PageText>
                 </FormLabel>
 
                 <Input
@@ -377,11 +385,14 @@ export const OfficeHoursForm: FC = () => {
                 mb={8}
               >
                 <FormLabel htmlFor='projectDescription' mb={1}>
-                  <PageText display='inline' fontSize='input'>What is your project about?</PageText>
+                  <PageText display='inline' fontSize='input'>
+                    What is your project about?
+                  </PageText>
                 </FormLabel>
 
                 <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Give us a short summary of what you are hoping to accomplish. Just a paragraph will do.
+                  Give us a short summary of what you are hoping to accomplish. Just a paragraph
+                  will do.
                 </PageText>
 
                 <Textarea
@@ -421,7 +432,9 @@ export const OfficeHoursForm: FC = () => {
                 mb={8}
               >
                 <FormLabel htmlFor='additionalInfo' mb={1}>
-                  <PageText display='inline' fontSize='input'>Where can we learn more?</PageText>
+                  <PageText display='inline' fontSize='input'>
+                    Where can we learn more?
+                  </PageText>
                 </FormLabel>
 
                 <PageText as='small' fontSize='helpText' color='brand.helpText'>

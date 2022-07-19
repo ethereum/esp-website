@@ -1483,8 +1483,10 @@ export const APPLYING_AS_OPTIONS = [
 
 // office hours
 export const TEAM = 'Team';
+export const INDIVIDUAL = 'Individual';
 export const OTHER = 'Other';
 export const PROJECT_FEEDBACK = 'Project feedback';
+export const ADVICE = 'Advice';
 export const COMMUNITY_EVENT = 'Community event';
 export const REASONS_FOR_MEETING = [
   'Project feedback or advice',
