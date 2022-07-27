@@ -80,6 +80,7 @@ export const api = {
           ...data,
           // Company is a required field in SF, we're using the Name as default value if no company provided
           company: data.company === '' ? `${data.firstName} ${data.lastName}` : data.company,
+          country: data.country.value,
           website: getWebsite(data.website),
           projectCategory: data.projectCategory.value,
           repeatApplicant: data.repeatApplicant === 'Yes',
