@@ -299,6 +299,50 @@ export const SmallGrantsForm: FC = () => {
             </Fade>
           </Box>
 
+          <FormControl id='individual-or-team-summary-control' isRequired mb={8}>
+            <FormLabel htmlFor='individualOrTeamSummary' mb={1}>
+              <PageText display='inline' fontSize='input'>
+                Individual or team summary
+              </PageText>
+            </FormLabel>
+
+            <PageText as='small' fontSize='helpText' color='brand.helpText'>
+              Tell us about yourself, your experience, and your motivations. Feel free to link to
+              any biography pages, LinkedIn pages, etc.
+            </PageText>
+
+            <Textarea
+              id='individualOrTeamSummary'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              _placeholder={{ fontSize: 'input' }}
+              color='brand.paragraph'
+              fontSize='input'
+              h='150px'
+              mt={3}
+              {...register('individualOrTeamSummary', {
+                required: true,
+                maxLength: 32768
+              })}
+            />
+
+            {errors?.individualOrTeamSummary?.type === 'required' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Team summary is required.
+                </PageText>
+              </Box>
+            )}
+            {errors?.individualOrTeamSummary?.type === 'maxLength' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Team summary cannot exceed 32768 characters.
+                </PageText>
+              </Box>
+            )}
+          </FormControl>
+
           <Flex direction='column' mb={8}>
             <Flex direction={{ base: 'column', md: 'row' }} mb={3}>
               <FormControl id='city-control' mr={{ md: 12 }} mb={{ base: 8, md: 0 }}>
@@ -361,50 +405,6 @@ export const SmallGrantsForm: FC = () => {
               Where are you located? This is optional
             </PageText>
           </Flex>
-
-          <FormControl id='individual-or-team-summary-control' isRequired mb={8}>
-            <FormLabel htmlFor='individualOrTeamSummary' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Individual or team summary
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Tell us about yourself, your experience, and your motivations. Feel free to link to
-              any biography pages, LinkedIn pages, etc.
-            </PageText>
-
-            <Textarea
-              id='individualOrTeamSummary'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('individualOrTeamSummary', {
-                required: true,
-                maxLength: 32768
-              })}
-            />
-
-            {errors?.individualOrTeamSummary?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Team summary is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.individualOrTeamSummary?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Team summary cannot exceed 32768 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
 
           <FormControl id='website-control' mb={8}>
             <FormLabel htmlFor='website'>
