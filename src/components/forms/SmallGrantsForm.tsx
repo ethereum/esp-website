@@ -26,6 +26,7 @@ import { api } from './api';
 import { chakraStyles } from './selectStyles';
 
 import {
+  COUNTRY_OPTIONS,
   HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
   INDIVIDUAL,
   COMMUNITY_EVENT,
@@ -297,6 +298,69 @@ export const SmallGrantsForm: FC = () => {
               </FormControl>
             </Fade>
           </Box>
+
+          <Flex direction='column' mb={8}>
+            <Flex direction={{ base: 'column', md: 'row' }} mb={3}>
+              <FormControl id='city-control' mr={{ md: 12 }} mb={{ base: 8, md: 0 }}>
+                <FormLabel htmlFor='city'>
+                  <PageText fontSize='input'>City</PageText>
+                </FormLabel>
+
+                <Input
+                  id='city'
+                  type='text'
+                  bg='white'
+                  borderRadius={0}
+                  borderColor='brand.border'
+                  h='56px'
+                  _placeholder={{ fontSize: 'input' }}
+                  color='brand.paragraph'
+                  fontSize='input'
+                  {...register('city', {
+                    maxLength: 255
+                  })}
+                />
+
+                {errors?.city?.type === 'maxLength' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      City name cannot exceed 255 characters.
+                    </PageText>
+                  </Box>
+                )}
+              </FormControl>
+
+              <Controller
+                name='country'
+                control={control}
+                defaultValue={{ value: '', label: '' }}
+                render={({ field: { onChange } }) => (
+                  <FormControl id='country-control'>
+                    <FormLabel htmlFor='country'>
+                      <PageText display='inline' fontSize='input'>
+                        Country
+                      </PageText>
+                    </FormLabel>
+
+                    <Select
+                      id='country'
+                      options={COUNTRY_OPTIONS}
+                      onChange={onChange}
+                      components={{ DropdownIndicator }}
+                      placeholder='Select'
+                      closeMenuOnSelect={true}
+                      selectedOptionColor='brand.option'
+                      chakraStyles={chakraStyles}
+                    />
+                  </FormControl>
+                )}
+              />
+            </Flex>
+
+            <PageText as='small' fontSize='helpText' color='brand.helpText'>
+              Where are you located? This is optional
+            </PageText>
+          </Flex>
 
           <FormControl id='individual-or-team-summary-control' isRequired mb={8}>
             <FormLabel htmlFor='individualOrTeamSummary' mb={1}>

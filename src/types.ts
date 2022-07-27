@@ -69,6 +69,8 @@ export interface SmallGrantsFormData extends CaptchaForm {
   email: string; // SF API: Email
   individualOrTeam: IndividualOrTeam; // SF API: Individual_or_Team__c
   company: string; // SF API: Company
+  city: string; // SF API: npsp__CompanyCity__c
+  country: Country; // SF API: npsp__CompanyCountry__c
   website: string; // SF API: Website
   twitter: string; // SF API: Twitter__c
   projectCategory: ProjectCategory; // SF API: Category__c
