@@ -34,7 +34,7 @@ import {
   TIMEZONE_OPTIONS,
   WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS
 } from './constants';
-import { MERGE_DATA_CHALLENGE_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
+import { ACADEMIC_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
 import { AcademicGrantsFormData, ApplyingAs, GrantsReferralSource } from '../../types';
 
@@ -69,7 +69,7 @@ export const AcademicGrantsForm: FC = () => {
       .then(res => {
         if (res.ok) {
           reset();
-          router.push(MERGE_DATA_CHALLENGE_THANK_YOU_PAGE_URL);
+          router.push(ACADEMIC_GRANTS_THANK_YOU_PAGE_URL);
         } else {
           toast({
             ...TOAST_OPTIONS,
