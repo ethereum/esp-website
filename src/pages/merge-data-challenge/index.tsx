@@ -2,7 +2,7 @@ import { Box, Link, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 
 import { PageMetadata, PageSubheading, PageText } from '../../components/UI';
-import { ACADEMIC_GRANTS_EMAIL_ADDRESS } from '../../constants';
+import { MERGE_DATA_CHALLENGE_EMAIL_ADDRESS } from '../../constants';
 
 const MergeDataChallenge: NextPage = () => {
   return (
@@ -31,11 +31,11 @@ const MergeDataChallenge: NextPage = () => {
               <Link
                 fontWeight={700}
                 color='brand.orange.100'
-                href={`mailto:${ACADEMIC_GRANTS_EMAIL_ADDRESS}`}
+                href={`mailto:${MERGE_DATA_CHALLENGE_EMAIL_ADDRESS}`}
                 isExternal
                 _hover={{ textDecoration: 'none' }}
               >
-                {ACADEMIC_GRANTS_EMAIL_ADDRESS}
+                {MERGE_DATA_CHALLENGE_EMAIL_ADDRESS}
               </Link>
               .
             </PageText>
