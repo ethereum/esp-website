@@ -22,7 +22,8 @@ import {
   DEVCON_GRANTS_APPLY_URL,
   DEVCON_GRANTS_THANK_YOU_PAGE_URL,
   DEVCON_GRANTS_URL,
-  HOME_URL
+  HOME_URL,
+  MERGE_DATA_CHALLENGE_APPLY_URL
 } from '../../constants';
 import { DevconGrantsLayout } from './DevconGrantsLayout';
 
@@ -84,7 +85,8 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       router.pathname === ACADEMIC_GRANTS_APPLY_URL ||
       router.pathname === ACADEMIC_GRANTS_THANK_YOU_PAGE_URL ||
       router.pathname === DEVCON_GRANTS_APPLY_URL ||
-      router.pathname === DEVCON_GRANTS_THANK_YOU_PAGE_URL
+      router.pathname === DEVCON_GRANTS_THANK_YOU_PAGE_URL ||
+      router.pathname === MERGE_DATA_CHALLENGE_APPLY_URL
     ) {
       return (
         <Box mt={-6}>

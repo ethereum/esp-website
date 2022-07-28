@@ -15,6 +15,7 @@ import {
   API_ACADEMIC_GRANTS,
   API_DEVCON_GRANTS,
   API_GRANTEE_FINANCE,
+  API_MERGE_DATA_CHALLENGE,
   API_NEWSLETTER_SIGNUP_URL,
   API_OFFICE_HOURS,
   API_PROJECT_GRANTS,
@@ -167,8 +168,7 @@ export const api = {
         })
       }
 
-      console.log(data)
-      console.log(mergeDataChallengeRequestOptions)
+      return fetch(API_MERGE_DATA_CHALLENGE, mergeDataChallengeRequestOptions);
     }
   },
   newsletter: {
