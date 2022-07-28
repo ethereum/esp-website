@@ -2,6 +2,7 @@ import {
   AcademicGrantsFormData,
   DevconGrantsFormData,
   GranteeFinanceFormData,
+  MergeDataChallengeFormData,
   NewsletterFormData,
   OfficeHoursFormData,
   ProjectGrantsFormData,
@@ -147,6 +148,27 @@ export const api = {
       };
 
       return fetch(API_DEVCON_GRANTS, devconGrantsRequestOptions);
+    }
+  },
+  mergeDataChallenge: {
+    submit: (data: MergeDataChallengeFormData) => {
+      const mergeDataChallengeRequestOptions: RequestInit = {
+        ...methodOptions,
+        body: JSON.stringify({
+          ...data,
+          company: data.company === 'N/A' ? `${data.firstName} ${data.lastName}` : data.company,
+          applyingAs: data.applyingAs.value,
+          country: data.country.value,
+          timezone: data.timezone.value,
+          projectCategory: data.projectCategory.value,
+          wouldYouShareYourResearch: data.wouldYouShareYourResearch.value,
+          repeatApplicant: data.repeatApplicant === 'Yes',
+          canTheEFReachOut: data.canTheEFReachOut === 'Yes'
+        })
+      }
+
+      console.log(data)
+      console.log(mergeDataChallengeRequestOptions)
     }
   },
   newsletter: {

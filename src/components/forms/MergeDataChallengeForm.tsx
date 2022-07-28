@@ -18,6 +18,9 @@ import { FC, useState } from 'react';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 
+// API
+import { api } from './api';
+
 // Components
 import { SubmitButton } from '../SubmitButton';
 import { Captcha } from '.';
@@ -61,7 +64,23 @@ export const MergeDataChallengeForm: FC = () => {
   } = methods;
 
   const onSubmit = async(data: MergeDataChallengeFormData) => {
-    console.log(data)
+    return api.mergeDataChallenge
+    .submit(data)
+    // .then(res => {
+    //   if (res.ok) {
+    //     reset();
+    //     // router.push(ACADEMIC_GRANTS_THANK_YOU_PAGE_URL);
+    //   } else {
+    //     toast({
+    //       ...TOAST_OPTIONS,
+    //       title: 'Something went wrong while submitting, please try again.',
+    //       status: 'error'
+    //     });
+
+    //     throw new Error('Network response was not OK');
+    //   }
+    // })
+    // .catch(err => console.error('There has been a problem with your operation: ', err.message));
   }
 
   const handleApplyingAs = (value: ApplyingAs) => {
