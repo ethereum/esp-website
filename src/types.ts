@@ -7,6 +7,7 @@ import {
   EVENT_TYPE_OPTIONS,
   HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
   HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE,
+  MERGE_DATA_CHALLENGE_PROJECT_CATEGORY_OPTIONS,
   PROJECT_CATEGORY_OPTIONS,
   REASONS_FOR_MEETING,
   TIMEZONE_OPTIONS,
@@ -215,6 +216,32 @@ export interface DevconGrantsFormData extends CaptchaForm {
   howDidYouHearAboutESP: ReferralSource; // SF API: Referral_Source__c
 }
 
+export interface MergeDataChallengeFormData extends CaptchaForm {
+  firstName: string; // SF API: FirstName
+  lastName: string; // SF API: LastName
+  email: string; // SF API: Email
+  title: string; // AF API: Title
+  applyingAs: ApplyingAs; // SF API: Applying_as_a__c
+  company: string; // SF API: Company
+  applyingAsOther: string; // SF API: Applying_as_Other__c
+  country: Country; // SF API: npsp__CompanyCountry__c
+  countriesOfTeam: string; // SF API: Countries_of_Team__c
+  timezone: Timezone; // SF API: Time_Zone__c
+  projectName: string; // SF API: Project_Name__c
+  projectDescription: string; // SF API: Project_Description__c
+  projectCategory: AcademicGrantsProjectCategory; // SF API: Category__c
+  blogPostURL: string; // SF API: Website
+  additionalSupportRequests: string; // SF API: Additional_support_requests__c
+  wouldYouShareYourResearch: WouldYouShareYourResearch; // SF API: Would_you_share_your_research__c
+  twitter: string; // SF API: Twitter__c
+  githubUser: string; //SF API: Github_Username__c
+  telegram: string; // SF API: Alternative_Contact__c
+  repeatApplicant: string; // SF API: Repeat_Applicant__c
+  canTheEFReachOut: string; // SF API: Can_the_EF_reach_out__c
+  additionalInfo: string; // SF API: Additional_Information__c
+  proactiveCommunityGrantsRound: ProactiveCommunityGrantsRound// SF API: Proactive_Community_Grants_Round__c
+}
+
 export type IndividualOrTeam = 'Individual' | 'Team';
 
 export type OfficeHoursRequest = 'Project feedback' | 'Advice';
@@ -229,9 +256,13 @@ export type TokenPreference = 'ETH' | 'DAI';
 
 export type ReasonForMeeting = typeof REASONS_FOR_MEETING;
 
+export type ProactiveCommunityGrantsRound = 'Merge Data Challenge 2022'
+
 export type ProjectCategory = typeof PROJECT_CATEGORY_OPTIONS[number];
 
 export type AcademicGrantsProjectCategory = typeof ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS[number];
+
+export type MergeDataChallengeProjectCategory = typeof MERGE_DATA_CHALLENGE_PROJECT_CATEGORY_OPTIONS[number];
 
 export type ProjectGrantsProjectCategory = typeof PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS[number];
 

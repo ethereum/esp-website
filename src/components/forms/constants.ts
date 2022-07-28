@@ -42,6 +42,12 @@ export const ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Other', label: 'Other' }
 ];
 
+export const MERGE_DATA_CHALLENGE_PROJECT_CATEGORY_OPTIONS = [
+  { value: "Data Visualization", label: "Data Visualization" },
+  { value: 'Data Analysis', label: 'Data Analysis' },
+  { value: 'New Tooling', label: 'New Tooling'}
+]
+
 // events
 export const EVENT_TYPE_OPTIONS = [
   { value: 'Conference', label: 'Conference' },
