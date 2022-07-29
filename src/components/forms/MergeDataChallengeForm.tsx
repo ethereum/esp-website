@@ -68,21 +68,21 @@ export const MergeDataChallengeForm: FC = () => {
   const onSubmit = async(data: MergeDataChallengeFormData) => {
     return api.mergeDataChallenge
     .submit(data)
-    // .then(res => {
-    //   if (res.ok) {
-    //     reset();
-    //     // router.push(MERGE_DATA_CHALLENGE_THANK_YOU_PAGE_URL);
-    //   } else {
-    //     toast({
-    //       ...TOAST_OPTIONS,
-    //       title: 'Something went wrong while submitting, please try again.',
-    //       status: 'error'
-    //     });
+    .then(res => {
+      if (res.ok) {
+        reset();
+        router.push(MERGE_DATA_CHALLENGE_THANK_YOU_PAGE_URL);
+      } else {
+        toast({
+          ...TOAST_OPTIONS,
+          title: 'Something went wrong while submitting, please try again.',
+          status: 'error'
+        });
 
-    //     throw new Error('Network response was not OK');
-    //   }
-    // })
-    // .catch(err => console.error('There has been a problem with your operation: ', err.message));
+        throw new Error('Network response was not OK');
+      }
+    })
+    .catch(err => console.error('There has been a problem with your operation: ', err.message));
   }
 
   const handleApplyingAs = (value: ApplyingAs) => {

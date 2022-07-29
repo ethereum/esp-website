@@ -239,7 +239,6 @@ export interface MergeDataChallengeFormData extends CaptchaForm {
   repeatApplicant: string; // SF API: Repeat_Applicant__c
   canTheEFReachOut: string; // SF API: Can_the_EF_reach_out__c
   additionalInfo: string; // SF API: Additional_Information__c
-  proactiveCommunityGrantsRound: ProactiveCommunityGrantsRound// SF API: Proactive_Community_Grants_Round__c
 }
 
 export type IndividualOrTeam = 'Individual' | 'Team';
@@ -255,8 +254,6 @@ export type PaymentPreference = 'ETH/DAI' | 'Fiat' | '';
 export type TokenPreference = 'ETH' | 'DAI';
 
 export type ReasonForMeeting = typeof REASONS_FOR_MEETING;
-
-export type ProactiveCommunityGrantsRound = 'Merge Data Challenge 2022'
 
 export type ProjectCategory = typeof PROJECT_CATEGORY_OPTIONS[number];
 
