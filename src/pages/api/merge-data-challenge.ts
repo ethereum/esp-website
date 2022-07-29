@@ -23,7 +23,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     projectName: Project_Name__c,
     projectDescription: Project_Description__c,
     projectCategory: Category__c,
-    blogPostUrl: Website,
+    blogPostURL: Website,
     additionalSupportRequests: Additional_support_requests__c,
     wouldYouShareYourResearch: Would_you_share_your_research__c,
     twitter: Twitter__c,
@@ -31,7 +31,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     telegram: Alternative_Contact__c,
     repeatApplicant: Repeat_Applicant__c,
     canTheEFReachOut: Can_the_EF_reach_out__c,
-    additionalInfo: Additional_Information__c,
+    additionalInfo: Additional_Information__c
   } = body;
   const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
     process.env;
