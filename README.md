@@ -104,6 +104,10 @@ when creating a new record, try disabling the _'Restrict picklist to the values 
 
 - `Checkbox`: besides how you're handling this input on the UI (e.g.: a radio button), Salesforce expects the value to be a boolean (`true`, `false`), so remember to convert the string before submitting the data.
 
+#### When adding new Grants
+
+Check that the hardwired string value of `Proactive_Community_Grants_Round__c` is defined on Salesforce, otherwise submission will fail.
+
 ## Grantees List data source
 
 The data published in the [Latest Grantees](https://esp.ethereum.foundation/about/who-we-support#latest-grantees) list is being pulled from a Google Spreadsheet mantained by the ESP Team. This document uses Markdown syntax as it's also being used as source for other pages.
