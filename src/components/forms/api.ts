@@ -158,6 +158,7 @@ export const api = {
         body: JSON.stringify({
           ...data,
           company: data.company === 'N/A' ? `${data.firstName} ${data.lastName}` : data.company,
+          blogPostURL: getWebsite(data.blogPostURL),
           applyingAs: data.applyingAs.value,
           country: data.country.value,
           timezone: data.timezone.value,
@@ -166,7 +167,7 @@ export const api = {
           repeatApplicant: data.repeatApplicant === 'Yes',
           canTheEFReachOut: data.canTheEFReachOut === 'Yes'
         })
-      }
+      };
 
       return fetch(API_MERGE_DATA_CHALLENGE, mergeDataChallengeRequestOptions);
     }
