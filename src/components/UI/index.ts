@@ -8,3 +8,4 @@ export * from './List';
 export * from './Step';
 export * from './text';
 export * from './PageMetadata';
+export * from './OrderedList';

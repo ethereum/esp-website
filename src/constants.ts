@@ -89,7 +89,17 @@ export const SIDEBAR_DEVCON_GRANTS_LINKS: SidebarLink[] = [
 
 export const MERGE_DATA_CHALLENGE_URL = '/merge-data-challenge'
 export const SIDEBAR_MERGE_DATA_CHALLENGE_LINKS: SidebarLink[] = [
-
+  { text: 'Summary', href: `${MERGE_DATA_CHALLENGE_URL}/#description`},
+  { text: 'The challenge', href:`${MERGE_DATA_CHALLENGE_URL}/#the-challenge`},
+  { text: 'How to submit', href: `${MERGE_DATA_CHALLENGE_URL}/#how-to-submit`},
+  { text: 'Deadline', href: `${MERGE_DATA_CHALLENGE_URL}/#deadline`},
+  { text: 'Prizes', href: `${MERGE_DATA_CHALLENGE_URL}/#prizes`},
+  { text: 'Requirements', href: `${MERGE_DATA_CHALLENGE_URL}/#requirements`},
+  { text: 'Judging criteria', href: `${MERGE_DATA_CHALLENGE_URL}/#judging-criteria` },
+  { text: 'How to get started', href: `${MERGE_DATA_CHALLENGE_URL}/#how-to-get-started`},
+  { text: 'Helpful Resources', href: `${MERGE_DATA_CHALLENGE_URL}/#helpful-resources`},
+  { text: 'Support', href: `${MERGE_DATA_CHALLENGE_URL}/#support`},
+  { text: 'Apply', href: `${MERGE_DATA_CHALLENGE_URL}/#apply`}
 ];
 
 // apply forms
