@@ -1,3 +1,4 @@
+import { NextApiRequest } from 'next';
 import {
   ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS,
   PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS,
@@ -298,4 +299,31 @@ export interface Grant {
 export interface SidebarLink {
   text: string;
   href: string;
+}
+
+export interface MergeDataChallengeNextApiRequest extends NextApiRequest {
+  body: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    title: string;
+    applyingAs: string;
+    company: string;
+    applyingAsOther: string;
+    country: string;
+    countriesOfTeam: string;
+    timezone: string;
+    projectName: string;
+    projectDescription: string;
+    projectCategory: string;
+    blogPostURL: string;
+    additionalSupportRequests: string;
+    wouldYouShareYourResearch: string;
+    twitter: string;
+    githubUser: string;
+    telegram: string;
+    repeatApplicant: boolean;
+    canTheEFReachOut: boolean;
+    additionalInfo: string;
+  }
 }
