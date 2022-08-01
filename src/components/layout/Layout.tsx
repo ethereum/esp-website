@@ -24,9 +24,11 @@ import {
   DEVCON_GRANTS_URL,
   HOME_URL,
   MERGE_DATA_CHALLENGE_APPLY_URL,
-  MERGE_DATA_CHALLENGE_THANK_YOU_PAGE_URL
+  MERGE_DATA_CHALLENGE_THANK_YOU_PAGE_URL,
+  MERGE_DATA_CHALLENGE_URL
 } from '../../constants';
 import { DevconGrantsLayout } from './DevconGrantsLayout';
+import { MergeDataChallengeLayout } from './MergeDataChallengeLayout'
 
 export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
   const router = useRouter();
@@ -77,6 +79,16 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
         <Box mt={{ md: -10, lg: 0 }}>
           <main>
             <AcademicGrantsLayout>{children}</AcademicGrantsLayout>
+          </main>
+        </Box>
+      );
+    }
+
+    if (router.pathname === MERGE_DATA_CHALLENGE_URL) {
+      return (
+        <Box mt={{ md: -10, lg: 0 }}>
+          <main>
+            <MergeDataChallengeLayout>{children}</MergeDataChallengeLayout>
           </main>
         </Box>
       );
