@@ -14,16 +14,13 @@ export const HOW_WE_SUPPORT_URL = '/about/how-we-support';
 
 // applicants
 export const APPLICANTS_URL = '/applicants';
-export const OFFICE_HOURS_URL = '/applicants/office-hours';
-export const SMALL_GRANTS_URL = '/applicants/small-grants';
-export const PROJECT_GRANTS_URL = '/applicants/project-grants';
-export const ACADEMIC_GRANTS_URL = '/academic-grants';
-export const DEVCON_GRANTS_URL = '/devcon-grants';
 export const SIDEBAR_APPLICANTS_LINKS: SidebarLink[] = [
   { text: 'Mission and Scope', href: `${APPLICANTS_URL}/#mission-and-scope` },
   { text: 'How we support', href: `${APPLICANTS_URL}/#how-we-support` },
   { text: 'Application types', href: `${APPLICANTS_URL}/#application-types` }
 ];
+
+export const OFFICE_HOURS_URL = '/applicants/office-hours';
 export const SIDEBAR_OFFICE_HOURS_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${OFFICE_HOURS_URL}/#description` },
   { text: 'Process', href: `${OFFICE_HOURS_URL}/#process` },
@@ -34,6 +31,8 @@ export const SIDEBAR_OFFICE_HOURS_LINKS: SidebarLink[] = [
   { text: 'FAQ', href: `${OFFICE_HOURS_URL}/#faq` },
   { text: 'Apply', href: `${OFFICE_HOURS_URL}/#apply` }
 ];
+
+export const PROJECT_GRANTS_URL = '/applicants/project-grants';
 export const SIDEBAR_PROJECT_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${PROJECT_GRANTS_URL}/#description` },
   { text: 'Process', href: `${PROJECT_GRANTS_URL}/#process` },
@@ -47,6 +46,8 @@ export const SIDEBAR_PROJECT_GRANTS_LINKS: SidebarLink[] = [
   { text: 'FAQ', href: `${PROJECT_GRANTS_URL}/#faq` },
   { text: 'Apply', href: `${PROJECT_GRANTS_URL}/#apply` }
 ];
+
+export const SMALL_GRANTS_URL = '/applicants/small-grants';
 export const SIDEBAR_SMALL_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${SMALL_GRANTS_URL}/#description` },
   { text: 'Process', href: `${SMALL_GRANTS_URL}/#process` },
@@ -60,6 +61,8 @@ export const SIDEBAR_SMALL_GRANTS_LINKS: SidebarLink[] = [
   { text: 'FAQ', href: `${SMALL_GRANTS_URL}/#faq` },
   { text: 'Apply', href: `${SMALL_GRANTS_URL}/#apply` }
 ];
+
+export const ACADEMIC_GRANTS_URL = '/academic-grants';
 export const SIDEBAR_ACADEMIC_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${ACADEMIC_GRANTS_URL}/#description` },
   { text: 'Submit proposal', href: `${ACADEMIC_GRANTS_URL}/#submit-proposal` },
@@ -71,6 +74,8 @@ export const SIDEBAR_ACADEMIC_GRANTS_LINKS: SidebarLink[] = [
   { text: 'FAQ', href: `${ACADEMIC_GRANTS_URL}/#faq` },
   { text: 'Apply', href: `${ACADEMIC_GRANTS_URL}/#apply` }
 ];
+
+export const DEVCON_GRANTS_URL = '/devcon-grants';
 export const SIDEBAR_DEVCON_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${DEVCON_GRANTS_URL}/#description` },
   { text: 'Who', href: `${DEVCON_GRANTS_URL}/#who` },
@@ -80,6 +85,11 @@ export const SIDEBAR_DEVCON_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Next steps and support', href: `${DEVCON_GRANTS_URL}/#next-steps-and-support` },
   { text: 'FAQ', href: `${DEVCON_GRANTS_URL}/#faq` },
   { text: 'Apply', href: `${DEVCON_GRANTS_URL}/#apply` }
+];
+
+export const MERGE_DATA_CHALLENGE_URL = '/merge-data-challenge'
+export const SIDEBAR_MERGE_DATA_CHALLENGE_LINKS: SidebarLink[] = [
+
 ];
 
 // apply forms

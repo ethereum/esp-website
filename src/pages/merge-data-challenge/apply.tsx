@@ -4,7 +4,7 @@ import type { NextPage } from 'next';
 import { PageMetadata, PageSubheading, PageText } from '../../components/UI';
 import { MERGE_DATA_CHALLENGE_EMAIL_ADDRESS } from '../../constants';
 
-const MergeDataChallenge: NextPage = () => {
+const MergeDataChallengeApply: NextPage = () => {
   return (
     <>
       <PageMetadata
@@ -46,4 +46,4 @@ const MergeDataChallenge: NextPage = () => {
   );
 };
 
-export default MergeDataChallenge;
+export default MergeDataChallengeApply;
