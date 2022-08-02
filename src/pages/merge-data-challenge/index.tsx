@@ -28,15 +28,16 @@ const MergeDataChallenge: NextPage = () => {
   // `threshold` option allows us to control the % of visibility required before triggering the Intersection Observer
   // https://react-intersection-observer.vercel.app/?path=/story/introduction--page#options
   const [ref, inView] = useInView({ threshold: 0 });
-  const [ref2, inView2] = useInView({ threshold: 0, initialInView: false });
+  const [ref2, inView2] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref3, inView3] = useInView({ threshold: 0.5, initialInView: false });
   const [ref4, inView4] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref5, inView5] = useInView({ threshold: 0.3, initialInView: false });
+  const [ref5, inView5] = useInView({ threshold: 0.5, initialInView: false });
   const [ref6, inView6] = useInView({ threshold: 0.5, initialInView: false });
   const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
   const [ref8, inView8] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref9, inView9] = useInView({ threshold: 0, initialInView: false });
-  const [ref10, inView10] = useInView({ threshold: 0, initialInView: false });
-  const [ref11, inView11] = useInView({ threshold: 0, initialInView: false });
+  const [ref9, inView9] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref10, inView10] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref11, inView11] = useInView({ threshold: 0.5, initialInView: false });
 
   return (
     <>
@@ -53,6 +54,7 @@ const MergeDataChallenge: NextPage = () => {
                 sectionsInView={[
                   inView,
                   inView2,
+                  inView3,
                   inView4,
                   inView5,
                   inView6,
@@ -120,8 +122,12 @@ const MergeDataChallenge: NextPage = () => {
                   <PageText mb={6}>
                     Get started now if you want to gather date from both before and after the big event!
                   </PageText>
+                </section>
+              </Stack>
 
-                  <PageSection as='h4' fontSize='h4' id="how-to-submit" mb={6}>
+              <Stack>
+                <section id='how-to-submit' ref={ref3}>
+                  <PageSection as='h4' fontSize='h4'mb={6}>
                     How to submit
                   </PageSection>
 
@@ -586,7 +592,7 @@ const MergeDataChallenge: NextPage = () => {
                 </section>
 
 
-                <section id='apply' ref={ref11}>
+                <section id='submit-blog-post' ref={ref11}>
                   <Stack>
                     <CallToAction
                       buttonText='Submit blog post'

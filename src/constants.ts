@@ -99,7 +99,7 @@ export const SIDEBAR_MERGE_DATA_CHALLENGE_LINKS: SidebarLink[] = [
   { text: 'How to get started', href: `${MERGE_DATA_CHALLENGE_URL}/#how-to-get-started` },
   { text: 'Helpful Resources', href: `${MERGE_DATA_CHALLENGE_URL}/#helpful-resources` },
   { text: 'Support', href: `${MERGE_DATA_CHALLENGE_URL}/#support` },
-  { text: 'Apply', href: `${MERGE_DATA_CHALLENGE_URL}/#apply` }
+  { text: 'Submit blog post', href: `${MERGE_DATA_CHALLENGE_URL}/#submit-blog-post` }
 ];
 
 // apply forms
