@@ -87,19 +87,19 @@ export const SIDEBAR_DEVCON_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Apply', href: `${DEVCON_GRANTS_URL}/#apply` }
 ];
 
-export const MERGE_DATA_CHALLENGE_URL = '/merge-data-challenge'
+export const MERGE_DATA_CHALLENGE_URL = '/merge-data-challenge';
 export const SIDEBAR_MERGE_DATA_CHALLENGE_LINKS: SidebarLink[] = [
-  { text: 'Summary', href: `${MERGE_DATA_CHALLENGE_URL}/#description`},
-  { text: 'The challenge', href:`${MERGE_DATA_CHALLENGE_URL}/#the-challenge`},
-  { text: 'How to submit', href: `${MERGE_DATA_CHALLENGE_URL}/#how-to-submit`},
-  { text: 'Deadline', href: `${MERGE_DATA_CHALLENGE_URL}/#deadline`},
-  { text: 'Prizes', href: `${MERGE_DATA_CHALLENGE_URL}/#prizes`},
-  { text: 'Requirements', href: `${MERGE_DATA_CHALLENGE_URL}/#requirements`},
+  { text: 'Summary', href: `${MERGE_DATA_CHALLENGE_URL}/#description` },
+  { text: 'The challenge', href: `${MERGE_DATA_CHALLENGE_URL}/#the-challenge` },
+  { text: 'How to submit', href: `${MERGE_DATA_CHALLENGE_URL}/#how-to-submit` },
+  { text: 'Deadline', href: `${MERGE_DATA_CHALLENGE_URL}/#deadline` },
+  { text: 'Prizes', href: `${MERGE_DATA_CHALLENGE_URL}/#prizes` },
+  { text: 'Requirements', href: `${MERGE_DATA_CHALLENGE_URL}/#requirements` },
   { text: 'Judging criteria', href: `${MERGE_DATA_CHALLENGE_URL}/#judging-criteria` },
-  { text: 'How to get started', href: `${MERGE_DATA_CHALLENGE_URL}/#how-to-get-started`},
-  { text: 'Helpful Resources', href: `${MERGE_DATA_CHALLENGE_URL}/#helpful-resources`},
-  { text: 'Support', href: `${MERGE_DATA_CHALLENGE_URL}/#support`},
-  { text: 'Apply', href: `${MERGE_DATA_CHALLENGE_URL}/#apply`}
+  { text: 'How to get started', href: `${MERGE_DATA_CHALLENGE_URL}/#how-to-get-started` },
+  { text: 'Helpful Resources', href: `${MERGE_DATA_CHALLENGE_URL}/#helpful-resources` },
+  { text: 'Support', href: `${MERGE_DATA_CHALLENGE_URL}/#support` },
+  { text: 'Apply', href: `${MERGE_DATA_CHALLENGE_URL}/#apply` }
 ];
 
 // apply forms
@@ -144,7 +144,7 @@ export const ESP_TWITTER_URL = 'https://twitter.com/EF_ESP';
 export const ESP_EMAIL_ADDRESS = 'esp@ethereum.org';
 export const ACADEMIC_GRANTS_EMAIL_ADDRESS = 'academic-grants@ethereum.org';
 export const DEVCON_GRANTS_EMAIL_ADDRESS = 'grants@devcon.org';
-export const MERGE_DATA_CHALLENGE_EMAIL_ADDRESS = 'datachallenge@ethereum.org'
+export const MERGE_DATA_CHALLENGE_EMAIL_ADDRESS = 'datachallenge@ethereum.org';
 
 // applicants tabs
 export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Small Grants', 'Project Grants'];
@@ -200,3 +200,7 @@ export const TOAST_OPTIONS: UseToastOptions = {
     fontFamily: 'fonts.heading'
   }
 };
+
+// preview image
+export const HOMEPAGE_HERO_MOBILE_URL =
+  'https://esp.ethereum.foundation/images/homepage-hero-mobile.png';
