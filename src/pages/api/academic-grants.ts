@@ -1,13 +1,16 @@
 import jsforce from 'jsforce';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiResponse } from 'next';
 
 import addRowToSpreadsheet from '../../utils/addRowToSpreadsheet';
+
 import { verifyCaptcha } from '../../middlewares';
+
+import { AcademicGrantsNextApiRequest } from '../../types';
 
 const googleSpreadsheetId = process.env.GOOGLE_ACADEMIC_SPREADSHEET_ID;
 const googleSheetName = process.env.GOOGLE_ACADEMIC_SHEET_NAME;
 
-async function handler(req: NextApiRequest, res: NextApiResponse) {
+async function handler(req: AcademicGrantsNextApiRequest, res: NextApiResponse) {
   const { body } = req;
   const {
     firstName: FirstName,

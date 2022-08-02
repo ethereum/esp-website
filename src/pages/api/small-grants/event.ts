@@ -1,9 +1,11 @@
 import jsforce from 'jsforce';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiResponse } from 'next';
 
 import { verifyCaptcha } from '../../../middlewares';
 
-async function handler(req: NextApiRequest, res: NextApiResponse) {
+import { SmallGrantsEventNextApiRequest } from '../../../types';
+
+async function handler(req: SmallGrantsEventNextApiRequest, res: NextApiResponse) {
   const { body } = req;
   const {
     // General
@@ -12,6 +14,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     email: Email,
     individualOrTeam: Individual_or_Team__c,
     company: Company,
+    city: npsp__CompanyCity__c,
+    country: npsp__CompanyCountry__c,
     website: Website,
     twitter: Twitter__c,
     projectCategory: Category__c,
@@ -58,6 +62,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         Email: Email.trim(),
         Individual_or_Team__c: Individual_or_Team__c.trim(),
         Company: Company.trim(),
+        npsp__CompanyCity__c: npsp__CompanyCity__c.trim(),
+        npsp__CompanyCountry__c: npsp__CompanyCountry__c.trim(),
         Website: Website.trim(),
         Twitter__c: Twitter__c.trim(),
         Category__c: Category__c.trim(),
