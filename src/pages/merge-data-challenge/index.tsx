@@ -20,7 +20,8 @@ import {
 import {
   MERGE_DATA_CHALLENGE_EMAIL_ADDRESS,
   SIDEBAR_MERGE_DATA_CHALLENGE_LINKS,
-  MERGE_DATA_CHALLENGE_APPLY_URL
+  MERGE_DATA_CHALLENGE_APPLY_URL,
+  MERGE_DATA_CHALLENGE_PREVIEW_URL
 } from '../../constants';
 
 
@@ -45,6 +46,7 @@ const MergeDataChallenge: NextPage = () => {
       <PageMetadata
         title='The Merge data challenge'
         description='Up until four weeks after the Merge, the Ethereum Foundation is sponsoring a Merge data analysis and data visualization blog post challenge. Here are all the details you need.'
+        image={MERGE_DATA_CHALLENGE_PREVIEW_URL}
       />
       <Box mx={{ md: 12 }} bg='white' position='relative' zIndex={1} mt={{ xl: 12 }}>
         <Stack spacing={10} mb={8} px={{ base: 5, md: 0 }} py={{ base: 3, md: 12 }}>

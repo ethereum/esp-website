@@ -205,6 +205,8 @@ export const TOAST_OPTIONS: UseToastOptions = {
 export const HOMEPAGE_HERO_MOBILE_URL =
   'https://esp.ethereum.foundation/images/homepage-hero-mobile.png';
 
+export const MERGE_DATA_CHALLENGE_PREVIEW_URL = 'https://esp.ethereum.foundation/images/merge-data-challenge-hero.jpeg';
+
 // Thank you and apply urls
 export const GRANTS_URLS = [
   ACADEMIC_GRANTS_APPLY_URL,

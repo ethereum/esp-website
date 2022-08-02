@@ -3,12 +3,12 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 
 import { PageMetadata, PageSubheading, PageText } from '../../components/UI';
-import { MERGE_DATA_CHALLENGE_EMAIL_ADDRESS } from '../../constants';
+import { MERGE_DATA_CHALLENGE_EMAIL_ADDRESS, MERGE_DATA_CHALLENGE_PREVIEW_URL } from '../../constants';
 
 const MergeDataChallengeThankYou: NextPage = () => {
   return (
     <>
-      <PageMetadata title='Thank you' description='Thank you for applying to the Merge data challenge' />
+      <PageMetadata title='Thank you' description='Thank you for applying to the Merge data challenge' image={MERGE_DATA_CHALLENGE_PREVIEW_URL} />
       <Head>
         <meta name='robots' content='noindex' />
       </Head>

@@ -2,7 +2,7 @@ import { Box, Link, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 
 import { PageMetadata, PageSubheading, PageText } from '../../components/UI';
-import { MERGE_DATA_CHALLENGE_EMAIL_ADDRESS } from '../../constants';
+import { MERGE_DATA_CHALLENGE_EMAIL_ADDRESS, MERGE_DATA_CHALLENGE_PREVIEW_URL } from '../../constants';
 
 const MergeDataChallengeApply: NextPage = () => {
   return (
@@ -10,6 +10,7 @@ const MergeDataChallengeApply: NextPage = () => {
       <PageMetadata
         title='Merge data challenge'
         description='Calling all Ethereans, data scientists, data engineers, data visualizers, developers, and anyone interested in digging into Ethereum data!'
+        image={MERGE_DATA_CHALLENGE_PREVIEW_URL}
       />
 
       <Box
