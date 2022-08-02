@@ -3,6 +3,7 @@ export * from './ApplicationAttentionMsg';
 export * from './ApplicationTypeCard';
 export * from './Banner';
 export * from './BannerClickeable';
+export * from './CallToAction';
 export * from './Description';
 export * from './DropdownIndicator';
 export * from './Footer';
