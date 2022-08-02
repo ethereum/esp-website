@@ -129,7 +129,7 @@ const MergeDataChallenge: NextPage = () => {
                     Anyone is free to submit, here’s how:
                   </PageText>
 
-                  <PageText mb={6}>
+                  <Box mb={6}>
                     <OrderedList>
                       <ListItem>
                         Collect and analyze Merge data
@@ -149,11 +149,11 @@ const MergeDataChallenge: NextPage = () => {
                         Submit!
                       </ListItem>
                     </OrderedList>
-                  </PageText>
+                  </Box>
 
-                  <PageText mb={6}>
+                  <Box mb={6}>
                     <ButtonLink label="Submit blog post" link={MERGE_DATA_CHALLENGE_APPLY_URL} width="225px"/>
-                  </PageText>
+                  </Box>
                   
                   <PageText mb={6} fontStyle="italic">
                     You may submit more than one blog post! So long as each posts focuses on a different visualisation or piece of analysis
@@ -207,7 +207,7 @@ const MergeDataChallenge: NextPage = () => {
                 <section id="requirements" ref={ref6}>
                   <PageSection mb={6}>Requirements</PageSection>
 
-                  <PageText mb={6}>
+                  <Box mb={6}>
                     <List>
                       <ListItem>
                         Blog post must be in English.
@@ -237,7 +237,7 @@ const MergeDataChallenge: NextPage = () => {
                         Tools and scripts used (and created) must be free and open source and referenced in the blog post.
                       </ListItem>
                     </List>
-                  </PageText>
+                  </Box>
                 </section>
               </Stack>
 
@@ -248,7 +248,7 @@ const MergeDataChallenge: NextPage = () => {
                     Surprise us with your creativity! But here are some judging criteria considerations:
                   </PageText>
 
-                  <PageText mb={6}>
+                  <Box mb={6}>
                     <List>
                       <ListItem>
                         Overall quality and clarity of data analysis or data visualization.
@@ -268,7 +268,7 @@ const MergeDataChallenge: NextPage = () => {
                         Quality of contribution to the Ethereum tooling ecosystem (if applicable).
                       </ListItem>
                     </List>
-                  </PageText>
+                  </Box>
                 </section>
               </Stack>
 
@@ -276,7 +276,7 @@ const MergeDataChallenge: NextPage = () => {
                 <section id="how-to-get-started" ref={ref8}>
                   <PageSection mb={6}>How to get started</PageSection>
 
-                  <PageText mb={6}>
+                  <Box mb={6}>
                     <List>
                       {/* TODO: LINK TO mainnet announcement */}
                       <ListItem>
@@ -424,7 +424,7 @@ const MergeDataChallenge: NextPage = () => {
                         Publish your analysis or visualization!
                       </ListItem>
                     </List>
-                  </PageText>
+                  </Box>
                 </section>
               </Stack>
 
@@ -432,7 +432,7 @@ const MergeDataChallenge: NextPage = () => {
                 <section id="helpful-resources" ref={ref9}>
                   <PageSection mb={6}>Helpful resources</PageSection>
 
-                  <PageText mb={6}>
+                  <Box mb={6}>
                     <List>
                       <ListItem>
                         <Link
@@ -562,7 +562,7 @@ const MergeDataChallenge: NextPage = () => {
                         {' '} - <PageText as='span' fontStyle="italic">Discord</PageText>
                       </ListItem>
                     </List>
-                  </PageText>
+                  </Box>
                 </section>
               </Stack>
 
