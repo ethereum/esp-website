@@ -6,7 +6,7 @@ import { HEAD_TITLE, HOMEPAGE_HERO_MOBILE_URL } from '../../constants';
 interface Props {
   title: string;
   description: string;
-  image: string;
+  image?: string;
 }
 
 export const PageMetadata: FC<Props> = ({
