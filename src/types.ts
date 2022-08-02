@@ -1,3 +1,4 @@
+import { NextApiRequest } from 'next';
 import {
   ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS,
   PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS,
@@ -272,4 +273,175 @@ export interface Grant {
 export interface SidebarLink {
   text: string;
   href: string;
+}
+
+// body request data types
+export interface OfficeHoursNextApiRequest extends NextApiRequest {
+  body: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    individualOrTeam: string;
+    company: string;
+    officeHoursRequest: string;
+    projectName: string;
+    projectDescription: string;
+    additionalInfo: string;
+    projectCategory: string;
+    otherReasonForMeeting: string;
+    howDidYouHearAboutESP: string;
+    timezone: string;
+  };
+}
+
+export interface GranteeFinanceNextApiRequest extends NextApiRequest {
+  body: {
+    beneficiaryName: string;
+    contactEmail: string;
+    notes: string;
+    ethAddress: string;
+    daiAddress: string;
+    beneficiaryAddress: string;
+    fiatCurrencyCode: string;
+    bankName: string;
+    bankAddress: string;
+    IBAN: string;
+    SWIFTCode: string;
+    granteeSecurityID: string;
+    l2Payment: boolean;
+  };
+}
+
+export interface DevconGrantsNextApiRequest extends NextApiRequest {
+  body: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    company: string;
+    eventPreviousWork: string;
+    teamProfile: string;
+    eventName: string;
+    eventDate: string;
+    sponsorshipLink: string;
+    sponsorshipDetails: string;
+    projectDescription: string;
+    eventType: string;
+    eventFormat: string;
+    city: string;
+    twitter: string;
+    expectedAttendees: string;
+    targetAudience: string;
+    confirmedSpeakers: string;
+    confirmedSponsors: string;
+    proposedTimeline: string;
+    requestedAmount: string;
+    additionalInfo: string;
+    howDidYouHearAboutESP: string;
+  };
+}
+
+export interface AcademicGrantsNextApiRequest extends NextApiRequest {
+  body: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    POCisAuthorisedSignatory: boolean;
+    authorisedSignatoryInformation: string;
+    applyingAs: string;
+    applyingAsOther: string;
+    company: string;
+    country: string;
+    countriesOfTeam: string;
+    timezone: string;
+    projectName: string;
+    projectDescription: string;
+    projectCategory: string;
+    teamProfile: string;
+    projectPreviousWork: string;
+    grantScope: string;
+    projectGoals: string;
+    problemBeingSolved: string;
+    isYourProjectPublicGood: string;
+    requestedAmount: string;
+    proposedTimeline: string;
+    challenges: string;
+    additionalSupportRequests: string;
+    howDidYouHearAboutGrantsWave: string;
+    referralSourceIfOther: string;
+    wouldYouShareYourResearch: string;
+    linkedinProfile: string;
+    twitter: string;
+    telegram: string;
+    repeatApplicant: boolean;
+    canTheEFReachOut: boolean;
+    additionalInfo: string;
+  };
+}
+
+export interface SmallGrantsEventNextApiRequest extends NextApiRequest {
+  body: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    individualOrTeam: string;
+    company: string;
+    city: string;
+    country: string;
+    website: string;
+    twitter: string;
+    projectCategory: string;
+    individualOrTeamSummary: string;
+    howDidYouHearAboutESP: string;
+    referrals: string;
+    additionalInfo: string;
+    eventName: string;
+    eventDate: string;
+    eventPreviousWork: string;
+    sponsorshipLink: string;
+    sponsorshipDetails: string;
+    sponsorshipTopics: string;
+    eventType: string;
+    eventFormat: string;
+    expectedAttendees: string;
+    targetAudience: string;
+    confirmedSpeakers: string;
+    confirmedSponsors: string;
+    eventBudgetBreakdown: string;
+    eventRequestedAmount: string;
+  };
+}
+
+export interface SmallGrantsProjectNextApiRequest extends NextApiRequest {
+  body: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    individualOrTeam: string;
+    company: string;
+    city: string;
+    country: string;
+    website: string;
+    twitter: string;
+    projectCategory: string;
+    individualOrTeamSummary: string;
+    howDidYouHearAboutESP: string;
+    referrals: string;
+    additionalInfo: string;
+    projectName: string;
+    projectRepo: string;
+    projectPreviousWork: string;
+    projectDescription: string;
+    problemBeingSolved: string;
+    whyIsProjectImportant: string;
+    howDoesYourProjectDiffer: string;
+    projectRequestedAmount: string;
+    proposedTimeline: string;
+    isYourProjectPublicGood: string;
+    isOpenSource: string;
+    sustainabilityPlan: string;
+    otherProjects: string;
+    repeatApplicant: boolean;
+    progress: string;
+    otherFunding: string;
+  };
 }

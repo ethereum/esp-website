@@ -1,9 +1,11 @@
 import jsforce from 'jsforce';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiResponse } from 'next';
 
 import { verifyCaptcha } from '../../middlewares';
 
-async function handler(req: NextApiRequest, res: NextApiResponse) {
+import { GranteeFinanceNextApiRequest } from '../../types';
+
+async function handler(req: GranteeFinanceNextApiRequest, res: NextApiResponse) {
   const { body } = req;
   const {
     beneficiaryName: Beneficiary_Name__c,
@@ -59,7 +61,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
           Bank_Address__c: Bank_Address__c.trim(),
           IBAN_Account_Number__c: IBAN_Account_Number__c.trim(),
           SWIFT_Code_BIC__c: SWIFT_Code_BIC__c.trim(),
-          Layer2_Payment__c
+          Layer2_Payment__c // this is a boolean value, no trim applied
         },
         (err, ret) => {
           if (err || !ret.success) {

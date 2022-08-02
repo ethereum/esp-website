@@ -1,9 +1,11 @@
 import jsforce from 'jsforce';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiResponse } from 'next';
 
 import { verifyCaptcha } from '../../../middlewares';
 
-async function handler(req: NextApiRequest, res: NextApiResponse) {
+import { SmallGrantsEventNextApiRequest } from '../../../types';
+
+async function handler(req: SmallGrantsEventNextApiRequest, res: NextApiResponse) {
   const { body } = req;
   const {
     // General
