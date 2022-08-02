@@ -67,6 +67,12 @@ export const colors = {
       bg: 'rgba(189, 189, 189, 0.2)',
       filename: 'rgba(35, 34, 100, .1)'
     },
+    mergeDataChallenge: {
+      homepageWhiteBox: ' rgba(255, 255, 255, 0.75)',
+      bgGradient: {
+        start: '#dddbdc'
+      }
+    },
     helpText: '#7c7ba1',
     warning: '#f0f6fd',
     homepageHero: '#f8e8fc',

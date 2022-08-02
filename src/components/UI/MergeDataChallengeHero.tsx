@@ -20,7 +20,7 @@ export const MergeDataChallengeHero: FC<Props> = ({ title, children }) => {
           px={{ base: 10, md: 9 }}
           py={{ base: 3, md: 12 }}
           mb={{ base: 7, md: 0 }}
-          bg={{ md: 'brand.homepageWhiteBox' }}
+          bg={{ md: 'brand.mergeDataChallenge.homepageWhiteBox' }}
           maxW={{ md: '702px' }}
           zIndex={1}
         >
@@ -66,7 +66,7 @@ export const MergeDataChallengeHero: FC<Props> = ({ title, children }) => {
           <Box
             mt={{ lg: 40 }}
             h={52}
-            bgGradient='linear(to-b, #ebd1fb 0%, brand.academicGrantsRgba 100%)'
+            bgGradient='linear(to-b, brand.mergeDataChallenge.bgGradient.start 0%, brand.academicGrantsRgba 100%)'
           />
         </Box>
       </Box>
