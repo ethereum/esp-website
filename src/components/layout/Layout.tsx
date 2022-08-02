@@ -15,17 +15,12 @@ import { Nav } from '../../components';
 
 import {
   ABOUT_URL,
-  ACADEMIC_GRANTS_APPLY_URL,
-  ACADEMIC_GRANTS_THANK_YOU_PAGE_URL,
   ACADEMIC_GRANTS_URL,
   APPLICANTS_URL,
-  DEVCON_GRANTS_APPLY_URL,
-  DEVCON_GRANTS_THANK_YOU_PAGE_URL,
   DEVCON_GRANTS_URL,
+  GRANTS_URLS,
   HOME_URL,
-  MERGE_DATA_CHALLENGE_APPLY_URL,
-  MERGE_DATA_CHALLENGE_THANK_YOU_PAGE_URL,
-  MERGE_DATA_CHALLENGE_URL
+  MERGE_DATA_CHALLENGE_URL,
 } from '../../constants';
 import { DevconGrantsLayout } from './DevconGrantsLayout';
 import { MergeDataChallengeLayout } from './MergeDataChallengeLayout'
@@ -94,14 +89,7 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       );
     }
 
-    if (
-      router.pathname === ACADEMIC_GRANTS_APPLY_URL ||
-      router.pathname === ACADEMIC_GRANTS_THANK_YOU_PAGE_URL ||
-      router.pathname === DEVCON_GRANTS_APPLY_URL ||
-      router.pathname === DEVCON_GRANTS_THANK_YOU_PAGE_URL ||
-      router.pathname === MERGE_DATA_CHALLENGE_APPLY_URL ||
-      router.pathname === MERGE_DATA_CHALLENGE_THANK_YOU_PAGE_URL
-    ) {
+    if (GRANTS_URLS.includes(router.pathname)) {
       return (
         <Box mt={-6}>
           <main>
