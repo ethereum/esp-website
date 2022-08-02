@@ -27,7 +27,6 @@ const MergeDataChallengeApply: NextPage = () => {
 
             <PageText textAlign='center'>
               If you have questions before submitting an application, you may contact us at{' '}
-              {/* TODO: replace email with merge data challenge email */}
               <Link
                 fontWeight={700}
                 color='brand.orange.100'

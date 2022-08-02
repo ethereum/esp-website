@@ -93,12 +93,12 @@ const MergeDataChallenge: NextPage = () => {
                   </PageText>
 
                   <List>
-                    <ListItem><i>What new visualizations help provide insight into proof-of-stake Ethereum?</i></ListItem>
-                    <ListItem><i>How do the Consensus-Layer and Execution-Layer interact? Are there differences across client pairs in communication patterns, efficiency, etc? Are their good places to optimise?</i></ListItem>
-                    <ListItem><i>What, if anything, changed on the network at the point of the Merge – block propagation times, p2p connections, transaction mempool performance, etc?</i></ListItem>
-                    <ListItem><i>Did the Merge affect core Beacon Chain activity – attestation performance, blocks missed, sync committees?</i></ListItem>
-                    <ListItem><i>Did user activity noticeably change after the Merge? What about MEV?</i></ListItem>
-                    <ListItem><i>What new tools can you build to collect and analyze data in the post-Merge network?</i></ListItem>
+                    <ListItem><PageText fontStyle="italic">What new visualizations help provide insight into proof-of-stake Ethereum?</PageText></ListItem>
+                    <ListItem><PageText fontStyle="italic">How do the Consensus-Layer and Execution-Layer interact? Are there differences across client pairs in communication patterns, efficiency, etc? Are their good places to optimise?</PageText></ListItem>
+                    <ListItem><PageText fontStyle="italic">What, if anything, changed on the network at the point of the Merge – block propagation times, p2p connections, transaction mempool performance, etc?</PageText></ListItem>
+                    <ListItem><PageText fontStyle="italic">Did the Merge affect core Beacon Chain activity – attestation performance, blocks missed, sync committees?</PageText></ListItem>
+                    <ListItem><PageText fontStyle="italic">Did user activity noticeably change after the Merge? What about MEV?</PageText></ListItem>
+                    <ListItem><PageText fontStyle="italic">What new tools can you build to collect and analyze data in the post-Merge network?</PageText></ListItem>
                   </List>
                 </section>
               </Stack>
@@ -547,7 +547,7 @@ const MergeDataChallenge: NextPage = () => {
                         >
                           Eth R&D
                         </Link>
-                        {' '} - <i>Discord</i>
+                        {' '} - <PageText as='span' fontStyle="italic">Discord</PageText>
                       </ListItem>
                       <ListItem>
                         <Link
@@ -559,7 +559,7 @@ const MergeDataChallenge: NextPage = () => {
                         >
                           ethstaker
                         </Link>
-                        {' '} - <i>Discord</i>
+                        {' '} - <PageText as='span' fontStyle="italic">Discord</PageText>
                       </ListItem>
                     </List>
                   </PageText>
