@@ -1,7 +1,7 @@
-export * from './AcademicGrantsHero';
 export * from './common';
 export * from './FAQItem';
 export * from './headings';
+export * from './GrantsHero';
 export * from './HomepageHero';
 export * from './HomeAboutCard';
 export * from './List';
@@ -9,4 +9,3 @@ export * from './Step';
 export * from './text';
 export * from './PageMetadata';
 export * from './OrderedList';
-export * from './MergeDataChallengeHero';

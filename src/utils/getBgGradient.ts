@@ -24,7 +24,7 @@ export const getBgGradient = (path: string) => {
 
   // academic & devcon grants gradient
   if (path.startsWith(ACADEMIC_GRANTS_URL) || path.startsWith(DEVCON_GRANTS_URL)) {
-    return 'linear(to-b, brand.academicGrantsHero 81.77%, brand.academicGrantsRgba 100%)';
+    return 'linear(to-b, brand.academicGrantsHero.bgGradient.start 81.77%, brand.academicGrantsHero.bgGradient.end 100%)';
   }
 
   // 404 page gradient

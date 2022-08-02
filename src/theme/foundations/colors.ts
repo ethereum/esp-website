@@ -67,17 +67,23 @@ export const colors = {
       bg: 'rgba(189, 189, 189, 0.2)',
       filename: 'rgba(35, 34, 100, .1)'
     },
-    mergeDataChallenge: {
-      homepageWhiteBox: ' rgba(255, 255, 255, 0.75)',
+    academicGrantsHero: {
+      titleWhiteBox: 'rgba(255, 255, 255, 0.6)',
       bgGradient: {
-        start: '#dddbdc'
+        start: '#ebd1fb',
+        end: 'rgba(235, 209, 251, 0)'
+      },
+    },
+    mergeDataChallengeHero: {
+      titleWhiteBox: ' rgba(255, 255, 255, 0.75)',
+      bgGradient: {
+        start: '#dddbdc',
+        end: 'rgba(235, 209, 251, 0)'
       }
     },
     helpText: '#7c7ba1',
     warning: '#f0f6fd',
     homepageHero: '#f8e8fc',
-    academicGrantsHero: '#fee8f0',
-    academicGrantsRgba: 'rgba(235, 209, 251, 0)',
     homepageWhiteBox: 'rgba(255, 255, 255, 0.6)',
     stats: {
       bgGradient: {
