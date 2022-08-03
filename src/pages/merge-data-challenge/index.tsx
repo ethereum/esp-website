@@ -164,7 +164,7 @@ const MergeDataChallenge: NextPage = () => {
                   </Box>
                   
                   <PageText mb={6} fontStyle="italic">
-                    You may submit more than one blog post! So long as each posts focuses on a different visualisation or piece of analysis
+                    You may submit more than one blog post! So long as each posts focuses on a different visualization or piece of analysis
                   </PageText>
 
                   <PageText mb={6}>
