@@ -113,7 +113,7 @@ const MergeDataChallenge: NextPage = () => {
 
                   <PageText mb={6}>
                     <strong>
-                      Document your best Merge data insights in the most readable blog post possible – for prizes!
+                      Document your best Merge data insights in the most readable blog post possible—for prizes!
                     </strong>
                   </PageText>
 
