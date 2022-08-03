@@ -93,7 +93,7 @@ const MergeDataChallenge: NextPage = () => {
                       _hover={{ textDecoration: 'none' }}
                     >
                       The Merge
-                    </Link> is coming, providing a more secure and sustainable home for Ethereum – as well as more data, lots and lots of data. And <strong>the Ethereum community needs your help to make sense of it all.</strong>
+                    </Link> is coming, providing a more secure and sustainable home for Ethereum—as well as more data, lots and lots of data. And <strong>the Ethereum community needs your help to make sense of it all.</strong>
                   </PageText>
 
                   <List>
