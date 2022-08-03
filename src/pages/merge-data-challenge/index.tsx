@@ -7,13 +7,13 @@ import type { NextPage } from 'next';
 import { ButtonLink } from '../../components';
 import {
   ApplicantsSidebar,
-  CallToAction,
   List,
   OrderedList,
   PageSection,
   PageSubheading,
   PageText,
   PageMetadata,
+  ReadyToApply,
 } from '../../components/UI';
 
 // Constants
@@ -596,10 +596,11 @@ const MergeDataChallenge: NextPage = () => {
 
                 <section id='submit-blog-post' ref={ref11}>
                   <Stack>
-                    <CallToAction
+                    <ReadyToApply
                       buttonText='Submit blog post'
                       buttonWidth='225px'
                       ctaText='Ready to submit?'
+                      isApplyButton={false}
                       link={`${MERGE_DATA_CHALLENGE_APPLY_URL}`}
                     />
                   </Stack>
