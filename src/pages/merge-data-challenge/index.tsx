@@ -93,14 +93,14 @@ const MergeDataChallenge: NextPage = () => {
                       _hover={{ textDecoration: 'none' }}
                     >
                       The Merge
-                    </Link> is coming, providing a more secure and sustainable home for Ethereum – as well as more data, lots and lots of data. And <strong>the Ethereum community needs your help to make sense of it all.</strong>
+                    </Link> is coming, providing a more secure and sustainable home for Ethereum—as well as more data, lots and lots of data. And <strong>the Ethereum community needs your help to make sense of it all.</strong>
                   </PageText>
 
                   <List>
                     <ListItem><PageText fontStyle="italic">What new visualizations help provide insight into proof-of-stake Ethereum?</PageText></ListItem>
-                    <ListItem><PageText fontStyle="italic">How do the Consensus-Layer and Execution-Layer interact? Are there differences across client pairs in communication patterns, efficiency, etc? Are their good places to optimise?</PageText></ListItem>
-                    <ListItem><PageText fontStyle="italic">What, if anything, changed on the network at the point of the Merge – block propagation times, p2p connections, transaction mempool performance, etc?</PageText></ListItem>
-                    <ListItem><PageText fontStyle="italic">Did the Merge affect core Beacon Chain activity – attestation performance, blocks missed, sync committees?</PageText></ListItem>
+                    <ListItem><PageText fontStyle="italic">How do the consensus layer and execution layer interact? Are there differences across client pairs in communication patterns, efficiency, etc? Are there good places to optimize?</PageText></ListItem>
+                    <ListItem><PageText fontStyle="italic">What, if anything, changed on the network at the point of The Merge—block propagation times, p2p connections, transaction mempool performance, etc?</PageText></ListItem>
+                    <ListItem><PageText fontStyle="italic">Did The Merge affect core Beacon Chain activity—attestation performance, blocks missed, sync committees?</PageText></ListItem>
                     <ListItem><PageText fontStyle="italic">Did user activity noticeably change after the Merge? What about MEV?</PageText></ListItem>
                     <ListItem><PageText fontStyle="italic">What new tools can you build to collect and analyze data in the post-Merge network?</PageText></ListItem>
                   </List>
@@ -113,7 +113,7 @@ const MergeDataChallenge: NextPage = () => {
 
                   <PageText mb={6}>
                     <strong>
-                      Document your best Merge data insights in the most readable blog post possible – for prizes!
+                      Document your best Merge data insights in the most readable blog post possible—for prizes!
                     </strong>
                   </PageText>
 
@@ -164,7 +164,7 @@ const MergeDataChallenge: NextPage = () => {
                   </Box>
                   
                   <PageText mb={6} fontStyle="italic">
-                    You may submit more than one blog post! So long as each posts focuses on a different visualisation or piece of analysis
+                    You may submit more than one blog post! So long as each posts focuses on a different visualization or piece of analysis
                   </PageText>
 
                   <PageText mb={6}>

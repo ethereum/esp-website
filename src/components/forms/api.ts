@@ -166,7 +166,8 @@ export const api = {
           projectCategory: data.projectCategory.value,
           wouldYouShareYourResearch: data.wouldYouShareYourResearch.value,
           repeatApplicant: data.repeatApplicant === 'Yes',
-          canTheEFReachOut: data.canTheEFReachOut === 'Yes'
+          canTheEFReachOut: data.canTheEFReachOut === 'Yes',
+          howDidYouHearAboutESP: data.howDidYouHearAboutESP.value
         })
       };
 
