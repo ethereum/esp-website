@@ -972,7 +972,7 @@ export const MergeDataChallengeForm: FC = () => {
               <FormControl id='how-did-you-hear-about-ESP-control' isRequired mb={12}>
                 <FormLabel htmlFor='howDidYouHearAboutESP'>
                   <PageText display='inline' fontSize='input'>
-                    How did you hear about us?
+                    How did you hear about this challenge?
                   </PageText>
                 </FormLabel>
 
