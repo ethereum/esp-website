@@ -30,6 +30,7 @@ import { DropdownIndicator, PageText } from '../UI';
 import {
   APPLYING_AS_OPTIONS,
   COUNTRY_OPTIONS,
+  HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE,
   MERGE_DATA_CHALLENGE_PROJECT_CATEGORY_OPTIONS,
   OTHER,
   TIMEZONE_OPTIONS,
@@ -928,7 +929,7 @@ export const MergeDataChallengeForm: FC = () => {
             )}
           />
 
-          <FormControl id='additional-info-control' mb={12}>
+          <FormControl id='additional-info-control' mb={8}>
             <FormLabel htmlFor='additionalInfo' mb={1}>
               <PageText fontSize='input'>
                 Do you have any questions about this challenge, or is there anything else you&apos;d like to share?
@@ -961,6 +962,41 @@ export const MergeDataChallengeForm: FC = () => {
               </Box>
             )}
           </FormControl>
+
+          <Controller
+            name='howDidYouHearAboutESP'
+            control={control}
+            rules={{ required: true, validate: selected => selected.value !== '' }}
+            defaultValue={{ value: '', label: '' }}
+            render={({ field: { onChange }, fieldState: { error } }) => (
+              <FormControl id='how-did-you-hear-about-ESP-control' isRequired mb={12}>
+                <FormLabel htmlFor='howDidYouHearAboutESP'>
+                  <PageText display='inline' fontSize='input'>
+                    How did you hear about us?
+                  </PageText>
+                </FormLabel>
+
+                <Select
+                  id='howDidYouHearAboutESP'
+                  options={HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE}
+                  onChange={onChange}
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
+
+                {error && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Referral source is required.
+                    </PageText>
+                  </Box>
+                )}
+              </FormControl>
+            )}
+          />
 
           <Center mb={12}>
             <Captcha />

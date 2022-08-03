@@ -33,7 +33,8 @@ async function handler(req: MergeDataChallengeNextApiRequest, res: NextApiRespon
     telegram: Alternative_Contact__c,
     repeatApplicant: Repeat_Applicant__c,
     canTheEFReachOut: Can_the_EF_reach_out__c,
-    additionalInfo: Additional_Information__c
+    additionalInfo: Additional_Information__c,
+    howDidYouHearAboutESP: Referral_Source__c
   } = body;
   const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
     process.env;
@@ -71,6 +72,7 @@ async function handler(req: MergeDataChallengeNextApiRequest, res: NextApiRespon
       Repeat_Applicant__c, // this is a boolean value, no trim applied
       Can_the_EF_reach_out__c, // this is a boolean value, no trim applied
       Additional_Information__c: Additional_Information__c.trim(),
+      Referral_Source__c: Referral_Source__c.trim(),
       Proactive_Community_Grants_Round__c: 'Merge Data Challenge 2022', // this value is hardwired, depending on the type of grant round
       RecordTypeId: process.env.SF_RECORD_TYPE_GRANTS_ROUND!
     };

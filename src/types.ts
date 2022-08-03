@@ -242,6 +242,7 @@ export interface MergeDataChallengeFormData extends CaptchaForm {
   repeatApplicant: string; // SF API: Repeat_Applicant__c
   canTheEFReachOut: string; // SF API: Can_the_EF_reach_out__c
   additionalInfo: string; // SF API: Additional_Information__c
+  howDidYouHearAboutESP: GrantsReferralSource; // SF API: Referral_Source__c
 }
 
 export type IndividualOrTeam = 'Individual' | 'Team';
@@ -498,5 +499,6 @@ export interface MergeDataChallengeNextApiRequest extends NextApiRequest {
     repeatApplicant: boolean;
     canTheEFReachOut: boolean;
     additionalInfo: string;
+    howDidYouHearAboutESP: string;
   }
 };
