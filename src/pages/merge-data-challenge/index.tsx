@@ -99,7 +99,7 @@ const MergeDataChallenge: NextPage = () => {
                   <List>
                     <ListItem><PageText fontStyle="italic">What new visualizations help provide insight into proof-of-stake Ethereum?</PageText></ListItem>
                     <ListItem><PageText fontStyle="italic">How do the consensus layer and execution layer interact? Are there differences across client pairs in communication patterns, efficiency, etc? Are there good places to optimize?</PageText></ListItem>
-                    <ListItem><PageText fontStyle="italic">What, if anything, changed on the network at the point of the Merge – block propagation times, p2p connections, transaction mempool performance, etc?</PageText></ListItem>
+                    <ListItem><PageText fontStyle="italic">What, if anything, changed on the network at the point of The Merge—block propagation times, p2p connections, transaction mempool performance, etc?</PageText></ListItem>
                     <ListItem><PageText fontStyle="italic">Did the Merge affect core Beacon Chain activity – attestation performance, blocks missed, sync committees?</PageText></ListItem>
                     <ListItem><PageText fontStyle="italic">Did user activity noticeably change after the Merge? What about MEV?</PageText></ListItem>
                     <ListItem><PageText fontStyle="italic">What new tools can you build to collect and analyze data in the post-Merge network?</PageText></ListItem>
