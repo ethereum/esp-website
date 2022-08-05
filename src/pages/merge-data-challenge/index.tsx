@@ -259,21 +259,21 @@ const MergeDataChallenge: NextPage = () => {
                   <Box mb={6}>
                     <List>
                       <ListItem>
-                        Overall quality and clarity of data analysis or data visualization.
+                        Overall quality and clarity of data analysis or data visualization
                         <List>
                           <ListItem>
-                            Quality of insights into the Merge, clients, and Ethereum in general.
+                            Quality of insights into the Merge, clients, and Ethereum in general
                           </ListItem>
                         </List>
                       </ListItem>
                       <ListItem>
-                        Insights that lead to substantive changes/improvements in client implementations or specifications.
+                        Insights that lead to substantive changes/improvements in client implementations or specifications
                       </ListItem>
                       <ListItem>
-                        Analyses or visualizations that help a non-technical audience gain insight into the network.
+                        Analyses or visualizations that help a non-technical audience gain insight into the network
                       </ListItem>
                       <ListItem>
-                        Quality of contribution to the Ethereum tooling ecosystem (if applicable).
+                        Quality of contribution to the Ethereum tooling ecosystem (if applicable)
                       </ListItem>
                     </List>
                   </Box>
@@ -297,7 +297,7 @@ const MergeDataChallenge: NextPage = () => {
                         _hover={{ textDecoration: 'none' }}>
                           Mainnet client pair
                         </Link>
-                      {' '}(or multiple clients).
+                      {' '}(or multiple clients)
                       </ListItem>
                       <ListItem>
                         Dig around a block explorer:
@@ -357,7 +357,7 @@ const MergeDataChallenge: NextPage = () => {
                         >
                           execution-APIs
                         </Link>
-                        ).
+                        )
                       </ListItem>
                       <ListItem>
                         Experiment with{' '}
@@ -420,13 +420,13 @@ const MergeDataChallenge: NextPage = () => {
                         >
                           Ethereum 2 ETL
                         </Link>
-                        , and other existing data gathering and analysis tools.
+                        , and other existing data gathering and analysis tools
                       </ListItem>
                       <ListItem>
-                        Write new tools to gather data.
+                        Write new tools to gather data
                       </ListItem>
                       <ListItem>
-                        Crunch some numbers and spin up some graphs.
+                        Crunch some numbers and spin up some graphs
                       </ListItem>
                       <ListItem>
                         Publish your analysis or visualization!
