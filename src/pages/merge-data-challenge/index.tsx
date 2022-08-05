@@ -218,15 +218,15 @@ const MergeDataChallenge: NextPage = () => {
                   <Box mb={6}>
                     <List>
                       <ListItem>
-                        Blog post must be in English.
+                        Blog post must be in English
                         <List>
                           <ListItem>
-                            There are no length requirements.
+                            There are no length requirements
                           </ListItem>
                         </List>
                       </ListItem>
                       <ListItem>
-                        Blog posts must be public and original.
+                        Blog posts must be public and original
                       </ListItem>
                       <ListItem>
                         Data analysis or visualization must concern{' '}
@@ -239,10 +239,10 @@ const MergeDataChallenge: NextPage = () => {
                         >
                           Merge
                         </Link>
-                        {' '}network data.
+                        {' '}network data
                       </ListItem>
                       <ListItem>
-                        Tools and scripts used (and created) must be free and open source and referenced in the blog post.
+                        Tools and scripts used (and created) must be free and open source and referenced in the blog post
                       </ListItem>
                     </List>
                   </Box>
