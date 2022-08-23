@@ -45,7 +45,7 @@ const MergeDataChallenge: NextPage = () => {
 
       <PageMetadata
         title='The Merge data challenge'
-        description='Up until four weeks after the Merge, the Ethereum Foundation is sponsoring a Merge data analysis and data visualization blog post challenge. Here are all the details you need.'
+        description='Up until October 31st, 2022, the Ethereum Foundation is sponsoring a Merge data analysis and data visualization blog post challenge. Here are all the details you need.'
         image={MERGE_DATA_CHALLENGE_PREVIEW_URL}
       />
       <Box mx={{ md: 12 }} bg='white' position='relative' zIndex={1} mt={{ xl: 12 }}>
@@ -77,7 +77,7 @@ const MergeDataChallenge: NextPage = () => {
                   </PageSubheading>
 
                   <PageText mb={6} fontStyle="italic">
-                    Up until four weeks after the Merge, the Ethereum Foundation is sponsoring a Merge data analysis and data visualization blog post challenge. Here are all the details you need.
+                    Up until October 31st, 2022, the Ethereum Foundation is sponsoring a Merge data analysis and data visualization blog post challenge. Here are all the details you need.
                   </PageText>
 
                   <PageText mb={6}>
@@ -192,7 +192,7 @@ const MergeDataChallenge: NextPage = () => {
                   <PageSection mb={6}>Deadline ⏰</PageSection>
 
                   <PageText mb={6}>
-                    The deadline for submissions is <strong>four weeks after the merge</strong> (precise date TBD).
+                    The deadline for submissions is <strong>October 31st, 2022</strong> (precise date TBD).
                   </PageText>
                 </section>
               </Stack>
@@ -286,13 +286,12 @@ const MergeDataChallenge: NextPage = () => {
 
                   <Box mb={6}>
                     <List>
-                      {/* TODO: LINK TO mainnet announcement */}
                       <ListItem>
                         Run / sync a{' '}
                         <Link
                         fontWeight={700}
                         color='brand.orange.100'
-                        href=''
+                        href='https://ethereum.org/en/developers/docs/nodes-and-clients/run-a-node/'
                         isExternal
                         _hover={{ textDecoration: 'none' }}>
                           Mainnet client pair
