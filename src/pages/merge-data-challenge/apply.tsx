@@ -23,11 +23,11 @@ const MergeDataChallengeApply: NextPage = () => {
         <Stack>
           <section id='description'>
             <PageSubheading mb={8} textAlign='center'>
-              Submit your Merge data challenge blog post
+              Submit to the Merge Data Challenge
             </PageSubheading>
 
             <PageText textAlign='center'>
-              If you have questions before submitting an application, you may contact us at{' '}
+              If you have any questions before submitting your blog post, you may contact us at{' '}
               <Link
                 fontWeight={700}
                 color='brand.orange.100'
