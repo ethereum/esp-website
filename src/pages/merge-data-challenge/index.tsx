@@ -453,6 +453,17 @@ const MergeDataChallenge: NextPage = () => {
                         </Link>
                       </ListItem>
                       <ListItem>
+                        <Link
+                          fontWeight={700}
+                          color='brand.orange.100'
+                          href='https://blog.ethereum.org/2022/08/24/mainnet-merge-announcement/'
+                          isExternal
+                          _hover={{ textDecoration: 'none' }}
+                        >
+                          Mainnet Merge Announcement blog post
+                        </Link>
+                      </ListItem>
+                      <ListItem>
                         Specs
                         <List>
                           <ListItem>
