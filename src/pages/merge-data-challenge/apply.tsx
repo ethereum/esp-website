@@ -23,7 +23,7 @@ const MergeDataChallengeApply: NextPage = () => {
         <Stack>
           <section id='description'>
             <PageSubheading mb={8} textAlign='center'>
-              Apply to the Merge data challenge
+              Submit your Merge data challenge blog post
             </PageSubheading>
 
             <PageText textAlign='center'>
