@@ -192,7 +192,7 @@ const MergeDataChallenge: NextPage = () => {
                   <PageSection mb={6}>Deadline ⏰</PageSection>
 
                   <PageText mb={6}>
-                    The deadline for submissions is <strong>October 31st, 2022</strong> (precise date TBD).
+                    The deadline for submissions is <strong>October 31st, 2022</strong>.
                   </PageText>
                 </section>
               </Stack>
