@@ -4,10 +4,20 @@ import { FC } from 'react';
 import { ButtonLink } from '../..';
 
 interface Props {
+  buttonText?: string;
+  buttonWidth?: string;
+  ctaText?: string;
+  isApplyButton?: boolean;
   link: string;
 }
 
-export const ReadyToApply: FC<Props> = ({ link }) => {
+export const ReadyToApply: FC<Props> = ({
+  buttonText='Apply',
+  buttonWidth='208px',
+  ctaText='Ready to apply?',
+  isApplyButton=true,
+  link
+}) => {
   return (
     <Stack
       borderRadius='10px'
@@ -25,12 +35,17 @@ export const ReadyToApply: FC<Props> = ({ link }) => {
           lineHeight='22px'
           textAlign='center'
         >
-          Ready to apply?
+          {ctaText}
         </Heading>
       </Stack>
 
       <Center>
-        <ButtonLink label='Apply' link={link} width='208px' isApplyButton />
+        <ButtonLink
+          isApplyButton={isApplyButton}
+          label={buttonText}
+          link={link}
+          width={buttonWidth}
+        />
       </Center>
     </Stack>
   );

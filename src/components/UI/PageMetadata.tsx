@@ -1,14 +1,19 @@
 import { FC } from 'react';
 import Head from 'next/head';
 
-import { HEAD_TITLE } from '../../constants';
+import { HEAD_TITLE, HOMEPAGE_HERO_MOBILE_URL } from '../../constants';
 
 interface Props {
   title: string;
   description: string;
+  image?: string;
 }
 
-export const PageMetadata: FC<Props> = ({ title, description }) => {
+export const PageMetadata: FC<Props> = ({
+  title,
+  description,
+  image = HOMEPAGE_HERO_MOBILE_URL
+}) => {
   return (
     <Head>
       <title>
@@ -17,10 +22,7 @@ export const PageMetadata: FC<Props> = ({ title, description }) => {
       <meta name='title' content={`${title} | ${HEAD_TITLE}`} />
       <meta name='description' content={description} />
       <meta name='application-name' content='Ethereum Foundation ESP' />
-      <meta
-        name='image'
-        content='https://esp.ethereum.foundation/images/homepage-hero-mobile.png'
-      />
+      <meta name='image' content={image} />
       {/* OpenGraph */}
       <meta property='og:title' content={`${title} | ${HEAD_TITLE}`} />
       <meta property='og:description' content={description} />

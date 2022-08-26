@@ -4,6 +4,6 @@ export const getBg = (path: string) => {
   return path === HOME_URL
     ? 'brand.homepageHero'
     : path === ACADEMIC_GRANTS_URL
-    ? 'brand.academicGrantsHero'
+    ? 'brand.academicGrantsHero.bgGradient.start'
     : undefined;
 };

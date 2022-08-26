@@ -45,6 +45,10 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
+### testing w/hCaptcha locally
+
+We can use [hCaptcha testing keys](https://docs.hcaptcha.com/#test-key-set-publisher-account) (already defined on `.env.local.example`) to be able to test forms locally.
+
 ## Project Structure
 
 The following list describes the main elements of the project structure:
@@ -103,6 +107,10 @@ Error 'bad value for restricted picklist field' appears when a record is created
 when creating a new record, try disabling the _'Restrict picklist to the values defined in the value set'_ option for the corresponding field.
 
 - `Checkbox`: besides how you're handling this input on the UI (e.g.: a radio button), Salesforce expects the value to be a boolean (`true`, `false`), so remember to convert the string before submitting the data.
+
+#### When adding new Grants
+
+Check that the hardwired string value of `Proactive_Community_Grants_Round__c` is defined on Salesforce, otherwise submission will fail.
 
 ## Grantees List data source
 

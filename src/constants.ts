@@ -14,16 +14,13 @@ export const HOW_WE_SUPPORT_URL = '/about/how-we-support';
 
 // applicants
 export const APPLICANTS_URL = '/applicants';
-export const OFFICE_HOURS_URL = '/applicants/office-hours';
-export const SMALL_GRANTS_URL = '/applicants/small-grants';
-export const PROJECT_GRANTS_URL = '/applicants/project-grants';
-export const ACADEMIC_GRANTS_URL = '/academic-grants';
-export const DEVCON_GRANTS_URL = '/devcon-grants';
 export const SIDEBAR_APPLICANTS_LINKS: SidebarLink[] = [
   { text: 'Mission and Scope', href: `${APPLICANTS_URL}/#mission-and-scope` },
   { text: 'How we support', href: `${APPLICANTS_URL}/#how-we-support` },
   { text: 'Application types', href: `${APPLICANTS_URL}/#application-types` }
 ];
+
+export const OFFICE_HOURS_URL = '/applicants/office-hours';
 export const SIDEBAR_OFFICE_HOURS_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${OFFICE_HOURS_URL}/#description` },
   { text: 'Process', href: `${OFFICE_HOURS_URL}/#process` },
@@ -34,6 +31,8 @@ export const SIDEBAR_OFFICE_HOURS_LINKS: SidebarLink[] = [
   { text: 'FAQ', href: `${OFFICE_HOURS_URL}/#faq` },
   { text: 'Apply', href: `${OFFICE_HOURS_URL}/#apply` }
 ];
+
+export const PROJECT_GRANTS_URL = '/applicants/project-grants';
 export const SIDEBAR_PROJECT_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${PROJECT_GRANTS_URL}/#description` },
   { text: 'Process', href: `${PROJECT_GRANTS_URL}/#process` },
@@ -47,6 +46,8 @@ export const SIDEBAR_PROJECT_GRANTS_LINKS: SidebarLink[] = [
   { text: 'FAQ', href: `${PROJECT_GRANTS_URL}/#faq` },
   { text: 'Apply', href: `${PROJECT_GRANTS_URL}/#apply` }
 ];
+
+export const SMALL_GRANTS_URL = '/applicants/small-grants';
 export const SIDEBAR_SMALL_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${SMALL_GRANTS_URL}/#description` },
   { text: 'Process', href: `${SMALL_GRANTS_URL}/#process` },
@@ -60,6 +61,8 @@ export const SIDEBAR_SMALL_GRANTS_LINKS: SidebarLink[] = [
   { text: 'FAQ', href: `${SMALL_GRANTS_URL}/#faq` },
   { text: 'Apply', href: `${SMALL_GRANTS_URL}/#apply` }
 ];
+
+export const ACADEMIC_GRANTS_URL = '/academic-grants';
 export const SIDEBAR_ACADEMIC_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${ACADEMIC_GRANTS_URL}/#description` },
   { text: 'Submit proposal', href: `${ACADEMIC_GRANTS_URL}/#submit-proposal` },
@@ -71,6 +74,8 @@ export const SIDEBAR_ACADEMIC_GRANTS_LINKS: SidebarLink[] = [
   { text: 'FAQ', href: `${ACADEMIC_GRANTS_URL}/#faq` },
   { text: 'Apply', href: `${ACADEMIC_GRANTS_URL}/#apply` }
 ];
+
+export const DEVCON_GRANTS_URL = '/devcon-grants';
 export const SIDEBAR_DEVCON_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${DEVCON_GRANTS_URL}/#description` },
   { text: 'Who', href: `${DEVCON_GRANTS_URL}/#who` },
@@ -82,12 +87,28 @@ export const SIDEBAR_DEVCON_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Apply', href: `${DEVCON_GRANTS_URL}/#apply` }
 ];
 
+export const MERGE_DATA_CHALLENGE_URL = '/merge-data-challenge';
+export const SIDEBAR_MERGE_DATA_CHALLENGE_LINKS: SidebarLink[] = [
+  { text: 'Summary', href: `${MERGE_DATA_CHALLENGE_URL}/#description` },
+  { text: 'The challenge', href: `${MERGE_DATA_CHALLENGE_URL}/#the-challenge` },
+  { text: 'How to submit', href: `${MERGE_DATA_CHALLENGE_URL}/#how-to-submit` },
+  { text: 'Deadline', href: `${MERGE_DATA_CHALLENGE_URL}/#deadline` },
+  { text: 'Prizes', href: `${MERGE_DATA_CHALLENGE_URL}/#prizes` },
+  { text: 'Requirements', href: `${MERGE_DATA_CHALLENGE_URL}/#requirements` },
+  { text: 'Judging criteria', href: `${MERGE_DATA_CHALLENGE_URL}/#judging-criteria` },
+  { text: 'How to get started', href: `${MERGE_DATA_CHALLENGE_URL}/#how-to-get-started` },
+  { text: 'Helpful Resources', href: `${MERGE_DATA_CHALLENGE_URL}/#helpful-resources` },
+  { text: 'Support', href: `${MERGE_DATA_CHALLENGE_URL}/#support` },
+  { text: 'Submit blog post', href: `${MERGE_DATA_CHALLENGE_URL}/#submit-blog-post` }
+];
+
 // apply forms
 export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
 export const OFFICE_HOURS_APPLY_URL = '/applicants/office-hours/apply';
 export const SMALL_GRANTS_APPLY_URL = '/applicants/small-grants/apply';
 export const ACADEMIC_GRANTS_APPLY_URL = '/academic-grants/apply';
 export const DEVCON_GRANTS_APPLY_URL = '/devcon-grants/apply';
+export const MERGE_DATA_CHALLENGE_APPLY_URL = '/merge-data-challenge/apply';
 
 // grantee finance form
 export const GRANTEE_FINANCE_URL = '/applicants/grantee-finance';
@@ -99,6 +120,7 @@ export const SMALL_GRANTS_THANK_YOU_PAGE_URL = '/applicants/small-grants/thank-y
 export const GRANTEE_FINANCE_THANK_YOU_PAGE_URL = '/applicants/grantee-finance/thank-you';
 export const ACADEMIC_GRANTS_THANK_YOU_PAGE_URL = '/academic-grants/thank-you';
 export const DEVCON_GRANTS_THANK_YOU_PAGE_URL = '/devcon-grants/thank-you';
+export const MERGE_DATA_CHALLENGE_THANK_YOU_PAGE_URL = '/merge-data-challenge/thank-you';
 
 // ethereum ecosystem
 export const ETHEREUM_ORG_URL = 'https://ethereum.org/';
@@ -122,6 +144,7 @@ export const ESP_TWITTER_URL = 'https://twitter.com/EF_ESP';
 export const ESP_EMAIL_ADDRESS = 'esp@ethereum.org';
 export const ACADEMIC_GRANTS_EMAIL_ADDRESS = 'academic-grants@ethereum.org';
 export const DEVCON_GRANTS_EMAIL_ADDRESS = 'grants@devcon.org';
+export const MERGE_DATA_CHALLENGE_EMAIL_ADDRESS = 'datachallenge@ethereum.org';
 
 // applicants tabs
 export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Small Grants', 'Project Grants'];
@@ -177,3 +200,17 @@ export const TOAST_OPTIONS: UseToastOptions = {
     fontFamily: 'fonts.heading'
   }
 };
+
+// preview image
+export const HOMEPAGE_HERO_MOBILE_URL =
+  'https://esp.ethereum.foundation/images/homepage-hero-mobile.png';
+
+export const MERGE_DATA_CHALLENGE_PREVIEW_URL = 'https://esp.ethereum.foundation/images/merge-data-challenge-hero.jpeg';
+
+// Thank you and apply urls
+export const GRANTS_URLS = [
+  ACADEMIC_GRANTS_APPLY_URL,
+  ACADEMIC_GRANTS_THANK_YOU_PAGE_URL,
+  DEVCON_GRANTS_APPLY_URL,
+  DEVCON_GRANTS_THANK_YOU_PAGE_URL,
+]
