@@ -38,7 +38,7 @@ const MergeDataChallengeThankYou: NextPage = () => {
               <Link
                 fontWeight={700}
                 color='brand.orange.100'
-                href={MERGE_DATA_CHALLENGE_EMAIL_ADDRESS}
+                href={`mailto:${MERGE_DATA_CHALLENGE_EMAIL_ADDRESS}`}
                 isExternal
                 _hover={{ textDecoration: 'none' }}
               >
