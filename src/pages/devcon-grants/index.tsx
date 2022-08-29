@@ -112,7 +112,6 @@ const DevconGrants: NextPage = () => {
                   <PageText mb={6}>To be eligible for a grant, your event should be:</PageText>
 
                   <List>
-                    <ListItem>Based in Latin America</ListItem>
                     <ListItem>Ethereum focused</ListItem>
                     <ListItem>Free to attend</ListItem>
                     <ListItem>Open to anyone</ListItem>
