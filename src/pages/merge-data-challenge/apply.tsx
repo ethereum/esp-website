@@ -16,7 +16,8 @@ const MergeDataChallengeApply: NextPage = () => {
       <Box
         position='relative'
         py={{ md: 12 }}
-        px={{ md: 24, lg: 32, xl: 72 }}
+        px={{ sm: 5, md: 24, lg: 32, xl: 72 }}
+        pb={5}
         mt={{ base: 24, md: 6 }}
       >
         <Stack>
