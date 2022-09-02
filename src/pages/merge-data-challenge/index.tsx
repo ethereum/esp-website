@@ -578,6 +578,20 @@ const MergeDataChallenge: NextPage = () => {
                           ethstaker
                         </Link>
                         {' '} - <PageText as='span' fontStyle="italic">Discord</PageText>
+                        <List>
+                          <ListItem>
+                            <Link
+                              fontWeight={700}
+                              color='brand.orange.100'
+                              href='https://discord.com/channels/694822223575384095/1015205228959764480/1015205282974007357'
+                              isExternal
+                              _hover={{ textDecoration: 'none' }}
+                            >
+                              ETHStaker Merge Data Challenge
+                            </Link>
+                            {' '} - <PageText as='span' fontStyle="italic">Discord Channel</PageText>
+                          </ListItem>
+                        </List>
                       </ListItem>
                     </List>
                   </Box>
