@@ -575,7 +575,7 @@ const MergeDataChallenge: NextPage = () => {
                           isExternal
                           _hover={{ textDecoration: 'none' }}
                         >
-                          ethstaker
+                          EthStaker
                         </Link>
                         {' '} - <PageText as='span' fontStyle="italic">Discord</PageText>
                         <List>
@@ -587,7 +587,7 @@ const MergeDataChallenge: NextPage = () => {
                               isExternal
                               _hover={{ textDecoration: 'none' }}
                             >
-                              ETHStaker Merge Data Challenge
+                              EthStaker Merge Data Challenge
                             </Link>
                             {' '} - <PageText as='span' fontStyle="italic">Discord Channel</PageText>
                           </ListItem>
