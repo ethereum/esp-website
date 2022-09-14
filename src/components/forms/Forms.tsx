@@ -9,7 +9,8 @@ import {
   OfficeHoursForm,
   ProjectGrantsForm,
   SmallGrantsForm,
-  DevconGrantsForm
+  DevconGrantsForm,
+  SemaphoreGrantForm
 } from './';
 
 import {
@@ -19,6 +20,7 @@ import {
   MERGE_DATA_CHALLENGE_APPLY_URL,
   OFFICE_HOURS_APPLY_URL,
   PROJECT_GRANTS_APPLY_URL,
+  SEMAPHORE_GRANT_APPLY_URL,
   SMALL_GRANTS_APPLY_URL
 } from '../../constants';
 
@@ -60,6 +62,11 @@ export const Forms: FC = () => {
       {router.pathname === MERGE_DATA_CHALLENGE_APPLY_URL && (
         <Box px={{ md: 24, lg: 32, xl: 72 }}>
           <MergeDataChallengeForm />
+        </Box>
+      )}
+      {router.pathname === SEMAPHORE_GRANT_APPLY_URL && (
+        <Box px={{ md: 24, lg: 32, xl: 72 }}>
+          <SemaphoreGrantForm />
         </Box>
       )}
     </Stack>

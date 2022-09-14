@@ -6,6 +6,7 @@ import {
   NewsletterFormData,
   OfficeHoursFormData,
   ProjectGrantsFormData,
+  SemaphoreGrantFormData,
   SmallGrantsFormData
 } from './../../types';
 
@@ -168,6 +169,26 @@ export const api = {
           repeatApplicant: data.repeatApplicant === 'Yes',
           canTheEFReachOut: data.canTheEFReachOut === 'Yes',
           howDidYouHearAboutESP: data.howDidYouHearAboutESP.value
+        })
+      };
+
+      return fetch(API_MERGE_DATA_CHALLENGE, mergeDataChallengeRequestOptions);
+    }
+  },
+  semaphoreGrant: {
+    submit: (data: SemaphoreGrantFormData) => {
+      const mergeDataChallengeRequestOptions: RequestInit = {
+        ...methodOptions,
+        body: JSON.stringify({
+          ...data,
+          applyingAs: data.applyingAs.value,
+          country: data.country.value,
+          timezone: data.timezone.value,
+          projectCategory: data.projectCategory.value,
+          howDidYouHearAboutESP: data.howDidYouHearAboutESP.value,
+          wouldYouShareYourResearch: data.wouldYouShareYourResearch.value,
+          repeatApplicant: data.repeatApplicant === 'Yes',
+          canTheEFReachOut: data.canTheEFReachOut === 'Yes'
         })
       };
 

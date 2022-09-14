@@ -245,6 +245,39 @@ export interface MergeDataChallengeFormData extends CaptchaForm {
   howDidYouHearAboutESP: GrantsReferralSource; // SF API: Referral_Source__c
 }
 
+export interface SemaphoreGrantFormData extends CaptchaForm {
+  firstName: string; // SF API: FirstName
+  lastName: string; // SF API: LastName
+  email: string; // SF API: Email
+  applyingAs: ApplyingAs; // SF API: Applying_as_a__c
+  applyingAsOther: string; // SF API: Applying_as_Other__c
+  country: Country; // SF API: npsp__CompanyCountry__c
+  countriesOfTeam: string; // SF API: Countries_of_Team__c
+  timezone: Timezone; // SF API: Time_Zone__c
+  projectName: string; // SF API: Project_Name__c
+  projectDescription: string; // SF API: Project_Description__c
+  projectCategory: AcademicGrantsProjectCategory; // SF API: Category__c
+  teamProfile: string; // SF API: Team_Profile__c
+  projectPreviousWork: string; // SF API: Previous_Work__c
+  grantScope: string; // SF API: Grant_Scope__c
+  projectGoals: string; // SF API: Impact__c
+  problemBeingSolved: string; // SF API: Problem_Being_Solved__c
+  isYourProjectPublicGood: string; // SF API: Is_it_a_Public_Good__c
+  requestedAmount: string; // SF API: Requested_Amount__c
+  proposedTimeline: string; // SF API: Proposed_Timeline__c
+  challenges: string; // SF API: Challenges__c
+  additionalSupportRequests: string; // SF API: Additional_support_requests__c
+  howDidYouHearAboutESP: GrantsReferralSource; // SF API: Referral_Source__c
+  referralSourceIfOther: string; // SF API: Referral_Source_if_Other__c
+  wouldYouShareYourResearch: WouldYouShareYourResearch; // SF API: Would_you_share_your_research__c
+  linkedinProfile: string; // SF API: LinkedIn_Profile__c
+  twitter: string; // SF API: Twitter__c
+  telegram: string; // SF API: Alternative_Contact__c
+  repeatApplicant: string; // SF API: Repeat_Applicant__c
+  canTheEFReachOut: string; // SF API: Can_the_EF_reach_out__c
+  additionalInfo: string; // SF API: Additional_Information__c
+}
+
 export type IndividualOrTeam = 'Individual' | 'Team';
 
 export type OfficeHoursRequest = 'Project feedback' | 'Advice';
@@ -263,7 +296,8 @@ export type ProjectCategory = typeof PROJECT_CATEGORY_OPTIONS[number];
 
 export type AcademicGrantsProjectCategory = typeof ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS[number];
 
-export type MergeDataChallengeProjectCategory = typeof MERGE_DATA_CHALLENGE_PROJECT_CATEGORY_OPTIONS[number];
+export type MergeDataChallengeProjectCategory =
+  typeof MERGE_DATA_CHALLENGE_PROJECT_CATEGORY_OPTIONS[number];
 
 export type ProjectGrantsProjectCategory = typeof PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS[number];
 
@@ -500,5 +534,40 @@ export interface MergeDataChallengeNextApiRequest extends NextApiRequest {
     canTheEFReachOut: boolean;
     additionalInfo: string;
     howDidYouHearAboutESP: string;
-  }
-};
+  };
+}
+
+export interface SemaphoreGrantNextApiRequest extends NextApiRequest {
+  body: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    applyingAs: string;
+    applyingAsOther: string;
+    country: string;
+    countriesOfTeam: string;
+    timezone: string;
+    projectName: string;
+    projectDescription: string;
+    projectCategory: string;
+    teamProfile: string;
+    projectPreviousWork: string;
+    grantScope: string;
+    projectGoals: string;
+    problemBeingSolved: string;
+    isYourProjectPublicGood: string;
+    requestedAmount: string;
+    proposedTimeline: string;
+    challenges: string;
+    additionalSupportRequests: string;
+    howDidYouHearAboutESP: string;
+    referralSourceIfOther: string;
+    wouldYouShareYourResearch: string;
+    linkedinProfile: string;
+    twitter: string;
+    telegram: string;
+    repeatApplicant: string;
+    canTheEFReachOut: string;
+    additionalInfo: string;
+  };
+}
