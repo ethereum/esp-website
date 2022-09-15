@@ -6,9 +6,6 @@ import { verifyCaptcha } from '../../middlewares';
 
 import { SemaphoreGrantNextApiRequest } from '../../types';
 
-const googleSpreadsheetId = process.env.GOOGLE_SEMAPHORE_SPREADSHEET_ID;
-const googleSheetName = process.env.GOOGLE_SEMAPHORE_SHEET_NAME;
-
 async function handler(req: SemaphoreGrantNextApiRequest, res: NextApiResponse) {
   const { body } = req;
   const {
@@ -106,8 +103,8 @@ async function handler(req: SemaphoreGrantNextApiRequest, res: NextApiResponse) 
       try {
         await addRowToSpreadsheet(
           {
-            id: googleSpreadsheetId!,
-            sheetName: googleSheetName!
+            id: '1YYH7rXA9cbzqb1jBCXHB54opKQAMPwSHvSshPaE4YQs',
+            sheetName: 'Applications'
           },
           application
         );
