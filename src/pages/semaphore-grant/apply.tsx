@@ -37,7 +37,6 @@ const SemaphoreGrantApply: NextPage = () => {
               >
                 {SEMAPHORE_GRANT_EMAIL_ADDRESS}
               </Link>
-              .
             </PageText>
           </section>
         </Stack>

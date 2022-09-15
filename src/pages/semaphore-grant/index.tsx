@@ -17,7 +17,11 @@ import {
 } from '../../components/UI';
 
 // Constants
-import { SEMAPHORE_GRANT_LINKS, SEMAPHORE_GRANT_APPLY_URL } from '../../constants';
+import {
+  SEMAPHORE_GRANT_LINKS,
+  SEMAPHORE_GRANT_APPLY_URL,
+  SEMAPHORE_GRANT_EMAIL_ADDRESS
+} from '../../constants';
 
 const SemaphoreGrant: NextPage = () => {
   // `threshold` option allows us to control the % of visibility required before triggering the Intersection Observer
@@ -436,7 +440,16 @@ const SemaphoreGrant: NextPage = () => {
                           Hub.
                         </ListItem>
                         <ListItem>
-                          You can also email questions to: semaphore-grants@ethereum.org
+                          You can also email questions to:{' '}
+                          <Link
+                            fontWeight={700}
+                            color='brand.orange.100'
+                            href={`mailto:${SEMAPHORE_GRANT_EMAIL_ADDRESS}`}
+                            isExternal
+                            _hover={{ textDecoration: 'none' }}
+                          >
+                            {SEMAPHORE_GRANT_EMAIL_ADDRESS}
+                          </Link>
                         </ListItem>
                       </List>
                     </FAQItem>
