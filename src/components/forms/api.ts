@@ -20,6 +20,7 @@ import {
   API_NEWSLETTER_SIGNUP_URL,
   API_OFFICE_HOURS,
   API_PROJECT_GRANTS,
+  API_SEMAPHORE_GRANT,
   API_SMALL_GRANTS_EVENT,
   API_SMALL_GRANTS_PROJECT
 } from './constants';
@@ -177,7 +178,7 @@ export const api = {
   },
   semaphoreGrant: {
     submit: (data: SemaphoreGrantFormData) => {
-      const mergeDataChallengeRequestOptions: RequestInit = {
+      const semaphoreGrantRequestOptions: RequestInit = {
         ...methodOptions,
         body: JSON.stringify({
           ...data,
@@ -192,7 +193,7 @@ export const api = {
         })
       };
 
-      return fetch(API_MERGE_DATA_CHALLENGE, mergeDataChallengeRequestOptions);
+      return fetch(API_SEMAPHORE_GRANT, semaphoreGrantRequestOptions);
     }
   },
   newsletter: {
