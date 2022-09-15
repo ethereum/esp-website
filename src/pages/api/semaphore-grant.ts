@@ -103,7 +103,7 @@ async function handler(req: SemaphoreGrantNextApiRequest, res: NextApiResponse) 
       try {
         await addRowToSpreadsheet(
           {
-            id: '1YYH7rXA9cbzqb1jBCXHB54opKQAMPwSHvSshPaE4YQs',
+            id: '1YpA7U94D9t7wV4FabRbKJLB8GHhGpszqukhozhqLplE',
             sheetName: 'Applications'
           },
           application
