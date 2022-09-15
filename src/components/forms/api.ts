@@ -178,10 +178,14 @@ export const api = {
   },
   semaphoreGrant: {
     submit: (data: SemaphoreGrantFormData) => {
+      const fullName = `${data.firstName} ${data.lastName}`;
+      const company = data.company || fullName;
+
       const semaphoreGrantRequestOptions: RequestInit = {
         ...methodOptions,
         body: JSON.stringify({
           ...data,
+          company,
           applyingAs: data.applyingAs.value,
           country: data.country.value,
           timezone: data.timezone.value,

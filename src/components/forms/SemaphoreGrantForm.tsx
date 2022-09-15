@@ -224,6 +224,42 @@ export const SemaphoreGrantForm: FC = () => {
             )}
           </FormControl>
 
+          <FormControl id='company-control' mb={8}>
+            <FormLabel htmlFor='company' mb={1}>
+              <PageText display='inline' fontSize='input'>
+                Organization
+              </PageText>
+            </FormLabel>
+
+            <PageText as='small' fontSize='helpText' color='brand.helpText'>
+              If you are applying as an individual, leave blank
+            </PageText>
+
+            <Input
+              id='company'
+              type='text'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              h='56px'
+              _placeholder={{ fontSize: 'input' }}
+              color='brand.paragraph'
+              fontSize='input'
+              mt={3}
+              {...register('company', {
+                maxLength: 255
+              })}
+            />
+
+            {errors?.company?.type === 'maxLength' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Organization name cannot exceed 255 characters.
+                </PageText>
+              </Box>
+            )}
+          </FormControl>
+
           <Controller
             name='applyingAs'
             control={control}

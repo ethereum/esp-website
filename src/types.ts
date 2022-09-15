@@ -249,6 +249,7 @@ export interface SemaphoreGrantFormData extends CaptchaForm {
   firstName: string; // SF API: FirstName
   lastName: string; // SF API: LastName
   email: string; // SF API: Email
+  company: string; // SF API: Company
   applyingAs: ApplyingAs; // SF API: Applying_as_a__c
   applyingAsOther: string; // SF API: Applying_as_Other__c
   country: Country; // SF API: npsp__CompanyCountry__c
@@ -542,6 +543,7 @@ export interface SemaphoreGrantNextApiRequest extends NextApiRequest {
     firstName: string;
     lastName: string;
     email: string;
+    company: string;
     applyingAs: string;
     applyingAsOther: string;
     country: string;
