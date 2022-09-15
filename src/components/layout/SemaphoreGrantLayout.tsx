@@ -2,7 +2,7 @@ import { Stack } from '@chakra-ui/react';
 import { FC } from 'react';
 
 import semaphoreHero from '../../../public/images/semaphore-meadow.png';
-import mergeDataChallengeHeroMobile from '../../../public/images/merge-data-challenge-hero-mobile.jpg';
+import semaphoreHeroMobile from '../../../public/images/semaphore-meadow-mobile.png';
 
 import { GrantsHero } from '../UI';
 
@@ -17,8 +17,7 @@ export const SemaphoreGrantLayout: FC = ({ children }) => {
         }}
         mobileImage={{
           alt: 'People making shadow plays in a field of grass',
-          // TODO: add mobile image
-          src: mergeDataChallengeHeroMobile
+          src: semaphoreHeroMobile
         }}
         title='Semaphore Community Grant Round'
       >
