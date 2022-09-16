@@ -8,7 +8,7 @@ const SemaphoreGrantApply: NextPage = () => {
   return (
     <>
       <PageMetadata
-        title='Semaphore Grant'
+        title='Semaphore Community Grants'
         description='Semaphore has done the hard work of making zero-knowledge proofs accessible and practical for developers. Now it’s your turn. Tell us about your ideas for end-user applications, proofs of concept, or integration with other primitives. If you are building something with privacy at its core, we want to hear from you!'
       />
 
@@ -22,7 +22,7 @@ const SemaphoreGrantApply: NextPage = () => {
         <Stack>
           <section id='description'>
             <PageSubheading mb={8} textAlign='center'>
-              Apply to Semaphore Grant
+              Apply to Semaphore Grants
             </PageSubheading>
 
             <PageText textAlign='center'>

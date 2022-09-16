@@ -8,7 +8,10 @@ import { SEMAPHORE_GRANT_EMAIL_ADDRESS } from '../../constants';
 const SemaphoreGrantThankYou: NextPage = () => {
   return (
     <>
-      <PageMetadata title='Thank you' description='Thank you for applying to the Semaphore Grant' />
+      <PageMetadata
+        title='Thank you'
+        description='Thank you for applying to the Semaphore Grants'
+      />
       <Head>
         <meta name='robots' content='noindex' />
       </Head>

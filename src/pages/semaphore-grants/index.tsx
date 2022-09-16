@@ -24,7 +24,7 @@ import {
   SEMAPHORE_GRANT_PREVIEW_URL
 } from '../../constants';
 
-const SemaphoreGrant: NextPage = () => {
+const SemaphoreGrants: NextPage = () => {
   // `threshold` option allows us to control the % of visibility required before triggering the Intersection Observer
   // https://react-intersection-observer.vercel.app/?path=/story/introduction--page#options
   const [ref, inView] = useInView({ threshold: 0 });
@@ -39,7 +39,7 @@ const SemaphoreGrant: NextPage = () => {
   return (
     <>
       <PageMetadata
-        title='Semaphore Community Grant Round'
+        title='Semaphore Community Grants'
         description='Semaphore is a privacy preserving public good developed by the Ethereum Foundation’s Privacy and Scaling Explorations (PSE) team. The community grants round is intended to encourage developers to build applications using Semaphore’s simple and generic privacy layer.'
         image={SEMAPHORE_GRANT_PREVIEW_URL}
       />
@@ -490,4 +490,4 @@ const SemaphoreGrant: NextPage = () => {
   );
 };
 
-export default SemaphoreGrant;
+export default SemaphoreGrants;

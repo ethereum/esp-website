@@ -113,7 +113,7 @@ async function handler(req: SemaphoreGrantNextApiRequest, res: NextApiResponse) 
         console.log(err);
       }
 
-      console.log(`Semaphore Grant Lead with ID: ${ret.id} has been created!`);
+      console.log(`Semaphore Grants Lead with ID: ${ret.id} has been created!`);
 
       res.status(200).json({ status: 'ok' });
     });

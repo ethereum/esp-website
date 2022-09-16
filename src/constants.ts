@@ -102,7 +102,7 @@ export const SIDEBAR_MERGE_DATA_CHALLENGE_LINKS: SidebarLink[] = [
   { text: 'Submit blog post', href: `${MERGE_DATA_CHALLENGE_URL}/#submit-blog-post` }
 ];
 
-export const SEMAPHORE_GRANT_URL = '/semaphore-grant';
+export const SEMAPHORE_GRANT_URL = '/semaphore-grants';
 export const SEMAPHORE_GRANT_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${SEMAPHORE_GRANT_URL}/#description` },
   { text: 'Privacy matters', href: `${SEMAPHORE_GRANT_URL}/#privacy-matters` },
@@ -124,7 +124,7 @@ export const SMALL_GRANTS_APPLY_URL = '/applicants/small-grants/apply';
 export const ACADEMIC_GRANTS_APPLY_URL = '/academic-grants/apply';
 export const DEVCON_GRANTS_APPLY_URL = '/devcon-grants/apply';
 export const MERGE_DATA_CHALLENGE_APPLY_URL = '/merge-data-challenge/apply';
-export const SEMAPHORE_GRANT_APPLY_URL = '/semaphore-grant/apply';
+export const SEMAPHORE_GRANT_APPLY_URL = '/semaphore-grants/apply';
 
 // grantee finance form
 export const GRANTEE_FINANCE_URL = '/applicants/grantee-finance';
@@ -137,7 +137,7 @@ export const GRANTEE_FINANCE_THANK_YOU_PAGE_URL = '/applicants/grantee-finance/t
 export const ACADEMIC_GRANTS_THANK_YOU_PAGE_URL = '/academic-grants/thank-you';
 export const DEVCON_GRANTS_THANK_YOU_PAGE_URL = '/devcon-grants/thank-you';
 export const MERGE_DATA_CHALLENGE_THANK_YOU_PAGE_URL = '/merge-data-challenge/thank-you';
-export const SEMAPHORE_GRANT_THANK_YOU_PAGE_URL = '/semaphore-grant/thank-you';
+export const SEMAPHORE_GRANT_THANK_YOU_PAGE_URL = '/semaphore-grants/thank-you';
 
 // ethereum ecosystem
 export const ETHEREUM_ORG_URL = 'https://ethereum.org/';
