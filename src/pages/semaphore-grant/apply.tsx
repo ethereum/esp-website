@@ -9,8 +9,7 @@ const SemaphoreGrantApply: NextPage = () => {
     <>
       <PageMetadata
         title='Semaphore Grant'
-        // TODO: add description
-        description=''
+        description='Semaphore has done the hard work of making zero-knowledge proofs accessible and practical for developers. Now it’s your turn. Tell us about your ideas for end-user applications, proofs of concept, or integration with other primitives. If you are building something with privacy at its core, we want to hear from you!'
       />
 
       <Box

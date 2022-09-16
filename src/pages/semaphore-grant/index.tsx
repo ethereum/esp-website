@@ -40,8 +40,7 @@ const SemaphoreGrant: NextPage = () => {
     <>
       <PageMetadata
         title='Semaphore Community Grant Round'
-        // TODO: ask for description
-        description=''
+        description='Semaphore is a privacy preserving public good developed by the Ethereum Foundation’s Privacy and Scaling Explorations (PSE) team. The community grants round is intended to encourage developers to build applications using Semaphore’s simple and generic privacy layer.'
         image={SEMAPHORE_GRANT_PREVIEW_URL}
       />
       <Box mx={{ md: 12 }} bg='white' position='relative' zIndex={1} mt={{ xl: 12 }}>
@@ -64,7 +63,7 @@ const SemaphoreGrant: NextPage = () => {
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
               <Stack mb={8} mt={{ base: 10, md: 0 }}>
                 <section id='description' ref={ref}>
-                  <PageSubheading mb={8}>Semaphore Community Grant Round</PageSubheading>
+                  <PageSubheading mb={8}>Semaphore Community Grants</PageSubheading>
 
                   <PageText mb={6}>
                     The{' '}

@@ -36,9 +36,10 @@ export const SemaphoreGrantLayout: FC = ({ children }) => {
           alt: 'People making shadow plays in a field of grass',
           src: semaphoreHeroMobile
         }}
-        title='Semaphore Community Grant Round'
+        title='Semaphore Community Grants'
       >
-        TODO?
+        We are providing grants for developers to build applications using Semaphore’s
+        zero-knowledge primitives
       </GrantsHero>
 
       <Stack>{children}</Stack>
