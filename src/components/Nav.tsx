@@ -46,7 +46,7 @@ export const Nav: FC = () => {
           <Image src={logoSVG} alt='Ecosystem Support Program logo' height={64} width={148} />
         </Box>
 
-        <Box display={{ base: 'block', md: 'none' }}>
+        <Box display={{ base: 'block', md: 'none' }} zIndex={9999}>
           <Box mt={2}>
             <Menu id='menu-button'>
               {!isOpen && (
@@ -66,7 +66,6 @@ export const Nav: FC = () => {
                   variant='transparent'
                   icon={<CloseIcon h='28px' w='28px' color='white' />}
                   onClick={onClose}
-                  zIndex={9999}
                 />
               )}
             </Menu>
@@ -101,7 +100,7 @@ export const Nav: FC = () => {
           </Drawer>
         </Box>
 
-        <Flex display={{ base: 'none', md: 'block' }} zIndex={1}>
+        <Flex display={{ base: 'none', md: 'block' }} zIndex={2}>
           <UnorderedList>
             {NAV_LINKS.map((nav, idx) => (
               <ListItem key={nav.text} display='inline'>
