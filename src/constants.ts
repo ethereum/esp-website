@@ -227,6 +227,9 @@ export const HOMEPAGE_HERO_MOBILE_URL =
 export const MERGE_DATA_CHALLENGE_PREVIEW_URL =
   'https://esp.ethereum.foundation/images/merge-data-challenge-hero.jpeg';
 
+export const SEMAPHORE_GRANT_PREVIEW_URL =
+  'https://esp.ethereum.foundation/images/semaphore-meadow.png';
+
 // Thank you and apply urls
 export const GRANTS_URLS = [
   ACADEMIC_GRANTS_APPLY_URL,

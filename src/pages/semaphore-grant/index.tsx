@@ -20,7 +20,8 @@ import {
 import {
   SEMAPHORE_GRANT_LINKS,
   SEMAPHORE_GRANT_APPLY_URL,
-  SEMAPHORE_GRANT_EMAIL_ADDRESS
+  SEMAPHORE_GRANT_EMAIL_ADDRESS,
+  SEMAPHORE_GRANT_PREVIEW_URL
 } from '../../constants';
 
 const SemaphoreGrant: NextPage = () => {
@@ -41,6 +42,7 @@ const SemaphoreGrant: NextPage = () => {
         title='Semaphore Community Grant Round'
         // TODO: ask for description
         description=''
+        image={SEMAPHORE_GRANT_PREVIEW_URL}
       />
       <Box mx={{ md: 12 }} bg='white' position='relative' zIndex={1} mt={{ xl: 12 }}>
         <Stack spacing={10} mb={8} px={{ base: 5, md: 0 }} py={{ base: 3, md: 12 }}>
