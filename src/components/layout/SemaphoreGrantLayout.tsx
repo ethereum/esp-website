@@ -17,7 +17,7 @@ const DimLayer = () => (
     right={0}
     width='full'
     height='130px'
-    bg='rgba(255,255,255,0.4)'
+    bgGradient='linear-gradient(rgba(255,255,255,0.7), transparent)'
     zIndex={1}
   />
 );
