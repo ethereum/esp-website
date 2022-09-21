@@ -120,7 +120,7 @@ const SemaphoreGrants: NextPage = () => {
 
                   <PageText mb={6}>
                     Semaphore is designed to be a simple and generic privacy layer for decentralized
-                    applications (dApps) on Ethereum.{' '}
+                    applications (dapps) on Ethereum.{' '}
                   </PageText>
 
                   <PageText mb={6}>
