@@ -3,6 +3,7 @@ export * from './AcademicGrantsForm';
 export * from './GranteeFinanceForm';
 export * from './LatestGranteesList';
 export * from './MergeDataChallengeForm';
+export * from './SemaphoreGrantForm';
 export * from './NewsletterSignup';
 export * from './OfficeHoursForm';
 export * from './ProjectGrantsForm';
