@@ -221,7 +221,7 @@ const SemaphoreGrants: NextPage = () => {
                           Interep
                         </Link>{' '}
                         uses zero knowledge proofs to verify reputation from an existing account
-                        such as Github or Twitter without retaining any identifying information.
+                        such as GitHub or Twitter without retaining any identifying information.
                       </ListItem>
                       <ListItem>
                         <Link
