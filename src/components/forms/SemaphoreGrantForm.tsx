@@ -804,42 +804,42 @@ export const SemaphoreGrantForm: FC = () => {
           </FormControl>
 
           <FormControl id='isYourProjectPublicGood-control' isRequired mb={8}>
-              <FormLabel htmlFor='isYourProjectPublicGood'>
-                <PageText display='inline' fontSize='input'>
-                  How does this project benefit the greater Ethereum ecosystem?
+            <FormLabel htmlFor='isYourProjectPublicGood'>
+              <PageText display='inline' fontSize='input'>
+                How does this project benefit the greater Ethereum ecosystem?
+              </PageText>
+            </FormLabel>
+
+            <Textarea
+              id='isYourProjectPublicGood'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              _placeholder={{ fontSize: 'input' }}
+              color='brand.paragraph'
+              fontSize='input'
+              h='150px'
+              {...register('isYourProjectPublicGood', {
+                required: true,
+                maxLength: 32768
+              })}
+            />
+
+            {errors?.isYourProjectPublicGood?.type === 'required' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Is your project public good is required.
                 </PageText>
-              </FormLabel>
-
-              <Textarea
-                id='isYourProjectPublicGood'
-                bg='white'
-                borderRadius={0}
-                borderColor='brand.border'
-                _placeholder={{ fontSize: 'input' }}
-                color='brand.paragraph'
-                fontSize='input'
-                h='150px'
-                {...register('isYourProjectPublicGood', {
-                  required: true,
-                  maxLength: 32768
-                })}
-              />
-
-              {errors?.isYourProjectPublicGood?.type === 'required' && (
-                <Box mt={1}>
-                  <PageText as='small' fontSize='helpText' color='red.500'>
-                    Is your project public good is required.
-                  </PageText>
-                </Box>
-              )}
-              {errors?.isYourProjectPublicGood?.type === 'maxLength' && (
-                <Box mt={1}>
-                  <PageText as='small' fontSize='helpText' color='red.500'>
-                    Is your project public good cannot exceed 32768 characters.
-                  </PageText>
-                </Box>
-              )}
-            </FormControl>
+              </Box>
+            )}
+            {errors?.isYourProjectPublicGood?.type === 'maxLength' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Is your project public good cannot exceed 32768 characters.
+                </PageText>
+              </Box>
+            )}
+          </FormControl>
 
           <FormControl id='requested-amount-control' isRequired mb={8} w={{ md: '50%' }}>
             <FormLabel htmlFor='requestedAmount' mb={1}>
