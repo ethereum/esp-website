@@ -419,7 +419,7 @@ const SemaphoreGrants: NextPage = () => {
                           <Link
                             fontWeight={700}
                             color='brand.orange.100'
-                            href='https://discord.gg/BEwVYRbX'
+                            href='https://discord.gg/CkdbBqDDWU'
                             isExternal
                             _hover={{ textDecoration: 'none' }}
                           >
