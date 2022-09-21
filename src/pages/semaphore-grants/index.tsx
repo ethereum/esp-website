@@ -18,7 +18,7 @@ import {
 
 // Constants
 import {
-  SEMAPHORE_GRANT_LINKS,
+  SIDEBAR_SEMAPHORE_GRANT_LINKS,
   SEMAPHORE_GRANT_APPLY_URL,
   SEMAPHORE_GRANT_EMAIL_ADDRESS,
   SEMAPHORE_GRANT_PREVIEW_URL
@@ -47,7 +47,7 @@ const SemaphoreGrants: NextPage = () => {
         <Stack spacing={10} mb={8} px={{ base: 5, md: 0 }} py={{ base: 3, md: 12 }}>
           <Flex>
             <ApplicantsSidebar
-              sidebarLinks={SEMAPHORE_GRANT_LINKS}
+              sidebarLinks={SIDEBAR_SEMAPHORE_GRANT_LINKS}
               sectionsInView={[
                 inView,
                 inView2,

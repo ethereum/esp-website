@@ -103,7 +103,7 @@ export const SIDEBAR_MERGE_DATA_CHALLENGE_LINKS: SidebarLink[] = [
 ];
 
 export const SEMAPHORE_GRANT_URL = '/semaphore-grants';
-export const SEMAPHORE_GRANT_LINKS: SidebarLink[] = [
+export const SIDEBAR_SEMAPHORE_GRANT_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${SEMAPHORE_GRANT_URL}/#description` },
   { text: 'Privacy matters', href: `${SEMAPHORE_GRANT_URL}/#privacy-matters` },
   {
