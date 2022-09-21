@@ -29,18 +29,9 @@ export const PageMetadata: FC<Props> = ({
       <meta property='og:type' content='website' />
       <meta property='og:site_name' content='Ethereum Foundation ESP'></meta>
       <meta property='og:url' content='https://esp.ethereum.foundation/' />
-      <meta
-        property='og:image'
-        content='https://esp.ethereum.foundation/images/homepage-hero-mobile.png'
-      />
-      <meta
-        property='og:image:url'
-        content='https://esp.ethereum.foundation/images/homepage-hero-mobile.png'
-      />
-      <meta
-        property='og:image:secure_url'
-        content='https://esp.ethereum.foundation/images/homepage-hero-mobile.png'
-      />
+      <meta property='og:image' content={image} />
+      <meta property='og:image:url' content={image} />
+      <meta property='og:image:secure_url' content={image} />
       <meta property='og:image:alt' content='EF Ecosystem Support Program' />
       <meta property='og:image:type' content='image/png' />
       {/* Twitter */}
@@ -50,10 +41,7 @@ export const PageMetadata: FC<Props> = ({
       <meta name='twitter:site' content='@EF_ESP' />
       <meta name='twitter:title' content='EF Ecosystem Support Program' />
       <meta name='twitter:description' content={description} />
-      <meta
-        name='twitter:image'
-        content='https://esp.ethereum.foundation/images/homepage-hero-mobile.png'
-      />
+      <meta name='twitter:image' content={image} />
     </Head>
   );
 };
