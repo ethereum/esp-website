@@ -785,7 +785,25 @@ export const SemaphoreGrantForm: FC = () => {
               })}
             />
 
-            <FormControl id='isYourProjectPublicGood-control' isRequired mb={8}>
+           
+
+            {errors?.problemBeingSolved?.type === 'required' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Problem being solved is required.
+                </PageText>
+              </Box>
+            )}
+            {errors?.problemBeingSolved?.type === 'maxLength' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Problem being solved cannot exceed 32768 characters.
+                </PageText>
+              </Box>
+            )}
+          </FormControl>
+
+          <FormControl id='isYourProjectPublicGood-control' isRequired mb={8}>
               <FormLabel htmlFor='isYourProjectPublicGood'>
                 <PageText display='inline' fontSize='input'>
                   How does this project benefit the greater Ethereum ecosystem?
@@ -822,22 +840,6 @@ export const SemaphoreGrantForm: FC = () => {
                 </Box>
               )}
             </FormControl>
-
-            {errors?.problemBeingSolved?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Problem being solved is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.problemBeingSolved?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Problem being solved cannot exceed 32768 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
 
           <FormControl id='requested-amount-control' isRequired mb={8} w={{ md: '50%' }}>
             <FormLabel htmlFor='requestedAmount' mb={1}>
