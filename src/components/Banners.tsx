@@ -26,7 +26,7 @@ export const Banners: FC<Props> = () => {
           <Link fontWeight={700} href={SEMAPHORE_GRANT_URL}>
             Semaphore grants
           </Link>
-          . See the details and Apply.
+          . See the details and apply.
         </Box>
       </Banner>
     );
