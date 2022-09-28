@@ -38,7 +38,7 @@ export const PageMetadata: FC<Props> = ({
       <meta property='twitter:url' content='https://esp.ethereum.foundation/' />
       <meta name='twitter:creator' content='@EF_ESP' />
       <meta name='twitter:site' content='@EF_ESP' />
-      <meta name='twitter:title' content='EF Ecosystem Support Program' />
+      <meta name='twitter:title' content={fullTitle} />
       <meta name='twitter:description' content={description} />
       <meta name='twitter:image' content={image} />
     </Head>
