@@ -14,17 +14,16 @@ export const PageMetadata: FC<Props> = ({
   description,
   image = HOMEPAGE_HERO_MOBILE_URL
 }) => {
+  const fullTitle = `${title} | ${HEAD_TITLE}`;
   return (
     <Head>
-      <title>
-        {title} | {HEAD_TITLE}
-      </title>
-      <meta name='title' content={`${title} | ${HEAD_TITLE}`} />
+      <title>{fullTitle}</title>
+      <meta name='title' content={fullTitle} />
       <meta name='description' content={description} />
       <meta name='application-name' content='Ethereum Foundation ESP' />
       <meta name='image' content={image} />
       {/* OpenGraph */}
-      <meta property='og:title' content={`${title} | ${HEAD_TITLE}`} />
+      <meta property='og:title' content={fullTitle} />
       <meta property='og:description' content={description} />
       <meta property='og:type' content='website' />
       <meta property='og:site_name' content='Ethereum Foundation ESP'></meta>
@@ -39,7 +38,7 @@ export const PageMetadata: FC<Props> = ({
       <meta property='twitter:url' content='https://esp.ethereum.foundation/' />
       <meta name='twitter:creator' content='@EF_ESP' />
       <meta name='twitter:site' content='@EF_ESP' />
-      <meta name='twitter:title' content='EF Ecosystem Support Program' />
+      <meta name='twitter:title' content={fullTitle} />
       <meta name='twitter:description' content={description} />
       <meta name='twitter:image' content={image} />
     </Head>
