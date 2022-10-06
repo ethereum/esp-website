@@ -6,9 +6,6 @@ import { verifyCaptcha } from '../../middlewares';
 
 import { MergeDataChallengeNextApiRequest } from '../../types';
 
-const googleSpreadsheetId = process.env.GOOGLE_ACADEMIC_SPREADSHEET_ID;
-const googleSheetName = process.env.GOOGLE_ACADEMIC_SHEET_NAME;
-
 async function handler(req: MergeDataChallengeNextApiRequest, res: NextApiResponse) {
   const { body } = req;
   const {
@@ -89,8 +86,8 @@ async function handler(req: MergeDataChallengeNextApiRequest, res: NextApiRespon
       try {
         await addRowToSpreadsheet(
           {
-            id: googleSpreadsheetId!,
-            sheetName: googleSheetName!
+            id: '12eVrg745byYwa5QZqefp7Ip0SzOBUkO6eETJdBI8X34',
+            sheetName: 'Applications'
           },
           application
         );
