@@ -374,7 +374,7 @@ const SemaphoreGrants: NextPage = () => {
                           </ListItem>
                         </List>
                       </ListItem>
-                      <ListItem>Application dates: September 16th to October 14th, 2022</ListItem>
+                      <ListItem>Application dates: September 16th to October 28th, 2022</ListItem>
                     </List>
                   </Box>
                 </section>
