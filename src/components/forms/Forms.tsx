@@ -10,13 +10,15 @@ import {
   ProjectGrantsForm,
   SmallGrantsForm,
   DevconGrantsForm,
-  SemaphoreGrantForm
+  SemaphoreGrantForm,
+  Layer2GrantsForm
 } from './';
 
 import {
   ACADEMIC_GRANTS_APPLY_URL,
   DEVCON_GRANTS_APPLY_URL,
   GRANTEE_FINANCE_URL,
+  LAYER_2_GRANTS_APPLY_URL,
   MERGE_DATA_CHALLENGE_APPLY_URL,
   OFFICE_HOURS_APPLY_URL,
   PROJECT_GRANTS_APPLY_URL,
@@ -67,6 +69,11 @@ export const Forms: FC = () => {
       {router.pathname === SEMAPHORE_GRANT_APPLY_URL && (
         <Box px={{ md: 24, lg: 32, xl: 72 }}>
           <SemaphoreGrantForm />
+        </Box>
+      )}
+      {router.pathname === LAYER_2_GRANTS_APPLY_URL && (
+        <Box px={{ md: 24, lg: 32, xl: 72 }}>
+          <Layer2GrantsForm />
         </Box>
       )}
     </Stack>
