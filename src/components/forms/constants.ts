@@ -58,7 +58,7 @@ export const SEMAPHORE_GRANT_PROJECT_CATEGORY_OPTIONS = [
 ];
 
 export const LAYER_2_GRANTS_PROJECT_CATEGORY_OPTIONS = [
-  { value: 'Community and Education', label: 'Community and Education' },
+  { value: 'Community and education', label: 'Community and education' },
   { value: 'Cybersecurity', label: 'Cybersecurity' },
   {
     value: 'Cryptography and Zero-Knowledge Proofs',

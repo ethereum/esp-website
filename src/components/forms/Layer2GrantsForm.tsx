@@ -295,7 +295,7 @@ export const Layer2GrantsForm: FC = () => {
           <FormControl id='company-control' mb={8}>
             <FormLabel htmlFor='company' mb={1}>
               <PageText display='inline' fontSize='input'>
-                If applying as an Institution, please specify its name:
+                If applying as an Organization, please specify its name:
               </PageText>
             </FormLabel>
 
