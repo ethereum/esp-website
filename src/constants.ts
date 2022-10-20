@@ -122,6 +122,7 @@ export const SIDEBAR_LAYER_2_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${LAYER_2_GRANTS_URL}/#description` },
   { text: 'Introduction', href: `${LAYER_2_GRANTS_URL}/#introduction` },
   { text: 'Ideas', href: `${LAYER_2_GRANTS_URL}/#ideas` },
+  { text: 'Deadline', href: `${LAYER_2_GRANTS_URL}/#deadline` },
   { text: 'Submit a proposal', href: `${LAYER_2_GRANTS_URL}/#submit-proposal` },
   { text: 'Requirements', href: `${LAYER_2_GRANTS_URL}/#requirements` },
   { text: 'Selection criteria', href: `${LAYER_2_GRANTS_URL}/#selection-criteria` },

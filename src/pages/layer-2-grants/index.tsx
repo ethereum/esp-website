@@ -35,6 +35,7 @@ const Layer2Grants: NextPage = () => {
   const [ref6, inView6] = useInView({ threshold: 0.5, initialInView: false });
   const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
   const [ref8, inView8] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref9, inView9] = useInView({ threshold: 0.5, initialInView: false });
 
   return (
     <>
@@ -56,7 +57,8 @@ const Layer2Grants: NextPage = () => {
                 inView5,
                 inView6,
                 inView7,
-                inView8
+                inView8,
+                inView9
               ]}
             />
 
@@ -126,7 +128,7 @@ const Layer2Grants: NextPage = () => {
                         <Link
                           fontWeight={700}
                           color='brand.orange.100'
-                          href='https://https://hackmd.io/@BcrNKqoOR1OZEFsNu7su9w/SkdvCP7zs'
+                          href='https://hackmd.io/@BcrNKqoOR1OZEFsNu7su9w/SkdvCP7zs'
                           isExternal
                           _hover={{ textDecoration: 'none' }}
                         >
@@ -158,95 +160,6 @@ const Layer2Grants: NextPage = () => {
               </Stack>
 
               <Stack spacing={10}>
-                <section id='wishlist' ref={ref4}>
-                  <PageSection mb={6}>Wishlist</PageSection>
-
-                  <PageText mb={6}>
-                    The Ethereum Foundation is interested in the following things, but don’t let
-                    this restrict your creativity.
-                  </PageText>
-
-                  <PageText mb={6}>
-                    💡 A lot of the below comes from James (non-technical) however, I have included
-                    it in case it sparks a thought that might be worth including.{' '}
-                    <strong>Please cross out if not relevant or add where necessary.</strong>
-                  </PageText>
-
-                  <PageText mb={6}>💡 Some of the below is intentionally broad.</PageText>
-
-                  <Box mb={6}>
-                    <List>
-                      <ListItem>
-                        R&D aimed toward cross-rollup transaction execution (both synchronous and
-                        asynchronous)
-                      </ListItem>
-                      <ListItem>Develop technical wallet standards to aid L2 support</ListItem>
-                      <ListItem>
-                        New transaction abstraction and aggregation techniques, i.e. allow using BLS
-                        or another crypto instead of ECDSA
-                      </ListItem>
-                      <ListItem>Research solutions around liquidity fragmentation on L2s</ListItem>
-                      <ListItem>Research on trustless bridging techniques</ListItem>
-                      <ListItem>
-                        Research and define metrics for better understanding and comparing L2
-                        activity – e.g. transactions, TVL, etc
-                      </ListItem>
-                      <ListItem>
-                        Research and define security metrics to help users compare L2’s
-                      </ListItem>
-                      <ListItem>Better compression for rollups</ListItem>
-                      <ListItem>Ideas around Account Abstraction</ListItem>
-                      <ListItem>Cross-chain MEV</ListItem>
-                      <ListItem>Enabling new EVM functionality on L2s prior to L1</ListItem>
-                      <ListItem>Layer 2 Light clients</ListItem>
-                      <ListItem>Hardware/infrastructure design for ZK efficiency</ListItem>
-                    </List>
-                  </Box>
-
-                  <PageText mb={6} fontWeight='bold'>
-                    Analytics
-                  </PageText>
-
-                  <Box mb={6}>
-                    <List>
-                      <ListItem>Status dashboards to monitor network health</ListItem>
-                      <ListItem>
-                        Develop and Design an Ethereum panel/explorer (main chain and all chains
-                        “secured by Ethereum”)
-                      </ListItem>
-                      <ListItem>
-                        Analytics Dashboard that can provide useful data insights on layer2’s
-                      </ListItem>
-                      <ListItem>
-                        Data visualization can help people understand different layer2 aspects (gas
-                        costs, security, potential savings over a longer timeframe etc.)
-                      </ListItem>
-                      <ListItem>
-                        An open-source block explorer that supports all rollups (the ability to
-                        drill into the data would be a plus)
-                      </ListItem>
-                      <ListItem>
-                        Research and analysis of L2 activity providing novel insights
-                      </ListItem>
-                    </List>
-                  </Box>
-
-                  <PageText mb={6} fontWeight='bold'>
-                    Education
-                  </PageText>
-
-                  <Box mb={6}>
-                    <List>
-                      <ListItem>Educational content to help new and existing users</ListItem>
-                      <ListItem>
-                        Create educational material for potential coordinators and verifiers
-                      </ListItem>
-                    </List>
-                  </Box>
-                </section>
-              </Stack>
-
-              <Stack spacing={10}>
                 <section id='deadline' ref={ref4}>
                   <PageSection mb={6}>Deadline</PageSection>
 
@@ -267,7 +180,7 @@ const Layer2Grants: NextPage = () => {
               </Stack>
 
               <Stack spacing={10}>
-                <section id='submit-proposal' ref={ref4}>
+                <section id='submit-proposal' ref={ref5}>
                   <PageSection mb={6}>Submit a proposal at any stage of your project</PageSection>
 
                   <Box mb={6}>
@@ -290,7 +203,7 @@ const Layer2Grants: NextPage = () => {
               </Stack>
 
               <Stack spacing={10}>
-                <section id='requirements' ref={ref5}>
+                <section id='requirements' ref={ref6}>
                   <PageSection mb={6}>Requirements</PageSection>
 
                   <Box mb={6}>
@@ -306,7 +219,7 @@ const Layer2Grants: NextPage = () => {
               </Stack>
 
               <Stack spacing={10}>
-                <section id='selection-criteria' ref={ref6}>
+                <section id='selection-criteria' ref={ref7}>
                   <PageSection mb={6}>Selection criteria</PageSection>
 
                   <PageText mb={6}>
@@ -345,7 +258,7 @@ const Layer2Grants: NextPage = () => {
               </Stack>
 
               <Stack spacing={10}>
-                <section id='faq' ref={ref7}>
+                <section id='faq' ref={ref8}>
                   <PageSection mb={6}>Frequently asked questions</PageSection>
 
                   <Accordion allowToggle>
@@ -414,7 +327,7 @@ const Layer2Grants: NextPage = () => {
               </Stack>
 
               <Stack spacing={10}>
-                <section id='apply' ref={ref8}>
+                <section id='apply' ref={ref9}>
                   <Stack mt={6}>
                     <ReadyToApply link={`${LAYER_2_GRANTS_APPLY_URL}`} />
                   </Stack>
