@@ -4,12 +4,11 @@ import { FC } from 'react';
 import layer2Hero from '../../../public/images/layer-2-grants.png';
 import layer2HeroMobile from '../../../public/images/layer-2-grants-mobile.png';
 
-import { GrantsHero, DimLayer } from '../UI';
+import { GrantsHero } from '../UI';
 
 export const Layer2GrantsLayout: FC = ({ children }) => {
   return (
     <Box>
-      <DimLayer />
       <GrantsHero
         colorBrandConstant='layer2GrantsHero'
         desktopImage={{

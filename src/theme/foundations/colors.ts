@@ -91,8 +91,8 @@ export const colors = {
     layer2GrantsHero: {
       titleWhiteBox: ' rgba(255, 255, 255, 0.75)',
       bgGradient: {
-        start: 'none',
-        end: 'none'
+        start: '#a4d4fd',
+        end: 'rgba(235, 209, 251, 0)'
       }
     },
     helpText: '#7c7ba1',
