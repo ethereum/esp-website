@@ -7,7 +7,10 @@ import { LAYER_2_GRANTS_EMAIL_ADDRESS } from '../../constants';
 const Layer2GrantsApply: NextPage = () => {
   return (
     <>
-      <PageMetadata title='Layer 2 Community Grants Application' description='' />
+      <PageMetadata
+        title='Layer 2 Community Grants Application'
+        description='Submit an application for a Layer 2 grant from the Ecosystem Support Program.'
+      />
 
       <Box
         position='relative'
