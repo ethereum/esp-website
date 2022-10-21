@@ -22,7 +22,6 @@ import {
   SIDEBAR_LAYER_2_GRANTS_LINKS,
   LAYER_2_GRANTS_PREVIEW_URL
 } from '../../constants';
-import { ButtonLink } from '../../components';
 
 const Layer2Grants: NextPage = () => {
   // `threshold` option allows us to control the % of visibility required before triggering the Intersection Observer
@@ -41,7 +40,7 @@ const Layer2Grants: NextPage = () => {
     <>
       <PageMetadata
         title='Layer 2 Community Grants 2022'
-        description='The Ethereum Foundation sponsors grants to support layer2 applications, analytics and education.'
+        description='The Ethereum Foundation sponsors grants to support layer 2 applications, analytics and education.'
         image={LAYER_2_GRANTS_PREVIEW_URL}
       />
       <Box mx={{ md: 12 }} bg='white' position='relative' zIndex={1} mt={{ xl: 12 }}>
@@ -68,14 +67,14 @@ const Layer2Grants: NextPage = () => {
                   <PageSubheading mb={8}>Layer 2 Community Grants 2022</PageSubheading>
 
                   <PageText mb={6} fontStyle='italic'>
-                    The Ethereum Foundation sponsors grants to support layer2 applications,
+                    The Ethereum Foundation sponsors grants to support layer 2 applications,
                     analytics and education. Rollups are layer 2 scaling solutions for Ethereum
                     without compromising on security or decentralization. This grants round has up
                     to $750,000 in total available.
                   </PageText>
 
                   <PageText mb={6} fontStyle='italic'>
-                    Proposals are due in 6 weeks from <strong>TBD</strong>.
+                    Proposals are due in 6 weeks from <strong>October 24th, 2022</strong>.
                   </PageText>
 
                   <PageText mb={6} fontStyle='italic'>
@@ -92,12 +91,12 @@ const Layer2Grants: NextPage = () => {
                     <List>
                       <ListItem>
                         The Ethereum Foundation is launching a grants initiative to encourage
-                        research and development around layer2 applications and education from
+                        research and development around layer 2 applications and education from
                         researching L2 metrics, multi-layer block explorer, compression for rollups,
                         and educating more users on L2.
                       </ListItem>
                       <ListItem>
-                        Layer2 continues to grow rapidly, and the ecosystem needs more builders -
+                        Layer 2 continues to grow rapidly, and the ecosystem needs more builders -
                         Read below and apply (all genuine applications are reviewed and replied to
                         with feedback).
                       </ListItem>
@@ -141,7 +140,7 @@ const Layer2Grants: NextPage = () => {
                       </ListItem>
                       <List>
                         <ListItem>
-                          Anyone passionate about building layer2 applications and tools
+                          Anyone passionate about building layer 2 applications and tools
                         </ListItem>
                         <ListItem>
                           This is especially a good opportunity for builders that want to learn more
@@ -165,17 +164,9 @@ const Layer2Grants: NextPage = () => {
 
                   <PageText mb={6}>
                     The grant application window opens for <strong>6 weeks</strong> from{' '}
-                    <strong>October 31st, 2022</strong> and closes on{' '}
+                    <strong>October 24th, 2022</strong> and closes on{' '}
                     <strong>December 5th, 2022</strong>
                   </PageText>
-
-                  <Box mb={6}>
-                    <ButtonLink
-                      label='Submit application'
-                      link={LAYER_2_GRANTS_APPLY_URL}
-                      width='225px'
-                    />
-                  </Box>
                 </section>
               </Stack>
 
@@ -188,10 +179,12 @@ const Layer2Grants: NextPage = () => {
                       <ListItem>
                         Ideas and projects at any stage of development are welcome:
                       </ListItem>
-                      <ListItem>Idea phase</ListItem>
-                      <ListItem>Proof-of-concept</ListItem>
-                      <ListItem>Work in progress</ListItem>
-                      <ListItem>Fleshed out project</ListItem>
+                      <List>
+                        <ListItem>Idea phase</ListItem>
+                        <ListItem>Proof-of-concept</ListItem>
+                        <ListItem>Work in progress</ListItem>
+                        <ListItem>Fleshed out project</ListItem>
+                      </List>
                       <ListItem>
                         Grants are decided case-by-case basis, and you may enter more than one
                         proposal! So long as each proposal is unique and meets the requirements
@@ -229,7 +222,7 @@ const Layer2Grants: NextPage = () => {
 
                   <Box mb={6}>
                     <List>
-                      <ListItem>Potential impact on the Layer2 ecosystem</ListItem>
+                      <ListItem>Potential impact on the Layer 2 ecosystem</ListItem>
                       <ListItem>Relevant team experience for the project</ListItem>
                       <ListItem>Clarity, conciseness and organization of documentation</ListItem>
                       <ListItem>Timeline of project</ListItem>

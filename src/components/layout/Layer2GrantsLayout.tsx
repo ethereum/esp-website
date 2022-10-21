@@ -23,9 +23,8 @@ export const Layer2GrantsLayout: FC = ({ children }) => {
         title='Layer 2 Community Grants 2022'
       >
         <Text>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam fugiat, vitae nostrum
-          quibusdam repellat reiciendis iure repellendus neque, harum quae magni similique. Porro,
-          alias fuga maiores corporis sunt provident ad!
+          Calling all Ethereans! The Ethereum Foundation offers a pool of $750,000 in grants that
+          will help scale the network while preserving decentralization and public goods.
         </Text>
       </GrantsHero>
 
