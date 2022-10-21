@@ -178,7 +178,7 @@ export const ACADEMIC_GRANTS_EMAIL_ADDRESS = 'academic-grants@ethereum.org';
 export const DEVCON_GRANTS_EMAIL_ADDRESS = 'grants@devcon.org';
 export const MERGE_DATA_CHALLENGE_EMAIL_ADDRESS = 'datachallenge@ethereum.org';
 export const SEMAPHORE_GRANT_EMAIL_ADDRESS = 'semaphore-grants@ethereum.org';
-export const LAYER_2_GRANTS_EMAIL_ADDRESS = 'communitygrants@ethereum.org';
+export const LAYER_2_GRANTS_EMAIL_ADDRESS = 'layer2grants@ethereum.org';
 
 // applicants tabs
 export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Small Grants', 'Project Grants'];
