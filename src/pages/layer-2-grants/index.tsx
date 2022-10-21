@@ -77,7 +77,7 @@ const Layer2Grants: NextPage = () => {
                     Proposals are due in 6 weeks from <strong>October 24th, 2022</strong>.
                   </PageText>
 
-                  <PageText mb={6} fontStyle='italic'>
+                  <PageText fontStyle='italic'>
                     All of the details you’ll need to apply can be found below.
                   </PageText>
                 </section>
