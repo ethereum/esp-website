@@ -662,23 +662,23 @@ export const Layer2GrantsForm: FC = () => {
             </FormLabel>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Any links for us to review? E.g. research papers, blog posts, etc.
+              Any links for us to review? Feel free to add multiple links and information related to
+              your past work. E.g. research papers, blog posts, etc.
             </PageText>
 
-            <Input
+            <Textarea
               id='projectPreviousWork'
-              type='text'
-              h='56px'
               bg='white'
               borderRadius={0}
               borderColor='brand.border'
               _placeholder={{ fontSize: 'input' }}
               color='brand.paragraph'
               fontSize='input'
+              h='150px'
               mt={3}
               {...register('projectPreviousWork', {
                 required: true,
-                maxLength: 255
+                maxLength: 32768
               })}
             />
 
