@@ -613,9 +613,11 @@ export const Layer2GrantsForm: FC = () => {
             )}
           />
 
-          <FormControl id='website-control' mb={8}>
+          <FormControl id='website-control' isRequired mb={8}>
             <FormLabel htmlFor='website' mb={1}>
-              <PageText fontSize='input'>Grant Proposal URL</PageText>
+              <PageText display='inline' fontSize='input'>
+                Grant Proposal URL
+              </PageText>
             </FormLabel>
 
             <PageText fontSize='input' position='absolute' bottom='15.5px' left={4} zIndex={9}>
@@ -641,6 +643,7 @@ export const Layer2GrantsForm: FC = () => {
               pl={16}
               mt={3}
               {...register('website', {
+                required: true,
                 maxLength: 255
               })}
             />
@@ -648,7 +651,14 @@ export const Layer2GrantsForm: FC = () => {
             {errors?.website?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Website cannot exceed 255 characters.
+                  The URL cannot exceed 255 characters.
+                </PageText>
+              </Box>
+            )}
+            {errors?.website?.type === 'required' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Grant Proposal URL is required.
                 </PageText>
               </Box>
             )}
