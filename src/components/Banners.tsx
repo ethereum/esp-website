@@ -4,7 +4,7 @@ import { FC } from 'react';
 
 import { Banner } from './UI';
 
-import { MERGE_DATA_CHALLENGE_URL, SEMAPHORE_GRANT_URL } from '../constants';
+import { LAYER_2_GRANTS_URL, MERGE_DATA_CHALLENGE_URL, SEMAPHORE_GRANT_URL } from '../constants';
 
 interface Props {}
 
@@ -13,7 +13,8 @@ export const Banners: FC<Props> = () => {
 
   if (
     !router.pathname.includes(MERGE_DATA_CHALLENGE_URL) &&
-    !router.pathname.includes(SEMAPHORE_GRANT_URL)
+    !router.pathname.includes(SEMAPHORE_GRANT_URL) &&
+    !router.pathname.includes(LAYER_2_GRANTS_URL)
   ) {
     return (
       <Banner>
@@ -21,10 +22,14 @@ export const Banners: FC<Props> = () => {
           Applications are open for the{' '}
           <Link fontWeight={700} href={MERGE_DATA_CHALLENGE_URL}>
             Merge data challenge
-          </Link>{' '}
-          and{' '}
+          </Link>
+          ,{' '}
           <Link fontWeight={700} href={SEMAPHORE_GRANT_URL}>
             Semaphore grants
+          </Link>{' '}
+          and{' '}
+          <Link fontWeight={700} href={LAYER_2_GRANTS_URL}>
+            Layer 2 grants
           </Link>
           . See the details and apply.
         </Box>

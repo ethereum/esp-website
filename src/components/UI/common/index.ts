@@ -11,3 +11,4 @@ export * from './NavigationTabs';
 export * from './ProcessStep';
 export * from './ReadyToApply';
 export * from './ThankYouBody';
+export * from './DimLayer';

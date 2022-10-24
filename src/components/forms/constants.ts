@@ -57,6 +57,20 @@ export const SEMAPHORE_GRANT_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Other', label: 'Other' }
 ];
 
+export const LAYER_2_GRANTS_PROJECT_CATEGORY_OPTIONS = [
+  { value: 'Community and education', label: 'Community and education' },
+  { value: 'Cybersecurity', label: 'Cybersecurity' },
+  {
+    value: 'Cryptography and Zero-Knowledge Proofs',
+    label: 'Cryptography and Zero-Knowledge Proofs'
+  },
+  { value: 'Data Analysis', label: 'Data Analysis' },
+  { value: 'Data Visualization', label: 'Data Visualization' },
+  { value: 'Hardware', label: 'Hardware' },
+  { value: 'Maximal Extractable Value', label: 'Maximal Extractable Value' },
+  { value: 'User Experience', label: 'User Experience' }
+];
+
 // events
 export const EVENT_TYPE_OPTIONS = [
   { value: 'Conference', label: 'Conference' },
@@ -1503,6 +1517,16 @@ export const SEMAPHORE_APPLYING_AS_OPTIONS = [
   { value: 'Other', label: 'Other' }
 ];
 
+// layer 2 grants
+export const LAYER_2_APPLYING_AS_OPTIONS = [
+  { value: 'An individual', label: 'An individual' },
+  { value: 'A University', label: 'A University' },
+  { value: 'A consortium of Universities', label: 'A consortium of Universities' },
+  { value: 'A Think-Tank', label: 'A Think-Tank' },
+  { value: 'A Research Center', label: 'A Research Center' },
+  { value: 'Other', label: 'Other' }
+];
+
 // office hours
 export const TEAM = 'Team';
 export const INDIVIDUAL = 'Individual';
@@ -1529,4 +1553,5 @@ export const API_DEVCON_GRANTS = '/api/devcon-grants';
 export const API_GRANTEE_FINANCE = '/api/grantee-finance';
 export const API_MERGE_DATA_CHALLENGE = '/api/merge-data-challenge';
 export const API_SEMAPHORE_GRANT = '/api/semaphore-grants';
+export const API_LAYER_2_GRANTS = '/api/layer-2-grants';
 export const API_NEWSLETTER_SIGNUP_URL = '/api/newsletter-signup';

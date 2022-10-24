@@ -117,6 +117,19 @@ export const SIDEBAR_SEMAPHORE_GRANT_LINKS: SidebarLink[] = [
   { text: 'Apply', href: `${SEMAPHORE_GRANT_URL}/#apply` }
 ];
 
+export const LAYER_2_GRANTS_URL = '/layer-2-grants';
+export const SIDEBAR_LAYER_2_GRANTS_LINKS: SidebarLink[] = [
+  { text: 'Summary', href: `${LAYER_2_GRANTS_URL}/#description` },
+  { text: 'Introduction', href: `${LAYER_2_GRANTS_URL}/#introduction` },
+  { text: 'Ideas', href: `${LAYER_2_GRANTS_URL}/#ideas` },
+  { text: 'Deadline', href: `${LAYER_2_GRANTS_URL}/#deadline` },
+  { text: 'Submit a proposal', href: `${LAYER_2_GRANTS_URL}/#submit-proposal` },
+  { text: 'Requirements', href: `${LAYER_2_GRANTS_URL}/#requirements` },
+  { text: 'Selection criteria', href: `${LAYER_2_GRANTS_URL}/#selection-criteria` },
+  { text: 'FAQ', href: `${LAYER_2_GRANTS_URL}/#faq` },
+  { text: 'Apply', href: `${LAYER_2_GRANTS_URL}/#apply` }
+];
+
 // apply forms
 export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
 export const OFFICE_HOURS_APPLY_URL = '/applicants/office-hours/apply';
@@ -125,6 +138,7 @@ export const ACADEMIC_GRANTS_APPLY_URL = '/academic-grants/apply';
 export const DEVCON_GRANTS_APPLY_URL = '/devcon-grants/apply';
 export const MERGE_DATA_CHALLENGE_APPLY_URL = '/merge-data-challenge/apply';
 export const SEMAPHORE_GRANT_APPLY_URL = '/semaphore-grants/apply';
+export const LAYER_2_GRANTS_APPLY_URL = '/layer-2-grants/apply';
 
 // grantee finance form
 export const GRANTEE_FINANCE_URL = '/applicants/grantee-finance';
@@ -138,6 +152,7 @@ export const ACADEMIC_GRANTS_THANK_YOU_PAGE_URL = '/academic-grants/thank-you';
 export const DEVCON_GRANTS_THANK_YOU_PAGE_URL = '/devcon-grants/thank-you';
 export const MERGE_DATA_CHALLENGE_THANK_YOU_PAGE_URL = '/merge-data-challenge/thank-you';
 export const SEMAPHORE_GRANT_THANK_YOU_PAGE_URL = '/semaphore-grants/thank-you';
+export const LAYER_2_GRANTS_THANK_YOU_PAGE_URL = '/layer-2-grants/thank-you';
 
 // ethereum ecosystem
 export const ETHEREUM_ORG_URL = 'https://ethereum.org/';
@@ -163,6 +178,7 @@ export const ACADEMIC_GRANTS_EMAIL_ADDRESS = 'academic-grants@ethereum.org';
 export const DEVCON_GRANTS_EMAIL_ADDRESS = 'grants@devcon.org';
 export const MERGE_DATA_CHALLENGE_EMAIL_ADDRESS = 'datachallenge@ethereum.org';
 export const SEMAPHORE_GRANT_EMAIL_ADDRESS = 'semaphore-grants@ethereum.org';
+export const LAYER_2_GRANTS_EMAIL_ADDRESS = 'layer2grants@ethereum.org';
 
 // applicants tabs
 export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Small Grants', 'Project Grants'];
@@ -228,6 +244,9 @@ export const MERGE_DATA_CHALLENGE_PREVIEW_URL =
 
 export const SEMAPHORE_GRANT_PREVIEW_URL =
   'https://esp.ethereum.foundation/images/semaphore-meadow.png';
+
+export const LAYER_2_GRANTS_PREVIEW_URL =
+  'https://esp.ethereum.foundation/images/layer-2-grants.png';
 
 // Thank you and apply urls
 export const GRANTS_URLS = [
