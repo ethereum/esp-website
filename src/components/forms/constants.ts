@@ -61,14 +61,14 @@ export const LAYER_2_GRANTS_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Community and education', label: 'Community and education' },
   { value: 'Cybersecurity', label: 'Cybersecurity' },
   {
-    value: 'Cryptography and Zero-Knowledge Proofs',
+    value: 'Cryptography and zero knowledge proofs',
     label: 'Cryptography and Zero-Knowledge Proofs'
   },
   { value: 'Data Analysis', label: 'Data Analysis' },
   { value: 'Data Visualization', label: 'Data Visualization' },
   { value: 'Hardware', label: 'Hardware' },
-  { value: 'Maximal Extractable Value', label: 'Maximal Extractable Value' },
-  { value: 'User Experience', label: 'User Experience' }
+  { value: 'Maximal Extractable Value (MEV)', label: 'Maximal Extractable Value' },
+  { value: 'User experience', label: 'User Experience' }
 ];
 
 // events
