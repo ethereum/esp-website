@@ -109,7 +109,7 @@ async function handler(req: Layer2GrantsNextApiRequest, res: NextApiResponse) {
         console.log(err);
       }
 
-      console.log(`Semaphore Grants Lead with ID: ${ret.id} has been created!`);
+      console.log(`Layer 2 Grants Lead with ID: ${ret.id} has been created!`);
 
       res.status(200).json({ status: 'ok' });
     });

@@ -102,21 +102,6 @@ export const SIDEBAR_MERGE_DATA_CHALLENGE_LINKS: SidebarLink[] = [
   { text: 'Submit blog post', href: `${MERGE_DATA_CHALLENGE_URL}/#submit-blog-post` }
 ];
 
-export const SEMAPHORE_GRANT_URL = '/semaphore-grants';
-export const SIDEBAR_SEMAPHORE_GRANT_LINKS: SidebarLink[] = [
-  { text: 'Summary', href: `${SEMAPHORE_GRANT_URL}/#description` },
-  { text: 'Privacy matters', href: `${SEMAPHORE_GRANT_URL}/#privacy-matters` },
-  {
-    text: 'Semaphore as a privacy layer',
-    href: `${SEMAPHORE_GRANT_URL}/#semaphore-as-privacy-layer`
-  },
-  { text: 'Semaphore in action', href: `${SEMAPHORE_GRANT_URL}/#semaphore-in-action` },
-  { text: 'Wishlist', href: `${SEMAPHORE_GRANT_URL}/#wishlist` },
-  { text: 'How to apply', href: `${SEMAPHORE_GRANT_URL}/#how-to-apply` },
-  { text: 'FAQ', href: `${SEMAPHORE_GRANT_URL}/#faq` },
-  { text: 'Apply', href: `${SEMAPHORE_GRANT_URL}/#apply` }
-];
-
 export const LAYER_2_GRANTS_URL = '/layer-2-grants';
 export const SIDEBAR_LAYER_2_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${LAYER_2_GRANTS_URL}/#description` },
@@ -137,7 +122,6 @@ export const SMALL_GRANTS_APPLY_URL = '/applicants/small-grants/apply';
 export const ACADEMIC_GRANTS_APPLY_URL = '/academic-grants/apply';
 export const DEVCON_GRANTS_APPLY_URL = '/devcon-grants/apply';
 export const MERGE_DATA_CHALLENGE_APPLY_URL = '/merge-data-challenge/apply';
-export const SEMAPHORE_GRANT_APPLY_URL = '/semaphore-grants/apply';
 export const LAYER_2_GRANTS_APPLY_URL = '/layer-2-grants/apply';
 
 // grantee finance form
@@ -151,7 +135,6 @@ export const GRANTEE_FINANCE_THANK_YOU_PAGE_URL = '/applicants/grantee-finance/t
 export const ACADEMIC_GRANTS_THANK_YOU_PAGE_URL = '/academic-grants/thank-you';
 export const DEVCON_GRANTS_THANK_YOU_PAGE_URL = '/devcon-grants/thank-you';
 export const MERGE_DATA_CHALLENGE_THANK_YOU_PAGE_URL = '/merge-data-challenge/thank-you';
-export const SEMAPHORE_GRANT_THANK_YOU_PAGE_URL = '/semaphore-grants/thank-you';
 export const LAYER_2_GRANTS_THANK_YOU_PAGE_URL = '/layer-2-grants/thank-you';
 
 // ethereum ecosystem
@@ -177,7 +160,6 @@ export const ESP_EMAIL_ADDRESS = 'esp@ethereum.org';
 export const ACADEMIC_GRANTS_EMAIL_ADDRESS = 'academic-grants@ethereum.org';
 export const DEVCON_GRANTS_EMAIL_ADDRESS = 'grants@devcon.org';
 export const MERGE_DATA_CHALLENGE_EMAIL_ADDRESS = 'datachallenge@ethereum.org';
-export const SEMAPHORE_GRANT_EMAIL_ADDRESS = 'semaphore-grants@ethereum.org';
 export const LAYER_2_GRANTS_EMAIL_ADDRESS = 'layer2grants@ethereum.org';
 
 // applicants tabs
@@ -241,9 +223,6 @@ export const HOMEPAGE_HERO_MOBILE_URL =
 
 export const MERGE_DATA_CHALLENGE_PREVIEW_URL =
   'https://esp.ethereum.foundation/images/merge-data-challenge-hero.jpeg';
-
-export const SEMAPHORE_GRANT_PREVIEW_URL =
-  'https://esp.ethereum.foundation/images/semaphore-meadow.png';
 
 export const LAYER_2_GRANTS_PREVIEW_URL =
   'https://esp.ethereum.foundation/images/layer-2-grants.png';

@@ -7,7 +7,6 @@ import {
   NewsletterFormData,
   OfficeHoursFormData,
   ProjectGrantsFormData,
-  SemaphoreGrantFormData,
   SmallGrantsFormData
 } from './../../types';
 
@@ -22,7 +21,6 @@ import {
   API_NEWSLETTER_SIGNUP_URL,
   API_OFFICE_HOURS,
   API_PROJECT_GRANTS,
-  API_SEMAPHORE_GRANT,
   API_SMALL_GRANTS_EVENT,
   API_SMALL_GRANTS_PROJECT
 } from './constants';
@@ -176,30 +174,6 @@ export const api = {
       };
 
       return fetch(API_MERGE_DATA_CHALLENGE, mergeDataChallengeRequestOptions);
-    }
-  },
-  semaphoreGrant: {
-    submit: (data: SemaphoreGrantFormData) => {
-      const fullName = `${data.firstName} ${data.lastName}`;
-      const company = data.company || fullName;
-
-      const semaphoreGrantRequestOptions: RequestInit = {
-        ...methodOptions,
-        body: JSON.stringify({
-          ...data,
-          company,
-          applyingAs: data.applyingAs.value,
-          country: data.country.value,
-          timezone: data.timezone.value,
-          projectCategory: data.projectCategory.value,
-          howDidYouHearAboutESP: data.howDidYouHearAboutESP.value,
-          wouldYouShareYourResearch: data.wouldYouShareYourResearch.value,
-          repeatApplicant: data.repeatApplicant === 'Yes',
-          canTheEFReachOut: data.canTheEFReachOut === 'Yes'
-        })
-      };
-
-      return fetch(API_SEMAPHORE_GRANT, semaphoreGrantRequestOptions);
     }
   },
   layer2Grants: {

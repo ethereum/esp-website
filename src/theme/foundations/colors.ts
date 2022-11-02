@@ -81,13 +81,6 @@ export const colors = {
         end: 'rgba(235, 209, 251, 0)'
       }
     },
-    semaphoreGrantHero: {
-      titleWhiteBox: ' rgba(255, 255, 255, 0.75)',
-      bgGradient: {
-        start: 'none',
-        end: 'none'
-      }
-    },
     layer2GrantsHero: {
       titleWhiteBox: ' rgba(255, 255, 255, 0.75)',
       bgGradient: {
