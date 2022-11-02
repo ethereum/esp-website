@@ -21,12 +21,10 @@ import {
   GRANTS_URLS,
   HOME_URL,
   LAYER_2_GRANTS_URL,
-  MERGE_DATA_CHALLENGE_URL,
-  SEMAPHORE_GRANT_URL
+  MERGE_DATA_CHALLENGE_URL
 } from '../../constants';
 import { DevconGrantsLayout } from './DevconGrantsLayout';
 import { MergeDataChallengeLayout } from './MergeDataChallengeLayout';
-import { SemaphoreGrantLayout } from './SemaphoreGrantLayout';
 import { Layer2GrantsLayout } from './Layer2GrantsLayout';
 
 export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
@@ -88,17 +86,6 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
         <Box mt={{ md: -10, lg: 0 }}>
           <main>
             <MergeDataChallengeLayout>{children}</MergeDataChallengeLayout>
-          </main>
-        </Box>
-      );
-    }
-
-    // TODO: refactor these if conditions ????
-    if (router.pathname === SEMAPHORE_GRANT_URL) {
-      return (
-        <Box mt={{ md: -10, lg: 0 }}>
-          <main>
-            <SemaphoreGrantLayout>{children}</SemaphoreGrantLayout>
           </main>
         </Box>
       );
