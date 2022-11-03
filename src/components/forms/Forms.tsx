@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import {
   AcademicGrantsForm,
   GranteeFinanceForm,
-  MergeDataChallengeForm,
   OfficeHoursForm,
   ProjectGrantsForm,
   SmallGrantsForm,
@@ -18,7 +17,6 @@ import {
   DEVCON_GRANTS_APPLY_URL,
   GRANTEE_FINANCE_URL,
   LAYER_2_GRANTS_APPLY_URL,
-  MERGE_DATA_CHALLENGE_APPLY_URL,
   OFFICE_HOURS_APPLY_URL,
   PROJECT_GRANTS_APPLY_URL,
   SMALL_GRANTS_APPLY_URL
@@ -57,11 +55,6 @@ export const Forms: FC = () => {
       {router.pathname === DEVCON_GRANTS_APPLY_URL && (
         <Box px={{ md: 24, lg: 32, xl: 72 }}>
           <DevconGrantsForm />
-        </Box>
-      )}
-      {router.pathname === MERGE_DATA_CHALLENGE_APPLY_URL && (
-        <Box px={{ md: 24, lg: 32, xl: 72 }}>
-          <MergeDataChallengeForm />
         </Box>
       )}
       {router.pathname === LAYER_2_GRANTS_APPLY_URL && (

@@ -3,7 +3,6 @@ import {
   DevconGrantsFormData,
   GranteeFinanceFormData,
   Layer2GrantsFormData,
-  MergeDataChallengeFormData,
   NewsletterFormData,
   OfficeHoursFormData,
   ProjectGrantsFormData,
@@ -17,7 +16,6 @@ import {
   API_DEVCON_GRANTS,
   API_GRANTEE_FINANCE,
   API_LAYER_2_GRANTS,
-  API_MERGE_DATA_CHALLENGE,
   API_NEWSLETTER_SIGNUP_URL,
   API_OFFICE_HOURS,
   API_PROJECT_GRANTS,
@@ -152,28 +150,6 @@ export const api = {
       };
 
       return fetch(API_DEVCON_GRANTS, devconGrantsRequestOptions);
-    }
-  },
-  mergeDataChallenge: {
-    submit: (data: MergeDataChallengeFormData) => {
-      const mergeDataChallengeRequestOptions: RequestInit = {
-        ...methodOptions,
-        body: JSON.stringify({
-          ...data,
-          company: data.company === 'N/A' ? `${data.firstName} ${data.lastName}` : data.company,
-          blogPostURL: getWebsite(data.blogPostURL),
-          applyingAs: data.applyingAs.value,
-          country: data.country.value,
-          timezone: data.timezone.value,
-          projectCategory: data.projectCategory.value,
-          wouldYouShareYourResearch: data.wouldYouShareYourResearch.value,
-          repeatApplicant: data.repeatApplicant === 'Yes',
-          canTheEFReachOut: data.canTheEFReachOut === 'Yes',
-          howDidYouHearAboutESP: data.howDidYouHearAboutESP.value
-        })
-      };
-
-      return fetch(API_MERGE_DATA_CHALLENGE, mergeDataChallengeRequestOptions);
     }
   },
   layer2Grants: {

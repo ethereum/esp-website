@@ -74,13 +74,6 @@ export const colors = {
         end: 'rgba(235, 209, 251, 0)'
       }
     },
-    mergeDataChallengeHero: {
-      titleWhiteBox: ' rgba(255, 255, 255, 0.75)',
-      bgGradient: {
-        start: '#dddbdc',
-        end: 'rgba(235, 209, 251, 0)'
-      }
-    },
     layer2GrantsHero: {
       titleWhiteBox: ' rgba(255, 255, 255, 0.75)',
       bgGradient: {
