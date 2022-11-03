@@ -87,21 +87,6 @@ export const SIDEBAR_DEVCON_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Apply', href: `${DEVCON_GRANTS_URL}/#apply` }
 ];
 
-export const MERGE_DATA_CHALLENGE_URL = '/merge-data-challenge';
-export const SIDEBAR_MERGE_DATA_CHALLENGE_LINKS: SidebarLink[] = [
-  { text: 'Summary', href: `${MERGE_DATA_CHALLENGE_URL}/#description` },
-  { text: 'The challenge', href: `${MERGE_DATA_CHALLENGE_URL}/#the-challenge` },
-  { text: 'How to submit', href: `${MERGE_DATA_CHALLENGE_URL}/#how-to-submit` },
-  { text: 'Deadline', href: `${MERGE_DATA_CHALLENGE_URL}/#deadline` },
-  { text: 'Prizes', href: `${MERGE_DATA_CHALLENGE_URL}/#prizes` },
-  { text: 'Requirements', href: `${MERGE_DATA_CHALLENGE_URL}/#requirements` },
-  { text: 'Judging criteria', href: `${MERGE_DATA_CHALLENGE_URL}/#judging-criteria` },
-  { text: 'How to get started', href: `${MERGE_DATA_CHALLENGE_URL}/#how-to-get-started` },
-  { text: 'Helpful Resources', href: `${MERGE_DATA_CHALLENGE_URL}/#helpful-resources` },
-  { text: 'Support', href: `${MERGE_DATA_CHALLENGE_URL}/#support` },
-  { text: 'Submit blog post', href: `${MERGE_DATA_CHALLENGE_URL}/#submit-blog-post` }
-];
-
 export const LAYER_2_GRANTS_URL = '/layer-2-grants';
 export const SIDEBAR_LAYER_2_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${LAYER_2_GRANTS_URL}/#description` },
@@ -121,7 +106,6 @@ export const OFFICE_HOURS_APPLY_URL = '/applicants/office-hours/apply';
 export const SMALL_GRANTS_APPLY_URL = '/applicants/small-grants/apply';
 export const ACADEMIC_GRANTS_APPLY_URL = '/academic-grants/apply';
 export const DEVCON_GRANTS_APPLY_URL = '/devcon-grants/apply';
-export const MERGE_DATA_CHALLENGE_APPLY_URL = '/merge-data-challenge/apply';
 export const LAYER_2_GRANTS_APPLY_URL = '/layer-2-grants/apply';
 
 // grantee finance form
@@ -134,7 +118,6 @@ export const SMALL_GRANTS_THANK_YOU_PAGE_URL = '/applicants/small-grants/thank-y
 export const GRANTEE_FINANCE_THANK_YOU_PAGE_URL = '/applicants/grantee-finance/thank-you';
 export const ACADEMIC_GRANTS_THANK_YOU_PAGE_URL = '/academic-grants/thank-you';
 export const DEVCON_GRANTS_THANK_YOU_PAGE_URL = '/devcon-grants/thank-you';
-export const MERGE_DATA_CHALLENGE_THANK_YOU_PAGE_URL = '/merge-data-challenge/thank-you';
 export const LAYER_2_GRANTS_THANK_YOU_PAGE_URL = '/layer-2-grants/thank-you';
 
 // ethereum ecosystem
@@ -159,7 +142,6 @@ export const ESP_TWITTER_URL = 'https://twitter.com/EF_ESP';
 export const ESP_EMAIL_ADDRESS = 'esp@ethereum.org';
 export const ACADEMIC_GRANTS_EMAIL_ADDRESS = 'academic-grants@ethereum.org';
 export const DEVCON_GRANTS_EMAIL_ADDRESS = 'grants@devcon.org';
-export const MERGE_DATA_CHALLENGE_EMAIL_ADDRESS = 'datachallenge@ethereum.org';
 export const LAYER_2_GRANTS_EMAIL_ADDRESS = 'layer2grants@ethereum.org';
 
 // applicants tabs
@@ -220,9 +202,6 @@ export const TOAST_OPTIONS: UseToastOptions = {
 // preview image
 export const HOMEPAGE_HERO_MOBILE_URL =
   'https://esp.ethereum.foundation/images/homepage-hero-mobile.png';
-
-export const MERGE_DATA_CHALLENGE_PREVIEW_URL =
-  'https://esp.ethereum.foundation/images/merge-data-challenge-hero.jpeg';
 
 export const LAYER_2_GRANTS_PREVIEW_URL =
   'https://esp.ethereum.foundation/images/layer-2-grants.png';
