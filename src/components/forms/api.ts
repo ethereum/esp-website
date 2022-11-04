@@ -2,7 +2,6 @@ import {
   AcademicGrantsFormData,
   DevconGrantsFormData,
   GranteeFinanceFormData,
-  Layer2GrantsFormData,
   NewsletterFormData,
   OfficeHoursFormData,
   ProjectGrantsFormData,
@@ -15,7 +14,6 @@ import {
   API_ACADEMIC_GRANTS,
   API_DEVCON_GRANTS,
   API_GRANTEE_FINANCE,
-  API_LAYER_2_GRANTS,
   API_NEWSLETTER_SIGNUP_URL,
   API_OFFICE_HOURS,
   API_PROJECT_GRANTS,
@@ -150,30 +148,6 @@ export const api = {
       };
 
       return fetch(API_DEVCON_GRANTS, devconGrantsRequestOptions);
-    }
-  },
-  layer2Grants: {
-    submit: (data: Layer2GrantsFormData) => {
-      const fullName = `${data.firstName} ${data.lastName}`;
-      const company = data.company || fullName;
-
-      const layer2GrantsRequestOptions: RequestInit = {
-        ...methodOptions,
-        body: JSON.stringify({
-          ...data,
-          company,
-          applyingAs: data.applyingAs.value,
-          country: data.country.value,
-          timezone: data.timezone.value,
-          projectCategory: data.projectCategory.value,
-          howDidYouHearAboutESP: data.howDidYouHearAboutESP.value,
-          wouldYouShareYourResearch: data.wouldYouShareYourResearch.value,
-          repeatApplicant: data.repeatApplicant === 'Yes',
-          canTheEFReachOut: data.canTheEFReachOut === 'Yes'
-        })
-      };
-
-      return fetch(API_LAYER_2_GRANTS, layer2GrantsRequestOptions);
     }
   },
   newsletter: {
