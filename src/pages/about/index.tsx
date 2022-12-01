@@ -55,17 +55,6 @@ const About: NextPage = () => {
             </Center>
           </section>
         </Stack>
-
-        <Center>
-          <Image
-            src={aboutSVG}
-            alt='Watering the garden of grants categories'
-            width={800}
-            height={573}
-            objectFit='cover'
-            placeholder='blur'
-          />
-        </Center>
       </Box>
     </>
   );
