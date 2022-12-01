@@ -1,4 +1,4 @@
-import { Box, Center, Stack } from '@chakra-ui/react';
+import { AspectRatio, Box, Center, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 
@@ -29,26 +29,32 @@ const About: NextPage = () => {
               open source, non-commercial and built for positive sum outcomes.
             </PageText>
 
-            <PageText>
+            <PageText mb={6}>
               ESP support is generally directed toward enabling builders rather than end-users:
               strengthening Ethereum&apos;s infrastructure, expanding the range of tools available
               to those building on Ethereum, gaining a deeper understanding of cryptographic
               primitives, and growing the builder ecosystem through education and community
               development.
             </PageText>
+
+            <PageText mb={6}>
+              To learn more about ESP support and what we&apos;re looking out for, watch our talk at
+              Devcon VI below:
+            </PageText>
+
+            <Center mb={6}>
+              <AspectRatio flex='1' ratio={16 / 9}>
+                <iframe
+                  src='https://www.youtube.com/embed/EVrQy03WekI'
+                  title='Ecosystem Support Program'
+                  frameBorder='0'
+                  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                  allowFullScreen
+                ></iframe>
+              </AspectRatio>
+            </Center>
           </section>
         </Stack>
-
-        <Center>
-          <Image
-            src={aboutSVG}
-            alt='Watering the garden of grants categories'
-            width={800}
-            height={573}
-            objectFit='cover'
-            placeholder='blur'
-          />
-        </Center>
       </Box>
     </>
   );
