@@ -56,6 +56,21 @@ export const LAYER_2_GRANTS_PROJECT_CATEGORY_OPTIONS = [
   { value: 'User experience', label: 'User Experience' }
 ];
 
+export const ECODEV_GRANTS_PROJECT_CATEGORY_OPTIONS = [
+  { value: 'Community and education', label: 'Community and education' },
+  { value: 'Consensus layer', label: 'Consensus layer' },
+  {
+    value: 'Cryptography and zero knowledge proofs',
+    label: 'Cryptography and Zero-Knowledge Proofs'
+  },
+  { value: 'Developer experience and tooling', label: 'Developer experience and tooling' },
+  { value: 'Execution layer', label: 'Execution layer' },
+  { value: 'General research', label: 'General research' },
+  { value: 'Layer 2', label: 'Layer 2' },
+  { value: 'Sponsorship', label: 'Sponsorship' }, // TODO: double check that this option exists in SF
+  { value: 'Other', label: 'Other' }
+];
+
 // events
 export const EVENT_TYPE_OPTIONS = [
   { value: 'Conference', label: 'Conference' },
@@ -1485,6 +1500,14 @@ export const HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE = [
   ...HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS
 ];
 
+export const HOW_DID_YOU_HEAR_ABOUT_ECODEV_GRANTS_WAVE = [
+  { value: 'Riely', label: 'Riely' },
+  { value: 'Dustin', label: 'Dustin' },
+  { value: 'Steven', label: 'Steven' },
+  { value: 'Luka', label: 'Luka' },
+  { value: 'Other', label: 'Other' }
+];
+
 // academic grants
 export const APPLYING_AS_OPTIONS = [
   { value: 'An individual', label: 'An individual' },
@@ -1529,4 +1552,5 @@ export const API_SMALL_GRANTS_EVENT = '/api/small-grants/event';
 export const API_ACADEMIC_GRANTS = '/api/academic-grants';
 export const API_DEVCON_GRANTS = '/api/devcon-grants';
 export const API_GRANTEE_FINANCE = '/api/grantee-finance';
+export const API_ECODEV_GRANTS = '/api/ecodev-grants';
 export const API_NEWSLETTER_SIGNUP_URL = '/api/newsletter-signup';

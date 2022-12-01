@@ -12,7 +12,8 @@ import {
   REASONS_FOR_MEETING,
   TIMEZONE_OPTIONS,
   WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS,
-  LAYER_2_GRANTS_PROJECT_CATEGORY_OPTIONS
+  LAYER_2_GRANTS_PROJECT_CATEGORY_OPTIONS,
+  HOW_DID_YOU_HEAR_ABOUT_ECODEV_GRANTS_WAVE
 } from './components/forms/constants';
 import { ABOUT_URL, APPLICANTS_URL, ESP_BLOG_URL, HOME_URL } from './constants';
 
@@ -219,6 +220,45 @@ export interface DevconGrantsFormData extends CaptchaForm {
   howDidYouHearAboutESP: ReferralSource; // SF API: Referral_Source__c
 }
 
+export interface EcodevGrantsFormData extends CaptchaForm {
+  individualOrTeam: IndividualOrTeam; // SF API: Individual_or_Team__c
+  firstName: string; // SF API: FirstName
+  lastName: string; // SF API: LastName
+  email: string; // SF API: Email
+  company: string; // SF API: Company
+  teamProfile: string; // SF API: Team_Profile__c
+  twitter: string; // SF API: Twitter__c
+  website: string; // SF API: Website
+  projectName: string; // SF API: Project_Name__c
+  githubUser: string; //SF API: Github_Username__c
+  linkedinProfile: string; // SF API: LinkedIn_Profile__c
+  projectCategory: EcodevGrantsProjectCategory; // SF API: Category__c
+  projectDescription: string; // SF API: Project_Description__c
+  progress: string; // SF API: Progress__c
+  problemBeingSolved: string; // SF API: Problem_Being_Solved__c
+  proposedTimeline: string; // SF API: Proposed_Timeline__c
+  requestedAmount: string; // SF API: Requested_Amount__c
+  budgetBreakdown: File; // TODO
+  whyIsProjectImportant: string; // SF API: Impact__c
+  howDoesYourProjectDiffer: string; // SF API: How_is_it_different__c
+  isYourProjectPublicGood: string; // SF API: Is_it_a_Public_Good__c
+  isOpenSource: string; // SF API: Is_it_Open_Source__c
+  whyEthereum: string; // SF API: Why_Ethereum__c
+  challenges: string; // SF API: Challenges__c
+  sustainabilityPlan: string; // SF API: Sustainability_Plan__c
+  otherProjects: string; // SF API: Other_Projects__c
+  repeatApplicant: string; // SF API: Repeat_Applicant__c
+  otherFunding: string; // SF API: Other_Funding__c
+  additionalInfo: string; // SF API: Additional_Information__c
+  city: string; // SF API: npsp__CompanyCity__c
+  country: Country; // SF API: npsp__CompanyCountry__c
+  howDidYouHearAboutESP: EcodevGrantsReferralSource; // SF API: Referral_Source__c
+  referralSourceIfOther: string; // SF API: Referral_Source_if_Other__c
+  referrals: string; // SF API: Referrals__c
+  otherInfo: string; // TODO
+  otherAttachments: File; // TODO
+}
+
 export type IndividualOrTeam = 'Individual' | 'Team';
 
 export type OfficeHoursRequest = 'Project feedback' | 'Advice';
@@ -241,6 +281,8 @@ export type ProjectGrantsProjectCategory = typeof PROJECT_GRANTS_PROJECT_CATEGOR
 
 export type Layer2GrantsProjectCategory = typeof LAYER_2_GRANTS_PROJECT_CATEGORY_OPTIONS[number];
 
+export type EcodevGrantsProjectCategory = typeof LAYER_2_GRANTS_PROJECT_CATEGORY_OPTIONS[number];
+
 export type EventType = typeof EVENT_TYPE_OPTIONS[number];
 
 export type EventFormat = typeof EVENT_FORMAT_OPTIONS[number];
@@ -252,6 +294,8 @@ export type Country = typeof COUNTRY_OPTIONS[number];
 export type ReferralSource = typeof HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS[number];
 
 export type GrantsReferralSource = typeof HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE[number];
+
+export type EcodevGrantsReferralSource = typeof HOW_DID_YOU_HEAR_ABOUT_ECODEV_GRANTS_WAVE[number];
 
 export type Timezone = typeof TIMEZONE_OPTIONS[number];
 
@@ -480,5 +524,46 @@ export interface Layer2GrantsNextApiRequest extends NextApiRequest {
     canTheEFReachOut: boolean;
     additionalInfo: string;
     howDidYouHearAboutESP: string;
+  };
+}
+
+export interface EcodevGrantsNextApiRequest extends NextApiRequest {
+  body: {
+    individualOrTeam: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    company: string;
+    teamProfile: string;
+    twitter: string;
+    website: string;
+    projectName: string;
+    githubUser: string;
+    linkedinProfile: string;
+    projectCategory: string;
+    projectDescription: string;
+    progress: string;
+    problemBeingSolved: string;
+    proposedTimeline: string;
+    requestedAmount: string;
+    budgetBreakdown: string;
+    whyIsProjectImportant: string;
+    howDoesYourProjectDiffer: string;
+    isYourProjectPublicGood: string;
+    isOpenSource: string;
+    whyEthereum: string;
+    challenges: string;
+    sustainabilityPlan: string;
+    otherProjects: string;
+    repeatApplicant: boolean;
+    otherFunding: string;
+    additionalInfo: string;
+    city: string;
+    country: string;
+    howDidYouHearAboutESP: string;
+    referralSourceIfOther: string;
+    referrals: string;
+    otherInfo: string;
+    otherAttachments: File;
   };
 }

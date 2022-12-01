@@ -105,6 +105,7 @@ export const OFFICE_HOURS_APPLY_URL = '/applicants/office-hours/apply';
 export const SMALL_GRANTS_APPLY_URL = '/applicants/small-grants/apply';
 export const ACADEMIC_GRANTS_APPLY_URL = '/academic-grants/apply';
 export const DEVCON_GRANTS_APPLY_URL = '/devcon-grants/apply';
+export const ECODEV_GRANTS_APPLY_URL = '/ecodev-grants/apply';
 
 // grantee finance form
 export const GRANTEE_FINANCE_URL = '/applicants/grantee-finance';
@@ -116,6 +117,7 @@ export const SMALL_GRANTS_THANK_YOU_PAGE_URL = '/applicants/small-grants/thank-y
 export const GRANTEE_FINANCE_THANK_YOU_PAGE_URL = '/applicants/grantee-finance/thank-you';
 export const ACADEMIC_GRANTS_THANK_YOU_PAGE_URL = '/academic-grants/thank-you';
 export const DEVCON_GRANTS_THANK_YOU_PAGE_URL = '/devcon-grants/thank-you';
+export const ECODEV_GRANTS_THANK_YOU_PAGE_URL = '/ecodev-grants/thank-you';
 
 // ethereum ecosystem
 export const ETHEREUM_ORG_URL = 'https://ethereum.org/';
@@ -140,6 +142,7 @@ export const ESP_EMAIL_ADDRESS = 'esp@ethereum.org';
 export const ACADEMIC_GRANTS_EMAIL_ADDRESS = 'academic-grants@ethereum.org';
 export const DEVCON_GRANTS_EMAIL_ADDRESS = 'grants@devcon.org';
 export const LAYER_2_GRANTS_EMAIL_ADDRESS = 'layer2grants@ethereum.org';
+export const ECODEV_GRANTS_EMAIL_ADDRESS = 'ecodev-grants@ethereum.org'; // TODO: confirm this
 
 // applicants tabs
 export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Small Grants', 'Project Grants'];

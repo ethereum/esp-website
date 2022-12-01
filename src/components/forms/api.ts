@@ -1,6 +1,7 @@
 import {
   AcademicGrantsFormData,
   DevconGrantsFormData,
+  EcodevGrantsFormData,
   GranteeFinanceFormData,
   NewsletterFormData,
   OfficeHoursFormData,
@@ -13,6 +14,7 @@ import { getWebsite } from '../../utils';
 import {
   API_ACADEMIC_GRANTS,
   API_DEVCON_GRANTS,
+  API_ECODEV_GRANTS,
   API_GRANTEE_FINANCE,
   API_NEWSLETTER_SIGNUP_URL,
   API_OFFICE_HOURS,
@@ -148,6 +150,26 @@ export const api = {
       };
 
       return fetch(API_DEVCON_GRANTS, devconGrantsRequestOptions);
+    }
+  },
+  ecodevGrants: {
+    submit: (data: EcodevGrantsFormData) => {
+      const fullName = `${data.firstName} ${data.lastName}`;
+      const company = data.company || fullName;
+
+      const ecodevGrantsRequestOptions: RequestInit = {
+        ...methodOptions,
+        body: JSON.stringify({
+          ...data,
+          company,
+          country: data.country.value,
+          projectCategory: data.projectCategory.value,
+          howDidYouHearAboutESP: data.howDidYouHearAboutESP.value,
+          repeatApplicant: data.repeatApplicant === 'Yes'
+        })
+      };
+
+      return fetch(API_ECODEV_GRANTS, ecodevGrantsRequestOptions);
     }
   },
   newsletter: {
