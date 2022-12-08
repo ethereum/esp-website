@@ -238,3 +238,19 @@
   from = "/academic-grants/thank-you/"
   to = "/applicants/"
   force = true
+[[redirects]]
+  from = "/merge-data-challenge/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/merge-data-challenge/apply/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/semaphore-grants/"
+  to = "/applicants/"
+  force = true
+[[redirects]]
+  from = "/semaphore-grants/apply/"
+  to = "/applicants/"
+  force = true
