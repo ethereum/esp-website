@@ -1,5 +1,5 @@
 // Libraries
-import { Accordion, Box, Flex, Link, ListItem, Stack } from '@chakra-ui/react';
+import { Accordion, Box, Flex, Heading, Link, ListItem, Stack } from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import type { NextPage } from 'next';
 
@@ -12,7 +12,8 @@ import {
   PageText,
   PageMetadata,
   ReadyToApply,
-  FAQItem
+  FAQItem,
+  BannerApplicationClosed
 } from '../../components/UI';
 
 // Constants
@@ -62,6 +63,8 @@ const Layer2Grants: NextPage = () => {
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
+              <BannerApplicationClosed mb={12} />
+
               <Stack mb={8} mt={{ base: 10, md: 0 }}>
                 <section id='description' ref={ref}>
                   <PageSubheading mb={8}>Layer 2 Community Grants 2022</PageSubheading>

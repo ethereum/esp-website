@@ -2,6 +2,7 @@ export * from './ApplicantsSidebar';
 export * from './ApplicationAttentionMsg';
 export * from './ApplicationTypeCard';
 export * from './Banner';
+export * from './BannerApplicationClosed';
 export * from './BannerClickeable';
 export * from './Description';
 export * from './DropdownIndicator';

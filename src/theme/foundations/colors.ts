@@ -102,6 +102,12 @@ export const colors = {
         start: '#ffe5e2',
         end: '#f3d1ee'
       }
+    },
+    closedBanner: {
+      bgGradient: {
+        start: '#fbe7e8',
+        end: '#f8d1d4'
+      }
     }
   }
 };
