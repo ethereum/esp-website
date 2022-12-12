@@ -96,8 +96,7 @@ export const SIDEBAR_LAYER_2_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Submit a proposal', href: `${LAYER_2_GRANTS_URL}/#submit-proposal` },
   { text: 'Requirements', href: `${LAYER_2_GRANTS_URL}/#requirements` },
   { text: 'Selection criteria', href: `${LAYER_2_GRANTS_URL}/#selection-criteria` },
-  { text: 'FAQ', href: `${LAYER_2_GRANTS_URL}/#faq` },
-  { text: 'Apply', href: `${LAYER_2_GRANTS_URL}/#apply` }
+  { text: 'FAQ', href: `${LAYER_2_GRANTS_URL}/#faq` }
 ];
 
 // apply forms

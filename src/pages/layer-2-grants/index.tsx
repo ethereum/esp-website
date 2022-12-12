@@ -18,7 +18,6 @@ import {
 
 // Constants
 import {
-  LAYER_2_GRANTS_APPLY_URL,
   LAYER_2_GRANTS_EMAIL_ADDRESS,
   SIDEBAR_LAYER_2_GRANTS_LINKS,
   LAYER_2_GRANTS_PREVIEW_URL
@@ -35,7 +34,6 @@ const Layer2Grants: NextPage = () => {
   const [ref6, inView6] = useInView({ threshold: 0.5, initialInView: false });
   const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
   const [ref8, inView8] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref9, inView9] = useInView({ threshold: 0.5, initialInView: false });
 
   return (
     <>
@@ -57,8 +55,7 @@ const Layer2Grants: NextPage = () => {
                 inView5,
                 inView6,
                 inView7,
-                inView8,
-                inView9
+                inView8
               ]}
             />
 
@@ -319,14 +316,6 @@ const Layer2Grants: NextPage = () => {
                       </PageText>
                     </FAQItem>
                   </Accordion>
-                </section>
-              </Stack>
-
-              <Stack spacing={10}>
-                <section id='apply' ref={ref9}>
-                  <Stack mt={6}>
-                    <ReadyToApply link={`${LAYER_2_GRANTS_APPLY_URL}`} />
-                  </Stack>
                 </section>
               </Stack>
             </Box>
