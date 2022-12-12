@@ -11,13 +11,12 @@ import {
   PageSubheading,
   PageText,
   PageMetadata,
-  ReadyToApply,
-  FAQItem
+  FAQItem,
+  BannerApplicationClosed
 } from '../../components/UI';
 
 // Constants
 import {
-  LAYER_2_GRANTS_APPLY_URL,
   LAYER_2_GRANTS_EMAIL_ADDRESS,
   SIDEBAR_LAYER_2_GRANTS_LINKS,
   LAYER_2_GRANTS_PREVIEW_URL
@@ -34,7 +33,6 @@ const Layer2Grants: NextPage = () => {
   const [ref6, inView6] = useInView({ threshold: 0.5, initialInView: false });
   const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
   const [ref8, inView8] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref9, inView9] = useInView({ threshold: 0.5, initialInView: false });
 
   return (
     <>
@@ -56,12 +54,13 @@ const Layer2Grants: NextPage = () => {
                 inView5,
                 inView6,
                 inView7,
-                inView8,
-                inView9
+                inView8
               ]}
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
+              <BannerApplicationClosed mb={12} />
+
               <Stack mb={8} mt={{ base: 10, md: 0 }}>
                 <section id='description' ref={ref}>
                   <PageSubheading mb={8}>Layer 2 Community Grants 2022</PageSubheading>
@@ -316,14 +315,6 @@ const Layer2Grants: NextPage = () => {
                       </PageText>
                     </FAQItem>
                   </Accordion>
-                </section>
-              </Stack>
-
-              <Stack spacing={10}>
-                <section id='apply' ref={ref9}>
-                  <Stack mt={6}>
-                    <ReadyToApply link={`${LAYER_2_GRANTS_APPLY_URL}`} />
-                  </Stack>
                 </section>
               </Stack>
             </Box>

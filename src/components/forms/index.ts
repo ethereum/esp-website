@@ -7,5 +7,4 @@ export * from './OfficeHoursForm';
 export * from './ProjectGrantsForm';
 export * from './SmallGrantsForm';
 export * from './DevconGrantsForm';
-export * from './Layer2GrantsForm';
 export * from './fields';

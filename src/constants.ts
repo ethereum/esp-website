@@ -96,8 +96,7 @@ export const SIDEBAR_LAYER_2_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Submit a proposal', href: `${LAYER_2_GRANTS_URL}/#submit-proposal` },
   { text: 'Requirements', href: `${LAYER_2_GRANTS_URL}/#requirements` },
   { text: 'Selection criteria', href: `${LAYER_2_GRANTS_URL}/#selection-criteria` },
-  { text: 'FAQ', href: `${LAYER_2_GRANTS_URL}/#faq` },
-  { text: 'Apply', href: `${LAYER_2_GRANTS_URL}/#apply` }
+  { text: 'FAQ', href: `${LAYER_2_GRANTS_URL}/#faq` }
 ];
 
 // apply forms
@@ -106,7 +105,6 @@ export const OFFICE_HOURS_APPLY_URL = '/applicants/office-hours/apply';
 export const SMALL_GRANTS_APPLY_URL = '/applicants/small-grants/apply';
 export const ACADEMIC_GRANTS_APPLY_URL = '/academic-grants/apply';
 export const DEVCON_GRANTS_APPLY_URL = '/devcon-grants/apply';
-export const LAYER_2_GRANTS_APPLY_URL = '/layer-2-grants/apply';
 
 // grantee finance form
 export const GRANTEE_FINANCE_URL = '/applicants/grantee-finance';
@@ -118,7 +116,6 @@ export const SMALL_GRANTS_THANK_YOU_PAGE_URL = '/applicants/small-grants/thank-y
 export const GRANTEE_FINANCE_THANK_YOU_PAGE_URL = '/applicants/grantee-finance/thank-you';
 export const ACADEMIC_GRANTS_THANK_YOU_PAGE_URL = '/academic-grants/thank-you';
 export const DEVCON_GRANTS_THANK_YOU_PAGE_URL = '/devcon-grants/thank-you';
-export const LAYER_2_GRANTS_THANK_YOU_PAGE_URL = '/layer-2-grants/thank-you';
 
 // ethereum ecosystem
 export const ETHEREUM_ORG_URL = 'https://ethereum.org/';

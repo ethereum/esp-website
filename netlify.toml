@@ -254,3 +254,7 @@
   from = "/semaphore-grants/apply/"
   to = "/applicants/"
   force = true
+[[redirects]]
+  from = "/layer-2-grants/apply/"
+  to = "/layer-2-grants/"
+  force = true
