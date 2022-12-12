@@ -219,38 +219,6 @@ export interface DevconGrantsFormData extends CaptchaForm {
   howDidYouHearAboutESP: ReferralSource; // SF API: Referral_Source__c
 }
 
-export interface Layer2GrantsFormData extends CaptchaForm {
-  firstName: string; // SF API: FirstName
-  lastName: string; // SF API: LastName
-  email: string; // SF API: Email
-  title: string; // AF API: Title
-  applyingAs: ApplyingAs; // SF API: Applying_as_a__c
-  company: string; // SF API: Company
-  applyingAsOther: string; // SF API: Applying_as_Other__c
-  country: Country; // SF API: npsp__CompanyCountry__c
-  countriesOfTeam: string; // SF API: Countries_of_Team__c
-  timezone: Timezone; // SF API: Time_Zone__c
-  projectName: string; // SF API: Project_Name__c
-  projectDescription: string; // SF API: Project_Description__c
-  projectCategory: Layer2GrantsProjectCategory; // SF API: Category__c
-  website: string; // SF API: Website
-  projectPreviousWork: string; // SF API: Previous_Work__c
-  grantScope: string; // SF API: Grant_Scope__c
-  projectGoals: string; // SF API: Impact__c
-  problemBeingSolved: string; // SF API: Problem_Being_Solved__c
-  isYourProjectPublicGood: string; // SF API: Is_it_a_Public_Good__c
-  requestedAmount: string; // SF API: Requested_Amount__c
-  proposedTimeline: string; // SF API: Proposed_Timeline__c
-  wouldYouShareYourResearch: WouldYouShareYourResearch; // SF API: Would_you_share_your_research__c
-  twitter: string; // SF API: Twitter__c
-  githubUser: string; //SF API: Github_Username__c
-  telegram: string; // SF API: Alternative_Contact__c
-  repeatApplicant: string; // SF API: Repeat_Applicant__c
-  canTheEFReachOut: string; // SF API: Can_the_EF_reach_out__c
-  additionalInfo: string; // SF API: Additional_Information__c
-  howDidYouHearAboutESP: GrantsReferralSource; // SF API: Referral_Source__c
-}
-
 export type IndividualOrTeam = 'Individual' | 'Team';
 
 export type OfficeHoursRequest = 'Project feedback' | 'Advice';

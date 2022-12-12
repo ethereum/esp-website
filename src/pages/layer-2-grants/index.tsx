@@ -1,5 +1,5 @@
 // Libraries
-import { Accordion, Box, Flex, Heading, Link, ListItem, Stack } from '@chakra-ui/react';
+import { Accordion, Box, Flex, Link, ListItem, Stack } from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import type { NextPage } from 'next';
 
@@ -11,7 +11,6 @@ import {
   PageSubheading,
   PageText,
   PageMetadata,
-  ReadyToApply,
   FAQItem,
   BannerApplicationClosed
 } from '../../components/UI';
