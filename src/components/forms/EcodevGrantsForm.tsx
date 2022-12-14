@@ -6,7 +6,10 @@ import {
   Flex,
   FormControl,
   FormLabel,
+  Grid,
+  GridItem,
   Input,
+  InputGroup,
   Radio,
   RadioGroup,
   Stack,
@@ -14,9 +17,10 @@ import {
   useToast
 } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
-import { FC, useState } from 'react';
+import { FC, useCallback, useState, MouseEvent } from 'react';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 // API
 import { api } from './api';
@@ -26,27 +30,36 @@ import { SubmitButton } from '../SubmitButton';
 import { Captcha } from '.';
 import { DropdownIndicator, PageText } from '../UI';
 
+import uploadSVG from '../../../public/images/upload.svg';
+
 // Constants
 import {
   COUNTRY_OPTIONS,
-  ECODEV_GRANTS_PROJECT_CATEGORY_OPTIONS,
-  HOW_DID_YOU_HEAR_ABOUT_ECODEV_GRANTS_WAVE,
-  INDIVIDUAL,
-  OTHER
+  HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
+  OTHER,
+  PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS,
+  TIMEZONE_OPTIONS
 } from './constants';
-import { ECODEV_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
+import {
+  ECODEV_GRANTS_THANK_YOU_PAGE_URL,
+  MAX_PROPOSAL_FILE_SIZE,
+  TOAST_OPTIONS
+} from '../../constants';
 
 // Styles
 import { chakraStyles } from './selectStyles';
 
 // Types
-import { EcodevGrantsFormData, EcodevGrantsReferralSource } from '../../types';
+import { EcodevGrantsFormData, ReferralSource } from '../../types';
+import { RemoveIcon } from '../UI/icons';
+import { useDropzone } from 'react-dropzone';
 
 export const EcodevGrantsForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
+  const [selectedFile, setSelectedFile] = useState<null | File>(null);
 
-  const [referralSource, setReferralSource] = useState<EcodevGrantsReferralSource | unknown>({
+  const [referralSource, setReferralSource] = useState<ReferralSource | unknown>({
     value: '',
     label: ''
   });
@@ -54,13 +67,34 @@ export const EcodevGrantsForm: FC = () => {
   const methods = useForm<EcodevGrantsFormData>({
     mode: 'onBlur'
   });
+
   const {
     handleSubmit,
     register,
+    trigger,
     control,
+    setValue,
     formState: { errors, isValid, isSubmitting },
     reset
   } = methods;
+
+  const onDrop = useCallback(
+    files => {
+      const file = files[0];
+
+      setSelectedFile(file);
+
+      setValue('uploadProposal', file, { shouldValidate: true });
+
+      toast({
+        ...TOAST_OPTIONS,
+        title: 'Proposal uploaded!',
+        status: 'success'
+      });
+    },
+    [setValue, toast]
+  );
+  const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   const onSubmit = async (data: EcodevGrantsFormData) => {
     return api.ecodevGrants
@@ -81,8 +115,13 @@ export const EcodevGrantsForm: FC = () => {
       .catch(err => console.error('There has been a problem with your operation: ', err.message));
   };
 
-  const handleReferralSource = (source: EcodevGrantsReferralSource) => {
+  const handleReferralSource = (source: ReferralSource) => {
     setReferralSource(source);
+  };
+
+  const handleRemoveFile = (e: MouseEvent<HTMLInputElement>) => {
+    e.stopPropagation();
+    setSelectedFile(null);
   };
 
   return (
@@ -96,46 +135,6 @@ export const EcodevGrantsForm: FC = () => {
     >
       <FormProvider {...methods}>
         <form id='project-grants-form' onSubmit={handleSubmit(onSubmit)}>
-          <Controller
-            name='individualOrTeam'
-            control={control}
-            rules={{ required: true }}
-            defaultValue={INDIVIDUAL}
-            render={({ field: { value } }) => (
-              <FormControl id='individual-or-team-control' isRequired mb={8}>
-                <FormLabel htmlFor='individualOrTeam' mb={4}>
-                  <PageText display='inline' fontSize='input'>
-                    Are you submitting on behalf of a team, or as an individual?
-                  </PageText>
-                </FormLabel>
-
-                <RadioGroup
-                  id='individualOrTeam'
-                  value={value}
-                  fontSize='input'
-                  colorScheme='white'
-                >
-                  <Stack direction='row'>
-                    <Radio
-                      id='individual'
-                      size='lg'
-                      name='individualOrTeam'
-                      value={INDIVIDUAL}
-                      defaultChecked
-                      mr={8}
-                    >
-                      <PageText fontSize='input'>Individual</PageText>
-                    </Radio>
-
-                    <Radio id='team' size='lg' name='individualOrTeam' value='Team'>
-                      <PageText fontSize='input'>Team</PageText>
-                    </Radio>
-                  </Stack>
-                </RadioGroup>
-              </FormControl>
-            )}
-          />
-
           <Flex direction='column' mb={8}>
             <Flex direction={{ base: 'column', md: 'row' }} mb={3}>
               <FormControl
@@ -220,7 +219,7 @@ export const EcodevGrantsForm: FC = () => {
 
             {!errors?.firstName && !errors?.lastName && (
               <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                Who is the point of contact for the application?
+                This should be the main contact we&apos;ll be talking to.
               </PageText>
             )}
           </Flex>
@@ -253,16 +252,16 @@ export const EcodevGrantsForm: FC = () => {
             )}
           </FormControl>
 
-          <FormControl id='company-control' mb={8}>
+          <FormControl id='company-control' isRequired mb={8}>
             <FormLabel htmlFor='company' mb={1}>
               <PageText display='inline' fontSize='input'>
-                If applying as an Organization, please specify its name:
+                Organization name
               </PageText>
             </FormLabel>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Name of your university program, team, or organization. If you do not have an
-              organization name, write &quot;N/A&quot;
+              Name of your team or organization. If you do not have an organization name, write
+              &quot;N/A&quot;.
             </PageText>
 
             <Input
@@ -277,10 +276,18 @@ export const EcodevGrantsForm: FC = () => {
               fontSize='input'
               mt={3}
               {...register('company', {
+                required: true,
                 maxLength: 255
               })}
             />
 
+            {errors?.company?.type === 'required' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Organization name is required.
+                </PageText>
+              </Box>
+            )}
             {errors?.company?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
@@ -293,16 +300,14 @@ export const EcodevGrantsForm: FC = () => {
           <FormControl id='team-profile-control' isRequired mb={8}>
             <FormLabel htmlFor='teamProfile' mb={1}>
               <PageText display='inline' fontSize='input'>
-                Team/Individuals description - A brief summary of your team&apos;s relevant
-                experience
+                Team profile
               </PageText>
             </FormLabel>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Who is working on this project? Give us a bit of info and include relevant links, if
-              available! Please provide other projects or research papers (ideally public and/or
-              open source), engagements or other types of proof that your team has the necessary
-              experience to undertake the project you are applying for.
+              Briefly describe your organization. Provide links to previous work. How is your
+              organization suited to the project&apos;s objectives, and how does it provide the
+              necessary expertise?
             </PageText>
 
             <Textarea
@@ -339,14 +344,14 @@ export const EcodevGrantsForm: FC = () => {
 
           <FormControl id='twitter-control' mb={8}>
             <FormLabel htmlFor='twitter' mb={1}>
-              <PageText fontSize='input'>Twitter Handle(s)</PageText>
+              <PageText fontSize='input'>Twitter</PageText>
             </FormLabel>
             <PageText fontSize='input' position='absolute' bottom='15.5px' left={4} zIndex={9}>
               @
             </PageText>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Ex: @mytwitterhandle
+              Twitter handle for your team or project.
             </PageText>
 
             <Input
@@ -377,19 +382,16 @@ export const EcodevGrantsForm: FC = () => {
             )}
           </FormControl>
 
-          <FormControl id='website-control' isRequired mb={8}>
+          <FormControl id='website-control' mb={8}>
             <FormLabel htmlFor='website' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Grant Proposal URL
-              </PageText>
+              <PageText fontSize='input'>Website</PageText>
             </FormLabel>
-
             <PageText fontSize='input' position='absolute' bottom='15.5px' left={4} zIndex={9}>
               https://
             </PageText>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Please provide a link to your grant proposal for review.
+              Link to your team or project website.
             </PageText>
 
             <Input
@@ -407,7 +409,6 @@ export const EcodevGrantsForm: FC = () => {
               pl={16}
               mt={3}
               {...register('website', {
-                required: true,
                 maxLength: 255
               })}
             />
@@ -415,14 +416,7 @@ export const EcodevGrantsForm: FC = () => {
             {errors?.website?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  The URL cannot exceed 255 characters.
-                </PageText>
-              </Box>
-            )}
-            {errors?.website?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Grant Proposal URL is required.
+                  Website cannot exceed 255 characters.
                 </PageText>
               </Box>
             )}
@@ -472,59 +466,17 @@ export const EcodevGrantsForm: FC = () => {
             )}
           </FormControl>
 
-          <FormControl id='githubUser-control' mb={8}>
-            <FormLabel htmlFor='githubUser' mb={1}>
-              <PageText fontSize='input'>GitHub User(s)</PageText>
-            </FormLabel>
-            <PageText fontSize='input' position='absolute' bottom='15.5px' left={4} zIndex={9}>
-              @
-            </PageText>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Ex: @mygithub
-            </PageText>
-
-            <Input
-              id='githubUser'
-              type='text'
-              placeholder='mygithub'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              position='relative'
-              color='brand.paragraph'
-              fontSize='input'
-              pl={8}
-              mt={3}
-              {...register('githubUser', {
-                maxLength: 40
-              })}
-            />
-
-            {errors?.githubUser?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  GitHub User(s) handle cannot exceed 16 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='linkedinProfile-control' mb={8}>
-            <FormLabel htmlFor='linkedinProfile' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                LinkedIn Profile(s)
-              </PageText>
+          <FormControl id='project-repo-control' mb={8}>
+            <FormLabel htmlFor='projectRepo' mb={1}>
+              <PageText fontSize='input'>Project repo</PageText>
             </FormLabel>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              URL only.
+              GitHub or other public repository of the project or related work.
             </PageText>
 
             <Input
-              id='linkedinProfile'
+              id='projectRepo'
               type='text'
               bg='white'
               borderRadius={0}
@@ -534,15 +486,15 @@ export const EcodevGrantsForm: FC = () => {
               color='brand.paragraph'
               fontSize='input'
               mt={3}
-              {...register('linkedinProfile', {
+              {...register('projectRepo', {
                 maxLength: 255
               })}
             />
 
-            {errors?.linkedinProfile?.type === 'maxLength' && (
+            {errors?.projectRepo?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  LinkedIn profiles cannot exceed 255 characters.
+                  Repo name cannot exceed 255 characters.
                 </PageText>
               </Box>
             )}
@@ -568,7 +520,7 @@ export const EcodevGrantsForm: FC = () => {
                 <Box mt={3}>
                   <Select
                     id='projectCategory'
-                    options={ECODEV_GRANTS_PROJECT_CATEGORY_OPTIONS}
+                    options={PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS}
                     onChange={onChange}
                     components={{ DropdownIndicator }}
                     placeholder='Select'
@@ -592,13 +544,14 @@ export const EcodevGrantsForm: FC = () => {
           <FormControl id='project-description-control' isRequired mb={8}>
             <FormLabel htmlFor='projectDescription' mb={1}>
               <PageText display='inline' fontSize='input'>
-                Brief Project Summary
+                Brief project summary
               </PageText>
             </FormLabel>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
               Describe your project in a few sentences (you&apos;ll have the chance to go into more
-              detail on your blogpost).
+              detail in the long form). If it&apos;s already underway, provide links to any existing
+              published work.
             </PageText>
 
             <Textarea
@@ -677,12 +630,16 @@ export const EcodevGrantsForm: FC = () => {
             )}
           </FormControl>
 
-          <FormControl id='problemBeingSolved-control' isRequired mb={8}>
-            <FormLabel htmlFor='problemBeingSolved'>
+          <FormControl id='problem-being-solved-control' isRequired mb={8}>
+            <FormLabel htmlFor='problemBeingSolved' mb={1}>
               <PageText display='inline' fontSize='input'>
-                What problem are you trying to solve?
+                What problem(s) are being solved by within the scope of the grant?
               </PageText>
             </FormLabel>
+
+            <PageText as='small' fontSize='helpText' color='brand.helpText'>
+              What is the specific problems, research questions, or needs you are trying to address?
+            </PageText>
 
             <Textarea
               id='problemBeingSolved'
@@ -693,6 +650,7 @@ export const EcodevGrantsForm: FC = () => {
               color='brand.paragraph'
               fontSize='input'
               h='150px'
+              mt={3}
               {...register('problemBeingSolved', {
                 required: true,
                 maxLength: 32768
@@ -702,14 +660,14 @@ export const EcodevGrantsForm: FC = () => {
             {errors?.problemBeingSolved?.type === 'required' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Problem being solved is required.
+                  Field is required.
                 </PageText>
               </Box>
             )}
             {errors?.problemBeingSolved?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Problem being solved cannot exceed 32768 characters.
+                  Cannot exceed 32768 characters.
                 </PageText>
               </Box>
             )}
@@ -718,14 +676,13 @@ export const EcodevGrantsForm: FC = () => {
           <FormControl id='proposed-timeline-control' isRequired mb={8}>
             <FormLabel htmlFor='proposedTimeline' mb={1}>
               <PageText display='inline' fontSize='input'>
-                Budget breakdown and project roadmap
+                Proposed tasks, roadmap and budget?
               </PageText>
             </FormLabel>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Please include a brief explanation on the milestones/roadmap in a 3-6 months
-              timeframe, along with expected deliverables. Also outline how the funds will be used
-              for the research project and/or members of the team.
+              Provide a summary that includes a timeline of the expected work and an estimated
+              budgetary breakdown.
             </PageText>
 
             <Textarea
@@ -747,23 +704,29 @@ export const EcodevGrantsForm: FC = () => {
             {errors?.proposedTimeline?.type === 'required' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Project roadmap is required.
+                  Field is required.
                 </PageText>
               </Box>
             )}
             {errors?.proposedTimeline?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Project roadmap cannot exceed 32768 characters.
+                  Cannot exceed 32768 characters.
                 </PageText>
               </Box>
             )}
           </FormControl>
 
-          <FormControl id='requested-amount-control' isRequired mb={8} w={{ md: '50%' }}>
+          <FormControl
+            id='requested-amount-control'
+            isRequired
+            mb={8}
+            w={{ md: '50%' }}
+            pr={{ lg: 6 }}
+          >
             <FormLabel htmlFor='requestedAmount' mb={1}>
               <PageText display='inline' fontSize='input'>
-                Total budget requested
+                Requested amount
               </PageText>
             </FormLabel>
 
@@ -803,8 +766,6 @@ export const EcodevGrantsForm: FC = () => {
               </Box>
             )}
           </FormControl>
-
-          {/* budgetBreakdown */}
 
           <FormControl id='why-is-project-important-control' isRequired mb={8}>
             <FormLabel htmlFor='whyIsProjectImportant' mb={1}>
@@ -894,12 +855,18 @@ export const EcodevGrantsForm: FC = () => {
             )}
           </FormControl>
 
-          <FormControl id='isYourProjectPublicGood-control' isRequired mb={8}>
-            <FormLabel htmlFor='isYourProjectPublicGood'>
+          <FormControl id='is-your-project-public-good-control' isRequired mb={8}>
+            <FormLabel htmlFor='isYourProjectPublicGood' mb={1}>
               <PageText display='inline' fontSize='input'>
-                How does this project benefit the greater Ethereum ecosystem?
+                Describe how your project will result in a public good.
               </PageText>
             </FormLabel>
+
+            <PageText as='small' fontSize='helpText' color='brand.helpText'>
+              Public goods are things like open source code, shared infrastructure, openly shared
+              research, documentation, community building or other benefits provided to the
+              community that are typically under-provided by the free market.
+            </PageText>
 
             <Textarea
               id='isYourProjectPublicGood'
@@ -910,6 +877,7 @@ export const EcodevGrantsForm: FC = () => {
               color='brand.paragraph'
               fontSize='input'
               h='150px'
+              mt={3}
               {...register('isYourProjectPublicGood', {
                 required: true,
                 maxLength: 32768
@@ -919,14 +887,14 @@ export const EcodevGrantsForm: FC = () => {
             {errors?.isYourProjectPublicGood?.type === 'required' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Is your project public good is required.
+                  Field is required.
                 </PageText>
               </Box>
             )}
             {errors?.isYourProjectPublicGood?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Is your project public good cannot exceed 32768 characters.
+                  Cannot exceed 32768 characters.
                 </PageText>
               </Box>
             )}
@@ -1022,13 +990,13 @@ export const EcodevGrantsForm: FC = () => {
           <FormControl id='challenges-control' isRequired mb={8}>
             <FormLabel htmlFor='challenges' mb={1}>
               <PageText display='inline' fontSize='input'>
-                Challenges
+                Describe key risks and challenges to your project.
               </PageText>
             </FormLabel>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Have you come across any obstacles thus far? If so, how have you attempted to tackle
-              these issues? Have you been successful in overcoming them?
+              What are the critical risks, relating to both project implementation and achieving
+              expected impacts?
             </PageText>
 
             <Textarea
@@ -1050,14 +1018,14 @@ export const EcodevGrantsForm: FC = () => {
             {errors?.challenges?.type === 'required' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Challenges description is required.
+                  Field is required.
                 </PageText>
               </Box>
             )}
             {errors?.challenges?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Challenges description cannot exceed 32768 characters.
+                  Cannot exceed 32768 characters.
                 </PageText>
               </Box>
             )}
@@ -1229,22 +1197,15 @@ export const EcodevGrantsForm: FC = () => {
 
           <FormControl id='additional-info-control' mb={8}>
             <FormLabel htmlFor='additionalInfo' mb={1}>
-              <PageText fontSize='input'>
-                Do you have any questions about this challenge, or is there anything else you&apos;d
-                like to share?
-              </PageText>
+              <PageText fontSize='input'>Anything else you&apos;d like to share?</PageText>
             </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Is there anything we didn&apos;t cover in the above questions? Feel free to add any
-              relevant links here. This is optional.
-            </PageText>
 
             <Textarea
               id='additionalInfo'
               bg='white'
               borderRadius={0}
               borderColor='brand.border'
+              _placeholder={{ fontSize: 'input' }}
               color='brand.paragraph'
               fontSize='input'
               h='150px'
@@ -1327,21 +1288,65 @@ export const EcodevGrantsForm: FC = () => {
           </Flex>
 
           <Controller
-            name='howDidYouHearAboutESP'
+            name='timezone'
             control={control}
             rules={{ required: true, validate: selected => selected.value !== '' }}
             defaultValue={{ value: '', label: '' }}
             render={({ field: { onChange }, fieldState: { error } }) => (
-              <FormControl id='how-did-you-hear-about-ESP-control' isRequired mb={12}>
+              <FormControl id='timezone-control' isRequired mb={8}>
+                <FormLabel htmlFor='timezone' mb={1}>
+                  <PageText display='inline' fontSize='input'>
+                    Your time zone
+                  </PageText>
+                </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  Please choose your current time zone to help us schedule calls.
+                </PageText>
+
+                <Box mt={3}>
+                  <Select
+                    id='timezone'
+                    options={TIMEZONE_OPTIONS}
+                    onChange={value => {
+                      onChange(value);
+                      trigger('timezone');
+                    }}
+                    components={{ DropdownIndicator }}
+                    placeholder='Select'
+                    closeMenuOnSelect={true}
+                    selectedOptionColor='brand.option'
+                    chakraStyles={chakraStyles}
+                  />
+                </Box>
+
+                {error && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Time zone is required.
+                    </PageText>
+                  </Box>
+                )}
+              </FormControl>
+            )}
+          />
+
+          <Controller
+            name='howDidYouHearAboutESP'
+            control={control}
+            rules={{ required: true }}
+            defaultValue={{ value: '', label: '' }}
+            render={({ field: { onChange } }) => (
+              <FormControl id='how-did-you-hear-about-ESP-control' isRequired mb={8}>
                 <FormLabel htmlFor='howDidYouHearAboutESP'>
                   <PageText display='inline' fontSize='input'>
-                    How did you hear about this wave of grants?
+                    How did you hear about the Ethereum Local Grant?
                   </PageText>
                 </FormLabel>
 
                 <Select
                   id='howDidYouHearAboutESP'
-                  options={HOW_DID_YOU_HEAR_ABOUT_ECODEV_GRANTS_WAVE}
+                  options={HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS}
                   components={{ DropdownIndicator }}
                   placeholder='Select'
                   closeMenuOnSelect={true}
@@ -1352,24 +1357,12 @@ export const EcodevGrantsForm: FC = () => {
                     handleReferralSource(selected);
                   }}
                 />
-
-                {error && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Referral source is required.
-                    </PageText>
-                  </Box>
-                )}
               </FormControl>
             )}
           />
 
-          <Box
-            display={
-              (referralSource as EcodevGrantsReferralSource).value === OTHER ? 'block' : 'none'
-            }
-          >
-            <Fade in={(referralSource as EcodevGrantsReferralSource).value === OTHER} delay={0.25}>
+          <Box display={(referralSource as ReferralSource).value === OTHER ? 'block' : 'none'}>
+            <Fade in={(referralSource as ReferralSource).value === OTHER} delay={0.25}>
               <FormControl id='referral-source-if-other-control' mb={8}>
                 <FormLabel htmlFor='referralSourceIfOther'>
                   <PageText fontSize='input'>If other, explain how</PageText>
@@ -1404,7 +1397,7 @@ export const EcodevGrantsForm: FC = () => {
           <FormControl id='referrals' mb={12}>
             <FormLabel htmlFor='referrals' mb={1}>
               <PageText fontSize='input'>
-                Did anyone recommend that you contact Ecosystem Support?
+                Did anyone recommend that you contact generalist ecodev?
               </PageText>
             </FormLabel>
 
@@ -1436,6 +1429,94 @@ export const EcodevGrantsForm: FC = () => {
               </Box>
             )}
           </FormControl>
+
+          <Controller
+            name='uploadProposal'
+            control={control}
+            rules={{ validate: file => (file ? file.size < MAX_PROPOSAL_FILE_SIZE : true) }}
+            render={({ field: { onChange } }) => (
+              <FormControl id='upload-proposal' {...getRootProps()}>
+                <InputGroup>
+                  <Input
+                    id='uploadProposal'
+                    type='file'
+                    role='button'
+                    aria-label='File Upload'
+                    hidden
+                    onChange={onChange}
+                    {...getInputProps({ name: 'base64' })}
+                  />
+                  <Box
+                    w='100%'
+                    cursor='pointer'
+                    bgColor='brand.upload.bg'
+                    justifyContent='space-evenly'
+                    py={9}
+                    px={{ base: 6, md: 16 }}
+                    mt={12}
+                    mb={12}
+                  >
+                    <Grid>
+                      <GridItem alignSelf='center'>
+                        <Box mr={6} flexShrink={0}>
+                          <Image src={uploadSVG} alt='Upload file' height={42} width={44} />
+                        </Box>
+                      </GridItem>
+                      <GridItem mb={selectedFile ? 4 : 0}>
+                        <Stack>
+                          <FormLabel htmlFor='uploadProposal'>
+                            <PageText fontSize='input' fontWeight={700} mb={2}>
+                              Upload additional documents
+                            </PageText>
+                          </FormLabel>
+
+                          <PageText
+                            as='small'
+                            fontSize='helpText'
+                            color='brand.helpText'
+                            lineHeight='17px'
+                            display='inline-block'
+                            mb={2}
+                          >
+                            Click here or drag file to this box. Use this space to upload any
+                            additional documents you&apos;d like to share. This is optional, but
+                            highly recommended.
+                          </PageText>
+                        </Stack>
+
+                        {selectedFile && errors?.uploadProposal && (
+                          <Box mt={1}>
+                            <PageText as='small' fontSize='helpText' color='red.500'>
+                              File size cannot exceed 4mb.
+                            </PageText>
+                          </Box>
+                        )}
+                      </GridItem>
+                      <GridItem colStart={2}>
+                        {selectedFile && (
+                          <Flex
+                            display='inline-flex'
+                            alignItems='center'
+                            justifyContent='space-between'
+                            bg='brand.upload.filename'
+                            minW='175px'
+                            pl={4}
+                            py={2}
+                            borderRadius='5px'
+                          >
+                            <PageText mr={2}>{selectedFile.name}</PageText>
+                            <Flex role='button' onClick={handleRemoveFile} px={3}>
+                              <RemoveIcon />
+                            </Flex>
+                          </Flex>
+                        )}
+                      </GridItem>
+                    </Grid>
+                  </Box>
+                </InputGroup>
+              </FormControl>
+            )}
+          />
 
           <Center mb={12}>
             <Captcha />

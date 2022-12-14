@@ -154,19 +154,27 @@ export const api = {
   },
   ecodevGrants: {
     submit: (data: EcodevGrantsFormData) => {
-      const fullName = `${data.firstName} ${data.lastName}`;
-      const company = data.company || fullName;
+      const curatedData: { [key: string]: any } = {
+        ...data,
+        // Company is a required field in SF, we're using the Name as default value if no company provided
+        company: data.company === 'N/A' ? `${data.firstName} ${data.lastName}` : data.company,
+        website: getWebsite(data.website),
+        projectCategory: data.projectCategory.value,
+        country: data.country.value,
+        timezone: data.timezone.value,
+        howDidYouHearAboutESP: data.howDidYouHearAboutESP.value,
+        repeatApplicant: data.repeatApplicant === 'Yes'
+      };
+
+      const formData = new FormData();
+
+      for (const name in data) {
+        formData.append(name, curatedData[name]);
+      }
 
       const ecodevGrantsRequestOptions: RequestInit = {
-        ...methodOptions,
-        body: JSON.stringify({
-          ...data,
-          company,
-          country: data.country.value,
-          projectCategory: data.projectCategory.value,
-          howDidYouHearAboutESP: data.howDidYouHearAboutESP.value,
-          repeatApplicant: data.repeatApplicant === 'Yes'
-        })
+        method: 'POST',
+        body: formData
       };
 
       return fetch(API_ECODEV_GRANTS, ecodevGrantsRequestOptions);

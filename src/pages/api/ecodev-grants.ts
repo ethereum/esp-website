@@ -1,32 +1,26 @@
+import fs from 'fs';
 import jsforce from 'jsforce';
-import { NextApiResponse } from 'next';
+import { NextApiRequest, NextApiResponse } from 'next';
+import type { File } from 'formidable';
 
-import { verifyCaptcha } from '../../middlewares';
+import { multipartyParse, verifyCaptcha } from '../../middlewares';
+import { MAX_PROPOSAL_FILE_SIZE } from '../../constants';
 
-import { EcodevGrantsNextApiRequest } from '../../types';
+async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const { fields = {}, files = {} } = req;
 
-async function handler(req: EcodevGrantsNextApiRequest, res: NextApiResponse) {
-  const { body } = req;
-  const {
-    firstName: FirstName,
-    lastName: LastName,
-    email: Email,
-    company: Company,
-    country: npsp__CompanyCountry__c,
-    projectName: Project_Name__c,
-    projectDescription: Project_Description__c,
-    projectCategory: Category__c,
-    website: Website,
-    problemBeingSolved: Problem_Being_Solved__c,
-    isYourProjectPublicGood: Is_it_a_Public_Good__c,
-    requestedAmount: Requested_Amount__c,
-    proposedTimeline: Proposed_Timeline__c,
-    twitter: Twitter__c,
-    githubUser: Github_Username__c,
-    repeatApplicant: Repeat_Applicant__c,
-    additionalInfo: Additional_Information__c,
-    howDidYouHearAboutESP: Referral_Source__c
-  } = body;
+  const fieldsSanitized = Object.keys(fields).reduce<typeof fields>((prev, key) => {
+    let value = fields[key];
+    if (typeof value === 'string') {
+      value = value.trim();
+    }
+
+    return {
+      ...prev,
+      [key]: value
+    };
+  }, {});
+
   const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
     process.env;
 
@@ -35,46 +29,124 @@ async function handler(req: EcodevGrantsNextApiRequest, res: NextApiResponse) {
     loginUrl: SF_PROD_LOGIN_URL
   });
 
+  const application = {
+    FirstName: fieldsSanitized.firstName,
+    LastName: fieldsSanitized.lastName,
+    Email: fieldsSanitized.email,
+    Company: fieldsSanitized.company,
+    Team_Profile__c: fieldsSanitized.teamProfile,
+    Twitter__c: fieldsSanitized.twitter,
+    Website: fieldsSanitized.website,
+    Project_Name__c: fieldsSanitized.projectName,
+    Github_Link__c: fieldsSanitized.projectRepo,
+    Category__c: fieldsSanitized.projectCategory,
+    Project_Description__c: fieldsSanitized.projectDescription,
+    Progress__c: fieldsSanitized.progress,
+    Problem_Being_Solved__c: fieldsSanitized.problemBeingSolved,
+    Proposed_Timeline__c: fieldsSanitized.proposedTimeline,
+    Requested_Amount__c: fieldsSanitized.requestedAmount,
+    Impact__c: fieldsSanitized.whyIsProjectImportant,
+    How_is_it_different__c: fieldsSanitized.howDoesYourProjectDiffer,
+    Is_it_a_Public_Good__c: fieldsSanitized.isYourProjectPublicGood,
+    Is_it_Open_Source__c: fieldsSanitized.isOpenSource,
+    Why_Ethereum__c: fieldsSanitized.whyEthereum,
+    Challenges__c: fieldsSanitized.challenges,
+    Sustainability_Plan__c: fieldsSanitized.sustainabilityPlan,
+    Other_Projects__c: fieldsSanitized.otherProjects,
+    Repeat_Applicant__c: fieldsSanitized.repeatApplicant,
+    Other_Funding__c: fieldsSanitized.otherFunding,
+    Additional_Information__c: fieldsSanitized.additionalInfo,
+    npsp__CompanyCity__c: fieldsSanitized.city,
+    npsp__CompanyCountry__c: fieldsSanitized.country,
+    Time_Zone__c: fieldsSanitized.timezone,
+    Referral_Source__c: fieldsSanitized.howDidYouHearAboutESP,
+    Referral_Source_if_Other__c: fieldsSanitized.referralSourceIfOther,
+    Referrals__c: fieldsSanitized.referrals,
+    RecordTypeId: process.env.SF_RECORD_TYPE_PROJECT_GRANTS
+  };
+
   conn.login(SF_PROD_USERNAME!, `${SF_PROD_PASSWORD}${SF_PROD_SECURITY_TOKEN}`, err => {
     if (err) {
       return console.error(err);
     }
 
-    const application = {
-      FirstName: FirstName.trim(),
-      LastName: LastName.trim(),
-      Email: Email.trim(),
-      Company: Company.trim(),
-      npsp__CompanyCountry__c: npsp__CompanyCountry__c.trim(),
-      Project_Name__c: Project_Name__c.trim(),
-      Project_Description__c: Project_Description__c.trim(),
-      Category__c: Category__c.trim(),
-      Website: Website.trim(),
-      Problem_Being_Solved__c: Problem_Being_Solved__c.trim(),
-      Is_it_a_Public_Good__c: Is_it_a_Public_Good__c.trim(),
-      Requested_Amount__c: Requested_Amount__c.trim(),
-      Proposed_Timeline__c: Proposed_Timeline__c.trim(),
-      Twitter__c: Twitter__c.trim(),
-      Github_Username__c: Github_Username__c.trim(),
-      Repeat_Applicant__c, // this is a boolean value, no trim applied
-      Additional_Information__c: Additional_Information__c.trim(),
-      Referral_Source__c: Referral_Source__c.trim(),
-      RecordTypeId: process.env.SF_RECORD_TYPE_GRANTS_ROUND!
-    };
+    let createdLeadID: string;
 
     // Single record creation
-    conn.sobject('Lead').create(application, async (err, ret) => {
+    conn.sobject('Lead').create(application, (err, ret) => {
       if (err || !ret.success) {
         console.error(err);
         res.status(400).json({ status: 'fail' });
-        return;
+      } else {
+        console.log(`Generalist EcoDev Lead with ID: ${ret.id} has been created!`);
+
+        createdLeadID = ret.id;
+        console.log({ createdLeadID });
+
+        const uploadProposal = files.uploadProposal as File;
+        console.log({ uploadProposal });
+
+        if (!uploadProposal) {
+          res.status(200).json({ status: 'ok' });
+          return;
+        }
+
+        let uploadProposalContent;
+        try {
+          // turn file into base64 encoding
+          uploadProposalContent = fs.readFileSync(uploadProposal.filepath, {
+            encoding: 'base64'
+          });
+        } catch (error) {
+          console.error(error);
+          res.status(500).json({ status: 'fail' });
+          return;
+        }
+
+        // Document upload
+        conn.sobject('ContentVersion').create(
+          {
+            Title: `[PROPOSAL] ${application.Project_Name__c} - ${createdLeadID}`,
+            PathOnClient: uploadProposal.originalFilename,
+            VersionData: uploadProposalContent // base64 encoded file content
+          },
+          async (err, uploadedFile) => {
+            if (err || !uploadedFile.success) {
+              console.error(err);
+
+              res.status(400).json({ status: 'fail' });
+            } else {
+              console.log({ uploadedFile });
+              console.log(`Document has been uploaded successfully!`);
+
+              const contentDocument = await conn
+                .sobject<{
+                  Id: string;
+                  ContentDocumentId: string;
+                }>('ContentVersion')
+                .retrieve(uploadedFile.id);
+
+              await conn.sobject('ContentDocumentLink').create({
+                ContentDocumentId: contentDocument.ContentDocumentId,
+                LinkedEntityId: createdLeadID,
+                ShareType: 'V'
+              });
+
+              res.status(200).json({ status: 'ok' });
+            }
+          }
+        );
       }
-
-      console.log(`Ecodev Grants Lead with ID: ${ret.id} has been created!`);
-
-      res.status(200).json({ status: 'ok' });
     });
   });
 }
 
-export default verifyCaptcha(handler);
+export const config = {
+  api: {
+    bodyParser: false
+  }
+};
+
+export default multipartyParse(verifyCaptcha(handler), {
+  maxFileSize: MAX_PROPOSAL_FILE_SIZE
+});
