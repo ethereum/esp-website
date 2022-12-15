@@ -1,5 +1,6 @@
 import { Box, Link, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
+import Head from 'next/head';
 
 import { PageMetadata, PageSubheading, PageText } from '../../components/UI';
 import { ECODEV_GRANTS_EMAIL_ADDRESS } from '../../constants';
@@ -11,6 +12,9 @@ const EcodevGrantsApply: NextPage = () => {
         title='Ecodev Grants Application'
         description='Submit an application for a Ecodev grant from the Ecosystem Support Program.'
       />
+      <Head>
+        <meta name='robots' content='noindex' />
+      </Head>
 
       <Box
         position='relative'

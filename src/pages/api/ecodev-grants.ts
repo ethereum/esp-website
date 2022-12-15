@@ -106,7 +106,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         // Document upload
         conn.sobject('ContentVersion').create(
           {
-            Title: `[PROPOSAL] ${application.Project_Name__c} - ${createdLeadID}`,
+            Title: `[Document] ${application.Project_Name__c} - ${createdLeadID}`,
             PathOnClient: uploadProposal.originalFilename,
             VersionData: uploadProposalContent // base64 encoded file content
           },
