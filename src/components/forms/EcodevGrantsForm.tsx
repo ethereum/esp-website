@@ -88,7 +88,7 @@ export const EcodevGrantsForm: FC = () => {
 
       toast({
         ...TOAST_OPTIONS,
-        title: 'Proposal uploaded!',
+        title: 'Document uploaded!',
         status: 'success'
       });
     },
