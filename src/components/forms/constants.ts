@@ -1485,6 +1485,13 @@ export const HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE = [
   ...HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS
 ];
 
+export const HOW_DID_YOU_HEAR_ABOUT_ECODEV_OPTIONS = [
+  { value: 'Riely', label: 'Riely' },
+  { value: 'Steven', label: 'Steven' },
+  { value: 'Luka', label: 'Luka' },
+  { value: 'Other', label: 'Other' }
+];
+
 // academic grants
 export const APPLYING_AS_OPTIONS = [
   { value: 'An individual', label: 'An individual' },

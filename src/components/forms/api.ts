@@ -162,7 +162,7 @@ export const api = {
         projectCategory: data.projectCategory.value,
         country: data.country.value,
         timezone: data.timezone.value,
-        howDidYouHearAboutESP: data.howDidYouHearAboutESP.value,
+        referrals: data.referrals.value,
         repeatApplicant: data.repeatApplicant === 'Yes'
       };
 

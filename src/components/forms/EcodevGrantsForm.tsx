@@ -35,7 +35,7 @@ import uploadSVG from '../../../public/images/upload.svg';
 // Constants
 import {
   COUNTRY_OPTIONS,
-  HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
+  HOW_DID_YOU_HEAR_ABOUT_ECODEV_OPTIONS,
   OTHER,
   PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS,
   TIMEZONE_OPTIONS
@@ -50,7 +50,7 @@ import {
 import { chakraStyles } from './selectStyles';
 
 // Types
-import { EcodevGrantsFormData, ReferralSource } from '../../types';
+import { EcodevGrantsFormData, EcodevReferralSource } from '../../types';
 import { RemoveIcon } from '../UI/icons';
 import { useDropzone } from 'react-dropzone';
 
@@ -59,7 +59,7 @@ export const EcodevGrantsForm: FC = () => {
   const toast = useToast();
   const [selectedFile, setSelectedFile] = useState<null | File>(null);
 
-  const [referralSource, setReferralSource] = useState<ReferralSource | unknown>({
+  const [referralSource, setReferralSource] = useState<EcodevReferralSource | unknown>({
     value: '',
     label: ''
   });
@@ -115,7 +115,7 @@ export const EcodevGrantsForm: FC = () => {
       .catch(err => console.error('There has been a problem with your operation: ', err.message));
   };
 
-  const handleReferralSource = (source: ReferralSource) => {
+  const handleReferralSource = (source: EcodevReferralSource) => {
     setReferralSource(source);
   };
 
@@ -1332,21 +1332,21 @@ export const EcodevGrantsForm: FC = () => {
           />
 
           <Controller
-            name='howDidYouHearAboutESP'
+            name='referrals'
             control={control}
             rules={{ required: true }}
             defaultValue={{ value: '', label: '' }}
             render={({ field: { onChange } }) => (
-              <FormControl id='how-did-you-hear-about-ESP-control' isRequired mb={8}>
-                <FormLabel htmlFor='howDidYouHearAboutESP'>
+              <FormControl id='referrals-control' isRequired mb={8}>
+                <FormLabel htmlFor='referrals'>
                   <PageText display='inline' fontSize='input'>
-                    How did you hear about the Ethereum Local Grant?
+                    How did you hear about ethereum foundation grant funding?
                   </PageText>
                 </FormLabel>
 
                 <Select
-                  id='howDidYouHearAboutESP'
-                  options={HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS}
+                  id='referrals'
+                  options={HOW_DID_YOU_HEAR_ABOUT_ECODEV_OPTIONS}
                   components={{ DropdownIndicator }}
                   placeholder='Select'
                   closeMenuOnSelect={true}
@@ -1361,8 +1361,10 @@ export const EcodevGrantsForm: FC = () => {
             )}
           />
 
-          <Box display={(referralSource as ReferralSource).value === OTHER ? 'block' : 'none'}>
-            <Fade in={(referralSource as ReferralSource).value === OTHER} delay={0.25}>
+          <Box
+            display={(referralSource as EcodevReferralSource).value === OTHER ? 'block' : 'none'}
+          >
+            <Fade in={(referralSource as EcodevReferralSource).value === OTHER} delay={0.25}>
               <FormControl id='referral-source-if-other-control' mb={8}>
                 <FormLabel htmlFor='referralSourceIfOther'>
                   <PageText fontSize='input'>If other, explain how</PageText>
@@ -1393,42 +1395,6 @@ export const EcodevGrantsForm: FC = () => {
               </FormControl>
             </Fade>
           </Box>
-
-          <FormControl id='referrals' mb={12}>
-            <FormLabel htmlFor='referrals' mb={1}>
-              <PageText fontSize='input'>
-                Did anyone recommend that you contact generalist ecodev?
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Please write the name of the person who recommended that you apply.
-            </PageText>
-
-            <Input
-              id='referrals'
-              type='text'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-              {...register('referrals', {
-                maxLength: 150
-              })}
-            />
-
-            {errors?.referralSourceIfOther?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Referral name cannot exceed 150 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
 
           <Controller
             name='uploadProposal'

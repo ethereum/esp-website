@@ -12,7 +12,8 @@ import {
   REASONS_FOR_MEETING,
   TIMEZONE_OPTIONS,
   WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS,
-  LAYER_2_GRANTS_PROJECT_CATEGORY_OPTIONS
+  LAYER_2_GRANTS_PROJECT_CATEGORY_OPTIONS,
+  HOW_DID_YOU_HEAR_ABOUT_ECODEV_OPTIONS
 } from './components/forms/constants';
 import { ABOUT_URL, APPLICANTS_URL, ESP_BLOG_URL, HOME_URL } from './constants';
 
@@ -249,9 +250,8 @@ export interface EcodevGrantsFormData extends CaptchaForm {
   city: string; // SF API: npsp__CompanyCity__c
   country: Country; // SF API: npsp__CompanyCountry__c
   timezone: Timezone; // SF API: Time_Zone__c
-  howDidYouHearAboutESP: ReferralSource; // SF API: Referral_Source__c
+  referrals: EcodevReferralSource; // SF API: Referrals__c
   referralSourceIfOther: string; // SF API: Referral_Source_if_Other__c
-  referrals: string; // SF API: Referrals__c
   uploadProposal: File;
 }
 
@@ -288,6 +288,8 @@ export type Country = typeof COUNTRY_OPTIONS[number];
 export type ReferralSource = typeof HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS[number];
 
 export type GrantsReferralSource = typeof HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE[number];
+
+export type EcodevReferralSource = typeof HOW_DID_YOU_HEAR_ABOUT_ECODEV_OPTIONS[number];
 
 export type Timezone = typeof TIMEZONE_OPTIONS[number];
 

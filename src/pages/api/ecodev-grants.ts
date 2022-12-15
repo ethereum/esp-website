@@ -59,10 +59,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     npsp__CompanyCity__c: fieldsSanitized.city,
     npsp__CompanyCountry__c: fieldsSanitized.country,
     Time_Zone__c: fieldsSanitized.timezone,
-    Referral_Source__c: fieldsSanitized.howDidYouHearAboutESP,
-    Referral_Source_if_Other__c: fieldsSanitized.referralSourceIfOther,
     Referrals__c: fieldsSanitized.referrals,
-    RecordTypeId: process.env.SF_RECORD_TYPE_PROJECT_GRANTS
+    Referral_Source_if_Other__c: fieldsSanitized.referralSourceIfOther,
+    RecordTypeId: process.env.SF_RECORD_TYPE_GENERALIST_ECODEV
   };
 
   conn.login(SF_PROD_USERNAME!, `${SF_PROD_PASSWORD}${SF_PROD_SECURITY_TOKEN}`, err => {
