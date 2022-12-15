@@ -1340,7 +1340,7 @@ export const EcodevGrantsForm: FC = () => {
               <FormControl id='referrals-control' isRequired mb={8}>
                 <FormLabel htmlFor='referrals'>
                   <PageText display='inline' fontSize='input'>
-                    How did you hear about ethereum foundation grant funding?
+                    How did you hear about Ethereum Foundation grant funding?
                   </PageText>
                 </FormLabel>
 
