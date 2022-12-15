@@ -3,7 +3,7 @@ import { FC, ReactNode } from 'react';
 import { useRouter } from 'next/router';
 
 import { Footer, FooterBackgroundImage, HomepageHero } from '../UI';
-import { Forms, NewsletterSignup } from '../forms';
+import { Forms } from '../forms';
 
 import {
   AboutLayout,
@@ -113,8 +113,6 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       <Forms />
 
       <FooterBackgroundImage />
-
-      <NewsletterSignup />
 
       <Footer />
     </Container>
