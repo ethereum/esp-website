@@ -720,7 +720,7 @@ export const EcodevGrantsForm: FC = () => {
             </FormLabel>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Estimated grant amount. Ex: USD 50,000.
+              Estimated grant amount.
             </PageText>
 
             <Input
