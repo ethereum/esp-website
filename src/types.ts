@@ -8,6 +8,7 @@ import {
   EVENT_TYPE_OPTIONS,
   HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
   HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE,
+  MERGE_DATA_CHALLENGE_PROJECT_CATEGORY_OPTIONS,
   PROJECT_CATEGORY_OPTIONS,
   REASONS_FOR_MEETING,
   TIMEZONE_OPTIONS,
@@ -328,6 +329,9 @@ export type ReasonForMeeting = typeof REASONS_FOR_MEETING;
 export type ProjectCategory = typeof PROJECT_CATEGORY_OPTIONS[number];
 
 export type AcademicGrantsProjectCategory = typeof ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS[number];
+
+export type MergeDataChallengeProjectCategory =
+  typeof MERGE_DATA_CHALLENGE_PROJECT_CATEGORY_OPTIONS[number];
 
 export type ProjectGrantsProjectCategory = typeof PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS[number];
 

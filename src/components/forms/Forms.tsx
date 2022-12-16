@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import {
   AcademicGrantsForm,
   GranteeFinanceForm,
+  MergeDataChallengeForm,
   OfficeHoursForm,
   ProjectGrantsForm,
   SmallGrantsForm,
@@ -17,6 +18,7 @@ import {
   ACADEMIC_GRANTS_APPLY_URL,
   DEVCON_GRANTS_APPLY_URL,
   GRANTEE_FINANCE_URL,
+  MERGE_DATA_CHALLENGE_APPLY_URL,
   OFFICE_HOURS_APPLY_URL,
   PROJECT_GRANTS_APPLY_URL,
   SEMAPHORE_GRANT_APPLY_URL,
