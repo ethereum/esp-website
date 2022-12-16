@@ -15,6 +15,7 @@ export const BannerApplicationClosed: FC<Props> = props => {
       py={6}
       borderRadius='xl'
       flexDirection='column'
+      textAlign='center'
       {...props}
     >
       <Heading fontSize='h4' fontWeight={700} mb={2}>
