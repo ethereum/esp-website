@@ -240,11 +240,11 @@
   force = true
 [[redirects]]
   from = "/merge-data-challenge/apply/"
-  to = "/applicants/"
+  to = "/merge-data-challenge/"
   force = true
 [[redirects]]
   from = "/semaphore-grants/apply/"
-  to = "/applicants/"
+  to = "/semaphore-grants/"
   force = true
 [[redirects]]
   from = "/layer-2-grants/apply/"
