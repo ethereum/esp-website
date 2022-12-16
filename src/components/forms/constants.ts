@@ -42,6 +42,21 @@ export const ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Other', label: 'Other' }
 ];
 
+export const MERGE_DATA_CHALLENGE_PROJECT_CATEGORY_OPTIONS = [
+  { value: 'Data Visualization', label: 'Data Visualization' },
+  { value: 'Data Analysis', label: 'Data Analysis' },
+  { value: 'New Tooling', label: 'New Tooling' }
+];
+
+export const SEMAPHORE_GRANT_PROJECT_CATEGORY_OPTIONS = [
+  { value: 'Cybersecurity', label: 'Cybersecurity' },
+  { value: 'Feedback & Whistleblowing', label: 'Feedback & Whistleblowing' },
+  { value: 'Government', label: 'Government' },
+  { value: 'Healthcare', label: 'Healthcare' },
+  { value: 'Job-related', label: 'Job-related' },
+  { value: 'Other', label: 'Other' }
+];
+
 export const LAYER_2_GRANTS_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Community and education', label: 'Community and education' },
   { value: 'Cybersecurity', label: 'Cybersecurity' },
@@ -1495,6 +1510,13 @@ export const APPLYING_AS_OPTIONS = [
   { value: 'Other', label: 'Other' }
 ];
 
+// semaphore grant
+export const SEMAPHORE_APPLYING_AS_OPTIONS = [
+  { value: 'An individual', label: 'An individual' },
+  { value: 'A team', label: 'A team' },
+  { value: 'Other', label: 'Other' }
+];
+
 // layer 2 grants
 export const LAYER_2_APPLYING_AS_OPTIONS = [
   { value: 'An individual', label: 'An individual' },
@@ -1529,4 +1551,7 @@ export const API_SMALL_GRANTS_EVENT = '/api/small-grants/event';
 export const API_ACADEMIC_GRANTS = '/api/academic-grants';
 export const API_DEVCON_GRANTS = '/api/devcon-grants';
 export const API_GRANTEE_FINANCE = '/api/grantee-finance';
+export const API_MERGE_DATA_CHALLENGE = '/api/merge-data-challenge';
+export const API_SEMAPHORE_GRANT = '/api/semaphore-grants';
+export const API_LAYER_2_GRANTS = '/api/layer-2-grants';
 export const API_NEWSLETTER_SIGNUP_URL = '/api/newsletter-signup';
