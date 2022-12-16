@@ -98,8 +98,7 @@ export const SIDEBAR_MERGE_DATA_CHALLENGE_LINKS: SidebarLink[] = [
   { text: 'Judging criteria', href: `${MERGE_DATA_CHALLENGE_URL}/#judging-criteria` },
   { text: 'How to get started', href: `${MERGE_DATA_CHALLENGE_URL}/#how-to-get-started` },
   { text: 'Helpful Resources', href: `${MERGE_DATA_CHALLENGE_URL}/#helpful-resources` },
-  { text: 'Support', href: `${MERGE_DATA_CHALLENGE_URL}/#support` },
-  { text: 'Submit blog post', href: `${MERGE_DATA_CHALLENGE_URL}/#submit-blog-post` }
+  { text: 'Support', href: `${MERGE_DATA_CHALLENGE_URL}/#support` }
 ];
 
 export const SEMAPHORE_GRANT_URL = '/semaphore-grants';
@@ -113,8 +112,7 @@ export const SIDEBAR_SEMAPHORE_GRANT_LINKS: SidebarLink[] = [
   { text: 'Semaphore in action', href: `${SEMAPHORE_GRANT_URL}/#semaphore-in-action` },
   { text: 'Wishlist', href: `${SEMAPHORE_GRANT_URL}/#wishlist` },
   { text: 'How to apply', href: `${SEMAPHORE_GRANT_URL}/#how-to-apply` },
-  { text: 'FAQ', href: `${SEMAPHORE_GRANT_URL}/#faq` },
-  { text: 'Apply', href: `${SEMAPHORE_GRANT_URL}/#apply` }
+  { text: 'FAQ', href: `${SEMAPHORE_GRANT_URL}/#faq` }
 ];
 
 export const LAYER_2_GRANTS_URL = '/layer-2-grants';
@@ -135,7 +133,6 @@ export const OFFICE_HOURS_APPLY_URL = '/applicants/office-hours/apply';
 export const SMALL_GRANTS_APPLY_URL = '/applicants/small-grants/apply';
 export const ACADEMIC_GRANTS_APPLY_URL = '/academic-grants/apply';
 export const DEVCON_GRANTS_APPLY_URL = '/devcon-grants/apply';
-export const MERGE_DATA_CHALLENGE_APPLY_URL = '/merge-data-challenge/apply';
 export const SEMAPHORE_GRANT_APPLY_URL = '/semaphore-grants/apply';
 export const LAYER_2_GRANTS_APPLY_URL = '/layer-2-grants/apply';
 

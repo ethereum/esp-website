@@ -12,14 +12,13 @@ import {
   PageSubheading,
   PageText,
   PageMetadata,
-  ReadyToApply,
-  FAQItem
+  FAQItem,
+  BannerApplicationClosed
 } from '../../components/UI';
 
 // Constants
 import {
   SIDEBAR_SEMAPHORE_GRANT_LINKS,
-  SEMAPHORE_GRANT_APPLY_URL,
   SEMAPHORE_GRANT_EMAIL_ADDRESS,
   SEMAPHORE_GRANT_PREVIEW_URL
 } from '../../constants';
@@ -34,7 +33,6 @@ const SemaphoreGrants: NextPage = () => {
   const [ref5, inView5] = useInView({ threshold: 0.5, initialInView: false });
   const [ref6, inView6] = useInView({ threshold: 0.5, initialInView: false });
   const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref8, inView8] = useInView({ threshold: 0.5, initialInView: false });
 
   return (
     <>
@@ -48,19 +46,12 @@ const SemaphoreGrants: NextPage = () => {
           <Flex>
             <ApplicantsSidebar
               sidebarLinks={SIDEBAR_SEMAPHORE_GRANT_LINKS}
-              sectionsInView={[
-                inView,
-                inView2,
-                inView3,
-                inView4,
-                inView5,
-                inView6,
-                inView7,
-                inView8
-              ]}
+              sectionsInView={[inView, inView2, inView3, inView4, inView5, inView6, inView7]}
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
+              <BannerApplicationClosed mb={12} />
+
               <Stack mb={8} mt={{ base: 10, md: 0 }}>
                 <section id='description' ref={ref}>
                   <PageSubheading mb={8}>Semaphore Community Grants</PageSubheading>
@@ -464,14 +455,6 @@ const SemaphoreGrants: NextPage = () => {
                       </PageText>
                     </FAQItem>
                   </Accordion>
-                </section>
-              </Stack>
-
-              <Stack spacing={10}>
-                <section id='apply' ref={ref8}>
-                  <Stack mt={6}>
-                    <ReadyToApply link={`${SEMAPHORE_GRANT_APPLY_URL}`} />
-                  </Stack>
                 </section>
               </Stack>
             </Box>
