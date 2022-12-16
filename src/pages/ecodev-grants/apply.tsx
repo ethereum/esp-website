@@ -1,9 +1,8 @@
-import { Box, Link, Stack } from '@chakra-ui/react';
+import { Box, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
-import { PageMetadata, PageSubheading, PageText } from '../../components/UI';
-import { ECODEV_GRANTS_EMAIL_ADDRESS } from '../../constants';
+import { PageMetadata, PageSubheading } from '../../components/UI';
 
 const EcodevGrantsApply: NextPage = () => {
   return (
@@ -28,19 +27,6 @@ const EcodevGrantsApply: NextPage = () => {
             <PageSubheading mb={8} textAlign='center'>
               Apply to Ecodev Grants
             </PageSubheading>
-
-            <PageText textAlign='center'>
-              If you have questions before submitting a grant application, you may contact us at{' '}
-              <Link
-                fontWeight={700}
-                color='brand.orange.100'
-                href={`mailto:${ECODEV_GRANTS_EMAIL_ADDRESS}`}
-                isExternal
-                _hover={{ textDecoration: 'none' }}
-              >
-                {ECODEV_GRANTS_EMAIL_ADDRESS}
-              </Link>
-            </PageText>
           </section>
         </Stack>
       </Box>

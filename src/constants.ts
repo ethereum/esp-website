@@ -142,7 +142,6 @@ export const ESP_EMAIL_ADDRESS = 'esp@ethereum.org';
 export const ACADEMIC_GRANTS_EMAIL_ADDRESS = 'academic-grants@ethereum.org';
 export const DEVCON_GRANTS_EMAIL_ADDRESS = 'grants@devcon.org';
 export const LAYER_2_GRANTS_EMAIL_ADDRESS = 'layer2grants@ethereum.org';
-export const ECODEV_GRANTS_EMAIL_ADDRESS = 'ecodev-grants@ethereum.org'; // TODO: confirm this
 
 // applicants tabs
 export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Small Grants', 'Project Grants'];
