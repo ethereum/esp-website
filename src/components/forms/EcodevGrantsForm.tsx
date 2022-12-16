@@ -35,8 +35,6 @@ import uploadSVG from '../../../public/images/upload.svg';
 // Constants
 import {
   COUNTRY_OPTIONS,
-  HOW_DID_YOU_HEAR_ABOUT_ECODEV_OPTIONS,
-  OTHER,
   PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS,
   TIMEZONE_OPTIONS
 } from './constants';
@@ -50,7 +48,7 @@ import {
 import { chakraStyles } from './selectStyles';
 
 // Types
-import { EcodevGrantsFormData, EcodevReferralSource } from '../../types';
+import { EcodevGrantsFormData } from '../../types';
 import { RemoveIcon } from '../UI/icons';
 import { useDropzone } from 'react-dropzone';
 
@@ -58,11 +56,6 @@ export const EcodevGrantsForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
   const [selectedFile, setSelectedFile] = useState<null | File>(null);
-
-  const [referralSource, setReferralSource] = useState<EcodevReferralSource | unknown>({
-    value: '',
-    label: ''
-  });
 
   const methods = useForm<EcodevGrantsFormData>({
     mode: 'onBlur'
@@ -113,10 +106,6 @@ export const EcodevGrantsForm: FC = () => {
         }
       })
       .catch(err => console.error('There has been a problem with your operation: ', err.message));
-  };
-
-  const handleReferralSource = (source: EcodevReferralSource) => {
-    setReferralSource(source);
   };
 
   const handleRemoveFile = (e: MouseEvent<HTMLInputElement>) => {
@@ -1331,70 +1320,45 @@ export const EcodevGrantsForm: FC = () => {
             )}
           />
 
-          <Controller
-            name='referrals'
-            control={control}
-            rules={{ required: true }}
-            defaultValue={{ value: '', label: '' }}
-            render={({ field: { onChange } }) => (
-              <FormControl id='referrals-control' isRequired mb={8}>
-                <FormLabel htmlFor='referrals'>
-                  <PageText display='inline' fontSize='input'>
-                    How did you hear about Ethereum Foundation grant funding?
-                  </PageText>
-                </FormLabel>
+          <FormControl id='referrals-control' isRequired mb={8}>
+            <FormLabel htmlFor='referrals' mb={1}>
+              <PageText display='inline' fontSize='input'>
+                How did you hear about Ethereum Foundation grant funding?
+              </PageText>
+            </FormLabel>
 
-                <Select
-                  id='referrals'
-                  options={HOW_DID_YOU_HEAR_ABOUT_ECODEV_OPTIONS}
-                  components={{ DropdownIndicator }}
-                  placeholder='Select'
-                  closeMenuOnSelect={true}
-                  selectedOptionColor='brand.option'
-                  chakraStyles={chakraStyles}
-                  onChange={(selected: any) => {
-                    onChange(selected);
-                    handleReferralSource(selected);
-                  }}
-                />
-              </FormControl>
+            <Input
+              id='referrals'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              type='text'
+              h='56px'
+              mt={3}
+              position='relative'
+              color='brand.paragraph'
+              fontSize='input'
+              {...register('referrals', {
+                required: true,
+                maxLength: 150
+              })}
+            />
+
+            {errors?.referrals?.type === 'required' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Field is required.
+                </PageText>
+              </Box>
             )}
-          />
-
-          <Box
-            display={(referralSource as EcodevReferralSource).value === OTHER ? 'block' : 'none'}
-          >
-            <Fade in={(referralSource as EcodevReferralSource).value === OTHER} delay={0.25}>
-              <FormControl id='referral-source-if-other-control' mb={8}>
-                <FormLabel htmlFor='referralSourceIfOther'>
-                  <PageText fontSize='input'>If other, explain how</PageText>
-                </FormLabel>
-                <Input
-                  id='referralSourceIfOther'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  mt={3}
-                  {...register('referralSourceIfOther', {
-                    maxLength: 255
-                  })}
-                />
-
-                {errors?.referralSourceIfOther?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Referral source cannot exceed 255 characters.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
-            </Fade>
-          </Box>
+            {errors?.referrals?.type === 'maxLength' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Referrals info cannot exceed 150 characters.
+                </PageText>
+              </Box>
+            )}
+          </FormControl>
 
           <Controller
             name='uploadProposal'

@@ -60,7 +60,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     npsp__CompanyCountry__c: fieldsSanitized.country,
     Time_Zone__c: fieldsSanitized.timezone,
     Referrals__c: fieldsSanitized.referrals,
-    Referral_Source_if_Other__c: fieldsSanitized.referralSourceIfOther,
     RecordTypeId: process.env.SF_RECORD_TYPE_GENERALIST_ECODEV
   };
 
