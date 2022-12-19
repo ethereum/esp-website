@@ -11,8 +11,7 @@ import {
   PROJECT_CATEGORY_OPTIONS,
   REASONS_FOR_MEETING,
   TIMEZONE_OPTIONS,
-  WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS,
-  LAYER_2_GRANTS_PROJECT_CATEGORY_OPTIONS
+  WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS
 } from './components/forms/constants';
 import { ABOUT_URL, APPLICANTS_URL, ESP_BLOG_URL, HOME_URL } from './constants';
 
@@ -273,8 +272,6 @@ export type AcademicGrantsProjectCategory = typeof ACADEMIC_GRANTS_PROJECT_CATEG
 
 export type ProjectGrantsProjectCategory = typeof PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS[number];
 
-export type Layer2GrantsProjectCategory = typeof LAYER_2_GRANTS_PROJECT_CATEGORY_OPTIONS[number];
-
 export type EventType = typeof EVENT_TYPE_OPTIONS[number];
 
 export type EventFormat = typeof EVENT_FORMAT_OPTIONS[number];
@@ -480,39 +477,5 @@ export interface SmallGrantsProjectNextApiRequest extends NextApiRequest {
     repeatApplicant: boolean;
     progress: string;
     otherFunding: string;
-  };
-}
-
-export interface Layer2GrantsNextApiRequest extends NextApiRequest {
-  body: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    title: string;
-    applyingAs: string;
-    company: string;
-    applyingAsOther: string;
-    country: string;
-    countriesOfTeam: string;
-    timezone: string;
-    projectName: string;
-    projectDescription: string;
-    projectCategory: string;
-    website: string;
-    projectPreviousWork: string;
-    grantScope: string;
-    projectGoals: string;
-    problemBeingSolved: string;
-    isYourProjectPublicGood: string;
-    requestedAmount: string;
-    proposedTimeline: string;
-    wouldYouShareYourResearch: string;
-    twitter: string;
-    githubUser: string;
-    telegram: string;
-    repeatApplicant: boolean;
-    canTheEFReachOut: boolean;
-    additionalInfo: string;
-    howDidYouHearAboutESP: string;
   };
 }

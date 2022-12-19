@@ -42,20 +42,6 @@ export const ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Other', label: 'Other' }
 ];
 
-export const LAYER_2_GRANTS_PROJECT_CATEGORY_OPTIONS = [
-  { value: 'Community and education', label: 'Community and education' },
-  { value: 'Cybersecurity', label: 'Cybersecurity' },
-  {
-    value: 'Cryptography and zero knowledge proofs',
-    label: 'Cryptography and Zero-Knowledge Proofs'
-  },
-  { value: 'Data Analysis', label: 'Data Analysis' },
-  { value: 'Data Visualization', label: 'Data Visualization' },
-  { value: 'Hardware', label: 'Hardware' },
-  { value: 'Maximal Extractable Value (MEV)', label: 'Maximal Extractable Value' },
-  { value: 'User experience', label: 'User Experience' }
-];
-
 // events
 export const EVENT_TYPE_OPTIONS = [
   { value: 'Conference', label: 'Conference' },
@@ -1487,16 +1473,6 @@ export const HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE = [
 
 // academic grants
 export const APPLYING_AS_OPTIONS = [
-  { value: 'An individual', label: 'An individual' },
-  { value: 'A University', label: 'A University' },
-  { value: 'A consortium of Universities', label: 'A consortium of Universities' },
-  { value: 'A Think-Tank', label: 'A Think-Tank' },
-  { value: 'A Research Center', label: 'A Research Center' },
-  { value: 'Other', label: 'Other' }
-];
-
-// layer 2 grants
-export const LAYER_2_APPLYING_AS_OPTIONS = [
   { value: 'An individual', label: 'An individual' },
   { value: 'A University', label: 'A University' },
   { value: 'A consortium of Universities', label: 'A consortium of Universities' },
