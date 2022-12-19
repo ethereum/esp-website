@@ -7,6 +7,8 @@ module.exports = {
     '/applicants/small-grants/thank-you',
     '/academic-grants/thank-you',
     '/devcon-grants/thank-you',
-    '/applicants/grantee-finance'
+    '/applicants/grantee-finance',
+    '/ecodev-grants/apply',
+    '/ecodev-grants/thank-you'
   ]
 };
