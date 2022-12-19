@@ -135,6 +135,7 @@ export const ACADEMIC_GRANTS_APPLY_URL = '/academic-grants/apply';
 export const DEVCON_GRANTS_APPLY_URL = '/devcon-grants/apply';
 export const SEMAPHORE_GRANT_APPLY_URL = '/semaphore-grants/apply';
 export const LAYER_2_GRANTS_APPLY_URL = '/layer-2-grants/apply';
+export const ECODEV_GRANTS_APPLY_URL = '/ecodev-grants/apply';
 
 // grantee finance form
 export const GRANTEE_FINANCE_URL = '/applicants/grantee-finance';
@@ -149,6 +150,7 @@ export const DEVCON_GRANTS_THANK_YOU_PAGE_URL = '/devcon-grants/thank-you';
 export const MERGE_DATA_CHALLENGE_THANK_YOU_PAGE_URL = '/merge-data-challenge/thank-you';
 export const SEMAPHORE_GRANT_THANK_YOU_PAGE_URL = '/semaphore-grants/thank-you';
 export const LAYER_2_GRANTS_THANK_YOU_PAGE_URL = '/layer-2-grants/thank-you';
+export const ECODEV_GRANTS_THANK_YOU_PAGE_URL = '/ecodev-grants/thank-you';
 
 // ethereum ecosystem
 export const ETHEREUM_ORG_URL = 'https://ethereum.org/';

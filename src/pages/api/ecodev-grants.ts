@@ -59,8 +59,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     npsp__CompanyCity__c: fieldsSanitized.city,
     npsp__CompanyCountry__c: fieldsSanitized.country,
     Time_Zone__c: fieldsSanitized.timezone,
-    Referral_Source__c: fieldsSanitized.howDidYouHearAboutESP,
-    Referral_Source_if_Other__c: fieldsSanitized.referralSourceIfOther,
     Referrals__c: fieldsSanitized.referrals,
     RecordTypeId: process.env.SF_RECORD_TYPE_GENERALIST_ECODEV
   };
@@ -78,7 +76,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         console.error(err);
         res.status(400).json({ status: 'fail' });
       } else {
-        console.log(`Project Grants Lead with ID: ${ret.id} has been created!`);
+        console.log(`Generalist EcoDev Lead with ID: ${ret.id} has been created!`);
 
         createdLeadID = ret.id;
         console.log({ createdLeadID });
@@ -106,7 +104,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         // Document upload
         conn.sobject('ContentVersion').create(
           {
-            Title: `[PROPOSAL] ${application.Project_Name__c} - ${createdLeadID}`,
+            Title: `[Document] ${application.Project_Name__c} - ${createdLeadID}`,
             PathOnClient: uploadProposal.originalFilename,
             VersionData: uploadProposalContent // base64 encoded file content
           },

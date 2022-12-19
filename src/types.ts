@@ -218,6 +218,40 @@ export interface DevconGrantsFormData extends CaptchaForm {
   howDidYouHearAboutESP: ReferralSource; // SF API: Referral_Source__c
 }
 
+export interface EcodevGrantsFormData extends CaptchaForm {
+  firstName: string; // SF API: FirstName
+  lastName: string; // SF API: LastName
+  email: string; // SF API: Email
+  company: string; // SF API: Company
+  projectName: string; // SF API: Project_Name__c
+  website: string; // SF API: Website
+  projectRepo: string; // SF API: Github_Link__c
+  twitter: string; // SF API: Twitter__c
+  teamProfile: string; // SF API: Team_Profile__c
+  projectCategory: ProjectCategory; // SF API: Category__c
+  projectDescription: string; // SF API: Project_Description__c
+  progress: string; // SF API: Progress__c
+  problemBeingSolved: string; // SF API: Problem_Being_Solved__c
+  proposedTimeline: string; // SF API: Proposed_Timeline__c
+  requestedAmount: string; // SF API: Requested_Amount__c
+  whyIsProjectImportant: string; // SF API: Impact__c
+  howDoesYourProjectDiffer: string; // SF API: How_is_it_different__c
+  isYourProjectPublicGood: string; // SF API: Is_it_a_Public_Good__c
+  isOpenSource: string; // SF API: Is_it_Open_Source__c
+  whyEthereum: string; // SF API: Why_Ethereum__c
+  challenges: string; // SF API: Challenges__c
+  sustainabilityPlan: string; // SF API: Sustainability_Plan__c
+  otherProjects: string; // SF API: Other_Projects__c
+  repeatApplicant: string; // SF API: Repeat_Applicant__c
+  otherFunding: string; // SF API: Other_Funding__c
+  additionalInfo: string; // SF API: Additional_Information__c
+  city: string; // SF API: npsp__CompanyCity__c
+  country: Country; // SF API: npsp__CompanyCountry__c
+  timezone: Timezone; // SF API: Time_Zone__c
+  referrals: string; // SF API: Referrals__c
+  uploadProposal: File;
+}
+
 export type IndividualOrTeam = 'Individual' | 'Team';
 
 export type OfficeHoursRequest = 'Project feedback' | 'Advice';
