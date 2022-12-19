@@ -258,3 +258,7 @@
   from = "/layer-2-grants/apply/"
   to = "/layer-2-grants/"
   force = true
+[[redirects]]
+  from = "/ecodev-grants"
+  to = "/ecodev-grants/apply"
+  force = true
