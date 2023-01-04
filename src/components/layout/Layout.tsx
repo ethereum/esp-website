@@ -9,12 +9,18 @@ import {
   AboutLayout,
   AcademicGrantsApplyLayout,
   AcademicGrantsLayout,
-  ApplicantsLayout
+  ApplicantsLayout,
+  DevconGrantsLayout,
+  Layer2GrantsLayout,
+  MergeDataChallengeLayout,
+  SemaphoreGrantLayout,
+  AcademicGrants2023Layout
 } from '../layout';
 import { Nav } from '../../components';
 
 import {
   ABOUT_URL,
+  ACADEMIC_GRANTS_2023_URL,
   ACADEMIC_GRANTS_URL,
   APPLICANTS_URL,
   DEVCON_GRANTS_URL,
@@ -24,10 +30,6 @@ import {
   MERGE_DATA_CHALLENGE_URL,
   SEMAPHORE_GRANT_URL
 } from '../../constants';
-import { DevconGrantsLayout } from './DevconGrantsLayout';
-import { MergeDataChallengeLayout } from './MergeDataChallengeLayout';
-import { SemaphoreGrantLayout } from './SemaphoreGrantLayout';
-import { Layer2GrantsLayout } from './Layer2GrantsLayout';
 
 export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
   const router = useRouter();
@@ -78,6 +80,16 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
         <Box mt={{ md: -10, lg: 0 }}>
           <main>
             <AcademicGrantsLayout>{children}</AcademicGrantsLayout>
+          </main>
+        </Box>
+      );
+    }
+
+    if (router.pathname === ACADEMIC_GRANTS_2023_URL) {
+      return (
+        <Box mt={{ md: -10, lg: 0 }}>
+          <main>
+            <AcademicGrants2023Layout>{children}</AcademicGrants2023Layout>
           </main>
         </Box>
       );

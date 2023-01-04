@@ -9,10 +9,12 @@ import {
   ProjectGrantsForm,
   SmallGrantsForm,
   DevconGrantsForm,
-  EcodevGrantsForm
+  EcodevGrantsForm,
+  AcademicGrants2023Form
 } from './';
 
 import {
+  ACADEMIC_GRANTS_2023_APPLY_URL,
   ACADEMIC_GRANTS_APPLY_URL,
   DEVCON_GRANTS_APPLY_URL,
   ECODEV_GRANTS_APPLY_URL,
@@ -50,6 +52,11 @@ export const Forms: FC = () => {
       {router.pathname === ACADEMIC_GRANTS_APPLY_URL && (
         <Box px={{ md: 24, lg: 32, xl: 72 }}>
           <AcademicGrantsForm />
+        </Box>
+      )}
+      {router.pathname === ACADEMIC_GRANTS_2023_APPLY_URL && (
+        <Box px={{ md: 24, lg: 32, xl: 72 }}>
+          <AcademicGrants2023Form />
         </Box>
       )}
       {router.pathname === DEVCON_GRANTS_APPLY_URL && (
