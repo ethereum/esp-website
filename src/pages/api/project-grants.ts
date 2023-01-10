@@ -62,7 +62,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     Referral_Source__c: fieldsSanitized.howDidYouHearAboutESP,
     Referral_Source_if_Other__c: fieldsSanitized.referralSourceIfOther,
     Referrals__c: fieldsSanitized.referrals,
-    RecordTypeId: process.env.SF_RECORD_TYPE_GENERALIST_ECODEV
+    RecordTypeId: process.env.SF_RECORD_TYPE_PROJECT_GRANTS
   };
 
   conn.login(SF_PROD_USERNAME!, `${SF_PROD_PASSWORD}${SF_PROD_SECURITY_TOKEN}`, err => {
