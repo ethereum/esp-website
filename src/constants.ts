@@ -129,15 +129,15 @@ export const SIDEBAR_LAYER_2_GRANTS_LINKS: SidebarLink[] = [
 
 export const ACADEMIC_GRANTS_2023_URL = '/academic-grants-2023';
 export const SIDEBAR_ACADEMIC_GRANTS_2023_LINKS: SidebarLink[] = [
-  { text: 'Summary', href: `${ACADEMIC_GRANTS_URL}/#description` },
-  { text: 'Submit proposal', href: `${ACADEMIC_GRANTS_URL}/#submit-proposal` },
-  { text: 'Deadline', href: `${ACADEMIC_GRANTS_URL}/#deadline` },
-  { text: 'Requirements', href: `${ACADEMIC_GRANTS_URL}/#requirements` },
-  { text: 'Selection criteria', href: `${ACADEMIC_GRANTS_URL}/#selection-criteria` },
-  { text: 'Wishlist', href: `${ACADEMIC_GRANTS_URL}/#wishlist` },
-  { text: 'Next steps and support', href: `${ACADEMIC_GRANTS_URL}/#next-steps-and-support` },
-  { text: 'FAQ', href: `${ACADEMIC_GRANTS_URL}/#faq` },
-  { text: 'Apply', href: `${ACADEMIC_GRANTS_URL}/#apply` }
+  { text: 'Summary', href: `${ACADEMIC_GRANTS_2023_URL}/#description` },
+  { text: 'Submit proposal', href: `${ACADEMIC_GRANTS_2023_URL}/#submit-proposal` },
+  { text: 'Deadline', href: `${ACADEMIC_GRANTS_2023_URL}/#deadline` },
+  { text: 'Requirements', href: `${ACADEMIC_GRANTS_2023_URL}/#requirements` },
+  { text: 'Selection criteria', href: `${ACADEMIC_GRANTS_2023_URL}/#selection-criteria` },
+  { text: 'Wishlist', href: `${ACADEMIC_GRANTS_2023_URL}/#wishlist` },
+  { text: 'Next steps and support', href: `${ACADEMIC_GRANTS_2023_URL}/#next-steps-and-support` },
+  { text: 'FAQ', href: `${ACADEMIC_GRANTS_2023_URL}/#faq` },
+  { text: 'Apply', href: `${ACADEMIC_GRANTS_2023_URL}/#apply` }
 ];
 
 // apply forms

@@ -7,7 +7,6 @@ import {
   FAQItem,
   List,
   PageSection,
-  PageSubheading,
   PageText,
   PageMetadata,
   ReadyToApply
@@ -16,11 +15,9 @@ import {
 import {
   ACADEMIC_GRANTS_EMAIL_ADDRESS,
   HOME_URL,
-  SIDEBAR_ACADEMIC_GRANTS_LINKS,
-  ACADEMIC_GRANTS_APPLY_URL,
-  WHO_WE_SUPPORT_URL,
   ACADEMIC_GRANTS_2023_APPLY_URL,
-  OFFICE_HOURS_URL
+  OFFICE_HOURS_URL,
+  SIDEBAR_ACADEMIC_GRANTS_2023_LINKS
 } from '../../constants';
 
 const AcademicGrants2023: NextPage = () => {
@@ -47,7 +44,7 @@ const AcademicGrants2023: NextPage = () => {
         <Stack spacing={10} mb={8} px={{ base: 5, md: 0 }} py={{ base: 3, md: 12 }}>
           <Flex>
             <ApplicantsSidebar
-              sidebarLinks={SIDEBAR_ACADEMIC_GRANTS_LINKS}
+              sidebarLinks={SIDEBAR_ACADEMIC_GRANTS_2023_LINKS}
               sectionsInView={[
                 inView,
                 inView2,
