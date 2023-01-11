@@ -1,15 +1,29 @@
 import { FC } from 'react';
+import { useRouter } from 'next/router';
+import { Box, Link } from '@chakra-ui/react';
+
+import { Banner } from './UI';
+
+import { ACADEMIC_GRANTS_2023_URL } from '../constants';
 
 interface Props {}
 
 export const Banners: FC<Props> = () => {
-  // LEAVING THESE COMMENTS AS A REFERENCE
+  const router = useRouter();
 
-  // const router = useRouter();
-
-  // if (!router.pathname.includes(URL)) {
-  // add application banner here
-  // }
+  if (!router.pathname.includes(ACADEMIC_GRANTS_2023_URL)) {
+    return (
+      <Banner>
+        <Box fontSize='paragraph' textAlign='center'>
+          Applications are open for the{' '}
+          <Link fontWeight={700} href={ACADEMIC_GRANTS_2023_URL}>
+            Academic grants
+          </Link>
+          . See the details and apply.
+        </Box>
+      </Banner>
+    );
+  }
 
   return null;
 };
