@@ -167,7 +167,7 @@ const AcademicGrants2023: NextPage = () => {
 
                   <List>
                     <ListItem>Proposals must be in English.</ListItem>
-                    <ListItem>Work must be open source.</ListItem>
+                    <ListItem>Work must be free and open source.</ListItem>
                     <ListItem>Reports must be accessible by a url.</ListItem>
                     <ListItem>
                       Proposal must include the topics in the{' '}
@@ -189,7 +189,7 @@ const AcademicGrants2023: NextPage = () => {
                   <PageSection mb={6}>Selection criteria</PageSection>
 
                   <PageText mb={6}>
-                    <strong>Surprise us with your creativity!</strong> But here are a few selection
+                    <strong>Surprise us with your creativity!</strong> Here are a few selection
                     criteria considerations:
                   </PageText>
 
@@ -226,6 +226,8 @@ const AcademicGrants2023: NextPage = () => {
                     </Link>
                     .
                   </PageText>
+
+                  <PageText mb={6}>Surprise us with your creativity!</PageText>
                 </section>
 
                 <section id='next-steps-and-support' ref={ref7}>
@@ -252,15 +254,16 @@ const AcademicGrants2023: NextPage = () => {
                   <Accordion allowToggle>
                     <FAQItem question='Does the Ethereum Foundation have an Indirect Costs Policy?'>
                       <PageText>
-                        Yes, the Ethereum Support Program&apos;s Indirect Costs Policy is listed
+                        ESP has an indirect costs policy for Academic Grants. If you would like a
+                        copy of the policy, please email{' '}
                         <Link
                           fontWeight={700}
                           color='brand.orange.100'
-                          href='https://hackmd.io/JttcP6kDRgChJYU-Sp154g'
+                          href={`mailto:${ACADEMIC_GRANTS_EMAIL_ADDRESS}`}
                           isExternal
                           _hover={{ textDecoration: 'none' }}
                         >
-                          here
+                          {ACADEMIC_GRANTS_EMAIL_ADDRESS}
                         </Link>
                         .
                       </PageText>
@@ -337,10 +340,36 @@ const AcademicGrants2023: NextPage = () => {
                       </PageText>
                     </FAQItem>
 
+                    <FAQItem question='Has this type of grant been awarded before by the Ethereum Foundation?'>
+                      <PageText>
+                        This is the second time the Ethereum Foundation is launching a specific
+                        grant round to support Ethereum related academic research. We also have an
+                        ongoing support Program - the Ecosystem Support Program - which supports
+                        Ethereum related projects in various scopes.
+                      </PageText>
+                    </FAQItem>
+
                     <FAQItem question='Are applications evaluated on a rolling basis or at the end of the deadline?'>
                       <PageText>
-                        Project submissions will be evaluated on a rolling basis and contact will be
-                        made with each applicant to inform about the evaluation outcome.
+                        Project submission will be evaluated after the deadline, and contact will be
+                        made with each applicant to inform them about the evaluation outcome.
+                      </PageText>
+                    </FAQItem>
+
+                    <FAQItem question='Can I submit more than one application, or should I combine all the project ideas into one sole application?'>
+                      <PageText>
+                        You should submit one application per project idea/ wishlist area. Multiple
+                        applications per institution are accepted for the Academic Grants Round.
+                        Submitting duplicates or variants of the same application will not improve
+                        your chances of selection.
+                      </PageText>
+                    </FAQItem>
+
+                    <FAQItem question='Can you estimate the number of project submissions and selected projects in previous Academic Grants rounds?'>
+                      <PageText>
+                        During the first Academic Grants Round, the Ethereum Foundation received
+                        over 150 applications and issued 39 grants for academic research in 18
+                        countries.
                       </PageText>
                     </FAQItem>
 
