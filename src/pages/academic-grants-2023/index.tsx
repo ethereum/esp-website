@@ -125,15 +125,16 @@ const AcademicGrants2023: NextPage = () => {
                   </PageText>
 
                   <PageText mb={6}>
-                    Grants will be awarded on a case-by-case and rolling basis. You may enter more
-                    than one proposal as long as each proposal is unique and meets the{' '}
+                    Grants will be awarded on a case by case basis and will be reviewed after the
+                    deadline. You may enter more than one proposal as long as each proposal is
+                    unique and meets the{' '}
                     <Link
                       fontWeight={700}
                       color='brand.orange.100'
                       href='#requirements'
                       _hover={{ textDecoration: 'none' }}
                     >
-                      the requirements
+                      requirements
                     </Link>
                     .
                   </PageText>
@@ -365,7 +366,7 @@ const AcademicGrants2023: NextPage = () => {
                       </PageText>
                     </FAQItem>
 
-                    <FAQItem question='Can you estimate the number of project submissions and selected projects in previous Academic Grants rounds?'>
+                    <FAQItem question='Can you provide an estimate of the number of submissions and, of those, how many were selected in the previous Academic grants rounds?'>
                       <PageText>
                         During the first Academic Grants Round, the Ethereum Foundation received
                         over 150 applications and issued 39 grants for academic research in 18

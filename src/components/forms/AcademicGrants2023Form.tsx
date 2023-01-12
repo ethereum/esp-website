@@ -6,6 +6,7 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Link,
   Radio,
   RadioGroup,
   Stack,
@@ -666,8 +667,16 @@ export const AcademicGrants2023Form: FC = () => {
             </PageText>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Please provide a link to your grant proposal for review. (Ex:
-              https://hackmd.io/@rodrigolvc/Example_Grant)
+              Please provide a link to your grant proposal for review.{' '}
+              <Link
+                fontWeight={700}
+                color='brand.orange.200'
+                href={`https://hackmd.io/@rodrigolvc/Example_Grant`}
+                isExternal
+                _hover={{ textDecoration: 'none' }}
+              >
+                Proposal Template
+              </Link>
             </PageText>
 
             <Input
