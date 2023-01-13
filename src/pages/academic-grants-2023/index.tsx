@@ -109,7 +109,7 @@ const AcademicGrants2023: NextPage = () => {
                     <Link
                       fontWeight={700}
                       color='brand.orange.100'
-                      href='https://hackmd.io/47XMp0nLQC6qYfqA4cowSQ'
+                      href='https://notes.ethereum.org/@djrtwo/academic-grants-wishlist-2023'
                       isExternal
                       _hover={{ textDecoration: 'none' }}
                     >
@@ -219,7 +219,7 @@ const AcademicGrants2023: NextPage = () => {
                     <Link
                       fontWeight={700}
                       color='brand.orange.100'
-                      href='https://hackmd.io/47XMp0nLQC6qYfqA4cowSQ'
+                      href='https://notes.ethereum.org/@djrtwo/academic-grants-wishlist-2023'
                       isExternal
                       _hover={{ textDecoration: 'none' }}
                     >
