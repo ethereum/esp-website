@@ -58,7 +58,7 @@ The following list describes the main elements of the project structure:
   - `components`: React components.
     - components with state are directly located inside `/components`.
     - `forms`: components used in forms.
-      - `api.ts`: this file contains the api fetching logic details used when submiting the forms data.
+      - `api.ts`: this file contains the api fetching logic details used when submitting the forms data.
     - `layout`: components used to contain and apply different layouts to different pages.
     - `UI`: stateless (functional) components.
   - `hooks`: custom hooks.
@@ -66,7 +66,7 @@ The following list describes the main elements of the project structure:
   - `pages`: includes components that renders to pages and [NextJS API Routes](https://nextjs.org/docs/api-routes/introduction).
   - `theme`: contains the [Chakra UI custom theme](https://chakra-ui.com/docs/styled-system/theming/customize-theme), organized in `foundations` and `components` for better scaling.
   - `utils`
-  - `constants.ts`: this is the _global_ constants file (we have another one for specific _form constants_), containg URLs and lists of elements we use across the site.
+  - `constants.ts`: this is the _global_ constants file (we have another one for specific _form constants_), containing URLs and lists of elements we use across the site.
   - `global.css`: global stylesheet.
   - `types.ts`: contains the custom defined TypeScript types and interfaces.
 
@@ -74,7 +74,7 @@ The following list describes the main elements of the project structure:
 
 For the custom integration with the Salesforce API, we rely on the [JSforce](https://jsforce.github.io/) library. Some operations are not documented and were the result of lots of googling, SO and [Github issues scanning](https://github.com/jsforce/jsforce/issues).
 
-The Salesfoce API field names (listed on `types.ts`) are defined in Salesforce for each corresponding object (Lead, Contract, etc).
+The Salesforce API field names (listed on `types.ts`) are defined in Salesforce for each corresponding object (Lead, Contract, etc).
 
 ### Connected App
 
@@ -114,7 +114,7 @@ Check that the hardwired string value of `Proactive_Community_Grants_Round__c` i
 
 ## Grantees List data source
 
-The data published in the [Latest Grantees](https://esp.ethereum.foundation/about/who-we-support#latest-grantees) list is being pulled from a Google Spreadsheet mantained by the ESP Team. This document uses Markdown syntax as it's also being used as source for other pages.
+The data published in the [Latest Grantees](https://esp.ethereum.foundation/about/who-we-support#latest-grantees) list is being pulled from a Google Spreadsheet maintained by the ESP Team. This document uses Markdown syntax as it's also being used as source for other pages.
 
 To accomplish that, we [publish the content of the document as CSV](https://support.google.com/a/users/answer/9308870?hl=en) and then render it in the `LatestGranteesList` component. This includes some parsing work, from CSV to JSON and then rendering the Markdown. This process happens server-side only, [on build time](https://nextjs.org/docs/basic-features/data-fetching/get-static-props), so the [resulting page](https://esp.ethereum.foundation/about/who-we-support) is completely static.
 
