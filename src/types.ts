@@ -11,7 +11,8 @@ import {
   PROJECT_CATEGORY_OPTIONS,
   REASONS_FOR_MEETING,
   TIMEZONE_OPTIONS,
-  WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS
+  WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS,
+  ACADEMIC_GRANTS_2023_PROJECT_CATEGORY_OPTIONS
 } from './components/forms/constants';
 import { ABOUT_URL, APPLICANTS_URL, ESP_BLOG_URL, HOME_URL } from './constants';
 
@@ -192,6 +193,34 @@ export interface AcademicGrantsFormData extends CaptchaForm {
   additionalInfo: string; // SF API: Additional_Information__c
 }
 
+export interface AcademicGrants2023FormData extends CaptchaForm {
+  firstName: string; // SF API: FirstName
+  lastName: string; // SF API: LastName
+  email: string; // SF API: Email
+  POCisAuthorisedSignatory: string; // SF API: POC_is_authorised_signatory__c
+  authorisedSignatoryInformation: string; // SF API: Authorised_Signatory_Information__c
+  applyingAs: ApplyingAs; // SF API: Applying_as_a__c
+  applyingAsOther: string; // SF API: Applying_as_Other__c
+  company: string; // SF API: Company
+  country: Country; // SF API: npsp__CompanyCountry__c
+  countriesOfTeam: string; // SF API: Countries_of_Team__c
+  timezone: Timezone; // SF API: Time_Zone__c
+  projectName: string; // SF API: Project_Name__c
+  projectDescription: string; // SF API: Project_Description__c
+  website: string; // SF API: Website
+  projectCategory: AcademicGrants2023ProjectCategory; // SF API: Category__c
+  requestedAmount: string; // SF API: Requested_Amount__c
+  howDidYouHearAboutGrantsWave: GrantsReferralSource; // SF API: Referral_Source__c
+  referralSourceIfOther: string; // SF API: Referral_Source_if_Other__c
+  wouldYouShareYourResearch: WouldYouShareYourResearch; // SF API: Would_you_share_your_research__c
+  linkedinProfile: string; // SF API: LinkedIn_Profile__c
+  twitter: string; // SF API: Twitter__c
+  telegram: string; // SF API: Alternative_Contact__c
+  repeatApplicant: string; // SF API: Repeat_Applicant__c
+  canTheEFReachOut: string; // SF API: Can_the_EF_reach_out__c
+  additionalInfo: string; // SF API: Additional_Information__c
+}
+
 export interface DevconGrantsFormData extends CaptchaForm {
   firstName: string; // SF API: FirstName
   lastName: string; // SF API: LastName
@@ -269,6 +298,9 @@ export type ReasonForMeeting = typeof REASONS_FOR_MEETING;
 export type ProjectCategory = typeof PROJECT_CATEGORY_OPTIONS[number];
 
 export type AcademicGrantsProjectCategory = typeof ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS[number];
+
+export type AcademicGrants2023ProjectCategory =
+  typeof ACADEMIC_GRANTS_2023_PROJECT_CATEGORY_OPTIONS[number];
 
 export type ProjectGrantsProjectCategory = typeof PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS[number];
 
@@ -400,6 +432,36 @@ export interface AcademicGrantsNextApiRequest extends NextApiRequest {
     proposedTimeline: string;
     challenges: string;
     additionalSupportRequests: string;
+    howDidYouHearAboutGrantsWave: string;
+    referralSourceIfOther: string;
+    wouldYouShareYourResearch: string;
+    linkedinProfile: string;
+    twitter: string;
+    telegram: string;
+    repeatApplicant: boolean;
+    canTheEFReachOut: boolean;
+    additionalInfo: string;
+  };
+}
+
+export interface AcademicGrants2023NextApiRequest extends NextApiRequest {
+  body: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    POCisAuthorisedSignatory: boolean;
+    authorisedSignatoryInformation: string;
+    applyingAs: string;
+    applyingAsOther: string;
+    company: string;
+    country: string;
+    countriesOfTeam: string;
+    timezone: string;
+    projectName: string;
+    projectDescription: string;
+    website: string;
+    projectCategory: string;
+    requestedAmount: string;
     howDidYouHearAboutGrantsWave: string;
     referralSourceIfOther: string;
     wouldYouShareYourResearch: string;
