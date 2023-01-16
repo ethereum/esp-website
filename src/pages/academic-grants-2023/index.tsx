@@ -345,7 +345,7 @@ const AcademicGrants2023: NextPage = () => {
                       <PageText>
                         This is the second time the Ethereum Foundation is launching a specific
                         grant round to support Ethereum related academic research. We also have an
-                        ongoing support Program - the Ecosystem Support Program - which supports
+                        ongoing support program - the Ecosystem Support Program - which supports
                         Ethereum related projects in various scopes.
                       </PageText>
                     </FAQItem>

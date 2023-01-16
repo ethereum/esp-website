@@ -17,7 +17,7 @@ export const Banners: FC<Props> = () => {
         <Box fontSize='paragraph' textAlign='center'>
           Applications are open for the{' '}
           <Link fontWeight={700} href={ACADEMIC_GRANTS_2023_URL}>
-            Academic grants
+            Academic Grants Round
           </Link>
           . See the details and apply.
         </Box>
