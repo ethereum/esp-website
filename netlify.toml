@@ -227,16 +227,8 @@
   to = "/applicants/"
   force = true
 [[redirects]]
-  from = "/academic-grants/"
-  to = "/applicants/"
-  force = true
-[[redirects]]
   from = "/academic-grants/apply/"
-  to = "/applicants/"
-  force = true
-[[redirects]]
-  from = "/academic-grants/thank-you/"
-  to = "/applicants/"
+  to = "/academic-grants/"
   force = true
 [[redirects]]
   from = "/merge-data-challenge/apply/"

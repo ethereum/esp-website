@@ -3,7 +3,6 @@ import { FC } from 'react';
 import { useRouter } from 'next/router';
 
 import {
-  AcademicGrantsForm,
   GranteeFinanceForm,
   OfficeHoursForm,
   ProjectGrantsForm,
@@ -15,7 +14,6 @@ import {
 
 import {
   ACADEMIC_GRANTS_2023_APPLY_URL,
-  ACADEMIC_GRANTS_APPLY_URL,
   DEVCON_GRANTS_APPLY_URL,
   ECODEV_GRANTS_APPLY_URL,
   GRANTEE_FINANCE_URL,
@@ -47,11 +45,6 @@ export const Forms: FC = () => {
       {router.pathname === GRANTEE_FINANCE_URL && (
         <Box px={{ md: 24, lg: 32, xl: 72 }}>
           <GranteeFinanceForm />
-        </Box>
-      )}
-      {router.pathname === ACADEMIC_GRANTS_APPLY_URL && (
-        <Box px={{ md: 24, lg: 32, xl: 72 }}>
-          <AcademicGrantsForm />
         </Box>
       )}
       {router.pathname === ACADEMIC_GRANTS_2023_APPLY_URL && (
