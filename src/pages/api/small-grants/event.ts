@@ -6,7 +6,7 @@ import { verifyCaptcha } from '../../../middlewares';
 import { SmallGrantsEventNextApiRequest } from '../../../types';
 
 async function handler(req: SmallGrantsEventNextApiRequest, res: NextApiResponse): Promise<void> {
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     const { body } = req;
     const {
       // General
@@ -51,7 +51,7 @@ async function handler(req: SmallGrantsEventNextApiRequest, res: NextApiResponse
     conn.login(SF_PROD_USERNAME!, `${SF_PROD_PASSWORD}${SF_PROD_SECURITY_TOKEN}`, err => {
       if (err) {
         console.error(err);
-        return reject();
+        return resolve();
       }
 
       let createdLeadID: string;
@@ -93,7 +93,7 @@ async function handler(req: SmallGrantsEventNextApiRequest, res: NextApiResponse
           if (err || !ret.success) {
             console.error(err);
             res.status(400).json({ status: 'fail' });
-            return reject();
+            return resolve();
           } else {
             console.log(`Small Grants Lead (event) with ID: ${ret.id} has been created!`);
 

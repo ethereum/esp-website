@@ -7,7 +7,7 @@ import { multipartyParse, verifyCaptcha } from '../../middlewares';
 import { MAX_PROPOSAL_FILE_SIZE } from '../../constants';
 
 async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     const { fields = {}, files = {} } = req;
 
     const fieldsSanitized = Object.keys(fields).reduce<typeof fields>((prev, key) => {
@@ -69,7 +69,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
     conn.login(SF_PROD_USERNAME!, `${SF_PROD_PASSWORD}${SF_PROD_SECURITY_TOKEN}`, err => {
       if (err) {
         console.error(err);
-        return reject();
+        return resolve();
       }
 
       let createdLeadID: string;
@@ -79,7 +79,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         if (err || !ret.success) {
           console.error(err);
           res.status(400).json({ status: 'fail' });
-          return reject();
+          return resolve();
         } else {
           console.log(`Project Grants Lead with ID: ${ret.id} has been created!`);
 
@@ -103,7 +103,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
           } catch (error) {
             console.error(error);
             res.status(500).json({ status: 'fail' });
-            return reject();
+            return resolve();
           }
 
           // Document upload
@@ -118,7 +118,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
                 console.error(err);
 
                 res.status(400).json({ status: 'fail' });
-                return reject();
+                return resolve();
               } else {
                 console.log({ uploadedFile });
                 console.log(`Document has been uploaded successfully!`);

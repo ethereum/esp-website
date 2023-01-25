@@ -11,7 +11,7 @@ const googleSpreadsheetId = process.env.GOOGLE_DEVCON_SPREADSHEET_ID;
 const googleSheetName = process.env.GOOGLE_DEVCON_SHEET_NAME;
 
 async function handler(req: DevconGrantsNextApiRequest, res: NextApiResponse): Promise<void> {
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     const { body } = req;
     const {
       firstName: FirstName,
@@ -49,7 +49,8 @@ async function handler(req: DevconGrantsNextApiRequest, res: NextApiResponse): P
     conn.login(SF_PROD_USERNAME!, `${SF_PROD_PASSWORD}${SF_PROD_SECURITY_TOKEN}`, err => {
       if (err) {
         console.error(err);
-        return reject();
+        res.status(500).end();
+        return resolve();
       }
 
       const application = {
@@ -88,7 +89,7 @@ async function handler(req: DevconGrantsNextApiRequest, res: NextApiResponse): P
         if (err || !ret.success) {
           console.error(err);
           res.status(400).json({ status: 'fail' });
-          return reject();
+          return resolve();
         }
 
         // send submission data to a google spreadsheet
