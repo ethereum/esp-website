@@ -10,14 +10,13 @@ import {
   PageSubheading,
   PageText,
   PageMetadata,
-  ReadyToApply
+  BannerApplicationClosed
 } from '../../components/UI';
 
 import {
   ACADEMIC_GRANTS_EMAIL_ADDRESS,
   HOME_URL,
   SIDEBAR_ACADEMIC_GRANTS_LINKS,
-  ACADEMIC_GRANTS_APPLY_URL,
   WHO_WE_SUPPORT_URL
 } from '../../constants';
 
@@ -32,7 +31,6 @@ const AcademicGrants: NextPage = () => {
   const [ref6, inView6] = useInView({ threshold: 0.5, initialInView: false });
   const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
   const [ref8, inView8] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref9, inView9] = useInView({ threshold: 0, initialInView: false });
 
   return (
     <>
@@ -54,12 +52,13 @@ const AcademicGrants: NextPage = () => {
                 inView5,
                 inView6,
                 inView7,
-                inView8,
-                inView9
+                inView8
               ]}
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
+              <BannerApplicationClosed mb={12} />
+
               <Stack mb={8} mt={{ base: 10, md: 0 }}>
                 <section id='description' ref={ref}>
                   <PageSubheading mb={8}>
@@ -135,20 +134,6 @@ const AcademicGrants: NextPage = () => {
                       _hover={{ textDecoration: 'none' }}
                     >
                       the requirements
-                    </Link>
-                    .
-                  </PageText>
-
-                  <PageText>
-                    Submit your application{' '}
-                    <Link
-                      fontWeight={700}
-                      color='brand.orange.100'
-                      href={`${ACADEMIC_GRANTS_APPLY_URL}`}
-                      isExternal
-                      _hover={{ textDecoration: 'none' }}
-                    >
-                      here
                     </Link>
                     .
                   </PageText>
@@ -433,12 +418,6 @@ const AcademicGrants: NextPage = () => {
                       </PageText>
                     </FAQItem>
                   </Accordion>
-                </section>
-
-                <section id='apply' ref={ref9}>
-                  <Stack mt={6}>
-                    <ReadyToApply link={`${ACADEMIC_GRANTS_APPLY_URL}`} />
-                  </Stack>
                 </section>
               </Stack>
             </Box>
