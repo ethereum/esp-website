@@ -11,9 +11,12 @@ export const AcademicGrantsLayout: FC = ({ children }) => {
     <Stack>
       <GrantsHero
         colorBrandConstant='academicGrantsHero'
-        desktopImage={{alt: 'Academics doing research about Ethereum', src: academicGrantsHero}}
-        mobileImage={{alt: 'Academics doing research about Ethereum', src: academicGrantsHeroMobile}}
-        title='Devcon Grants Round'
+        desktopImage={{ alt: 'Academics doing research about Ethereum', src: academicGrantsHero }}
+        mobileImage={{
+          alt: 'Academics doing research about Ethereum',
+          src: academicGrantsHeroMobile
+        }}
+        title='Academic Grants Round'
       >
         The Ethereum Foundation is sponsoring a wave of grants to support Ethereum-related academic
         work. This grants round has up to $750,000 in total available. Proposals are due{' '}

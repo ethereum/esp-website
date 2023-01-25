@@ -71,8 +71,7 @@ export const SIDEBAR_ACADEMIC_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Selection criteria', href: `${ACADEMIC_GRANTS_URL}/#selection-criteria` },
   { text: 'Wishlist', href: `${ACADEMIC_GRANTS_URL}/#wishlist` },
   { text: 'Next steps and support', href: `${ACADEMIC_GRANTS_URL}/#next-steps-and-support` },
-  { text: 'FAQ', href: `${ACADEMIC_GRANTS_URL}/#faq` },
-  { text: 'Apply', href: `${ACADEMIC_GRANTS_URL}/#apply` }
+  { text: 'FAQ', href: `${ACADEMIC_GRANTS_URL}/#faq` }
 ];
 
 export const DEVCON_GRANTS_URL = '/devcon-grants';
@@ -144,11 +143,8 @@ export const SIDEBAR_ACADEMIC_GRANTS_2023_LINKS: SidebarLink[] = [
 export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
 export const OFFICE_HOURS_APPLY_URL = '/applicants/office-hours/apply';
 export const SMALL_GRANTS_APPLY_URL = '/applicants/small-grants/apply';
-export const ACADEMIC_GRANTS_APPLY_URL = '/academic-grants/apply';
 export const ACADEMIC_GRANTS_2023_APPLY_URL = '/academic-grants-2023/apply';
 export const DEVCON_GRANTS_APPLY_URL = '/devcon-grants/apply';
-export const SEMAPHORE_GRANT_APPLY_URL = '/semaphore-grants/apply';
-export const LAYER_2_GRANTS_APPLY_URL = '/layer-2-grants/apply';
 export const ECODEV_GRANTS_APPLY_URL = '/ecodev-grants/apply';
 
 // grantee finance form
@@ -159,12 +155,8 @@ export const PROJECT_GRANTS_THANK_YOU_PAGE_URL = '/applicants/project-grants/tha
 export const OFFICE_HOURS_THANK_YOU_PAGE_URL = '/applicants/office-hours/thank-you';
 export const SMALL_GRANTS_THANK_YOU_PAGE_URL = '/applicants/small-grants/thank-you';
 export const GRANTEE_FINANCE_THANK_YOU_PAGE_URL = '/applicants/grantee-finance/thank-you';
-export const ACADEMIC_GRANTS_THANK_YOU_PAGE_URL = '/academic-grants/thank-you';
 export const ACADEMIC_GRANTS_2023_THANK_YOU_PAGE_URL = '/academic-grants-2023/thank-you';
 export const DEVCON_GRANTS_THANK_YOU_PAGE_URL = '/devcon-grants/thank-you';
-export const MERGE_DATA_CHALLENGE_THANK_YOU_PAGE_URL = '/merge-data-challenge/thank-you';
-export const SEMAPHORE_GRANT_THANK_YOU_PAGE_URL = '/semaphore-grants/thank-you';
-export const LAYER_2_GRANTS_THANK_YOU_PAGE_URL = '/layer-2-grants/thank-you';
 export const ECODEV_GRANTS_THANK_YOU_PAGE_URL = '/ecodev-grants/thank-you';
 
 // ethereum ecosystem
@@ -263,8 +255,6 @@ export const LAYER_2_GRANTS_PREVIEW_URL =
 
 // Thank you and apply urls
 export const GRANTS_URLS = [
-  ACADEMIC_GRANTS_APPLY_URL,
-  ACADEMIC_GRANTS_THANK_YOU_PAGE_URL,
   ACADEMIC_GRANTS_2023_APPLY_URL,
   ACADEMIC_GRANTS_2023_THANK_YOU_PAGE_URL,
   DEVCON_GRANTS_APPLY_URL,
