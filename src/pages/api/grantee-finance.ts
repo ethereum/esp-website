@@ -6,7 +6,7 @@ import { verifyCaptcha } from '../../middlewares';
 import { GranteeFinanceNextApiRequest } from '../../types';
 
 async function handler(req: GranteeFinanceNextApiRequest, res: NextApiResponse): Promise<void> {
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     const { body } = req;
     const {
       beneficiaryName: Beneficiary_Name__c,
@@ -34,14 +34,14 @@ async function handler(req: GranteeFinanceNextApiRequest, res: NextApiResponse):
     conn.login(SF_PROD_USERNAME!, `${SF_PROD_PASSWORD}${SF_PROD_SECURITY_TOKEN}`, err => {
       if (err) {
         console.error(err);
-        return reject();
+        return resolve();
       }
 
       conn.sobject('Contract').retrieve(Contract_ID__c, function (err, account) {
         if (err) {
           console.error(err);
           res.status(404).json({ status: 'Grantee Security ID not found.' });
-          return reject();
+          return resolve();
         }
 
         console.log(`Contract ID: ${Contract_ID__c} found! Proceeding to update the record...`);
@@ -70,7 +70,7 @@ async function handler(req: GranteeFinanceNextApiRequest, res: NextApiResponse):
             if (err || !ret.success) {
               console.error(err);
               res.status(400).json({ status: 'fail' });
-              return reject();
+              return resolve();
             } else {
               console.log(`Contract with ID: ${Contract_ID__c} has been successfully updated!`);
 
