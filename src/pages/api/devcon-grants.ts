@@ -3,7 +3,7 @@ import { NextApiResponse } from 'next';
 
 import addRowToSpreadsheet from '../../utils/addRowToSpreadsheet';
 
-import { verifyCaptcha } from '../../middlewares';
+import { sanitizeFields, verifyCaptcha } from '../../middlewares';
 
 import { DevconGrantsNextApiRequest } from '../../types';
 
@@ -115,4 +115,4 @@ async function handler(req: DevconGrantsNextApiRequest, res: NextApiResponse): P
   });
 }
 
-export default verifyCaptcha(handler);
+export default sanitizeFields(verifyCaptcha(handler));

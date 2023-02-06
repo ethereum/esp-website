@@ -3,7 +3,7 @@ import jsforce from 'jsforce';
 import { NextApiRequest, NextApiResponse } from 'next';
 import type { File } from 'formidable';
 
-import { multipartyParse, verifyCaptcha } from '../../middlewares';
+import { multipartyParse, sanitizeFields, verifyCaptcha } from '../../middlewares';
 import { MAX_PROPOSAL_FILE_SIZE } from '../../constants';
 
 async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
@@ -153,6 +153,6 @@ export const config = {
   }
 };
 
-export default multipartyParse(verifyCaptcha(handler), {
+export default multipartyParse(sanitizeFields(verifyCaptcha(handler)), {
   maxFileSize: MAX_PROPOSAL_FILE_SIZE
 });
