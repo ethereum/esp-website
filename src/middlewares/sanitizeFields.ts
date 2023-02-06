@@ -1,10 +1,14 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
+import validator from 'validator';
 
 const fieldsToSanitize = ['firstName', 'lastName'];
 
-// resource: https://daringfireball.net/2010/07/improved_regex_for_matching_urls
-const removeURLsRegex =
-  /\b((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))/g;
+function removeURLs(text: string) {
+  return text
+    .split(' ')
+    .map(value => (validator.isURL(value) ? '' : value))
+    .join(' ');
+}
 
 export const sanitizeFields =
   (handler: NextApiHandler) => async (req: NextApiRequest, res: NextApiResponse) => {
@@ -13,7 +17,7 @@ export const sanitizeFields =
     const fieldsSanitized = Object.keys(fields).reduce<Record<string, string>>((prev, key) => {
       let value = fields[key];
       if (fieldsToSanitize.includes(key)) {
-        value = value.replace(removeURLsRegex, '');
+        value = removeURLs(value);
       }
 
       if (typeof value === 'string') {
