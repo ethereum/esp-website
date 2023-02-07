@@ -1,7 +1,7 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import validator from 'validator';
 
-const fieldsToSanitize = ['firstName', 'lastName'];
+const fieldsToSanitize = ['firstName', 'lastName', 'company'];
 
 function removeURLs(text: string) {
   return text
