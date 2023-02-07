@@ -1,7 +1,7 @@
 import jsforce from 'jsforce';
 import { NextApiResponse } from 'next';
 
-import { verifyCaptcha } from '../../../middlewares';
+import { sanitizeFields, verifyCaptcha } from '../../../middlewares';
 
 import { SmallGrantsEventNextApiRequest } from '../../../types';
 
@@ -106,4 +106,4 @@ async function handler(req: SmallGrantsEventNextApiRequest, res: NextApiResponse
   });
 }
 
-export default verifyCaptcha(handler);
+export default sanitizeFields(verifyCaptcha(handler));

@@ -1,7 +1,7 @@
 import jsforce from 'jsforce';
 import { NextApiResponse } from 'next';
 
-import { verifyCaptcha } from '../../middlewares';
+import { verifyCaptcha, sanitizeFields } from '../../middlewares';
 
 import { OfficeHoursNextApiRequest } from '../../types';
 
@@ -72,4 +72,4 @@ async function handler(req: OfficeHoursNextApiRequest, res: NextApiResponse): Pr
   });
 }
 
-export default verifyCaptcha(handler);
+export default sanitizeFields(verifyCaptcha(handler));
