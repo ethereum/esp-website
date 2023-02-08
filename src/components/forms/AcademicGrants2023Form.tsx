@@ -658,11 +658,13 @@ export const AcademicGrants2023Form: FC = () => {
             )}
           </FormControl>
 
-          <FormControl id='website-control' mb={8}>
+          <FormControl id='website-control' isRequired mb={8}>
             <FormLabel htmlFor='website' mb={1}>
-              <PageText fontSize='input'>Grant Proposal URL</PageText>
+              <PageText display='inline' fontSize='input'>
+                Grant Proposal URL
+              </PageText>
             </FormLabel>
-            <PageText fontSize='input' position='absolute' bottom='15.5px' left={4} zIndex={9}>
+            <PageText fontSize='input' position='absolute' top='80.5px' left={4} zIndex={9}>
               https://
             </PageText>
 
@@ -694,6 +696,7 @@ export const AcademicGrants2023Form: FC = () => {
               pl={16}
               mt={3}
               {...register('website', {
+                required: true,
                 maxLength: 255
               })}
             />
@@ -701,7 +704,15 @@ export const AcademicGrants2023Form: FC = () => {
             {errors?.website?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Website cannot exceed 255 characters.
+                  The URL cannot exceed 255 characters.
+                </PageText>
+              </Box>
+            )}
+
+            {errors?.website?.type === 'required' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  A URL is required.
                 </PageText>
               </Box>
             )}
