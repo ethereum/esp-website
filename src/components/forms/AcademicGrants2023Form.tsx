@@ -664,9 +664,6 @@ export const AcademicGrants2023Form: FC = () => {
                 Grant Proposal URL
               </PageText>
             </FormLabel>
-            <PageText fontSize='input' position='absolute' top='80.5px' left={4} zIndex={9}>
-              https://
-            </PageText>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
               Please provide a link to your grant proposal for review.{' '}
@@ -681,25 +678,30 @@ export const AcademicGrants2023Form: FC = () => {
               </Link>
             </PageText>
 
-            <Input
-              id='website'
-              type='text'
-              placeholder='yourgrantproposal.com'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              position='relative'
-              color='brand.paragraph'
-              fontSize='input'
-              pl={16}
-              mt={3}
-              {...register('website', {
-                required: true,
-                maxLength: 255
-              })}
-            />
+            <Box position='relative'>
+              <PageText fontSize='input' position='absolute' top='28.5px' left={4} zIndex={9}>
+                https://
+              </PageText>
+              <Input
+                id='website'
+                type='text'
+                placeholder='yourgrantproposal.com'
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                h='56px'
+                _placeholder={{ fontSize: 'input' }}
+                position='relative'
+                color='brand.paragraph'
+                fontSize='input'
+                pl={16}
+                mt={3}
+                {...register('website', {
+                  required: true,
+                  maxLength: 255
+                })}
+              />
+            </Box>
 
             {errors?.website?.type === 'maxLength' && (
               <Box mt={1}>
