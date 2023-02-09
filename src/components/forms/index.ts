@@ -1,5 +1,5 @@
 export * from './Forms';
-export * from './AcademicGrants2023Form';
+export * from './AcademicGrantsForm';
 export * from './GranteeFinanceForm';
 export * from './LatestGranteesList';
 export * from './NewsletterSignup';

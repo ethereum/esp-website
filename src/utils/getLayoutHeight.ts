@@ -1,6 +1,6 @@
 import {
-  ACADEMIC_GRANTS_2023_URL,
   ACADEMIC_GRANTS_URL,
+  ACADEMIC_GRANTS_2022_URL,
   DEVCON_GRANTS_URL,
   HOME_URL,
   LAYER_2_GRANTS_URL,
@@ -13,7 +13,7 @@ export const getLayoutHeight = (path: string) =>
     ? '877px'
     : [
         ACADEMIC_GRANTS_URL,
-        ACADEMIC_GRANTS_2023_URL,
+        ACADEMIC_GRANTS_2022_URL,
         DEVCON_GRANTS_URL,
         MERGE_DATA_CHALLENGE_URL,
         SEMAPHORE_GRANT_URL,

@@ -27,7 +27,7 @@ import { api } from './api';
 import { chakraStyles } from './selectStyles';
 
 import {
-  ACADEMIC_GRANTS_2023_PROJECT_CATEGORY_OPTIONS,
+  ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS,
   APPLYING_AS_OPTIONS,
   COUNTRY_OPTIONS,
   HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE,
@@ -35,11 +35,11 @@ import {
   TIMEZONE_OPTIONS,
   WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS
 } from './constants';
-import { ACADEMIC_GRANTS_2023_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
+import { ACADEMIC_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
-import { AcademicGrants2023FormData, ApplyingAs, GrantsReferralSource } from '../../types';
+import { AcademicGrantsFormData, ApplyingAs, GrantsReferralSource } from '../../types';
 
-export const AcademicGrants2023Form: FC = () => {
+export const AcademicGrantsForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
 
@@ -52,7 +52,7 @@ export const AcademicGrants2023Form: FC = () => {
     value: '',
     label: ''
   });
-  const methods = useForm<AcademicGrants2023FormData>({
+  const methods = useForm<AcademicGrantsFormData>({
     mode: 'onBlur'
   });
   const {
@@ -64,13 +64,13 @@ export const AcademicGrants2023Form: FC = () => {
     reset
   } = methods;
 
-  const onSubmit = async (data: AcademicGrants2023FormData) => {
-    return api.academicGrants2023
+  const onSubmit = async (data: AcademicGrantsFormData) => {
+    return api.academicGrants
       .submit(data)
       .then(res => {
         if (res.ok) {
           reset();
-          router.push(ACADEMIC_GRANTS_2023_THANK_YOU_PAGE_URL);
+          router.push(ACADEMIC_GRANTS_THANK_YOU_PAGE_URL);
         } else {
           toast({
             ...TOAST_OPTIONS,
@@ -740,7 +740,7 @@ export const AcademicGrants2023Form: FC = () => {
                 <Box mt={3}>
                   <Select
                     id='projectCategory'
-                    options={ACADEMIC_GRANTS_2023_PROJECT_CATEGORY_OPTIONS}
+                    options={ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS}
                     onChange={onChange}
                     components={{ DropdownIndicator }}
                     placeholder='Select'
