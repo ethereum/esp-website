@@ -35,7 +35,7 @@ const AcademicGrants: NextPage = () => {
   return (
     <>
       <PageMetadata
-        title='Academic Grants Round'
+        title='Academic Grants Round 2022'
         description='The Ethereum Foundation is sponsoring a wave of grants to support Ethereum-related academic work. Find all the details you need to apply here.'
       />
 

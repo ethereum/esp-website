@@ -16,7 +16,7 @@ export const AcademicGrants2022Layout: FC = ({ children }) => {
           alt: 'Academics doing research about Ethereum',
           src: academicGrantsHeroMobile
         }}
-        title='Academic Grants Round'
+        title='Academic Grants Round 2022'
       >
         The Ethereum Foundation is sponsoring a wave of grants to support Ethereum-related academic
         work. This grants round has up to $750,000 in total available. Proposals are due{' '}
