@@ -62,16 +62,16 @@ export const SIDEBAR_SMALL_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Apply', href: `${SMALL_GRANTS_URL}/#apply` }
 ];
 
-export const ACADEMIC_GRANTS_URL = '/academic-grants';
-export const SIDEBAR_ACADEMIC_GRANTS_LINKS: SidebarLink[] = [
-  { text: 'Summary', href: `${ACADEMIC_GRANTS_URL}/#description` },
-  { text: 'Submit proposal', href: `${ACADEMIC_GRANTS_URL}/#submit-proposal` },
-  { text: 'Deadline', href: `${ACADEMIC_GRANTS_URL}/#deadline` },
-  { text: 'Requirements', href: `${ACADEMIC_GRANTS_URL}/#requirements` },
-  { text: 'Selection criteria', href: `${ACADEMIC_GRANTS_URL}/#selection-criteria` },
-  { text: 'Wishlist', href: `${ACADEMIC_GRANTS_URL}/#wishlist` },
-  { text: 'Next steps and support', href: `${ACADEMIC_GRANTS_URL}/#next-steps-and-support` },
-  { text: 'FAQ', href: `${ACADEMIC_GRANTS_URL}/#faq` }
+export const ACADEMIC_GRANTS_2022_URL = '/academic-grants-2022';
+export const SIDEBAR_ACADEMIC_GRANTS_2022_LINKS: SidebarLink[] = [
+  { text: 'Summary', href: `${ACADEMIC_GRANTS_2022_URL}/#description` },
+  { text: 'Submit proposal', href: `${ACADEMIC_GRANTS_2022_URL}/#submit-proposal` },
+  { text: 'Deadline', href: `${ACADEMIC_GRANTS_2022_URL}/#deadline` },
+  { text: 'Requirements', href: `${ACADEMIC_GRANTS_2022_URL}/#requirements` },
+  { text: 'Selection criteria', href: `${ACADEMIC_GRANTS_2022_URL}/#selection-criteria` },
+  { text: 'Wishlist', href: `${ACADEMIC_GRANTS_2022_URL}/#wishlist` },
+  { text: 'Next steps and support', href: `${ACADEMIC_GRANTS_2022_URL}/#next-steps-and-support` },
+  { text: 'FAQ', href: `${ACADEMIC_GRANTS_2022_URL}/#faq` }
 ];
 
 export const DEVCON_GRANTS_URL = '/devcon-grants';
@@ -126,24 +126,24 @@ export const SIDEBAR_LAYER_2_GRANTS_LINKS: SidebarLink[] = [
   { text: 'FAQ', href: `${LAYER_2_GRANTS_URL}/#faq` }
 ];
 
-export const ACADEMIC_GRANTS_2023_URL = '/academic-grants-2023';
-export const SIDEBAR_ACADEMIC_GRANTS_2023_LINKS: SidebarLink[] = [
-  { text: 'Summary', href: `${ACADEMIC_GRANTS_2023_URL}/#description` },
-  { text: 'Submit proposal', href: `${ACADEMIC_GRANTS_2023_URL}/#submit-proposal` },
-  { text: 'Deadline', href: `${ACADEMIC_GRANTS_2023_URL}/#deadline` },
-  { text: 'Requirements', href: `${ACADEMIC_GRANTS_2023_URL}/#requirements` },
-  { text: 'Selection criteria', href: `${ACADEMIC_GRANTS_2023_URL}/#selection-criteria` },
-  { text: 'Wishlist', href: `${ACADEMIC_GRANTS_2023_URL}/#wishlist` },
-  { text: 'Next steps and support', href: `${ACADEMIC_GRANTS_2023_URL}/#next-steps-and-support` },
-  { text: 'FAQ', href: `${ACADEMIC_GRANTS_2023_URL}/#faq` },
-  { text: 'Apply', href: `${ACADEMIC_GRANTS_2023_URL}/#apply` }
+export const ACADEMIC_GRANTS_URL = '/academic-grants';
+export const SIDEBAR_ACADEMIC_GRANTS_LINKS: SidebarLink[] = [
+  { text: 'Summary', href: `${ACADEMIC_GRANTS_URL}/#description` },
+  { text: 'Submit proposal', href: `${ACADEMIC_GRANTS_URL}/#submit-proposal` },
+  { text: 'Deadline', href: `${ACADEMIC_GRANTS_URL}/#deadline` },
+  { text: 'Requirements', href: `${ACADEMIC_GRANTS_URL}/#requirements` },
+  { text: 'Selection criteria', href: `${ACADEMIC_GRANTS_URL}/#selection-criteria` },
+  { text: 'Wishlist', href: `${ACADEMIC_GRANTS_URL}/#wishlist` },
+  { text: 'Next steps and support', href: `${ACADEMIC_GRANTS_URL}/#next-steps-and-support` },
+  { text: 'FAQ', href: `${ACADEMIC_GRANTS_URL}/#faq` },
+  { text: 'Apply', href: `${ACADEMIC_GRANTS_URL}/#apply` }
 ];
 
 // apply forms
 export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
 export const OFFICE_HOURS_APPLY_URL = '/applicants/office-hours/apply';
 export const SMALL_GRANTS_APPLY_URL = '/applicants/small-grants/apply';
-export const ACADEMIC_GRANTS_2023_APPLY_URL = '/academic-grants-2023/apply';
+export const ACADEMIC_GRANTS_APPLY_URL = '/academic-grants/apply';
 export const DEVCON_GRANTS_APPLY_URL = '/devcon-grants/apply';
 export const ECODEV_GRANTS_APPLY_URL = '/ecodev-grants/apply';
 
@@ -155,7 +155,7 @@ export const PROJECT_GRANTS_THANK_YOU_PAGE_URL = '/applicants/project-grants/tha
 export const OFFICE_HOURS_THANK_YOU_PAGE_URL = '/applicants/office-hours/thank-you';
 export const SMALL_GRANTS_THANK_YOU_PAGE_URL = '/applicants/small-grants/thank-you';
 export const GRANTEE_FINANCE_THANK_YOU_PAGE_URL = '/applicants/grantee-finance/thank-you';
-export const ACADEMIC_GRANTS_2023_THANK_YOU_PAGE_URL = '/academic-grants-2023/thank-you';
+export const ACADEMIC_GRANTS_THANK_YOU_PAGE_URL = '/academic-grants/thank-you';
 export const DEVCON_GRANTS_THANK_YOU_PAGE_URL = '/devcon-grants/thank-you';
 export const ECODEV_GRANTS_THANK_YOU_PAGE_URL = '/ecodev-grants/thank-you';
 
@@ -255,8 +255,8 @@ export const LAYER_2_GRANTS_PREVIEW_URL =
 
 // Thank you and apply urls
 export const GRANTS_URLS = [
-  ACADEMIC_GRANTS_2023_APPLY_URL,
-  ACADEMIC_GRANTS_2023_THANK_YOU_PAGE_URL,
+  ACADEMIC_GRANTS_APPLY_URL,
+  ACADEMIC_GRANTS_THANK_YOU_PAGE_URL,
   DEVCON_GRANTS_APPLY_URL,
   DEVCON_GRANTS_THANK_YOU_PAGE_URL
 ];

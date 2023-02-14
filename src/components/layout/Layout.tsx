@@ -8,20 +8,20 @@ import { Forms } from '../forms';
 import {
   AboutLayout,
   AcademicGrantsApplyLayout,
-  AcademicGrantsLayout,
+  AcademicGrants2022Layout,
   ApplicantsLayout,
   DevconGrantsLayout,
   Layer2GrantsLayout,
   MergeDataChallengeLayout,
   SemaphoreGrantLayout,
-  AcademicGrants2023Layout
+  AcademicGrantsLayout
 } from '../layout';
 import { Nav } from '../../components';
 
 import {
   ABOUT_URL,
-  ACADEMIC_GRANTS_2023_URL,
   ACADEMIC_GRANTS_URL,
+  ACADEMIC_GRANTS_2022_URL,
   APPLICANTS_URL,
   DEVCON_GRANTS_URL,
   GRANTS_URLS,
@@ -75,21 +75,21 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       );
     }
 
-    if (router.pathname === ACADEMIC_GRANTS_URL) {
+    if (router.pathname === ACADEMIC_GRANTS_2022_URL) {
       return (
         <Box mt={{ md: -10, lg: 0 }}>
           <main>
-            <AcademicGrantsLayout>{children}</AcademicGrantsLayout>
+            <AcademicGrants2022Layout>{children}</AcademicGrants2022Layout>
           </main>
         </Box>
       );
     }
 
-    if (router.pathname === ACADEMIC_GRANTS_2023_URL) {
+    if (router.pathname === ACADEMIC_GRANTS_URL) {
       return (
         <Box mt={{ md: -10, lg: 0 }}>
           <main>
-            <AcademicGrants2023Layout>{children}</AcademicGrants2023Layout>
+            <AcademicGrantsLayout>{children}</AcademicGrantsLayout>
           </main>
         </Box>
       );

@@ -5,9 +5,9 @@ import addRowToSpreadsheet from '../../utils/addRowToSpreadsheet';
 
 import { sanitizeFields, verifyCaptcha } from '../../middlewares';
 
-import { AcademicGrants2023NextApiRequest } from '../../types';
+import { AcademicGrantsNextApiRequest } from '../../types';
 
-async function handler(req: AcademicGrants2023NextApiRequest, res: NextApiResponse): Promise<void> {
+async function handler(req: AcademicGrantsNextApiRequest, res: NextApiResponse): Promise<void> {
   return new Promise(resolve => {
     const { body } = req;
     const {

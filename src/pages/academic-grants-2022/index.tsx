@@ -7,20 +7,20 @@ import {
   FAQItem,
   List,
   PageSection,
+  PageSubheading,
   PageText,
   PageMetadata,
-  ReadyToApply
+  BannerApplicationClosed
 } from '../../components/UI';
 
 import {
   ACADEMIC_GRANTS_EMAIL_ADDRESS,
   HOME_URL,
-  ACADEMIC_GRANTS_2023_APPLY_URL,
-  OFFICE_HOURS_URL,
-  SIDEBAR_ACADEMIC_GRANTS_2023_LINKS
+  SIDEBAR_ACADEMIC_GRANTS_2022_LINKS,
+  WHO_WE_SUPPORT_URL
 } from '../../constants';
 
-const AcademicGrants2023: NextPage = () => {
+const AcademicGrants: NextPage = () => {
   // `threshold` option allows us to control the % of visibility required before triggering the Intersection Observer
   // https://react-intersection-observer.vercel.app/?path=/story/introduction--page#options
   const [ref, inView] = useInView({ threshold: 0 });
@@ -31,12 +31,11 @@ const AcademicGrants2023: NextPage = () => {
   const [ref6, inView6] = useInView({ threshold: 0.5, initialInView: false });
   const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
   const [ref8, inView8] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref9, inView9] = useInView({ threshold: 0, initialInView: false });
 
   return (
     <>
       <PageMetadata
-        title='Academic Grants Round 2023'
+        title='Academic Grants Round 2022'
         description='The Ethereum Foundation is sponsoring a wave of grants to support Ethereum-related academic work. Find all the details you need to apply here.'
       />
 
@@ -44,7 +43,7 @@ const AcademicGrants2023: NextPage = () => {
         <Stack spacing={10} mb={8} px={{ base: 5, md: 0 }} py={{ base: 3, md: 12 }}>
           <Flex>
             <ApplicantsSidebar
-              sidebarLinks={SIDEBAR_ACADEMIC_GRANTS_2023_LINKS}
+              sidebarLinks={SIDEBAR_ACADEMIC_GRANTS_2022_LINKS}
               sectionsInView={[
                 inView,
                 inView2,
@@ -53,37 +52,38 @@ const AcademicGrants2023: NextPage = () => {
                 inView5,
                 inView6,
                 inView7,
-                inView8,
-                inView9
+                inView8
               ]}
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
+              <BannerApplicationClosed mb={12} />
+
               <Stack mb={8} mt={{ base: 10, md: 0 }}>
                 <section id='description' ref={ref}>
+                  <PageSubheading mb={8}>
+                    We&apos;re calling all those interested in expanding academic knowledge
+                    throughout the Ethereum ecosystem!
+                  </PageSubheading>
+
                   <PageText mb={6}>
-                    In the first Academic Grants Round the Ethereum Foundation awarded 39 grants
-                    from 18 countries. You can see all of the winners listed in the{' '}
-                    <Link
-                      fontWeight={700}
-                      color='brand.orange.100'
-                      href='https://blog.ethereum.org/2022/07/29/academic-grants-grantee-announce'
-                      isExternal
-                      _hover={{ textDecoration: 'none' }}
-                    >
-                      grantee announcement
-                    </Link>
-                    . We&apos;re renewing our support of academic research throughout the Ethereum
-                    ecosystem with the Academic Grants Round 2023!
+                    The Ethereum community has grown immensely as developers, artists, companies,
+                    and even governments work together to make a positive impact with this
+                    technology.
                   </PageText>
 
                   <PageText mb={6}>
                     With this grants round, the Ethereum Foundation welcomes more academics to the
                     table to push forward formal academic research in related domains. Such domains
-                    include theoretical and applied cryptography, mathematics, zero-knowledge
+                    include theoretical and applied cryptography and mathematics, zero-knowledge
                     proofs, economics, computation, cybersecurity, protocol and consensus
-                    mechanisms, formal verification, P2P networking, society and regulation, and
-                    hardware.
+                    mechanisms, formal verification, P2P networking, and hardware, just to mention a
+                    few areas.
+                  </PageText>
+
+                  <PageText>
+                    The Ethereum Foundation is excited to expand Ethereum&apos;s reach across more
+                    of academia through this grants round.
                   </PageText>
                 </section>
               </Stack>
@@ -109,7 +109,7 @@ const AcademicGrants2023: NextPage = () => {
                     <Link
                       fontWeight={700}
                       color='brand.orange.100'
-                      href='https://notes.ethereum.org/@djrtwo/academic-grants-wishlist-2023'
+                      href='https://notes.ethereum.org/@djrtwo/academic-grants-2022'
                       isExternal
                       _hover={{ textDecoration: 'none' }}
                     >
@@ -125,30 +125,15 @@ const AcademicGrants2023: NextPage = () => {
                   </PageText>
 
                   <PageText mb={6}>
-                    Grants will be awarded on a case by case basis and will be reviewed after the
-                    deadline. You may enter more than one proposal as long as each proposal is
-                    unique and meets the{' '}
+                    Grants will be awarded on a case-by-case and rolling basis. You may enter more
+                    than one proposal as long as each proposal is unique and meets the{' '}
                     <Link
                       fontWeight={700}
                       color='brand.orange.100'
                       href='#requirements'
                       _hover={{ textDecoration: 'none' }}
                     >
-                      requirements
-                    </Link>
-                    .
-                  </PageText>
-
-                  <PageText>
-                    Submit your application{' '}
-                    <Link
-                      fontWeight={700}
-                      color='brand.orange.100'
-                      href={`${ACADEMIC_GRANTS_2023_APPLY_URL}`}
-                      isExternal
-                      _hover={{ textDecoration: 'none' }}
-                    >
-                      here
+                      the requirements
                     </Link>
                     .
                   </PageText>
@@ -158,8 +143,8 @@ const AcademicGrants2023: NextPage = () => {
                   <PageSection mb={6}>Deadline</PageSection>
 
                   <PageText mb={6}>
-                    The deadline for proposals is <strong>Monday, February 27th, 2023</strong>. We
-                    will follow-up regarding your submission by email.
+                    The deadline has been extended. Submit by <strong>May 8, 2022</strong>. We will
+                    follow-up regarding your submission by email.
                   </PageText>
                 </section>
 
@@ -168,21 +153,8 @@ const AcademicGrants2023: NextPage = () => {
 
                   <List>
                     <ListItem>Proposals must be in English.</ListItem>
-                    <ListItem>Work must be free and open source.</ListItem>
+                    <ListItem>Work must be open source.</ListItem>
                     <ListItem>Reports must be accessible by a url.</ListItem>
-                    <ListItem>
-                      Proposal must include the topics in the{' '}
-                      <Link
-                        fontWeight={700}
-                        color='brand.orange.100'
-                        href='https://hackmd.io/@rodrigolvc/Example_Grant'
-                        isExternal
-                        _hover={{ textDecoration: 'none' }}
-                      >
-                        template
-                      </Link>
-                      , but you can expand on these.
-                    </ListItem>
                   </List>
                 </section>
 
@@ -190,7 +162,7 @@ const AcademicGrants2023: NextPage = () => {
                   <PageSection mb={6}>Selection criteria</PageSection>
 
                   <PageText mb={6}>
-                    <strong>Surprise us with your creativity!</strong> Here are a few selection
+                    <strong>Surprise us with your creativity!</strong> But here are a few selection
                     criteria considerations:
                   </PageText>
 
@@ -219,7 +191,7 @@ const AcademicGrants2023: NextPage = () => {
                     <Link
                       fontWeight={700}
                       color='brand.orange.100'
-                      href='https://notes.ethereum.org/@djrtwo/academic-grants-wishlist-2023'
+                      href='https://notes.ethereum.org/@djrtwo/academic-grants-2022'
                       isExternal
                       _hover={{ textDecoration: 'none' }}
                     >
@@ -227,8 +199,6 @@ const AcademicGrants2023: NextPage = () => {
                     </Link>
                     .
                   </PageText>
-
-                  <PageText mb={6}>Surprise us with your creativity!</PageText>
                 </section>
 
                 <section id='next-steps-and-support' ref={ref7}>
@@ -253,23 +223,6 @@ const AcademicGrants2023: NextPage = () => {
                   <PageSection mb={6}>Frequently asked questions</PageSection>
 
                   <Accordion allowToggle>
-                    <FAQItem question='Does the Ethereum Foundation have an Indirect Costs Policy?'>
-                      <PageText>
-                        ESP has an indirect costs policy for Academic Grants. If you would like a
-                        copy of the policy, please email{' '}
-                        <Link
-                          fontWeight={700}
-                          color='brand.orange.100'
-                          href={`mailto:${ACADEMIC_GRANTS_EMAIL_ADDRESS}`}
-                          isExternal
-                          _hover={{ textDecoration: 'none' }}
-                        >
-                          {ACADEMIC_GRANTS_EMAIL_ADDRESS}
-                        </Link>
-                        .
-                      </PageText>
-                    </FAQItem>
-
                     <FAQItem question='Who can submit proposals for Academic Grants Round?'>
                       <PageText>
                         Academic institutions, consortia of universities, research centres,
@@ -329,7 +282,7 @@ const AcademicGrants2023: NextPage = () => {
 
                     <FAQItem question='What is the budget available for this round?'>
                       <PageText>
-                        This grants round has up to $1 Million in total, which is to be distributed
+                        This grants round has up to $750,000 in total, which is to be distributed
                         among selected projects.
                       </PageText>
                     </FAQItem>
@@ -341,36 +294,101 @@ const AcademicGrants2023: NextPage = () => {
                       </PageText>
                     </FAQItem>
 
+                    <FAQItem question='Are applications evaluated on a rolling basis or at the end of the deadline?'>
+                      <PageText>
+                        Project submissions will be evaluated on a rolling basis and contact will be
+                        made with each applicant to inform about the evaluation outcome.
+                      </PageText>
+                    </FAQItem>
+
+                    <FAQItem question='What costs are eligible for the Academic Grants Round?'>
+                      <PageText>
+                        Costs related to academic research are eligible for the Academic Grants
+                        Round. We encourage you to itemize each cost on the budget section of the
+                        submission form.
+                      </PageText>
+                    </FAQItem>
+
+                    <FAQItem question='Is there any co-financing needed?'>
+                      <PageText>
+                        No, the Ethereum Foundation does not require co-financing. Grants will be
+                        100% covered by the Ethereum Foundation.
+                      </PageText>
+                    </FAQItem>
+
+                    <FAQItem question='What is the average grant size?'>
+                      <PageText>
+                        As projects may vary largely in duration, scope and outputs, grant amounts
+                        may also differ to a large extent. We suggest that you present a budget that
+                        covers your academic research and related outputs, itemizing each of the
+                        costs.
+                      </PageText>
+                    </FAQItem>
+
+                    <FAQItem question='Is the grant awarded in FIAT or in Crypto?'>
+                      <PageText>
+                        You may choose if you prefer receiving the grant in FIAT, ETH or DAI, but
+                        for the purposes of the project proposal and submission form, we kindly ask
+                        you to indicate the requested amount in FIAT.
+                      </PageText>
+                    </FAQItem>
+
+                    <FAQItem question='Is there guidance on how long projects should last?'>
+                      <PageText>
+                        Projects may vary in duration. We are estimating projects to last between
+                        6-12 months, but it is an indicative timeframe. We allow for some
+                        flexibility as projects may vary largely in domain, scope, outputs and
+                        researchers involved.
+                      </PageText>
+                    </FAQItem>
+
+                    <FAQItem question='Are only applications that address the wishlist considered for funding?'>
+                      <PageText>
+                        Ethereum-related research will be supported through the Academic Grants
+                        Rounds. Your proposal does not need to be addressing one of the wishlist
+                        areas. The wishlist should be seen as guidance on the most pressing issues
+                        we have identified but is not exhaustive.
+                      </PageText>
+                    </FAQItem>
+
+                    <FAQItem question='Can I submit more than one application or should I combine all the project ideas into one sole application?'>
+                      <PageText>
+                        You should submit one application per project idea/ wishlist area. Multiple
+                        applications per institution are accepted for the Academic Grants Round.
+                      </PageText>
+                    </FAQItem>
+
                     <FAQItem question='Has this type of grant been awarded before by the Ethereum Foundation?'>
                       <PageText>
-                        This is the second time the Ethereum Foundation is launching a specific
-                        grant round to support Ethereum related academic research. We also have an
-                        ongoing support program - the Ecosystem Support Program - which supports
+                        It is the first time the Ethereum Foundation is launching a specific grants
+                        round to support Ethereum-related academic research. However, we do have an
+                        ongoing support Program - the Ecosystem Support Program - which supports
                         Ethereum related projects in various scopes.
                       </PageText>
                     </FAQItem>
 
-                    <FAQItem question='Are applications evaluated on a rolling basis or at the end of the deadline?'>
+                    <FAQItem question='Can you provide an estimate on the number of project submissions and selected projects in previous Academic Grants rounds?'>
                       <PageText>
-                        Project submission will be evaluated after the deadline, and contact will be
-                        made with each applicant to inform them about the evaluation outcome.
+                        This is the first round of grants administered by the Ethereum Foundation
+                        that specifically supports academic research. However, the Ethereum
+                        Foundation has an ongoing support program - the Ecosystem Support Program -
+                        and you’ll be able to find some of the granted projects{' '}
+                        <Link
+                          fontWeight={700}
+                          color='brand.orange.100'
+                          href={WHO_WE_SUPPORT_URL}
+                          _hover={{ textDecoration: 'none' }}
+                        >
+                          here
+                        </Link>
+                        .
                       </PageText>
                     </FAQItem>
 
-                    <FAQItem question='Can I submit more than one application, or should I combine all the project ideas into one sole application?'>
+                    <FAQItem question='Are Master students eligible to apply for the Academic Grants Round or is PhD level required?'>
                       <PageText>
-                        You should submit one application per project idea/ wishlist area. Multiple
-                        applications per institution are accepted for the Academic Grants Round.
-                        Submitting duplicates or variants of the same application will not improve
-                        your chances of selection.
-                      </PageText>
-                    </FAQItem>
-
-                    <FAQItem question='Can you provide an estimate of the number of submissions and, of those, how many were selected in the previous Academic grants rounds?'>
-                      <PageText>
-                        During the first Academic Grants Round, the Ethereum Foundation received
-                        over 150 applications and issued 39 grants for academic research in 18
-                        countries.
+                        Master&apos;s Students are eligible to apply for the grants round, should
+                        they have the academic support of supervisors. PhD level is not required.
                       </PageText>
                     </FAQItem>
 
@@ -395,26 +413,11 @@ const AcademicGrants2023: NextPage = () => {
 
                       <PageText>
                         If you miss the deadline for this dedicated round of grants, but have a
-                        proposal that advances the Ethereum ecosystem, we encourage you to book an
-                        appointment for{' '}
-                        <Link
-                          fontWeight={700}
-                          color='brand.orange.100'
-                          href={OFFICE_HOURS_URL}
-                          _hover={{ textDecoration: 'none' }}
-                        >
-                          ESP&apos;s Office Hours
-                        </Link>
-                        .
+                        proposal that advances the Ethereum ecosystem, we encourage you to head over
+                        to ESP.
                       </PageText>
                     </FAQItem>
                   </Accordion>
-                </section>
-
-                <section id='apply' ref={ref9}>
-                  <Stack mt={6}>
-                    <ReadyToApply link={`${ACADEMIC_GRANTS_2023_APPLY_URL}`} />
-                  </Stack>
                 </section>
               </Stack>
             </Box>
@@ -425,4 +428,4 @@ const AcademicGrants2023: NextPage = () => {
   );
 };
 
-export default AcademicGrants2023;
+export default AcademicGrants;

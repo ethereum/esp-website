@@ -6,7 +6,7 @@ import { GrantsHero } from '../UI';
 import academicGrantsHero from '../../../public/images/academic-grants-hero.png';
 import academicGrantsHeroMobile from '../../../public/images/academic-grants-hero-mobile.png';
 
-export const AcademicGrants2023Layout: FC = ({ children }) => {
+export const AcademicGrants2022Layout: FC = ({ children }) => {
   return (
     <Stack>
       <GrantsHero
@@ -16,12 +16,12 @@ export const AcademicGrants2023Layout: FC = ({ children }) => {
           alt: 'Academics doing research about Ethereum',
           src: academicGrantsHeroMobile
         }}
-        title='Academic Grants Round'
+        title='Academic Grants Round 2022'
       >
         The Ethereum Foundation is sponsoring a wave of grants to support Ethereum-related academic
-        work. This grants round has up to <strong>$1M</strong> in total available funds. Proposals
-        are due <strong>23:59 UTC February 27th, 2023</strong>. All of the details you&apos;ll need
-        to apply can be found below.
+        work. This grants round has up to $750,000 in total available. Proposals are due{' '}
+        <strong>May 8, 2022</strong>. All of the details you&apos;ll need to apply can be found
+        below.
       </GrantsHero>
 
       <Stack>{children}</Stack>
