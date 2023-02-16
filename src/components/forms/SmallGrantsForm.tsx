@@ -1874,12 +1874,12 @@ export const SmallGrantsForm: FC = () => {
             <FormLabel htmlFor='referrals' mb={1}>
               <PageText fontSize='input'>
                 Did anyone recommend that you submit an application to the Ecosystem Support
-                Program? If so, who?
+                Program?
               </PageText>
             </FormLabel>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Please submit the person&apos;s name only. This is not required.
+              Please include the person&apos;s name and details of their referral.
             </PageText>
 
             <Textarea

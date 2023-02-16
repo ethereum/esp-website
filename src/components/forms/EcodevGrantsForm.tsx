@@ -1324,12 +1324,12 @@ export const EcodevGrantsForm: FC = () => {
             <FormLabel htmlFor='referrals' mb={1}>
               <PageText display='inline' fontSize='input'>
                 Did anyone recommend that you submit an application to the Ecosystem Support
-                Program? If so, who?
+                Program?
               </PageText>
             </FormLabel>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Please submit the person&apos;s name only.
+              Please include the person&apos;s name and details of their referral.
             </PageText>
 
             <Textarea
