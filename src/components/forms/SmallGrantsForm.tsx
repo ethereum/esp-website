@@ -1882,26 +1882,25 @@ export const SmallGrantsForm: FC = () => {
               Please submit the person&apos;s name only. This is not required.
             </PageText>
 
-            <Input
+            <Textarea
               id='referrals'
               bg='white'
               borderRadius={0}
               borderColor='brand.border'
-              type='text'
-              h='56px'
-              mt={3}
-              position='relative'
+              _placeholder={{ fontSize: 'input' }}
               color='brand.paragraph'
               fontSize='input'
+              h='150px'
+              mt={3}
               {...register('referrals', {
-                maxLength: 150
+                maxLength: 32768
               })}
             />
 
             {errors?.referrals?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Referrals info cannot exceed 150 characters.
+                  Referrals info cannot exceed 32768 characters.
                 </PageText>
               </Box>
             )}
