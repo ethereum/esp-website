@@ -80,49 +80,33 @@ async function handler(
         RecordTypeId: process.env.SF_RECORD_TYPE_GRANTS_ROUND! // Master
       };
 
-      try {
-        await addRowToSpreadsheet(
-          {
-            id: '1MUH1hUdeHpTRXEYLzpokHEV1tQYHmy83RDpl7ny-wxQ',
-            sheetName: 'Applications'
-          },
-          application
-        );
-      } catch (err) {
-        // as this is something internal we don't want to show this error to the user
-        console.log(err);
-      }
-
-      res.status(200).json({ status: 'ok' });
-      return resolve();
-
       // Single record creation
-      // conn.sobject('Lead').create(application, async (err, ret) => {
-      //   if (err || !ret.success) {
-      //     console.error(err);
-      //     res.status(400).json({ status: 'fail' });
-      //     return resolve();
-      //   }
+      conn.sobject('Lead').create(application, async (err, ret) => {
+        if (err || !ret.success) {
+          console.error(err);
+          res.status(400).json({ status: 'fail' });
+          return resolve();
+        }
 
-      //   // send submission data to a google spreadsheet
-      //   try {
-      //     await addRowToSpreadsheet(
-      //       {
-      //         id: '1MUH1hUdeHpTRXEYLzpokHEV1tQYHmy83RDpl7ny-wxQ',
-      //         sheetName: 'Applications'
-      //       },
-      //       application
-      //     );
-      //   } catch (err) {
-      //     // as this is something internal we don't want to show this error to the user
-      //     console.log(err);
-      //   }
+        // send submission data to a google spreadsheet
+        try {
+          await addRowToSpreadsheet(
+            {
+              id: '1MUH1hUdeHpTRXEYLzpokHEV1tQYHmy83RDpl7ny-wxQ',
+              sheetName: 'Applications'
+            },
+            application
+          );
+        } catch (err) {
+          // as this is something internal we don't want to show this error to the user
+          console.log(err);
+        }
 
-      //   console.log(`Account Abstraction Grants 2023 Lead with ID: ${ret.id} has been created!`);
+        console.log(`Account Abstraction Grants 2023 Lead with ID: ${ret.id} has been created!`);
 
-      //   res.status(200).json({ status: 'ok' });
-      //   return resolve();
-      // });
+        res.status(200).json({ status: 'ok' });
+        return resolve();
+      });
     });
   });
 }
