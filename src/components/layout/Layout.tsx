@@ -1,4 +1,4 @@
-import { Box, Container, ContainerProps, Text } from '@chakra-ui/react';
+import { Box, Container, ContainerProps } from '@chakra-ui/react';
 import { FC, ReactNode } from 'react';
 import { useRouter } from 'next/router';
 
@@ -14,7 +14,8 @@ import {
   Layer2GrantsLayout,
   MergeDataChallengeLayout,
   SemaphoreGrantLayout,
-  AcademicGrantsLayout
+  AcademicGrantsLayout,
+  AccountAbstractionGrantsLayout
 } from '../layout';
 import { Nav } from '../../components';
 
@@ -28,7 +29,8 @@ import {
   HOME_URL,
   LAYER_2_GRANTS_URL,
   MERGE_DATA_CHALLENGE_URL,
-  SEMAPHORE_GRANT_URL
+  SEMAPHORE_GRANT_URL,
+  ACCOUNT_ABSTRACTION_GRANTS_URL
 } from '../../constants';
 
 export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
@@ -121,6 +123,16 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
         <Box mt={{ md: -10, lg: 0 }}>
           <main>
             <Layer2GrantsLayout>{children}</Layer2GrantsLayout>
+          </main>
+        </Box>
+      );
+    }
+
+    if (router.pathname === ACCOUNT_ABSTRACTION_GRANTS_URL) {
+      return (
+        <Box mt={{ md: -10, lg: 0 }}>
+          <main>
+            <AccountAbstractionGrantsLayout>{children}</AccountAbstractionGrantsLayout>
           </main>
         </Box>
       );

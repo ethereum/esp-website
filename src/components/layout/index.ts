@@ -7,4 +7,5 @@ export * from './Layer2GrantsLayout';
 export * from './MergeDataChallengeLayout';
 export * from './SemaphoreGrantLayout';
 export * from './AcademicGrantsLayout';
+export * from './AccountAbstractionGrantsLayout';
 export * from './Layout';

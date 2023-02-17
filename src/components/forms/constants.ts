@@ -43,6 +43,21 @@ export const ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Other', label: 'Other' }
 ];
 
+export const ACCOUNT_ABSTRACTION_GRANTS_PROJECT_CATEGORY_OPTIONS = [
+  { value: 'Economics', label: 'Economics' },
+  { value: 'Consensus layer', label: 'Consensus layer' },
+  { value: 'Formal Verification', label: 'Formal Verification' },
+  { value: 'Miner Extracted Value (MEV)', label: 'Miner Extracted Value (MEV)' },
+  {
+    value: 'Cryptography and zero knowledge proofs',
+    label: 'Cryptography and zero knowledge proofs'
+  },
+  { value: 'P2P networking', label: 'P2P networking' },
+  { value: 'Hardware', label: 'Hardware' },
+  { value: 'Society and Regulatory', label: 'Society and Regulatory' },
+  { value: 'Other', label: 'Other' }
+];
+
 // events
 export const EVENT_TYPE_OPTIONS = [
   { value: 'Conference', label: 'Conference' },
@@ -1504,6 +1519,7 @@ export const API_PROJECT_GRANTS = '/api/project-grants';
 export const API_SMALL_GRANTS_PROJECT = '/api/small-grants/project';
 export const API_SMALL_GRANTS_EVENT = '/api/small-grants/event';
 export const API_ACADEMIC_GRANTS = '/api/academic-grants';
+export const API_ACCOUNT_ABSTRACTION_GRANTS = '/api/account-abstraction-grants';
 export const API_DEVCON_GRANTS = '/api/devcon-grants';
 export const API_GRANTEE_FINANCE = '/api/grantee-finance';
 export const API_ECODEV_GRANTS = '/api/ecodev-grants';
