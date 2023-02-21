@@ -761,14 +761,14 @@ export const AccountAbstractionGrantsForm: FC = () => {
               pl={8}
               mt={3}
               {...register('github', {
-                maxLength: 16
+                maxLength: 40
               })}
             />
 
             {errors?.github?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Github user cannot exceed 16 characters.
+                  Github user cannot exceed 40 characters.
                 </PageText>
               </Box>
             )}

@@ -32,7 +32,7 @@ async function handler(
       referralSourceIfOther: Referral_Source_if_Other__c,
       wouldYouShareYourResearch: Would_you_share_your_research__c,
       twitter: Twitter__c,
-      github: Github__c,
+      github: Github_Username__c,
       telegram: Alternative_Contact__c,
       repeatApplicant: Repeat_Applicant__c,
       canTheEFReachOut: Can_the_EF_reach_out__c,
@@ -71,7 +71,7 @@ async function handler(
         Referral_Source_if_Other__c: Referral_Source_if_Other__c.trim(),
         Would_you_share_your_research__c: Would_you_share_your_research__c.trim(),
         Twitter__c: Twitter__c.trim(),
-        Github__c: Github__c.trim(),
+        Github_Username__c: Github_Username__c.trim(),
         Alternative_Contact__c: Alternative_Contact__c.trim(),
         Repeat_Applicant__c, // this is a boolean value, no trim applied
         Can_the_EF_reach_out__c, // this is a boolean value, no trim applied
