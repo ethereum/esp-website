@@ -276,6 +276,9 @@ export const MERGE_DATA_CHALLENGE_PREVIEW_URL =
 export const LAYER_2_GRANTS_PREVIEW_URL =
   'https://esp.ethereum.foundation/images/layer-2-grants.png';
 
+export const ACCOUNT_ABSTRACTION_GRANTS_PREVIEW_URL =
+  'https://esp.ethereum.foundation/images/account-abstraction-hero.jpeg';
+
 // Thank you and apply urls
 export const GRANTS_URLS = [
   ACADEMIC_GRANTS_APPLY_URL,

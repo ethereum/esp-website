@@ -15,7 +15,8 @@ import {
 import {
   ACCOUNT_ABSTRACTION_GRANTS_EMAIL_ADDRESS,
   ACCOUNT_ABSTRACTION_GRANTS_APPLY_URL,
-  SIDEBAR_ACCOUNT_ABSTRACTION_GRANTS_LINKS
+  SIDEBAR_ACCOUNT_ABSTRACTION_GRANTS_LINKS,
+  ACCOUNT_ABSTRACTION_GRANTS_PREVIEW_URL
 } from '../../constants';
 
 const AccountAbstractionGrants: NextPage = () => {
@@ -39,6 +40,7 @@ const AccountAbstractionGrants: NextPage = () => {
       <PageMetadata
         title='Account Abstraction Grants 2023'
         description='The Ethereum Foundation is sponsoring a wave of grants to support work in Account Abstraction. Find all the details you need to apply here.'
+        image={ACCOUNT_ABSTRACTION_GRANTS_PREVIEW_URL}
       />
 
       <Box mx={{ md: 12 }} bg='white' position='relative' zIndex={1} mt={{ xl: 12 }}>
