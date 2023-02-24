@@ -1,20 +1,24 @@
-import { Stack, Text } from '@chakra-ui/react';
+import { Box, Stack, Text } from '@chakra-ui/react';
 import { FC } from 'react';
 
-import { GrantsHero } from '../UI';
+import { DimLayer, GrantsHero } from '../UI';
 
-import academicGrantsHero from '../../../public/images/academic-grants-hero.png';
-import academicGrantsHeroMobile from '../../../public/images/academic-grants-hero-mobile.png';
+import accountAbstractionGrantsHero from '../../../public/images/account-abstraction-hero.jpeg';
+import accountAbstractionGrantsHeroMobile from '../../../public/images/account-abstraction-hero-mobile.jpeg';
 
 export const AccountAbstractionGrantsLayout: FC = ({ children }) => {
   return (
-    <Stack>
+    <Box>
+      <DimLayer height='130px' />
       <GrantsHero
-        colorBrandConstant='academicGrantsHero'
-        desktopImage={{ alt: 'Academics doing research about Ethereum', src: academicGrantsHero }}
+        colorBrandConstant='accountAbstractionGrantsHero'
+        desktopImage={{
+          alt: 'People inside transparent boxes with different shapes in a beautiful landscape',
+          src: accountAbstractionGrantsHero
+        }}
         mobileImage={{
-          alt: 'Academics doing research about Ethereum',
-          src: academicGrantsHeroMobile
+          alt: 'People inside transparent boxes with different shapes in a beautiful landscape',
+          src: accountAbstractionGrantsHeroMobile
         }}
         title='Account Abstraction Grants 2023'
       >
@@ -29,6 +33,6 @@ export const AccountAbstractionGrantsLayout: FC = ({ children }) => {
       </GrantsHero>
 
       <Stack>{children}</Stack>
-    </Stack>
+    </Box>
   );
 };
