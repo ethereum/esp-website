@@ -27,7 +27,7 @@ export const AccountAbstractionGrantsLayout: FC = ({ children }) => {
           continuing to improve and strengthen the infrastructure surrounding Account Abstraction on
           Ethereum.{' '}
           <Text as='i'>
-            This grants round has up to $350,000 available to distribute to the community.
+            This grants round has up to $300,000 available to distribute to the community.
           </Text>
         </Text>
       </GrantsHero>
