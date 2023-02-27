@@ -11,7 +11,7 @@ export const AccountAbstractionGrantsLayout: FC = ({ children }) => {
     <Box>
       <DimLayer height='130px' />
       <GrantsHero
-        colorBrandConstant='academicGrantsHero'
+        colorBrandConstant='accountAbstractionHero'
         desktopImage={{
           alt: 'People inside transparent boxes with different shapes in a beautiful landscape',
           src: accountAbstractionGrantsHero
