@@ -495,7 +495,6 @@ export const ProjectGrantsForm: FC = () => {
             )}
           </FormControl>
 
-
           <Controller
             name='projectCategory'
             control={control}
@@ -590,7 +589,8 @@ export const ProjectGrantsForm: FC = () => {
             </FormLabel>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              For example, do you have an MVP? Please describe its functionality and limitations and provide a link to it here.
+              For example, do you have an MVP? Please describe its functionality and limitations and
+              provide a link to it here.
             </PageText>
 
             <Textarea
@@ -667,7 +667,7 @@ export const ProjectGrantsForm: FC = () => {
               </Box>
             )}
           </FormControl>
-          
+
           <FormControl id='proposed-timeline-control' isRequired mb={8}>
             <FormLabel htmlFor='proposedTimeline' mb={1}>
               <PageText display='inline' fontSize='input'>
@@ -676,7 +676,8 @@ export const ProjectGrantsForm: FC = () => {
             </FormLabel>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Provide a summary that includes a timeline of the expected work and an estimated budgetary breakdown.
+              Provide a summary that includes a timeline of the expected work and an estimated
+              budgetary breakdown.
             </PageText>
 
             <Textarea
@@ -710,7 +711,6 @@ export const ProjectGrantsForm: FC = () => {
               </Box>
             )}
           </FormControl>
-
 
           <FormControl
             id='requested-amount-control'
@@ -770,7 +770,8 @@ export const ProjectGrantsForm: FC = () => {
             </FormLabel>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Why should solving these problems or addressing these needs be prioritized, what evidence do you have of importance or demand?
+              Why should solving these problems or addressing these needs be prioritized, what
+              evidence do you have of importance or demand?
             </PageText>
 
             <Textarea
@@ -813,7 +814,8 @@ export const ProjectGrantsForm: FC = () => {
             </FormLabel>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              What other solutions are being worked on, what unique contribution will you make or advance will you provide beyond the state of the art?
+              What other solutions are being worked on, what unique contribution will you make or
+              advance will you provide beyond the state of the art?
             </PageText>
 
             <Textarea
@@ -856,7 +858,9 @@ export const ProjectGrantsForm: FC = () => {
             </FormLabel>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Public goods are things like open source code, shared infrastructure, openly shared research, documentation, community building or other benefits provided to the community that are typically under-provided by the free market.
+              Public goods are things like open source code, shared infrastructure, openly shared
+              research, documentation, community building or other benefits provided to the
+              community that are typically under-provided by the free market.
             </PageText>
 
             <Textarea
@@ -942,7 +946,8 @@ export const ProjectGrantsForm: FC = () => {
             </FormLabel>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Please list the expected results of the project and explain how they will have a positive effect on the Ethereum ecosystem at large.
+              Please list the expected results of the project and explain how they will have a
+              positive effect on the Ethereum ecosystem at large.
             </PageText>
 
             <Textarea
@@ -985,7 +990,8 @@ export const ProjectGrantsForm: FC = () => {
             </FormLabel>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              What are the critical risks, relating to both project implementation and achieving expected impacts?
+              What are the critical risks, relating to both project implementation and achieving
+              expected impacts?
             </PageText>
 
             <Textarea
@@ -1386,34 +1392,34 @@ export const ProjectGrantsForm: FC = () => {
           <FormControl id='referrals' mb={12}>
             <FormLabel htmlFor='referrals' mb={1}>
               <PageText fontSize='input'>
-                Did anyone recommend that you contact Ecosystem Support?
+                Did anyone recommend that you submit an application to the Ecosystem Support
+                Program?
               </PageText>
             </FormLabel>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Please write the name of the person who recommended that you apply.
+              Please include the person&apos;s name and details of their referral.
             </PageText>
 
-            <Input
+            <Textarea
               id='referrals'
-              type='text'
               bg='white'
               borderRadius={0}
               borderColor='brand.border'
-              h='56px'
               _placeholder={{ fontSize: 'input' }}
               color='brand.paragraph'
               fontSize='input'
+              h='150px'
               mt={3}
               {...register('referrals', {
-                maxLength: 150
+                maxLength: 32768
               })}
             />
 
-            {errors?.referralSourceIfOther?.type === 'maxLength' && (
+            {errors?.referrals?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Referral name cannot exceed 150 characters.
+                  Referral name cannot exceed 32768 characters.
                 </PageText>
               </Box>
             )}
@@ -1468,8 +1474,8 @@ export const ProjectGrantsForm: FC = () => {
                             mb={2}
                           >
                             Click here or drag file to this box. Use this space to upload any
-                            additional documents you&apos;d like to share. This is optional,
-                            but highly recommended.
+                            additional documents you&apos;d like to share. This is optional, but
+                            highly recommended.
                           </PageText>
                         </Stack>
 

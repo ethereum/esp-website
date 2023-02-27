@@ -1323,24 +1323,28 @@ export const EcodevGrantsForm: FC = () => {
           <FormControl id='referrals-control' isRequired mb={8}>
             <FormLabel htmlFor='referrals' mb={1}>
               <PageText display='inline' fontSize='input'>
-                How did you hear about Ethereum Foundation grant funding?
+                Did anyone recommend that you submit an application to the Ecosystem Support
+                Program?
               </PageText>
             </FormLabel>
 
-            <Input
+            <PageText as='small' fontSize='helpText' color='brand.helpText'>
+              Please include the person&apos;s name and details of their referral.
+            </PageText>
+
+            <Textarea
               id='referrals'
               bg='white'
               borderRadius={0}
               borderColor='brand.border'
-              type='text'
-              h='56px'
-              mt={3}
-              position='relative'
+              _placeholder={{ fontSize: 'input' }}
               color='brand.paragraph'
               fontSize='input'
+              h='150px'
+              mt={3}
               {...register('referrals', {
                 required: true,
-                maxLength: 150
+                maxLength: 32768
               })}
             />
 
@@ -1354,7 +1358,7 @@ export const EcodevGrantsForm: FC = () => {
             {errors?.referrals?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Referrals info cannot exceed 150 characters.
+                  Referrals info cannot exceed 32768 characters.
                 </PageText>
               </Box>
             )}
