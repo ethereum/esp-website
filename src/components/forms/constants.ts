@@ -44,17 +44,11 @@ export const ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS = [
 ];
 
 export const ACCOUNT_ABSTRACTION_GRANTS_PROJECT_CATEGORY_OPTIONS = [
-  { value: 'Economics', label: 'Economics' },
-  { value: 'Consensus layer', label: 'Consensus layer' },
-  { value: 'Formal Verification', label: 'Formal Verification' },
-  { value: 'Maximal Extractable Value (MEV)', label: 'Maximal Extractable Value (MEV)' },
-  {
-    value: 'Cryptography and zero knowledge proofs',
-    label: 'Cryptography and zero knowledge proofs'
-  },
-  { value: 'P2P networking', label: 'P2P networking' },
-  { value: 'Hardware', label: 'Hardware' },
-  { value: 'Society and Regulatory', label: 'Society and Regulatory' },
+  { value: 'Community and education', label: 'Community and education' },
+  { value: 'Data Analysis', label: 'Data Analysis' },
+  { value: 'Developer experience and tooling', label: 'Developer experience and tooling' },
+  { value: 'General research', label: 'General research' },
+  { value: 'User experience', label: 'User experience' },
   { value: 'Other', label: 'Other' }
 ];
 
