@@ -47,7 +47,7 @@ export const ACCOUNT_ABSTRACTION_GRANTS_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Economics', label: 'Economics' },
   { value: 'Consensus layer', label: 'Consensus layer' },
   { value: 'Formal Verification', label: 'Formal Verification' },
-  { value: 'Miner Extracted Value (MEV)', label: 'Miner Extracted Value (MEV)' },
+  { value: 'Maximal Extractable Value (MEV)', label: 'Maximal Extractable Value (MEV)' },
   {
     value: 'Cryptography and zero knowledge proofs',
     label: 'Cryptography and zero knowledge proofs'
