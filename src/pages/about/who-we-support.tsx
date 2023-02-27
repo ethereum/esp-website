@@ -24,7 +24,7 @@ export const getStaticProps: GetStaticProps = async context => {
         });
       });
     })
-    .catch(err => console.error(err?.toJSON?.() ?? err));
+    .catch(err => console.error(err.toJSON()));
 
   return {
     props: {
