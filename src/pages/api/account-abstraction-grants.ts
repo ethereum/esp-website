@@ -76,7 +76,7 @@ async function handler(
         Repeat_Applicant__c, // this is a boolean value, no trim applied
         Can_the_EF_reach_out__c, // this is a boolean value, no trim applied
         Additional_Information__c: Additional_Information__c.trim(),
-        Proactive_Community_Grants_Round__c: 'Account Abstraction Community Grants 2023', // this value is hardwired, depending on the type of grant round
+        Proactive_Community_Grants_Round__c: 'Account Abstraction 2023', // this value is hardwired, depending on the type of grant round
         RecordTypeId: process.env.SF_RECORD_TYPE_MASTER! // Master
       };
 
