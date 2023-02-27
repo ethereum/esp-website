@@ -183,7 +183,7 @@ export const api = {
   },
   accountAbstractionGrants: {
     submit: (data: AccountAbstractionGrantsFormData) => {
-      const academicGrantsRequestOptions: RequestInit = {
+      const accountAbstractionRequestOptions: RequestInit = {
         ...methodOptions,
         body: JSON.stringify({
           ...data,
@@ -200,7 +200,7 @@ export const api = {
         })
       };
 
-      return fetch(API_ACCOUNT_ABSTRACTION_GRANTS, academicGrantsRequestOptions);
+      return fetch(API_ACCOUNT_ABSTRACTION_GRANTS, accountAbstractionRequestOptions);
     }
   },
   newsletter: {
