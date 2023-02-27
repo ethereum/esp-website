@@ -74,6 +74,13 @@ export const colors = {
         end: 'rgba(235, 209, 251, 0)'
       }
     },
+    accountAbstractionHero: {
+      titleWhiteBox: 'rgba(255, 255, 255, 0.8)',
+      bgGradient: {
+        start: '#ebd1fb',
+        end: 'rgba(235, 209, 251, 0)'
+      }
+    },
     mergeDataChallengeHero: {
       titleWhiteBox: ' rgba(255, 255, 255, 0.75)',
       bgGradient: {
