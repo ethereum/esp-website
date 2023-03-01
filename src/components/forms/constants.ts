@@ -1481,13 +1481,14 @@ export const HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE = [
   ...HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS
 ];
 
-// academic grants
+// academic & account abstraction grants
 export const APPLYING_AS_OPTIONS = [
   { value: 'An individual', label: 'An individual' },
-  { value: 'A University', label: 'A University' },
-  { value: 'A consortium of Universities', label: 'A consortium of Universities' },
-  { value: 'A Think-Tank', label: 'A Think-Tank' },
-  { value: 'A Research Center', label: 'A Research Center' },
+  { value: 'A team', label: 'A team' },
+  { value: 'A university', label: 'A university' },
+  { value: 'A consortium of universities', label: 'A consortium of universities' },
+  { value: 'A think-tank', label: 'A think-tank' },
+  { value: 'A research center', label: 'A research center' },
   { value: 'Other', label: 'Other' }
 ];
 
