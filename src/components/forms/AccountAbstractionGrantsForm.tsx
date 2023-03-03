@@ -6,6 +6,7 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Link,
   Radio,
   RadioGroup,
   Stack,
@@ -577,6 +578,68 @@ export const AccountAbstractionGrantsForm: FC = () => {
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
                   Project description cannot exceed 255 characters.
+                </PageText>
+              </Box>
+            )}
+          </FormControl>
+
+          <FormControl id='website-control' isRequired mb={8}>
+            <FormLabel htmlFor='website' mb={1}>
+              <PageText display='inline' fontSize='input'>
+                Grant Proposal URL
+              </PageText>
+            </FormLabel>
+
+            <PageText as='small' fontSize='helpText' color='brand.helpText'>
+              Please provide a link to your grant proposal for review.{' '}
+              <Link
+                fontWeight={700}
+                color='brand.orange.200'
+                href={`https://hackmd.io/@rodrigolvc/Example_Grant`}
+                isExternal
+                _hover={{ textDecoration: 'none' }}
+              >
+                Proposal Template
+              </Link>
+            </PageText>
+
+            <Box position='relative'>
+              <PageText fontSize='input' position='absolute' top='28.5px' left={4} zIndex={9}>
+                https://
+              </PageText>
+              <Input
+                id='website'
+                type='text'
+                placeholder='yourgrantproposal.com'
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                h='56px'
+                _placeholder={{ fontSize: 'input' }}
+                position='relative'
+                color='brand.paragraph'
+                fontSize='input'
+                pl={16}
+                mt={3}
+                {...register('website', {
+                  required: true,
+                  maxLength: 255
+                })}
+              />
+            </Box>
+
+            {errors?.website?.type === 'maxLength' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  The URL cannot exceed 255 characters.
+                </PageText>
+              </Box>
+            )}
+
+            {errors?.website?.type === 'required' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  A URL is required.
                 </PageText>
               </Box>
             )}
