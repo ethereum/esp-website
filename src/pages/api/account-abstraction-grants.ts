@@ -36,7 +36,8 @@ async function handler(
       telegram: Alternative_Contact__c,
       repeatApplicant: Repeat_Applicant__c,
       canTheEFReachOut: Can_the_EF_reach_out__c,
-      additionalInfo: Additional_Information__c
+      additionalInfo: Additional_Information__c,
+      website: Website
     } = body;
     const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
       process.env;
@@ -65,6 +66,7 @@ async function handler(
         Time_Zone__c: Time_Zone__c.trim(),
         Project_Name__c: Project_Name__c.trim(),
         Project_Description__c: Project_Description__c.trim(),
+        Website: Website.trim(),
         Category__c: Category__c.trim(),
         Requested_Amount__c: Requested_Amount__c.trim(),
         Referral_Source__c: Referral_Source__c.trim(),
