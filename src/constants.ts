@@ -135,8 +135,7 @@ export const SIDEBAR_ACADEMIC_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Selection criteria', href: `${ACADEMIC_GRANTS_URL}/#selection-criteria` },
   { text: 'Wishlist', href: `${ACADEMIC_GRANTS_URL}/#wishlist` },
   { text: 'Next steps and support', href: `${ACADEMIC_GRANTS_URL}/#next-steps-and-support` },
-  { text: 'FAQ', href: `${ACADEMIC_GRANTS_URL}/#faq` },
-  { text: 'Apply', href: `${ACADEMIC_GRANTS_URL}/#apply` }
+  { text: 'FAQ', href: `${ACADEMIC_GRANTS_URL}/#faq` }
 ];
 
 export const ACCOUNT_ABSTRACTION_GRANTS_URL = '/account-abstraction-grants';
@@ -281,8 +280,6 @@ export const ACCOUNT_ABSTRACTION_GRANTS_PREVIEW_URL =
 
 // Thank you and apply urls
 export const GRANTS_URLS = [
-  ACADEMIC_GRANTS_APPLY_URL,
-  ACADEMIC_GRANTS_THANK_YOU_PAGE_URL,
   DEVCON_GRANTS_APPLY_URL,
   DEVCON_GRANTS_THANK_YOU_PAGE_URL,
   ACCOUNT_ABSTRACTION_GRANTS_APPLY_URL,

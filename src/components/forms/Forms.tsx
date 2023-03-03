@@ -9,7 +9,6 @@ import {
   SmallGrantsForm,
   DevconGrantsForm,
   EcodevGrantsForm,
-  AcademicGrantsForm,
   AccountAbstractionGrantsForm
 } from './';
 
@@ -47,11 +46,6 @@ export const Forms: FC = () => {
       {router.pathname === GRANTEE_FINANCE_URL && (
         <Box px={{ md: 24, lg: 32, xl: 72 }}>
           <GranteeFinanceForm />
-        </Box>
-      )}
-      {router.pathname === ACADEMIC_GRANTS_APPLY_URL && (
-        <Box px={{ md: 24, lg: 32, xl: 72 }}>
-          <AcademicGrantsForm />
         </Box>
       )}
       {router.pathname === DEVCON_GRANTS_APPLY_URL && (
