@@ -1,10 +1,7 @@
 import { AspectRatio, Box, Center, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
-import Image from 'next/image';
 
-import { PageSection, PageText, PageMetadata } from '../../components/UI';
-
-import aboutSVG from '../../../public/images/about.png';
+import { PageSection, PageText, PageMetadata, ScaleTable } from '../../components/UI';
 
 const About: NextPage = () => {
   return (
@@ -36,6 +33,8 @@ const About: NextPage = () => {
               primitives, and growing the builder ecosystem through education and community
               development.
             </PageText>
+
+            <ScaleTable />
 
             <PageText mb={6}>
               To learn more about ESP support and what we&apos;re looking out for, watch our talk at
