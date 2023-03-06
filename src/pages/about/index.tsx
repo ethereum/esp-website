@@ -34,7 +34,7 @@ const About: NextPage = () => {
               development.
             </PageText>
 
-            <ScaleTable />
+            <ScaleTable color='brand.paragraph' />
 
             <PageText mb={6}>
               To learn more about ESP support and what we&apos;re looking out for, watch our talk at
