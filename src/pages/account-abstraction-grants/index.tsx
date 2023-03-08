@@ -199,8 +199,7 @@ const AccountAbstractionGrants: NextPage = () => {
                     <Link
                       fontWeight={700}
                       color='brand.orange.100'
-                      href=''
-                      isExternal
+                      href={ACCOUNT_ABSTRACTION_GRANTS_APPLY_URL}
                       _hover={{ textDecoration: 'none' }}
                     >
                       here
@@ -532,7 +531,7 @@ const AccountAbstractionGrants: NextPage = () => {
 
                 <section id='apply' ref={ref12}>
                   <Stack mt={6}>
-                    <ReadyToApply link={`${ACCOUNT_ABSTRACTION_GRANTS_APPLY_URL}`} />
+                    <ReadyToApply link={ACCOUNT_ABSTRACTION_GRANTS_APPLY_URL} />
                   </Stack>
                 </section>
               </Stack>
