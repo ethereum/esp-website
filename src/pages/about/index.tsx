@@ -1,7 +1,8 @@
-import { AspectRatio, Box, Center, Stack } from '@chakra-ui/react';
+import { AspectRatio, Box, Center, Link, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 
 import { PageSection, PageText, PageMetadata, ScaleTable } from '../../components/UI';
+import { ESP_WISHLIST_URL, OFFICE_HOURS_URL } from '../../constants';
 
 const About: NextPage = () => {
   return (
@@ -34,7 +35,32 @@ const About: NextPage = () => {
               development.
             </PageText>
 
-            <ScaleTable color='brand.paragraph' />
+            <ScaleTable mb={6} color='brand.paragraph' />
+
+            <PageText mb={6}>
+              If you’re looking for inspiration for your next project, check out the suggestions on
+              our{' '}
+              <Link
+                fontWeight={700}
+                color='brand.orange.100'
+                href={ESP_WISHLIST_URL}
+                isExternal
+                _hover={{ textDecoration: 'none' }}
+              >
+                Wishlist
+              </Link>{' '}
+              for areas crucial to the Ethereum ecosystem&apos;s development. If you are unsure if
+              your project is within scope, feel free to submit an{' '}
+              <Link
+                fontWeight={700}
+                color='brand.orange.100'
+                href={OFFICE_HOURS_URL}
+                _hover={{ textDecoration: 'none' }}
+              >
+                Office Hour request
+              </Link>{' '}
+              with the Project Feedback fields filled out.
+            </PageText>
 
             <PageText mb={6}>
               To learn more about ESP support and what we&apos;re looking out for, watch our talk at

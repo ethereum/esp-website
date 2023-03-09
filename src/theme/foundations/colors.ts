@@ -129,6 +129,12 @@ export const colors = {
         start: '#fbe7e8',
         end: '#f8d1d4'
       }
+    },
+    priorityScale: {
+      bgGradient: {
+        start: 'rgba(224, 120, 97, 0.1)',
+        end: '#e06361'
+      }
     }
   }
 };

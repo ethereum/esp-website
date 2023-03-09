@@ -4,13 +4,14 @@ import {
   ChakraProps,
   Flex,
   FlexProps,
-  Heading,
+  Link,
   ListItem,
   Text,
   UnorderedList
 } from '@chakra-ui/react';
 
 import { StepArrow } from '../icons/StepArrow';
+import { ESP_WISHLIST_URL } from '../../../constants';
 
 function Arrow(props: FlexProps) {
   return (
@@ -28,8 +29,8 @@ function Arrow(props: FlexProps) {
       >
         <Box
           bgGradient={{
-            base: 'linear(to-t, brand.footer.bgGradient.start 10%, brand.footer.bgGradient.end 100%)',
-            lg: 'linear(to-r, brand.footer.bgGradient.start 10%, brand.footer.bgGradient.end 100%)'
+            base: 'linear(to-t, brand.priorityScale.bgGradient.start, brand.priorityScale.bgGradient.end)',
+            lg: 'linear(to-r, brand.priorityScale.bgGradient.start, brand.priorityScale.bgGradient.end)'
           }}
           h='full'
         />
@@ -39,7 +40,7 @@ function Arrow(props: FlexProps) {
         transform={{ base: 'rotate(180deg)', lg: 'rotate(270deg)' }}
         sx={{
           path: {
-            fill: 'brand.footer.bgGradient.end'
+            fill: 'brand.priorityScale.bgGradient.end'
           }
         }}
       />
@@ -88,7 +89,18 @@ export const ScaleTable: FC<Props> = props => {
           <ListItem>Developer tooling</ListItem>
           <ListItem>Research on cryptographic primitives</ListItem>
           <ListItem>Growing the builder ecosystem</ListItem>
-          <ListItem>Projects on our wishlist</ListItem>
+          <ListItem>
+            <Link
+              fontWeight={700}
+              color='brand.paragraph'
+              textDecor='underline'
+              isExternal
+              href={ESP_WISHLIST_URL}
+              _hover={{ textDecoration: 'none' }}
+            >
+              Projects on our wishlist
+            </Link>
+          </ListItem>
         </UnorderedList>
       </Flex>
     </Flex>
