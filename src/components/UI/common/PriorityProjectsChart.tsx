@@ -24,7 +24,7 @@ function Arrow(props: FlexProps) {
       <Box
         w={{ base: '5px', lg: 'full' }}
         h={{ base: 'full', lg: '5px' }}
-        mr={{ base: 0, lg: '-5px' }}
+        me={{ base: 0, lg: '-5px' }}
         mt={{ base: '-1px', lg: 0 }}
       >
         <Box

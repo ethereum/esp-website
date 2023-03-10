@@ -35,7 +35,7 @@ const About: NextPage = () => {
               development.
             </PageText>
 
-            <PriorityProjectsChart mb={6} color='brand.paragraph' />
+            <PriorityProjectsChart my={12} color='brand.paragraph' />
 
             <PageText mb={6}>
               If you&apos;re looking for inspiration for your next project, check out the
