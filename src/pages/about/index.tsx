@@ -1,7 +1,7 @@
 import { AspectRatio, Box, Center, Link, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 
-import { PageSection, PageText, PageMetadata, ScaleTable } from '../../components/UI';
+import { PageSection, PageText, PageMetadata, PriorityProjectsChart } from '../../components/UI';
 import { ESP_WISHLIST_URL, OFFICE_HOURS_URL } from '../../constants';
 
 const About: NextPage = () => {
@@ -35,7 +35,7 @@ const About: NextPage = () => {
               development.
             </PageText>
 
-            <ScaleTable mb={6} color='brand.paragraph' />
+            <PriorityProjectsChart mb={6} color='brand.paragraph' />
 
             <PageText mb={6}>
               If you&apos;re looking for inspiration for your next project, check out the

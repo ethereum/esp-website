@@ -5,3 +5,4 @@ export * from './NavLinkIcon';
 export * from './PlusIcon';
 export * from './RemoveIcon';
 export * from './SelectArrowIcon';
+export * from './StepArrowIcon';

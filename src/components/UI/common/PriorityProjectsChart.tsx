@@ -10,7 +10,7 @@ import {
   UnorderedList
 } from '@chakra-ui/react';
 
-import { StepArrow } from '../icons/StepArrow';
+import { StepArrowIcon } from '../icons';
 import { ESP_WISHLIST_URL } from '../../../constants';
 
 function Arrow(props: FlexProps) {
@@ -35,7 +35,7 @@ function Arrow(props: FlexProps) {
           h='full'
         />
       </Box>
-      <StepArrow
+      <StepArrowIcon
         mt={0}
         transform={{ base: 'rotate(180deg)', lg: 'rotate(270deg)' }}
         sx={{
@@ -50,7 +50,7 @@ function Arrow(props: FlexProps) {
 
 interface Props extends ChakraProps {}
 
-export const ScaleTable: FC<Props> = props => {
+export const PriorityProjectsChart: FC<Props> = props => {
   return (
     <Flex
       direction={{ base: 'row', lg: 'column' }}
