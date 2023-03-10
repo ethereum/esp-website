@@ -38,8 +38,8 @@ const About: NextPage = () => {
             <ScaleTable mb={6} color='brand.paragraph' />
 
             <PageText mb={6}>
-              If you’re looking for inspiration for your next project, check out the suggestions on
-              our{' '}
+              If you&apos;re looking for inspiration for your next project, check out the
+              suggestions on our{' '}
               <Link
                 fontWeight={700}
                 color='brand.orange.100'

@@ -65,22 +65,22 @@ export const ScaleTable: FC<Props> = props => {
         gap={20}
       >
         <Box flex={1}>
-          <Text fontSize='lg'>Lower Priority</Text>
+          <Text fontSize='lg'>Not a Priority</Text>
         </Box>
         <Box flex={1}>
           <Text fontSize='lg' fontWeight='bold'>
-            Higher Priority
+            High Priority
           </Text>
         </Box>
       </Flex>
 
-      <Arrow my={{ base: 0, lg: 4 }} mx={{ base: 4, lg: 0 }} />
+      <Arrow my={{ base: 0, lg: 4 }} mx={{ base: 2, lg: 0 }} />
 
       <Flex direction={{ base: 'column-reverse', lg: 'row' }} gap={20}>
         <UnorderedList flex={1} spacing={2}>
           <ListItem>Financial products (e.g. trading, investment products)</ListItem>
           <ListItem>Token or investment-focused events</ListItem>
-          <ListItem>Projects with a planned token launch and/or raise</ListItem>
+          <ListItem>Projects with a planned token Launch and or raise</ListItem>
           <ListItem>NFT PFP projects, launches, and marketplaces</ListItem>
         </UnorderedList>
 
@@ -91,14 +91,13 @@ export const ScaleTable: FC<Props> = props => {
           <ListItem>Growing the builder ecosystem</ListItem>
           <ListItem>
             <Link
-              fontWeight={700}
-              color='brand.paragraph'
-              textDecor='underline'
               isExternal
+              fontWeight={700}
+              color='brand.orange.100'
               href={ESP_WISHLIST_URL}
               _hover={{ textDecoration: 'none' }}
             >
-              Projects on our wishlist
+              See more items or areas of interest on our wishlist
             </Link>
           </ListItem>
         </UnorderedList>
