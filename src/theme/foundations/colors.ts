@@ -132,7 +132,7 @@ export const colors = {
     },
     priorityScale: {
       bgGradient: {
-        start: 'rgba(224, 120, 97, 0.1)',
+        start: '#e078611a',
         end: '#e06361'
       }
     }
