@@ -80,7 +80,7 @@ export const PriorityProjectsChart: FC<Props> = props => {
         <UnorderedList flex={1} spacing={2}>
           <ListItem>Financial products (e.g. trading, investment products)</ListItem>
           <ListItem>Token or investment-focused events</ListItem>
-          <ListItem>Projects with a planned token Launch and or raise</ListItem>
+          <ListItem>Projects with a planned token launch and or raise</ListItem>
           <ListItem>NFT PFP projects, launches, and marketplaces</ListItem>
         </UnorderedList>
 
