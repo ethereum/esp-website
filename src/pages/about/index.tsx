@@ -57,7 +57,7 @@ const About: NextPage = () => {
                 href={OFFICE_HOURS_URL}
                 _hover={{ textDecoration: 'none' }}
               >
-                Office Hour request
+                Office Hours request
               </Link>{' '}
               with the Project Feedback fields filled out.
             </PageText>
