@@ -199,6 +199,8 @@ export const EF_JOBS_URL = 'https://ethereum.bamboohr.com/jobs/';
 // ESP external links
 export const ESP_BLOG_URL = 'https://blog.ethereum.org/category/ecosystem-support-program/';
 export const ESP_TWITTER_URL = 'https://twitter.com/EF_ESP';
+export const ESP_WISHLIST_URL =
+  'https://efdn.notion.site/Ecosystem-Support-Program-Wishlist-ae88ec8d8fc34d01be96d35ddaff7d23';
 export const ESP_EMAIL_ADDRESS = 'esp@ethereum.org';
 export const ACADEMIC_GRANTS_EMAIL_ADDRESS = 'academic-grants@ethereum.org';
 export const DEVCON_GRANTS_EMAIL_ADDRESS = 'grants@devcon.org';

@@ -1,10 +1,8 @@
-import { AspectRatio, Box, Center, Stack } from '@chakra-ui/react';
+import { AspectRatio, Box, Center, Link, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
-import Image from 'next/image';
 
-import { PageSection, PageText, PageMetadata } from '../../components/UI';
-
-import aboutSVG from '../../../public/images/about.png';
+import { PageSection, PageText, PageMetadata, PriorityProjectsChart } from '../../components/UI';
+import { ESP_WISHLIST_URL, OFFICE_HOURS_URL } from '../../constants';
 
 const About: NextPage = () => {
   return (
@@ -35,6 +33,33 @@ const About: NextPage = () => {
               to those building on Ethereum, gaining a deeper understanding of cryptographic
               primitives, and growing the builder ecosystem through education and community
               development.
+            </PageText>
+
+            <PriorityProjectsChart my={12} color='brand.paragraph' />
+
+            <PageText mb={6}>
+              If you&apos;re looking for inspiration for your next project, check out the
+              suggestions on our{' '}
+              <Link
+                fontWeight={700}
+                color='brand.orange.100'
+                href={ESP_WISHLIST_URL}
+                isExternal
+                _hover={{ textDecoration: 'none' }}
+              >
+                Wishlist
+              </Link>{' '}
+              for areas crucial to the Ethereum ecosystem&apos;s development. If you are unsure if
+              your project is within scope, feel free to submit an{' '}
+              <Link
+                fontWeight={700}
+                color='brand.orange.100'
+                href={OFFICE_HOURS_URL}
+                _hover={{ textDecoration: 'none' }}
+              >
+                Office Hours request
+              </Link>{' '}
+              with the Project Feedback fields filled out.
             </PageText>
 
             <PageText mb={6}>
