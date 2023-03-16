@@ -159,21 +159,29 @@ export const api = {
   },
   accountAbstractionGrants: {
     submit: (data: AccountAbstractionGrantsFormData) => {
+      const curatedData: { [key: string]: any } = {
+        ...data,
+        applyingAs: data.applyingAs.value,
+        // Company is a required field in SF, we're using the Name as default value if no company provided
+        company: data.company === 'N/A' ? `${data.firstName} ${data.lastName}` : data.company,
+        country: data.country.value,
+        timezone: data.timezone.value,
+        projectCategory: data.projectCategory.value,
+        howDidYouHearAboutGrantsWave: data.howDidYouHearAboutGrantsWave.value,
+        wouldYouShareYourResearch: data.wouldYouShareYourResearch.value,
+        repeatApplicant: data.repeatApplicant === 'Yes',
+        canTheEFReachOut: data.canTheEFReachOut === 'Yes'
+      };
+
+      const formData = new FormData();
+
+      for (const name in data) {
+        formData.append(name, curatedData[name]);
+      }
+
       const accountAbstractionRequestOptions: RequestInit = {
-        ...methodOptions,
-        body: JSON.stringify({
-          ...data,
-          applyingAs: data.applyingAs.value,
-          // Company is a required field in SF, we're using the Name as default value if no company provided
-          company: data.company === 'N/A' ? `${data.firstName} ${data.lastName}` : data.company,
-          country: data.country.value,
-          timezone: data.timezone.value,
-          projectCategory: data.projectCategory.value,
-          howDidYouHearAboutGrantsWave: data.howDidYouHearAboutGrantsWave.value,
-          wouldYouShareYourResearch: data.wouldYouShareYourResearch.value,
-          repeatApplicant: data.repeatApplicant === 'Yes',
-          canTheEFReachOut: data.canTheEFReachOut === 'Yes'
-        })
+        method: 'POST',
+        body: formData
       };
 
       return fetch(API_ACCOUNT_ABSTRACTION_GRANTS, accountAbstractionRequestOptions);

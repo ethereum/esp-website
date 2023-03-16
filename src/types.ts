@@ -229,7 +229,7 @@ export interface AccountAbstractionGrantsFormData extends CaptchaForm {
   timezone: Timezone; // SF API: Time_Zone__c
   projectName: string; // SF API: Project_Name__c
   projectDescription: string; // SF API: Project_Description__c
-  website: string; // SF API: Website
+  proposal: File;
   projectCategory: AcademicGrantsProjectCategory; // SF API: Category__c
   requestedAmount: string; // SF API: Requested_Amount__c
   wouldYouShareYourResearch: WouldYouShareYourResearch; // SF API: Would_you_share_your_research__c
@@ -447,7 +447,7 @@ export interface AccountAbstractionGrantsNextApiRequest extends NextApiRequest {
     timezone: string;
     projectName: string;
     projectDescription: string;
-    website: string;
+    proposal: File;
     projectCategory: string;
     requestedAmount: string;
     wouldYouShareYourResearch: string;

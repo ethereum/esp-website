@@ -38,6 +38,7 @@ import {
 import { ACCOUNT_ABSTRACTION_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
 import { AccountAbstractionGrantsFormData, ApplyingAs, GrantsReferralSource } from '../../types';
+import { UploadFile } from './fields';
 
 export const AccountAbstractionGrantsForm: FC = () => {
   const router = useRouter();
@@ -90,6 +91,14 @@ export const AccountAbstractionGrantsForm: FC = () => {
 
   const handleGrantsReferralSource = (source: GrantsReferralSource) => {
     setGrantsReferralSource(source);
+  };
+
+  const handleDrop = () => {
+    toast({
+      ...TOAST_OPTIONS,
+      title: 'Proposal uploaded!',
+      status: 'success'
+    });
   };
 
   return (
@@ -583,15 +592,15 @@ export const AccountAbstractionGrantsForm: FC = () => {
             )}
           </FormControl>
 
-          <FormControl id='website-control' isRequired mb={8}>
-            <FormLabel htmlFor='website' mb={1}>
+          <FormControl id='proposal-control' isRequired mb={8}>
+            <FormLabel htmlFor='proposal' mb={1}>
               <PageText display='inline' fontSize='input'>
-                Grant Proposal URL
+                Grant Proposal
               </PageText>
             </FormLabel>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Please provide a link to your grant proposal for review.{' '}
+              Please upload a file with your grant proposal for review.{' '}
               <Link
                 fontWeight={700}
                 color='brand.orange.200'
@@ -603,43 +612,12 @@ export const AccountAbstractionGrantsForm: FC = () => {
               </Link>
             </PageText>
 
-            <Box position='relative'>
-              <PageText fontSize='input' position='absolute' top='28.5px' left={4} zIndex={9}>
-                https://
-              </PageText>
-              <Input
-                id='website'
-                type='text'
-                placeholder='yourgrantproposal.com'
-                bg='white'
-                borderRadius={0}
-                borderColor='brand.border'
-                h='56px'
-                _placeholder={{ fontSize: 'input' }}
-                position='relative'
-                color='brand.paragraph'
-                fontSize='input'
-                pl={16}
-                mt={3}
-                {...register('website', {
-                  required: true,
-                  maxLength: 255
-                })}
-              />
-            </Box>
+            <UploadFile name='proposal' title='Upload proposal' onDrop={handleDrop} mt={4} />
 
-            {errors?.website?.type === 'maxLength' && (
+            {errors?.proposal?.type === 'required' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  The URL cannot exceed 255 characters.
-                </PageText>
-              </Box>
-            )}
-
-            {errors?.website?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  A URL is required.
+                  A proposal file is required.
                 </PageText>
               </Box>
             )}
