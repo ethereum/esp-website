@@ -28,11 +28,11 @@ const About: NextPage = () => {
             </PageText>
 
             <PageText mb={6}>
-              ESP support is generally directed toward enabling builders rather than end-users:
-              strengthening Ethereum&apos;s infrastructure, expanding the range of tools available
-              to those building on Ethereum, gaining a deeper understanding of cryptographic
-              primitives, and growing the builder ecosystem through education and community
-              development.
+              Below is a scale indicating ESP&apos;s areas of interest. Projects on the Not A
+              Priority end are valuable but not eligible for funding, while projects on the High
+              Priority end are more likely to receive financial support. This is by no means a
+              comprehensive list, as we continue to accept applications and support projects that
+              fall outside this list when suitable. We’re always open to new ideas!
             </PageText>
 
             <PriorityProjectsChart my={12} color='brand.paragraph' />
