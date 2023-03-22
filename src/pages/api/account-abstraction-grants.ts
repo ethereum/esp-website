@@ -93,19 +93,17 @@ async function handler(
         }
 
         // send submission data to a google spreadsheet
-        try {
-          await addRowToSpreadsheet(
-            {
-              id: '1MUH1hUdeHpTRXEYLzpokHEV1tQYHmy83RDpl7ny-wxQ',
-              sheetName: 'Applications'
-            },
-            // @ts-ignore
-            application
-          );
-        } catch (err) {
+        addRowToSpreadsheet(
+          {
+            id: '1MUH1hUdeHpTRXEYLzpokHEV1tQYHmy83RDpl7ny-wxQ',
+            sheetName: 'Applications'
+          },
+          // @ts-ignore
+          application
+        ).catch(err => {
           // as this is something internal we don't want to show this error to the user
-          console.log(err);
-        }
+          console.error(err);
+        });
 
         console.log(`Account Abstraction Grants 2023 Lead with ID: ${ret.id} has been created!`);
 
