@@ -52,6 +52,9 @@ import { EcodevGrantsFormData } from '../../types';
 import { RemoveIcon } from '../UI/icons';
 import { useDropzone } from 'react-dropzone';
 
+// Utils
+import { containURL } from '../../utils';
+
 export const EcodevGrantsForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
@@ -150,7 +153,8 @@ export const EcodevGrantsForm: FC = () => {
                   fontSize='input'
                   {...register('firstName', {
                     required: true,
-                    maxLength: 40
+                    maxLength: 40,
+                    validate: value => !containURL(value)
                   })}
                 />
 
@@ -165,6 +169,13 @@ export const EcodevGrantsForm: FC = () => {
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
                       First name cannot exceed 40 characters.
+                    </PageText>
+                  </Box>
+                )}
+                {errors?.firstName?.type === 'validate' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      First name cannot contain a URL.
                     </PageText>
                   </Box>
                 )}
@@ -186,7 +197,11 @@ export const EcodevGrantsForm: FC = () => {
                   _placeholder={{ fontSize: 'input' }}
                   color='brand.paragraph'
                   fontSize='input'
-                  {...register('lastName', { required: true, maxLength: 80 })}
+                  {...register('lastName', {
+                    required: true,
+                    maxLength: 80,
+                    validate: value => !containURL(value)
+                  })}
                 />
 
                 {errors?.lastName?.type === 'required' && (
@@ -200,6 +215,13 @@ export const EcodevGrantsForm: FC = () => {
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
                       Last name cannot exceed 80 characters.
+                    </PageText>
+                  </Box>
+                )}
+                {errors?.lastName?.type === 'validate' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Last name cannot contain a URL.
                     </PageText>
                   </Box>
                 )}
@@ -266,7 +288,8 @@ export const EcodevGrantsForm: FC = () => {
               mt={3}
               {...register('company', {
                 required: true,
-                maxLength: 255
+                maxLength: 255,
+                validate: value => !containURL(value)
               })}
             />
 
@@ -281,6 +304,13 @@ export const EcodevGrantsForm: FC = () => {
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
                   Organization name cannot exceed 255 characters.
+                </PageText>
+              </Box>
+            )}
+            {errors?.company?.type === 'validate' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Organization name cannot contain a URL.
                 </PageText>
               </Box>
             )}

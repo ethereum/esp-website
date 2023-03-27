@@ -36,6 +36,7 @@ import {
 import { OFFICE_HOURS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
 import { IndividualOrTeam, OfficeHoursFormData, OfficeHoursRequest } from '../../types';
+import { containURL } from '../../utils';
 
 export const OfficeHoursForm: FC = () => {
   const [individualOrTeam, setIndividualOrTeam] = useState<IndividualOrTeam>(INDIVIDUAL);
@@ -106,7 +107,11 @@ export const OfficeHoursForm: FC = () => {
                 h='56px'
                 color='brand.paragraph'
                 fontSize='input'
-                {...register('firstName', { required: true, maxLength: 40 })}
+                {...register('firstName', {
+                  required: true,
+                  maxLength: 40,
+                  validate: value => !containURL(value)
+                })}
               />
 
               {errors?.firstName?.type === 'required' && (
@@ -120,6 +125,13 @@ export const OfficeHoursForm: FC = () => {
                 <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
                     First name cannot exceed 40 characters.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.firstName?.type === 'validate' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    First name contain a URL.
                   </PageText>
                 </Box>
               )}
@@ -140,7 +152,11 @@ export const OfficeHoursForm: FC = () => {
                 h='56px'
                 color='brand.paragraph'
                 fontSize='input'
-                {...register('lastName', { required: true, maxLength: 80 })}
+                {...register('lastName', {
+                  required: true,
+                  maxLength: 80,
+                  validate: value => !containURL(value)
+                })}
               />
 
               {errors?.lastName?.type === 'required' && (
@@ -154,6 +170,13 @@ export const OfficeHoursForm: FC = () => {
                 <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
                     Last name cannot exceed 80 characters.
+                  </PageText>
+                </Box>
+              )}
+              {errors?.lastName?.type === 'validate' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Last name contain a URL.
                   </PageText>
                 </Box>
               )}
@@ -259,7 +282,8 @@ export const OfficeHoursForm: FC = () => {
                   mt={3}
                   {...register('company', {
                     required: isTeam,
-                    maxLength: 255
+                    maxLength: 255,
+                    validate: value => !containURL(value)
                   })}
                 />
 
@@ -274,6 +298,13 @@ export const OfficeHoursForm: FC = () => {
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
                       Organization name cannot exceed 255 characters.
+                    </PageText>
+                  </Box>
+                )}
+                {errors?.company?.type === 'validate' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Organization name contain a URL.
                     </PageText>
                   </Box>
                 )}
