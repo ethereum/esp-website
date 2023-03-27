@@ -47,6 +47,7 @@ import {
 
 import { ProjectGrantsFormData, ReferralSource } from '../../types';
 import { RemoveIcon } from '../UI/icons';
+import { isURL } from '../../utils';
 
 export const ProjectGrantsForm: FC = () => {
   const router = useRouter();
@@ -156,7 +157,8 @@ export const ProjectGrantsForm: FC = () => {
                   fontSize='input'
                   {...register('firstName', {
                     required: true,
-                    maxLength: 40
+                    maxLength: 40,
+                    validate: value => !isURL(value)
                   })}
                 />
 
@@ -171,6 +173,13 @@ export const ProjectGrantsForm: FC = () => {
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
                       First name cannot exceed 40 characters.
+                    </PageText>
+                  </Box>
+                )}
+                {errors?.firstName?.type === 'validate' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      First name cannot be a URL.
                     </PageText>
                   </Box>
                 )}
@@ -192,7 +201,11 @@ export const ProjectGrantsForm: FC = () => {
                   _placeholder={{ fontSize: 'input' }}
                   color='brand.paragraph'
                   fontSize='input'
-                  {...register('lastName', { required: true, maxLength: 80 })}
+                  {...register('lastName', {
+                    required: true,
+                    maxLength: 80,
+                    validate: value => !isURL(value)
+                  })}
                 />
 
                 {errors?.lastName?.type === 'required' && (
@@ -206,6 +219,13 @@ export const ProjectGrantsForm: FC = () => {
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
                       Last name cannot exceed 80 characters.
+                    </PageText>
+                  </Box>
+                )}
+                {errors?.lastName?.type === 'validate' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Last name cannot be a URL.
                     </PageText>
                   </Box>
                 )}
@@ -272,7 +292,8 @@ export const ProjectGrantsForm: FC = () => {
               mt={3}
               {...register('company', {
                 required: true,
-                maxLength: 255
+                maxLength: 255,
+                validate: value => !isURL(value)
               })}
             />
 
@@ -287,6 +308,13 @@ export const ProjectGrantsForm: FC = () => {
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
                   Organization name cannot exceed 255 characters.
+                </PageText>
+              </Box>
+            )}
+            {errors?.company?.type === 'validate' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Organization name cannot be a URL.
                 </PageText>
               </Box>
             )}

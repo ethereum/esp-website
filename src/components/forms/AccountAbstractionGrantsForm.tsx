@@ -38,6 +38,7 @@ import {
 import { ACCOUNT_ABSTRACTION_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
 import { AccountAbstractionGrantsFormData, ApplyingAs, GrantsReferralSource } from '../../types';
+import { isURL } from '../../utils';
 
 export const AccountAbstractionGrantsForm: FC = () => {
   const router = useRouter();
@@ -129,7 +130,8 @@ export const AccountAbstractionGrantsForm: FC = () => {
                   fontSize='input'
                   {...register('firstName', {
                     required: true,
-                    maxLength: 40
+                    maxLength: 40,
+                    validate: value => !isURL(value)
                   })}
                 />
 
@@ -144,6 +146,13 @@ export const AccountAbstractionGrantsForm: FC = () => {
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
                       First name cannot exceed 40 characters.
+                    </PageText>
+                  </Box>
+                )}
+                {errors?.firstName?.type === 'validate' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      First name cannot be a URL.
                     </PageText>
                   </Box>
                 )}
@@ -165,7 +174,11 @@ export const AccountAbstractionGrantsForm: FC = () => {
                   _placeholder={{ fontSize: 'input' }}
                   color='brand.paragraph'
                   fontSize='input'
-                  {...register('lastName', { required: true, maxLength: 80 })}
+                  {...register('lastName', {
+                    required: true,
+                    maxLength: 80,
+                    validate: value => !isURL(value)
+                  })}
                 />
 
                 {errors?.lastName?.type === 'required' && (
@@ -179,6 +192,13 @@ export const AccountAbstractionGrantsForm: FC = () => {
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
                       Last name cannot exceed 80 characters.
+                    </PageText>
+                  </Box>
+                )}
+                {errors?.lastName?.type === 'validate' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Last name cannot be a URL.
                     </PageText>
                   </Box>
                 )}
@@ -353,7 +373,8 @@ export const AccountAbstractionGrantsForm: FC = () => {
               mt={3}
               {...register('company', {
                 required: true,
-                maxLength: 255
+                maxLength: 255,
+                validate: value => !isURL(value)
               })}
             />
 
@@ -368,6 +389,13 @@ export const AccountAbstractionGrantsForm: FC = () => {
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
                   Organization name cannot exceed 255 characters.
+                </PageText>
+              </Box>
+            )}
+            {errors?.company?.type === 'validate' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Organization name cannot be a URL.
                 </PageText>
               </Box>
             )}

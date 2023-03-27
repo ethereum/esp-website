@@ -1,12 +1,13 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
-import validator from 'validator';
+
+import { isURL } from '../utils';
 
 const fieldsToSanitize = ['firstName', 'lastName', 'company'];
 
 function removeURLs(text: string) {
   return text
     .split(' ')
-    .map(value => (validator.isURL(value) ? '' : value))
+    .map(value => (isURL(value) ? '' : value))
     .join(' ');
 }
 
