@@ -47,7 +47,7 @@ import {
 
 import { ProjectGrantsFormData, ReferralSource } from '../../types';
 import { RemoveIcon } from '../UI/icons';
-import { isURL } from '../../utils';
+import { containURL } from '../../utils';
 
 export const ProjectGrantsForm: FC = () => {
   const router = useRouter();
@@ -158,7 +158,7 @@ export const ProjectGrantsForm: FC = () => {
                   {...register('firstName', {
                     required: true,
                     maxLength: 40,
-                    validate: value => !isURL(value)
+                    validate: value => !containURL(value)
                   })}
                 />
 
@@ -179,7 +179,7 @@ export const ProjectGrantsForm: FC = () => {
                 {errors?.firstName?.type === 'validate' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      First name cannot be a URL.
+                      First name contain a URL.
                     </PageText>
                   </Box>
                 )}
@@ -204,7 +204,7 @@ export const ProjectGrantsForm: FC = () => {
                   {...register('lastName', {
                     required: true,
                     maxLength: 80,
-                    validate: value => !isURL(value)
+                    validate: value => !containURL(value)
                   })}
                 />
 
@@ -225,7 +225,7 @@ export const ProjectGrantsForm: FC = () => {
                 {errors?.lastName?.type === 'validate' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Last name cannot be a URL.
+                      Last name contain a URL.
                     </PageText>
                   </Box>
                 )}
@@ -293,7 +293,7 @@ export const ProjectGrantsForm: FC = () => {
               {...register('company', {
                 required: true,
                 maxLength: 255,
-                validate: value => !isURL(value)
+                validate: value => !containURL(value)
               })}
             />
 
@@ -314,7 +314,7 @@ export const ProjectGrantsForm: FC = () => {
             {errors?.company?.type === 'validate' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Organization name cannot be a URL.
+                  Organization name contain a URL.
                 </PageText>
               </Box>
             )}

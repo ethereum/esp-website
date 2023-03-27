@@ -43,7 +43,7 @@ import {
   RepeatApplicant,
   SmallGrantsFormData
 } from '../../types';
-import { isURL } from '../../utils';
+import { containURL } from '../../utils';
 
 export const SmallGrantsForm: FC = () => {
   const router = useRouter();
@@ -124,7 +124,7 @@ export const SmallGrantsForm: FC = () => {
                 {...register('firstName', {
                   required: true,
                   maxLength: 40,
-                  validate: value => !isURL(value)
+                  validate: value => !containURL(value)
                 })}
               />
 
@@ -145,7 +145,7 @@ export const SmallGrantsForm: FC = () => {
               {errors?.firstName?.type === 'validate' && (
                 <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
-                    First name cannot be a URL.
+                    First name contain a URL.
                   </PageText>
                 </Box>
               )}
@@ -170,7 +170,7 @@ export const SmallGrantsForm: FC = () => {
                 {...register('lastName', {
                   required: true,
                   maxLength: 80,
-                  validate: value => !isURL(value)
+                  validate: value => !containURL(value)
                 })}
               />
 
@@ -191,7 +191,7 @@ export const SmallGrantsForm: FC = () => {
               {errors?.lastName?.type === 'validate' && (
                 <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
-                    Last name cannot be a URL.
+                    Last name contain a URL.
                   </PageText>
                 </Box>
               )}
@@ -298,7 +298,7 @@ export const SmallGrantsForm: FC = () => {
                   {...register('company', {
                     required: individualOrTeam === TEAM,
                     maxLength: 255,
-                    validate: value => !isURL(value)
+                    validate: value => !containURL(value)
                   })}
                 />
 
@@ -319,7 +319,7 @@ export const SmallGrantsForm: FC = () => {
                 {errors?.company?.type === 'validate' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Organization name cannot be a URL.
+                      Organization name contain a URL.
                     </PageText>
                   </Box>
                 )}

@@ -3,4 +3,4 @@ export * from './getBgGradient';
 export * from './getLayoutHeight';
 export * from './getWebsite';
 export * from './selectedLink';
-export * from './isURL';
+export * from './validation';

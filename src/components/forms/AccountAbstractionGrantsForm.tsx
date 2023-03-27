@@ -38,7 +38,7 @@ import {
 import { ACCOUNT_ABSTRACTION_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
 import { AccountAbstractionGrantsFormData, ApplyingAs, GrantsReferralSource } from '../../types';
-import { isURL } from '../../utils';
+import { containURL } from '../../utils';
 
 export const AccountAbstractionGrantsForm: FC = () => {
   const router = useRouter();
@@ -131,7 +131,7 @@ export const AccountAbstractionGrantsForm: FC = () => {
                   {...register('firstName', {
                     required: true,
                     maxLength: 40,
-                    validate: value => !isURL(value)
+                    validate: value => !containURL(value)
                   })}
                 />
 
@@ -152,7 +152,7 @@ export const AccountAbstractionGrantsForm: FC = () => {
                 {errors?.firstName?.type === 'validate' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      First name cannot be a URL.
+                      First name cannot contain a URL.
                     </PageText>
                   </Box>
                 )}
@@ -177,7 +177,7 @@ export const AccountAbstractionGrantsForm: FC = () => {
                   {...register('lastName', {
                     required: true,
                     maxLength: 80,
-                    validate: value => !isURL(value)
+                    validate: value => !containURL(value)
                   })}
                 />
 
@@ -198,7 +198,7 @@ export const AccountAbstractionGrantsForm: FC = () => {
                 {errors?.lastName?.type === 'validate' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Last name cannot be a URL.
+                      Last name cannot contain a URL.
                     </PageText>
                   </Box>
                 )}
@@ -374,7 +374,7 @@ export const AccountAbstractionGrantsForm: FC = () => {
               {...register('company', {
                 required: true,
                 maxLength: 255,
-                validate: value => !isURL(value)
+                validate: value => !containURL(value)
               })}
             />
 
@@ -395,7 +395,7 @@ export const AccountAbstractionGrantsForm: FC = () => {
             {errors?.company?.type === 'validate' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Organization name cannot be a URL.
+                  Organization name cannot contain a URL.
                 </PageText>
               </Box>
             )}

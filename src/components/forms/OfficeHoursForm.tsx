@@ -36,7 +36,7 @@ import {
 import { OFFICE_HOURS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
 import { IndividualOrTeam, OfficeHoursFormData, OfficeHoursRequest } from '../../types';
-import { isURL } from '../../utils';
+import { containURL } from '../../utils';
 
 export const OfficeHoursForm: FC = () => {
   const [individualOrTeam, setIndividualOrTeam] = useState<IndividualOrTeam>(INDIVIDUAL);
@@ -110,7 +110,7 @@ export const OfficeHoursForm: FC = () => {
                 {...register('firstName', {
                   required: true,
                   maxLength: 40,
-                  validate: value => !isURL(value)
+                  validate: value => !containURL(value)
                 })}
               />
 
@@ -131,7 +131,7 @@ export const OfficeHoursForm: FC = () => {
               {errors?.firstName?.type === 'validate' && (
                 <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
-                    First name cannot be a URL.
+                    First name contain a URL.
                   </PageText>
                 </Box>
               )}
@@ -155,7 +155,7 @@ export const OfficeHoursForm: FC = () => {
                 {...register('lastName', {
                   required: true,
                   maxLength: 80,
-                  validate: value => !isURL(value)
+                  validate: value => !containURL(value)
                 })}
               />
 
@@ -176,7 +176,7 @@ export const OfficeHoursForm: FC = () => {
               {errors?.lastName?.type === 'validate' && (
                 <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
-                    Last name cannot be a URL.
+                    Last name contain a URL.
                   </PageText>
                 </Box>
               )}
@@ -283,7 +283,7 @@ export const OfficeHoursForm: FC = () => {
                   {...register('company', {
                     required: isTeam,
                     maxLength: 255,
-                    validate: value => !isURL(value)
+                    validate: value => !containURL(value)
                   })}
                 />
 
@@ -304,7 +304,7 @@ export const OfficeHoursForm: FC = () => {
                 {errors?.company?.type === 'validate' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Organization name cannot be a URL.
+                      Organization name contain a URL.
                     </PageText>
                   </Box>
                 )}

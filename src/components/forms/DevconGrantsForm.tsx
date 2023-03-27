@@ -31,7 +31,7 @@ import {
 import { DEVCON_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
 import { DevconGrantsFormData, EventFormat } from '../../types';
-import { isURL } from '../../utils';
+import { containURL } from '../../utils';
 
 export const DevconGrantsForm: FC = () => {
   const router = useRouter();
@@ -116,7 +116,7 @@ export const DevconGrantsForm: FC = () => {
                   {...register('firstName', {
                     required: true,
                     maxLength: 40,
-                    validate: value => !isURL(value)
+                    validate: value => !containURL(value)
                   })}
                 />
 
@@ -137,7 +137,7 @@ export const DevconGrantsForm: FC = () => {
                 {errors?.firstName?.type === 'validate' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      First name cannot be a URL.
+                      First name cannot contain a URL.
                     </PageText>
                   </Box>
                 )}
@@ -162,7 +162,7 @@ export const DevconGrantsForm: FC = () => {
                   {...register('lastName', {
                     required: true,
                     maxLength: 80,
-                    validate: value => !isURL(value)
+                    validate: value => !containURL(value)
                   })}
                 />
 
@@ -183,7 +183,7 @@ export const DevconGrantsForm: FC = () => {
                 {errors?.lastName?.type === 'validate' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Last name cannot be a URL.
+                      Last name cannot contain a URL.
                     </PageText>
                   </Box>
                 )}
@@ -250,7 +250,7 @@ export const DevconGrantsForm: FC = () => {
               {...register('company', {
                 required: true,
                 maxLength: 255,
-                validate: value => !isURL(value)
+                validate: value => !containURL(value)
               })}
             />
 
@@ -271,7 +271,7 @@ export const DevconGrantsForm: FC = () => {
             {errors?.company?.type === 'validate' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Organization name cannot be a URL.
+                  Organization name cannot contain a URL.
                 </PageText>
               </Box>
             )}

@@ -53,7 +53,7 @@ import { RemoveIcon } from '../UI/icons';
 import { useDropzone } from 'react-dropzone';
 
 // Utils
-import { isURL } from '../../utils';
+import { containURL } from '../../utils';
 
 export const EcodevGrantsForm: FC = () => {
   const router = useRouter();
@@ -154,7 +154,7 @@ export const EcodevGrantsForm: FC = () => {
                   {...register('firstName', {
                     required: true,
                     maxLength: 40,
-                    validate: value => !isURL(value)
+                    validate: value => !containURL(value)
                   })}
                 />
 
@@ -175,7 +175,7 @@ export const EcodevGrantsForm: FC = () => {
                 {errors?.firstName?.type === 'validate' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      First name cannot be a URL.
+                      First name cannot contain a URL.
                     </PageText>
                   </Box>
                 )}
@@ -200,7 +200,7 @@ export const EcodevGrantsForm: FC = () => {
                   {...register('lastName', {
                     required: true,
                     maxLength: 80,
-                    validate: value => !isURL(value)
+                    validate: value => !containURL(value)
                   })}
                 />
 
@@ -221,7 +221,7 @@ export const EcodevGrantsForm: FC = () => {
                 {errors?.lastName?.type === 'validate' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Last name cannot be a URL.
+                      Last name cannot contain a URL.
                     </PageText>
                   </Box>
                 )}
@@ -289,7 +289,7 @@ export const EcodevGrantsForm: FC = () => {
               {...register('company', {
                 required: true,
                 maxLength: 255,
-                validate: value => !isURL(value)
+                validate: value => !containURL(value)
               })}
             />
 
@@ -310,7 +310,7 @@ export const EcodevGrantsForm: FC = () => {
             {errors?.company?.type === 'validate' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Organization name cannot be a URL.
+                  Organization name cannot contain a URL.
                 </PageText>
               </Box>
             )}
