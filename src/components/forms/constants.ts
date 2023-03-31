@@ -43,15 +43,6 @@ export const ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Other', label: 'Other' }
 ];
 
-export const ACCOUNT_ABSTRACTION_GRANTS_PROJECT_CATEGORY_OPTIONS = [
-  { value: 'Community and education', label: 'Community and education' },
-  { value: 'Data Analysis', label: 'Data Analysis' },
-  { value: 'Developer experience and tooling', label: 'Developer experience and tooling' },
-  { value: 'General research', label: 'General research' },
-  { value: 'User experience', label: 'User experience' },
-  { value: 'Other', label: 'Other' }
-];
-
 // events
 export const EVENT_TYPE_OPTIONS = [
   { value: 'Conference', label: 'Conference' },
