@@ -131,7 +131,7 @@ export const OfficeHoursForm: FC = () => {
               {errors?.firstName?.type === 'validate' && (
                 <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
-                    First name contain a URL.
+                    First name cannot contain a URL.
                   </PageText>
                 </Box>
               )}
@@ -176,7 +176,7 @@ export const OfficeHoursForm: FC = () => {
               {errors?.lastName?.type === 'validate' && (
                 <Box mt={1}>
                   <PageText as='small' fontSize='helpText' color='red.500'>
-                    Last name contain a URL.
+                    Last name cannot contain a URL.
                   </PageText>
                 </Box>
               )}
@@ -304,7 +304,7 @@ export const OfficeHoursForm: FC = () => {
                 {errors?.company?.type === 'validate' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Organization name contain a URL.
+                      Organization name cannot contain a URL.
                     </PageText>
                   </Box>
                 )}
