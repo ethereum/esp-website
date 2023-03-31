@@ -216,33 +216,6 @@ export interface EcodevGrantsFormData extends CaptchaForm {
   uploadProposal: File;
 }
 
-export interface AccountAbstractionGrantsFormData extends CaptchaForm {
-  firstName: string; // SF API: FirstName
-  lastName: string; // SF API: LastName
-  email: string; // SF API: Email
-  title: string; // SF API: Title
-  applyingAs: ApplyingAs; // SF API: Applying_as_a__c
-  applyingAsOther: string; // SF API: Applying_as_Other__c
-  company: string; // SF API: Company
-  country: Country; // SF API: npsp__CompanyCountry__c
-  countriesOfTeam: string; // SF API: Countries_of_Team__c
-  timezone: Timezone; // SF API: Time_Zone__c
-  projectName: string; // SF API: Project_Name__c
-  projectDescription: string; // SF API: Project_Description__c
-  website: string; // SF API: Website
-  projectCategory: AcademicGrantsProjectCategory; // SF API: Category__c
-  requestedAmount: string; // SF API: Requested_Amount__c
-  wouldYouShareYourResearch: WouldYouShareYourResearch; // SF API: Would_you_share_your_research__c
-  twitter: string; // SF API: Twitter__c
-  github: string; // SF API: Github_Username__c
-  telegram: string; // SF API: Alternative_Contact__c
-  repeatApplicant: string; // SF API: Repeat_Applicant__c
-  canTheEFReachOut: string; // SF API: Can_the_EF_reach_out__c
-  additionalInfo: string; // SF API: Additional_Information__c
-  howDidYouHearAboutGrantsWave: GrantsReferralSource; // SF API: Referral_Source__c
-  referralSourceIfOther: string; // SF API: Referral_Source_if_Other__c
-}
-
 export type IndividualOrTeam = 'Individual' | 'Team';
 
 export type OfficeHoursRequest = 'Project feedback' | 'Advice';
@@ -430,34 +403,5 @@ export interface SmallGrantsProjectNextApiRequest extends NextApiRequest {
     repeatApplicant: boolean;
     progress: string;
     otherFunding: string;
-  };
-}
-
-export interface AccountAbstractionGrantsNextApiRequest extends NextApiRequest {
-  body: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    title: string;
-    applyingAs: string;
-    applyingAsOther: string;
-    company: string;
-    country: string;
-    countriesOfTeam: string;
-    timezone: string;
-    projectName: string;
-    projectDescription: string;
-    website: string;
-    projectCategory: string;
-    requestedAmount: string;
-    wouldYouShareYourResearch: string;
-    twitter: string;
-    github: string;
-    telegram: string;
-    repeatApplicant: boolean;
-    canTheEFReachOut: boolean;
-    additionalInfo: string;
-    howDidYouHearAboutGrantsWave: string;
-    referralSourceIfOther: string;
   };
 }

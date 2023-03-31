@@ -258,3 +258,11 @@
   from = "/academic-grants/thank-you/"
   to = "/academic-grants/"
   force = true
+[[redirects]]
+  from = "/account-abstraction-grants/apply/"
+  to = "/account-abstraction-grants/"
+  force = true
+[[redirects]]
+  from = "/account-abstraction-grants/thank-you/"
+  to = "/account-abstraction-grants/"
+  force = true
