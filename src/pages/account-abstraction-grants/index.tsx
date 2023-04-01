@@ -9,12 +9,11 @@ import {
   PageSection,
   PageText,
   PageMetadata,
-  ReadyToApply
+  BannerApplicationClosed
 } from '../../components/UI';
 
 import {
   ACCOUNT_ABSTRACTION_GRANTS_EMAIL_ADDRESS,
-  ACCOUNT_ABSTRACTION_GRANTS_APPLY_URL,
   SIDEBAR_ACCOUNT_ABSTRACTION_GRANTS_LINKS,
   ACCOUNT_ABSTRACTION_GRANTS_PREVIEW_URL
 } from '../../constants';
@@ -33,7 +32,6 @@ const AccountAbstractionGrants: NextPage = () => {
   const [ref9, inView9] = useInView({ threshold: 0.5, initialInView: false });
   const [ref10, inView10] = useInView({ threshold: 0.5, initialInView: false });
   const [ref11, inView11] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref12, inView12] = useInView({ threshold: 0, initialInView: false });
 
   return (
     <>
@@ -59,12 +57,13 @@ const AccountAbstractionGrants: NextPage = () => {
                 inView8,
                 inView9,
                 inView10,
-                inView11,
-                inView12
+                inView11
               ]}
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
+              <BannerApplicationClosed mb={12} />
+
               <Stack mb={8} mt={{ base: 10, md: 0 }}>
                 <section id='summary' ref={ref}>
                   <PageText mb={6}>
@@ -193,19 +192,6 @@ const AccountAbstractionGrants: NextPage = () => {
                       <strong>the budget for proposals will be capped at $50,000</strong>.
                     </ListItem>
                   </List>
-
-                  <PageText mt={6}>
-                    Submit your application{' '}
-                    <Link
-                      fontWeight={700}
-                      color='brand.orange.100'
-                      href={ACCOUNT_ABSTRACTION_GRANTS_APPLY_URL}
-                      _hover={{ textDecoration: 'none' }}
-                    >
-                      here
-                    </Link>
-                    .
-                  </PageText>
                 </section>
 
                 <section id='who-can-apply' ref={ref6}>
@@ -527,12 +513,6 @@ const AccountAbstractionGrants: NextPage = () => {
                       </PageText>
                     </FAQItem>
                   </Accordion>
-                </section>
-
-                <section id='apply' ref={ref12}>
-                  <Stack mt={6}>
-                    <ReadyToApply link={ACCOUNT_ABSTRACTION_GRANTS_APPLY_URL} />
-                  </Stack>
                 </section>
               </Stack>
             </Box>

@@ -153,8 +153,7 @@ export const SIDEBAR_ACCOUNT_ABSTRACTION_GRANTS_LINKS: SidebarLink[] = [
     text: 'Next steps and support',
     href: `${ACCOUNT_ABSTRACTION_GRANTS_URL}/#next-steps-and-support`
   },
-  { text: 'FAQ', href: `${ACCOUNT_ABSTRACTION_GRANTS_URL}/#faq` },
-  { text: 'Apply', href: `${ACCOUNT_ABSTRACTION_GRANTS_URL}/#apply` }
+  { text: 'FAQ', href: `${ACCOUNT_ABSTRACTION_GRANTS_URL}/#faq` }
 ];
 
 // apply forms
@@ -164,7 +163,6 @@ export const SMALL_GRANTS_APPLY_URL = '/applicants/small-grants/apply';
 export const ACADEMIC_GRANTS_APPLY_URL = '/academic-grants/apply';
 export const DEVCON_GRANTS_APPLY_URL = '/devcon-grants/apply';
 export const ECODEV_GRANTS_APPLY_URL = '/ecodev-grants/apply';
-export const ACCOUNT_ABSTRACTION_GRANTS_APPLY_URL = '/account-abstraction-grants/apply';
 
 // grantee finance form
 export const GRANTEE_FINANCE_URL = '/applicants/grantee-finance';
@@ -177,8 +175,6 @@ export const GRANTEE_FINANCE_THANK_YOU_PAGE_URL = '/applicants/grantee-finance/t
 export const ACADEMIC_GRANTS_THANK_YOU_PAGE_URL = '/academic-grants/thank-you';
 export const DEVCON_GRANTS_THANK_YOU_PAGE_URL = '/devcon-grants/thank-you';
 export const ECODEV_GRANTS_THANK_YOU_PAGE_URL = '/ecodev-grants/thank-you';
-export const ACCOUNT_ABSTRACTION_GRANTS_THANK_YOU_PAGE_URL =
-  '/account-abstraction-grants/thank-you';
 
 // ethereum ecosystem
 export const ETHEREUM_ORG_URL = 'https://ethereum.org/';
@@ -281,9 +277,4 @@ export const ACCOUNT_ABSTRACTION_GRANTS_PREVIEW_URL =
   'https://esp.ethereum.foundation/images/account-abstraction-hero.jpeg';
 
 // Thank you and apply urls
-export const GRANTS_URLS = [
-  DEVCON_GRANTS_APPLY_URL,
-  DEVCON_GRANTS_THANK_YOU_PAGE_URL,
-  ACCOUNT_ABSTRACTION_GRANTS_APPLY_URL,
-  ACCOUNT_ABSTRACTION_GRANTS_THANK_YOU_PAGE_URL
-];
+export const GRANTS_URLS = [DEVCON_GRANTS_APPLY_URL, DEVCON_GRANTS_THANK_YOU_PAGE_URL];
