@@ -13,12 +13,14 @@ export const DevconGrantsLayout: FC = ({ children }) => {
     <Stack>
       <GrantsHero
         colorBrandConstant='academicGrantsHero'
-        desktopImage={{alt: 'Academics doing research about Ethereum', src: academicGrantsHero}}
-        mobileImage={{alt: 'Academics doing research about Ethereum', src: academicGrantsHeroMobile}}
+        desktopImage={{ alt: 'Academics doing research about Ethereum', src: academicGrantsHero }}
+        mobileImage={{
+          alt: 'Academics doing research about Ethereum',
+          src: academicGrantsHeroMobile
+        }}
         title='Devcon Grants Round'
       >
-        In an effort to promote education around the Ethereum in Colombia and Latin America in
-        advance of{' '}
+        In an effort to promote education around Ethereum in Southeast Asia in advance of{' '}
         <Link
           fontWeight={700}
           color='brand.orange.100'
@@ -28,8 +30,9 @@ export const DevconGrantsLayout: FC = ({ children }) => {
         >
           Devcon
         </Link>
-        , we would like to offer support (both monetary and otherwise) to meetups and events
-        happening in Latin America before Devcon. Read on for details.
+        , we would like to offer support (both monetary and otherwise) to meetups,events, and other
+        educational initiatives happening within the SEA region before Devcon 7. Read on for
+        details.
       </GrantsHero>
 
       <Stack>{children}</Stack>

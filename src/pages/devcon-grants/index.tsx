@@ -66,26 +66,43 @@ const DevconGrants: NextPage = () => {
                   <PageText mb={6}>Calling all community organizers!</PageText>
 
                   <PageText mb={6}>
-                    As much as we&apos;re looking forward to{' '}
+                    We are excited to announce that we will be launching a grants round to support
+                    and empower the Ethereum community in Southeast Asia. Inspired by the
+                    involvement of the flourishing Latin American Ethereum community at Devcon VI in
+                    Bogotá, we aim to create a similar impact in Southeast Asia on the Road to
+                    Devcon 7.
+                  </PageText>
+
+                  <PageText mb={6}>
+                    One of the reasons we plan to{' '}
                     <Link
                       fontWeight={700}
                       color='brand.orange.100'
-                      href={DEVCON_URL}
+                      href='https://blog.ethereum.org/2023/02/28/devcon-7-update'
                       isExternal
                       _hover={{ textDecoration: 'none' }}
                     >
-                      Devcon
+                      organize Devcon in 2024 instead of 2023
+                    </Link>{' '}
+                    is to give more time for your local communities to grow and blossom. We want to
+                    help new grassroots communities sprout up{' '}
+                    <Link
+                      fontWeight={700}
+                      color='brand.orange.100'
+                      href='https://www.youtube.com/watch?v=2_9YoS_1ut4'
+                      isExternal
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      in the infinite garden
                     </Link>
-                    , it&apos;s far from the only place that the Ethereum community comes together.
-                    This past year has shown us just how much we depend on community-run events to
-                    keep us connected even while we&apos;re apart, and we want to support you in
-                    doing that crucial work.
+                    . Let&apos;s see what kind of magic you can create!
                   </PageText>
 
                   <PageText>
                     In collaboration with the Ecosystem Support team, we&apos;re announcing a wave
                     of small grants to help cover costs incurred in organizing smaller-scale events
-                    such as local meetups or topical workshops.
+                    (such as local meetups or topical workshops) and other local educational
+                    initiatives.
                   </PageText>
                 </section>
               </Stack>
@@ -98,12 +115,16 @@ const DevconGrants: NextPage = () => {
 
                   <List>
                     <ListItem>Meetups</ListItem>
+                    <ListItem>University clubs</ListItem>
                     <ListItem>Workshops</ListItem>
                     <ListItem>Hackathons</ListItem>
-                    <ListItem>
-                      Other community events - creative formats are welcome to apply!
-                    </ListItem>
+                    <ListItem>Grassroots communities</ListItem>
+                    <ListItem>Local education initiatives or projects</ListItem>
                   </List>
+
+                  <PageText mt={6}>
+                    Other community efforts - creative formats are welcome to apply!
+                  </PageText>
                 </section>
 
                 <section id='eligibility' ref={ref3}>
@@ -140,7 +161,6 @@ const DevconGrants: NextPage = () => {
                       <ListItem>
                         Get a copy of presentation materials and slides to show the themes discussed
                       </ListItem>
-                      <ListItem>Receipts from the event</ListItem>
                     </OrderedList>
 
                     <ListItem>
@@ -226,7 +246,7 @@ const DevconGrants: NextPage = () => {
                         </ListItem>
                         <ListItem>
                           Events may be held in any language, but we&apos;re currently only able to
-                          accept proposals in English, or Spanish
+                          accept proposals in English.
                         </ListItem>
                         <ListItem>Events must be publicly posted</ListItem>
                       </List>
