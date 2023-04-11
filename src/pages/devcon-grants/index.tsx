@@ -38,7 +38,7 @@ const DevconGrants: NextPage = () => {
     <>
       <PageMetadata
         title='Devcon Round'
-        description='Sponsorship grants funding online or in-person meetups and events leading up to Devcon.'
+        description='Grants for community efforts on the Road to Devcon'
       />
 
       <Box mx={{ md: 12 }} bg='white' position='relative' zIndex={1} mt={{ xl: 12 }}>
