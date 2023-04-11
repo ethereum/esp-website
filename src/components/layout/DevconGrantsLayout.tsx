@@ -1,10 +1,11 @@
 import { FC } from 'react';
-import { Stack } from '@chakra-ui/react';
+import { Link, Stack } from '@chakra-ui/react';
 
 import { GrantsHero } from '../UI';
 
 import academicGrantsHero from '../../../public/images/academic-grants-hero.png';
 import academicGrantsHeroMobile from '../../../public/images/academic-grants-hero-mobile.png';
+import { DEVCON_URL } from '../../constants';
 
 export const DevconGrantsLayout: FC = ({ children }) => {
   return (
@@ -18,9 +19,19 @@ export const DevconGrantsLayout: FC = ({ children }) => {
         }}
         title='Road to Devcon Grants'
       >
-        To promote education around Ethereum in Southeast Asia along the Road to Devcon, we would
-        like to offer support (both monetary and otherwise) to meetups, events, and other
-        educational initiatives happening within the SEA region before Devcon 7.
+        <Link
+          fontWeight={700}
+          color='brand.orange.100'
+          href={DEVCON_URL}
+          isExternal
+          _hover={{ textDecoration: 'none' }}
+        >
+          Devcon 7
+        </Link>{' '}
+        is heading to Southeast Asia in 2024! In an effort to promote education around Ethereum in
+        Southeast Asia along the Road to Devcon, we would like to offer support (both monetary and
+        otherwise) to meetups, events, and other educational initiatives happening within the SEA
+        region before Devcon 7. Read on for details.
       </GrantsHero>
 
       <Stack>{children}</Stack>
