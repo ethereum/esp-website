@@ -1,24 +1,24 @@
-import { Link, Stack } from '@chakra-ui/react';
 import { FC } from 'react';
+import { Link, Stack } from '@chakra-ui/react';
 
 import { GrantsHero } from '../UI';
 
-import { DEVCON_URL } from '../../constants';
-
 import academicGrantsHero from '../../../public/images/academic-grants-hero.png';
 import academicGrantsHeroMobile from '../../../public/images/academic-grants-hero-mobile.png';
+import { DEVCON_URL } from '../../constants';
 
 export const DevconGrantsLayout: FC = ({ children }) => {
   return (
     <Stack>
       <GrantsHero
         colorBrandConstant='academicGrantsHero'
-        desktopImage={{alt: 'Academics doing research about Ethereum', src: academicGrantsHero}}
-        mobileImage={{alt: 'Academics doing research about Ethereum', src: academicGrantsHeroMobile}}
-        title='Devcon Grants Round'
+        desktopImage={{ alt: 'Academics doing research about Ethereum', src: academicGrantsHero }}
+        mobileImage={{
+          alt: 'Academics doing research about Ethereum',
+          src: academicGrantsHeroMobile
+        }}
+        title='Road to Devcon Grants'
       >
-        In an effort to promote education around the Ethereum in Colombia and Latin America in
-        advance of{' '}
         <Link
           fontWeight={700}
           color='brand.orange.100'
@@ -26,10 +26,12 @@ export const DevconGrantsLayout: FC = ({ children }) => {
           isExternal
           _hover={{ textDecoration: 'none' }}
         >
-          Devcon
-        </Link>
-        , we would like to offer support (both monetary and otherwise) to meetups and events
-        happening in Latin America before Devcon. Read on for details.
+          Devcon 7
+        </Link>{' '}
+        is heading to Southeast Asia in 2024! In an effort to promote education on Ethereum in
+        Southeast Asia prior to Devcon 7, we are excited to offer financial and non-financial
+        support for meetups, events, and other educational initiatives happening along the Road to
+        Devcon. Read on for details.
       </GrantsHero>
 
       <Stack>{children}</Stack>

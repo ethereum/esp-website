@@ -19,7 +19,7 @@ export const Description: FC<Props> = ({ title, img, children }) => {
   const { src, alt, width, height } = img;
 
   return (
-    <Flex direction={{ base: 'column', lg: 'row' }} pr={{ lg: 32 }} mb={1}>
+    <Flex direction={{ base: 'column', lg: 'row' }} justify='space-between' pr={{ lg: 32 }} mb={1}>
       <Box ml={{ md: 16 }} mr={{ lg: 6, xl: 32 }} mb={{ md: 24, lg: 0 }} minWidth={{ lg: 96 }}>
         <PageHeading mb={4} ml={-1}>
           {title}

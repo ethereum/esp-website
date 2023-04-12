@@ -22,9 +22,14 @@ export const getBgGradient = (path: string) => {
     return 'linear(to-b, brand.about.bgGradient.start 0%, brand.about.bgGradient.end 77.6%, brand.about.rgba 100%)';
   }
 
-  // academic & devcon grants gradient
-  if (path.startsWith(ACADEMIC_GRANTS_URL) || path.startsWith(DEVCON_GRANTS_URL)) {
+  // academic grants gradient
+  if (path.startsWith(ACADEMIC_GRANTS_URL)) {
     return 'linear(to-b, brand.academicGrantsHero.bgGradient.start 81.77%, brand.academicGrantsHero.bgGradient.end 100%)';
+  }
+
+  // devcon grants gradient
+  if (path.startsWith(DEVCON_GRANTS_URL)) {
+    return 'linear(to-b, brand.academicGrantsHero.bgGradient.start 60%, brand.academicGrantsHero.bgGradient.end 80%)';
   }
 
   // 404 page gradient
