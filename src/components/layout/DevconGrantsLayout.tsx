@@ -28,10 +28,10 @@ export const DevconGrantsLayout: FC = ({ children }) => {
         >
           Devcon 7
         </Link>{' '}
-        is heading to Southeast Asia in 2024! In an effort to promote education around Ethereum in
-        Southeast Asia along the Road to Devcon, we would like to offer support (both monetary and
-        otherwise) to meetups, events, and other educational initiatives happening within the SEA
-        region before Devcon 7. Read on for details.
+        is heading to Southeast Asia in 2024! In an effort to promote education on Ethereum in
+        Southeast Asia prior to Devcon 7, we are excited to offer financial and non-financial
+        support for meetups, events, and other educational initiatives happening along the Road to
+        Devcon. Read on for details.
       </GrantsHero>
 
       <Stack>{children}</Stack>
