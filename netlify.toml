@@ -10,6 +10,11 @@
   [headers.values]
     Access-Control-Allow-Origin = "https://matomo.ethereum.org"
 
+[[plugins]]
+package = "netlify-plugin-inline-functions-env"
+  [plugins.inputs]
+  buildEvent = "onBuild"
+
 # Legacy pages from current site
 
 # Root langs routes
