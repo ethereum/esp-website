@@ -23,6 +23,9 @@ import favicon from '../../public/images/favicon.ico';
 import favicon16 from '../../public/images/favicon-16x16.png';
 import favicon32 from '../../public/images/favicon-32x32.png';
 
+const MATOMO_SECONDARY_URL = 'https://ethereumfoundation.matomo.cloud/matomo.php';
+const MATOMO_SECONDARY_SITE_ID = 4;
+
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
@@ -31,11 +34,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       url: process.env.NEXT_PUBLIC_MATOMO_URL!,
       siteId: process.env.NEXT_PUBLIC_MATOMO_SITE_ID!
     });
-    push([
-      'addTracker',
-      process.env.NEXT_PUBLIC_MATOMO_SECONDARY_URL!,
-      process.env.NEXT_PUBLIC_MATOMO_SECONDARY_SITE_ID!
-    ]);
+    push(['addTracker', MATOMO_SECONDARY_URL, MATOMO_SECONDARY_SITE_ID]);
   }, []);
 
   return (
