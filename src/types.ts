@@ -456,7 +456,6 @@ export interface RunANodeGrantsNextApiRequest extends NextApiRequest {
     projectPreviousWork: string;
     whyIsProjectImportant: string;
     hardwareOrStipend: string;
-    stipendDescription: string;
     requestedAmount: string;
     downloadSpeed: string;
     dataLimitations: string;
