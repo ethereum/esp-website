@@ -968,6 +968,13 @@ export const RunANodeGrantsForm: FC = () => {
                     </PageText>
                   </Box>
                 )}
+                {errors?.referralSourceIfOther?.type === 'maxLength' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Cannot exceed 32768 characters.
+                    </PageText>
+                  </Box>
+                )}
               </FormControl>
             </Fade>
           </Box>
