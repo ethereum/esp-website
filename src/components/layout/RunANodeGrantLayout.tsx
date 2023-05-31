@@ -1,8 +1,8 @@
 import { Box, Stack, Text } from '@chakra-ui/react';
 import { FC } from 'react';
 
-import layer2Hero from '../../../public/images/layer-2-grants.png';
-import layer2HeroMobile from '../../../public/images/layer-2-grants-mobile.png';
+import runANodeHero from '../../../public/images/run-a-node.png';
+import runANodeHeroMobile from '../../../public/images/run-a-node-mobile.png';
 
 import { GrantsHero } from '../UI';
 
@@ -13,11 +13,11 @@ export const RunANodeGrantLayout: FC = ({ children }) => {
         colorBrandConstant='layer2GrantsHero'
         desktopImage={{
           alt: 'A mad panda scientist working on ethereum',
-          src: layer2Hero
+          src: runANodeHero
         }}
         mobileImage={{
           alt: 'A mad panda scientist working on ethereum',
-          src: layer2HeroMobile
+          src: runANodeHeroMobile
         }}
         title='Run A Node Grants'
       >
