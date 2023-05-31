@@ -164,8 +164,10 @@ export const api = {
           ...data,
           // Company is a required field in SF, we're using the Name as default value if no company provided
           company: data.company === '' ? `${data.firstName} ${data.lastName}` : data.company,
-          howDidYouHearAboutESP: data.howDidYouHearAboutESP.value,
-          timezone: data.timezone.value
+          applyingAs: data.applyingAs.value,
+          country: data.country.value,
+          timezone: data.timezone.value,
+          referralSource: data.referralSource.value
         })
       };
 

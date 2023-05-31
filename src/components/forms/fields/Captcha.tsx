@@ -1,43 +1,45 @@
 import React, { FC, useCallback, useEffect, useRef } from 'react';
 import HCaptcha from '@hcaptcha/react-hcaptcha';
 import { useFormContext } from 'react-hook-form';
+import { Box } from '@chakra-ui/react';
+import { PageText } from '../../UI';
 
 export const Captcha: FC = () => {
   const captchaRef = useRef<HCaptcha>(null);
-  const { register, reset: resetForm, setValue, getValues, formState } = useFormContext();
-
-  const reset = useCallback(() => {
-    const { captchaToken, ...values } = getValues();
-    resetForm({ ...values });
-  }, [getValues, resetForm]);
+  const { register, setValue, formState, resetField } = useFormContext();
+  const { errors } = formState;
 
   useEffect(() => {
     register('captchaToken', { required: true });
-  });
+  }, [register]);
 
-  useEffect(() => {
-    // Whenever the form is submitted reset the captcha input
-    if (formState.isSubmitted && captchaRef.current) {
-      captchaRef.current.resetCaptcha();
-      reset();
-    }
-  }, [formState, reset]);
+  const onVerify = useCallback(
+    (token: string) => {
+      setValue('captchaToken', token);
+    },
+    [setValue]
+  );
 
-  const onVerify = (token: string) => {
-    setValue('captchaToken', token, { shouldValidate: true });
-  };
-
-  const onExpire = () => {
+  const onExpire = useCallback(() => {
     // when token expires, reset the captcha field
-    reset();
-  };
+    resetField('captchaToken');
+  }, [resetField]);
 
   return (
-    <HCaptcha
-      ref={captchaRef}
-      sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY!}
-      onVerify={onVerify}
-      onExpire={onExpire}
-    />
+    <Box>
+      {errors?.captchaToken?.type === 'required' && (
+        <Box mt={1}>
+          <PageText as='small' fontSize='helpText' color='red.500'>
+            Captcha is required.
+          </PageText>
+        </Box>
+      )}
+      <HCaptcha
+        ref={captchaRef}
+        sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY!}
+        onVerify={onVerify}
+        onExpire={onExpire}
+      />
+    </Box>
   );
 };

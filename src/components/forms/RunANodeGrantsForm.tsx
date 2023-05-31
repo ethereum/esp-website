@@ -36,7 +36,7 @@ import {
   STIPEND,
   TIMEZONE_OPTIONS
 } from './constants';
-import { PROJECT_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
+import { RUN_A_NODE_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 import { containURL } from '../../utils';
 
 import type { RunANodeGrantsFormData } from '../../types';
@@ -46,7 +46,8 @@ export const RunANodeGrantsForm: FC = () => {
   const toast = useToast();
 
   const methods = useForm<RunANodeGrantsFormData>({
-    mode: 'onBlur'
+    mode: 'onBlur',
+    shouldFocusError: true
   });
 
   const {
@@ -54,7 +55,7 @@ export const RunANodeGrantsForm: FC = () => {
     register,
     control,
     trigger,
-    formState: { errors, isValid, isSubmitting },
+    formState: { errors, isSubmitting },
     reset,
     watch
   } = methods;
@@ -70,7 +71,7 @@ export const RunANodeGrantsForm: FC = () => {
       .then(res => {
         if (res.ok) {
           reset();
-          router.push(PROJECT_GRANTS_THANK_YOU_PAGE_URL);
+          router.push(RUN_A_NODE_GRANTS_THANK_YOU_PAGE_URL);
         } else {
           toast({
             ...TOAST_OPTIONS,
@@ -94,7 +95,7 @@ export const RunANodeGrantsForm: FC = () => {
       borderRadius={{ md: '10px' }}
     >
       <FormProvider {...methods}>
-        <form id='project-grants-form' onSubmit={handleSubmit(onSubmit)}>
+        <form id='project-grants-form' onSubmit={handleSubmit(onSubmit)} noValidate>
           <Flex direction='column' mb={8}>
             <Flex direction={{ base: 'column', md: 'row' }} mb={3}>
               <FormControl
@@ -748,7 +749,9 @@ export const RunANodeGrantsForm: FC = () => {
                   <Select
                     id='downloadSpeed'
                     options={DOWNLOAD_SPEED_OPTIONS}
-                    onChange={onChange}
+                    onChange={option =>
+                      onChange((option as typeof DOWNLOAD_SPEED_OPTIONS[number]).value)
+                    }
                     components={{ DropdownIndicator }}
                     placeholder='Select'
                     closeMenuOnSelect={true}
@@ -788,7 +791,9 @@ export const RunANodeGrantsForm: FC = () => {
                   <Select
                     id='dataLimitations'
                     options={MONTHLY_DATA_CAP_OPTIONS}
-                    onChange={onChange}
+                    onChange={option =>
+                      onChange((option as typeof MONTHLY_DATA_CAP_OPTIONS[number]).value)
+                    }
                     components={{ DropdownIndicator }}
                     placeholder='Select'
                     closeMenuOnSelect={true}
@@ -952,7 +957,6 @@ export const RunANodeGrantsForm: FC = () => {
                   h='150px'
                   mt={3}
                   {...register('referralSourceIfOther', {
-                    required: true,
                     maxLength: 32768
                   })}
                 />
@@ -1213,7 +1217,7 @@ export const RunANodeGrantsForm: FC = () => {
 
           <Center>
             <SubmitButton
-              isValid={isValid}
+              isValid
               isSubmitting={isSubmitting}
               height='56px'
               width='310px'
