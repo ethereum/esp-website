@@ -40,7 +40,7 @@ const RunANodeGrants: NextPage = () => {
     <>
       <PageMetadata
         title='Run A Node Grants'
-        description='' // TODO
+        description='The Ethereum Foundation is calling for proposals to expand the diversity of nodes within its network'
       />
 
       <Box bg='white' position='relative' mt={{ xl: 12 }}>
