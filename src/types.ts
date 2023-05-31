@@ -442,3 +442,36 @@ export interface SmallGrantsProjectNextApiRequest extends NextApiRequest {
     otherFunding: string;
   };
 }
+
+export interface RunANodeGrantsNextApiRequest extends NextApiRequest {
+  body: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    applyingAs: string;
+    applyingAsOther: string;
+    teamProfile: string;
+    timezone: string;
+    country: string;
+    projectName: string;
+    company: string;
+    projectDescription: string;
+    projectPreviousWork: string;
+    whyIsProjectImportant: string;
+    hardwareOrStipend: string;
+    stipendDescription: string;
+    requestedAmount: string;
+    downloadSpeed: string;
+    dataLimitations: string;
+    proposedTimeline: string;
+    challenges: string;
+    referralSource: string;
+    referralSourceIfOther: string;
+    telegram: string;
+    twitter: string;
+    linkedinProfile: string;
+    repeatApplicant: string;
+    canTheEFReachOut: string;
+    additionalInfo: string;
+  };
+}
