@@ -1499,6 +1499,31 @@ export const REASONS_FOR_MEETING = [
   ''
 ];
 
+// run a node grants
+export const APPLYING_AS_RUN_A_NODE_OPTIONS = [
+  { value: TEAM, label: TEAM },
+  { value: INDIVIDUAL, label: INDIVIDUAL },
+  { value: 'Other', label: 'Other' }
+];
+
+export const HARDWARE = 'Hardware';
+export const STIPEND = 'Stipend';
+
+export const DOWNLOAD_SPEED_OPTIONS = [
+  { value: '< 1 Mbps', label: '< 1 Mbps' },
+  { value: '1 Mbps - 5 Mbps', label: '1 Mbps - 5 Mbps' },
+  { value: '5 Mbps - 20 Mbps', label: '5 Mbps - 20 Mbps' },
+  { value: '20 Mbps - 50 Mbps', label: '20 Mbps - 50 Mbps' },
+  { value: '> 50 Mbps', label: '> 50 Mbps' }
+];
+export const MONTHLY_DATA_CAP_OPTIONS = [
+  { value: '< 1 GB', label: '< 1 GB' },
+  { value: '1 GB - 5 GB', label: '1 GB - 5 GB' },
+  { value: '5 GB - 20 GB', label: '5 GB - 20 GB' },
+  { value: '20 GB - 50 GB', label: '20 GB - 50 GB' },
+  { value: '> 50 GB', label: '> 50 GB' }
+];
+
 // API routes
 export const API_OFFICE_HOURS = '/api/office-hours';
 export const API_PROJECT_GRANTS = '/api/project-grants';
@@ -1508,4 +1533,5 @@ export const API_ACADEMIC_GRANTS = '/api/academic-grants';
 export const API_DEVCON_GRANTS = '/api/devcon-grants';
 export const API_GRANTEE_FINANCE = '/api/grantee-finance';
 export const API_ECODEV_GRANTS = '/api/ecodev-grants';
+export const API_RUN_A_NODE_GRANTS = '/api/run-a-node-grants';
 export const API_NEWSLETTER_SIGNUP_URL = '/api/newsletter-signup';

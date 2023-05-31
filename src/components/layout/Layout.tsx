@@ -30,8 +30,10 @@ import {
   LAYER_2_GRANTS_URL,
   MERGE_DATA_CHALLENGE_URL,
   SEMAPHORE_GRANT_URL,
-  ACCOUNT_ABSTRACTION_GRANTS_URL
+  ACCOUNT_ABSTRACTION_GRANTS_URL,
+  RUN_A_NODE_GRANTS_URL
 } from '../../constants';
+import { RunANodeGrantLayout } from './RunANodeGrantLayout';
 
 export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
   const router = useRouter();
@@ -133,6 +135,16 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
         <Box mt={{ md: -10, lg: 0 }}>
           <main>
             <AccountAbstractionGrantsLayout>{children}</AccountAbstractionGrantsLayout>
+          </main>
+        </Box>
+      );
+    }
+
+    if (router.pathname === RUN_A_NODE_GRANTS_URL) {
+      return (
+        <Box mt={{ md: -10, lg: 0 }}>
+          <main>
+            <RunANodeGrantLayout>{children}</RunANodeGrantLayout>
           </main>
         </Box>
       );
