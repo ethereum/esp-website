@@ -1,30 +1,33 @@
-import { Box, Stack } from '@chakra-ui/react';
+import { Box, Stack, Text } from '@chakra-ui/react';
 import { FC } from 'react';
 
-import semaphoreHero from '../../../public/images/semaphore-meadow.png';
-import semaphoreHeroMobile from '../../../public/images/semaphore-meadow-mobile.png';
+import layer2Hero from '../../../public/images/layer-2-grants.png';
+import layer2HeroMobile from '../../../public/images/layer-2-grants-mobile.png';
 
-import { DimLayer, GrantsHero } from '../UI';
+import { GrantsHero } from '../UI';
 
 export const RunANodeGrantLayout: FC = ({ children }) => {
   return (
     <Box>
-      <DimLayer height='130px' />
       <GrantsHero
-        colorBrandConstant='semaphoreGrantHero'
+        colorBrandConstant='layer2GrantsHero'
         desktopImage={{
-          alt: 'People making shadow plays in a field of grass',
-          src: semaphoreHero
+          alt: 'A mad panda scientist working on ethereum',
+          src: layer2Hero
         }}
         mobileImage={{
-          alt: 'People making shadow plays in a field of grass',
-          src: semaphoreHeroMobile
+          alt: 'A mad panda scientist working on ethereum',
+          src: layer2HeroMobile
         }}
         title='Run A Node Grants'
       >
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat atque cupiditate sunt
-        tempore cum eaque assumenda distinctio eius. At delectus molestiae aperiam rem consequuntur
-        ex deleniti repudiandae harum necessitatibus recusandae.
+        <Text>
+          The Ethereum Foundation is calling for proposals to expand the diversity of nodes within
+          its network. This initiative seeks to bolster the Ethereum ecosystem by offering
+          successful applicants either prebuilt hardware or reimbursement of costs. Awardees will be
+          selected based on the creativity, impact, and significance of their proposed plans for
+          their node.
+        </Text>
       </GrantsHero>
 
       <Stack>{children}</Stack>
