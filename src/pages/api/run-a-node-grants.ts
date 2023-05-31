@@ -86,7 +86,6 @@ async function handler(req: RunANodeGrantsNextApiRequest, res: NextApiResponse):
         Can_the_EF_reach_out__c: Can_the_EF_reach_out__c.trim(),
         Additional_Information__c: Additional_Information__c.trim(),
         Proactive_Community_Grants_Round__c: 'Run A Node 2023', // this value is hardwired, depending on the type of grant round
-        Category__c: 'Community event', // this value is hardwired for Devcon Grants
         RecordTypeId: process.env.SF_RECORD_TYPE_PROJECT_GRANTS!
       };
 
