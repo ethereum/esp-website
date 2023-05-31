@@ -232,10 +232,7 @@ export interface RunANodeGrantsFormData extends CaptchaForm {
   projectDescription: string; // SF API: Project_Description__c
   projectPreviousWork: string; // SF API: Previous_Work__c
   whyIsProjectImportant: string; // SF API: Impact__c
-  // TODO: confirm the following logic and fields
   hardwareOrStipend: string; // SF API: Hardware_or_Stipend__c
-  stipendDescription: string; // SF API: Stipend_Description__c
-  // TODO: confirm the following logic and fields
   requestedAmount: string; // SF API: Requested_Amount__c
   // TODO: confirm the following logic and fields
   downloadSpeed: string; // SF API: Download_Speed__c

@@ -65,6 +65,8 @@ export const RunANodeGrantsForm: FC = () => {
   const applyingAs = watch('applyingAs');
   const referralSource = watch('referralSource');
 
+  const isStipendSelected = hardwareOrStipend === STIPEND;
+
   const onSubmit = async (data: RunANodeGrantsFormData) => {
     return api.runANodeGrants
       .submit(data)
@@ -95,7 +97,7 @@ export const RunANodeGrantsForm: FC = () => {
       borderRadius={{ md: '10px' }}
     >
       <FormProvider {...methods}>
-        <form id='project-grants-form' onSubmit={handleSubmit(onSubmit)} noValidate>
+        <form id='project-grants-form' onSubmit={handleSubmit(onSubmit)}>
           <Flex direction='column' mb={8}>
             <Flex direction={{ base: 'column', md: 'row' }} mb={3}>
               <FormControl
@@ -694,16 +696,16 @@ export const RunANodeGrantsForm: FC = () => {
             )}
           />
 
-          <Box display={hardwareOrStipend === STIPEND ? 'block' : 'none'}>
-            <Fade in={hardwareOrStipend === STIPEND} delay={0.25}>
-              <FormControl id='stipendDescription-control' mb={8}>
-                <FormLabel htmlFor='stipendDescription'>
-                  <PageText fontSize='input'>
-                    Provide details about how you will spend this stipend.
+          <Box display={isStipendSelected ? 'block' : 'none'}>
+            <Fade in={isStipendSelected} delay={0.25}>
+              <FormControl id='requested-amount-control' isRequired mb={8}>
+                <FormLabel htmlFor='requestedAmount' mb={4}>
+                  <PageText display='inline' fontSize='input'>
+                    Provide details about how you will spend this stipend
                   </PageText>
                 </FormLabel>
                 <Input
-                  id='stipendDescription'
+                  id='requestedAmount'
                   type='text'
                   bg='white'
                   borderRadius={0}
@@ -713,15 +715,23 @@ export const RunANodeGrantsForm: FC = () => {
                   color='brand.paragraph'
                   fontSize='input'
                   mt={3}
-                  {...register('stipendDescription', {
+                  {...register('requestedAmount', {
+                    required: isStipendSelected,
                     maxLength: 255
                   })}
                 />
 
-                {errors?.stipendDescription?.type === 'maxLength' && (
+                {errors?.requestedAmount?.type === 'required' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Applying as info cannot exceed 255 characters.
+                      Field is required.
+                    </PageText>
+                  </Box>
+                )}
+                {errors?.requestedAmount?.type === 'maxLength' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Stipend details cannot exceed 255 characters.
                     </PageText>
                   </Box>
                 )}
