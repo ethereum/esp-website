@@ -43,245 +43,258 @@ const RunANodeGrants: NextPage = () => {
         description='' // TODO
       />
 
-      <Box bg='white' position='relative' py={{ md: 12 }}>
-        <Flex>
-          <ApplicantsSidebar
-            sidebarLinks={SIDEBAR_RUN_A_NODE__GRANTS_LINKS}
-            sectionsInView={[inView, inView2, inView3, inView4, inView5, inView6, inView7, inView8]}
-          />
+      <Box bg='white' position='relative' mt={{ xl: 12 }}>
+        <Stack spacing={10} mb={8} px={{ base: 5, md: 0 }} py={12}>
+          <Flex>
+            <ApplicantsSidebar
+              sidebarLinks={SIDEBAR_RUN_A_NODE__GRANTS_LINKS}
+              sectionsInView={[
+                inView,
+                inView2,
+                inView3,
+                inView4,
+                inView5,
+                inView6,
+                inView7,
+                inView8
+              ]}
+            />
 
-          <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
-            <Stack spacing={10}>
-              <section id='summary' ref={ref}>
-                <PageText mb={6}>
-                  <Text as='i'>
-                    Starting on <Text as='strong'>June X, 2023</Text>, we will begin to accept
-                    proposals over the next 4 weeks.
-                  </Text>
-                </PageText>
+            <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
+              <Stack spacing={10}>
+                <section id='summary' ref={ref}>
+                  <PageText mb={6}>
+                    <Text as='i'>
+                      Starting on <Text as='strong'>June X, 2023</Text>, we will begin to accept
+                      proposals over the next 4 weeks.
+                    </Text>
+                  </PageText>
 
-                <PageText mb={6}>
-                  <Text as='strong'>Deadline: July X, 2023</Text>
-                </PageText>
+                  <PageText mb={6}>
+                    <Text as='strong'>Deadline: July X, 2023</Text>
+                  </PageText>
 
-                <PageText mb={6}>
-                  <Text as='i'>
-                    All of the details you&apos;ll need to apply can be found below.
-                  </Text>
-                </PageText>
-              </section>
+                  <PageText mb={6}>
+                    <Text as='i'>
+                      All of the details you&apos;ll need to apply can be found below.
+                    </Text>
+                  </PageText>
+                </section>
 
-              <section id='introduction' ref={ref}>
-                <PageSection mb={6}>Introduction</PageSection>
+                <section id='introduction' ref={ref}>
+                  <PageSection mb={6}>Introduction</PageSection>
 
-                <List>
-                  <ListItem>
-                    The Ethereum Foundation is launching a new funding round to encourage the
-                    diversification of Ethereum nodes.
-                  </ListItem>
-                  <ListItem>
-                    Running a node on Ethereum provides increased security, access, control, and
-                    flexibility and allows you to participate in and contribute to the Ethereum
-                    network actively.
-                  </ListItem>
-                  <ListItem>
-                    Nodes are a critical element of Ethereum, and we are looking for creative
-                    proposals from a diverse range of users looking to run a node. You may be based
-                    in a different geographical region; perhaps you want your university to use a
-                    node for research purposes - surprise us with your application.
-                  </ListItem>
-                  <ListItem>
-                    Selected applicants will receive <b>either</b> the hardware needed to run the
-                    round sent directly to you <b>or</b> a fixed allocated sum to reimburse the cost
-                    of the hardware.
-                  </ListItem>
-                </List>
-              </section>
+                  <List>
+                    <ListItem>
+                      The Ethereum Foundation is launching a new funding round to encourage the
+                      diversification of Ethereum nodes.
+                    </ListItem>
+                    <ListItem>
+                      Running a node on Ethereum provides increased security, access, control, and
+                      flexibility and allows you to participate in and contribute to the Ethereum
+                      network actively.
+                    </ListItem>
+                    <ListItem>
+                      Nodes are a critical element of Ethereum, and we are looking for creative
+                      proposals from a diverse range of users looking to run a node. You may be
+                      based in a different geographical region; perhaps you want your university to
+                      use a node for research purposes - surprise us with your application.
+                    </ListItem>
+                    <ListItem>
+                      Selected applicants will receive <b>either</b> the hardware needed to run the
+                      round sent directly to you <b>or</b> a fixed allocated sum to reimburse the
+                      cost of the hardware.
+                    </ListItem>
+                  </List>
+                </section>
 
-              <section id='why-run-a-node' ref={ref2}>
-                <PageSection mb={6}>Why Run a Node?</PageSection>
+                <section id='why-run-a-node' ref={ref2}>
+                  <PageSection mb={6}>Why Run a Node?</PageSection>
 
-                <PageText mb={6}>
-                  We want you to be creative and demonstrate why you want to run a node for the
-                  Ethereum ecosystem. This list is to inspire you:
-                </PageText>
+                  <PageText mb={6}>
+                    We want you to be creative and demonstrate why you want to run a node for the
+                    Ethereum ecosystem. This list is to inspire you:
+                  </PageText>
 
-                <List>
-                  <ListItem>
-                    Based in a remote location and want to test the node performance.
-                  </ListItem>
-                  <ListItem>
-                    Allow other developers and users in the Ethereum community to query indexed data
-                    on their nodes for research purposes.
-                  </ListItem>
-                  <ListItem>
-                    Help preserve access to Ethereum for others in your community.
-                  </ListItem>
-                  <ListItem>
-                    Host various services that rely on data from Ethereum on your server. Examples
-                    of such services include Beacon Chain validators, layer 2 software,
-                    infrastructure, block explorers, payment processors, and more.
-                  </ListItem>
-                  <ListItem>
-                    You can connect with your node through Inter-process Communications (IPC) or
-                    modify the node to incorporate your program as a plugin. This approach provides
-                    low latency, particularly useful when working with web3 libraries and replacing
-                    transactions quickly (such as when front-running).
-                  </ListItem>
-                  <ListItem>
-                    Offer customized RPC endpoints that can be accessed publicly by the community or
-                    privately hosted for Ethereum users. This enables people to utilize your node
-                    and avoid relying on centralized providers.
-                  </ListItem>
-                </List>
-              </section>
+                  <List>
+                    <ListItem>
+                      Based in a remote location and want to test the node performance.
+                    </ListItem>
+                    <ListItem>
+                      Allow other developers and users in the Ethereum community to query indexed
+                      data on their nodes for research purposes.
+                    </ListItem>
+                    <ListItem>
+                      Help preserve access to Ethereum for others in your community.
+                    </ListItem>
+                    <ListItem>
+                      Host various services that rely on data from Ethereum on your server. Examples
+                      of such services include Beacon Chain validators, layer 2 software,
+                      infrastructure, block explorers, payment processors, and more.
+                    </ListItem>
+                    <ListItem>
+                      You can connect with your node through Inter-process Communications (IPC) or
+                      modify the node to incorporate your program as a plugin. This approach
+                      provides low latency, particularly useful when working with web3 libraries and
+                      replacing transactions quickly (such as when front-running).
+                    </ListItem>
+                    <ListItem>
+                      Offer customized RPC endpoints that can be accessed publicly by the community
+                      or privately hosted for Ethereum users. This enables people to utilize your
+                      node and avoid relying on centralized providers.
+                    </ListItem>
+                  </List>
+                </section>
 
-              <section id='eligibility-and-requirements' ref={ref3}>
-                <PageSection mb={6}>Eligibility & Requirements</PageSection>
+                <section id='eligibility-and-requirements' ref={ref3}>
+                  <PageSection mb={6}>Eligibility & Requirements</PageSection>
 
-                <List>
-                  <ListItem>Anyone interested in running a node is eligible to apply.</ListItem>
-                  <ListItem>
-                    This is open to individuals, teams, and institutions from all parts of the
-                    world; preference given to applicants in remote locations.
-                  </ListItem>
-                  <ListItem>
-                    Applicants will be responsible for paying any customs incurred if they select to
-                    receive hardware.
-                  </ListItem>
-                  <ListItem>
-                    Must have a fast, stable internet connection with high data thresholds:{' '}
+                  <List>
+                    <ListItem>Anyone interested in running a node is eligible to apply.</ListItem>
+                    <ListItem>
+                      This is open to individuals, teams, and institutions from all parts of the
+                      world; preference given to applicants in remote locations.
+                    </ListItem>
+                    <ListItem>
+                      Applicants will be responsible for paying any customs incurred if they select
+                      to receive hardware.
+                    </ListItem>
+                    <ListItem>
+                      Must have a fast, stable internet connection with high data thresholds:{' '}
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href='https://www.speedtest.net/'
+                        isExternal
+                      >
+                        https://www.speedtest.net/
+                      </Link>
+                    </ListItem>
+                    <ListItem>
+                      Must be able to demonstrate technical competency of nodes and clients.
+                    </ListItem>
+                    <ListItem>
+                      Must be willing and able to run the node for at least 2 years.
+                    </ListItem>
+                    <ListItem>Required to submit Ethereum Node Records.</ListItem>
+                    <ListItem>Node cannot be located in data center or cloud.</ListItem>
+                  </List>
+                </section>
+
+                <section id='deadlines' ref={ref4}>
+                  <PageSection mb={6}>Deadlines</PageSection>
+
+                  <PageText mb={6}>
+                    Application window: <b>X - X</b>
+                  </PageText>
+
+                  <PageText mb={6}>
+                    Evaluation window: <b>X - X</b>
+                  </PageText>
+
+                  <PageText mb={6}>
+                    Node launch and ENR submission deadline: <b>X</b>
+                  </PageText>
+                </section>
+
+                <section id='application-details' ref={ref5}>
+                  <PageSection mb={6}>Application Details</PageSection>
+
+                  <PageText mb={6}>Use the webform to complete the application.</PageText>
+
+                  <List>
+                    <ListItem>
+                      Submissions must be complete and in English to be considered.
+                    </ListItem>
+                    <ListItem>
+                      Applicants must specify whether they would like hardware mailed to their house
+                      or a stipend to reimburse the costs of buying hardware locally, or doing a
+                      custom build.
+                    </ListItem>
+                    <ListItem>
+                      Applicants are required to provide details about their understanding of nodes
+                      and clients.
+                    </ListItem>
+                    <ListItem>
+                      Applicants must detail their intended impact for the Ethereum ecosystem and
+                      community by running a node.
+                    </ListItem>
+                  </List>
+                </section>
+
+                <section id='helpful-resources' ref={ref6}>
+                  <PageSection mb={6}>Helpful Resources</PageSection>
+
+                  <List>
+                    <ListItem>
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href='https://ethereum.org/en/developers/docs/nodes-and-clients/'
+                        isExternal
+                      >
+                        https://ethereum.org/en/developers/docs/nodes-and-clients/
+                      </Link>
+                    </ListItem>
+                    <ListItem>
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href='https://nodewatch.io'
+                        isExternal
+                      >
+                        https://nodewatch.io
+                      </Link>
+                    </ListItem>
+                    <ListItem>
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href='https://ethernodes.org'
+                        isExternal
+                      >
+                        https://ethernodes.org
+                      </Link>
+                    </ListItem>
+                    <ListItem>
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href='https://panarama.xyz'
+                        isExternal
+                      >
+                        https://panarama.xyz
+                      </Link>
+                    </ListItem>
+                  </List>
+                </section>
+
+                <section id='next-steps-and-support' ref={ref7}>
+                  <PageSection mb={6}>Next steps and support</PageSection>
+
+                  <PageText mb={6}>
+                    For general support questions about your submission, please email PGR INBOX or{' '}
                     <Link
                       fontWeight={700}
                       color='brand.orange.100'
-                      href='https://www.speedtest.net/'
+                      href={`mailto:${ESP_EMAIL_ADDRESS}`}
                       isExternal
+                      _hover={{ textDecoration: 'none' }}
                     >
-                      https://www.speedtest.net/
+                      {ESP_EMAIL_ADDRESS}
                     </Link>
-                  </ListItem>
-                  <ListItem>
-                    Must be able to demonstrate technical competency of nodes and clients.
-                  </ListItem>
-                  <ListItem>
-                    Must be willing and able to run the node for at least 2 years.
-                  </ListItem>
-                  <ListItem>Required to submit Ethereum Node Records.</ListItem>
-                  <ListItem>Node cannot be located in data center or cloud.</ListItem>
-                </List>
-              </section>
+                  </PageText>
+                </section>
 
-              <section id='deadlines' ref={ref4}>
-                <PageSection mb={6}>Deadlines</PageSection>
-
-                <PageText mb={6}>
-                  Application window: <b>X - X</b>
-                </PageText>
-
-                <PageText mb={6}>
-                  Evaluation window: <b>X - X</b>
-                </PageText>
-
-                <PageText mb={6}>
-                  Node launch and ENR submission deadline: <b>X</b>
-                </PageText>
-              </section>
-
-              <section id='application-details' ref={ref5}>
-                <PageSection mb={6}>Application Details</PageSection>
-
-                <PageText mb={6}>Use the webform to complete the application.</PageText>
-
-                <List>
-                  <ListItem>Submissions must be complete and in English to be considered.</ListItem>
-                  <ListItem>
-                    Applicants must specify whether they would like hardware mailed to their house
-                    or a stipend to reimburse the costs of buying hardware locally, or doing a
-                    custom build.
-                  </ListItem>
-                  <ListItem>
-                    Applicants are required to provide details about their understanding of nodes
-                    and clients.
-                  </ListItem>
-                  <ListItem>
-                    Applicants must detail their intended impact for the Ethereum ecosystem and
-                    community by running a node.
-                  </ListItem>
-                </List>
-              </section>
-
-              <section id='helpful-resources' ref={ref6}>
-                <PageSection mb={6}>Helpful Resources</PageSection>
-
-                <List>
-                  <ListItem>
-                    <Link
-                      fontWeight={700}
-                      color='brand.orange.100'
-                      href='https://ethereum.org/en/developers/docs/nodes-and-clients/'
-                      isExternal
-                    >
-                      https://ethereum.org/en/developers/docs/nodes-and-clients/
-                    </Link>
-                  </ListItem>
-                  <ListItem>
-                    <Link
-                      fontWeight={700}
-                      color='brand.orange.100'
-                      href='https://nodewatch.io'
-                      isExternal
-                    >
-                      https://nodewatch.io
-                    </Link>
-                  </ListItem>
-                  <ListItem>
-                    <Link
-                      fontWeight={700}
-                      color='brand.orange.100'
-                      href='https://ethernodes.org'
-                      isExternal
-                    >
-                      https://ethernodes.org
-                    </Link>
-                  </ListItem>
-                  <ListItem>
-                    <Link
-                      fontWeight={700}
-                      color='brand.orange.100'
-                      href='https://panarama.xyz'
-                      isExternal
-                    >
-                      https://panarama.xyz
-                    </Link>
-                  </ListItem>
-                </List>
-              </section>
-
-              <section id='next-steps-and-support' ref={ref7}>
-                <PageSection mb={6}>Next steps and support</PageSection>
-
-                <PageText mb={6}>
-                  For general support questions about your submission, please email PGR INBOX or{' '}
-                  <Link
-                    fontWeight={700}
-                    color='brand.orange.100'
-                    href={`mailto:${ESP_EMAIL_ADDRESS}`}
-                    isExternal
-                    _hover={{ textDecoration: 'none' }}
-                  >
-                    {ESP_EMAIL_ADDRESS}
-                  </Link>
-                </PageText>
-              </section>
-
-              <section id='apply' ref={ref8}>
-                <Stack mt={6}>
-                  <ReadyToApply link={`${RUN_A_NODE_GRANTS_APPLY_URL}`} />
-                </Stack>
-              </section>
-            </Stack>
-          </Box>
-        </Flex>
+                <section id='apply' ref={ref8}>
+                  <Stack mt={6}>
+                    <ReadyToApply link={`${RUN_A_NODE_GRANTS_APPLY_URL}`} />
+                  </Stack>
+                </section>
+              </Stack>
+            </Box>
+          </Flex>
+        </Stack>
       </Box>
     </>
   );
