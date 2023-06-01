@@ -7,7 +7,6 @@ import {
   FormLabel,
   Input,
   Stack,
-  Textarea,
   RadioGroup,
   Radio,
   useToast
@@ -20,7 +19,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { DropdownIndicator, PageText } from '../UI';
 import { SubmitButton } from '../SubmitButton';
-import { Captcha } from '.';
+import { Captcha, Field, TextField, TextAreaField } from '.';
 
 import { api } from './api';
 
@@ -101,67 +100,15 @@ export const RunANodeGrantsForm: FC = () => {
         <form id='run-a-node-grants-form' onSubmit={handleSubmit(onSubmit)} noValidate>
           <Flex direction='column' mb={8}>
             <Flex direction={{ base: 'column', md: 'row' }} mb={3}>
-              <FormControl
-                id='first-name-control'
+              <TextField
+                id='firstName'
+                label='First name'
                 isRequired
                 mr={{ md: 12 }}
                 mb={{ base: 8, md: 0 }}
-              >
-                <FormLabel htmlFor='firstName'>
-                  <PageText display='inline' fontSize='input'>
-                    First name
-                  </PageText>
-                </FormLabel>
+              />
 
-                <Input
-                  id='firstName'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  {...register('firstName')}
-                />
-
-                {errors?.firstName && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      {errors?.firstName.message}
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
-
-              <FormControl id='last-name-control' isRequired>
-                <FormLabel htmlFor='lastName'>
-                  <PageText display='inline' fontSize='input'>
-                    Last name
-                  </PageText>
-                </FormLabel>
-                <Input
-                  id='lastName'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  {...register('lastName')}
-                />
-
-                {errors?.lastName && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      {errors?.lastName.message}
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
+              <TextField id='lastName' label='Last name' isRequired />
             </Flex>
 
             {!errors?.firstName && !errors?.lastName && (
@@ -171,176 +118,68 @@ export const RunANodeGrantsForm: FC = () => {
             )}
           </Flex>
 
-          <FormControl id='email-control' isRequired mb={8}>
-            <FormLabel htmlFor='email'>
-              <PageText display='inline' fontSize='input'>
-                Email
-              </PageText>
-            </FormLabel>
-            <Input
-              id='email'
-              type='email'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              {...register('email')}
-            />
-
-            {errors?.email && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  {errors?.email.message}
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+          <TextField id='email' label='Email' isRequired mb={8} />
 
           <Controller
             name='applyingAs'
             control={control}
-            render={({ field: { onChange }, fieldState: { error } }) => (
-              <FormControl id='applyingAs-control' isRequired mb={8}>
-                <FormLabel htmlFor='applyingAs'>
-                  <PageText display='inline' fontSize='input'>
-                    Are you applying as an individual or a team?
-                  </PageText>
-                </FormLabel>
+            render={({ field: { onChange } }) => (
+              <Field id='applyingAs' label='Are you applying as an individual or a team?' mb={8}>
+                <Select
+                  id='applyingAs'
+                  options={APPLYING_AS_RUN_A_NODE_OPTIONS}
+                  onChange={option =>
+                    onChange((option as typeof APPLYING_AS_RUN_A_NODE_OPTIONS[number]).value)
+                  }
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
+              </Field>
+            )}
+          />
 
-                <Box>
+          <Box display={applyingAs === OTHER ? 'block' : 'none'}>
+            <Fade in={applyingAs === OTHER} delay={0.25}>
+              <TextField id='applyingAsOther' label='If other, please specify' mb={8} />
+            </Fade>
+          </Box>
+
+          <TextAreaField
+            id='teamProfile'
+            label="Team/ Individuals Description - A brief summary of you or your team's relevant
+                experience"
+            helpText='Who is working on this project? Provide an individual/team profile with relevant
+                experience and expertise.'
+            isRequired
+            mb={8}
+          />
+
+          <Flex direction={{ base: 'column', md: 'row' }} gap={12} mb={3}>
+            <Controller
+              name='country'
+              control={control}
+              render={({ field: { onChange } }) => (
+                <Field
+                  id='country'
+                  label='Country'
+                  helpText='Provide the country of where the node would be located'
+                  isRequired
+                  mb={8}
+                >
                   <Select
-                    id='applyingAs'
-                    options={APPLYING_AS_RUN_A_NODE_OPTIONS}
-                    onChange={option =>
-                      onChange((option as typeof APPLYING_AS_RUN_A_NODE_OPTIONS[number]).value)
-                    }
+                    id='country'
+                    options={COUNTRY_OPTIONS}
+                    onChange={option => onChange((option as typeof COUNTRY_OPTIONS[number]).value)}
                     components={{ DropdownIndicator }}
                     placeholder='Select'
                     closeMenuOnSelect={true}
                     selectedOptionColor='brand.option'
                     chakraStyles={chakraStyles}
                   />
-
-                  {error && (
-                    <Box mt={1}>
-                      <PageText as='small' fontSize='helpText' color='red.500'>
-                        {error.message}
-                      </PageText>
-                    </Box>
-                  )}
-                </Box>
-              </FormControl>
-            )}
-          />
-
-          <Box display={applyingAs === OTHER ? 'block' : 'none'}>
-            <Fade in={applyingAs === OTHER} delay={0.25}>
-              <FormControl id='applyingAsOther-control' mb={8}>
-                <FormLabel htmlFor='applyingAsOther'>
-                  <PageText fontSize='input'>If other, please specify</PageText>
-                </FormLabel>
-                <Input
-                  id='applyingAsOther'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  mt={3}
-                  {...register('applyingAsOther')}
-                />
-
-                {errors?.applyingAsOther && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      {errors?.applyingAsOther.message}
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
-            </Fade>
-          </Box>
-
-          <FormControl id='team-profile-control' isRequired mb={8}>
-            <FormLabel htmlFor='teamProfile' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Team/ Individuals Description - A brief summary of you or your team&apos;s relevant
-                experience
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Who is working on this project? Provide an individual/team profile with relevant
-              experience and expertise.
-            </PageText>
-
-            <Textarea
-              id='teamProfile'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('teamProfile')}
-            />
-
-            {errors?.teamProfile && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  {errors?.teamProfile.message}
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <Flex direction={{ base: 'column', md: 'row' }} gap={12} mb={3}>
-            <Controller
-              name='country'
-              control={control}
-              render={({ field: { onChange }, fieldState: { error } }) => (
-                <FormControl id='country-control' mb={8} isRequired>
-                  <FormLabel htmlFor='country' mb={1}>
-                    <PageText display='inline' fontSize='input'>
-                      Country
-                    </PageText>
-                  </FormLabel>
-
-                  <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                    Provide the country of where the node would be located
-                  </PageText>
-
-                  <Box mt={3}>
-                    <Select
-                      id='country'
-                      options={COUNTRY_OPTIONS}
-                      onChange={option =>
-                        onChange((option as typeof COUNTRY_OPTIONS[number]).value)
-                      }
-                      components={{ DropdownIndicator }}
-                      placeholder='Select'
-                      closeMenuOnSelect={true}
-                      selectedOptionColor='brand.option'
-                      chakraStyles={chakraStyles}
-                    />
-                  </Box>
-
-                  {error && (
-                    <Box mt={1}>
-                      <PageText as='small' fontSize='helpText' color='red.500'>
-                        {error.message}
-                      </PageText>
-                    </Box>
-                  )}
-                </FormControl>
+                </Field>
               )}
             />
 
@@ -348,217 +187,76 @@ export const RunANodeGrantsForm: FC = () => {
               name='timezone'
               control={control}
               render={({ field: { onChange }, fieldState: { error } }) => (
-                <FormControl id='timezone-control' isRequired mb={8}>
-                  <FormLabel htmlFor='timezone' mb={1}>
-                    <PageText display='inline' fontSize='input'>
-                      Your time zone
-                    </PageText>
-                  </FormLabel>
-
-                  <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                    Please choose your current time zone to help us schedule calls.
-                  </PageText>
-
-                  <Box mt={3}>
-                    <Select
-                      id='timezone'
-                      options={TIMEZONE_OPTIONS}
-                      onChange={option => {
-                        onChange((option as typeof TIMEZONE_OPTIONS[number]).value);
-                        trigger('timezone');
-                      }}
-                      components={{ DropdownIndicator }}
-                      placeholder='Select'
-                      closeMenuOnSelect={true}
-                      selectedOptionColor='brand.option'
-                      chakraStyles={chakraStyles}
-                    />
-                  </Box>
-
-                  {error && (
-                    <Box mt={1}>
-                      <PageText as='small' fontSize='helpText' color='red.500'>
-                        {error.message}
-                      </PageText>
-                    </Box>
-                  )}
-                </FormControl>
+                <Field
+                  id='timezone'
+                  label='Your time zone'
+                  helpText='Please choose your current time zone to help us schedule calls'
+                  isRequired
+                  mb={8}
+                >
+                  <Select
+                    id='timezone'
+                    options={TIMEZONE_OPTIONS}
+                    onChange={option => {
+                      onChange((option as typeof TIMEZONE_OPTIONS[number]).value);
+                      trigger('timezone');
+                    }}
+                    components={{ DropdownIndicator }}
+                    placeholder='Select'
+                    closeMenuOnSelect={true}
+                    selectedOptionColor='brand.option'
+                    chakraStyles={chakraStyles}
+                  />
+                </Field>
               )}
             />
           </Flex>
 
-          <FormControl id='project-name-control' isRequired mb={8}>
-            <FormLabel htmlFor='projectName' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Project name
-              </PageText>
-            </FormLabel>
+          <TextField
+            id='projectName'
+            label='Project name'
+            helpText='Please name your project title "Run a Node - [Your Location]"'
+            isRequired
+            mb={8}
+          />
 
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Please name your project title &quot;Run a Node - [Your Location]&quot;
-            </PageText>
+          <TextField id='company' label='Organization' isRequired mb={8} />
 
-            <Input
-              id='projectName'
-              type='text'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-              {...register('projectName')}
-            />
+          <TextAreaField
+            id='projectDescription'
+            label='Describe your motivation for running a node.'
+            isRequired
+            mb={8}
+          />
 
-            {errors?.projectName && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  {errors?.projectName.message}
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+          <TextAreaField
+            id='projectPreviousWork'
+            label='Describe your expertise and experience with nodes and clients.'
+            isRequired
+            mb={8}
+          />
 
-          <FormControl id='company-control' isRequired mb={8}>
-            <FormLabel htmlFor='company' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Organization
-              </PageText>
-            </FormLabel>
-
-            <Input
-              id='company'
-              type='text'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-              {...register('company')}
-            />
-
-            {errors?.company && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  {errors?.company.message}
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='project-description-control' isRequired mb={8}>
-            <FormLabel htmlFor='projectDescription' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Describe your motivation for running a node.
-              </PageText>
-            </FormLabel>
-
-            <Textarea
-              id='projectDescription'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('projectDescription')}
-            />
-
-            {errors?.projectDescription && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  {errors?.projectDescription.message}
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='project-previous-work-control' isRequired mb={8}>
-            <FormLabel htmlFor='projectPreviousWork' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Describe your expertise and experience with nodes and clients.
-              </PageText>
-            </FormLabel>
-
-            <Textarea
-              id='projectPreviousWork'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('projectPreviousWork')}
-            />
-
-            {errors?.projectPreviousWork && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  {errors?.projectPreviousWork.message}
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='why-is-project-important-control' isRequired mb={8}>
-            <FormLabel htmlFor='whyIsProjectImportant' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Proposed Impact
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              What are you hoping to accomplish for the Ethereum community by running this node?
-            </PageText>
-
-            <Textarea
-              id='whyIsProjectImportant'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('whyIsProjectImportant')}
-            />
-
-            {errors?.whyIsProjectImportant && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  {errors?.whyIsProjectImportant.message}
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+          <TextAreaField
+            id='whyIsProjectImportant'
+            label='Proposed Impact'
+            helpText='What are you hoping to accomplish for the Ethereum community by running this node?'
+            isRequired
+            mb={8}
+          />
 
           <Controller
             name='hardwareOrStipend'
             control={control}
             defaultValue={HARDWARE}
             render={({ field: { onChange, value } }) => (
-              <FormControl id='hardwareOrStipend-control' isRequired mb={8}>
-                <FormLabel htmlFor='individualOrTeam' mb={4}>
-                  <PageText display='inline' fontSize='input'>
-                    Hardware or Stipend
-                  </PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText' mb={4}>
-                  Please indicate whether you would like use to send you hardware directly or a
-                  stipend amount.
-                </PageText>
-
+              <Field
+                id='hardwareOrStipend'
+                label='Hardware or Stipend'
+                helpText='Please indicate whether you would like use to send you hardware directly or a
+                  stipend amount.'
+                isRequired
+                mb={8}
+              >
                 <RadioGroup
                   id='hardwareOrStipend'
                   onChange={onChange}
@@ -584,202 +282,101 @@ export const RunANodeGrantsForm: FC = () => {
                     </Radio>
                   </Stack>
                 </RadioGroup>
-              </FormControl>
+              </Field>
             )}
           />
 
           <Box display={isStipendSelected ? 'block' : 'none'}>
             <Fade in={isStipendSelected} delay={0.25}>
-              <FormControl id='requested-amount-control' isRequired mb={8}>
-                <FormLabel htmlFor='requestedAmount' mb={4}>
-                  <PageText display='inline' fontSize='input'>
-                    Provide details about how you will spend this stipend
-                  </PageText>
-                </FormLabel>
-                <Input
-                  id='requestedAmount'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  mt={3}
-                  {...register('requestedAmount')}
-                />
-
-                {errors?.requestedAmount && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      {errors?.requestedAmount.message}
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
+              <TextField
+                id='requestedAmount'
+                label='Provide details about how you will spend this stipend'
+                isRequired
+                mb={8}
+              />
             </Fade>
           </Box>
 
           <Controller
             name='downloadSpeed'
             control={control}
-            render={({ field: { onChange }, fieldState: { error } }) => (
-              <FormControl id='download-speed-control' isRequired mb={8}>
-                <FormLabel htmlFor='downloadSpeed' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Download Speeds
-                  </PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Select download speed
-                </PageText>
-
-                <Box mt={3}>
-                  <Select
-                    id='downloadSpeed'
-                    options={DOWNLOAD_SPEED_OPTIONS}
-                    onChange={option =>
-                      onChange((option as typeof DOWNLOAD_SPEED_OPTIONS[number]).value)
-                    }
-                    components={{ DropdownIndicator }}
-                    placeholder='Select'
-                    closeMenuOnSelect={true}
-                    selectedOptionColor='brand.option'
-                    chakraStyles={chakraStyles}
-                  />
-
-                  {error && (
-                    <Box mt={1}>
-                      <PageText as='small' fontSize='helpText' color='red.500'>
-                        {error.message}
-                      </PageText>
-                    </Box>
-                  )}
-                </Box>
-              </FormControl>
+            render={({ field: { onChange } }) => (
+              <Field
+                id='downloadSpeed'
+                label='Download Speeds'
+                helpText='Select download speed'
+                isRequired
+                mb={8}
+              >
+                <Select
+                  id='downloadSpeed'
+                  options={DOWNLOAD_SPEED_OPTIONS}
+                  onChange={option =>
+                    onChange((option as typeof DOWNLOAD_SPEED_OPTIONS[number]).value)
+                  }
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
+              </Field>
             )}
           />
 
           <Controller
             name='dataLimitations'
             control={control}
-            render={({ field: { onChange }, fieldState: { error } }) => (
-              <FormControl id='download-speed-control' isRequired mb={8}>
-                <FormLabel htmlFor='dataLimitations' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Data Limitations
-                  </PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Monthly data cap
-                </PageText>
-
-                <Box mt={3}>
-                  <Select
-                    id='dataLimitations'
-                    options={MONTHLY_DATA_CAP_OPTIONS}
-                    onChange={option =>
-                      onChange((option as typeof MONTHLY_DATA_CAP_OPTIONS[number]).value)
-                    }
-                    components={{ DropdownIndicator }}
-                    placeholder='Select'
-                    closeMenuOnSelect={true}
-                    selectedOptionColor='brand.option'
-                    chakraStyles={chakraStyles}
-                  />
-
-                  {error && (
-                    <Box mt={1}>
-                      <PageText as='small' fontSize='helpText' color='red.500'>
-                        {error.message}
-                      </PageText>
-                    </Box>
-                  )}
-                </Box>
-              </FormControl>
+            render={({ field: { onChange } }) => (
+              <Field
+                id='dataLimitations'
+                label='Data Limitations'
+                helpText='Monthly data cap'
+                isRequired
+                mb={8}
+              >
+                <Select
+                  id='dataLimitations'
+                  options={MONTHLY_DATA_CAP_OPTIONS}
+                  onChange={option =>
+                    onChange((option as typeof MONTHLY_DATA_CAP_OPTIONS[number]).value)
+                  }
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
+              </Field>
             )}
           />
 
-          <FormControl id='proposed-timeline-control' isRequired mb={8}>
-            <FormLabel htmlFor='proposedTimeline' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Timeline
-              </PageText>
-            </FormLabel>
+          <TextAreaField
+            id='proposedTimeline'
+            label='Timeline'
+            helpText='Indicate how long you can commit to running a node.'
+            isRequired
+            mb={8}
+          />
 
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Indicate how long you can commit to running a node.
-            </PageText>
-
-            <Textarea
-              id='proposedTimeline'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('proposedTimeline')}
-            />
-
-            {errors?.proposedTimeline && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  {errors?.proposedTimeline.message}
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='challenges-control' isRequired mb={8}>
-            <FormLabel htmlFor='challenges' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Challenges
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Detail any challenges or obstacles you may have to running a node.
-            </PageText>
-
-            <Textarea
-              id='challenges'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('challenges')}
-            />
-
-            {errors?.challenges && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  {errors?.challenges.message}
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+          <TextAreaField
+            id='challenges'
+            label='Challenges'
+            helpText='Detail any challenges or obstacles you may have to running a node.'
+            isRequired
+            mb={8}
+          />
 
           <Controller
             name='referralSource'
             control={control}
             render={({ field: { onChange }, fieldState: { error } }) => (
-              <FormControl id='referral-source-control' isRequired mb={8}>
-                <FormLabel htmlFor='referralSource'>
-                  <PageText display='inline' fontSize='input'>
-                    How did you hear about this wave of grants?
-                  </PageText>
-                </FormLabel>
-
+              <Field
+                id='referralSource'
+                label='How did you hear about this wave of grants?'
+                isRequired
+                mb={8}
+              >
                 <Select
                   id='referralSource'
                   options={HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS}
@@ -792,88 +389,29 @@ export const RunANodeGrantsForm: FC = () => {
                   selectedOptionColor='brand.option'
                   chakraStyles={chakraStyles}
                 />
-
-                {error && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      {error.message}
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
+              </Field>
             )}
           />
 
           <Box display={referralSource === OTHER ? 'block' : 'none'}>
             <Fade in={referralSource === OTHER} delay={0.25}>
-              <FormControl id='referral-source-if-other-control' mb={8}>
-                <FormLabel htmlFor='referralSourceIfOther'>
-                  <PageText fontSize='input'>If &apos;Other&apos; is chosen</PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Please be as specific as possible. (e.g., an email received, an individual who
-                  recommended you apply, a link to a tweet, etc.)
-                </PageText>
-
-                <Textarea
-                  id='referralSourceIfOther'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  h='150px'
-                  mt={3}
-                  {...register('referralSourceIfOther')}
-                />
-
-                {errors?.referralSourceIfOther && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      {errors?.referralSourceIfOther.message}
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
+              <TextAreaField
+                id='referralSourceIfOther'
+                label="If 'Other' is chosen"
+                helpText='Please be as specific as possible. (e.g., an email received, an individual who
+              recommended you apply, a link to a tweet, etc.)'
+                mb={8}
+              />
             </Fade>
           </Box>
 
-          <FormControl id='telegram-control' mb={8}>
-            <FormLabel htmlFor='telegram' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Telegram Username or Alternative Contact Info
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              In regards to your submission, we&apos;ll get in touch with you via email by default.
-              As backup, if you&apos;d like to provide alternative contact info, you may do so.
-            </PageText>
-
-            <Input
-              id='telegram'
-              type='text'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-              {...register('telegram')}
-            />
-
-            {errors?.telegram && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  {errors?.telegram.message}
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+          <TextField
+            id='telegram'
+            label='Telegram Username or Alternative Contact Info'
+            helpText="In regards to your submission, we'll get in touch with you via email by default.
+              As backup, if you'd like to provide alternative contact info, you may do so."
+            mb={8}
+          />
 
           <FormControl id='twitter-control' mb={8}>
             <FormLabel htmlFor='twitter' mb={1}>
@@ -913,52 +451,19 @@ export const RunANodeGrantsForm: FC = () => {
             )}
           </FormControl>
 
-          <FormControl id='linkedinProfile-control' mb={8}>
-            <FormLabel htmlFor='linkedinProfile' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                LinkedIn Profile(s)
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              URL only.
-            </PageText>
-
-            <Input
-              id='linkedinProfile'
-              type='text'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-              {...register('linkedinProfile')}
-            />
-
-            {errors?.linkedinProfile && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  {errors?.linkedinProfile.message}
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+          <TextField id='linkedinProfile' label='LinkedIn Profile(s)' helpText='URL only.' mb={8} />
 
           <Controller
             name='repeatApplicant'
             control={control}
             defaultValue='No'
             render={({ field: { onChange, value } }) => (
-              <FormControl id='repeat-applicant-control' isRequired mb={8}>
-                <FormLabel htmlFor='repeatApplicant'>
-                  <PageText display='inline' fontSize='input'>
-                    Have you applied before to any grants at the Ethereum Foundation?
-                  </PageText>
-                </FormLabel>
-
+              <Field
+                id='repeatApplicant'
+                label='Have you applied before to any grants at the Ethereum Foundation?'
+                isRequired
+                mb={8}
+              >
                 <RadioGroup
                   id='repeatApplicant'
                   onChange={onChange}
@@ -989,7 +494,7 @@ export const RunANodeGrantsForm: FC = () => {
                     </Radio>
                   </Stack>
                 </RadioGroup>
-              </FormControl>
+              </Field>
             )}
           />
 
@@ -1035,40 +540,14 @@ export const RunANodeGrantsForm: FC = () => {
             )}
           />
 
-          <FormControl id='additional-info-control' mb={8}>
-            <FormLabel htmlFor='additionalInfo' mb={1}>
-              <PageText fontSize='input'>
-                Do you have any questions about this grants round, or is there anything else
-                you&apos;d like to share?
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Is there anything we didn&apos;t cover in the above questions? Feel free to add any
-              relevant links here. This is optional.
-            </PageText>
-
-            <Textarea
-              id='additionalInfo'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('additionalInfo')}
-            />
-
-            {errors?.additionalInfo && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  {errors?.additionalInfo.message}
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+          <TextAreaField
+            id='additionalInfo'
+            label="Do you have any questions about this grants round, or is there anything else
+            you'd like to share?"
+            helpText="Is there anything we didn't cover in the above questions? Feel free to add any
+            relevant links here. This is optional."
+            mb={8}
+          />
 
           <Center mb={12}>
             <Captcha />
