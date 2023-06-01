@@ -5,7 +5,6 @@ import {
   NewsletterFormData,
   OfficeHoursFormData,
   ProjectGrantsFormData,
-  RunANodeGrantsFormData,
   SmallGrantsFormData
 } from './../../types';
 
@@ -22,6 +21,8 @@ import {
   API_SMALL_GRANTS_EVENT,
   API_SMALL_GRANTS_PROJECT
 } from './constants';
+
+import type { Data as RunANodeGrantsFormData } from './schemas/runANode';
 
 const methodOptions = {
   method: 'POST',
@@ -160,15 +161,7 @@ export const api = {
     submit: (data: RunANodeGrantsFormData) => {
       const runANodeRequestOptions: RequestInit = {
         ...methodOptions,
-        body: JSON.stringify({
-          ...data,
-          // Company is a required field in SF, we're using the Name as default value if no company provided
-          company: data.company === '' ? `${data.firstName} ${data.lastName}` : data.company,
-          applyingAs: data.applyingAs.value,
-          country: data.country.value,
-          timezone: data.timezone.value,
-          referralSource: data.referralSource.value
-        })
+        body: JSON.stringify(data)
       };
 
       return fetch(API_RUN_A_NODE_GRANTS, runANodeRequestOptions);

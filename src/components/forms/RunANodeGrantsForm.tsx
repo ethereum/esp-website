@@ -14,8 +14,9 @@ import {
 } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
 import { FC } from 'react';
-import { Controller, FormProvider, useForm } from 'react-hook-form';
+import { Controller, FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 import { DropdownIndicator, PageText } from '../UI';
 import { SubmitButton } from '../SubmitButton';
@@ -37,17 +38,17 @@ import {
   TIMEZONE_OPTIONS
 } from './constants';
 import { RUN_A_NODE_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
-import { containURL } from '../../utils';
 
-import type { RunANodeGrantsFormData } from '../../types';
+import { schema, type Data } from './schemas/runANode';
 
 export const RunANodeGrantsForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
 
-  const methods = useForm<RunANodeGrantsFormData>({
+  const methods = useForm<Data>({
     mode: 'onBlur',
-    shouldFocusError: true
+    shouldFocusError: true,
+    resolver: zodResolver(schema)
   });
 
   const {
@@ -67,7 +68,7 @@ export const RunANodeGrantsForm: FC = () => {
 
   const isStipendSelected = hardwareOrStipend === STIPEND;
 
-  const onSubmit = async (data: RunANodeGrantsFormData) => {
+  const onSubmit: SubmitHandler<Data> = async data => {
     return api.runANodeGrants
       .submit(data)
       .then(res => {
@@ -97,7 +98,7 @@ export const RunANodeGrantsForm: FC = () => {
       borderRadius={{ md: '10px' }}
     >
       <FormProvider {...methods}>
-        <form id='project-grants-form' onSubmit={handleSubmit(onSubmit)}>
+        <form id='run-a-node-grants-form' onSubmit={handleSubmit(onSubmit)} noValidate>
           <Flex direction='column' mb={8}>
             <Flex direction={{ base: 'column', md: 'row' }} mb={3}>
               <FormControl
@@ -122,31 +123,13 @@ export const RunANodeGrantsForm: FC = () => {
                   _placeholder={{ fontSize: 'input' }}
                   color='brand.paragraph'
                   fontSize='input'
-                  {...register('firstName', {
-                    required: true,
-                    maxLength: 40,
-                    validate: value => !containURL(value)
-                  })}
+                  {...register('firstName')}
                 />
 
-                {errors?.firstName?.type === 'required' && (
+                {errors?.firstName && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      First name is required.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.firstName?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      First name cannot exceed 40 characters.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.firstName?.type === 'validate' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      First name cannot contain a URL.
+                      {errors?.firstName.message}
                     </PageText>
                   </Box>
                 )}
@@ -168,31 +151,13 @@ export const RunANodeGrantsForm: FC = () => {
                   _placeholder={{ fontSize: 'input' }}
                   color='brand.paragraph'
                   fontSize='input'
-                  {...register('lastName', {
-                    required: true,
-                    maxLength: 80,
-                    validate: value => !containURL(value)
-                  })}
+                  {...register('lastName')}
                 />
 
-                {errors?.lastName?.type === 'required' && (
+                {errors?.lastName && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Last name is required.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.lastName?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Last name cannot exceed 80 characters.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.lastName?.type === 'validate' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Last name cannot contain a URL.
+                      {errors?.lastName.message}
                     </PageText>
                   </Box>
                 )}
@@ -222,13 +187,13 @@ export const RunANodeGrantsForm: FC = () => {
               _placeholder={{ fontSize: 'input' }}
               color='brand.paragraph'
               fontSize='input'
-              {...register('email', { required: true })}
+              {...register('email')}
             />
 
-            {errors?.email?.type === 'required' && (
+            {errors?.email && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Email is required.
+                  {errors?.email.message}
                 </PageText>
               </Box>
             )}
@@ -237,8 +202,6 @@ export const RunANodeGrantsForm: FC = () => {
           <Controller
             name='applyingAs'
             control={control}
-            rules={{ required: true, validate: selected => selected.value !== '' }}
-            defaultValue={{ value: '', label: '' }}
             render={({ field: { onChange }, fieldState: { error } }) => (
               <FormControl id='applyingAs-control' isRequired mb={8}>
                 <FormLabel htmlFor='applyingAs'>
@@ -251,7 +214,9 @@ export const RunANodeGrantsForm: FC = () => {
                   <Select
                     id='applyingAs'
                     options={APPLYING_AS_RUN_A_NODE_OPTIONS}
-                    onChange={onChange}
+                    onChange={option =>
+                      onChange((option as typeof APPLYING_AS_RUN_A_NODE_OPTIONS[number]).value)
+                    }
                     components={{ DropdownIndicator }}
                     placeholder='Select'
                     closeMenuOnSelect={true}
@@ -262,7 +227,7 @@ export const RunANodeGrantsForm: FC = () => {
                   {error && (
                     <Box mt={1}>
                       <PageText as='small' fontSize='helpText' color='red.500'>
-                        Please select in which capacity you are applying.
+                        {error.message}
                       </PageText>
                     </Box>
                   )}
@@ -271,8 +236,8 @@ export const RunANodeGrantsForm: FC = () => {
             )}
           />
 
-          <Box display={applyingAs?.value === OTHER ? 'block' : 'none'}>
-            <Fade in={applyingAs?.value === OTHER} delay={0.25}>
+          <Box display={applyingAs === OTHER ? 'block' : 'none'}>
+            <Fade in={applyingAs === OTHER} delay={0.25}>
               <FormControl id='applyingAsOther-control' mb={8}>
                 <FormLabel htmlFor='applyingAsOther'>
                   <PageText fontSize='input'>If other, please specify</PageText>
@@ -288,15 +253,13 @@ export const RunANodeGrantsForm: FC = () => {
                   color='brand.paragraph'
                   fontSize='input'
                   mt={3}
-                  {...register('applyingAsOther', {
-                    maxLength: 255
-                  })}
+                  {...register('applyingAsOther')}
                 />
 
-                {errors?.applyingAsOther?.type === 'maxLength' && (
+                {errors?.applyingAsOther && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Applying as info cannot exceed 255 characters.
+                      {errors?.applyingAsOther.message}
                     </PageText>
                   </Box>
                 )}
@@ -327,23 +290,13 @@ export const RunANodeGrantsForm: FC = () => {
               fontSize='input'
               h='150px'
               mt={3}
-              {...register('teamProfile', {
-                required: true,
-                maxLength: 32768
-              })}
+              {...register('teamProfile')}
             />
 
-            {errors?.teamProfile?.type === 'required' && (
+            {errors?.teamProfile && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Team profile is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.teamProfile?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Team profile cannot exceed 32768 characters.
+                  {errors?.teamProfile.message}
                 </PageText>
               </Box>
             )}
@@ -353,8 +306,6 @@ export const RunANodeGrantsForm: FC = () => {
             <Controller
               name='country'
               control={control}
-              rules={{ required: true, validate: selected => selected.value !== '' }}
-              defaultValue={{ value: '', label: '' }}
               render={({ field: { onChange }, fieldState: { error } }) => (
                 <FormControl id='country-control' mb={8} isRequired>
                   <FormLabel htmlFor='country' mb={1}>
@@ -371,7 +322,9 @@ export const RunANodeGrantsForm: FC = () => {
                     <Select
                       id='country'
                       options={COUNTRY_OPTIONS}
-                      onChange={onChange}
+                      onChange={option =>
+                        onChange((option as typeof COUNTRY_OPTIONS[number]).value)
+                      }
                       components={{ DropdownIndicator }}
                       placeholder='Select'
                       closeMenuOnSelect={true}
@@ -383,7 +336,7 @@ export const RunANodeGrantsForm: FC = () => {
                   {error && (
                     <Box mt={1}>
                       <PageText as='small' fontSize='helpText' color='red.500'>
-                        Country is required.
+                        {error.message}
                       </PageText>
                     </Box>
                   )}
@@ -394,8 +347,6 @@ export const RunANodeGrantsForm: FC = () => {
             <Controller
               name='timezone'
               control={control}
-              rules={{ required: true, validate: selected => selected.value !== '' }}
-              defaultValue={{ value: '', label: '' }}
               render={({ field: { onChange }, fieldState: { error } }) => (
                 <FormControl id='timezone-control' isRequired mb={8}>
                   <FormLabel htmlFor='timezone' mb={1}>
@@ -412,8 +363,8 @@ export const RunANodeGrantsForm: FC = () => {
                     <Select
                       id='timezone'
                       options={TIMEZONE_OPTIONS}
-                      onChange={value => {
-                        onChange(value);
+                      onChange={option => {
+                        onChange((option as typeof TIMEZONE_OPTIONS[number]).value);
                         trigger('timezone');
                       }}
                       components={{ DropdownIndicator }}
@@ -427,7 +378,7 @@ export const RunANodeGrantsForm: FC = () => {
                   {error && (
                     <Box mt={1}>
                       <PageText as='small' fontSize='helpText' color='red.500'>
-                        Time zone is required.
+                        {error.message}
                       </PageText>
                     </Box>
                   )}
@@ -458,23 +409,13 @@ export const RunANodeGrantsForm: FC = () => {
               color='brand.paragraph'
               fontSize='input'
               mt={3}
-              {...register('projectName', {
-                required: true,
-                maxLength: 255
-              })}
+              {...register('projectName')}
             />
 
-            {errors?.projectName?.type === 'required' && (
+            {errors?.projectName && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Project name is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.projectName?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Project name cannot exceed 255 characters.
+                  {errors?.projectName.message}
                 </PageText>
               </Box>
             )}
@@ -498,31 +439,13 @@ export const RunANodeGrantsForm: FC = () => {
               color='brand.paragraph'
               fontSize='input'
               mt={3}
-              {...register('company', {
-                required: true,
-                maxLength: 255,
-                validate: value => !containURL(value)
-              })}
+              {...register('company')}
             />
 
-            {errors?.company?.type === 'required' && (
+            {errors?.company && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Organization name is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.company?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Organization name cannot exceed 255 characters.
-                </PageText>
-              </Box>
-            )}
-            {errors?.company?.type === 'validate' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Organization name cannot contain a URL.
+                  {errors?.company.message}
                 </PageText>
               </Box>
             )}
@@ -545,23 +468,13 @@ export const RunANodeGrantsForm: FC = () => {
               fontSize='input'
               h='150px'
               mt={3}
-              {...register('projectDescription', {
-                required: true,
-                maxLength: 32768
-              })}
+              {...register('projectDescription')}
             />
 
-            {errors?.projectDescription?.type === 'required' && (
+            {errors?.projectDescription && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Project description is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.projectDescription?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Project description cannot exceed 32768 characters.
+                  {errors?.projectDescription.message}
                 </PageText>
               </Box>
             )}
@@ -584,23 +497,13 @@ export const RunANodeGrantsForm: FC = () => {
               fontSize='input'
               h='150px'
               mt={3}
-              {...register('projectPreviousWork', {
-                required: true,
-                maxLength: 32768
-              })}
+              {...register('projectPreviousWork')}
             />
 
-            {errors?.projectPreviousWork?.type === 'required' && (
+            {errors?.projectPreviousWork && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Previous work is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.projectPreviousWork?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Previous work cannot exceed 32768 characters.
+                  {errors?.projectPreviousWork.message}
                 </PageText>
               </Box>
             )}
@@ -627,23 +530,13 @@ export const RunANodeGrantsForm: FC = () => {
               fontSize='input'
               h='150px'
               mt={3}
-              {...register('whyIsProjectImportant', {
-                required: true,
-                maxLength: 32768
-              })}
+              {...register('whyIsProjectImportant')}
             />
 
-            {errors?.whyIsProjectImportant?.type === 'required' && (
+            {errors?.whyIsProjectImportant && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Field is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.whyIsProjectImportant?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed 32768 characters.
+                  {errors?.whyIsProjectImportant.message}
                 </PageText>
               </Box>
             )}
@@ -652,7 +545,6 @@ export const RunANodeGrantsForm: FC = () => {
           <Controller
             name='hardwareOrStipend'
             control={control}
-            rules={{ required: true }}
             defaultValue={HARDWARE}
             render={({ field: { onChange, value } }) => (
               <FormControl id='hardwareOrStipend-control' isRequired mb={8}>
@@ -715,23 +607,13 @@ export const RunANodeGrantsForm: FC = () => {
                   color='brand.paragraph'
                   fontSize='input'
                   mt={3}
-                  {...register('requestedAmount', {
-                    required: isStipendSelected,
-                    maxLength: 255
-                  })}
+                  {...register('requestedAmount')}
                 />
 
-                {errors?.requestedAmount?.type === 'required' && (
+                {errors?.requestedAmount && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Field is required.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.requestedAmount?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Stipend details cannot exceed 255 characters.
+                      {errors?.requestedAmount.message}
                     </PageText>
                   </Box>
                 )}
@@ -742,7 +624,6 @@ export const RunANodeGrantsForm: FC = () => {
           <Controller
             name='downloadSpeed'
             control={control}
-            rules={{ required: true, validate: value => value !== '' }}
             render={({ field: { onChange }, fieldState: { error } }) => (
               <FormControl id='download-speed-control' isRequired mb={8}>
                 <FormLabel htmlFor='downloadSpeed' mb={1}>
@@ -772,7 +653,7 @@ export const RunANodeGrantsForm: FC = () => {
                   {error && (
                     <Box mt={1}>
                       <PageText as='small' fontSize='helpText' color='red.500'>
-                        Download speed is required.
+                        {error.message}
                       </PageText>
                     </Box>
                   )}
@@ -784,7 +665,6 @@ export const RunANodeGrantsForm: FC = () => {
           <Controller
             name='dataLimitations'
             control={control}
-            rules={{ required: true, validate: value => value !== '' }}
             render={({ field: { onChange }, fieldState: { error } }) => (
               <FormControl id='download-speed-control' isRequired mb={8}>
                 <FormLabel htmlFor='dataLimitations' mb={1}>
@@ -814,7 +694,7 @@ export const RunANodeGrantsForm: FC = () => {
                   {error && (
                     <Box mt={1}>
                       <PageText as='small' fontSize='helpText' color='red.500'>
-                        Data limitations is required.
+                        {error.message}
                       </PageText>
                     </Box>
                   )}
@@ -844,23 +724,13 @@ export const RunANodeGrantsForm: FC = () => {
               fontSize='input'
               h='150px'
               mt={3}
-              {...register('proposedTimeline', {
-                required: true,
-                maxLength: 32768
-              })}
+              {...register('proposedTimeline')}
             />
 
-            {errors?.proposedTimeline?.type === 'required' && (
+            {errors?.proposedTimeline && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Proposed timeline is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.proposedTimeline?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Proposed timeline cannot exceed 32768 characters.
+                  {errors?.proposedTimeline.message}
                 </PageText>
               </Box>
             )}
@@ -887,23 +757,13 @@ export const RunANodeGrantsForm: FC = () => {
               fontSize='input'
               h='150px'
               mt={3}
-              {...register('challenges', {
-                required: true,
-                maxLength: 32768
-              })}
+              {...register('challenges')}
             />
 
-            {errors?.challenges?.type === 'required' && (
+            {errors?.challenges && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Challenges is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.challenges?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed 32768 characters.
+                  {errors?.challenges.message}
                 </PageText>
               </Box>
             )}
@@ -912,8 +772,6 @@ export const RunANodeGrantsForm: FC = () => {
           <Controller
             name='referralSource'
             control={control}
-            rules={{ required: true, validate: selected => selected.value !== '' }}
-            defaultValue={{ value: '', label: '' }}
             render={({ field: { onChange }, fieldState: { error } }) => (
               <FormControl id='referral-source-control' isRequired mb={8}>
                 <FormLabel htmlFor='referralSource'>
@@ -925,7 +783,9 @@ export const RunANodeGrantsForm: FC = () => {
                 <Select
                   id='referralSource'
                   options={HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS}
-                  onChange={onChange}
+                  onChange={option =>
+                    onChange((option as typeof HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS[number]).value)
+                  }
                   components={{ DropdownIndicator }}
                   placeholder='Select'
                   closeMenuOnSelect={true}
@@ -936,7 +796,7 @@ export const RunANodeGrantsForm: FC = () => {
                 {error && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Referral source is required.
+                      {error.message}
                     </PageText>
                   </Box>
                 )}
@@ -944,8 +804,8 @@ export const RunANodeGrantsForm: FC = () => {
             )}
           />
 
-          <Box display={referralSource?.value === OTHER ? 'block' : 'none'}>
-            <Fade in={referralSource?.value === OTHER} delay={0.25}>
+          <Box display={referralSource === OTHER ? 'block' : 'none'}>
+            <Fade in={referralSource === OTHER} delay={0.25}>
               <FormControl id='referral-source-if-other-control' mb={8}>
                 <FormLabel htmlFor='referralSourceIfOther'>
                   <PageText fontSize='input'>If &apos;Other&apos; is chosen</PageText>
@@ -966,22 +826,13 @@ export const RunANodeGrantsForm: FC = () => {
                   fontSize='input'
                   h='150px'
                   mt={3}
-                  {...register('referralSourceIfOther', {
-                    maxLength: 32768
-                  })}
+                  {...register('referralSourceIfOther')}
                 />
 
-                {errors?.referralSourceIfOther?.type === 'maxLength' && (
+                {errors?.referralSourceIfOther && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Referral source cannot exceed 255 characters.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.referralSourceIfOther?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Cannot exceed 32768 characters.
+                      {errors?.referralSourceIfOther.message}
                     </PageText>
                   </Box>
                 )}
@@ -1012,15 +863,13 @@ export const RunANodeGrantsForm: FC = () => {
               color='brand.paragraph'
               fontSize='input'
               mt={3}
-              {...register('telegram', {
-                maxLength: 150
-              })}
+              {...register('telegram')}
             />
 
-            {errors?.telegram?.type === 'maxLength' && (
+            {errors?.telegram && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Alternative contact info cannot exceed 150 characters.
+                  {errors?.telegram.message}
                 </PageText>
               </Box>
             )}
@@ -1052,15 +901,13 @@ export const RunANodeGrantsForm: FC = () => {
               fontSize='input'
               pl={8}
               mt={3}
-              {...register('twitter', {
-                maxLength: 16
-              })}
+              {...register('twitter')}
             />
 
-            {errors?.twitter?.type === 'maxLength' && (
+            {errors?.twitter && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Twitter handle cannot exceed 16 characters.
+                  {errors?.twitter.message}
                 </PageText>
               </Box>
             )}
@@ -1088,15 +935,13 @@ export const RunANodeGrantsForm: FC = () => {
               color='brand.paragraph'
               fontSize='input'
               mt={3}
-              {...register('linkedinProfile', {
-                maxLength: 255
-              })}
+              {...register('linkedinProfile')}
             />
 
-            {errors?.linkedinProfile?.type === 'maxLength' && (
+            {errors?.linkedinProfile && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  LinkedIn profiles cannot exceed 255 characters.
+                  {errors?.linkedinProfile.message}
                 </PageText>
               </Box>
             )}
@@ -1105,7 +950,6 @@ export const RunANodeGrantsForm: FC = () => {
           <Controller
             name='repeatApplicant'
             control={control}
-            rules={{ required: true }}
             defaultValue='No'
             render={({ field: { onChange, value } }) => (
               <FormControl id='repeat-applicant-control' isRequired mb={8}>
@@ -1214,15 +1058,13 @@ export const RunANodeGrantsForm: FC = () => {
               fontSize='input'
               h='150px'
               mt={3}
-              {...register('additionalInfo', {
-                maxLength: 32768
-              })}
+              {...register('additionalInfo')}
             />
 
-            {errors?.additionalInfo?.type === 'maxLength' && (
+            {errors?.additionalInfo && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Additional info cannot exceed 32768 characters.
+                  {errors?.additionalInfo.message}
                 </PageText>
               </Box>
             )}

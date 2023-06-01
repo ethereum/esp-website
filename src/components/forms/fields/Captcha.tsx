@@ -27,7 +27,7 @@ export const Captcha: FC = () => {
 
   return (
     <Box>
-      {errors?.captchaToken?.type === 'required' && (
+      {errors?.captchaToken && (
         <Box mt={1}>
           <PageText as='small' fontSize='helpText' color='red.500'>
             Captcha is required.

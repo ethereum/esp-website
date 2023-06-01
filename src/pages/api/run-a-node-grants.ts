@@ -1,49 +1,55 @@
 import jsforce from 'jsforce';
 import { NextApiResponse } from 'next';
 
-import addRowToSpreadsheet from '../../utils/addRowToSpreadsheet';
-
 import { sanitizeFields, verifyCaptcha } from '../../middlewares';
 
-import { RunANodeGrantsNextApiRequest } from '../../types';
+import { Data, schema } from '../../components/forms/schemas/runANode';
 
-const googleSpreadsheetId = process.env.GOOGLE_DEVCON_SPREADSHEET_ID;
-const googleSheetName = process.env.GOOGLE_DEVCON_SHEET_NAME;
-
-async function handler(req: RunANodeGrantsNextApiRequest, res: NextApiResponse): Promise<void> {
+async function handler(req: { body: Data }, res: NextApiResponse): Promise<void> {
   return new Promise(resolve => {
     const { body } = req;
-    const {
-      firstName: FirstName,
-      lastName: LastName,
-      email: Email,
-      applyingAs: Applying_as_a__c,
-      applyingAsOther: Applying_as_Other__c,
-      teamProfile: Team_Profile__c,
-      timezone: Time_Zone__c,
-      country: npsp__CompanyCountry__c,
-      projectName: Project_Name__c,
-      company: Company,
-      projectDescription: Project_Description__c,
-      projectPreviousWork: Previous_Work__c,
-      whyIsProjectImportant: Impact__c,
-      hardwareOrStipend: Hardware_or_Stipend__c,
-      requestedAmount: Requested_Amount__c,
-      downloadSpeed: Download_Speed__c,
-      dataLimitations: Data_Limitations__c,
-      proposedTimeline: Proposed_Timeline__c,
-      challenges: Challenges__c,
-      referralSource: Referral_Source__c,
-      referralSourceIfOther: Referral_Source_if_Other__c,
-      telegram: Alternative_Contact__c,
-      twitter: Twitter__c,
-      linkedinProfile: LinkedIn_Profile__c,
-      repeatApplicant: Repeat_Applicant__c,
-      canTheEFReachOut: Can_the_EF_reach_out__c,
-      additionalInfo: Additional_Information__c
-    } = body;
+    const fields = {
+      firstName: body.firstName,
+      lastName: body.lastName,
+      email: body.email,
+      applyingAs: body.applyingAs,
+      applyingAsOther: body.applyingAsOther,
+      teamProfile: body.teamProfile,
+      timezone: body.timezone,
+      country: body.country,
+      projectName: body.projectName,
+      company: body.company,
+      projectDescription: body.projectDescription,
+      projectPreviousWork: body.projectPreviousWork,
+      hardwareOrStipend: body.hardwareOrStipend,
+      whyIsProjectImportant: body.whyIsProjectImportant,
+      requestedAmount: body.requestedAmount,
+      downloadSpeed: body.downloadSpeed,
+      dataLimitations: body.dataLimitations,
+      proposedTimeline: body.proposedTimeline,
+      challenges: body.challenges,
+      referralSource: body.referralSource,
+      referralSourceIfOther: body.referralSourceIfOther,
+      telegram: body.telegram,
+      twitter: body.twitter,
+      linkedinProfile: body.linkedinProfile,
+      repeatApplicant: body.repeatApplicant,
+      canTheEFReachOut: body.canTheEFReachOut,
+      additionalInfo: body.additionalInfo,
+      captchaToken: body.captchaToken
+    };
     const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
       process.env;
+
+    // validate fields against the schema
+    const result = schema.safeParse(fields);
+    if (!result.success) {
+      const formatted = result.error.format();
+      console.error(formatted);
+
+      res.status(500).end();
+      return resolve();
+    }
 
     const conn = new jsforce.Connection({
       // you can change loginUrl to connect to sandbox or prerelease env.
@@ -57,34 +63,34 @@ async function handler(req: RunANodeGrantsNextApiRequest, res: NextApiResponse):
         return resolve();
       }
 
+      // SF mapping
       const application = {
-        FirstName: FirstName.trim(),
-        LastName: LastName.trim(),
-        Email: Email.trim(),
-        Applying_as_a__c: Applying_as_a__c.trim(),
-        Applying_as_Other__c: Applying_as_Other__c.trim(),
-        Team_Profile__c: Team_Profile__c.trim(),
-        Time_Zone__c: Time_Zone__c.trim(),
-        npsp__CompanyCountry__c: npsp__CompanyCountry__c.trim(),
-        Project_Name__c: Project_Name__c.trim(),
-        Company: Company.trim(),
-        Project_Description__c: Project_Description__c.trim(),
-        Previous_Work__c: Previous_Work__c.trim(),
-        Impact__c: Impact__c.trim(),
-        Hardware_or_Stipend__c: Hardware_or_Stipend__c.trim(),
-        Requested_Amount__c: Requested_Amount__c.trim(),
-        Download_Speed__c: Download_Speed__c.trim(),
-        Data_Limitations__c: Data_Limitations__c.trim(),
-        Proposed_Timeline__c: Proposed_Timeline__c.trim(),
-        Challenges__c: Challenges__c.trim(),
-        Referral_Source__c: Referral_Source__c.trim(),
-        Referral_Source_if_Other__c: Referral_Source_if_Other__c.trim(),
-        Alternative_Contact__c: Alternative_Contact__c.trim(),
-        Twitter__c: Twitter__c.trim(),
-        LinkedIn_Profile__c: LinkedIn_Profile__c.trim(),
-        Repeat_Applicant__c: Repeat_Applicant__c.trim(),
-        Can_the_EF_reach_out__c: Can_the_EF_reach_out__c.trim(),
-        Additional_Information__c: Additional_Information__c.trim(),
+        FirstName: fields.firstName,
+        LastName: fields.lastName,
+        Email: fields.email,
+        Applying_as_a__c: fields.applyingAs,
+        Applying_as_Other__c: fields.applyingAsOther,
+        Team_Profile__c: fields.teamProfile,
+        Time_Zone__c: fields.timezone,
+        npsp__CompanyCountry__c: fields.country,
+        Project_Name__c: fields.projectName,
+        Company: fields.company,
+        Project_Description__c: fields.projectDescription,
+        Previous_Work__c: fields.projectPreviousWork,
+        Impact__c: fields.whyIsProjectImportant,
+        Requested_Amount__c: fields.requestedAmount,
+        Download_Speed__c: fields.downloadSpeed,
+        Data_Limitations__c: fields.dataLimitations,
+        Proposed_Timeline__c: fields.proposedTimeline,
+        Challenges__c: fields.challenges,
+        Referral_Source__c: fields.referralSource,
+        Referral_Source_if_Other__c: fields.referralSourceIfOther,
+        Alternative_Contact__c: fields.telegram,
+        Twitter__c: fields.twitter,
+        LinkedIn_Profile__c: fields.linkedinProfile,
+        Repeat_Applicant__c: fields.repeatApplicant,
+        Can_the_EF_reach_out__c: fields.canTheEFReachOut,
+        Additional_Information__c: fields.additionalInfo,
         Proactive_Community_Grants_Round__c: 'Run A Node 2023', // this value is hardwired, depending on the type of grant round
         RecordTypeId: process.env.SF_RECORD_TYPE_PROJECT_GRANTS!
       };

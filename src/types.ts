@@ -217,39 +217,6 @@ export interface EcodevGrantsFormData extends CaptchaForm {
   uploadProposal: File;
 }
 
-export interface RunANodeGrantsFormData extends CaptchaForm {
-  firstName: string; // SF API: FirstName
-  lastName: string; // SF API: LastName
-  email: string; // SF API: Email
-  applyingAs: ApplyingAs; // SF API: Applying_as_a__c
-  applyingAsOther: string; // SF API: Applying_as_Other__c
-  teamProfile: string; // SF API: Team_Profile__c
-  timezone: Timezone; // SF API: Time_Zone__c
-  country: Country; // SF API: npsp__CompanyCountry__c
-  projectName: string; // SF API: Project_Name__c
-  // TODO: ???? check this, should be for "organization"
-  company: string; // SF API: Company
-  projectDescription: string; // SF API: Project_Description__c
-  projectPreviousWork: string; // SF API: Previous_Work__c
-  whyIsProjectImportant: string; // SF API: Impact__c
-  hardwareOrStipend: string; // SF API: Hardware_or_Stipend__c
-  requestedAmount: string; // SF API: Requested_Amount__c
-  // TODO: confirm the following logic and fields
-  downloadSpeed: string; // SF API: Download_Speed__c
-  // TODO: confirm the following logic and fields
-  dataLimitations: string; // SF API: Data_Limitations__c
-  proposedTimeline: string; // SF API: Proposed_Timeline__c
-  challenges: string; // SF API: Challenges__c
-  referralSource: ReferralSource; // SF API: Referral_Source__c
-  referralSourceIfOther: string; // SF API: Referral_Source_if_Other__c
-  telegram: string; // SF API: Alternative_Contact__c
-  twitter: string; // SF API: Twitter__c
-  linkedinProfile: string; // SF API: LinkedIn_Profile__c
-  repeatApplicant: string; // SF API: Repeat_Applicant__c
-  canTheEFReachOut: string; // SF API: Can_the_EF_reach_out__c
-  additionalInfo: string; // SF API: Additional_Information__c
-}
-
 export type IndividualOrTeam = 'Individual' | 'Team';
 
 export type OfficeHoursRequest = 'Project feedback' | 'Advice';
@@ -437,37 +404,5 @@ export interface SmallGrantsProjectNextApiRequest extends NextApiRequest {
     repeatApplicant: boolean;
     progress: string;
     otherFunding: string;
-  };
-}
-
-export interface RunANodeGrantsNextApiRequest extends NextApiRequest {
-  body: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    applyingAs: string;
-    applyingAsOther: string;
-    teamProfile: string;
-    timezone: string;
-    country: string;
-    projectName: string;
-    company: string;
-    projectDescription: string;
-    projectPreviousWork: string;
-    whyIsProjectImportant: string;
-    hardwareOrStipend: string;
-    requestedAmount: string;
-    downloadSpeed: string;
-    dataLimitations: string;
-    proposedTimeline: string;
-    challenges: string;
-    referralSource: string;
-    referralSourceIfOther: string;
-    telegram: string;
-    twitter: string;
-    linkedinProfile: string;
-    repeatApplicant: string;
-    canTheEFReachOut: string;
-    additionalInfo: string;
   };
 }
