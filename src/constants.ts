@@ -190,7 +190,7 @@ export const ETHEREUM_GRANTS_URL = 'https://ethereum.org/en/community/grants/';
 
 // EF
 export const EF_PHILOSOPHY_URL = 'https://ethereum.foundation/philosophy/';
-export const EF_JOBS_URL = 'https://ethereum.bamboohr.com/jobs/';
+export const EF_JOBS_URL = 'https://jobs.lever.co/ethereumfoundation';
 
 // ESP external links
 export const ESP_BLOG_URL = 'https://blog.ethereum.org/category/ecosystem-support-program/';
