@@ -65,7 +65,7 @@ export const AboutLayout: FC = ({ children }) => {
             title='About ESP'
             img={{ src: aboutHero, alt: 'People reading about the ESP', width: 498, height: 296 }}
           >
-            We provide grants and other support for open source projects that strengthen
+            We provide grants and other support for free and open-source projects that strengthen
             Ethereum&apos;s foundations, with a particular focus on builder tools, infrastructure,
             research and public goods.
           </Description>

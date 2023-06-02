@@ -202,10 +202,10 @@ const Home: NextPage = () => {
             >
               <PageText mb={6}>
                 We award dozens of grants each quarter, across a variety of categories. We support{' '}
-                <strong>open source projects</strong> that strengthen Ethereum&apos;s foundations,
-                with a particular focus on builder tools, infrastructure, research, community
-                resources and other public goods. Funding is generally directed toward supporting
-                builders rather than end users.
+                <strong>free and open source projects</strong> that strengthen Ethereum&apos;s
+                foundations, with a particular focus on builder tools, infrastructure, research,
+                community resources and other public goods. Funding is generally directed toward
+                supporting builders rather than end users.
               </PageText>
             </HomeAboutCard>
           </section>

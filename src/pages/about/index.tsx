@@ -24,7 +24,7 @@ const About: NextPage = () => {
               improving infrastructure, expanding the range of tools available to those building on
               Ethereum, deepening our understanding of cryptographic primitives, and growing the
               builder ecosystem through education and community development. The work we support is
-              open source, non-commercial and built for positive sum outcomes.
+              free, open-source, non-commercial, and built for positive sum outcomes.
             </PageText>
 
             <PageText mb={6}>
