@@ -2,7 +2,7 @@ import { Box, Link, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 
 import { PageMetadata, PageSubheading, PageText } from '../../components/UI';
-import { DEVCON_GRANTS_EMAIL_ADDRESS } from '../../constants';
+import { ACADEMIC_GRANTS_PREVIEW_URL, DEVCON_GRANTS_EMAIL_ADDRESS } from '../../constants';
 
 const DevconGrantsApply: NextPage = () => {
   return (
@@ -10,6 +10,7 @@ const DevconGrantsApply: NextPage = () => {
       <PageMetadata
         title='Devcon Grants Application'
         description='Submit an application for an Devcon Grant from the Ecosystem Support Program.'
+        image={ACADEMIC_GRANTS_PREVIEW_URL}
       />
 
       <Box
@@ -22,11 +23,12 @@ const DevconGrantsApply: NextPage = () => {
         <Stack>
           <section id='description'>
             <PageSubheading mb={8} textAlign='center'>
-              Apply to Devcon Grants
+              Apply for Support on the Road to Devcon
             </PageSubheading>
 
             <PageText textAlign='center'>
-              If you have questions before submitting a grant application, you may contact us at{' '}
+              If you have questions before submitting an application for financial or non-financial
+              support, you may contact us at{' '}
               <Link
                 fontWeight={700}
                 color='brand.orange.100'
