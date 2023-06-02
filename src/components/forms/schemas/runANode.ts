@@ -5,12 +5,19 @@ import { HARDWARE, STIPEND } from '../constants';
 
 const MAX_TEXT_LENGTH = 255;
 const MAX_TEXT_AREA_LENGTH = 32768;
+const MIN_TEXT_AREA_LENGTH = 500;
 
 const stringFieldSchema = (fieldName: string, { min, max }: { min?: number; max?: number }) => {
   let fieldSchema = z.string({ required_error: `${fieldName} is required` });
 
   if (min) {
-    fieldSchema = fieldSchema.min(min, `${fieldName} is required`);
+    fieldSchema = fieldSchema.min(
+      min,
+      min > 1
+        ? `${fieldName} must contain at least ${min} character(s)
+    `
+        : `${fieldName} is required`
+    );
   }
 
   if (max) {
@@ -42,12 +49,15 @@ export const schema = z
       'Organization name cannot contain a URL'
     ),
     projectDescription: stringFieldSchema('Project description', {
-      min: 1,
+      min: MIN_TEXT_AREA_LENGTH,
       max: MAX_TEXT_AREA_LENGTH
     }),
-    projectPreviousWork: stringFieldSchema('Previous work', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
+    projectPreviousWork: stringFieldSchema('Previous work', {
+      min: MIN_TEXT_AREA_LENGTH,
+      max: MAX_TEXT_AREA_LENGTH
+    }),
     whyIsProjectImportant: stringFieldSchema('Proposed impact', {
-      min: 1,
+      min: MIN_TEXT_AREA_LENGTH,
       max: MAX_TEXT_AREA_LENGTH
     }),
     hardwareOrStipend: z.enum([HARDWARE, STIPEND]),
@@ -55,7 +65,10 @@ export const schema = z
     downloadSpeed: stringFieldSchema('Download speed', { min: 1 }),
     dataLimitations: stringFieldSchema('Data limitations', { min: 1 }),
     proposedTimeline: stringFieldSchema('Proposed timeline', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
-    challenges: stringFieldSchema('Challenges', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
+    challenges: stringFieldSchema('Challenges', {
+      min: MIN_TEXT_AREA_LENGTH,
+      max: MAX_TEXT_AREA_LENGTH
+    }),
     referralSource: stringFieldSchema('Referral source', { min: 1 }),
     referralSourceIfOther: stringFieldSchema('Field', { max: MAX_TEXT_AREA_LENGTH }).optional(),
     telegram: stringFieldSchema('Alternative contact info', { max: 150 }).optional(),
