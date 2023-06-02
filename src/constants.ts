@@ -199,7 +199,7 @@ export const ESP_WISHLIST_URL =
   'https://efdn.notion.site/Ecosystem-Support-Program-Wishlist-ae88ec8d8fc34d01be96d35ddaff7d23';
 export const ESP_EMAIL_ADDRESS = 'esp@ethereum.org';
 export const ACADEMIC_GRANTS_EMAIL_ADDRESS = 'academic-grants@ethereum.org';
-export const DEVCON_GRANTS_EMAIL_ADDRESS = 'grants@devcon.org';
+export const DEVCON_GRANTS_EMAIL_ADDRESS = 'support@devcon.org';
 export const MERGE_DATA_CHALLENGE_EMAIL_ADDRESS = 'datachallenge@ethereum.org';
 export const SEMAPHORE_GRANT_EMAIL_ADDRESS = 'semaphore-grants@ethereum.org';
 export const LAYER_2_GRANTS_EMAIL_ADDRESS = 'layer2grants@ethereum.org';
@@ -275,6 +275,9 @@ export const LAYER_2_GRANTS_PREVIEW_URL =
 
 export const ACCOUNT_ABSTRACTION_GRANTS_PREVIEW_URL =
   'https://esp.ethereum.foundation/images/account-abstraction-hero.jpeg';
+
+export const ACADEMIC_GRANTS_PREVIEW_URL =
+  'https://esp.ethereum.foundation/images/academic-grants-hero.png';
 
 // Thank you and apply urls
 export const GRANTS_URLS = [DEVCON_GRANTS_APPLY_URL, DEVCON_GRANTS_THANK_YOU_PAGE_URL];

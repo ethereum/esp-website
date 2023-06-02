@@ -10,16 +10,17 @@ import {
   PageSubheading,
   PageText,
   PageMetadata,
-  ReadyToApply
+  ReadyToApply,
+  OrderedList
 } from '../../components/UI';
 
 import {
   SIDEBAR_DEVCON_GRANTS_LINKS,
   DEVCON_GRANTS_EMAIL_ADDRESS,
   APPLICANTS_URL,
-  DEVCON_GRANTS_APPLY_URL
+  DEVCON_GRANTS_APPLY_URL,
+  ACADEMIC_GRANTS_PREVIEW_URL
 } from '../../constants';
-import { OrderedList } from '../../components/UI/OrderedList';
 
 const DevconGrants: NextPage = () => {
   // `threshold` option allows us to control the % of visibility required before triggering the Intersection Observer
@@ -38,6 +39,7 @@ const DevconGrants: NextPage = () => {
       <PageMetadata
         title='Join the Road to Devcon'
         description='To promote education around Ethereum in Southeast Asia along the Road to Devcon, we would like to offer support (both monetary and otherwise) to meetups, events, and other educational initiatives happening within the SEA region before Devcon 7.'
+        image={ACADEMIC_GRANTS_PREVIEW_URL}
       />
 
       <Box mx={{ md: 12 }} bg='white' position='relative' zIndex={1} mt={{ xl: 12 }}>
