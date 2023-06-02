@@ -101,9 +101,8 @@ const RunANodeGrants: NextPage = () => {
                       use a node for research purposes - surprise us with your application.
                     </ListItem>
                     <ListItem>
-                      Selected applicants will receive <b>either</b> the hardware needed to run the
-                      round sent directly to you <b>or</b> a fixed allocated sum to reimburse the
-                      cost of the hardware.
+                      Selected applicants will receive either a <b>Dappnode</b> sent directly to you
+                      or a fixed allocated sum to reimburse the cost of the hardware.
                     </ListItem>
                   </List>
                 </section>
