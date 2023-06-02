@@ -8,8 +8,8 @@ const DevconGrantsApply: NextPage = () => {
   return (
     <>
       <PageMetadata
-        title='Devcon Grants Application'
-        description='Submit an application for an Devcon Grant from the Ecosystem Support Program.'
+        title='Road to Devcon Grants Application'
+        description='Submit an application for financial or non-financial support along the Road to Devcon 7 in Southeast Asia.'
         image={ACADEMIC_GRANTS_PREVIEW_URL}
       />
 

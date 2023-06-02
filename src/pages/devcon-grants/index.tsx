@@ -37,7 +37,7 @@ const DevconGrants: NextPage = () => {
   return (
     <>
       <PageMetadata
-        title='Join the Road to Devcon'
+        title='Road to Devcon Grants Application'
         description='To promote education around Ethereum in Southeast Asia along the Road to Devcon, we would like to offer support (both monetary and otherwise) to meetups, events, and other educational initiatives happening within the SEA region before Devcon 7.'
         image={ACADEMIC_GRANTS_PREVIEW_URL}
       />
@@ -139,6 +139,7 @@ const DevconGrants: NextPage = () => {
                     <ListItem>Open to anyone</ListItem>
                     <ListItem>Not focused on investment, price or token sales</ListItem>
                     <ListItem>Events that have already taken place are not eligible</ListItem>
+                    <ListItem>Focused in Southeast Asia (or nearby regions)</ListItem>
                   </List>
                 </section>
 
