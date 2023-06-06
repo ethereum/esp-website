@@ -81,14 +81,9 @@ export const schema = z
     additionalInfo: stringFieldSchema('Additional info', { max: MAX_TEXT_AREA_LENGTH }).optional(),
     captchaToken: stringFieldSchema('Captcha', { min: 1 })
   })
-  .refine(
-    data =>
-      (data.hardware === DAPPNODE && !data.customBuildDetail) ||
-      (data.hardware === CUSTOM_BUILD && data.customBuildDetail),
-    {
-      message: 'Custom build detail is required',
-      path: ['customBuildDetail']
-    }
-  );
+  .refine(data => data.hardware === CUSTOM_BUILD && data.customBuildDetail, {
+    message: `Custom build detail must contain at least ${MIN_TEXT_AREA_LENGTH} character(s)`,
+    path: ['customBuildDetail']
+  });
 
 export type Data = z.infer<typeof schema>;
