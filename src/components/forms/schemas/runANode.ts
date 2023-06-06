@@ -1,7 +1,7 @@
 import * as z from 'zod';
 
 import { containURL } from '../../../utils';
-import { HARDWARE, STIPEND } from '../constants';
+import { CUSTOM_BUILD, DAPPNODE } from '../constants';
 
 const MAX_TEXT_LENGTH = 255;
 const MAX_TEXT_AREA_LENGTH = 32768;
@@ -44,9 +44,9 @@ export const schema = z
     timezone: stringFieldSchema('Time zone', { min: 1 }),
     country: stringFieldSchema('Country', { min: 1 }),
     projectName: stringFieldSchema('Project name', { min: 1, max: MAX_TEXT_LENGTH }),
-    company: stringFieldSchema('Organization name', { min: 1, max: MAX_TEXT_LENGTH }).refine(
+    company: stringFieldSchema('Organization', { min: 1, max: MAX_TEXT_LENGTH }).refine(
       value => !containURL(value),
-      'Organization name cannot contain a URL'
+      'Organization cannot contain a URL'
     ),
     projectDescription: stringFieldSchema('Project description', {
       min: MIN_TEXT_AREA_LENGTH,
@@ -60,7 +60,7 @@ export const schema = z
       min: MIN_TEXT_AREA_LENGTH,
       max: MAX_TEXT_AREA_LENGTH
     }),
-    hardwareOrStipend: z.enum([HARDWARE, STIPEND]),
+    hardware: stringFieldSchema('Hardware', { min: 1 }),
     requestedAmount: stringFieldSchema('Stipend detail', { max: MAX_TEXT_AREA_LENGTH }).optional(),
     downloadSpeed: stringFieldSchema('Download speed', { min: 1 }),
     dataLimitations: stringFieldSchema('Data limitations', { min: 1 }),
@@ -81,10 +81,10 @@ export const schema = z
   })
   .refine(
     data =>
-      (data.hardwareOrStipend === HARDWARE && !data.requestedAmount) ||
-      (data.hardwareOrStipend === STIPEND && data.requestedAmount),
+      (data.hardware === DAPPNODE && !data.requestedAmount) ||
+      (data.hardware === CUSTOM_BUILD && data.requestedAmount),
     {
-      message: 'Stipend detail is required',
+      message: 'Custom build detail is required',
       path: ['requestedAmount']
     }
   );

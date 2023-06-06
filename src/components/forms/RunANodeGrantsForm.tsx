@@ -28,12 +28,13 @@ import { chakraStyles } from './selectStyles';
 import {
   APPLYING_AS_RUN_A_NODE_OPTIONS,
   COUNTRY_OPTIONS,
+  CUSTOM_BUILD,
+  DAPPNODE,
   DOWNLOAD_SPEED_OPTIONS,
-  HARDWARE,
+  HARDWARE_OPTIONS,
   HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
   MONTHLY_DATA_CAP_OPTIONS,
   OTHER,
-  STIPEND,
   TIMEZONE_OPTIONS
 } from './constants';
 import { RUN_A_NODE_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
@@ -61,11 +62,11 @@ export const RunANodeGrantsForm: FC = () => {
   } = methods;
 
   // for conditional fields, get the current values
-  const hardwareOrStipend = watch('hardwareOrStipend');
+  const hardware = watch('hardware');
   const applyingAs = watch('applyingAs');
   const referralSource = watch('referralSource');
 
-  const isStipendSelected = hardwareOrStipend === STIPEND;
+  const isCustomBuildSelected = hardware === CUSTOM_BUILD;
 
   const onSubmit: SubmitHandler<Data> = async data => {
     return api.runANodeGrants
@@ -245,52 +246,36 @@ export const RunANodeGrantsForm: FC = () => {
           />
 
           <Controller
-            name='hardwareOrStipend'
+            name='hardware'
             control={control}
-            defaultValue={HARDWARE}
-            render={({ field: { onChange, value } }) => (
+            defaultValue={DAPPNODE}
+            render={({ field: { onChange } }) => (
               <Field
-                id='hardwareOrStipend'
-                label='Hardware or Stipend'
-                helpText='Please indicate whether you would like use to send you hardware directly or a
-                  stipend amount.'
+                id='hardware'
+                label='Hardware'
+                helpText='Please indicate whether you would like to receive Dappnode hardware or if would like to build your own node. Review Dappnode limitations here: https://docs.dappnode.io/user/faq/general/'
                 isRequired
                 mb={8}
               >
-                <RadioGroup
-                  id='hardwareOrStipend'
-                  onChange={onChange}
-                  value={value}
-                  fontSize='input'
-                  colorScheme='white'
-                  mt={4}
-                >
-                  <Stack direction='row'>
-                    <Radio
-                      id='hardware'
-                      size='lg'
-                      name='hardwareOrStipend'
-                      value={HARDWARE}
-                      defaultChecked
-                      mr={8}
-                    >
-                      <PageText fontSize='input'>{HARDWARE}</PageText>
-                    </Radio>
-
-                    <Radio id='stipend' size='lg' name='hardwareOrStipend' value={STIPEND}>
-                      <PageText fontSize='input'>{STIPEND}</PageText>
-                    </Radio>
-                  </Stack>
-                </RadioGroup>
+                <Select
+                  id='hardware'
+                  options={HARDWARE_OPTIONS}
+                  onChange={option => onChange((option as typeof HARDWARE_OPTIONS[number]).value)}
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
               </Field>
             )}
           />
 
-          <Box display={isStipendSelected ? 'block' : 'none'}>
-            <Fade in={isStipendSelected} delay={0.25}>
-              <TextField
+          <Box display={isCustomBuildSelected ? 'block' : 'none'}>
+            <Fade in={isCustomBuildSelected} delay={0.25}>
+              <TextAreaField
                 id='requestedAmount'
-                label='Provide details about how you will spend this stipend'
+                label='To be reimbursed for a custom build, include all hardware details and costs in the field below.'
                 isRequired
                 mb={8}
               />
@@ -331,7 +316,7 @@ export const RunANodeGrantsForm: FC = () => {
               <Field
                 id='dataLimitations'
                 label='Data Limitations'
-                helpText='Monthly data cap'
+                helpText='Select monthly data cap'
                 isRequired
                 mb={8}
               >

@@ -1506,9 +1506,13 @@ export const APPLYING_AS_RUN_A_NODE_OPTIONS = [
   { value: 'Other', label: 'Other' }
 ];
 
-export const HARDWARE = 'Hardware';
-export const STIPEND = 'Stipend';
+export const DAPPNODE = 'Dappnode';
+export const CUSTOM_BUILD = 'Custom build';
 
+export const HARDWARE_OPTIONS = [
+  { value: DAPPNODE, label: DAPPNODE },
+  { value: CUSTOM_BUILD, label: CUSTOM_BUILD }
+];
 export const DOWNLOAD_SPEED_OPTIONS = [
   { value: '< 1 Mbps', label: '< 1 Mbps' },
   { value: '1 Mbps - 5 Mbps', label: '1 Mbps - 5 Mbps' },
