@@ -1501,8 +1501,8 @@ export const REASONS_FOR_MEETING = [
 
 // run a node grants
 export const APPLYING_AS_RUN_A_NODE_OPTIONS = [
-  { value: TEAM, label: TEAM },
-  { value: INDIVIDUAL, label: INDIVIDUAL },
+  { value: 'An individual', label: 'An individual' },
+  { value: 'A team', label: 'A team' },
   { value: 'Other', label: 'Other' }
 ];
 
