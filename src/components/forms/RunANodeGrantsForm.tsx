@@ -27,6 +27,7 @@ import { chakraStyles } from './selectStyles';
 
 import {
   APPLYING_AS_RUN_A_NODE_OPTIONS,
+  COMMITMENT_OPTIONS,
   COUNTRY_OPTIONS,
   CUSTOM_BUILD,
   DAPPNODE,
@@ -274,7 +275,7 @@ export const RunANodeGrantsForm: FC = () => {
           <Box display={isCustomBuildSelected ? 'block' : 'none'}>
             <Fade in={isCustomBuildSelected} delay={0.25}>
               <TextAreaField
-                id='requestedAmount'
+                id='customBuildDetail'
                 label='To be reimbursed for a custom build, include all hardware details and costs in the field below.'
                 isRequired
                 mb={8}
@@ -336,12 +337,29 @@ export const RunANodeGrantsForm: FC = () => {
             )}
           />
 
-          <TextAreaField
-            id='proposedTimeline'
-            label='Timeline'
-            helpText='Indicate how long you can commit to running a node.'
-            isRequired
-            mb={8}
+          <Controller
+            name='commitment'
+            control={control}
+            render={({ field: { onChange } }) => (
+              <Field
+                id='commitment'
+                label='Commitment'
+                helpText='Indicate the minimum length of time you can commit to running a node.'
+                isRequired
+                mb={8}
+              >
+                <Select
+                  id='commitment'
+                  options={COMMITMENT_OPTIONS}
+                  onChange={option => onChange((option as typeof COMMITMENT_OPTIONS[number]).value)}
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
+              </Field>
+            )}
           />
 
           <TextAreaField

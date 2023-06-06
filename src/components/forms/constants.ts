@@ -1513,6 +1513,7 @@ export const HARDWARE_OPTIONS = [
   { value: DAPPNODE, label: DAPPNODE },
   { value: CUSTOM_BUILD, label: CUSTOM_BUILD }
 ];
+
 export const DOWNLOAD_SPEED_OPTIONS = [
   { value: '< 1 Mbps', label: '< 1 Mbps' },
   { value: '1 Mbps - 5 Mbps', label: '1 Mbps - 5 Mbps' },
@@ -1520,12 +1521,20 @@ export const DOWNLOAD_SPEED_OPTIONS = [
   { value: '20 Mbps - 50 Mbps', label: '20 Mbps - 50 Mbps' },
   { value: '> 50 Mbps', label: '> 50 Mbps' }
 ];
+
 export const MONTHLY_DATA_CAP_OPTIONS = [
   { value: '< 1 GB', label: '< 1 GB' },
   { value: '1 GB - 5 GB', label: '1 GB - 5 GB' },
   { value: '5 GB - 20 GB', label: '5 GB - 20 GB' },
   { value: '20 GB - 50 GB', label: '20 GB - 50 GB' },
   { value: '> 50 GB', label: '> 50 GB' }
+];
+
+export const COMMITMENT_OPTIONS = [
+  { value: '6 months', label: '6 months' },
+  { value: '12 months', label: '12 months' },
+  { value: '18 months', label: '18 months' },
+  { value: '24 months', label: '24 months' }
 ];
 
 // API routes

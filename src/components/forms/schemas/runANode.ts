@@ -61,10 +61,12 @@ export const schema = z
       max: MAX_TEXT_AREA_LENGTH
     }),
     hardware: stringFieldSchema('Hardware', { min: 1 }),
-    requestedAmount: stringFieldSchema('Stipend detail', { max: MAX_TEXT_AREA_LENGTH }).optional(),
+    customBuildDetail: stringFieldSchema('Custom build detail', {
+      max: MAX_TEXT_AREA_LENGTH
+    }).optional(),
     downloadSpeed: stringFieldSchema('Download speed', { min: 1 }),
     dataLimitations: stringFieldSchema('Data limitations', { min: 1 }),
-    proposedTimeline: stringFieldSchema('Proposed timeline', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
+    commitment: stringFieldSchema('Commitment', { min: 1 }),
     challenges: stringFieldSchema('Challenges', {
       min: MIN_TEXT_AREA_LENGTH,
       max: MAX_TEXT_AREA_LENGTH
@@ -81,11 +83,11 @@ export const schema = z
   })
   .refine(
     data =>
-      (data.hardware === DAPPNODE && !data.requestedAmount) ||
-      (data.hardware === CUSTOM_BUILD && data.requestedAmount),
+      (data.hardware === DAPPNODE && !data.customBuildDetail) ||
+      (data.hardware === CUSTOM_BUILD && data.customBuildDetail),
     {
       message: 'Custom build detail is required',
-      path: ['requestedAmount']
+      path: ['customBuildDetail']
     }
   );
 
