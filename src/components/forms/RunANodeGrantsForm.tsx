@@ -66,8 +66,12 @@ export const RunANodeGrantsForm: FC = () => {
   const hardware = watch('hardware');
   const applyingAs = watch('applyingAs');
   const referralSource = watch('referralSource');
+  const country = watch('country');
 
   const isCustomBuildSelected = hardware === CUSTOM_BUILD;
+
+  const countryName = COUNTRY_OPTIONS.find(option => option.value === country)?.label;
+  const projectName = `Run a Node${countryName ? ` - ${countryName}` : ''}`;
 
   const onSubmit: SubmitHandler<Data> = async data => {
     return api.runANodeGrants
@@ -217,8 +221,9 @@ export const RunANodeGrantsForm: FC = () => {
           <TextField
             id='projectName'
             label='Project name'
-            helpText='Please name your project title "Run a Node - [Your Location]"'
+            value={projectName}
             isRequired
+            isReadOnly
             mb={8}
           />
 

@@ -4,9 +4,11 @@ import { useFormContext } from 'react-hook-form';
 
 import { Field, type Props as FieldProps } from './Field';
 
-interface Props extends Omit<FieldProps, 'children' | 'error'> {}
+interface Props extends Omit<FieldProps, 'children' | 'error'> {
+  value?: string;
+}
 
-export const TextField: FC<Props> = ({ id, ...rest }) => {
+export const TextField: FC<Props> = ({ id, value, ...rest }) => {
   const {
     register,
     formState: { errors }
@@ -16,6 +18,7 @@ export const TextField: FC<Props> = ({ id, ...rest }) => {
     <Field id={id} error={errors[id]} {...rest}>
       <Input
         id={id}
+        value={value}
         type='text'
         bg='white'
         borderRadius={0}
