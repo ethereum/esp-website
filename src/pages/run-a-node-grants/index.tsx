@@ -65,13 +65,13 @@ const RunANodeGrants: NextPage = () => {
                 <section id='summary' ref={ref}>
                   <PageText mb={6}>
                     <Text as='i'>
-                      Starting on <Text as='strong'>June X, 2023</Text>, we will begin to accept
-                      proposals over the next 4 weeks.
+                      Starting on <Text as='strong'>June 7, 2023</Text>, we will begin to accept
+                      proposals.
                     </Text>
                   </PageText>
 
                   <PageText mb={6}>
-                    <Text as='strong'>Deadline: July X, 2023</Text>
+                    <Text as='strong'>Deadline: July 20, 2023</Text>
                   </PageText>
 
                   <PageText mb={6}>
