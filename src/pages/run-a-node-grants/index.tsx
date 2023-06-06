@@ -101,8 +101,18 @@ const RunANodeGrants: NextPage = () => {
                       use a node for research purposes - surprise us with your application.
                     </ListItem>
                     <ListItem>
-                      Selected applicants will receive either a <b>Dappnode</b> sent directly to you
-                      or a fixed allocated sum to reimburse the cost of the hardware.
+                      Selected applicants will receive either a{' '}
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href='https://dappnode.com/'
+                        isExternal
+                        _hover={{ textDecoration: 'none' }}
+                      >
+                        Dappnode
+                      </Link>{' '}
+                      sent directly to you or a fixed allocated sum to reimburse the cost of the
+                      hardware.
                     </ListItem>
                   </List>
                 </section>
@@ -117,7 +127,13 @@ const RunANodeGrants: NextPage = () => {
 
                   <List>
                     <ListItem>
-                      Based in a remote location and want to test the node performance.
+                      Based in a remote location and want to test the node performance
+                    </ListItem>
+                    <ListItem>
+                      Create a node set up guide or tutorial for other first time hosts.
+                    </ListItem>
+                    <ListItem>
+                      Test all the different clients and build a dashboard of benchmarks.
                     </ListItem>
                     <ListItem>
                       Allow other developers and users in the Ethereum community to query indexed
@@ -132,10 +148,10 @@ const RunANodeGrants: NextPage = () => {
                       infrastructure, block explorers, payment processors, and more.
                     </ListItem>
                     <ListItem>
-                      You can connect with your node through Inter-process Communications (IPC) or
-                      modify the node to incorporate your program as a plugin. This approach
-                      provides low latency, particularly useful when working with web3 libraries and
-                      replacing transactions quickly (such as when front-running).
+                      Connect with your node through Inter-process Communications (IPC) or modify
+                      the node to incorporate your program as a plugin. This approach provides low
+                      latency, particularly useful when working with web3 libraries and replacing
+                      transactions quickly (such as when front-running).
                     </ListItem>
                     <ListItem>
                       Offer customized RPC endpoints that can be accessed publicly by the community
@@ -159,14 +175,14 @@ const RunANodeGrants: NextPage = () => {
                       to receive hardware.
                     </ListItem>
                     <ListItem>
-                      Must have a fast, stable internet connection with high data thresholds:{' '}
+                      Must have a fast, stable internet connection with high data thresholds.{' '}
                       <Link
                         fontWeight={700}
                         color='brand.orange.100'
                         href='https://www.speedtest.net/'
                         isExternal
                       >
-                        https://www.speedtest.net/
+                        Test your internet connection
                       </Link>
                     </ListItem>
                     <ListItem>
@@ -184,15 +200,19 @@ const RunANodeGrants: NextPage = () => {
                   <PageSection mb={6}>Deadlines</PageSection>
 
                   <PageText mb={6}>
-                    Application window: <b>X - X</b>
+                    Application window: <b>June 7 - June 20</b>
                   </PageText>
 
                   <PageText mb={6}>
-                    Evaluation window: <b>X - X</b>
+                    Evaluation window: <b>June 20 - July 15</b>
                   </PageText>
 
                   <PageText mb={6}>
-                    Node launch and ENR submission deadline: <b>X</b>
+                    Expect final decisions by <b>July 15</b>
+                  </PageText>
+
+                  <PageText mb={6}>
+                    Node launch and ENR submission deadline: <b>September 1, 2023</b>
                   </PageText>
                 </section>
 
@@ -215,8 +235,8 @@ const RunANodeGrants: NextPage = () => {
                       and clients.
                     </ListItem>
                     <ListItem>
-                      Applicants must detail their intended impact for the Ethereum ecosystem and
-                      community by running a node.
+                      Applicants must detail their intended output for the Ethereum ecosystem by
+                      running a node and how they will share this impact with the community.
                     </ListItem>
                   </List>
                 </section>
@@ -225,6 +245,16 @@ const RunANodeGrants: NextPage = () => {
                   <PageSection mb={6}>Helpful Resources</PageSection>
 
                   <List>
+                    <ListItem>
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href='https://docs.dappnode.io/user/faq/general/'
+                        isExternal
+                      >
+                        https://docs.dappnode.io/user/faq/general/
+                      </Link>
+                    </ListItem>
                     <ListItem>
                       <Link
                         fontWeight={700}
