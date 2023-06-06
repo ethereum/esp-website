@@ -9,7 +9,9 @@ import {
   Stack,
   RadioGroup,
   Radio,
-  useToast
+  useToast,
+  Link,
+  Text
 } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
 import { FC } from 'react';
@@ -256,13 +258,27 @@ export const RunANodeGrantsForm: FC = () => {
             control={control}
             defaultValue={DAPPNODE}
             render={({ field: { onChange } }) => (
-              <Field
-                id='hardware'
-                label='Hardware'
-                helpText='Please indicate whether you would like to receive Dappnode hardware or if would like to build your own node. Review Dappnode limitations here: https://docs.dappnode.io/user/faq/general/'
-                isRequired
-                mb={8}
-              >
+              <FormControl id='hardware-control' isRequired mb={8}>
+                <FormLabel htmlFor='hardware' mb={1}>
+                  <PageText display='inline' fontSize='input'>
+                    Hardware
+                  </PageText>
+                </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  Please indicate whether you would like to receive Dappnode hardware or if would
+                  like to build your own node. Review{' '}
+                  <Link
+                    fontWeight={700}
+                    color='brand.orange.100'
+                    href='https://docs.dappnode.io/user/faq/general/'
+                    isExternal
+                    _hover={{ textDecoration: 'none' }}
+                  >
+                    Dappnode limitations
+                  </Link>
+                </PageText>
+
                 <Select
                   id='hardware'
                   options={HARDWARE_OPTIONS}
@@ -273,7 +289,7 @@ export const RunANodeGrantsForm: FC = () => {
                   selectedOptionColor='brand.option'
                   chakraStyles={chakraStyles}
                 />
-              </Field>
+              </FormControl>
             )}
           />
 
@@ -346,13 +362,18 @@ export const RunANodeGrantsForm: FC = () => {
             name='commitment'
             control={control}
             render={({ field: { onChange } }) => (
-              <Field
-                id='commitment'
-                label='Commitment'
-                helpText='Indicate the minimum length of time you can commit to running a node.'
-                isRequired
-                mb={8}
-              >
+              <FormControl id='commitment-control' isRequired mb={8}>
+                <FormLabel htmlFor='commitment' mb={1}>
+                  <PageText display='inline' fontSize='input'>
+                    Commitment
+                  </PageText>
+                </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  Indicate the <Text as='em'>minimum</Text> length of time you can commit to running
+                  a node.
+                </PageText>
+
                 <Select
                   id='commitment'
                   options={COMMITMENT_OPTIONS}
@@ -363,7 +384,7 @@ export const RunANodeGrantsForm: FC = () => {
                   selectedOptionColor='brand.option'
                   chakraStyles={chakraStyles}
                 />
-              </Field>
+              </FormControl>
             )}
           />
 
