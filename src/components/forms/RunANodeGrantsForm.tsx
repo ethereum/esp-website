@@ -42,16 +42,16 @@ import {
 } from './constants';
 import { RUN_A_NODE_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
-import { schema, type Data } from './schemas/runANode';
+import { RunANodeSchema, type RunANodeData } from './schemas/RunANode';
 
 export const RunANodeGrantsForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
 
-  const methods = useForm<Data>({
+  const methods = useForm<RunANodeData>({
     mode: 'onBlur',
     shouldFocusError: true,
-    resolver: zodResolver(schema)
+    resolver: zodResolver(RunANodeSchema)
   });
 
   const {
@@ -75,7 +75,7 @@ export const RunANodeGrantsForm: FC = () => {
   const countryName = COUNTRY_OPTIONS.find(option => option.value === country)?.label;
   const projectName = `Run a Node${countryName ? ` - ${countryName}` : ''}`;
 
-  const onSubmit: SubmitHandler<Data> = async data => {
+  const onSubmit: SubmitHandler<RunANodeData> = async data => {
     return api.runANodeGrants
       .submit(data)
       .then(res => {

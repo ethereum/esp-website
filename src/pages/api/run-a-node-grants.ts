@@ -3,46 +3,17 @@ import { NextApiResponse } from 'next';
 
 import { sanitizeFields, verifyCaptcha } from '../../middlewares';
 
-import { Data, schema } from '../../components/forms/schemas/runANode';
+import { RunANodeData, RunANodeSchema } from '../../components/forms/schemas/RunANode';
 
-async function handler(req: { body: Data }, res: NextApiResponse): Promise<void> {
+async function handler(req: { body: RunANodeData }, res: NextApiResponse): Promise<void> {
   return new Promise(resolve => {
-    const { body } = req;
-    const fields = {
-      firstName: body.firstName,
-      lastName: body.lastName,
-      email: body.email,
-      applyingAs: body.applyingAs,
-      applyingAsOther: body.applyingAsOther,
-      teamProfile: body.teamProfile,
-      timezone: body.timezone,
-      country: body.country,
-      projectName: body.projectName,
-      company: body.company,
-      projectDescription: body.projectDescription,
-      projectPreviousWork: body.projectPreviousWork,
-      hardware: body.hardware,
-      whyIsProjectImportant: body.whyIsProjectImportant,
-      customBuildDetail: body.customBuildDetail,
-      downloadSpeed: body.downloadSpeed,
-      dataLimitations: body.dataLimitations,
-      commitment: body.commitment,
-      challenges: body.challenges,
-      referralSource: body.referralSource,
-      referralSourceIfOther: body.referralSourceIfOther,
-      telegram: body.telegram,
-      twitter: body.twitter,
-      linkedinProfile: body.linkedinProfile,
-      repeatApplicant: body.repeatApplicant,
-      canTheEFReachOut: body.canTheEFReachOut,
-      additionalInfo: body.additionalInfo,
-      captchaToken: body.captchaToken
-    };
+    const { body: fields } = req;
+
     const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
       process.env;
 
     // validate fields against the schema
-    const result = schema.safeParse(fields);
+    const result = RunANodeSchema.safeParse(fields);
     if (!result.success) {
       const formatted = result.error.format();
       console.error(formatted);

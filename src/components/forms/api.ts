@@ -22,7 +22,7 @@ import {
   API_SMALL_GRANTS_PROJECT
 } from './constants';
 
-import type { Data as RunANodeGrantsFormData } from './schemas/runANode';
+import type { RunANodeData } from './schemas/RunANode';
 
 const methodOptions = {
   method: 'POST',
@@ -158,7 +158,7 @@ export const api = {
     }
   },
   runANodeGrants: {
-    submit: (data: RunANodeGrantsFormData) => {
+    submit: (data: RunANodeData) => {
       const runANodeRequestOptions: RequestInit = {
         ...methodOptions,
         body: JSON.stringify(data)

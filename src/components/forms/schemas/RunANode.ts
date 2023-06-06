@@ -1,33 +1,14 @@
 import * as z from 'zod';
 
-import { containURL } from '../../../utils';
 import { CUSTOM_BUILD, DAPPNODE } from '../constants';
+import { stringFieldSchema } from './utils';
+import { containURL } from '../../../utils';
 
 const MAX_TEXT_LENGTH = 255;
 const MAX_TEXT_AREA_LENGTH = 32768;
 const MIN_TEXT_AREA_LENGTH = 500;
 
-const stringFieldSchema = (fieldName: string, { min, max }: { min?: number; max?: number }) => {
-  let fieldSchema = z.string({ required_error: `${fieldName} is required` });
-
-  if (min) {
-    fieldSchema = fieldSchema.min(
-      min,
-      min > 1
-        ? `${fieldName} must contain at least ${min} character(s)
-    `
-        : `${fieldName} is required`
-    );
-  }
-
-  if (max) {
-    fieldSchema = fieldSchema.max(max, `${fieldName} cannot exceed ${max} characters`);
-  }
-
-  return fieldSchema;
-};
-
-export const schema = z
+export const RunANodeSchema = z
   .object({
     firstName: stringFieldSchema('First name', { min: 1, max: 40 }).refine(
       value => !containURL(value),
@@ -91,4 +72,4 @@ export const schema = z
     }
   );
 
-export type Data = z.infer<typeof schema>;
+export type RunANodeData = z.infer<typeof RunANodeSchema>;
