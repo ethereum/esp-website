@@ -76,8 +76,8 @@ export const schema = z
     telegram: stringFieldSchema('Alternative contact info', { max: 150 }).optional(),
     twitter: stringFieldSchema('Twitter handle', { max: 16 }).optional(),
     linkedinProfile: stringFieldSchema('LinkedIn profiles', { max: MAX_TEXT_LENGTH }).optional(),
-    repeatApplicant: z.enum(['Yes', 'No']),
-    canTheEFReachOut: z.enum(['Yes', 'No']).optional(),
+    repeatApplicant: z.boolean(),
+    canTheEFReachOut: z.boolean().optional(),
     additionalInfo: stringFieldSchema('Additional info', { max: MAX_TEXT_AREA_LENGTH }).optional(),
     captchaToken: stringFieldSchema('Captcha', { min: 1 })
   })

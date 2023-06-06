@@ -485,7 +485,7 @@ export const RunANodeGrantsForm: FC = () => {
           <Controller
             name='repeatApplicant'
             control={control}
-            defaultValue='No'
+            defaultValue={false}
             render={({ field: { onChange, value } }) => (
               <Field
                 id='repeatApplicant'
@@ -495,8 +495,8 @@ export const RunANodeGrantsForm: FC = () => {
               >
                 <RadioGroup
                   id='repeatApplicant'
-                  onChange={onChange}
-                  value={value}
+                  onChange={value => onChange(value === 'Yes')}
+                  value={value ? 'Yes' : 'No'}
                   fontSize='input'
                   colorScheme='white'
                   mt={4}
@@ -530,7 +530,7 @@ export const RunANodeGrantsForm: FC = () => {
           <Controller
             name='canTheEFReachOut'
             control={control}
-            defaultValue='Yes'
+            defaultValue={true}
             render={({ field: { onChange, value } }) => (
               <FormControl id='canTheEFReachOut-control' mb={8}>
                 <FormLabel htmlFor='canTheEFReachOut'>
@@ -542,8 +542,8 @@ export const RunANodeGrantsForm: FC = () => {
 
                 <RadioGroup
                   id='canTheEFReachOut'
-                  onChange={onChange}
-                  value={value}
+                  onChange={value => onChange(value === 'Yes')}
+                  value={value ? 'Yes' : 'No'}
                   fontSize='input'
                   colorScheme='white'
                   mt={4}
