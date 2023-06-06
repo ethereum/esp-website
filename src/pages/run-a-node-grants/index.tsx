@@ -252,7 +252,7 @@ const RunANodeGrants: NextPage = () => {
                         href='https://docs.dappnode.io/user/faq/general/'
                         isExternal
                       >
-                        https://docs.dappnode.io/user/faq/general/
+                        Dappnode FAQ
                       </Link>
                     </ListItem>
                     <ListItem>
@@ -262,7 +262,7 @@ const RunANodeGrants: NextPage = () => {
                         href='https://ethereum.org/en/developers/docs/nodes-and-clients/'
                         isExternal
                       >
-                        https://ethereum.org/en/developers/docs/nodes-and-clients/
+                        Ethereum Nodes and Clients
                       </Link>
                     </ListItem>
                     <ListItem>
@@ -272,7 +272,7 @@ const RunANodeGrants: NextPage = () => {
                         href='https://nodewatch.io'
                         isExternal
                       >
-                        https://nodewatch.io
+                        NodeWatch
                       </Link>
                     </ListItem>
                     <ListItem>
@@ -282,7 +282,7 @@ const RunANodeGrants: NextPage = () => {
                         href='https://ethernodes.org'
                         isExternal
                       >
-                        https://ethernodes.org
+                        EtherNodes
                       </Link>
                     </ListItem>
                     <ListItem>
@@ -292,7 +292,7 @@ const RunANodeGrants: NextPage = () => {
                         href='https://panarama.xyz'
                         isExternal
                       >
-                        https://panarama.xyz
+                        Panarama
                       </Link>
                     </ListItem>
                   </List>
