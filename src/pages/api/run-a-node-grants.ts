@@ -80,7 +80,7 @@ async function handler(req: { body: Data }, res: NextApiResponse): Promise<void>
         Hardware__c: fields.hardware,
         Impact__c: fields.whyIsProjectImportant,
         Custom_Build__c: fields.customBuildDetail,
-        Download_Speeds: fields.downloadSpeed,
+        Download_Speeds__c: fields.downloadSpeed,
         Data_Limitations__c: fields.dataLimitations,
         Commitment__c: fields.commitment,
         Challenges__c: fields.challenges,
@@ -93,41 +93,22 @@ async function handler(req: { body: Data }, res: NextApiResponse): Promise<void>
         Can_the_EF_reach_out__c: fields.canTheEFReachOut,
         Additional_Information__c: fields.additionalInfo,
         Proactive_Community_Grants_Round__c: 'Run A Node 2023', // this value is hardwired, depending on the type of grant round
-        RecordTypeId: process.env.SF_RECORD_TYPE_PROJECT_GRANTS!
+        RecordTypeId: process.env.SF_RECORD_TYPE_GRANTS_ROUND!
       };
 
-      console.log({ application });
-
-      res.status(200).json({ status: 'ok' });
-      return resolve();
-
       // Single record creation
-      // conn.sobject('Lead').create(application, async (err, ret) => {
-      //   if (err || !ret.success) {
-      //     console.error(err);
-      //     res.status(400).json({ status: 'fail' });
-      //     return resolve();
-      //   }
+      conn.sobject('Lead').create(application, async (err, ret) => {
+        if (err || !ret.success) {
+          console.error(err);
+          res.status(400).json({ status: 'fail' });
+          return resolve();
+        }
 
-      //   // send submission data to a google spreadsheet
-      //   try {
-      //     await addRowToSpreadsheet(
-      //       {
-      //         id: googleSpreadsheetId!,
-      //         sheetName: googleSheetName!
-      //       },
-      //       application
-      //     );
-      //   } catch (err) {
-      //     // as this is something internal we don't want to show this error to the user
-      //     console.log(err);
-      //   }
+        console.log(`Run A Node Grants Lead with ID: ${ret.id} has been created!`);
 
-      //   console.log(`Devcon Grants Lead with ID: ${ret.id} has been created!`);
-
-      //   res.status(200).json({ status: 'ok' });
-      //   return resolve();
-      // });
+        res.status(200).json({ status: 'ok' });
+        return resolve();
+      });
     });
   });
 }
