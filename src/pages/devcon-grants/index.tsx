@@ -139,6 +139,7 @@ const DevconGrants: NextPage = () => {
                     <ListItem>Open to anyone</ListItem>
                     <ListItem>Not focused on investment, price or token sales</ListItem>
                     <ListItem>Events that have already taken place are not eligible</ListItem>
+                    <ListItem>Focused in Southeast Asia (or nearby regions)</ListItem>
                   </List>
                 </section>
 

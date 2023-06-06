@@ -8,8 +8,8 @@ const DevconGrantsApply: NextPage = () => {
   return (
     <>
       <PageMetadata
-        title='Devcon Grants Application'
-        description='Submit an application for an Devcon Grant from the Ecosystem Support Program.'
+        title='Join the Road to Devcon'
+        description='To promote education around Ethereum in Southeast Asia along the Road to Devcon, we would like to offer support (both monetary and otherwise) to meetups, events, and other educational initiatives happening within the SEA region before Devcon 7.'
         image={ACADEMIC_GRANTS_PREVIEW_URL}
       />
 
