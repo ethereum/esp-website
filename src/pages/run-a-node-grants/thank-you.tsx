@@ -3,7 +3,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 
 import { PageMetadata, PageSubheading, PageText } from '../../components/UI';
-import { ESP_EMAIL_ADDRESS } from '../../constants';
+import { GRANTS_EMAIL_ADDRESS } from '../../constants';
 
 const RunANodeGrantsThankYou: NextPage = () => {
   return (
@@ -38,11 +38,11 @@ const RunANodeGrantsThankYou: NextPage = () => {
               <Link
                 fontWeight={700}
                 color='brand.orange.100'
-                href={`mailto:${ESP_EMAIL_ADDRESS}`}
+                href={`mailto:${GRANTS_EMAIL_ADDRESS}`}
                 isExternal
                 _hover={{ textDecoration: 'none' }}
               >
-                {ESP_EMAIL_ADDRESS}
+                {GRANTS_EMAIL_ADDRESS}
               </Link>
               .
             </PageText>

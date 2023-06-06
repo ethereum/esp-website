@@ -16,7 +16,7 @@ import {
 } from '../../components/UI';
 
 import {
-  ESP_EMAIL_ADDRESS,
+  GRANTS_EMAIL_ADDRESS,
   ETHEREUM_COMMUNITY_URL,
   ETHEREUM_GRANTS_URL,
   ETHRESEARCH_URL,
@@ -306,11 +306,11 @@ const RunANodeGrants: NextPage = () => {
                     <Link
                       fontWeight={700}
                       color='brand.orange.100'
-                      href={`mailto:${ESP_EMAIL_ADDRESS}`}
+                      href={`mailto:${GRANTS_EMAIL_ADDRESS}`}
                       isExternal
                       _hover={{ textDecoration: 'none' }}
                     >
-                      {ESP_EMAIL_ADDRESS}
+                      {GRANTS_EMAIL_ADDRESS}
                     </Link>
                   </PageText>
                 </section>
