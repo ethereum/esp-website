@@ -71,7 +71,7 @@ const RunANodeGrants: NextPage = () => {
                   </PageText>
 
                   <PageText mb={6}>
-                    <Text as='strong'>Deadline: July 20, 2023</Text>
+                    <Text as='strong'>Deadline: June 20, 2023</Text>
                   </PageText>
 
                   <PageText mb={6}>
