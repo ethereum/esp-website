@@ -22,8 +22,8 @@ export const RunANodeGrantLayout: FC = ({ children }) => {
         title='Run A Node Grants'
       >
         <Text>
-          The Ethereum Foundation is calling for proposals to expand the diversity of nodes within
-          its network. This initiative seeks to bolster the Ethereum ecosystem by offering
+          The Ethereum Foundation is calling for proposals to expand the diversity of nodes in the
+          Ethereum network. This initiative seeks to bolster the Ethereum ecosystem by offering
           successful applicants either prebuilt hardware or reimbursement of costs. Awardees will be
           selected based on the creativity, impact, and significance of their proposed plans for
           their node.
