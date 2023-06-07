@@ -55,6 +55,7 @@ export const RunANodeGrantsForm: FC = () => {
     defaultValues: {
       // read-only value
       projectName: 'Run a Node',
+      // hard-coded value, we don't want to display any field for this
       projectCategory: RUN_A_NODE_PROJECT_CATEGORY_OPTIONS[0].value
     },
     resolver: zodResolver(RunANodeSchema)
@@ -236,42 +237,6 @@ export const RunANodeGrantsForm: FC = () => {
           <TextField id='projectName' label='Project name' isRequired isReadOnly mb={8} />
 
           <TextField id='company' label='Organization' isRequired mb={8} />
-
-          <Controller
-            name='projectCategory'
-            control={control}
-            render={({ field: { value, onChange } }) => {
-              const option = RUN_A_NODE_PROJECT_CATEGORY_OPTIONS.find(
-                option => option.value === value
-              );
-
-              return (
-                <Field
-                  id='projectCategory'
-                  label='Project category'
-                  helpText='Please choose a category that your project best fits in.'
-                  isRequired
-                  isReadOnly
-                  mb={8}
-                >
-                  <Select
-                    id='projectCategory'
-                    isDisabled
-                    value={option}
-                    options={RUN_A_NODE_PROJECT_CATEGORY_OPTIONS}
-                    onChange={option =>
-                      onChange((option as typeof RUN_A_NODE_PROJECT_CATEGORY_OPTIONS[number]).value)
-                    }
-                    components={{ DropdownIndicator }}
-                    placeholder='Select'
-                    closeMenuOnSelect={true}
-                    selectedOptionColor='brand.option'
-                    chakraStyles={chakraStyles}
-                  />
-                </Field>
-              );
-            }}
-          />
 
           <TextAreaField
             id='projectDescription'
