@@ -127,7 +127,7 @@ const RunANodeGrants: NextPage = () => {
 
                   <List>
                     <ListItem>
-                      Based in a remote location and want to test the node performance
+                      Based in a remote location and want to test the node performance.
                     </ListItem>
                     <ListItem>
                       Create a node set up guide or tutorial for other first time hosts.
@@ -182,7 +182,7 @@ const RunANodeGrants: NextPage = () => {
                         href='https://www.speedtest.net/'
                         isExternal
                       >
-                        Test your internet connection
+                        Test your internet connection.
                       </Link>
                     </ListItem>
                     <ListItem>
@@ -212,7 +212,7 @@ const RunANodeGrants: NextPage = () => {
                   </PageText>
 
                   <PageText mb={6}>
-                    Node launch and ENR submission deadline: <b>September 1, 2023</b>
+                    Node launch and Ethereum Node Records (ENR) submission deadline: <b>September 1, 2023</b>
                   </PageText>
                 </section>
 
