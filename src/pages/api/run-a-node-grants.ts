@@ -51,6 +51,7 @@ async function handler(req: { body: RunANodeData }, res: NextApiResponse): Promi
         Hardware__c: fields.hardware,
         Impact__c: fields.whyIsProjectImportant,
         Custom_Build__c: fields.customBuildDetail,
+        Requested_Amount__c: fields.requestAmount,
         Download_Speeds__c: fields.downloadSpeed,
         Data_Limitations__c: fields.dataLimitations,
         Commitment__c: fields.commitment,

@@ -45,6 +45,7 @@ export const RunANodeSchema = z
     customBuildDetail: stringFieldSchema('Custom build detail', {
       max: MAX_TEXT_AREA_LENGTH
     }).optional(),
+    requestAmount: stringFieldSchema('Total amount', { max: 20 }).optional(),
     downloadSpeed: stringFieldSchema('Download speed', { min: 1 }),
     dataLimitations: stringFieldSchema('Data limitations', { min: 1 }),
     commitment: stringFieldSchema('Commitment', { min: 1 }),
@@ -69,6 +70,15 @@ export const RunANodeSchema = z
     {
       message: `Custom build detail must contain at least ${MIN_TEXT_AREA_LENGTH} character(s)`,
       path: ['customBuildDetail']
+    }
+  )
+  .refine(
+    data =>
+      (data.hardware === DAPPNODE && !data.requestAmount) ||
+      (data.hardware === CUSTOM_BUILD && data.requestAmount),
+    {
+      message: `Total amount is required asd`,
+      path: ['requestAmount']
     }
   );
 

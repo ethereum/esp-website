@@ -294,10 +294,18 @@ export const RunANodeGrantsForm: FC = () => {
           />
 
           <Box display={isCustomBuildSelected ? 'block' : 'none'}>
-            <Fade in={isCustomBuildSelected} delay={0.25}>
+            <Fade in delay={0.25}>
               <TextAreaField
                 id='customBuildDetail'
-                label='To be reimbursed for a custom build, include all hardware details and costs in the field below.'
+                label='To be reimbursed for a custom build, include all hardware details and costs in the field below'
+                isRequired
+                mb={8}
+              />
+
+              <TextField
+                id='requestAmount'
+                label='Total amount'
+                helpText='Amount requested for custom build stipend'
                 isRequired
                 mb={8}
               />
