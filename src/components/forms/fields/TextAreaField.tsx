@@ -6,7 +6,7 @@ import { Field, type Props as FieldProps } from './Field';
 
 interface Props extends Omit<FieldProps, 'children' | 'error'> {}
 
-export const TextAreaField: FC<Props> = ({ id, ...rest }) => {
+export const TextAreaField: FC<Props> = ({ id, isDisabled, ...rest }) => {
   const {
     register,
     formState: { errors }
@@ -16,6 +16,7 @@ export const TextAreaField: FC<Props> = ({ id, ...rest }) => {
     <Field id={id} error={errors[id]} {...rest}>
       <Textarea
         id={id}
+        isDisabled={isDisabled}
         bg='white'
         borderRadius={0}
         borderColor='brand.border'

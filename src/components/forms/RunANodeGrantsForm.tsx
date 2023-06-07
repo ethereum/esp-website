@@ -234,7 +234,13 @@ export const RunANodeGrantsForm: FC = () => {
             />
           </Flex>
 
-          <TextField id='projectName' label='Project name' isRequired isReadOnly mb={8} />
+          <TextField
+            id='projectName'
+            label='Project name'
+            helpText='Read-only field'
+            isDisabled
+            mb={8}
+          />
 
           <TextField id='company' label='Organization' isRequired mb={8} />
 

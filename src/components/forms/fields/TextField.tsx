@@ -8,7 +8,7 @@ interface Props extends Omit<FieldProps, 'children' | 'error'> {
   value?: string;
 }
 
-export const TextField: FC<Props> = ({ id, value, ...rest }) => {
+export const TextField: FC<Props> = ({ id, value, isDisabled, ...rest }) => {
   const {
     register,
     formState: { errors }
@@ -19,6 +19,7 @@ export const TextField: FC<Props> = ({ id, value, ...rest }) => {
       <Input
         id={id}
         value={value}
+        isDisabled={isDisabled}
         type='text'
         bg='white'
         borderRadius={0}
