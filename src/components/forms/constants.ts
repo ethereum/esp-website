@@ -43,6 +43,10 @@ export const ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Other', label: 'Other' }
 ];
 
+export const RUN_A_NODE_PROJECT_CATEGORY_OPTIONS = [
+  { value: 'Nodes and Clients', label: 'Nodes and Clients' }
+];
+
 // events
 export const EVENT_TYPE_OPTIONS = [
   { value: 'Conference', label: 'Conference' },

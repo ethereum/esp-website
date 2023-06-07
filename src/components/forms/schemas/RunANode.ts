@@ -29,6 +29,7 @@ export const RunANodeSchema = z
       value => !containURL(value),
       'Organization cannot contain a URL'
     ),
+    projectCategory: stringFieldSchema('Project category', { min: 1 }),
     projectDescription: stringFieldSchema('Project description', {
       min: MIN_TEXT_AREA_LENGTH,
       max: MAX_TEXT_AREA_LENGTH

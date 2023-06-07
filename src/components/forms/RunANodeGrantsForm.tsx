@@ -38,6 +38,7 @@ import {
   HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
   MONTHLY_DATA_CAP_OPTIONS,
   OTHER,
+  RUN_A_NODE_PROJECT_CATEGORY_OPTIONS,
   TIMEZONE_OPTIONS
 } from './constants';
 import { RUN_A_NODE_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
@@ -51,6 +52,11 @@ export const RunANodeGrantsForm: FC = () => {
   const methods = useForm<RunANodeData>({
     mode: 'onBlur',
     shouldFocusError: true,
+    defaultValues: {
+      // read-only value
+      projectName: 'Run a Node',
+      projectCategory: RUN_A_NODE_PROJECT_CATEGORY_OPTIONS[0].value
+    },
     resolver: zodResolver(RunANodeSchema)
   });
 
@@ -61,19 +67,16 @@ export const RunANodeGrantsForm: FC = () => {
     trigger,
     formState: { errors, isSubmitting },
     reset,
-    watch
+    watch,
+    setValue
   } = methods;
 
   // for conditional fields, get the current values
   const hardware = watch('hardware');
   const applyingAs = watch('applyingAs');
   const referralSource = watch('referralSource');
-  const country = watch('country');
 
   const isCustomBuildSelected = hardware === CUSTOM_BUILD;
-
-  const countryName = COUNTRY_OPTIONS.find(option => option.value === country)?.label;
-  const projectName = `Run a Node${countryName ? ` - ${countryName}` : ''}`;
 
   const onSubmit: SubmitHandler<RunANodeData> = async data => {
     return api.runANodeGrants
@@ -180,7 +183,17 @@ export const RunANodeGrantsForm: FC = () => {
                   <Select
                     id='country'
                     options={COUNTRY_OPTIONS}
-                    onChange={option => onChange((option as typeof COUNTRY_OPTIONS[number]).value)}
+                    onChange={option => {
+                      const value = (option as typeof COUNTRY_OPTIONS[number]).value;
+
+                      const countryName = COUNTRY_OPTIONS.find(
+                        option => option.value === value
+                      )?.label;
+                      const projectName = `Run a Node${countryName ? ` - ${countryName}` : ''}`;
+
+                      setValue('projectName', projectName);
+                      onChange(value);
+                    }}
                     components={{ DropdownIndicator }}
                     placeholder='Select'
                     closeMenuOnSelect={true}
@@ -220,16 +233,45 @@ export const RunANodeGrantsForm: FC = () => {
             />
           </Flex>
 
-          <TextField
-            id='projectName'
-            label='Project name'
-            value={projectName}
-            isRequired
-            isReadOnly
-            mb={8}
-          />
+          <TextField id='projectName' label='Project name' isRequired isReadOnly mb={8} />
 
           <TextField id='company' label='Organization' isRequired mb={8} />
+
+          <Controller
+            name='projectCategory'
+            control={control}
+            render={({ field: { value, onChange } }) => {
+              const option = RUN_A_NODE_PROJECT_CATEGORY_OPTIONS.find(
+                option => option.value === value
+              );
+
+              return (
+                <Field
+                  id='projectCategory'
+                  label='Project category'
+                  helpText='Please choose a category that your project best fits in.'
+                  isRequired
+                  isReadOnly
+                  mb={8}
+                >
+                  <Select
+                    id='projectCategory'
+                    isDisabled
+                    value={option}
+                    options={RUN_A_NODE_PROJECT_CATEGORY_OPTIONS}
+                    onChange={option =>
+                      onChange((option as typeof RUN_A_NODE_PROJECT_CATEGORY_OPTIONS[number]).value)
+                    }
+                    components={{ DropdownIndicator }}
+                    placeholder='Select'
+                    closeMenuOnSelect={true}
+                    selectedOptionColor='brand.option'
+                    chakraStyles={chakraStyles}
+                  />
+                </Field>
+              );
+            }}
+          />
 
           <TextAreaField
             id='projectDescription'

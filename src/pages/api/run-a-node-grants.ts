@@ -46,6 +46,7 @@ async function handler(req: { body: RunANodeData }, res: NextApiResponse): Promi
         npsp__CompanyCountry__c: fields.country,
         Project_Name__c: fields.projectName,
         Company: fields.company,
+        Category__c: fields.projectCategory,
         Project_Description__c: fields.projectDescription,
         Previous_Work__c: fields.projectPreviousWork,
         Hardware__c: fields.hardware,
