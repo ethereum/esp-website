@@ -156,6 +156,24 @@ export const SIDEBAR_ACCOUNT_ABSTRACTION_GRANTS_LINKS: SidebarLink[] = [
   { text: 'FAQ', href: `${ACCOUNT_ABSTRACTION_GRANTS_URL}/#faq` }
 ];
 
+export const RUN_A_NODE_GRANTS_URL = '/run-a-node-grants';
+export const SIDEBAR_RUN_A_NODE__GRANTS_LINKS: SidebarLink[] = [
+  { text: 'Introduction', href: `${RUN_A_NODE_GRANTS_URL}/#introduction` },
+  { text: 'Why Run a Node?', href: `${RUN_A_NODE_GRANTS_URL}/#why-run-a-node` },
+  {
+    text: 'Eligibility & Requirements',
+    href: `${RUN_A_NODE_GRANTS_URL}/#eligibility-and-requirements`
+  },
+  { text: 'Deadlines', href: `${RUN_A_NODE_GRANTS_URL}/#deadlines` },
+  { text: 'Application Details', href: `${RUN_A_NODE_GRANTS_URL}/#application-details` },
+  { text: 'Helpful Resources', href: `${RUN_A_NODE_GRANTS_URL}/#helpful-resources` },
+  {
+    text: 'Next steps and support',
+    href: `${RUN_A_NODE_GRANTS_URL}/#next-steps-and-support`
+  },
+  { text: 'Apply', href: `${RUN_A_NODE_GRANTS_URL}/#apply` }
+];
+
 // apply forms
 export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
 export const OFFICE_HOURS_APPLY_URL = '/applicants/office-hours/apply';
@@ -163,6 +181,7 @@ export const SMALL_GRANTS_APPLY_URL = '/applicants/small-grants/apply';
 export const ACADEMIC_GRANTS_APPLY_URL = '/academic-grants/apply';
 export const DEVCON_GRANTS_APPLY_URL = '/devcon-grants/apply';
 export const ECODEV_GRANTS_APPLY_URL = '/ecodev-grants/apply';
+export const RUN_A_NODE_GRANTS_APPLY_URL = '/run-a-node-grants/apply';
 
 // grantee finance form
 export const GRANTEE_FINANCE_URL = '/applicants/grantee-finance';
@@ -175,6 +194,7 @@ export const GRANTEE_FINANCE_THANK_YOU_PAGE_URL = '/applicants/grantee-finance/t
 export const ACADEMIC_GRANTS_THANK_YOU_PAGE_URL = '/academic-grants/thank-you';
 export const DEVCON_GRANTS_THANK_YOU_PAGE_URL = '/devcon-grants/thank-you';
 export const ECODEV_GRANTS_THANK_YOU_PAGE_URL = '/ecodev-grants/thank-you';
+export const RUN_A_NODE_GRANTS_THANK_YOU_PAGE_URL = '/run-a-node-grants/thank-you';
 
 // ethereum ecosystem
 export const ETHEREUM_ORG_URL = 'https://ethereum.org/';
@@ -204,6 +224,7 @@ export const MERGE_DATA_CHALLENGE_EMAIL_ADDRESS = 'datachallenge@ethereum.org';
 export const SEMAPHORE_GRANT_EMAIL_ADDRESS = 'semaphore-grants@ethereum.org';
 export const LAYER_2_GRANTS_EMAIL_ADDRESS = 'layer2grants@ethereum.org';
 export const ACCOUNT_ABSTRACTION_GRANTS_EMAIL_ADDRESS = 'account-abstraction@ethereum.org';
+export const GRANTS_EMAIL_ADDRESS = 'grant-rounds@ethereum.org';
 
 // applicants tabs
 export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Small Grants', 'Project Grants'];

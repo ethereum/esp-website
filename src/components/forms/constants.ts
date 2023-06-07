@@ -43,6 +43,10 @@ export const ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Other', label: 'Other' }
 ];
 
+export const RUN_A_NODE_PROJECT_CATEGORY_OPTIONS = [
+  { value: 'Nodes and Clients', label: 'Nodes and Clients' }
+];
+
 // events
 export const EVENT_TYPE_OPTIONS = [
   { value: 'Conference', label: 'Conference' },
@@ -1499,6 +1503,44 @@ export const REASONS_FOR_MEETING = [
   ''
 ];
 
+// run a node grants
+export const APPLYING_AS_RUN_A_NODE_OPTIONS = [
+  { value: 'An individual', label: 'An individual' },
+  { value: 'A team', label: 'A team' },
+  { value: 'Other', label: 'Other' }
+];
+
+export const DAPPNODE = 'Dappnode';
+export const CUSTOM_BUILD = 'Custom build';
+
+export const HARDWARE_OPTIONS = [
+  { value: DAPPNODE, label: DAPPNODE },
+  { value: CUSTOM_BUILD, label: CUSTOM_BUILD }
+];
+
+export const DOWNLOAD_SPEED_OPTIONS = [
+  { value: '< 1 Mbps', label: '< 1 Mbps' },
+  { value: '1 Mbps - 5 Mbps', label: '1 Mbps - 5 Mbps' },
+  { value: '5 Mbps - 20 Mbps', label: '5 Mbps - 20 Mbps' },
+  { value: '20 Mbps - 50 Mbps', label: '20 Mbps - 50 Mbps' },
+  { value: '> 50 Mbps', label: '> 50 Mbps' }
+];
+
+export const MONTHLY_DATA_CAP_OPTIONS = [
+  { value: '< 1 GB', label: '< 1 GB' },
+  { value: '1 GB - 5 GB', label: '1 GB - 5 GB' },
+  { value: '5 GB - 20 GB', label: '5 GB - 20 GB' },
+  { value: '20 GB - 50 GB', label: '20 GB - 50 GB' },
+  { value: '> 50 GB', label: '> 50 GB' }
+];
+
+export const COMMITMENT_OPTIONS = [
+  { value: '6 months', label: '6 months' },
+  { value: '12 months', label: '12 months' },
+  { value: '18 months', label: '18 months' },
+  { value: '24 months', label: '24 months' }
+];
+
 // API routes
 export const API_OFFICE_HOURS = '/api/office-hours';
 export const API_PROJECT_GRANTS = '/api/project-grants';
@@ -1508,4 +1550,5 @@ export const API_ACADEMIC_GRANTS = '/api/academic-grants';
 export const API_DEVCON_GRANTS = '/api/devcon-grants';
 export const API_GRANTEE_FINANCE = '/api/grantee-finance';
 export const API_ECODEV_GRANTS = '/api/ecodev-grants';
+export const API_RUN_A_NODE_GRANTS = '/api/run-a-node-grants';
 export const API_NEWSLETTER_SIGNUP_URL = '/api/newsletter-signup';
