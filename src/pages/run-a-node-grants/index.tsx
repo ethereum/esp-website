@@ -212,7 +212,8 @@ const RunANodeGrants: NextPage = () => {
                   </PageText>
 
                   <PageText mb={6}>
-                    Node launch and Ethereum Node Records (ENR) submission deadline: <b>September 1, 2023</b>
+                    Node launch and Ethereum Node Records (ENR) submission deadline:{' '}
+                    <b>September 1, 2023</b>
                   </PageText>
                 </section>
 
@@ -302,7 +303,7 @@ const RunANodeGrants: NextPage = () => {
                   <PageSection mb={6}>Next steps and support</PageSection>
 
                   <PageText mb={6}>
-                    For general support questions about your submission, please email PGR INBOX or{' '}
+                    For general support questions about your submission, please email{' '}
                     <Link
                       fontWeight={700}
                       color='brand.orange.100'
