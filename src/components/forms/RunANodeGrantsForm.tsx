@@ -248,7 +248,7 @@ export const RunANodeGrantsForm: FC = () => {
           <TextAreaField
             id='whyIsProjectImportant'
             label='Proposed Impact'
-            helpText='What are you hoping to accomplish for the Ethereum community by running this node?'
+            helpText='How do you plan to contribute to the Ethereum community by running this node? What do you hope to share? See our wishlist for ideas'
             isRequired
             mb={8}
           />
