@@ -86,8 +86,8 @@ const RunANodeGrants: NextPage = () => {
 
                   <List>
                     <ListItem>
-                      The Ethereum Foundation is launching a new funding round to encourage the
-                      diversification of Ethereum nodes.
+                      The Ethereum Foundation is launching a new funding round to encourage 
+                      experimentation and development with Ethereum nodes.
                     </ListItem>
                     <ListItem>
                       Running a node on Ethereum provides increased security, access, control, and

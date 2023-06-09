@@ -22,10 +22,9 @@ export const RunANodeGrantLayout: FC = ({ children }) => {
         title='Run A Node Grants'
       >
         <Text>
-        The Ethereum Foundation calls for proposals to expand node diversity and use cases in the Ethereum network. 
-        Ideas can range from running a node for students to query data, testing node performance in extreme conditions, 
-        or developing a simple UX for nodes. Successful applicants will either be awarded prebuilt hardware or a stipend 
-        to support their hardware costs.
+        The Ethereum Foundation invites proposals for innovative use, development, and testing of Ethereum nodes. It encourages 
+        the community's creativity in exploring diverse projects, such as facilitating data queries for research, examining node 
+        performance under severe conditions, or enhancing node UX. 
         </Text>
       </GrantsHero>
 
