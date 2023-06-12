@@ -15,7 +15,8 @@ export const Captcha: FC = () => {
 
   const onVerify = useCallback(
     (token: string) => {
-      setValue('captchaToken', token);
+      // force a validate to update the `isValid` flag from the formState
+      setValue('captchaToken', token, { shouldValidate: true });
     },
     [setValue]
   );
