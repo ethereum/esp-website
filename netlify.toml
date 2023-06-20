@@ -266,3 +266,11 @@
   from = "/account-abstraction-grants/thank-you/"
   to = "/account-abstraction-grants/"
   force = true
+[[redirects]]
+  from = "/run-a-node-grants/apply/"
+  to = "/run-a-node-grants/"
+  force = true
+[[redirects]]
+  from = "/run-a-node-grants/thank-you/"
+  to = "/run-a-node-grants/"
+  force = true

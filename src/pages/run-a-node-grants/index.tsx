@@ -1,28 +1,17 @@
-import { Accordion, Box, Flex, Link, ListItem, Stack, Text } from '@chakra-ui/react';
+import { Box, Flex, Link, ListItem, Stack, Text } from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import type { NextPage } from 'next';
 
 import {
   ApplicantsSidebar,
-  ApplicationAttentionMsg,
-  FAQItem,
+  BannerApplicationClosed,
   List,
   PageMetadata,
   PageSection,
-  PageSubheading,
-  PageText,
-  ProcessStep,
-  ReadyToApply
+  PageText
 } from '../../components/UI';
 
-import {
-  GRANTS_EMAIL_ADDRESS,
-  ETHEREUM_COMMUNITY_URL,
-  ETHEREUM_GRANTS_URL,
-  ETHRESEARCH_URL,
-  RUN_A_NODE_GRANTS_APPLY_URL,
-  SIDEBAR_RUN_A_NODE__GRANTS_LINKS
-} from '../../constants';
+import { GRANTS_EMAIL_ADDRESS, SIDEBAR_RUN_A_NODE__GRANTS_LINKS } from '../../constants';
 
 const RunANodeGrants: NextPage = () => {
   // `threshold` option allows us to control the % of visibility required before triggering the Intersection Observer
@@ -33,8 +22,7 @@ const RunANodeGrants: NextPage = () => {
   const [ref4, inView4] = useInView({ threshold: 0.5, initialInView: false });
   const [ref5, inView5] = useInView({ threshold: 0.5, initialInView: false });
   const [ref6, inView6] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref8, inView8] = useInView({ threshold: 0, initialInView: false });
+  const [ref7, inView7] = useInView({ threshold: 0, initialInView: false });
 
   return (
     <>
@@ -48,19 +36,12 @@ const RunANodeGrants: NextPage = () => {
           <Flex>
             <ApplicantsSidebar
               sidebarLinks={SIDEBAR_RUN_A_NODE__GRANTS_LINKS}
-              sectionsInView={[
-                inView,
-                inView2,
-                inView3,
-                inView4,
-                inView5,
-                inView6,
-                inView7,
-                inView8
-              ]}
+              sectionsInView={[inView, inView2, inView3, inView4, inView5, inView6, inView7]}
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
+              <BannerApplicationClosed mb={12} />
+
               <Stack spacing={10}>
                 <section id='summary' ref={ref}>
                   <PageText mb={6}>
@@ -86,7 +67,7 @@ const RunANodeGrants: NextPage = () => {
 
                   <List>
                     <ListItem>
-                      The Ethereum Foundation is launching a new funding round to encourage 
+                      The Ethereum Foundation is launching a new funding round to encourage
                       experimentation and development with Ethereum nodes.
                     </ListItem>
                     <ListItem>
@@ -314,12 +295,6 @@ const RunANodeGrants: NextPage = () => {
                       {GRANTS_EMAIL_ADDRESS}
                     </Link>
                   </PageText>
-                </section>
-
-                <section id='apply' ref={ref8}>
-                  <Stack mt={6}>
-                    <ReadyToApply link={`${RUN_A_NODE_GRANTS_APPLY_URL}`} />
-                  </Stack>
                 </section>
               </Stack>
             </Box>
