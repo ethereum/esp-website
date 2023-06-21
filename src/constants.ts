@@ -170,8 +170,7 @@ export const SIDEBAR_RUN_A_NODE__GRANTS_LINKS: SidebarLink[] = [
   {
     text: 'Next steps and support',
     href: `${RUN_A_NODE_GRANTS_URL}/#next-steps-and-support`
-  },
-  { text: 'Apply', href: `${RUN_A_NODE_GRANTS_URL}/#apply` }
+  }
 ];
 
 // apply forms
