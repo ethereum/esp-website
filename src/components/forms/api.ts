@@ -17,12 +17,9 @@ import {
   API_NEWSLETTER_SIGNUP_URL,
   API_OFFICE_HOURS,
   API_PROJECT_GRANTS,
-  API_RUN_A_NODE_GRANTS,
   API_SMALL_GRANTS_EVENT,
   API_SMALL_GRANTS_PROJECT
 } from './constants';
-
-import type { RunANodeData } from './schemas/RunANode';
 
 const methodOptions = {
   method: 'POST',
@@ -155,16 +152,6 @@ export const api = {
       };
 
       return fetch(API_ECODEV_GRANTS, ecodevGrantsRequestOptions);
-    }
-  },
-  runANodeGrants: {
-    submit: (data: RunANodeData) => {
-      const runANodeRequestOptions: RequestInit = {
-        ...methodOptions,
-        body: JSON.stringify(data)
-      };
-
-      return fetch(API_RUN_A_NODE_GRANTS, runANodeRequestOptions);
     }
   },
   newsletter: {

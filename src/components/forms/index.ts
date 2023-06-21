@@ -7,5 +7,4 @@ export * from './ProjectGrantsForm';
 export * from './SmallGrantsForm';
 export * from './DevconGrantsForm';
 export * from './EcodevGrantsForm';
-export * from './RunANodeGrantsForm';
 export * from './fields';
