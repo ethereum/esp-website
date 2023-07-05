@@ -2,7 +2,7 @@ import { Box, Link } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import { PROJECT_GRANTS_URL } from "../../../constants"
 
-import { PageMetadata, PageSubheading, PageText } from '../../../components/UI';
+import { PageMetadata, PageSubheading, PageText, PrivacyPolicyAgreement } from '../../../components/UI';
 
 const ProjectGrantsApply: NextPage = () => {
   return (
@@ -18,7 +18,7 @@ const ProjectGrantsApply: NextPage = () => {
             Apply to Project grants
           </PageSubheading>
 
-          <PageText>
+          <PageText mb={6}>
             This webform collects information about you and your project. Please use the spaces
             below to answer the following questions thoughtfully and thoroughly. The information
             you provide now is what we&apos;ll use to determine whether to award a grant. If you have
@@ -32,6 +32,8 @@ const ProjectGrantsApply: NextPage = () => {
             </Link>{' '}
             page.
           </PageText>
+
+          <PrivacyPolicyAgreement />
         </section>
       </Box>
     </>

@@ -1,7 +1,7 @@
 import { Box, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 
-import { PageMetadata, PageSubheading, PageText } from '../../../components/UI';
+import { PageMetadata, PageSubheading, PageText, PrivacyPolicyAgreement } from '../../../components/UI';
 
 const OfficeHoursApply: NextPage = () => {
   return (
@@ -29,9 +29,11 @@ const OfficeHoursApply: NextPage = () => {
               appears to be out of scope.
             </PageText>
 
-            <PageText>
+            <PageText mb={6}>
               For feedback about whether your project is eligible for a grant, click the Project Feedback button.
             </PageText>
+
+            <PrivacyPolicyAgreement />
           </section>
         </Stack>
       </Box>
