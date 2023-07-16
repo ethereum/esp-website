@@ -1,7 +1,7 @@
 import { Box, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 
-import { PageMetadata, PageSubheading, PageText } from '../../../components/UI';
+import { PageMetadata, PageSubheading, PageText, PrivacyPolicyAgreement } from '../../../components/UI';
 
 const OfficeHoursApply: NextPage = () => {
   return (
@@ -19,11 +19,13 @@ const OfficeHoursApply: NextPage = () => {
                 Apply to Small Grants
               </PageSubheading>
 
-              <PageText>
+              <PageText mb={6}>
                 Answer the following questions thoughtfully and thoroughly. The information you
                 provide now is what we&apos;ll use to make a final decision on whether to award a
                 grant.
               </PageText>
+
+              <PrivacyPolicyAgreement />
             </section>
           </Stack>
         </Stack>
