@@ -90,6 +90,7 @@ async function handler(req: SmallGrantsProjectNextApiRequest, res: NextApiRespon
           Repeat_Applicant__c, // this is a boolean value, no trim applied
           Progress__c: Progress__c.trim(),
           Other_Funding__c: Other_Funding__c.trim(),
+          LeadSource: 'Webform',
           RecordTypeId: process.env.SF_RECORD_TYPE_SMALL_GRANTS
         },
         (err, ret) => {

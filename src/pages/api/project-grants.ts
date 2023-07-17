@@ -63,6 +63,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
       Referral_Source__c: fieldsSanitized.howDidYouHearAboutESP,
       Referral_Source_if_Other__c: fieldsSanitized.referralSourceIfOther,
       Referrals__c: fieldsSanitized.referrals,
+      LeadSource: 'Webform',
       RecordTypeId: process.env.SF_RECORD_TYPE_PROJECT_GRANTS
     };
 
