@@ -101,9 +101,9 @@ const DevconGrants: NextPage = () => {
 
                   <PageText>
                     In collaboration with the Ecosystem Support team, this funding round will be a
-                    wave of small sponsorships to help cover costs incurred in organizing
-                    small-scale events, such as local meetups or topical workshops, and other local
-                    educational initiatives.
+                    wave of small sponsorships (up to $1,000) to help cover costs incurred in
+                    organizing small-scale events, such as local meetups or topical workshops, and
+                    other local educational initiatives.
                   </PageText>
                 </section>
               </Stack>
