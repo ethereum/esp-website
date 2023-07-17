@@ -53,6 +53,7 @@ async function handler(req: OfficeHoursNextApiRequest, res: NextApiResponse): Pr
           Reason_for_meeting_if_Other__c: Reason_for_meeting_if_Other__c.trim(),
           Referral_Source__c: Referral_Source__c.trim(),
           Time_Zone__c: Time_Zone__c.trim(),
+          LeadSource: 'Webform',
           RecordTypeId: process.env.SF_RECORD_TYPE_OFFICE_HOURS
         },
         (err, ret) => {

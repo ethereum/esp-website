@@ -81,6 +81,7 @@ async function handler(req: DevconGrantsNextApiRequest, res: NextApiResponse): P
         Referral_Source__c: Referral_Source__c.trim(),
         Proactive_Community_Grants_Round__c: 'Road to Devcon Event Grants', // this value is hardwired, depending on the type of grant round
         Category__c: 'Community event', // this value is hardwired for Devcon Grants
+        LeadSource: 'Webform',
         RecordTypeId: process.env.SF_RECORD_TYPE_SPONSORSHIPS!
       };
 

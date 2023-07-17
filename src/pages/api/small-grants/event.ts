@@ -87,6 +87,7 @@ async function handler(req: SmallGrantsEventNextApiRequest, res: NextApiResponse
           Confirmed_Sponsors__c: Confirmed_Sponsors__c.trim(),
           Proposed_Timeline__c: Proposed_Timeline__c.trim(),
           Sponsorship_Monetary_Request__c: Sponsorship_Monetary_Request__c.trim(),
+          LeadSource: 'Webform',
           RecordTypeId: process.env.SF_RECORD_TYPE_SPONSORSHIPS
         },
         (err, ret) => {
