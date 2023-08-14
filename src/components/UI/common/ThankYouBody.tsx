@@ -18,7 +18,7 @@ export const ThankYouBody: FC<Props> = ({ grantType }) => {
           <Link
             fontWeight={700}
             color='brand.orange.100'
-            href='applicants/small-grants'
+            href='/applicants/small-grants'
             isExternal
             _hover={{ textDecoration: 'none' }}
           >
