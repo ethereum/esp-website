@@ -1,7 +1,7 @@
 import { FC, MouseEvent } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { useDropzone } from 'react-dropzone';
-import { Box, Flex, FormLabel, Grid, GridItem, Input, InputGroup, Stack } from '@chakra-ui/react';
+import { Box, Flex, Grid, GridItem, Input, InputGroup, Stack } from '@chakra-ui/react';
 import Image from 'next/image';
 
 import { PageText } from '../../UI';
@@ -39,7 +39,7 @@ export const UploadFile: FC<UploadFileProps> = ({ id = 'upload', title, onDrop, 
       name={id}
       control={control}
       render={({ field: { onChange }, fieldState: { error } }) => (
-        <Field id={id} {...rest} {...getRootProps()}>
+        <Field id={id} error={error} {...rest} {...getRootProps()}>
           <InputGroup>
             <Input
               id={id}
@@ -66,11 +66,9 @@ export const UploadFile: FC<UploadFileProps> = ({ id = 'upload', title, onDrop, 
                 </GridItem>
                 <GridItem mb={selectedFile ? 4 : 0}>
                   <Stack>
-                    <FormLabel htmlFor={id}>
-                      <PageText fontSize='input' fontWeight={700} mb={2}>
-                        {title}
-                      </PageText>
-                    </FormLabel>
+                    <PageText fontSize='input' fontWeight={700} mb={2}>
+                      {title}
+                    </PageText>
 
                     <PageText
                       as='small'
@@ -83,14 +81,6 @@ export const UploadFile: FC<UploadFileProps> = ({ id = 'upload', title, onDrop, 
                       Click here or drag file to this box.
                     </PageText>
                   </Stack>
-
-                  {error && (
-                    <Box mt={1}>
-                      <PageText as='small' fontSize='helpText' color='red.500'>
-                        {error.message}
-                      </PageText>
-                    </Box>
-                  )}
                 </GridItem>
                 <GridItem colStart={2}>
                   {selectedFile && (

@@ -10,8 +10,7 @@ import {
   RadioGroup,
   Radio,
   useToast,
-  Link,
-  Text
+  Link
 } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
 import { FC } from 'react';
