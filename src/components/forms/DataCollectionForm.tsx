@@ -33,7 +33,8 @@ import {
   HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
   OTHER,
   DATA_COLLECTION_PROJECT_CATEGORY_OPTIONS,
-  TIMEZONE_OPTIONS
+  TIMEZONE_OPTIONS,
+  WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS
 } from './constants';
 import { DATA_COLLECTION_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
@@ -114,18 +115,20 @@ export const DataCollectionForm: FC = () => {
 
             {!errors?.firstName && !errors?.lastName && (
               <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                This should be the main contact we&apos;ll be talking to.
+                Who is the point of contact for the application?
               </PageText>
             )}
           </Flex>
 
           <TextField id='email' label='Email' isRequired mb={8} />
 
+          <TextField id='title' label='Title' isRequired mb={8} />
+
           <Controller
             name='applyingAs'
             control={control}
             render={({ field: { onChange } }) => (
-              <Field id='applyingAs' label='Are you applying as an individual or a team?' mb={8}>
+              <Field id='applyingAs' label='In which capacity are you applying?' mb={8}>
                 <Select
                   id='applyingAs'
                   options={APPLYING_AS_DATA_COLLECTION_OPTIONS}
@@ -148,12 +151,10 @@ export const DataCollectionForm: FC = () => {
             </Fade>
           </Box>
 
-          <TextAreaField
-            id='teamProfile'
-            label="Team/ Individuals Description - A brief summary of you or your team's relevant
-                experience"
-            helpText='Who is working on this project? Provide an individual/team profile with relevant
-                experience and expertise.'
+          <TextField
+            id='company'
+            label='If applying as an Organization, please specify its name'
+            helpText='Name of your university program, team, or organization. If you do not have an organization name, write "N/A"'
             isRequired
             mb={8}
           />
@@ -216,56 +217,48 @@ export const DataCollectionForm: FC = () => {
             />
           </Flex>
 
-          <TextField id='projectName' label='Project name' mb={8} />
+          <TextField
+            id='countriesTeam'
+            label='If you are a team of distributed researchers, please indicate where your fellow researchers are located'
+            helpText='You can write as many countries as needed'
+            mb={8}
+          />
 
-          <TextField id='company' label='Organization' isRequired mb={8} />
+          <TextField
+            id='projectName'
+            label='Project name'
+            helpText='This should be a concise description of the title of your project'
+            isRequired
+            mb={8}
+          />
 
           <TextAreaField
             id='projectDescription'
-            label='Describe your motivation for running a node.'
-            isRequired
-            mb={8}
-          />
-
-          <TextAreaField
-            id='projectPreviousWork'
-            label='Describe your expertise and experience with nodes and clients.'
-            isRequired
-            mb={8}
-          />
-
-          <TextAreaField
-            id='whyIsProjectImportant'
-            label='Proposed Impact'
-            helpText='How do you plan to contribute to the Ethereum community by running this node? What do you hope to share? See our wishlist for ideas'
-            isRequired
-            mb={8}
-          />
-
-          <TextAreaField
-            id='challenges'
-            label='Challenges'
-            helpText='Detail any challenges or obstacles you may have to running a node.'
+            label='Brief Project Summary'
+            helpText="Describe your project in a few sentences (you'll have the chance to go into more detail on your blogpost)"
             isRequired
             mb={8}
           />
 
           <Controller
-            name='referralSource'
+            name='projectCategory'
             control={control}
             render={({ field: { onChange }, fieldState: { error } }) => (
               <Field
-                id='referralSource'
-                label='How did you hear about this wave of grants?'
+                id='projectCategory'
+                label='Project Category'
+                helpText='Please choose a category that your project best fits in'
                 isRequired
                 mb={8}
               >
                 <Select
-                  id='referralSource'
-                  options={HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS}
-                  onChange={option =>
-                    onChange((option as typeof HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS[number]).value)
-                  }
+                  id='projectCategory'
+                  options={DATA_COLLECTION_PROJECT_CATEGORY_OPTIONS}
+                  onChange={option => {
+                    onChange(
+                      (option as typeof DATA_COLLECTION_PROJECT_CATEGORY_OPTIONS[number]).value
+                    );
+                  }}
                   components={{ DropdownIndicator }}
                   placeholder='Select'
                   closeMenuOnSelect={true}
@@ -276,25 +269,44 @@ export const DataCollectionForm: FC = () => {
             )}
           />
 
-          <Box display={referralSource === OTHER ? 'block' : 'none'}>
-            <Fade in={referralSource === OTHER} delay={0.25}>
-              <TextAreaField
-                id='referralSourceIfOther'
-                label="If 'Other' is chosen"
-                helpText='Please be as specific as possible. (e.g., an email received, an individual who
-              recommended you apply, a link to a tweet, etc.)'
-                mb={8}
-              />
-            </Fade>
-          </Box>
-
           <TextField
-            id='telegram'
-            label='Telegram Username or Alternative Contact Info'
-            helpText="In regards to your submission, we'll get in touch with you via email by default.
-              As backup, if you'd like to provide alternative contact info, you may do so."
+            id='requestAmount'
+            label='Total budget requested'
+            helpText='Estimated grant amount. Ex: USD 20,000'
+            isRequired
             mb={8}
           />
+
+          <TextField id='projectRepoLink' label='Project Repo Link' mb={8} />
+
+          <Controller
+            name='shareResearch'
+            control={control}
+            render={({ field: { onChange }, fieldState: { error } }) => (
+              <Field
+                id='shareResearch'
+                label='If the opportunity presents itself, would you like to share your findings/research output through a Conference/Discord Talk?'
+                mb={8}
+              >
+                <Select
+                  id='shareResearch'
+                  options={WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS}
+                  onChange={option => {
+                    onChange(
+                      (option as typeof WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS[number]).value
+                    );
+                  }}
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
+              </Field>
+            )}
+          />
+
+          <TextField id='website' label='Website' mb={8} />
 
           <FormControl id='twitter-control' mb={8}>
             <FormLabel htmlFor='twitter' mb={1}>
@@ -334,7 +346,50 @@ export const DataCollectionForm: FC = () => {
             )}
           </FormControl>
 
-          <TextField id='linkedinProfile' label='LinkedIn Profile(s)' helpText='URL only.' mb={8} />
+          <FormControl id='github-control' mb={8}>
+            <FormLabel htmlFor='github' mb={1}>
+              <PageText fontSize='input'>Github Handle(s)</PageText>
+            </FormLabel>
+            <PageText fontSize='input' position='absolute' bottom='15.5px' left={4} zIndex={9}>
+              @
+            </PageText>
+
+            <PageText as='small' fontSize='helpText' color='brand.helpText'>
+              Ex: @mygithub
+            </PageText>
+
+            <Input
+              id='github'
+              type='text'
+              placeholder='yourgithubhandle'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              h='56px'
+              _placeholder={{ fontSize: 'input' }}
+              position='relative'
+              color='brand.paragraph'
+              fontSize='input'
+              pl={8}
+              mt={3}
+              {...register('github')}
+            />
+
+            {errors?.github && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  {errors?.github.message}
+                </PageText>
+              </Box>
+            )}
+          </FormControl>
+
+          <TextField
+            id='alternativeContact'
+            label='Telegram Username or Alternative Contact Info'
+            helpText="In regards to your submission, we'll get in touch with you via email by default. As backup, if you'd like to provide alternative contact info, you may do so. Not required."
+            mb={8}
+          />
 
           <Controller
             name='repeatApplicant'
@@ -425,12 +480,49 @@ export const DataCollectionForm: FC = () => {
 
           <TextAreaField
             id='additionalInfo'
-            label="Do you have any questions about this grants round, or is there anything else
-            you'd like to share?"
+            label='Do you have any questions about this challenge?'
             helpText="Is there anything we didn't cover in the above questions? Feel free to add any
             relevant links here. This is optional."
             mb={8}
           />
+
+          <Controller
+            name='referralSource'
+            control={control}
+            render={({ field: { onChange }, fieldState: { error } }) => (
+              <Field
+                id='referralSource'
+                label='How did you hear about this wave of grants?'
+                isRequired
+                mb={8}
+              >
+                <Select
+                  id='referralSource'
+                  options={HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS}
+                  onChange={option =>
+                    onChange((option as typeof HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS[number]).value)
+                  }
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
+              </Field>
+            )}
+          />
+
+          <Box display={referralSource === OTHER ? 'block' : 'none'}>
+            <Fade in={referralSource === OTHER} delay={0.25}>
+              <TextAreaField
+                id='referralSourceIfOther'
+                label="If 'Other' is chosen"
+                helpText='Please be as specific as possible. (e.g., an email received, an individual who
+              recommended you apply, a link to a tweet, etc.)'
+                mb={8}
+              />
+            </Fade>
+          </Box>
 
           <Center mb={12}>
             <Captcha />
