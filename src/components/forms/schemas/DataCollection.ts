@@ -42,7 +42,10 @@ export const DataCollectionSchema = z.object({
     .any()
     .refine(file => !!file, 'Proposal is required.')
     .refine(file => file?.size <= MAX_PROPOSAL_FILE_SIZE, `Max file size is 4MB.`)
-    .refine(file => ACCEPTED_FILE_TYPES.includes(file?.type), 'Only .pdf files are accepted.'),
+    .refine(
+      file => ACCEPTED_FILE_TYPES.includes(file?.type || file?.mimetype),
+      'Only .pdf files are accepted.'
+    ),
   shareResearch: z.string().optional(),
   website: stringFieldSchema('Website', { max: MAX_TEXT_LENGTH }).optional(),
   twitter: stringFieldSchema('Twitter handle', { max: 40 }).optional(),

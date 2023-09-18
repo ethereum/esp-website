@@ -16,8 +16,19 @@ export const multipartyParse =
         return;
       }
 
+      const parsedFields: Record<string, any> = {};
+      for (const property in fields) {
+        const value = fields[property];
+
+        try {
+          parsedFields[property] = JSON.parse(value as string);
+        } catch (err) {
+          parsedFields[property] = value;
+        }
+      }
+
       // Extend `req` object with parsed fields and files
-      req.fields = fields;
+      req.fields = parsedFields;
       req.files = files;
 
       handler(req, res);

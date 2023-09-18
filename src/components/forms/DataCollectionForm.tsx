@@ -55,7 +55,8 @@ export const DataCollectionForm: FC = () => {
     control,
     trigger,
     formState: { errors, isSubmitting },
-    watch
+    watch,
+    reset
   } = methods;
 
   // for conditional fields, get the current values
@@ -71,23 +72,22 @@ export const DataCollectionForm: FC = () => {
   };
 
   const onSubmit: SubmitHandler<DataCollectionData> = async data => {
-    // TODO
-    // return api.runANodeGrants
-    //   .submit(data)
-    //   .then(res => {
-    //     if (res.ok) {
-    //       reset();
-    //       router.push(DATA_COLLECTION_THANK_YOU_PAGE_URL);
-    //     } else {
-    //       toast({
-    //         ...TOAST_OPTIONS,
-    //         title: 'Something went wrong while submitting, please try again.',
-    //         status: 'error'
-    //       });
-    //       throw new Error('Network response was not OK');
-    //     }
-    //   })
-    //   .catch(err => console.error('There has been a problem with your operation: ', err.message));
+    return api.dataCollection
+      .submit(data)
+      .then(res => {
+        if (res.ok) {
+          // reset();
+          // router.push(DATA_COLLECTION_THANK_YOU_PAGE_URL);
+        } else {
+          toast({
+            ...TOAST_OPTIONS,
+            title: 'Something went wrong while submitting, please try again.',
+            status: 'error'
+          });
+          throw new Error('Network response was not OK');
+        }
+      })
+      .catch(err => console.error('There has been a problem with your operation: ', err.message));
   };
 
   return (

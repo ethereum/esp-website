@@ -11,6 +11,7 @@ import {
 import { getWebsite } from '../../utils';
 
 import {
+  API_DATA_COLLECTION_GRANTS,
   API_DEVCON_GRANTS,
   API_ECODEV_GRANTS,
   API_GRANTEE_FINANCE,
@@ -20,6 +21,8 @@ import {
   API_SMALL_GRANTS_EVENT,
   API_SMALL_GRANTS_PROJECT
 } from './constants';
+
+import type { DataCollectionData } from './schemas/DataCollection';
 
 const methodOptions = {
   method: 'POST',
@@ -152,6 +155,35 @@ export const api = {
       };
 
       return fetch(API_ECODEV_GRANTS, ecodevGrantsRequestOptions);
+    }
+  },
+  dataCollection: {
+    submit: (data: DataCollectionData) => {
+      const formData = new FormData();
+
+      let name: keyof typeof data;
+      for (name in data) {
+        let value;
+
+        if (data[name]) {
+          value = JSON.stringify(data[name]);
+        }
+
+        if (name === 'proposalAttachment') {
+          value = data[name];
+        }
+
+        if (value) {
+          formData.append(name, value);
+        }
+      }
+
+      const dataRequestOptions: RequestInit = {
+        method: 'POST',
+        body: formData
+      };
+
+      return fetch(API_DATA_COLLECTION_GRANTS, dataRequestOptions);
     }
   },
   newsletter: {
