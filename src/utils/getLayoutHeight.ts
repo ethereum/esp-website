@@ -7,7 +7,8 @@ import {
   MERGE_DATA_CHALLENGE_URL,
   SEMAPHORE_GRANT_URL,
   ACCOUNT_ABSTRACTION_GRANTS_URL,
-  RUN_A_NODE_GRANTS_URL
+  RUN_A_NODE_GRANTS_URL,
+  DATA_COLLECTION_ROUND_URL
 } from '../constants';
 
 export const getLayoutHeight = (path: string) =>
@@ -21,7 +22,8 @@ export const getLayoutHeight = (path: string) =>
         SEMAPHORE_GRANT_URL,
         LAYER_2_GRANTS_URL,
         ACCOUNT_ABSTRACTION_GRANTS_URL,
-        RUN_A_NODE_GRANTS_URL
+        RUN_A_NODE_GRANTS_URL,
+        DATA_COLLECTION_ROUND_URL
       ].includes(path)
     ? '810px'
     : '550px';

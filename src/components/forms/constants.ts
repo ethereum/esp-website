@@ -43,6 +43,15 @@ export const ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Other', label: 'Other' }
 ];
 
+export const DATA_COLLECTION_PROJECT_CATEGORY_OPTIONS = [
+  { value: 'Community and education', label: 'Community and education' },
+  { value: 'Data Analysis', label: 'Data Analysis' },
+  { value: 'Data Visualization', label: 'Data Visualization' },
+  { value: 'Hardware', label: 'Hardware' },
+  { value: 'User experience', label: 'User experience' },
+  { value: 'Other', label: 'Other' }
+];
+
 // events
 export const EVENT_TYPE_OPTIONS = [
   { value: 'Conference', label: 'Conference' },
@@ -1476,6 +1485,15 @@ export const HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE = [
 export const APPLYING_AS_OPTIONS = [
   { value: 'An individual', label: 'An individual' },
   { value: 'A team', label: 'A team' },
+  { value: 'A university', label: 'A university' },
+  { value: 'A consortium of universities', label: 'A consortium of universities' },
+  { value: 'A think-tank', label: 'A think-tank' },
+  { value: 'A research center', label: 'A research center' },
+  { value: 'Other', label: 'Other' }
+];
+
+export const APPLYING_AS_DATA_COLLECTION_OPTIONS = [
+  { value: 'An individual', label: 'An individual' },
   { value: 'A university', label: 'A university' },
   { value: 'A consortium of universities', label: 'A consortium of universities' },
   { value: 'A think-tank', label: 'A think-tank' },
