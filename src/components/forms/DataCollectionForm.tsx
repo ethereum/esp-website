@@ -21,7 +21,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { DropdownIndicator, PageText } from '../UI';
 import { SubmitButton } from '../SubmitButton';
-import { Captcha, Field, TextField, TextAreaField } from '.';
+import { Captcha, Field, TextField, TextAreaField, UploadFile } from '.';
 
 import { api } from './api';
 
@@ -47,10 +47,6 @@ export const DataCollectionForm: FC = () => {
   const methods = useForm<DataCollectionData>({
     mode: 'onBlur',
     shouldFocusError: true,
-    defaultValues: {
-      // hard-coded value, we don't want to display any field for this
-      projectCategory: DATA_COLLECTION_PROJECT_CATEGORY_OPTIONS[0].value
-    },
     resolver: zodResolver(DataCollectionSchema)
   });
 
@@ -60,14 +56,20 @@ export const DataCollectionForm: FC = () => {
     control,
     trigger,
     formState: { errors, isSubmitting },
-    reset,
-    watch,
-    setValue
+    watch
   } = methods;
 
   // for conditional fields, get the current values
   const applyingAs = watch('applyingAs');
   const referralSource = watch('referralSource');
+
+  const handleDrop = () => {
+    toast({
+      ...TOAST_OPTIONS,
+      title: 'Proposal uploaded!',
+      status: 'success'
+    });
+  };
 
   const onSubmit: SubmitHandler<DataCollectionData> = async data => {
     // TODO
@@ -163,11 +165,12 @@ export const DataCollectionForm: FC = () => {
             <Controller
               name='country'
               control={control}
-              render={({ field: { onChange } }) => (
+              render={({ field: { onChange }, fieldState: { error } }) => (
                 <Field
                   id='country'
                   label='Country'
                   helpText='Provide the country of where the node would be located'
+                  error={error}
                   isRequired
                   mb={8}
                 >
@@ -196,6 +199,7 @@ export const DataCollectionForm: FC = () => {
                   id='timezone'
                   label='Your time zone'
                   helpText='Please choose your current time zone to help us schedule calls'
+                  error={error}
                   isRequired
                   mb={8}
                 >
@@ -248,6 +252,7 @@ export const DataCollectionForm: FC = () => {
                 id='projectCategory'
                 label='Project Category'
                 helpText='Please choose a category that your project best fits in'
+                error={error}
                 isRequired
                 mb={8}
               >
@@ -279,6 +284,29 @@ export const DataCollectionForm: FC = () => {
 
           <TextField id='projectRepoLink' label='Project Repo Link' mb={8} />
 
+          <UploadFile
+            id='proposalAttachment'
+            label='Proposal'
+            title='Upload proposal'
+            helpText={
+              <>
+                Attach a PDF proposal. An proposal template is available{' '}
+                <Link
+                  fontWeight={700}
+                  color='brand.orange.100'
+                  href='https://notes.ethereum.org/@YlnZmB-mQ9ah8neq5cLDDg/Grant_Proposal_template'
+                  isExternal
+                  _hover={{ textDecoration: 'none' }}
+                >
+                  here
+                </Link>
+              </>
+            }
+            isRequired
+            onDrop={handleDrop}
+            mb={8}
+          />
+
           <Controller
             name='shareResearch'
             control={control}
@@ -286,6 +314,7 @@ export const DataCollectionForm: FC = () => {
               <Field
                 id='shareResearch'
                 label='If the opportunity presents itself, would you like to share your findings/research output through a Conference/Discord Talk?'
+                error={error}
                 mb={8}
               >
                 <Select

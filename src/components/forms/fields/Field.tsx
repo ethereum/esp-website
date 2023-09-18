@@ -1,14 +1,14 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { Box, FormControl, FormControlProps, FormLabel } from '@chakra-ui/react';
 import type { FieldError } from 'react-hook-form';
 
 import { PageText } from '../../UI';
 
 export interface Props extends FormControlProps {
-  children: React.ReactNode;
+  children: ReactNode;
   id: string;
   label: string;
-  helpText?: string;
+  helpText?: ReactNode;
   error?: FieldError;
 }
 

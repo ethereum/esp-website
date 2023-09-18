@@ -2,10 +2,13 @@ import * as z from 'zod';
 
 import { stringFieldSchema } from './utils';
 import { containURL } from '../../../utils';
+import { MAX_PROPOSAL_FILE_SIZE } from '../../../constants';
 
 const MAX_TEXT_LENGTH = 255;
 const MAX_TEXT_AREA_LENGTH = 32768;
 const MIN_TEXT_AREA_LENGTH = 500;
+
+const ACCEPTED_FILE_TYPES = ['application/pdf'];
 
 export const DataCollectionSchema = z.object({
   firstName: stringFieldSchema('First name', { min: 1, max: 40 }).refine(
@@ -33,9 +36,13 @@ export const DataCollectionSchema = z.object({
     max: MAX_TEXT_AREA_LENGTH
   }),
   projectCategory: stringFieldSchema('Project category', { min: 1 }),
-  requestAmount: stringFieldSchema('Total amount', { max: 20 }),
+  requestAmount: stringFieldSchema('Total amount', { min: 1, max: 20 }),
   projectRepoLink: z.string().optional(),
-  // TODO: add Proposal Attachment URL
+  proposalAttachment: z
+    .any()
+    .refine(file => !!file, 'Proposal is required.')
+    .refine(file => file?.size <= MAX_PROPOSAL_FILE_SIZE, `Max file size is 4MB.`)
+    .refine(file => ACCEPTED_FILE_TYPES.includes(file?.type), 'Only .pdf files are accepted.'),
   shareResearch: z.string().optional(),
   website: stringFieldSchema('Website', { max: MAX_TEXT_LENGTH }).optional(),
   twitter: stringFieldSchema('Twitter handle', { max: 40 }).optional(),
