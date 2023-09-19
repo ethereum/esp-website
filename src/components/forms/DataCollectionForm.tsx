@@ -46,6 +46,10 @@ export const DataCollectionForm: FC = () => {
   const methods = useForm<DataCollectionData>({
     mode: 'onBlur',
     shouldFocusError: true,
+    defaultValues: {
+      repeatApplicant: false,
+      canTheEFReachOut: true
+    },
     resolver: zodResolver(DataCollectionSchema)
   });
 
@@ -129,7 +133,7 @@ export const DataCollectionForm: FC = () => {
             name='applyingAs'
             control={control}
             render={({ field: { onChange } }) => (
-              <Field id='applyingAs' label='In which capacity are you applying?' mb={8}>
+              <Field id='applyingAs' label='In which capacity are you applying?' isRequired mb={8}>
                 <Select
                   id='applyingAs'
                   options={APPLYING_AS_DATA_COLLECTION_OPTIONS}
@@ -196,7 +200,7 @@ export const DataCollectionForm: FC = () => {
               render={({ field: { onChange }, fieldState: { error } }) => (
                 <Field
                   id='timezone'
-                  label='Your time zone'
+                  label='Time zone'
                   helpText='Please choose your current time zone to help us schedule calls'
                   error={error}
                   isRequired
@@ -237,7 +241,7 @@ export const DataCollectionForm: FC = () => {
 
           <TextAreaField
             id='projectDescription'
-            label='Brief Project Summary'
+            label='Brief project summary'
             helpText="Describe your project in a few sentences (you'll have the chance to go into more detail on your blogpost)"
             isRequired
             mb={8}
@@ -249,7 +253,7 @@ export const DataCollectionForm: FC = () => {
             render={({ field: { onChange }, fieldState: { error } }) => (
               <Field
                 id='projectCategory'
-                label='Project Category'
+                label='Project category'
                 helpText='Please choose a category that your project best fits in'
                 error={error}
                 isRequired
@@ -281,7 +285,7 @@ export const DataCollectionForm: FC = () => {
             mb={8}
           />
 
-          <TextField id='projectRepoLink' label='Project Repo Link' mb={8} />
+          <TextField id='projectRepoLink' label='Project repo link' mb={8} />
 
           <UploadFile
             id='proposalAttachment'
@@ -338,7 +342,7 @@ export const DataCollectionForm: FC = () => {
 
           <FormControl id='twitter-control' mb={8}>
             <FormLabel htmlFor='twitter' mb={1}>
-              <PageText fontSize='input'>Twitter Handle(s)</PageText>
+              <PageText fontSize='input'>Twitter handle(s)</PageText>
             </FormLabel>
             <PageText fontSize='input' position='absolute' bottom='15.5px' left={4} zIndex={9}>
               @
@@ -376,7 +380,7 @@ export const DataCollectionForm: FC = () => {
 
           <FormControl id='github-control' mb={8}>
             <FormLabel htmlFor='github' mb={1}>
-              <PageText fontSize='input'>Github Handle(s)</PageText>
+              <PageText fontSize='input'>Github handle(s)</PageText>
             </FormLabel>
             <PageText fontSize='input' position='absolute' bottom='15.5px' left={4} zIndex={9}>
               @
@@ -414,7 +418,7 @@ export const DataCollectionForm: FC = () => {
 
           <TextField
             id='alternativeContact'
-            label='Telegram Username or Alternative Contact Info'
+            label='Telegram username or alternative contact info'
             helpText="In regards to your submission, we'll get in touch with you via email by default. As backup, if you'd like to provide alternative contact info, you may do so. Not required."
             mb={8}
           />
@@ -422,7 +426,6 @@ export const DataCollectionForm: FC = () => {
           <Controller
             name='repeatApplicant'
             control={control}
-            defaultValue={false}
             render={({ field: { onChange, value } }) => (
               <Field
                 id='repeatApplicant'

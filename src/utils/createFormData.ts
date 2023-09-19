@@ -10,7 +10,7 @@ export const createFormData = (data: Record<string, any>) => {
     }
 
     // do not append `undefined` fields
-    if (value) {
+    if (typeof value !== 'undefined') {
       formData.append(name, JSON.stringify(value));
     }
   }
