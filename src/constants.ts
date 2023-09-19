@@ -173,7 +173,7 @@ export const SIDEBAR_RUN_A_NODE__GRANTS_LINKS: SidebarLink[] = [
   }
 ];
 
-export const DATA_COLLECTION_ROUND_URL = '/data-collection';
+export const DATA_COLLECTION_ROUND_URL = '/data-collection-grants';
 export const SIDEBAR_DATA_COLLECTION_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${DATA_COLLECTION_ROUND_URL}/#summary` },
   { text: 'Introduction', href: `${DATA_COLLECTION_ROUND_URL}/#introduction` },
@@ -197,7 +197,7 @@ export const ACADEMIC_GRANTS_APPLY_URL = '/academic-grants/apply';
 export const DEVCON_GRANTS_APPLY_URL = '/devcon-grants/apply';
 export const ECODEV_GRANTS_APPLY_URL = '/ecodev-grants/apply';
 export const RUN_A_NODE_GRANTS_APPLY_URL = '/run-a-node-grants/apply';
-export const DATA_COLLECTION_APPLY_URL = '/data-collection/apply';
+export const DATA_COLLECTION_APPLY_URL = '/data-collection-grants/apply';
 
 // grantee finance form
 export const GRANTEE_FINANCE_URL = '/applicants/grantee-finance';
@@ -211,7 +211,7 @@ export const ACADEMIC_GRANTS_THANK_YOU_PAGE_URL = '/academic-grants/thank-you';
 export const DEVCON_GRANTS_THANK_YOU_PAGE_URL = '/devcon-grants/thank-you';
 export const ECODEV_GRANTS_THANK_YOU_PAGE_URL = '/ecodev-grants/thank-you';
 export const RUN_A_NODE_GRANTS_THANK_YOU_PAGE_URL = '/run-a-node-grants/thank-you';
-export const DATA_COLLECTION_THANK_YOU_PAGE_URL = '/data-collection/thank-you';
+export const DATA_COLLECTION_THANK_YOU_PAGE_URL = '/data-collection-grants/thank-you';
 
 // ethereum ecosystem
 export const ETHEREUM_ORG_URL = 'https://ethereum.org/';
