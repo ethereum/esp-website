@@ -68,78 +68,75 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         RecordTypeId: process.env.SF_RECORD_TYPE_GRANTS_ROUND!
       };
 
-      res.status(200).json({ status: 'ok' });
-      return resolve();
-
       // Single record creation
-      // conn.sobject('Lead').create(application, async (err, ret) => {
-      //   if (err || !ret.success) {
-      //     console.error(err);
-      //     res.status(400).json({ status: 'fail' });
-      //     return resolve();
-      //   }
+      conn.sobject('Lead').create(application, async (err, ret) => {
+        if (err || !ret.success) {
+          console.error(err);
+          res.status(400).json({ status: 'fail' });
+          return resolve();
+        }
 
-      //   console.log(`Data Collection Grants Lead with ID: ${ret.id} has been created!`);
+        console.log(`Data Collection Grants Lead with ID: ${ret.id} has been created!`);
 
-      //   const createdLeadID = ret.id;
-      //   console.log({ createdLeadID });
+        const createdLeadID = ret.id;
+        console.log({ createdLeadID });
 
-      //   const uploadProposal = files.proposalAttachment as File;
-      //   console.log({ uploadProposal });
+        const uploadProposal = fields.proposalAttachment as File;
+        console.log({ uploadProposal });
 
-      //   if (!uploadProposal) {
-      //     res.status(200).json({ status: 'ok' });
-      //     return resolve();
-      //   }
+        if (!uploadProposal) {
+          res.status(200).json({ status: 'ok' });
+          return resolve();
+        }
 
-      //   let uploadProposalContent;
-      //   try {
-      //     // turn file into base64 encoding
-      //     uploadProposalContent = fs.readFileSync(uploadProposal.filepath, {
-      //       encoding: 'base64'
-      //     });
-      //   } catch (error) {
-      //     console.error(error);
-      //     res.status(500).json({ status: 'fail' });
-      //     return resolve();
-      //   }
+        let uploadProposalContent;
+        try {
+          // turn file into base64 encoding
+          uploadProposalContent = fs.readFileSync(uploadProposal.filepath, {
+            encoding: 'base64'
+          });
+        } catch (error) {
+          console.error(error);
+          res.status(500).json({ status: 'fail' });
+          return resolve();
+        }
 
-      //   // Document upload
-      //   conn.sobject('ContentVersion').create(
-      //     {
-      //       Title: `[PROPOSAL] ${application.Project_Name__c} - ${createdLeadID}`,
-      //       PathOnClient: uploadProposal.originalFilename,
-      //       VersionData: uploadProposalContent // base64 encoded file content
-      //     },
-      //     async (err, uploadedFile) => {
-      //       if (err || !uploadedFile.success) {
-      //         console.error(err);
+        // Document upload
+        conn.sobject('ContentVersion').create(
+          {
+            Title: `[PROPOSAL] ${application.Project_Name__c} - ${createdLeadID}`,
+            PathOnClient: uploadProposal.originalFilename,
+            VersionData: uploadProposalContent // base64 encoded file content
+          },
+          async (err, uploadedFile) => {
+            if (err || !uploadedFile.success) {
+              console.error(err);
 
-      //         res.status(400).json({ status: 'fail' });
-      //         return resolve();
-      //       } else {
-      //         console.log({ uploadedFile });
-      //         console.log(`Document has been uploaded successfully!`);
+              res.status(400).json({ status: 'fail' });
+              return resolve();
+            } else {
+              console.log({ uploadedFile });
+              console.log(`Document has been uploaded successfully!`);
 
-      //         const contentDocument = await conn
-      //           .sobject<{
-      //             Id: string;
-      //             ContentDocumentId: string;
-      //           }>('ContentVersion')
-      //           .retrieve(uploadedFile.id);
+              const contentDocument = await conn
+                .sobject<{
+                  Id: string;
+                  ContentDocumentId: string;
+                }>('ContentVersion')
+                .retrieve(uploadedFile.id);
 
-      //         await conn.sobject('ContentDocumentLink').create({
-      //           ContentDocumentId: contentDocument.ContentDocumentId,
-      //           LinkedEntityId: createdLeadID,
-      //           ShareType: 'V'
-      //         });
+              await conn.sobject('ContentDocumentLink').create({
+                ContentDocumentId: contentDocument.ContentDocumentId,
+                LinkedEntityId: createdLeadID,
+                ShareType: 'V'
+              });
 
-      //         res.status(200).json({ status: 'ok' });
-      //         return resolve();
-      //       }
-      //     }
-      //   );
-      // });
+              res.status(200).json({ status: 'ok' });
+              return resolve();
+            }
+          }
+        );
+      });
     });
   });
 }
