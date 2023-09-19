@@ -8,7 +8,7 @@ import {
   SmallGrantsFormData
 } from './../../types';
 
-import { getWebsite } from '../../utils';
+import { createFormData, getWebsite } from '../../utils';
 
 import {
   API_DATA_COLLECTION_GRANTS,
@@ -159,24 +159,7 @@ export const api = {
   },
   dataCollection: {
     submit: (data: DataCollectionData) => {
-      const formData = new FormData();
-
-      let name: keyof typeof data;
-      for (name in data) {
-        let value;
-
-        if (data[name]) {
-          value = JSON.stringify(data[name]);
-        }
-
-        if (name === 'proposalAttachment') {
-          value = data[name];
-        }
-
-        if (value) {
-          formData.append(name, value);
-        }
-      }
+      const formData = createFormData(data);
 
       const dataRequestOptions: RequestInit = {
         method: 'POST',
