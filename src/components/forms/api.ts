@@ -61,11 +61,7 @@ export const api = {
         repeatApplicant: data.repeatApplicant === 'Yes'
       };
 
-      const formData = new FormData();
-
-      for (const name in data) {
-        formData.append(name, curatedData[name]);
-      }
+      const formData = createFormData(curatedData);
 
       const projectGrantsRequestOptions: RequestInit = {
         method: 'POST',
@@ -143,11 +139,7 @@ export const api = {
         repeatApplicant: data.repeatApplicant === 'Yes'
       };
 
-      const formData = new FormData();
-
-      for (const name in data) {
-        formData.append(name, curatedData[name]);
-      }
+      const formData = createFormData(curatedData);
 
       const ecodevGrantsRequestOptions: RequestInit = {
         method: 'POST',
