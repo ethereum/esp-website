@@ -2,7 +2,7 @@ import { Box, Link, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 
 import { PageMetadata, PageSubheading, PageText } from '../../components/UI';
-import { ESP_EMAIL_ADDRESS } from '../../constants';
+import { GRANTS_EMAIL_ADDRESS } from '../../constants';
 
 const DataCollectionRoundApply: NextPage = () => {
   return (
@@ -30,11 +30,11 @@ const DataCollectionRoundApply: NextPage = () => {
               <Link
                 fontWeight={700}
                 color='brand.orange.100'
-                href={`mailto:${ESP_EMAIL_ADDRESS}`}
+                href={`mailto:${GRANTS_EMAIL_ADDRESS}`}
                 isExternal
                 _hover={{ textDecoration: 'none' }}
               >
-                {ESP_EMAIL_ADDRESS}
+                {GRANTS_EMAIL_ADDRESS}
               </Link>
               .
             </PageText>
