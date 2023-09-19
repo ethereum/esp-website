@@ -174,6 +174,19 @@ export const SIDEBAR_RUN_A_NODE__GRANTS_LINKS: SidebarLink[] = [
 ];
 
 export const DATA_COLLECTION_ROUND_URL = '/data-collection';
+export const SIDEBAR_DATA_COLLECTION_GRANTS_LINKS: SidebarLink[] = [
+  { text: 'Summary', href: `${DATA_COLLECTION_ROUND_URL}/#summary` },
+  { text: 'Introduction', href: `${DATA_COLLECTION_ROUND_URL}/#introduction` },
+  { text: 'Ideas', href: `${DATA_COLLECTION_ROUND_URL}/#ideas` },
+  { text: 'Submit A Proposal', href: `${DATA_COLLECTION_ROUND_URL}/#submit-proposal` },
+  { text: 'Eligibility Criteria', href: `${DATA_COLLECTION_ROUND_URL}/#eligibility-criteria` },
+  { text: 'Eligible', href: `${DATA_COLLECTION_ROUND_URL}/#eligible` },
+  { text: 'Selection Criteria', href: `${DATA_COLLECTION_ROUND_URL}/#selection-criteria` },
+  {
+    text: 'Next steps and support',
+    href: `${DATA_COLLECTION_ROUND_URL}/#next-steps-and-support`
+  }
+];
 
 // apply forms
 export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';

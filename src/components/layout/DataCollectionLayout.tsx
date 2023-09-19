@@ -19,7 +19,7 @@ export const DataCollectionLayout: FC = ({ children }) => {
           alt: 'A mad panda scientist working on ethereum',
           src: runANodeHeroMobile
         }}
-        title='Data Collection Round'
+        title='Data Collection Grants 2023'
       >
         <Text>
           {/* TODO: add copy */}
