@@ -1,9 +1,10 @@
-import { Box, Flex, Link, ListItem, Stack, Text } from '@chakra-ui/react';
+import { Accordion, Box, Flex, Link, ListItem, Stack, Text } from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import type { NextPage } from 'next';
 
 import {
   ApplicantsSidebar,
+  FAQItem,
   List,
   PageMetadata,
   PageSection,
@@ -28,7 +29,8 @@ const DataCollectionGrants: NextPage = () => {
   const [ref6, inView6] = useInView({ threshold: 0.5, initialInView: false });
   const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
   const [ref8, inView8] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref9, inView9] = useInView({ threshold: 0, initialInView: false });
+  const [ref9, inView9] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref10, inView10] = useInView({ threshold: 0, initialInView: false });
 
   return (
     <>
@@ -50,7 +52,8 @@ const DataCollectionGrants: NextPage = () => {
               inView6,
               inView7,
               inView8,
-              inView9
+              inView9,
+              inView10
             ]}
           />
 
@@ -237,7 +240,58 @@ const DataCollectionGrants: NextPage = () => {
                 </PageText>
               </section>
 
-              <section id='apply' ref={ref9}>
+              <section id='faq' ref={ref9}>
+                <PageSection mb={6}>Frequently asked questions</PageSection>
+
+                <Accordion allowToggle>
+                  <FAQItem question='When can I expect to hear back?'>
+                    <PageText>
+                      Projects will be evaluated after submissions are complete, evaluations will
+                      take 6-8 weeks after the deadline.
+                    </PageText>
+                  </FAQItem>
+
+                  <FAQItem question='What makes a good proposal?'>
+                    <PageText>
+                      In short, we need enough information to understand your objectives, the
+                      problem you’re aiming to tackle, the output, information on previous research
+                      work, who’s involved and estimation regarding time and budget.
+                    </PageText>
+
+                    <PageText>
+                      The more details you provide, the more likely we’ll be able to help.
+                    </PageText>
+
+                    <PageText>For example - what could be included in the grant proposal:</PageText>
+
+                    <Box>
+                      <List>
+                        <ListItem>Clearly showing the research area, you’re digging into</ListItem>
+                        <ListItem>Outlining the output</ListItem>
+                        <ListItem>
+                          Clearly state the impact your research will have and how you foresee your
+                          findings being used by the Ethereum community
+                        </ListItem>
+                        <ListItem>
+                          A detailed description of your project, milestones, the people involved
+                          and how much time you think it will take to complete with a budget
+                        </ListItem>
+                      </List>
+                    </Box>
+
+                    <PageText>There is no template for a proposal.</PageText>
+                  </FAQItem>
+
+                  <FAQItem question='What if I miss the deadline?'>
+                    <PageText>
+                      The Ethereum Foundation has a general grants initiative called the [Ecosystem
+                      Support Program (ESP)](https://esp.ethereum.foundation/).
+                    </PageText>
+                  </FAQItem>
+                </Accordion>
+              </section>
+
+              <section id='apply' ref={ref10}>
                 <Stack mt={6}>
                   <ReadyToApply link={`${DATA_COLLECTION_APPLY_URL}`} />
                 </Stack>

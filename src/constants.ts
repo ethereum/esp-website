@@ -185,7 +185,8 @@ export const SIDEBAR_DATA_COLLECTION_GRANTS_LINKS: SidebarLink[] = [
   {
     text: 'Next steps and support',
     href: `${DATA_COLLECTION_ROUND_URL}/#next-steps-and-support`
-  }
+  },
+  { text: 'FAQ', href: `${DATA_COLLECTION_ROUND_URL}/#faq` }
 ];
 
 // apply forms
