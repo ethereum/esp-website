@@ -21,8 +21,7 @@ import {
 const DataCollectionGrants: NextPage = () => {
   // `threshold` option allows us to control the % of visibility required before triggering the Intersection Observer
   // https://react-intersection-observer.vercel.app/?path=/story/introduction--page#options
-  const [ref, inView] = useInView({ threshold: 0.5 });
-  const [ref2, inView2] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref2, inView2] = useInView({ threshold: 0.5 });
   const [ref3, inView3] = useInView({ threshold: 0.5, initialInView: false });
   const [ref4, inView4] = useInView({ threshold: 0.5, initialInView: false });
   const [ref5, inView5] = useInView({ threshold: 0.5, initialInView: false });
@@ -44,7 +43,6 @@ const DataCollectionGrants: NextPage = () => {
           <ApplicantsSidebar
             sidebarLinks={SIDEBAR_DATA_COLLECTION_GRANTS_LINKS}
             sectionsInView={[
-              inView,
               inView2,
               inView3,
               inView4,
@@ -59,25 +57,6 @@ const DataCollectionGrants: NextPage = () => {
 
           <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
             <Stack spacing={10}>
-              <section id='summary' ref={ref}>
-                <PageText mb={6}>
-                  <Text as='i'>
-                    A proactive grants round to improve the community&apos;s data collection
-                    capabilities.
-                  </Text>
-                </PageText>
-
-                <PageText mb={6}>
-                  <Text as='i'>Proposals are due at 11:59 UTC October 23rd 2023</Text>
-                </PageText>
-
-                <PageText mb={6}>
-                  <Text as='i'>
-                    All of the details you&apos;ll need to apply can be found below.
-                  </Text>
-                </PageText>
-              </section>
-
               <section id='introduction' ref={ref2}>
                 <PageSection mb={6}>Introduction</PageSection>
 

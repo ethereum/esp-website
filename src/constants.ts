@@ -175,7 +175,6 @@ export const SIDEBAR_RUN_A_NODE__GRANTS_LINKS: SidebarLink[] = [
 
 export const DATA_COLLECTION_ROUND_URL = '/data-collection-grants';
 export const SIDEBAR_DATA_COLLECTION_GRANTS_LINKS: SidebarLink[] = [
-  { text: 'Summary', href: `${DATA_COLLECTION_ROUND_URL}/#summary` },
   { text: 'Introduction', href: `${DATA_COLLECTION_ROUND_URL}/#introduction` },
   { text: 'Ideas', href: `${DATA_COLLECTION_ROUND_URL}/#ideas` },
   { text: 'Submit A Proposal', href: `${DATA_COLLECTION_ROUND_URL}/#submit-proposal` },

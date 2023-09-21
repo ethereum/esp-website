@@ -22,11 +22,12 @@ export const DataCollectionLayout: FC = ({ children }) => {
         title='Data Collection Grants 2023'
       >
         <Text>
-          {/* TODO: add copy */}
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, ad? Debitis eaque
-          exercitationem dolores doloremque modi non inventore quisquam numquam fugit iure quam
-          quibusdam, adipisci, molestias velit dolore deleniti laborum.
+          A proactive grants round to improve the community&apos;s data collection capabilities.
         </Text>
+
+        <Text>Proposals are due at 11:59 UTC October 23rd 2023</Text>
+
+        <Text>All of the details you&apos;ll need to apply can be found below.</Text>
       </GrantsHero>
 
       <Stack>{children}</Stack>
