@@ -61,11 +61,11 @@ const DataCollectionGrants: NextPage = () => {
                 <PageSection mb={6}>Introduction</PageSection>
 
                 <PageText mb={6}>
-                  The Ethereum Foundation is launching this grants initiative to encourage research
-                  and development around data collection and visualization of the Ethereum network.
-                  We are looking for builders to work on testnets, data collection and XATU. The
-                  Ethereum ecosystem needs more free and open source infrastructure for researchers,
-                  developers, and data analysts and developers—read below and apply!
+                  The Ecosystem Support Program is launching this grants initiative to encourage
+                  research and development around data collection and visualization of the Ethereum
+                  network. We are looking for builders to work on testnets, data collection and
+                  XATU. The Ethereum ecosystem needs more free and open source infrastructure for
+                  researchers, developers, and data analysts and developers—read below and apply!
                 </PageText>
               </section>
 
@@ -125,8 +125,8 @@ const DataCollectionGrants: NextPage = () => {
                     <ListItem>Fleshed out project</ListItem>
                   </List>
                   <ListItem>
-                    Grants are decided case-by-case basis, and you may enter more than one proposal!
-                    So long as each proposal is unique and meets the requirements
+                    Grants are decided on a case-by-case basis, and you may enter more than one
+                    proposal! So long as each proposal is unique and meets the requirements
                   </ListItem>
                   <ListItem>We may contact you to discuss the project in more detail</ListItem>
                 </List>
@@ -245,7 +245,9 @@ const DataCollectionGrants: NextPage = () => {
 
                     <Box>
                       <List>
-                        <ListItem>Clearly showing the research area, you’re digging into</ListItem>
+                        <ListItem>
+                          Clearly showing the research area that you’re digging into
+                        </ListItem>
                         <ListItem>Outlining the output</ListItem>
                         <ListItem>
                           Clearly state the impact your research will have and how you foresee your
