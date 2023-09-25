@@ -27,7 +27,7 @@ import { api } from './api';
 import { chakraStyles } from './selectStyles';
 
 import {
-  APPLYING_AS_DATA_COLLECTION_OPTIONS,
+  APPLYING_AS_OPTIONS,
   COUNTRY_OPTIONS,
   HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
   OTHER,
@@ -104,7 +104,7 @@ export const DataCollectionForm: FC = () => {
       borderRadius={{ md: '10px' }}
     >
       <FormProvider {...methods}>
-        <form id='run-a-node-grants-form' onSubmit={handleSubmit(onSubmit)} noValidate>
+        <form id='data-collection-grants-form' onSubmit={handleSubmit(onSubmit)} noValidate>
           <Flex direction='column' mb={8}>
             <Flex direction={{ base: 'column', md: 'row' }} mb={3}>
               <TextField
@@ -136,9 +136,9 @@ export const DataCollectionForm: FC = () => {
               <Field id='applyingAs' label='In which capacity are you applying?' isRequired mb={8}>
                 <Select
                   id='applyingAs'
-                  options={APPLYING_AS_DATA_COLLECTION_OPTIONS}
+                  options={APPLYING_AS_OPTIONS}
                   onChange={option =>
-                    onChange((option as typeof APPLYING_AS_DATA_COLLECTION_OPTIONS[number]).value)
+                    onChange((option as typeof APPLYING_AS_OPTIONS[number]).value)
                   }
                   components={{ DropdownIndicator }}
                   placeholder='Select'
@@ -172,7 +172,7 @@ export const DataCollectionForm: FC = () => {
                 <Field
                   id='country'
                   label='Country'
-                  helpText='Provide the country of where the node would be located'
+                  helpText='Where is your team located?'
                   error={error}
                   isRequired
                   mb={8}

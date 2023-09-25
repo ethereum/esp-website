@@ -6,9 +6,7 @@ import { Banner } from './UI';
 
 import { DATA_COLLECTION_ROUND_URL } from '../constants';
 
-interface Props {}
-
-export const Banners: FC<Props> = () => {
+export const Banners: FC = () => {
   const router = useRouter();
 
   if (!router.pathname.includes(DATA_COLLECTION_ROUND_URL)) {

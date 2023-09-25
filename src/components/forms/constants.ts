@@ -1492,15 +1492,6 @@ export const APPLYING_AS_OPTIONS = [
   { value: 'Other', label: 'Other' }
 ];
 
-export const APPLYING_AS_DATA_COLLECTION_OPTIONS = [
-  { value: 'An individual', label: 'An individual' },
-  { value: 'A university', label: 'A university' },
-  { value: 'A consortium of universities', label: 'A consortium of universities' },
-  { value: 'A think-tank', label: 'A think-tank' },
-  { value: 'A research center', label: 'A research center' },
-  { value: 'Other', label: 'Other' }
-];
-
 // office hours
 export const TEAM = 'Team';
 export const INDIVIDUAL = 'Individual';
