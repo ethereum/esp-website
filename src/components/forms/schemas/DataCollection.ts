@@ -33,7 +33,7 @@ export const DataCollectionSchema = z.object({
     max: MAX_TEXT_LENGTH
   }).optional(),
   projectName: stringFieldSchema('Project name', { min: 1, max: MAX_TEXT_LENGTH }),
-  projectDescription: stringFieldSchema('Project description', {
+  projectDescription: stringFieldSchema('Project summary', {
     min: MIN_TEXT_AREA_LENGTH,
     max: MAX_TEXT_AREA_LENGTH
   }),
@@ -54,9 +54,10 @@ export const DataCollectionSchema = z.object({
   github: stringFieldSchema('Github handle', { max: 40 }).optional(),
   alternativeContact: stringFieldSchema('Alternative contact info', { max: 150 }).optional(),
   repeatApplicant: z.boolean(),
-  canTheEFReachOut: z.boolean().optional(),
+  canTheEFReachOut: z.boolean(),
   additionalInfo: stringFieldSchema('Additional info', { max: MAX_TEXT_AREA_LENGTH }).optional(),
   referralSource: stringFieldSchema('Referral source', { min: 1 }),
+  referralSourceIfOther: stringFieldSchema('Field', { max: MAX_TEXT_AREA_LENGTH }).optional(),
   captchaToken: stringFieldSchema('Captcha', { min: 1 })
 });
 

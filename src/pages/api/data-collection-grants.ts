@@ -64,6 +64,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         Can_the_EF_reach_out__c: fields.canTheEFReachOut,
         Additional_Information__c: fields.additionalInfo,
         Referral_Source__c: fields.referralSource,
+        Referral_Source_if_Other__c: fields.referralSourceIfOther,
         Proactive_Community_Grants_Round__c: 'Data Collection 2023', // this value is hardwired, depending on the type of grant round
         RecordTypeId: process.env.SF_RECORD_TYPE_GRANTS_ROUND!
       };
