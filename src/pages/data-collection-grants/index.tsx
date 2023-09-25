@@ -265,8 +265,17 @@ const DataCollectionGrants: NextPage = () => {
 
                   <FAQItem question='What if I miss the deadline?'>
                     <PageText>
-                      The Ethereum Foundation has a general grants initiative called the [Ecosystem
-                      Support Program (ESP)](https://esp.ethereum.foundation/).
+                      The Ethereum Foundation has a general grants initiative called the{' '}
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href='https://esp.ethereum.foundation/'
+                        isExternal
+                        _hover={{ textDecoration: 'none' }}
+                      >
+                        Ecosystem Support Program (ESP)
+                      </Link>
+                      .
                     </PageText>
                   </FAQItem>
                 </Accordion>

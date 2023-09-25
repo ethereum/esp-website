@@ -80,8 +80,8 @@ export const DataCollectionForm: FC = () => {
       .submit(data)
       .then(res => {
         if (res.ok) {
-          // reset();
-          // router.push(DATA_COLLECTION_THANK_YOU_PAGE_URL);
+          reset();
+          router.push(DATA_COLLECTION_THANK_YOU_PAGE_URL);
         } else {
           toast({
             ...TOAST_OPTIONS,

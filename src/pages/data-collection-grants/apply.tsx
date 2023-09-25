@@ -9,7 +9,7 @@ const DataCollectionRoundApply: NextPage = () => {
     <>
       <PageMetadata
         title='Data Collection Round Application'
-        description='Submit an application for a Run A Node Grant from the Ecosystem Support Program.'
+        description='Submit an application for a Data Collection Grant from the Ecosystem Support Program.'
       />
 
       <Box
