@@ -1,8 +1,8 @@
 import { Box, Stack, Text } from '@chakra-ui/react';
 import { FC } from 'react';
 
-import runANodeHero from '../../../public/images/run-a-node.png';
-import runANodeHeroMobile from '../../../public/images/run-a-node-mobile.png';
+import mergeDataChallengeHero from '../../../public/images/merge-data-challenge-hero.jpeg';
+import mergeDataChallengeHeroMobile from '../../../public/images/merge-data-challenge-hero-mobile.jpg';
 
 import { GrantsHero } from '../UI';
 
@@ -10,14 +10,14 @@ export const DataCollectionLayout: FC = ({ children }) => {
   return (
     <Box>
       <GrantsHero
-        colorBrandConstant='layer2GrantsHero'
+        colorBrandConstant='mergeDataChallengeHero'
         desktopImage={{
-          alt: 'A mad panda scientist working on ethereum',
-          src: runANodeHero
+          alt: 'Two people holding hands in field with ethereum log',
+          src: mergeDataChallengeHero
         }}
         mobileImage={{
-          alt: 'A mad panda scientist working on ethereum',
-          src: runANodeHeroMobile
+          alt: 'Two people holding hands in field with ethereum log',
+          src: mergeDataChallengeHeroMobile
         }}
         title='Data Collection Grants 2023'
       >
