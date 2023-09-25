@@ -179,7 +179,7 @@ export const SIDEBAR_DATA_COLLECTION_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Ideas', href: `${DATA_COLLECTION_ROUND_URL}/#ideas` },
   { text: 'Submit A Proposal', href: `${DATA_COLLECTION_ROUND_URL}/#submit-proposal` },
   { text: 'Eligibility Criteria', href: `${DATA_COLLECTION_ROUND_URL}/#eligibility-criteria` },
-  { text: 'Eligible', href: `${DATA_COLLECTION_ROUND_URL}/#eligible` },
+  { text: 'What is NOT eligible', href: `${DATA_COLLECTION_ROUND_URL}/#what-is-not-eligible` },
   { text: 'Selection Criteria', href: `${DATA_COLLECTION_ROUND_URL}/#selection-criteria` },
   {
     text: 'Next steps and support',

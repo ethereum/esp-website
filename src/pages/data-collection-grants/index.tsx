@@ -169,8 +169,8 @@ const DataCollectionGrants: NextPage = () => {
                 </List>
               </section>
 
-              <section id='eligible' ref={ref6}>
-                <PageSection mb={6}>Eligible</PageSection>
+              <section id='what-is-not-eligible' ref={ref6}>
+                <PageSection mb={6}>What is NOT eligible</PageSection>
 
                 <List>
                   <ListItem>
