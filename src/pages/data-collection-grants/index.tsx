@@ -65,7 +65,7 @@ const DataCollectionGrants: NextPage = () => {
                   research and development around data collection and visualization of the Ethereum
                   network. We are looking for builders to work on testnets, data collection and
                   XATU. The Ethereum ecosystem needs more free and open source infrastructure for
-                  researchers, developers, and data analysts and developers—read below and apply!
+                  researchers, developers, and data analysts—read below and apply!
                 </PageText>
               </section>
 
@@ -178,7 +178,7 @@ const DataCollectionGrants: NextPage = () => {
                     place
                   </ListItem>
                   <ListItem>
-                    Financial products (trading, investment products, lending, betting etc)
+                    Financial products (trading, investment products, lending, betting, etc)
                   </ListItem>
                   <ListItem>Projects with a planned token launch or public funding round</ListItem>
                   <ListItem>Art projects or charities that don’t fit within our scope</ListItem>

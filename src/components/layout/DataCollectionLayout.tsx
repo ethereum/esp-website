@@ -25,7 +25,7 @@ export const DataCollectionLayout: FC = ({ children }) => {
           A proactive grants round to improve the community&apos;s data collection capabilities.
         </Text>
 
-        <Text>Proposals are due at 11:59 UTC October 23rd 2023</Text>
+        <Text>Proposals are due at 11:59 UTC October 23rd 2023.</Text>
 
         <Text>All of the details you&apos;ll need to apply can be found below.</Text>
       </GrantsHero>
