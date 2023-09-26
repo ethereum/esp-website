@@ -8,10 +8,12 @@ import {
   ProjectGrantsForm,
   SmallGrantsForm,
   DevconGrantsForm,
-  EcodevGrantsForm
+  EcodevGrantsForm,
+  DataCollectionForm
 } from './';
 
 import {
+  DATA_COLLECTION_APPLY_URL,
   DEVCON_GRANTS_APPLY_URL,
   ECODEV_GRANTS_APPLY_URL,
   GRANTEE_FINANCE_URL,
@@ -53,6 +55,11 @@ export const Forms: FC = () => {
       {router.pathname === ECODEV_GRANTS_APPLY_URL && (
         <Box px={{ md: 24, lg: 32, xl: 72 }}>
           <EcodevGrantsForm />
+        </Box>
+      )}
+      {router.pathname === DATA_COLLECTION_APPLY_URL && (
+        <Box px={{ md: 24, lg: 32, xl: 72 }}>
+          <DataCollectionForm />
         </Box>
       )}
     </Stack>

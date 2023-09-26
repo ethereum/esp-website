@@ -15,7 +15,9 @@ import {
   MergeDataChallengeLayout,
   SemaphoreGrantLayout,
   AcademicGrantsLayout,
-  AccountAbstractionGrantsLayout
+  AccountAbstractionGrantsLayout,
+  RunANodeGrantLayout,
+  DataCollectionLayout
 } from '../layout';
 import { Nav } from '../../components';
 
@@ -31,9 +33,9 @@ import {
   MERGE_DATA_CHALLENGE_URL,
   SEMAPHORE_GRANT_URL,
   ACCOUNT_ABSTRACTION_GRANTS_URL,
-  RUN_A_NODE_GRANTS_URL
+  RUN_A_NODE_GRANTS_URL,
+  DATA_COLLECTION_ROUND_URL
 } from '../../constants';
-import { RunANodeGrantLayout } from './RunANodeGrantLayout';
 
 export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
   const router = useRouter();
@@ -145,6 +147,16 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
         <Box mt={{ md: -10, lg: 0 }}>
           <main>
             <RunANodeGrantLayout>{children}</RunANodeGrantLayout>
+          </main>
+        </Box>
+      );
+    }
+
+    if (router.pathname === DATA_COLLECTION_ROUND_URL) {
+      return (
+        <Box mt={{ md: -10, lg: 0 }}>
+          <main>
+            <DataCollectionLayout>{children}</DataCollectionLayout>
           </main>
         </Box>
       );

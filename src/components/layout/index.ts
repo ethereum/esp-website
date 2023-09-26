@@ -8,4 +8,6 @@ export * from './MergeDataChallengeLayout';
 export * from './SemaphoreGrantLayout';
 export * from './AcademicGrantsLayout';
 export * from './AccountAbstractionGrantsLayout';
+export * from './RunANodeGrantLayout';
+export * from './DataCollectionLayout';
 export * from './Layout';

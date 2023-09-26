@@ -173,6 +173,21 @@ export const SIDEBAR_RUN_A_NODE__GRANTS_LINKS: SidebarLink[] = [
   }
 ];
 
+export const DATA_COLLECTION_ROUND_URL = '/data-collection-grants';
+export const SIDEBAR_DATA_COLLECTION_GRANTS_LINKS: SidebarLink[] = [
+  { text: 'Introduction', href: `${DATA_COLLECTION_ROUND_URL}/#introduction` },
+  { text: 'Ideas', href: `${DATA_COLLECTION_ROUND_URL}/#ideas` },
+  { text: 'Submit A Proposal', href: `${DATA_COLLECTION_ROUND_URL}/#submit-proposal` },
+  { text: 'Eligibility Criteria', href: `${DATA_COLLECTION_ROUND_URL}/#eligibility-criteria` },
+  { text: 'What is NOT eligible', href: `${DATA_COLLECTION_ROUND_URL}/#what-is-not-eligible` },
+  { text: 'Selection Criteria', href: `${DATA_COLLECTION_ROUND_URL}/#selection-criteria` },
+  {
+    text: 'Next steps and support',
+    href: `${DATA_COLLECTION_ROUND_URL}/#next-steps-and-support`
+  },
+  { text: 'FAQ', href: `${DATA_COLLECTION_ROUND_URL}/#faq` }
+];
+
 // apply forms
 export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
 export const OFFICE_HOURS_APPLY_URL = '/applicants/office-hours/apply';
@@ -181,6 +196,7 @@ export const ACADEMIC_GRANTS_APPLY_URL = '/academic-grants/apply';
 export const DEVCON_GRANTS_APPLY_URL = '/devcon-grants/apply';
 export const ECODEV_GRANTS_APPLY_URL = '/ecodev-grants/apply';
 export const RUN_A_NODE_GRANTS_APPLY_URL = '/run-a-node-grants/apply';
+export const DATA_COLLECTION_APPLY_URL = '/data-collection-grants/apply';
 
 // grantee finance form
 export const GRANTEE_FINANCE_URL = '/applicants/grantee-finance';
@@ -194,6 +210,7 @@ export const ACADEMIC_GRANTS_THANK_YOU_PAGE_URL = '/academic-grants/thank-you';
 export const DEVCON_GRANTS_THANK_YOU_PAGE_URL = '/devcon-grants/thank-you';
 export const ECODEV_GRANTS_THANK_YOU_PAGE_URL = '/ecodev-grants/thank-you';
 export const RUN_A_NODE_GRANTS_THANK_YOU_PAGE_URL = '/run-a-node-grants/thank-you';
+export const DATA_COLLECTION_THANK_YOU_PAGE_URL = '/data-collection-grants/thank-you';
 
 // ethereum ecosystem
 export const ETHEREUM_ORG_URL = 'https://ethereum.org/';
@@ -298,6 +315,9 @@ export const ACCOUNT_ABSTRACTION_GRANTS_PREVIEW_URL =
 
 export const ACADEMIC_GRANTS_PREVIEW_URL =
   'https://esp.ethereum.foundation/images/academic-grants-hero.png';
+
+export const DATA_COLLECTION_GRANTS_PREVIEW_URL =
+  'https://esp.ethereum.foundation/images/data-collection-proactive-grants.png';
 
 // Thank you and apply urls
 export const GRANTS_URLS = [DEVCON_GRANTS_APPLY_URL, DEVCON_GRANTS_THANK_YOU_PAGE_URL];
