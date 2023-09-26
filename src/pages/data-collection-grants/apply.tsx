@@ -2,7 +2,7 @@ import { Box, Link, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 
 import { PageMetadata, PageSubheading, PageText } from '../../components/UI';
-import { GRANTS_EMAIL_ADDRESS } from '../../constants';
+import { DATA_COLLECTION_GRANTS_PREVIEW_URL, GRANTS_EMAIL_ADDRESS } from '../../constants';
 
 const DataCollectionRoundApply: NextPage = () => {
   return (
@@ -10,6 +10,7 @@ const DataCollectionRoundApply: NextPage = () => {
       <PageMetadata
         title='Data Collection Round Application'
         description='Submit an application for a Data Collection Grant from the Ecosystem Support Program.'
+        image={DATA_COLLECTION_GRANTS_PREVIEW_URL}
       />
 
       <Box

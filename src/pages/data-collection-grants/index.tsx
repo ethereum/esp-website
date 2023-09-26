@@ -15,7 +15,8 @@ import {
 import {
   DATA_COLLECTION_APPLY_URL,
   SIDEBAR_DATA_COLLECTION_GRANTS_LINKS,
-  GRANTS_EMAIL_ADDRESS
+  GRANTS_EMAIL_ADDRESS,
+  DATA_COLLECTION_GRANTS_PREVIEW_URL
 } from '../../constants';
 
 const DataCollectionGrants: NextPage = () => {
@@ -36,6 +37,7 @@ const DataCollectionGrants: NextPage = () => {
       <PageMetadata
         title='Data Collection Grants 2023'
         description='' // TODO
+        image={DATA_COLLECTION_GRANTS_PREVIEW_URL}
       />
 
       <Box bg='white' position='relative' py={{ md: 12 }}>

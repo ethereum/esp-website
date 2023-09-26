@@ -1,8 +1,8 @@
 import { Box, Stack, Text } from '@chakra-ui/react';
 import { FC } from 'react';
 
-import dataCollectionHero from '../../../public/images/Data-Collection-Proactive-Grants.png';
-import dataCollectionHeroMobile from '../../../public/images/Data-Collection-Proactive-Grants-mobile.png';
+import dataCollectionHero from '../../../public/images/data-collection-proactive-grants.png';
+import dataCollectionHeroMobile from '../../../public/images/data-collection-proactive-grants-mobile.png';
 
 import { GrantsHero } from '../UI';
 
