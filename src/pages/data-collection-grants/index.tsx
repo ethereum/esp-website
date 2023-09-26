@@ -36,7 +36,7 @@ const DataCollectionGrants: NextPage = () => {
     <>
       <PageMetadata
         title='Data Collection Grants 2023'
-        description='' // TODO
+        description='To promote public goods and infrastructure for Data collection and analysis in the Ethereum Ecosystem'
         image={DATA_COLLECTION_GRANTS_PREVIEW_URL}
       />
 
