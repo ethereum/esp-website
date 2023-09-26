@@ -1,23 +1,26 @@
 import { Box, Stack, Text } from '@chakra-ui/react';
 import { FC } from 'react';
 
-import mergeDataChallengeHero from '../../../public/images/merge-data-challenge-hero.jpeg';
-import mergeDataChallengeHeroMobile from '../../../public/images/merge-data-challenge-hero-mobile.jpg';
+import dataCollectionHero from '../../../public/images/Data-Collection-Proactive-Grants.png';
+import dataCollectionHeroMobile from '../../../public/images/Data-Collection-Proactive-Grants-mobile.png';
 
 import { GrantsHero } from '../UI';
 
 export const DataCollectionLayout: FC = ({ children }) => {
+  const alt =
+    'A person standing at the top of a hill looking at a vast landscape that contains things with the shape of different types of charts';
+
   return (
     <Box>
       <GrantsHero
-        colorBrandConstant='mergeDataChallengeHero'
+        colorBrandConstant='dataCollectionHero'
         desktopImage={{
-          alt: 'Two people holding hands in field with ethereum log',
-          src: mergeDataChallengeHero
+          alt,
+          src: dataCollectionHero
         }}
         mobileImage={{
-          alt: 'Two people holding hands in field with ethereum log',
-          src: mergeDataChallengeHeroMobile
+          alt,
+          src: dataCollectionHeroMobile
         }}
         title='Data Collection Grants 2023'
       >

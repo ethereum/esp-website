@@ -102,6 +102,13 @@ export const colors = {
         end: 'rgba(235, 209, 251, 0)'
       }
     },
+    dataCollectionHero: {
+      titleWhiteBox: ' rgba(255, 255, 255, 0.85)',
+      bgGradient: {
+        start: '#dddbdc',
+        end: 'rgba(235, 209, 251, 0)'
+      }
+    },
     helpText: '#7c7ba1',
     warning: '#f0f6fd',
     homepageHero: '#f8e8fc',
