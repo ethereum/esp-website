@@ -270,7 +270,18 @@ const DataCollectionGrants: NextPage = () => {
                         </List>
                       </Box>
 
-                      <PageText>There is no template for a proposal.</PageText>
+                      <PageText>
+                        Here is a{' '}
+                        <Link
+                          fontWeight={700}
+                          color='brand.orange.100'
+                          href='https://notes.ethereum.org/@drigolvc/Grant_Proposal_template'
+                          isExternal
+                        >
+                          template
+                        </Link>{' '}
+                        for a proposal.
+                      </PageText>
                     </FAQItem>
 
                     <FAQItem question='What if I miss the deadline?'>
