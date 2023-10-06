@@ -62,6 +62,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
       Time_Zone__c: fieldsSanitized.timezone,
       Referrals__c: fieldsSanitized.referrals,
       LeadSource: 'Webform',
+      Pipeline_Entry__c: 'EcoDev',
       RecordTypeId: process.env.SF_RECORD_TYPE_GENERALIST_ECODEV
     };
 
