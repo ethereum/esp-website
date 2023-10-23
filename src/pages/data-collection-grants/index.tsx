@@ -4,16 +4,15 @@ import type { NextPage } from 'next';
 
 import {
   ApplicantsSidebar,
+  BannerApplicationClosed,
   FAQItem,
   List,
   PageMetadata,
   PageSection,
-  PageText,
-  ReadyToApply
+  PageText
 } from '../../components/UI';
 
 import {
-  DATA_COLLECTION_APPLY_URL,
   SIDEBAR_DATA_COLLECTION_GRANTS_LINKS,
   GRANTS_EMAIL_ADDRESS,
   DATA_COLLECTION_GRANTS_PREVIEW_URL
@@ -29,8 +28,7 @@ const DataCollectionGrants: NextPage = () => {
   const [ref6, inView6] = useInView({ threshold: 0.5, initialInView: false });
   const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
   const [ref8, inView8] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref9, inView9] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref10, inView10] = useInView({ threshold: 0, initialInView: false });
+  const [ref9, inView9] = useInView({ threshold: 0, initialInView: false });
 
   return (
     <>
@@ -53,12 +51,13 @@ const DataCollectionGrants: NextPage = () => {
                 inView6,
                 inView7,
                 inView8,
-                inView9,
-                inView10
+                inView9
               ]}
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
+              <BannerApplicationClosed mb={12} />
+
               <Stack spacing={10}>
                 <section id='introduction' ref={ref2}>
                   <PageSection mb={6}>Introduction</PageSection>
@@ -148,10 +147,6 @@ const DataCollectionGrants: NextPage = () => {
                     <Text as='strong'>September 25th, 2023</Text> and closes on{' '}
                     <Text as='strong'>October 23rd, 2023</Text>.
                   </PageText>
-
-                  <Stack mt={6}>
-                    <ReadyToApply link={`${DATA_COLLECTION_APPLY_URL}`} />
-                  </Stack>
                 </section>
 
                 <section id='eligibility-criteria' ref={ref5}>
@@ -300,12 +295,6 @@ const DataCollectionGrants: NextPage = () => {
                       </PageText>
                     </FAQItem>
                   </Accordion>
-                </section>
-
-                <section id='apply' ref={ref10}>
-                  <Stack mt={6}>
-                    <ReadyToApply link={`${DATA_COLLECTION_APPLY_URL}`} />
-                  </Stack>
                 </section>
               </Stack>
             </Box>
