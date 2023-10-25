@@ -11,7 +11,6 @@ import {
 import { createFormData, getWebsite } from '../../utils';
 
 import {
-  API_DATA_COLLECTION_GRANTS,
   API_DEVCON_GRANTS,
   API_ECODEV_GRANTS,
   API_GRANTEE_FINANCE,
@@ -21,8 +20,6 @@ import {
   API_SMALL_GRANTS_EVENT,
   API_SMALL_GRANTS_PROJECT
 } from './constants';
-
-import type { DataCollectionData } from './schemas/DataCollection';
 
 const methodOptions = {
   method: 'POST',
@@ -147,18 +144,6 @@ export const api = {
       };
 
       return fetch(API_ECODEV_GRANTS, ecodevGrantsRequestOptions);
-    }
-  },
-  dataCollection: {
-    submit: (data: DataCollectionData) => {
-      const formData = createFormData(data);
-
-      const dataRequestOptions: RequestInit = {
-        method: 'POST',
-        body: formData
-      };
-
-      return fetch(API_DATA_COLLECTION_GRANTS, dataRequestOptions);
     }
   },
   newsletter: {
