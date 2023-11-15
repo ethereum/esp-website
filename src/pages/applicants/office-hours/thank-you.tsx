@@ -39,8 +39,8 @@ const OfficeHoursThankYou: NextPage = () => {
                 href='/applicants/office-hours'
                 _hover={{ textDecoration: 'none' }}
               >
-                Office Hours About page.
-              </Link>
+                Office Hours About page
+              </Link>.
             </PageText>
           </section>
         </Stack>
