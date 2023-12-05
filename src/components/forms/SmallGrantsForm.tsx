@@ -520,8 +520,8 @@ export const SmallGrantsForm: FC = () => {
 
                 <Box mb={2}>
                   <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                    Please choose a category that your project best fits in. Additional questions
-                    will appear based on your selection.
+                    Please choose a category that your project best fits in. <strong>Additional questions
+                    will appear based on your selection</strong>.
                   </PageText>
                 </Box>
 
