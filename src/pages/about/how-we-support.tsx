@@ -42,8 +42,12 @@ const HowWeSupport: NextPage = () => {
 
             <List>
               <ListItem>
-                <strong>Small grants</strong>, capped at $30,000, are aimed at projects that are
+                <strong>Small Grants</strong>, capped at $30,000, are aimed at projects that are
                 smaller in scope, more experimental, in early stages or have a shorter timeline.
+              </ListItem>
+              <ListItem>
+                {/* // TODO: update copy */}
+                <strong>Community Events</strong> TODO
               </ListItem>
               <ListItem>
                 <strong>Project Grants</strong> undergo a more intensive process of review and
