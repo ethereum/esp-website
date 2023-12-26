@@ -1282,8 +1282,9 @@ export const ProjectGrantsForm: FC = () => {
                 name='country'
                 control={control}
                 defaultValue={{ value: '', label: '' }}
-                render={({ field: { onChange } }) => (
-                  <FormControl id='country-control'>
+                rules={{ required: true, validate: selected => selected.value !== '' }}
+                render={({ field: { onChange }, fieldState: { error } }) => (
+                  <FormControl id='country-control' isRequired>
                     <FormLabel htmlFor='country'>
                       <PageText display='inline' fontSize='input'>
                         Country
@@ -1300,13 +1301,21 @@ export const ProjectGrantsForm: FC = () => {
                       selectedOptionColor='brand.option'
                       chakraStyles={chakraStyles}
                     />
+
+                    {error && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Country is required.
+                        </PageText>
+                      </Box>
+                    )}
                   </FormControl>
                 )}
               />
             </Flex>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Where is your team located?
+              Where are you located, or where is your team located?
             </PageText>
           </Flex>
 

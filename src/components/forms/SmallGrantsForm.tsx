@@ -406,8 +406,9 @@ export const SmallGrantsForm: FC = () => {
                 name='country'
                 control={control}
                 defaultValue={{ value: '', label: '' }}
-                render={({ field: { onChange } }) => (
-                  <FormControl id='country-control'>
+                rules={{ required: true, validate: selected => selected.value !== '' }}
+                render={({ field: { onChange }, fieldState: { error } }) => (
+                  <FormControl id='country-control' isRequired>
                     <FormLabel htmlFor='country'>
                       <PageText display='inline' fontSize='input'>
                         Country
@@ -424,13 +425,21 @@ export const SmallGrantsForm: FC = () => {
                       selectedOptionColor='brand.option'
                       chakraStyles={chakraStyles}
                     />
+
+                    {error && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Country is required.
+                        </PageText>
+                      </Box>
+                    )}
                   </FormControl>
                 )}
               />
             </Flex>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Where are you located? This is optional
+              Where are you located, or where is your team located?
             </PageText>
           </Flex>
 
@@ -520,8 +529,8 @@ export const SmallGrantsForm: FC = () => {
 
                 <Box mb={2}>
                   <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                    Please choose a category that your project best fits in. <strong>Additional questions
-                    will appear based on your selection</strong>.
+                    Please choose a category that your project best fits in.{' '}
+                    <strong>Additional questions will appear based on your selection</strong>.
                   </PageText>
                 </Box>
 
