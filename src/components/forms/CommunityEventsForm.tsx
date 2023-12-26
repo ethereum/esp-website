@@ -1186,6 +1186,7 @@ export const CommunityEventsForm: FC = () => {
           </FormControl>
 
           <Stack mb={10}>
+            {/* // TODO: do we need to keep this? */}
             <PageText fontSize='input' fontWeight={700} mb={-1}>
               NOTE:
             </PageText>

@@ -96,21 +96,6 @@ export interface SmallGrantsFormData extends CaptchaForm {
   repeatApplicant: string; // SF API: Repeat_Applicant__c
   progress: string; // SF API: Progress__c
   otherFunding: string; // SF API: Other_Funding__c
-  // Event specific
-  eventName: string; // SF API: Project_Name__c
-  eventDate: Date; // SF API: Sponsorship_Date__c
-  eventPreviousWork: string; // SF API: Previous_Work__c
-  sponsorshipLink: string; // SF API: Sponsorship_Link__c
-  sponsorshipDetails: string; // SF API: Sponsorship_Details__c
-  sponsorshipTopics: string; // SF API: Sponsorship_Request__c
-  eventType: EventType; // SF API: Type_of_Event__c
-  eventFormat: EventFormat; // SF API: In_Person__c
-  expectedAttendees: number; // SF API: Estimated_Number_of_Attendees__c
-  targetAudience: string; // SF API: Target_Audience__c
-  confirmedSpeakers: string; // SF API: Confirmed_Speakers__c
-  confirmedSponsors: string; // SF API: Confirmed_Sponsors__c
-  eventBudgetBreakdown: string; // SF API: Proposed_Timeline__c
-  eventRequestedAmount: string; // SF API: Sponsorship_Monetary_Request__c
 }
 
 export interface CommunityEventsFormData extends CaptchaForm {

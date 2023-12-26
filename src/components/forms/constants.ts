@@ -1,7 +1,6 @@
 // project categories
 export const PROJECT_CATEGORY_OPTIONS = [
   { value: 'Community and education', label: 'Community and education' },
-  { value: 'Community event', label: 'Community event' },
   { value: 'Consensus layer', label: 'Consensus layer' },
   {
     value: 'Cryptography and zero knowledge proofs',

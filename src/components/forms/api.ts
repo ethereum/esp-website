@@ -81,8 +81,6 @@ export const api = {
           website: getWebsite(data.website),
           projectCategory: data.projectCategory.value,
           repeatApplicant: data.repeatApplicant === 'Yes',
-          eventType: data.eventType.value,
-          eventFormat: data.eventFormat.value,
           howDidYouHearAboutESP: data.howDidYouHearAboutESP.value
         })
       };
