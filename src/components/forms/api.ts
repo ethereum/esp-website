@@ -1,4 +1,5 @@
 import {
+  CommunityEventsFormData,
   DevconGrantsFormData,
   EcodevGrantsFormData,
   GranteeFinanceFormData,
@@ -69,7 +70,7 @@ export const api = {
     }
   },
   smallGrants: {
-    submit: (data: SmallGrantsFormData, isAProject: boolean) => {
+    submit: (data: SmallGrantsFormData) => {
       const smallGrantsRequestOptions: RequestInit = {
         ...methodOptions,
         body: JSON.stringify({
@@ -86,10 +87,26 @@ export const api = {
         })
       };
 
-      return fetch(
-        isAProject ? API_SMALL_GRANTS_PROJECT : API_SMALL_GRANTS_EVENT,
-        smallGrantsRequestOptions
-      );
+      return fetch(API_SMALL_GRANTS_PROJECT, smallGrantsRequestOptions);
+    }
+  },
+  communityGrants: {
+    submit: (data: CommunityEventsFormData) => {
+      const communityGrantsRequestOptions: RequestInit = {
+        ...methodOptions,
+        body: JSON.stringify({
+          ...data,
+          // Company is a required field in SF, we're using the Name as default value if no company provided
+          company: data.company === '' ? `${data.firstName} ${data.lastName}` : data.company,
+          country: data.country.value,
+          website: getWebsite(data.website),
+          eventType: data.eventType.value,
+          eventFormat: data.eventFormat.value,
+          howDidYouHearAboutESP: data.howDidYouHearAboutESP.value
+        })
+      };
+
+      return fetch(API_SMALL_GRANTS_EVENT, communityGrantsRequestOptions);
     }
   },
   granteeFinance: {

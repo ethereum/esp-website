@@ -8,10 +8,12 @@ import {
   ProjectGrantsForm,
   SmallGrantsForm,
   DevconGrantsForm,
-  EcodevGrantsForm
+  EcodevGrantsForm,
+  CommunityEventsForm
 } from './';
 
 import {
+  COMMUNITY_EVENTS_APPLY_URL,
   DEVCON_GRANTS_APPLY_URL,
   ECODEV_GRANTS_APPLY_URL,
   GRANTEE_FINANCE_URL,
@@ -38,6 +40,11 @@ export const Forms: FC = () => {
       {router.pathname === SMALL_GRANTS_APPLY_URL && (
         <Box px={{ md: 24, lg: 32, xl: 72 }}>
           <SmallGrantsForm />
+        </Box>
+      )}
+      {router.pathname === COMMUNITY_EVENTS_APPLY_URL && (
+        <Box px={{ md: 24, lg: 32, xl: 72 }}>
+          <CommunityEventsForm />
         </Box>
       )}
       {router.pathname === GRANTEE_FINANCE_URL && (

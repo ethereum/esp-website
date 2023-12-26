@@ -63,6 +63,20 @@ export const SIDEBAR_SMALL_GRANTS_LINKS: SidebarLink[] = [
 ];
 
 export const COMMUNITY_EVENTS_URL = '/applicants/community-events';
+// TODO: update links
+export const SIDEBAR_COMMUNITY_EVENTS_LINKS: SidebarLink[] = [
+  { text: 'Summary', href: `${COMMUNITY_EVENTS_URL}/#description` },
+  { text: 'Process', href: `${COMMUNITY_EVENTS_URL}/#process` },
+  { text: 'Requirements', href: `${COMMUNITY_EVENTS_URL}/#requirements` },
+  { text: 'Eligibility', href: `${COMMUNITY_EVENTS_URL}/#eligibility` },
+  { text: 'What is NOT eligible', href: `${COMMUNITY_EVENTS_URL}/#what-is-not-eligible` },
+  {
+    text: 'Tips for submitting a great application',
+    href: `${COMMUNITY_EVENTS_URL}/#tips-application`
+  },
+  { text: 'FAQ', href: `${COMMUNITY_EVENTS_URL}/#faq` },
+  { text: 'Apply', href: `${COMMUNITY_EVENTS_URL}/#apply` }
+];
 
 export const ACADEMIC_GRANTS_2022_URL = '/academic-grants-2022';
 export const SIDEBAR_ACADEMIC_GRANTS_2022_LINKS: SidebarLink[] = [

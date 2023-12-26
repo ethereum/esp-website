@@ -16,11 +16,11 @@ import {
 } from '../../../components/UI';
 
 import {
+  COMMUNITY_EVENTS_APPLY_URL,
   ETHEREUM_COMMUNITY_URL,
   ETHEREUM_GRANTS_URL,
   ETHRESEARCH_URL,
-  SIDEBAR_SMALL_GRANTS_LINKS,
-  SMALL_GRANTS_APPLY_URL
+  SIDEBAR_COMMUNITY_EVENTS_LINKS
 } from '../../../constants';
 
 const CommunityEventsGrants: NextPage = () => {
@@ -45,7 +45,7 @@ const CommunityEventsGrants: NextPage = () => {
       <Box bg='white' position='relative' py={{ md: 12 }}>
         <Flex>
           <ApplicantsSidebar
-            sidebarLinks={SIDEBAR_SMALL_GRANTS_LINKS}
+            sidebarLinks={SIDEBAR_COMMUNITY_EVENTS_LINKS}
             sectionsInView={[inView, inView2, inView3, inView4, inView5, inView6, inView7, inView8]}
           />
 
@@ -364,7 +364,7 @@ const CommunityEventsGrants: NextPage = () => {
 
               <section id='apply' ref={ref8}>
                 <Stack mt={6}>
-                  <ReadyToApply link={`${SMALL_GRANTS_APPLY_URL}`} />
+                  <ReadyToApply link={`${COMMUNITY_EVENTS_APPLY_URL}`} />
                 </Stack>
               </section>
             </Stack>

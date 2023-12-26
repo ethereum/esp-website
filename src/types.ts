@@ -113,6 +113,39 @@ export interface SmallGrantsFormData extends CaptchaForm {
   eventRequestedAmount: string; // SF API: Sponsorship_Monetary_Request__c
 }
 
+export interface CommunityEventsFormData extends CaptchaForm {
+  // General
+  firstName: string; // SF API: FirstName
+  lastName: string; // SF API: LastName
+  email: string; // SF API: Email
+  individualOrTeam: IndividualOrTeam; // SF API: Individual_or_Team__c
+  company: string; // SF API: Company
+  city: string; // SF API: npsp__CompanyCity__c
+  country: Country; // SF API: npsp__CompanyCountry__c
+  website: string; // SF API: Website
+  twitter: string; // SF API: Twitter__c
+  projectCategory: ProjectCategory; // SF API: Category__c // TODO: do we need it?
+  individualOrTeamSummary: string; // SF API: Team_Profile__c
+  howDidYouHearAboutESP: ReferralSource; // SF API: Referral_Source__c
+  referrals: string; // SF API: Referrals__c
+  additionalInfo: string; // SF API: Additional_Information__c
+  // Event specific
+  eventName: string; // SF API: Project_Name__c
+  eventDate: Date; // SF API: Sponsorship_Date__c
+  eventPreviousWork: string; // SF API: Previous_Work__c
+  sponsorshipLink: string; // SF API: Sponsorship_Link__c
+  sponsorshipDetails: string; // SF API: Sponsorship_Details__c
+  sponsorshipTopics: string; // SF API: Sponsorship_Request__c
+  eventType: EventType; // SF API: Type_of_Event__c
+  eventFormat: EventFormat; // SF API: In_Person__c
+  expectedAttendees: number; // SF API: Estimated_Number_of_Attendees__c
+  targetAudience: string; // SF API: Target_Audience__c
+  confirmedSpeakers: string; // SF API: Confirmed_Speakers__c
+  confirmedSponsors: string; // SF API: Confirmed_Sponsors__c
+  eventBudgetBreakdown: string; // SF API: Proposed_Timeline__c
+  eventRequestedAmount: string; // SF API: Sponsorship_Monetary_Request__c
+}
+
 export interface GranteeFinanceFormData extends CaptchaForm {
   // these fields map to SF's Contract object fields
   paymentPreference: PaymentPreference;
