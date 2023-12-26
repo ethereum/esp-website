@@ -38,7 +38,8 @@ async function handler(req: SmallGrantsEventNextApiRequest, res: NextApiResponse
       confirmedSpeakers: Confirmed_Speakers__c,
       confirmedSponsors: Confirmed_Sponsors__c,
       eventBudgetBreakdown: Proposed_Timeline__c,
-      eventRequestedAmount: Sponsorship_Monetary_Request__c
+      eventRequestedAmount: Sponsorship_Monetary_Request__c,
+      eventLocation: Event_Location__c
     } = body;
     const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
       process.env;
@@ -82,6 +83,7 @@ async function handler(req: SmallGrantsEventNextApiRequest, res: NextApiResponse
           Type_of_Event__c: Type_of_Event__c.trim(),
           In_Person__c: In_Person__c.trim(),
           Estimated_Number_of_Attendees__c: Estimated_Number_of_Attendees__c.trim(),
+          Event_Location__c: Event_Location__c.trim(),
           Target_Audience__c: Target_Audience__c.trim(),
           Confirmed_Speakers__c: Confirmed_Speakers__c.trim(),
           Confirmed_Sponsors__c: Confirmed_Sponsors__c.trim(),

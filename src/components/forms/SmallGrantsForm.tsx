@@ -64,7 +64,8 @@ export const SmallGrantsForm: FC = () => {
     register,
     control,
     formState: { errors, isValid, isSubmitting },
-    reset
+    reset,
+    watch
   } = methods;
 
   const isAProject =
@@ -72,6 +73,11 @@ export const SmallGrantsForm: FC = () => {
     (projectCategory as ProjectCategory).value !== '';
 
   const isAnEvent = (projectCategory as ProjectCategory).value === COMMUNITY_EVENT;
+
+  // if the event format is in-person or hybrid, we need to show the event location field
+  const eventFormat = watch('eventFormat');
+  const isInPersonOrHybrid =
+    eventFormat?.value === 'In-person' || eventFormat?.value === 'Hybrid (both)';
 
   const onSubmit = async (data: SmallGrantsFormData) => {
     return api.smallGrants
@@ -1602,55 +1608,104 @@ export const SmallGrantsForm: FC = () => {
                 />
               </Flex>
 
-              <FormControl
-                id='expected-attendees-control'
-                isRequired={isAnEvent}
-                mb={8}
-                w={{ md: '50%' }}
-                pr={{ lg: 6 }}
-              >
-                <FormLabel htmlFor='expectedAttendees' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Expected number of attendees/registrants
+              <Flex direction={{ base: 'column', lg: 'row' }}>
+                <FormControl
+                  id='expected-attendees-control'
+                  isRequired={isAnEvent}
+                  mb={8}
+                  mr={{ md: 12 }}
+                >
+                  <FormLabel htmlFor='expectedAttendees' mb={1}>
+                    <PageText display='inline' fontSize='input'>
+                      Expected number of attendees/registrants
+                    </PageText>
+                  </FormLabel>
+
+                  <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                    Enter a whole number. Ex: 300.
                   </PageText>
-                </FormLabel>
 
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Enter a whole number. Ex: 300.
-                </PageText>
+                  <Input
+                    id='expectedAttendees'
+                    type='number'
+                    bg='white'
+                    borderRadius={0}
+                    borderColor='brand.border'
+                    h='56px'
+                    _placeholder={{ fontSize: 'input' }}
+                    color='brand.paragraph'
+                    fontSize='input'
+                    mt={3}
+                    {...register('expectedAttendees', {
+                      required: isAnEvent,
+                      maxLength: 18
+                    })}
+                  />
 
-                <Input
-                  id='expectedAttendees'
-                  type='number'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  mt={3}
-                  {...register('expectedAttendees', {
-                    required: isAnEvent,
-                    maxLength: 18
-                  })}
-                />
+                  {errors?.expectedAttendees?.type === 'required' && (
+                    <Box mt={1}>
+                      <PageText as='small' fontSize='helpText' color='red.500'>
+                        Expected number is required.
+                      </PageText>
+                    </Box>
+                  )}
+                  {errors?.expectedAttendees?.type === 'maxLength' && (
+                    <Box mt={1}>
+                      <PageText as='small' fontSize='helpText' color='red.500'>
+                        Expected number cannot exceed 18 characters.
+                      </PageText>
+                    </Box>
+                  )}
+                </FormControl>
 
-                {errors?.expectedAttendees?.type === 'required' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Expected number is required.
+                <FormControl
+                  id='event-location-control'
+                  isRequired={isAnEvent && isInPersonOrHybrid}
+                  visibility={isAnEvent && isInPersonOrHybrid ? 'visible' : 'hidden'}
+                >
+                  <FormLabel htmlFor='eventLocation' mb={1}>
+                    <PageText display='inline' fontSize='input'>
+                      Event Location
                     </PageText>
-                  </Box>
-                )}
-                {errors?.expectedAttendees?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Expected number cannot exceed 18 characters.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
+                  </FormLabel>
+
+                  <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                    Please list the City and Country of where your event will be located
+                  </PageText>
+
+                  <Input
+                    id='eventLocation'
+                    type='number'
+                    bg='white'
+                    borderRadius={0}
+                    borderColor='brand.border'
+                    h='56px'
+                    _placeholder={{ fontSize: 'input' }}
+                    color='brand.paragraph'
+                    fontSize='input'
+                    mt={3}
+                    {...register('eventLocation', {
+                      required: isAnEvent && isInPersonOrHybrid,
+                      maxLength: 255
+                    })}
+                  />
+
+                  {errors?.eventLocation?.type === 'required' && (
+                    <Box mt={1}>
+                      <PageText as='small' fontSize='helpText' color='red.500'>
+                        Event location is required.
+                      </PageText>
+                    </Box>
+                  )}
+                  {errors?.eventLocation?.type === 'maxLength' && (
+                    <Box mt={1}>
+                      <PageText as='small' fontSize='helpText' color='red.500'>
+                        Event location cannot exceed 255 characters.
+                      </PageText>
+                    </Box>
+                  )}
+                </FormControl>
+              </Flex>
 
               <FormControl id='target-audience-control' isRequired={isAnEvent} mb={8}>
                 <FormLabel htmlFor='targetAudience' mb={1}>
