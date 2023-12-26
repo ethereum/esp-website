@@ -20,6 +20,7 @@ import designersSVG from '../../../public/images/designers-vector.svg';
 import otherGrantsProgramsSVG from '../../../public/images/other-grant-programs-vector.svg';
 
 import {
+  COMMUNITY_EVENTS_URL,
   OFFICE_HOURS_URL,
   PROJECT_GRANTS_URL,
   SIDEBAR_APPLICANTS_LINKS,
@@ -215,6 +216,11 @@ const Applicants: NextPage = () => {
                     <ApplicationTypeCard title='Small Grants' link={SMALL_GRANTS_URL}>
                       Small grants, capped at $30,000, have a streamlined application and evaluation
                       process to deliver a decision around two weeks after submission.
+                    </ApplicationTypeCard>
+
+                    <ApplicationTypeCard title='Community Events' link={COMMUNITY_EVENTS_URL}>
+                      {/* // TODO: update copy */}
+                      TODO
                     </ApplicationTypeCard>
 
                     <ApplicationTypeCard title='Project Grants' link={PROJECT_GRANTS_URL}>
