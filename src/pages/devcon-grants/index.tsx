@@ -1,4 +1,4 @@
-import { Accordion, Box, Flex, Link, ListItem, Stack } from '@chakra-ui/react';
+import { Accordion, Box, Flex, Link, ListItem, Stack, UnorderedList } from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import type { NextPage } from 'next';
 
@@ -159,30 +159,30 @@ const DevconGrants: NextPage = () => {
                       </Link>{' '}
                       with your event idea and detailed budget request
                     </ListItem>
+
                     <ListItem>
                       Wait to hear back from the Devcon team about event and budget approval
                     </ListItem>
+
                     <ListItem>
-                      If approved, host your event, including Road to Devcon branding, and document
-                      it:
+                      If approved, we will notify your team and send an invoice request for the
+                      approved budget
                     </ListItem>
 
-                    <OrderedList>
+                    <ListItem>Host your event and document it!</ListItem>
+
+                    <UnorderedList>
                       <ListItem>Take photos of the event showing the number present</ListItem>
                       <ListItem>
                         Get a copy of presentation materials and slides to show the themes discussed
                       </ListItem>
-                    </OrderedList>
+                    </UnorderedList>
 
                     <ListItem>
                       Follow up with the Devcon team with a review of the event and the
-                      documentation material from #3
-                    </ListItem>
-                    <ListItem>
-                      The Devcon team will reimburse based on the pre-approved budget
+                      documentation material from #4
                     </ListItem>
                   </OrderedList>
-
                   <PageText mt={6}>
                     Once you&apos;ve submitted your application, we&apos;ll follow up by email.
                   </PageText>
