@@ -10,6 +10,7 @@ import {
   APPLICANTS_TABS,
   APPLICANTS_TABS_MAP,
   APPLICANTS_URL,
+  COMMUNITY_EVENTS_URL,
   GRANTEE_FINANCE_URL,
   OFFICE_HOURS_URL,
   PROJECT_GRANTS_URL,
@@ -58,6 +59,16 @@ export const ApplicantsLayout: FC = ({ children }) => {
         router.push(
           {
             pathname: PROJECT_GRANTS_URL
+          },
+          undefined,
+          { scroll: false }
+        );
+        break;
+
+      case 4:
+        router.push(
+          {
+            pathname: COMMUNITY_EVENTS_URL
           },
           undefined,
           { scroll: false }

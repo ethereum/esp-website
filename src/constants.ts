@@ -62,6 +62,8 @@ export const SIDEBAR_SMALL_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Apply', href: `${SMALL_GRANTS_URL}/#apply` }
 ];
 
+export const COMMUNITY_EVENTS_URL = '/applicants/community-events';
+
 export const ACADEMIC_GRANTS_2022_URL = '/academic-grants-2022';
 export const SIDEBAR_ACADEMIC_GRANTS_2022_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${ACADEMIC_GRANTS_2022_URL}/#description` },
@@ -192,6 +194,7 @@ export const SIDEBAR_DATA_COLLECTION_GRANTS_LINKS: SidebarLink[] = [
 export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
 export const OFFICE_HOURS_APPLY_URL = '/applicants/office-hours/apply';
 export const SMALL_GRANTS_APPLY_URL = '/applicants/small-grants/apply';
+export const COMMUNITY_EVENTS_APPLY_URL = '/applicants/community-events/apply';
 export const ACADEMIC_GRANTS_APPLY_URL = '/academic-grants/apply';
 export const DEVCON_GRANTS_APPLY_URL = '/devcon-grants/apply';
 export const ECODEV_GRANTS_APPLY_URL = '/ecodev-grants/apply';
@@ -205,6 +208,7 @@ export const GRANTEE_FINANCE_URL = '/applicants/grantee-finance';
 export const PROJECT_GRANTS_THANK_YOU_PAGE_URL = '/applicants/project-grants/thank-you';
 export const OFFICE_HOURS_THANK_YOU_PAGE_URL = '/applicants/office-hours/thank-you';
 export const SMALL_GRANTS_THANK_YOU_PAGE_URL = '/applicants/small-grants/thank-you';
+export const COMMUNITY_EVENTS_THANK_YOU_PAGE_URL = '/applicants/community-events/thank-you';
 export const GRANTEE_FINANCE_THANK_YOU_PAGE_URL = '/applicants/grantee-finance/thank-you';
 export const ACADEMIC_GRANTS_THANK_YOU_PAGE_URL = '/academic-grants/thank-you';
 export const DEVCON_GRANTS_THANK_YOU_PAGE_URL = '/devcon-grants/thank-you';
@@ -243,18 +247,27 @@ export const ACCOUNT_ABSTRACTION_GRANTS_EMAIL_ADDRESS = 'account-abstraction@eth
 export const GRANTS_EMAIL_ADDRESS = 'grant-rounds@ethereum.org';
 
 // applicants tabs
-export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Small Grants', 'Project Grants'];
+export const APPLICANTS_TABS = [
+  'Overview',
+  'Office Hours',
+  'Small Grants',
+  'Project Grants',
+  'Community Events'
+];
 export const APPLICANTS_TABS_MAP: TabsMap = {
   [APPLICANTS_URL]: 0,
   [OFFICE_HOURS_URL]: 1,
   [SMALL_GRANTS_URL]: 2,
   [PROJECT_GRANTS_URL]: 3,
+  [COMMUNITY_EVENTS_URL]: 4,
   [OFFICE_HOURS_APPLY_URL]: 1,
   [OFFICE_HOURS_THANK_YOU_PAGE_URL]: 1,
   [SMALL_GRANTS_APPLY_URL]: 2,
   [SMALL_GRANTS_THANK_YOU_PAGE_URL]: 2,
   [PROJECT_GRANTS_APPLY_URL]: 3,
-  [PROJECT_GRANTS_THANK_YOU_PAGE_URL]: 3
+  [PROJECT_GRANTS_THANK_YOU_PAGE_URL]: 3,
+  [COMMUNITY_EVENTS_APPLY_URL]: 4,
+  [COMMUNITY_EVENTS_THANK_YOU_PAGE_URL]: 4
 };
 
 // about tabs
