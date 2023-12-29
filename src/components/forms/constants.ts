@@ -1548,5 +1548,6 @@ export const API_ACADEMIC_GRANTS = '/api/academic-grants';
 export const API_DEVCON_GRANTS = '/api/devcon-grants';
 export const API_GRANTEE_FINANCE = '/api/grantee-finance';
 export const API_ECODEV_GRANTS = '/api/ecodev-grants';
+export const API_PSE_GRANTS = '/api/pse-grants';
 export const API_DATA_COLLECTION_GRANTS = '/api/data-collection-grants';
 export const API_NEWSLETTER_SIGNUP_URL = '/api/newsletter-signup';
