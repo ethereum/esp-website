@@ -17,10 +17,10 @@ import {
   GRANTEE_FINANCE_URL,
   OFFICE_HOURS_APPLY_URL,
   PROJECT_GRANTS_APPLY_URL,
-  PSE_GRANTS_APPLY_URL,
+  PSE_SPONSORSHIPS_APPLY_URL,
   SMALL_GRANTS_APPLY_URL
 } from '../../constants';
-import { PSEGrantsForm } from './PSEGrantsForm';
+import { PSESponsorshipsForm } from './PSESponsorshipsForm';
 
 export const Forms: FC = () => {
   const router = useRouter();
@@ -57,9 +57,9 @@ export const Forms: FC = () => {
           <EcodevGrantsForm />
         </Box>
       )}
-      {router.pathname === PSE_GRANTS_APPLY_URL && (
+      {router.pathname === PSE_SPONSORSHIPS_APPLY_URL && (
         <Box px={{ md: 24, lg: 32, xl: 72 }}>
-          <PSEGrantsForm />
+          <PSESponsorshipsForm />
         </Box>
       )}
     </Stack>
