@@ -44,7 +44,8 @@ export const GranteeFinanceForm: FC = () => {
     control,
     formState: { errors, isValid, isSubmitting },
     reset,
-    getValues
+    getValues,
+    watch
   } = methods;
 
   const hasPaymentPreferenceSet = paymentPreference !== '';
@@ -52,6 +53,15 @@ export const GranteeFinanceForm: FC = () => {
   const receivesFiat = paymentPreference === 'Fiat';
   const preferETH = receivesCrypto && tokenPreference === 'ETH';
   const preferDAI = receivesCrypto && tokenPreference === 'DAI';
+
+  // for conditional fields, get the current values
+  const bankAddress = watch('bankAddress');
+  const fiatCurrencyCode = watch('fiatCurrencyCode');
+
+  // if the bank address contains the string 'India' or the fiat currency code
+  // is 'INR', alert for IFSC code within Notes field
+  const isIndianBank =
+    bankAddress?.toLowerCase().includes('india') || fiatCurrencyCode?.toLowerCase() === 'inr';
 
   const onSubmit = async (data: GranteeFinanceFormData) => {
     return api.granteeFinance
@@ -728,6 +738,14 @@ export const GranteeFinanceForm: FC = () => {
                     maxLength: 32768
                   })}
                 />
+
+                {isIndianBank && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      If you are using an Indian bank, please include your IFSC code
+                    </PageText>
+                  </Box>
+                )}
 
                 {errors?.notes?.type === 'maxLength' && (
                   <Box mt={1}>
