@@ -406,6 +406,12 @@ export const SmallGrantsForm: FC = () => {
                     </PageText>
                   </Box>
                 )}
+
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                    Where are you located, or where is your team located?
+                  </PageText>
+                </Box>
               </FormControl>
 
               <Controller
@@ -413,7 +419,7 @@ export const SmallGrantsForm: FC = () => {
                 control={control}
                 defaultValue={{ value: '', label: '' }}
                 rules={{ required: true, validate: selected => selected.value !== '' }}
-                render={({ field: { onChange }, fieldState: { error } }) => (
+                render={({ field: { onChange, onBlur }, fieldState: { error } }) => (
                   <FormControl id='country-control' isRequired>
                     <FormLabel htmlFor='country'>
                       <PageText display='inline' fontSize='input'>
@@ -424,6 +430,7 @@ export const SmallGrantsForm: FC = () => {
                     <Select
                       id='country'
                       options={COUNTRY_OPTIONS}
+                      onBlur={onBlur}
                       onChange={onChange}
                       components={{ DropdownIndicator }}
                       placeholder='Select'
@@ -443,10 +450,6 @@ export const SmallGrantsForm: FC = () => {
                 )}
               />
             </Flex>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Where are you located, or where is your team located?
-            </PageText>
           </Flex>
 
           <FormControl id='website-control' mb={8}>
@@ -525,7 +528,7 @@ export const SmallGrantsForm: FC = () => {
             control={control}
             rules={{ required: true, validate: selected => selected.value !== '' }}
             defaultValue={{ value: '', label: '' }}
-            render={({ field: { onChange }, fieldState: { error } }) => (
+            render={({ field: { onChange, onBlur }, fieldState: { error } }) => (
               <FormControl id='project-category-control' isRequired mb={8}>
                 <FormLabel htmlFor='projectCategory'>
                   <PageText display='inline' fontSize='input'>
@@ -543,6 +546,7 @@ export const SmallGrantsForm: FC = () => {
                 <Select
                   id='projectCategory'
                   options={PROJECT_CATEGORY_OPTIONS}
+                  onBlur={onBlur}
                   onChange={value => {
                     onChange(value);
                     setProjectCategory(value);
@@ -1533,7 +1537,7 @@ export const SmallGrantsForm: FC = () => {
                       (!isAnEvent && selected.value === '') || (isAnEvent && selected.value !== '')
                   }}
                   defaultValue={{ value: '', label: '' }}
-                  render={({ field: { onChange }, fieldState: { error } }) => (
+                  render={({ field: { onChange, onBlur }, fieldState: { error } }) => (
                     <FormControl
                       id='event-type-control'
                       isRequired={isAnEvent}
@@ -1549,6 +1553,7 @@ export const SmallGrantsForm: FC = () => {
                       <Select
                         id='eventType'
                         options={EVENT_TYPE_OPTIONS}
+                        onBlur={onBlur}
                         onChange={onChange}
                         components={{ DropdownIndicator }}
                         placeholder='Select'
@@ -1577,7 +1582,7 @@ export const SmallGrantsForm: FC = () => {
                       (!isAnEvent && selected.value === '') || (isAnEvent && selected.value !== '')
                   }}
                   defaultValue={{ value: '', label: '' }}
-                  render={({ field: { onChange }, fieldState: { error } }) => (
+                  render={({ field: { onChange, onBlur }, fieldState: { error } }) => (
                     <FormControl id='event-format-control' isRequired={isAnEvent} mb={8}>
                       <FormLabel htmlFor='eventFormat'>
                         <PageText display='inline' fontSize='input'>
@@ -1588,6 +1593,7 @@ export const SmallGrantsForm: FC = () => {
                       <Select
                         id='eventFormat'
                         options={EVENT_FORMAT_OPTIONS}
+                        onBlur={onBlur}
                         onChange={onChange}
                         components={{ DropdownIndicator }}
                         placeholder='Select'
@@ -1932,7 +1938,7 @@ export const SmallGrantsForm: FC = () => {
             control={control}
             defaultValue={{ value: '', label: '' }}
             rules={{ required: true, validate: selected => selected.value !== '' }}
-            render={({ field: { onChange }, fieldState: { error } }) => (
+            render={({ field: { onChange, onBlur }, fieldState: { error } }) => (
               <FormControl id='how-did-you-hear-about-ESP-control' isRequired mb={8}>
                 <FormLabel htmlFor='howDidYouHearAboutESP'>
                   <PageText display='inline' fontSize='input'>
@@ -1943,6 +1949,7 @@ export const SmallGrantsForm: FC = () => {
                 <Select
                   id='howDidYouHearAboutESP'
                   options={HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS}
+                  onBlur={onBlur}
                   onChange={onChange}
                   components={{ DropdownIndicator }}
                   placeholder='Select'

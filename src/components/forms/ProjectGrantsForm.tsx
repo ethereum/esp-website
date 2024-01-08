@@ -528,7 +528,7 @@ export const ProjectGrantsForm: FC = () => {
             control={control}
             rules={{ required: true, validate: selected => selected.value !== '' }}
             defaultValue={{ value: '', label: '' }}
-            render={({ field: { onChange }, fieldState: { error } }) => (
+            render={({ field: { onChange, onBlur }, fieldState: { error } }) => (
               <FormControl id='project-category-control' isRequired mb={8}>
                 <FormLabel htmlFor='projectCategory' mb={1}>
                   <PageText display='inline' fontSize='input'>
@@ -544,6 +544,7 @@ export const ProjectGrantsForm: FC = () => {
                   <Select
                     id='projectCategory'
                     options={PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS}
+                    onBlur={onBlur}
                     onChange={onChange}
                     components={{ DropdownIndicator }}
                     placeholder='Select'
@@ -1276,6 +1277,12 @@ export const ProjectGrantsForm: FC = () => {
                     </PageText>
                   </Box>
                 )}
+
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                    Where are you located, or where is your team located?
+                  </PageText>
+                </Box>
               </FormControl>
 
               <Controller
@@ -1283,7 +1290,7 @@ export const ProjectGrantsForm: FC = () => {
                 control={control}
                 defaultValue={{ value: '', label: '' }}
                 rules={{ required: true, validate: selected => selected.value !== '' }}
-                render={({ field: { onChange }, fieldState: { error } }) => (
+                render={({ field: { onChange, onBlur }, fieldState: { error } }) => (
                   <FormControl id='country-control' isRequired>
                     <FormLabel htmlFor='country'>
                       <PageText display='inline' fontSize='input'>
@@ -1294,6 +1301,7 @@ export const ProjectGrantsForm: FC = () => {
                     <Select
                       id='country'
                       options={COUNTRY_OPTIONS}
+                      onBlur={onBlur}
                       onChange={onChange}
                       components={{ DropdownIndicator }}
                       placeholder='Select'
@@ -1313,10 +1321,6 @@ export const ProjectGrantsForm: FC = () => {
                 )}
               />
             </Flex>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Where are you located, or where is your team located?
-            </PageText>
           </Flex>
 
           <Controller
@@ -1324,7 +1328,7 @@ export const ProjectGrantsForm: FC = () => {
             control={control}
             rules={{ required: true, validate: selected => selected.value !== '' }}
             defaultValue={{ value: '', label: '' }}
-            render={({ field: { onChange }, fieldState: { error } }) => (
+            render={({ field: { onChange, onBlur }, fieldState: { error } }) => (
               <FormControl id='timezone-control' isRequired mb={8}>
                 <FormLabel htmlFor='timezone' mb={1}>
                   <PageText display='inline' fontSize='input'>
@@ -1340,6 +1344,7 @@ export const ProjectGrantsForm: FC = () => {
                   <Select
                     id='timezone'
                     options={TIMEZONE_OPTIONS}
+                    onBlur={onBlur}
                     onChange={value => {
                       onChange(value);
                       trigger('timezone');
