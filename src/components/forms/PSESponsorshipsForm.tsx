@@ -272,14 +272,18 @@ export const PSESponsorshipsForm: FC = () => {
 
           <Box display={individualOrTeam === TEAM ? 'block' : 'none'}>
             <Fade in={individualOrTeam === TEAM} delay={0.25}>
-              <FormControl id='company-control' isRequired={individualOrTeam === TEAM} mb={8}>
-                <FormLabel htmlFor='company'>
+              <FormControl
+                id='individual-or-team-control'
+                isRequired={individualOrTeam === TEAM}
+                mb={8}
+              >
+                <FormLabel htmlFor='individualOrTeam'>
                   <PageText display='inline' fontSize='input'>
                     Name of organization or entity
                   </PageText>
                 </FormLabel>
                 <Input
-                  id='company'
+                  id='individualOrTeam'
                   type='text'
                   placeholder="Enter the name of organization or entity you're submitting for"
                   bg='white'
@@ -289,28 +293,28 @@ export const PSESponsorshipsForm: FC = () => {
                   _placeholder={{ fontSize: 'input' }}
                   color='brand.paragraph'
                   fontSize='input'
-                  {...register('company', {
+                  {...register('individualOrTeamSummary', {
                     required: individualOrTeam === TEAM,
                     maxLength: 255,
                     validate: value => !containURL(value)
                   })}
                 />
 
-                {errors?.company?.type === 'required' && (
+                {errors?.individualOrTeam?.type === 'required' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
                       Organization name is required.
                     </PageText>
                   </Box>
                 )}
-                {errors?.company?.type === 'maxLength' && (
+                {errors?.individualOrTeam?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
                       Organization name cannot exceed 255 characters.
                     </PageText>
                   </Box>
                 )}
-                {errors?.company?.type === 'validate' && (
+                {errors?.individualOrTeam?.type === 'validate' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
                       Organization name cannot contain a URL.
@@ -321,7 +325,7 @@ export const PSESponsorshipsForm: FC = () => {
             </Fade>
           </Box>
 
-          <FormControl id='individual-or-team-summary-control' isRequired mb={8}>
+          <FormControl id='individual-or-team-summary-control' mb={8}>
             <FormLabel htmlFor='individualOrTeamSummary' mb={1}>
               <PageText display='inline' fontSize='input'>
                 Individual or team summary
@@ -343,20 +347,12 @@ export const PSESponsorshipsForm: FC = () => {
               fontSize='input'
               h='150px'
               mt={3}
-              {...register('individualOrTeam', {
-                required: true,
+              {...register('individualOrTeamSummary', {
                 maxLength: 32768
               })}
             />
 
-            {errors?.individualOrTeam?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Team summary is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.individualOrTeam?.type === 'maxLength' && (
+            {errors?.individualOrTeamSummary?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
                   Team summary cannot exceed 32768 characters.
@@ -365,7 +361,59 @@ export const PSESponsorshipsForm: FC = () => {
             )}
           </FormControl>
 
-          {/* <Flex direction='column' mb={8}>
+          <FormControl id='company-control' isRequired mb={8}>
+            <FormLabel htmlFor='company' mb={1}>
+              <PageText display='inline' fontSize='input'>
+                Name of organization or entity
+              </PageText>
+            </FormLabel>
+
+            <PageText as='small' fontSize='helpText' color='brand.helpText'>
+              Name of your team or entity you&apos;re submitting for. If your organization
+              doesn&apos;t have a formal name, just try to describe it in a few words!
+            </PageText>
+
+            <Input
+              id='company'
+              type='text'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              h='56px'
+              color='brand.paragraph'
+              fontSize='input'
+              mt={3}
+              {...register('company', {
+                required: true,
+                maxLength: 255,
+                validate: value => !containURL(value)
+              })}
+            />
+
+            {errors?.company?.type === 'required' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Organization name is required.
+                </PageText>
+              </Box>
+            )}
+            {errors?.company?.type === 'maxLength' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Organization name cannot exceed 255 characters.
+                </PageText>
+              </Box>
+            )}
+            {errors?.company?.type === 'validate' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Organization name cannot contain a URL.
+                </PageText>
+              </Box>
+            )}
+          </FormControl>
+
+          <Flex direction='column' mb={8}>
             <Flex direction={{ base: 'column', md: 'row' }} mb={3}>
               <FormControl id='city-control' mr={{ md: 12 }} mb={{ base: 8, md: 0 }}>
                 <FormLabel htmlFor='city'>
@@ -401,7 +449,7 @@ export const PSESponsorshipsForm: FC = () => {
                 control={control}
                 defaultValue={{ value: '', label: '' }}
                 render={({ field: { onChange } }) => (
-                  <FormControl id='country-control'>
+                  <FormControl id='country-control' isRequired>
                     <FormLabel htmlFor='country'>
                       <PageText display='inline' fontSize='input'>
                         Country
@@ -424,11 +472,11 @@ export const PSESponsorshipsForm: FC = () => {
             </Flex>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Where are you located? This is optional
+              Where are you and your team located? This is optional
             </PageText>
-          </Flex> */}
+          </Flex>
 
-          {/* <FormControl id='website-control' mb={8}>
+          <FormControl id='website-control' mb={8}>
             <FormLabel htmlFor='website'>
               <PageText fontSize='input'>Website</PageText>
             </FormLabel>
@@ -460,9 +508,9 @@ export const PSESponsorshipsForm: FC = () => {
                 </PageText>
               </Box>
             )}
-          </FormControl> */}
+          </FormControl>
 
-          {/* <FormControl id='twitter-control' mb={8}>
+          <FormControl id='twitter-control' mb={8}>
             <FormLabel htmlFor='twitter'>
               <PageText fontSize='input'>Twitter</PageText>
             </FormLabel>
@@ -496,7 +544,7 @@ export const PSESponsorshipsForm: FC = () => {
                 </PageText>
               </Box>
             )}
-          </FormControl> */}
+          </FormControl>
 
           {/* Below controller determines `isAProject` and `isAnEvent` values */}
           {/* <Controller
