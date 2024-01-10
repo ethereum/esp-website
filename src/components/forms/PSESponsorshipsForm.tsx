@@ -27,12 +27,9 @@ import { chakraStyles } from './selectStyles';
 
 import {
   COUNTRY_OPTIONS,
-  HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
   INDIVIDUAL,
-  COMMUNITY_EVENT,
   EVENT_FORMAT_OPTIONS,
   EVENT_TYPE_OPTIONS,
-  PROJECT_CATEGORY_OPTIONS,
   TEAM
 } from './constants';
 import { PSE_SPONSORSHIPS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
@@ -45,10 +42,6 @@ export const PSESponsorshipsForm: FC = () => {
   const toast = useToast();
   const [individualOrTeam, setIndividualOrTeam] = useState<IndividualOrTeam>(INDIVIDUAL);
   // `unknown` comes from react-select required typings (https://stackoverflow.com/a/54370057)
-  const [projectCategory, setProjectCategory] = useState<ProjectCategory | unknown>({
-    value: '',
-    label: ''
-  });
 
   const methods = useForm<PSESponsorshipsFormData>({
     mode: 'onBlur'
