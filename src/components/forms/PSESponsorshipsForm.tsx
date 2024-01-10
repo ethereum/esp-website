@@ -966,275 +966,275 @@ export const PSESponsorshipsForm: FC = () => {
             )}
           </FormControl>
 
-          {/* <FormControl
-                id='expected-attendees-control'
-                isRequired
-                mb={8}
-                w={{ md: '50%' }}
-                pr={{ lg: 6 }}
-              >
-                <FormLabel htmlFor='expectedAttendees' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Expected number of attendees/registrants
-                  </PageText>
-                </FormLabel>
+          <FormControl
+            id='expected-attendees-control'
+            isRequired
+            mb={8}
+            w={{ md: '50%' }}
+            pr={{ lg: 6 }}
+          >
+            <FormLabel htmlFor='expectedAttendees' mb={1}>
+              <PageText display='inline' fontSize='input'>
+                Expected number of attendees/registrants
+              </PageText>
+            </FormLabel>
 
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Enter a whole number. Ex: 300.
+            <PageText as='small' fontSize='helpText' color='brand.helpText'>
+              Enter a whole number. Ex: 300.
+            </PageText>
+
+            <Input
+              id='expectedAttendees'
+              type='number'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              h='56px'
+              _placeholder={{ fontSize: 'input' }}
+              color='brand.paragraph'
+              fontSize='input'
+              mt={3}
+              {...register('expectedAttendees', {
+                required: true,
+                maxLength: 18
+              })}
+            />
+
+            {errors?.expectedAttendees?.type === 'required' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Expected number is required.
                 </PageText>
-
-                <Input
-                  id='expectedAttendees'
-                  type='number'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  mt={3}
-                  {...register('expectedAttendees', {
-                    required: true,
-                    maxLength: 18
-                  })}
-                />
-
-                {errors?.expectedAttendees?.type === 'required' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Expected number is required.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.expectedAttendees?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Expected number cannot exceed 18 characters.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl> */}
-
-          {/* <FormControl id='target-audience-control' isRequired mb={8}>
-                <FormLabel htmlFor='targetAudience' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Target audience
-                  </PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Ex: developers, entrepreneurs, general community.
+              </Box>
+            )}
+            {errors?.expectedAttendees?.type === 'maxLength' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Expected number cannot exceed 18 characters.
                 </PageText>
+              </Box>
+            )}
+          </FormControl>
 
-                <Textarea
-                  id='targetAudience'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  h='150px'
-                  mt={3}
-                  {...register('targetAudience', {
-                    required: true,
-                    maxLength: 3000
-                  })}
-                />
+          <FormControl id='target-audience-control' isRequired mb={8}>
+            <FormLabel htmlFor='targetAudience' mb={1}>
+              <PageText display='inline' fontSize='input'>
+                Target audience
+              </PageText>
+            </FormLabel>
 
-                {errors?.targetAudience?.type === 'required' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Target audience is required.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.targetAudience?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Target audience cannot exceed 3000 characters.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl> */}
+            <PageText as='small' fontSize='helpText' color='brand.helpText'>
+              Ex: developers, entrepreneurs, general community.
+            </PageText>
 
-          {/* <FormControl id='confirmed-speakers-control' isRequired mb={8}>
-                <FormLabel htmlFor='confirmedSpeakers' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    List any confirmed speakers
-                  </PageText>
-                </FormLabel>
+            <Textarea
+              id='targetAudience'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              _placeholder={{ fontSize: 'input' }}
+              color='brand.paragraph'
+              fontSize='input'
+              h='150px'
+              mt={3}
+              {...register('targetAudience', {
+                required: true,
+                maxLength: 3000
+              })}
+            />
 
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Please list their full names and topic discussion. If you do not have any
-                  confirmed speakers, please explain why.
+            {errors?.targetAudience?.type === 'required' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Target audience is required.
                 </PageText>
-
-                <Textarea
-                  id='confirmedSpeakers'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  h='150px'
-                  mt={3}
-                  {...register('confirmedSpeakers', {
-                    required: true,
-                    maxLength: 32768
-                  })}
-                />
-
-                {errors?.confirmedSpeakers?.type === 'required' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Confirmed speakers list is required.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.confirmedSpeakers?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Confirmed speakers list cannot exceed 32768 characters.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl> */}
-
-          {/* <FormControl id='confirmed-sponsors-control' isRequired mb={8}>
-                <FormLabel htmlFor='confirmedSponsors'>
-                  <PageText display='inline' fontSize='input'>
-                    List any confirmed sponsors
-                  </PageText>
-                </FormLabel>
-                <Textarea
-                  id='confirmedSponsors'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  h='150px'
-                  {...register('confirmedSponsors', {
-                    required: true,
-                    maxLength: 32768
-                  })}
-                />
-
-                {errors?.confirmedSponsors?.type === 'required' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Confirmed sponsors list is required.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.confirmedSponsors?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Confirmed sponsors list cannot exceed 32768 characters.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl> */}
-
-          {/* <FormControl id='event-budget-breakdown-control' isRequired mb={8}>
-                <FormLabel htmlFor='eventBudgetBreakdown' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Budget breakdown
-                  </PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Please itemize your anticipated costs - best estimates are ok if things are not
-                  yet confirmed or dependent on final attendee count.
+              </Box>
+            )}
+            {errors?.targetAudience?.type === 'maxLength' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Target audience cannot exceed 3000 characters.
                 </PageText>
+              </Box>
+            )}
+          </FormControl>
 
-                <Textarea
-                  id='eventBudgetBreakdown'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  h='150px'
-                  mt={3}
-                  {...register('eventBudgetBreakdown', {
-                    required: true,
-                    maxLength: 32768
-                  })}
-                />
+          <FormControl id='confirmed-speakers-control' isRequired mb={8}>
+            <FormLabel htmlFor='confirmedSpeakers' mb={1}>
+              <PageText display='inline' fontSize='input'>
+                List any confirmed speakers
+              </PageText>
+            </FormLabel>
 
-                {errors?.eventBudgetBreakdown?.type === 'required' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Budget breakdown is required.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.eventBudgetBreakdown?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Budget breakdown cannot exceed 32768 characters.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl> */}
+            <PageText as='small' fontSize='helpText' color='brand.helpText'>
+              Please list their full names and topic discussion. If you do not have any confirmed
+              speakers, please explain why.
+            </PageText>
 
-          {/* <FormControl
-                id='event-requested-amount-control'
-                isRequired
-                mb={8}
-                w={{ md: '50%' }}
-                pr={{ lg: 6 }}
-              >
-                <FormLabel htmlFor='eventRequestedAmount' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Requested sponsorship amount
-                  </PageText>
-                </FormLabel>
+            <Textarea
+              id='confirmedSpeakers'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              _placeholder={{ fontSize: 'input' }}
+              color='brand.paragraph'
+              fontSize='input'
+              h='150px'
+              mt={3}
+              {...register('confirmedSpeakers', {
+                required: true,
+                maxLength: 32768
+              })}
+            />
 
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Ex: USD 500.
+            {errors?.confirmedSpeakers?.type === 'required' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Confirmed speakers list is required.
                 </PageText>
+              </Box>
+            )}
+            {errors?.confirmedSpeakers?.type === 'maxLength' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Confirmed speakers list cannot exceed 32768 characters.
+                </PageText>
+              </Box>
+            )}
+          </FormControl>
 
-                <Input
-                  id='eventRequestedAmount'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  mt={3}
-                  {...register('eventRequestedAmount', {
-                    required: true,
-                    maxLength: 255
-                  })}
-                />
+          <FormControl id='confirmed-sponsors-control' isRequired mb={8}>
+            <FormLabel htmlFor='confirmedSponsors'>
+              <PageText display='inline' fontSize='input'>
+                List any confirmed sponsors
+              </PageText>
+            </FormLabel>
+            <Textarea
+              id='confirmedSponsors'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              _placeholder={{ fontSize: 'input' }}
+              color='brand.paragraph'
+              fontSize='input'
+              h='150px'
+              {...register('confirmedSponsors', {
+                required: true,
+                maxLength: 32768
+              })}
+            />
 
-                {errors?.eventRequestedAmount?.type === 'required' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Requested amount is required.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.eventRequestedAmount?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Requested amount cannot exceed 255 characters.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl> */}
+            {errors?.confirmedSponsors?.type === 'required' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Confirmed sponsors list is required.
+                </PageText>
+              </Box>
+            )}
+            {errors?.confirmedSponsors?.type === 'maxLength' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Confirmed sponsors list cannot exceed 32768 characters.
+                </PageText>
+              </Box>
+            )}
+          </FormControl>
 
-          {/* <FormControl id='additional-info-control' mb={8}>
+          <FormControl id='event-budget-breakdown-control' isRequired mb={8}>
+            <FormLabel htmlFor='eventBudgetBreakdown' mb={1}>
+              <PageText display='inline' fontSize='input'>
+                Budget breakdown
+              </PageText>
+            </FormLabel>
+
+            <PageText as='small' fontSize='helpText' color='brand.helpText'>
+              Please itemize your anticipated costs - best estimates are ok if things are not yet
+              confirmed or dependent on final attendee count.
+            </PageText>
+
+            <Textarea
+              id='eventBudgetBreakdown'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              _placeholder={{ fontSize: 'input' }}
+              color='brand.paragraph'
+              fontSize='input'
+              h='150px'
+              mt={3}
+              {...register('eventBudgetBreakdown', {
+                required: true,
+                maxLength: 32768
+              })}
+            />
+
+            {errors?.eventBudgetBreakdown?.type === 'required' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Budget breakdown is required.
+                </PageText>
+              </Box>
+            )}
+            {errors?.eventBudgetBreakdown?.type === 'maxLength' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Budget breakdown cannot exceed 32768 characters.
+                </PageText>
+              </Box>
+            )}
+          </FormControl>
+
+          <FormControl
+            id='event-requested-amount-control'
+            isRequired
+            mb={8}
+            w={{ md: '50%' }}
+            pr={{ lg: 6 }}
+          >
+            <FormLabel htmlFor='eventRequestedAmount' mb={1}>
+              <PageText display='inline' fontSize='input'>
+                Requested sponsorship amount
+              </PageText>
+            </FormLabel>
+
+            <PageText as='small' fontSize='helpText' color='brand.helpText'>
+              Ex: USD 500.
+            </PageText>
+
+            <Input
+              id='eventRequestedAmount'
+              type='text'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              h='56px'
+              _placeholder={{ fontSize: 'input' }}
+              color='brand.paragraph'
+              fontSize='input'
+              mt={3}
+              {...register('eventRequestedAmount', {
+                required: true,
+                maxLength: 255
+              })}
+            />
+
+            {errors?.eventRequestedAmount?.type === 'required' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Requested amount is required.
+                </PageText>
+              </Box>
+            )}
+            {errors?.eventRequestedAmount?.type === 'maxLength' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Requested amount cannot exceed 255 characters.
+                </PageText>
+              </Box>
+            )}
+          </FormControl>
+
+          <FormControl id='additional-info-control' mb={8}>
             <FormLabel htmlFor='additionalInfo' mb={1}>
               <PageText fontSize='input'>Anything else you&apos;d like to share?</PageText>
             </FormLabel>
@@ -1267,9 +1267,9 @@ export const PSESponsorshipsForm: FC = () => {
                 </PageText>
               </Box>
             )}
-          </FormControl> */}
+          </FormControl>
 
-          {/* <Stack mb={10}>
+          <Stack mb={10}>
             <PageText fontSize='input' fontWeight={700} mb={-1}>
               NOTE:
             </PageText>
@@ -1278,7 +1278,7 @@ export const PSESponsorshipsForm: FC = () => {
               Event sponsorships are <strong>not</strong> grants - there are some key differences in
               the way they are administered - but the application process starts in the same way.
             </PageText>
-          </Stack> */}
+          </Stack>
 
           <Center mb={8}>
             <Captcha />
