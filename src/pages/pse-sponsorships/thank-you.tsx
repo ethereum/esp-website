@@ -4,10 +4,13 @@ import Head from 'next/head';
 
 import { PageMetadata, PageSubheading } from '../../components/UI';
 
-const EcodevGrantsThankYou: NextPage = () => {
+const PSESponsorshipsThankYou: NextPage = () => {
   return (
     <>
-      <PageMetadata title='Thank you' description='Thank you for applying to the Ecodev Grants' />
+      <PageMetadata
+        title='Thank you'
+        description='Thank you for applying to the PSE Sponsorships'
+      />
       <Head>
         <meta name='robots' content='noindex' />
       </Head>
@@ -28,7 +31,7 @@ const EcodevGrantsThankYou: NextPage = () => {
             </Heading>
 
             <PageSubheading mb={16} textAlign='center'>
-              for applying to the Ecodev Grants
+              for applying to the PSE Sponsorships
             </PageSubheading>
           </section>
         </Stack>
@@ -37,4 +40,4 @@ const EcodevGrantsThankYou: NextPage = () => {
   );
 };
 
-export default EcodevGrantsThankYou;
+export default PSESponsorshipsThankYou;

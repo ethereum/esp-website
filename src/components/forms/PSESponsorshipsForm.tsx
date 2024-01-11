@@ -34,7 +34,7 @@ import {
 } from './constants';
 import { PSE_SPONSORSHIPS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
-import { IndividualOrTeam, PSESponsorshipsFormData, ProjectCategory } from '../../types';
+import { IndividualOrTeam, PSESponsorshipsFormData } from '../../types';
 import { containURL } from '../../utils';
 
 export const PSESponsorshipsForm: FC = () => {
