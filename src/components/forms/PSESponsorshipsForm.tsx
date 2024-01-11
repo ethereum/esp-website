@@ -959,13 +959,7 @@ export const PSESponsorshipsForm: FC = () => {
             )}
           </FormControl>
 
-          <FormControl
-            id='expected-attendees-control'
-            isRequired
-            mb={8}
-            w={{ md: '50%' }}
-            pr={{ lg: 6 }}
-          >
+          <FormControl id='expected-attendees-control' mb={8} w={{ md: '50%' }} pr={{ lg: 6 }}>
             <FormLabel htmlFor='expectedAttendees' mb={1}>
               <PageText display='inline' fontSize='input'>
                 Expected number of attendees/registrants
@@ -988,18 +982,10 @@ export const PSESponsorshipsForm: FC = () => {
               fontSize='input'
               mt={3}
               {...register('expectedAttendees', {
-                required: true,
                 maxLength: 18
               })}
             />
 
-            {errors?.expectedAttendees?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Expected number is required.
-                </PageText>
-              </Box>
-            )}
             {errors?.expectedAttendees?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
@@ -1052,7 +1038,7 @@ export const PSESponsorshipsForm: FC = () => {
             )}
           </FormControl>
 
-          <FormControl id='confirmed-speakers-control' isRequired mb={8}>
+          <FormControl id='confirmed-speakers-control' mb={8}>
             <FormLabel htmlFor='confirmedSpeakers' mb={1}>
               <PageText display='inline' fontSize='input'>
                 List any confirmed speakers
@@ -1075,18 +1061,10 @@ export const PSESponsorshipsForm: FC = () => {
               h='150px'
               mt={3}
               {...register('confirmedSpeakers', {
-                required: true,
                 maxLength: 32768
               })}
             />
 
-            {errors?.confirmedSpeakers?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Confirmed speakers list is required.
-                </PageText>
-              </Box>
-            )}
             {errors?.confirmedSpeakers?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
@@ -1096,7 +1074,7 @@ export const PSESponsorshipsForm: FC = () => {
             )}
           </FormControl>
 
-          <FormControl id='confirmed-sponsors-control' isRequired mb={8}>
+          <FormControl id='confirmed-sponsors-control' mb={8}>
             <FormLabel htmlFor='confirmedSponsors'>
               <PageText display='inline' fontSize='input'>
                 List any confirmed sponsors
@@ -1112,18 +1090,10 @@ export const PSESponsorshipsForm: FC = () => {
               fontSize='input'
               h='150px'
               {...register('confirmedSponsors', {
-                required: true,
                 maxLength: 32768
               })}
             />
 
-            {errors?.confirmedSponsors?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Confirmed sponsors list is required.
-                </PageText>
-              </Box>
-            )}
             {errors?.confirmedSponsors?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
