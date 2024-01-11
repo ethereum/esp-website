@@ -852,7 +852,7 @@ export const PSESponsorshipsForm: FC = () => {
               }}
               defaultValue={{ value: '', label: '' }}
               render={({ field: { onChange }, fieldState: { error } }) => (
-                <FormControl id='event-type-control' isRequired mb={8} mr={{ md: 12 }}>
+                <FormControl id='event-type-control' mb={8} mr={{ md: 12 }}>
                   <FormLabel htmlFor='eventType'>
                     <PageText display='inline' fontSize='input'>
                       What type of event is this?
@@ -869,14 +869,6 @@ export const PSESponsorshipsForm: FC = () => {
                     selectedOptionColor='brand.option'
                     chakraStyles={chakraStyles}
                   />
-
-                  {error && (
-                    <Box mt={1}>
-                      <PageText as='small' fontSize='helpText' color='red.500'>
-                        Event type is required.
-                      </PageText>
-                    </Box>
-                  )}
                 </FormControl>
               )}
             />
