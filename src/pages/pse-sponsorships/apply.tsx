@@ -8,8 +8,8 @@ const EcodevGrantsApply: NextPage = () => {
   return (
     <>
       <PageMetadata
-        title='PSE Grants Application'
-        description='Submit an application for a PSE grant from the Ecosystem Support Program.'
+        title='PSE Sponsorships Application'
+        description='Submit Sponsorship Application to Privacy & Scaling Explorations.'
       />
       <Head>
         <meta name='robots' content='noindex' />
@@ -25,7 +25,7 @@ const EcodevGrantsApply: NextPage = () => {
         <Stack>
           <section id='description'>
             <PageSubheading mb={8} textAlign='center'>
-              Apply to PSE Sponsorships
+              Submit Sponsorship Application to Privacy & Scaling Explorations
             </PageSubheading>
           </section>
         </Stack>
