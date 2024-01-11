@@ -436,3 +436,36 @@ export interface SmallGrantsProjectNextApiRequest extends NextApiRequest {
     otherFunding: string;
   };
 }
+
+export interface PSESponsorshipsNextApiRequest extends NextApiRequest {
+  body: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    individualOrTeam: string;
+    individualOrTeamSummary: string;
+    company: string;
+    city: string;
+    country: string;
+    website: string;
+    twitter: string;
+    eventName: string;
+    eventDate: string;
+    eventPreviousWork: string;
+    eventLink: string;
+    eventDescription: string;
+    eventTopics: string;
+    referrals: string;
+    pseRationale: string;
+    eventType: string;
+    eventFormat: string;
+    eventLocation: string;
+    expectedAttendees: number;
+    targetAudience: string;
+    confirmedSpeakers: string;
+    confirmedSponsors: string;
+    eventBudgetBreakdown: string;
+    eventRequestedAmount: string;
+    additionalInfo: string;
+  };
+}
