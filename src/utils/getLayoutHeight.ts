@@ -8,7 +8,8 @@ import {
   SEMAPHORE_GRANT_URL,
   ACCOUNT_ABSTRACTION_GRANTS_URL,
   RUN_A_NODE_GRANTS_URL,
-  DATA_COLLECTION_ROUND_URL
+  DATA_COLLECTION_ROUND_URL,
+  ZK_GRANTS_URL
 } from '../constants';
 
 export const getLayoutHeight = (path: string) =>
@@ -23,7 +24,8 @@ export const getLayoutHeight = (path: string) =>
         LAYER_2_GRANTS_URL,
         ACCOUNT_ABSTRACTION_GRANTS_URL,
         RUN_A_NODE_GRANTS_URL,
-        DATA_COLLECTION_ROUND_URL
+        DATA_COLLECTION_ROUND_URL,
+        ZK_GRANTS_URL
       ].includes(path)
     ? '810px'
     : '550px';

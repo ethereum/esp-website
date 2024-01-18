@@ -8,7 +8,8 @@ import {
   ProjectGrantsForm,
   SmallGrantsForm,
   DevconGrantsForm,
-  EcodevGrantsForm
+  EcodevGrantsForm,
+  ZKGrantsForm
 } from './';
 
 import {
@@ -17,7 +18,8 @@ import {
   GRANTEE_FINANCE_URL,
   OFFICE_HOURS_APPLY_URL,
   PROJECT_GRANTS_APPLY_URL,
-  SMALL_GRANTS_APPLY_URL
+  SMALL_GRANTS_APPLY_URL,
+  ZK_GRANTS_APPLY_URL
 } from '../../constants';
 
 export const Forms: FC = () => {
@@ -53,6 +55,11 @@ export const Forms: FC = () => {
       {router.pathname === ECODEV_GRANTS_APPLY_URL && (
         <Box px={{ md: 24, lg: 32, xl: 72 }}>
           <EcodevGrantsForm />
+        </Box>
+      )}
+      {router.pathname === ZK_GRANTS_APPLY_URL && (
+        <Box px={{ md: 24, lg: 32, xl: 72 }}>
+          <ZKGrantsForm />
         </Box>
       )}
     </Stack>
