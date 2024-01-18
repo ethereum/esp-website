@@ -18,8 +18,11 @@ import {
   API_OFFICE_HOURS,
   API_PROJECT_GRANTS,
   API_SMALL_GRANTS_EVENT,
-  API_SMALL_GRANTS_PROJECT
+  API_SMALL_GRANTS_PROJECT,
+  API_ZK_GRANTS
 } from './constants';
+
+import { ZKGrantsData } from './schemas/ZKGrants';
 
 const methodOptions = {
   method: 'POST',
@@ -144,6 +147,18 @@ export const api = {
       };
 
       return fetch(API_ECODEV_GRANTS, ecodevGrantsRequestOptions);
+    }
+  },
+  zkGrants: {
+    submit: (data: ZKGrantsData) => {
+      const formData = createFormData(data);
+
+      const dataRequestOptions: RequestInit = {
+        method: 'POST',
+        body: formData
+      };
+
+      return fetch(API_ZK_GRANTS, dataRequestOptions);
     }
   },
   newsletter: {

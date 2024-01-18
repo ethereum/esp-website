@@ -228,6 +228,7 @@ export const DEVCON_GRANTS_THANK_YOU_PAGE_URL = '/devcon-grants/thank-you';
 export const ECODEV_GRANTS_THANK_YOU_PAGE_URL = '/ecodev-grants/thank-you';
 export const RUN_A_NODE_GRANTS_THANK_YOU_PAGE_URL = '/run-a-node-grants/thank-you';
 export const DATA_COLLECTION_THANK_YOU_PAGE_URL = '/data-collection-grants/thank-you';
+export const ZK_GRANTS_THANK_YOU_PAGE_URL = '/zk-grants/thank-you';
 
 // ethereum ecosystem
 export const ETHEREUM_ORG_URL = 'https://ethereum.org/';

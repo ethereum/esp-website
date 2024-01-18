@@ -52,6 +52,15 @@ export const DATA_COLLECTION_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Other', label: 'Other' }
 ];
 
+export const ZK_GRANTS_PROJECT_CATEGORY_OPTIONS = [
+  { value: 'Community and education', label: 'Community and education' },
+  { value: 'Data Analysis', label: 'Data Analysis' },
+  { value: 'Data Visualization', label: 'Data Visualization' },
+  { value: 'Hardware', label: 'Hardware' },
+  { value: 'User experience', label: 'User experience' },
+  { value: 'Other', label: 'Other' }
+];
+
 // events
 export const EVENT_TYPE_OPTIONS = [
   { value: 'Conference', label: 'Conference' },
@@ -1548,5 +1557,6 @@ export const API_ACADEMIC_GRANTS = '/api/academic-grants';
 export const API_DEVCON_GRANTS = '/api/devcon-grants';
 export const API_GRANTEE_FINANCE = '/api/grantee-finance';
 export const API_ECODEV_GRANTS = '/api/ecodev-grants';
+export const API_ZK_GRANTS = '/api/zk-grants';
 export const API_DATA_COLLECTION_GRANTS = '/api/data-collection-grants';
 export const API_NEWSLETTER_SIGNUP_URL = '/api/newsletter-signup';
