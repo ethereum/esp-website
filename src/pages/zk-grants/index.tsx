@@ -150,7 +150,19 @@ const RunANodeGrants: NextPage = () => {
                         Proposals must include a public repository or link to published work
                       </ListItem>
                     </List>
-                    <ListItem>Here is a template for a proposal</ListItem>
+                    <ListItem>
+                      Here is a{' '}
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href='https://notes.ethereum.org/@drigolvc/Grant_Proposal_template'
+                        isExternal
+                        _hover={{ textDecoration: 'none' }}
+                      >
+                        template
+                      </Link>{' '}
+                      for a proposal
+                    </ListItem>
                     <ListItem>Ideas and projects at any stage of development are welcome:</ListItem>
                     <List>
                       <ListItem>Idea phase</ListItem>
@@ -332,8 +344,7 @@ const RunANodeGrants: NextPage = () => {
                         <Link
                           fontWeight={700}
                           color='brand.orange.100'
-                          // TODO: add link to template
-                          href='/'
+                          href='https://notes.ethereum.org/@drigolvc/Grant_Proposal_template'
                           isExternal
                           _hover={{ textDecoration: 'none' }}
                         >
