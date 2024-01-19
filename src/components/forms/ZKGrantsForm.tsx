@@ -172,7 +172,7 @@ export const ZKGrantsForm: FC = () => {
                 <Field
                   id='country'
                   label='Country'
-                  helpText='Where is your team located?'
+                  helpText='Please indicate the country where the Institution/ Lead Investigator is located'
                   error={error}
                   isRequired
                   mb={8}
@@ -201,7 +201,7 @@ export const ZKGrantsForm: FC = () => {
                 <Field
                   id='timezone'
                   label='Time zone'
-                  helpText='Please choose your current time zone to help us schedule calls'
+                  helpText='Please choose your current time zone to help us schedule calls if needed'
                   error={error}
                   isRequired
                   mb={8}
@@ -242,7 +242,7 @@ export const ZKGrantsForm: FC = () => {
           <TextAreaField
             id='projectDescription'
             label='Brief project summary'
-            helpText="Describe your project in a few sentences (you'll have the chance to go into more detail on your blogpost)"
+            helpText="Describe your project in a few sentences (you'll have the chance to go into more detail in your proposal)"
             isRequired
             mb={8}
           />
@@ -283,7 +283,12 @@ export const ZKGrantsForm: FC = () => {
             mb={8}
           />
 
-          <TextField id='projectRepoLink' label='Project repo link' mb={8} />
+          <TextField
+            id='projectRepoLink'
+            label='Project repo link'
+            helpText='If your project has a Github repo please provide the link'
+            mb={8}
+          />
 
           <UploadFile
             id='proposalAttachment'
@@ -417,7 +422,7 @@ export const ZKGrantsForm: FC = () => {
           <TextField
             id='alternativeContact'
             label='Telegram username or alternative contact info'
-            helpText="In regards to your submission, we'll get in touch with you via email by default. As backup, if you'd like to provide alternative contact info, you may do so. Not required."
+            helpText="In regards to your submission, we'll get in touch with you via email by default. As backup, if you'd like to provide alternative contact info, you may do so. Not required"
             mb={8}
           />
 
@@ -509,9 +514,9 @@ export const ZKGrantsForm: FC = () => {
 
           <TextAreaField
             id='additionalInfo'
-            label='Do you have any questions about this challenge?'
+            label='Do you have any questions about this grant round?'
             helpText="Is there anything we didn't cover in the above questions? Feel free to add any
-            relevant links here. This is optional."
+            relevant links here. This is optional"
             mb={8}
           />
 
@@ -521,7 +526,7 @@ export const ZKGrantsForm: FC = () => {
             render={({ field: { onChange }, fieldState: { error } }) => (
               <Field
                 id='referralSource'
-                label='How did you hear about this wave of grants?'
+                label='How did you hear about the this grant round?'
                 isRequired
                 mb={8}
               >
