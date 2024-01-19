@@ -29,7 +29,7 @@ import { chakraStyles } from './selectStyles';
 import {
   APPLYING_AS_OPTIONS,
   COUNTRY_OPTIONS,
-  HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
+  HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE,
   OTHER,
   TIMEZONE_OPTIONS,
   WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS,
@@ -532,9 +532,9 @@ export const ZKGrantsForm: FC = () => {
               >
                 <Select
                   id='referralSource'
-                  options={HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS}
+                  options={HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE}
                   onChange={option =>
-                    onChange((option as typeof HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS[number]).value)
+                    onChange((option as typeof HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE[number]).value)
                   }
                   components={{ DropdownIndicator }}
                   placeholder='Select'
