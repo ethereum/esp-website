@@ -54,24 +54,24 @@ export const DATA_COLLECTION_PROJECT_CATEGORY_OPTIONS = [
 
 export const ZK_GRANTS_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Consensus layer', label: 'Consensus layer' },
-  { value: 'Core Protocol Development', label: 'Core protocol development' }, // TODO: verify
+  { value: 'Protocol growth & support', label: 'Protocol growth & support' },
   {
     value: 'Cryptography and zero knowledge proofs',
     label: 'Cryptography and zero knowledge proofs'
   },
-  { value: 'Cybersecurity', label: 'Cybersecurity' }, // TODO: verify
+  { value: 'Cybersecurity', label: 'Cybersecurity' },
   { value: 'Community and education', label: 'Community and education' },
   { value: 'Data Visualization', label: 'Data visualization' },
   { value: 'Economics', label: 'Economics' },
   { value: 'Formal Verification', label: 'Formal verification' },
   { value: 'General research', label: 'General research' },
-  { value: 'Governance', label: 'Governance' }, // TODO: verify
-  { value: 'Government', label: 'Government' }, // TODO: verify
-  { value: 'Healthcare', label: 'Healthcare' }, // TODO: verify
+  { value: 'Governance', label: 'Governance' },
+  { value: 'Government', label: 'Government' },
+  { value: 'Healthcare', label: 'Healthcare' },
   { value: 'Layer 2', label: 'Layer 2' },
-  { value: 'Maximal Extractable Value (MEV)', label: 'Maximal Extractable Value (MEV)' }, // TODO: verify
+  { value: 'Maximal Extractable Value (MEV)', label: 'Maximal Extractable Value (MEV)' },
   { value: 'P2P networking', label: 'P2P networking' },
-  { value: 'Privacy', label: 'Privacy' }, // TODO: verify
+  { value: 'Privacy', label: 'Privacy' },
   { value: 'Society and Regulatory', label: 'Society and regulatory' },
   { value: 'Other', label: 'Other' }
 ];
