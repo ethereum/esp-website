@@ -1,10 +1,13 @@
 import { Box, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import Image from 'next/image';
 
 import { PageMetadata, PageSubheading } from '../../components/UI';
 
-const EcodevGrantsApply: NextPage = () => {
+import pseSponsorshipsHero from '../../../public/images/pse-sponsorships.png';
+
+const PSESponsorshipsApply: NextPage = () => {
   return (
     <>
       <PageMetadata
@@ -22,7 +25,15 @@ const EcodevGrantsApply: NextPage = () => {
         pb={5}
         mt={{ base: 24, md: 6 }}
       >
-        <Stack>
+        <Image
+          src={pseSponsorshipsHero}
+          alt={''}
+          layout='intrinsic'
+          objectFit='cover'
+          placeholder='blur'
+        />
+
+        <Stack mt={6}>
           <section id='description'>
             <PageSubheading mb={8} textAlign='center'>
               Submit Sponsorship Application to Privacy & Scaling Explorations
@@ -34,4 +45,4 @@ const EcodevGrantsApply: NextPage = () => {
   );
 };
 
-export default EcodevGrantsApply;
+export default PSESponsorshipsApply;
