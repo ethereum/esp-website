@@ -104,8 +104,15 @@ export const ZKGrantsForm: FC = () => {
       borderRadius={{ md: '10px' }}
     >
       <FormProvider {...methods}>
-        <form id='zk-grants-form' onSubmit={handleSubmit(onSubmit)} noValidate>
-          <Flex direction='column' mb={8}>
+        <Flex
+          as='form'
+          id='zk-grants-form'
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
+          direction='column'
+          gap={8}
+        >
+          <Flex direction='column'>
             <Flex direction={{ base: 'column', md: 'row' }} mb={3}>
               <TextField
                 id='firstName'
@@ -125,15 +132,15 @@ export const ZKGrantsForm: FC = () => {
             )}
           </Flex>
 
-          <TextField id='email' label='Email' isRequired mb={8} />
+          <TextField id='email' label='Email' isRequired />
 
-          <TextField id='title' label='Title' isRequired mb={8} />
+          <TextField id='title' label='Title' isRequired />
 
           <Controller
             name='applyingAs'
             control={control}
             render={({ field: { onChange } }) => (
-              <Field id='applyingAs' label='In which capacity are you applying?' isRequired mb={8}>
+              <Field id='applyingAs' label='In which capacity are you applying?' isRequired>
                 <Select
                   id='applyingAs'
                   options={APPLYING_AS_OPTIONS}
@@ -152,7 +159,7 @@ export const ZKGrantsForm: FC = () => {
 
           <Box display={applyingAs === OTHER ? 'block' : 'none'}>
             <Fade in={applyingAs === OTHER} delay={0.25}>
-              <TextField id='applyingAsOther' label='If other, please specify' mb={8} />
+              <TextField id='applyingAsOther' label='If other, please specify' />
             </Fade>
           </Box>
 
@@ -161,7 +168,6 @@ export const ZKGrantsForm: FC = () => {
             label='If applying as an Organization, please specify its name'
             helpText='Name of your university program, team, or organization. If you do not have an organization name, write "N/A"'
             isRequired
-            mb={8}
           />
 
           <Flex direction={{ base: 'column', md: 'row' }} gap={12} mb={3}>
@@ -175,7 +181,6 @@ export const ZKGrantsForm: FC = () => {
                   helpText='Please indicate the country where the Institution/ Lead Investigator is located'
                   error={error}
                   isRequired
-                  mb={8}
                 >
                   <Select
                     id='country'
@@ -204,7 +209,6 @@ export const ZKGrantsForm: FC = () => {
                   helpText='Please choose your current time zone to help us schedule calls if needed'
                   error={error}
                   isRequired
-                  mb={8}
                 >
                   <Select
                     id='timezone'
@@ -228,7 +232,6 @@ export const ZKGrantsForm: FC = () => {
             id='countriesTeam'
             label='If you are a team of distributed researchers, please indicate where your fellow researchers are located'
             helpText='You can write as many countries as needed'
-            mb={8}
           />
 
           <TextField
@@ -236,7 +239,6 @@ export const ZKGrantsForm: FC = () => {
             label='Project name'
             helpText='This should be a concise description of the title of your project'
             isRequired
-            mb={8}
           />
 
           <TextAreaField
@@ -244,7 +246,6 @@ export const ZKGrantsForm: FC = () => {
             label='Brief project summary'
             helpText="Describe your project in a few sentences (you'll have the chance to go into more detail in your proposal)"
             isRequired
-            mb={8}
           />
 
           <Controller
@@ -257,7 +258,6 @@ export const ZKGrantsForm: FC = () => {
                 helpText='Please choose a category that your project best fits in'
                 error={error}
                 isRequired
-                mb={8}
               >
                 <Select
                   id='projectCategory'
@@ -280,14 +280,12 @@ export const ZKGrantsForm: FC = () => {
             label='Total budget requested'
             helpText='Estimated grant amount. Ex: USD 20,000'
             isRequired
-            mb={8}
           />
 
           <TextField
             id='projectRepoLink'
             label='Project repo link'
             helpText='If your project has a Github repo please provide the link'
-            mb={8}
           />
 
           <UploadFile
@@ -310,7 +308,6 @@ export const ZKGrantsForm: FC = () => {
             }
             isRequired
             onDrop={handleDrop}
-            mb={8}
           />
 
           <Controller
@@ -321,7 +318,6 @@ export const ZKGrantsForm: FC = () => {
                 id='shareResearch'
                 label='If the opportunity presents itself, would you like to share your findings/research output through a Conference/Discord Talk?'
                 error={error}
-                mb={8}
               >
                 <Select
                   id='shareResearch'
@@ -341,9 +337,9 @@ export const ZKGrantsForm: FC = () => {
             )}
           />
 
-          <TextField id='website' label='Website' mb={8} />
+          <TextField id='website' label='Website' />
 
-          <FormControl id='twitter-control' mb={8}>
+          <FormControl id='twitter-control'>
             <FormLabel htmlFor='twitter' mb={1}>
               <PageText fontSize='input'>Twitter handle(s)</PageText>
             </FormLabel>
@@ -381,7 +377,7 @@ export const ZKGrantsForm: FC = () => {
             )}
           </FormControl>
 
-          <FormControl id='github-control' mb={8}>
+          <FormControl id='github-control'>
             <FormLabel htmlFor='github' mb={1}>
               <PageText fontSize='input'>Github handle(s)</PageText>
             </FormLabel>
@@ -423,7 +419,6 @@ export const ZKGrantsForm: FC = () => {
             id='alternativeContact'
             label='Telegram username or alternative contact info'
             helpText="In regards to your submission, we'll get in touch with you via email by default. As backup, if you'd like to provide alternative contact info, you may do so. Not required"
-            mb={8}
           />
 
           <Controller
@@ -434,7 +429,6 @@ export const ZKGrantsForm: FC = () => {
                 id='repeatApplicant'
                 label='Have you applied before to any grants at the Ethereum Foundation?'
                 isRequired
-                mb={8}
               >
                 <RadioGroup
                   id='repeatApplicant'
@@ -475,7 +469,7 @@ export const ZKGrantsForm: FC = () => {
             control={control}
             defaultValue={true}
             render={({ field: { onChange, value } }) => (
-              <FormControl id='canTheEFReachOut-control' mb={8}>
+              <FormControl id='canTheEFReachOut-control'>
                 <FormLabel htmlFor='canTheEFReachOut'>
                   <PageText display='inline' fontSize='input'>
                     Is it OK for a member of the Ethereum Foundation to reach out to you (say, in
@@ -517,7 +511,6 @@ export const ZKGrantsForm: FC = () => {
             label='Do you have any questions about this grant round?'
             helpText="Is there anything we didn't cover in the above questions? Feel free to add any
             relevant links here. This is optional"
-            mb={8}
           />
 
           <Controller
@@ -527,8 +520,8 @@ export const ZKGrantsForm: FC = () => {
               <Field
                 id='referralSource'
                 label='How did you hear about the this grant round?'
+                error={error}
                 isRequired
-                mb={8}
               >
                 <Select
                   id='referralSource'
@@ -553,7 +546,6 @@ export const ZKGrantsForm: FC = () => {
                 label="If 'Other' is chosen"
                 helpText='Please be as specific as possible. (e.g., an email received, an individual who
               recommended you apply, a link to a tweet, etc.)'
-                mb={8}
               />
             </Fade>
           </Box>
@@ -571,7 +563,7 @@ export const ZKGrantsForm: FC = () => {
               text='Submit Application'
             />
           </Center>
-        </form>
+        </Flex>
       </FormProvider>
     </Stack>
   );
