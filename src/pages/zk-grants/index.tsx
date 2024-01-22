@@ -31,7 +31,7 @@ const RunANodeGrants: NextPage = () => {
     <>
       <PageMetadata
         title='ZK Grants'
-        description='The Ethereum Foundation is calling for proposals to expand the diversity of nodes in the Ethereum network.'
+        description='ZK grants round co-funded with Aztec, Scroll, Taiko & zkSync to develop the ZK Layer 2 Ecosystem.'
       />
 
       <Box bg='white' position='relative' mt={{ xl: 12 }}>
