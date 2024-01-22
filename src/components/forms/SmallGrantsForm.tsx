@@ -1681,7 +1681,7 @@ export const SmallGrantsForm: FC = () => {
 
                   <Input
                     id='eventLocation'
-                    type='number'
+                    type='text'
                     bg='white'
                     borderRadius={0}
                     borderColor='brand.border'
