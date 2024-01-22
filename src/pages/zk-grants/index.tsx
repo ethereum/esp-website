@@ -54,20 +54,6 @@ const RunANodeGrants: NextPage = () => {
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
               <Stack spacing={10}>
-                <Flex as='section' id='summary' ref={ref} gap={6} direction='column'>
-                  <PageText>
-                    <Text as='i'>
-                      A cofunded proactive grants round to improve the ZK Layer 2 Ecosystem.
-                    </Text>
-                  </PageText>
-                  <PageText>
-                    <Text as='i'>Proposals are due at 11:59 UTC February 29th 2024</Text>
-                  </PageText>
-                  <PageText>
-                    <Text as='i'>All of the details you’ll need to apply can be found below.</Text>
-                  </PageText>
-                </Flex>
-
                 <Flex as='section' id='introduction' ref={ref} gap={6} direction='column'>
                   <PageSection>Introduction</PageSection>
 
