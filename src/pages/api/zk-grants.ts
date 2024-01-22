@@ -67,7 +67,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         Referral_Source_if_Other__c: fields.referralSourceIfOther,
         Proactive_Community_Grants_Round__c: 'ZK Grant Round 2024', // this value is hardwired, depending on the type of grant round
         LeadSource: 'Webform',
-        RecordTypeId: process.env.SF_RECORD_TYPE_ZK_GRANTS_ROUND!
+        RecordTypeId: process.env.SF_RECORD_TYPE_GRANTS_ROUND!
       };
 
       // Single record creation
