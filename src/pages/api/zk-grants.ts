@@ -150,5 +150,6 @@ export const config = {
 };
 
 export default multipartyParse(sanitizeFields(verifyCaptcha(handler)), {
-  maxFileSize: MAX_PROPOSAL_FILE_SIZE
+  maxFileSize: MAX_PROPOSAL_FILE_SIZE,
+  encoding: 'utf-8'
 });
