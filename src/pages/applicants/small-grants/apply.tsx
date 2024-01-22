@@ -1,9 +1,14 @@
 import { Box, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 
-import { PageMetadata, PageSubheading, PageText, PrivacyPolicyAgreement } from '../../../components/UI';
+import {
+  PageMetadata,
+  PageSubheading,
+  PageText,
+  PrivacyPolicyAgreement
+} from '../../../components/UI';
 
-const OfficeHoursApply: NextPage = () => {
+const SmallGrantsApply: NextPage = () => {
   return (
     <>
       <PageMetadata
@@ -34,4 +39,4 @@ const OfficeHoursApply: NextPage = () => {
   );
 };
 
-export default OfficeHoursApply;
+export default SmallGrantsApply;
