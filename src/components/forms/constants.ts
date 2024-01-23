@@ -67,6 +67,10 @@ export const EVENT_FORMAT_OPTIONS = [
   { value: 'Hybrid (both)', label: 'Hybrid (both)' }
 ];
 
+export const IN_PERSON_EVENT = EVENT_FORMAT_OPTIONS[0];
+export const ONLINE_EVENT = EVENT_FORMAT_OPTIONS[1];
+export const HYBRID_EVENT = EVENT_FORMAT_OPTIONS[2];
+
 export const WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS = [
   { value: 'Yes', label: 'Yes' },
   { value: 'No', label: 'No' },
@@ -1548,5 +1552,6 @@ export const API_ACADEMIC_GRANTS = '/api/academic-grants';
 export const API_DEVCON_GRANTS = '/api/devcon-grants';
 export const API_GRANTEE_FINANCE = '/api/grantee-finance';
 export const API_ECODEV_GRANTS = '/api/ecodev-grants';
+export const API_PSE_SPONSORSHIPS = '/api/pse-sponsorships';
 export const API_DATA_COLLECTION_GRANTS = '/api/data-collection-grants';
 export const API_NEWSLETTER_SIGNUP_URL = '/api/newsletter-signup';

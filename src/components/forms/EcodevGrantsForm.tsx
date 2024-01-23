@@ -2,7 +2,6 @@
 import {
   Box,
   Center,
-  Fade,
   Flex,
   FormControl,
   FormLabel,
