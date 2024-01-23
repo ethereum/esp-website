@@ -1,8 +1,8 @@
 import { Box, Stack, Text } from '@chakra-ui/react';
 import { FC } from 'react';
 
-import layer2Hero from '../../../public/images/layer-2-grants.png';
-import layer2HeroMobile from '../../../public/images/layer-2-grants-mobile.png';
+import zkHero from '../../../public/images/zk-grants.jpg';
+import zkHeroMobile from '../../../public/images/zk-grants-mobile.jpg';
 
 import { GrantsHero } from '../UI';
 
@@ -13,11 +13,11 @@ export const ZKGrantsLayout: FC = ({ children }) => {
         colorBrandConstant='layer2GrantsHero'
         desktopImage={{
           alt: 'A mad panda scientist working on ethereum',
-          src: layer2Hero
+          src: zkHero
         }}
         mobileImage={{
           alt: 'A mad panda scientist working on ethereum',
-          src: layer2HeroMobile
+          src: zkHeroMobile
         }}
         title='ZK Grants Round'
       >
