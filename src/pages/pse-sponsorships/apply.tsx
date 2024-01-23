@@ -1,4 +1,4 @@
-import { Box, Stack } from '@chakra-ui/react';
+import { Box, Center, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -25,13 +25,15 @@ const PSESponsorshipsApply: NextPage = () => {
         pb={5}
         mt={{ base: 24, md: 6 }}
       >
-        <Image
-          src={pseSponsorshipsHero}
-          alt={''}
-          layout='intrinsic'
-          objectFit='cover'
-          placeholder='blur'
-        />
+        <Center>
+          <Image
+            src={pseSponsorshipsHero}
+            alt={''}
+            layout='intrinsic'
+            objectFit='cover'
+            placeholder='blur'
+          />
+        </Center>
 
         <Stack mt={6}>
           <section id='description'>
