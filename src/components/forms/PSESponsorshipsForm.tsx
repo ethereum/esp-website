@@ -782,25 +782,25 @@ export const PSESponsorshipsForm: FC = () => {
               Please write the name of the person who shared this form with you.
             </PageText>
 
-            <Textarea
+            <Input
               id='referrals'
+              type='text'
               bg='white'
               borderRadius={0}
               borderColor='brand.border'
+              h='56px'
               _placeholder={{ fontSize: 'input' }}
               color='brand.paragraph'
               fontSize='input'
-              h='150px'
-              mt={3}
               {...register('referrals', {
-                maxLength: 32768
+                maxLength: 255
               })}
             />
 
             {errors?.referrals?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Referrals info cannot exceed 32768 characters.
+                  Referrals info cannot exceed 255 characters.
                 </PageText>
               </Box>
             )}
