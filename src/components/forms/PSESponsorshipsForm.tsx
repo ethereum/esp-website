@@ -45,8 +45,6 @@ export const PSESponsorshipsForm: FC = () => {
   const toast = useToast();
   const [individualOrTeam, setIndividualOrTeam] = useState<IndividualOrTeam>(INDIVIDUAL);
   const [eventLocation, setEventLocation] = useState<EventFormat>(ONLINE_EVENT);
-  const HAS_EVENT_LOCATION = eventLocation === IN_PERSON_EVENT || eventLocation === HYBRID_EVENT;
-  // `unknown` comes from react-select required typings (https://stackoverflow.com/a/54370057)
 
   const methods = useForm<PSESponsorshipsFormData>({
     mode: 'onBlur'
@@ -851,9 +849,6 @@ export const PSESponsorshipsForm: FC = () => {
             <Controller
               name='eventType'
               control={control}
-              rules={{
-                validate: selected => selected.value !== ''
-              }}
               defaultValue={{ value: '', label: '' }}
               render={({ field: { onChange }, fieldState: { error } }) => (
                 <FormControl id='event-type-control' mb={8} mr={{ md: 12 }}>
@@ -920,9 +915,11 @@ export const PSESponsorshipsForm: FC = () => {
           </Flex>
 
           <FormControl
-            display={HAS_EVENT_LOCATION ? 'block' : 'none'}
+            display={
+              eventLocation === IN_PERSON_EVENT || eventLocation === HYBRID_EVENT ? 'block' : 'none'
+            }
             id='event-location-control'
-            isRequired={HAS_EVENT_LOCATION}
+            isRequired={eventLocation === IN_PERSON_EVENT || eventLocation === HYBRID_EVENT}
             mb={8}
           >
             <FormLabel htmlFor='eventLocation'>
@@ -942,7 +939,7 @@ export const PSESponsorshipsForm: FC = () => {
               color='brand.paragraph'
               fontSize='input'
               {...register('eventLocation', {
-                required: HAS_EVENT_LOCATION,
+                required: eventLocation === IN_PERSON_EVENT || eventLocation === HYBRID_EVENT,
                 maxLength: 255
               })}
             />
