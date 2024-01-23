@@ -1,4 +1,5 @@
 import {
+  AcademicGrantsFormData,
   DevconGrantsFormData,
   EcodevGrantsFormData,
   GranteeFinanceFormData,
@@ -11,6 +12,7 @@ import {
 import { createFormData, getWebsite } from '../../utils';
 
 import {
+  API_ACADEMIC_GRANTS,
   API_DEVCON_GRANTS,
   API_ECODEV_GRANTS,
   API_GRANTEE_FINANCE,
@@ -144,6 +146,29 @@ export const api = {
       };
 
       return fetch(API_ECODEV_GRANTS, ecodevGrantsRequestOptions);
+    }
+  },
+  academicGrants: {
+    submit: (data: AcademicGrantsFormData) => {
+      const academicGrantsRequestOptions: RequestInit = {
+        ...methodOptions,
+        body: JSON.stringify({
+          ...data,
+          POCisAuthorisedSignatory: data.POCisAuthorisedSignatory === 'Yes',
+          applyingAs: data.applyingAs.value,
+          // Company is a required field in SF, we're using the Name as default value if no company provided
+          company: data.company === 'N/A' ? `${data.firstName} ${data.lastName}` : data.company,
+          country: data.country.value,
+          timezone: data.timezone.value,
+          projectCategory: data.projectCategory.value,
+          howDidYouHearAboutGrantsWave: data.howDidYouHearAboutGrantsWave.value,
+          wouldYouShareYourResearch: data.wouldYouShareYourResearch.value,
+          repeatApplicant: data.repeatApplicant === 'Yes',
+          canTheEFReachOut: data.canTheEFReachOut === 'Yes'
+        })
+      };
+
+      return fetch(API_ACADEMIC_GRANTS, academicGrantsRequestOptions);
     }
   },
   newsletter: {

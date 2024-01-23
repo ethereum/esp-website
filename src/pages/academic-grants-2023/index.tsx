@@ -9,15 +9,14 @@ import {
   PageSection,
   PageText,
   PageMetadata,
-  ReadyToApply
+  BannerApplicationClosed
 } from '../../components/UI';
 
 import {
   ACADEMIC_GRANTS_EMAIL_ADDRESS,
   HOME_URL,
   OFFICE_HOURS_URL,
-  SIDEBAR_ACADEMIC_GRANTS_LINKS,
-  ACADEMIC_GRANTS_APPLY_URL
+  SIDEBAR_ACADEMIC_GRANTS_2023_LINKS
 } from '../../constants';
 
 const AcademicGrants: NextPage = () => {
@@ -30,13 +29,12 @@ const AcademicGrants: NextPage = () => {
   const [ref5, inView5] = useInView({ threshold: 0.3, initialInView: false });
   const [ref6, inView6] = useInView({ threshold: 0.5, initialInView: false });
   const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref8, inView8] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref9, inView9] = useInView({ threshold: 0, initialInView: false });
+  const [ref8, inView8] = useInView({ threshold: 0, initialInView: false });
 
   return (
     <>
       <PageMetadata
-        title='Academic Grants Round 2024'
+        title='Academic Grants Round 2023'
         description='The Ethereum Foundation is sponsoring a wave of grants to support Ethereum-related academic work. Find all the details you need to apply here.'
       />
 
@@ -44,7 +42,7 @@ const AcademicGrants: NextPage = () => {
         <Stack spacing={10} mb={8} px={{ base: 5, md: 0 }} py={{ base: 3, md: 12 }}>
           <Flex>
             <ApplicantsSidebar
-              sidebarLinks={SIDEBAR_ACADEMIC_GRANTS_LINKS}
+              sidebarLinks={SIDEBAR_ACADEMIC_GRANTS_2023_LINKS}
               sectionsInView={[
                 inView,
                 inView2,
@@ -53,12 +51,13 @@ const AcademicGrants: NextPage = () => {
                 inView5,
                 inView6,
                 inView7,
-                inView8,
-                inView9
+                inView8
               ]}
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
+              <BannerApplicationClosed mb={12} />
+
               <Stack mb={8} mt={{ base: 10, md: 0 }}>
                 <section id='description' ref={ref}>
                   <PageText mb={6}>
@@ -74,7 +73,7 @@ const AcademicGrants: NextPage = () => {
                       grantee announcement
                     </Link>
                     . We&apos;re renewing our support of academic research throughout the Ethereum
-                    ecosystem with the Academic Grants Round 2024!
+                    ecosystem with the Academic Grants Round 2023!
                   </PageText>
 
                   <PageText mb={6}>
@@ -395,12 +394,6 @@ const AcademicGrants: NextPage = () => {
                       </PageText>
                     </FAQItem>
                   </Accordion>
-                </section>
-
-                <section id='apply' ref={ref9}>
-                  <Stack mt={6}>
-                    <ReadyToApply link={`${ACADEMIC_GRANTS_APPLY_URL}`} />
-                  </Stack>
                 </section>
               </Stack>
             </Box>
