@@ -26,7 +26,9 @@ import { chakraStyles } from './selectStyles';
 import {
   EVENT_FORMAT_OPTIONS,
   EVENT_TYPE_OPTIONS,
-  HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS
+  HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
+  HYBRID_EVENT,
+  IN_PERSON_EVENT
 } from './constants';
 import { DEVCON_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
@@ -42,10 +44,9 @@ export const DevconGrantsForm: FC = () => {
     label: ''
   });
 
-  const isInPersonOrHibrid = [
-    EVENT_FORMAT_OPTIONS[0].value, // in person
-    EVENT_FORMAT_OPTIONS[2].value // hibrid
-  ].includes((eventFormat as EventFormat).value);
+  const isInPersonOrHibrid = [IN_PERSON_EVENT.value, HYBRID_EVENT.value].includes(
+    (eventFormat as EventFormat).value
+  );
 
   const methods = useForm<DevconGrantsFormData>({
     mode: 'onBlur'
