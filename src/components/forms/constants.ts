@@ -67,6 +67,10 @@ export const EVENT_FORMAT_OPTIONS = [
   { value: 'Hybrid (both)', label: 'Hybrid (both)' }
 ];
 
+export const IN_PERSON_EVENT = EVENT_FORMAT_OPTIONS[0];
+export const ONLINE_EVENT = EVENT_FORMAT_OPTIONS[1];
+export const HYBRID_EVENT = EVENT_FORMAT_OPTIONS[2];
+
 export const WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS = [
   { value: 'Yes', label: 'Yes' },
   { value: 'No', label: 'No' },
