@@ -46,6 +46,8 @@ export const PSESponsorshipsForm: FC = () => {
   const [individualOrTeam, setIndividualOrTeam] = useState<IndividualOrTeam>(INDIVIDUAL);
   const [eventLocation, setEventLocation] = useState<EventFormat>(ONLINE_EVENT);
 
+  const HAS_EVENT_LOCATION = eventLocation === IN_PERSON_EVENT || eventLocation === HYBRID_EVENT;
+
   const methods = useForm<PSESponsorshipsFormData>({
     mode: 'onBlur'
   });
@@ -915,11 +917,9 @@ export const PSESponsorshipsForm: FC = () => {
           </Flex>
 
           <FormControl
-            display={
-              eventLocation === IN_PERSON_EVENT || eventLocation === HYBRID_EVENT ? 'block' : 'none'
-            }
+            display={HAS_EVENT_LOCATION ? 'block' : 'none'}
             id='event-location-control'
-            isRequired={eventLocation === IN_PERSON_EVENT || eventLocation === HYBRID_EVENT}
+            isRequired={HAS_EVENT_LOCATION}
             mb={8}
           >
             <FormLabel htmlFor='eventLocation'>
@@ -939,7 +939,7 @@ export const PSESponsorshipsForm: FC = () => {
               color='brand.paragraph'
               fontSize='input'
               {...register('eventLocation', {
-                required: eventLocation === IN_PERSON_EVENT || eventLocation === HYBRID_EVENT,
+                required: HAS_EVENT_LOCATION,
                 maxLength: 255
               })}
             />
