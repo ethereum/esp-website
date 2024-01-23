@@ -30,17 +30,22 @@ import {
   INDIVIDUAL,
   EVENT_FORMAT_OPTIONS,
   EVENT_TYPE_OPTIONS,
-  TEAM
+  TEAM,
+  ONLINE_EVENT,
+  IN_PERSON_EVENT,
+  HYBRID_EVENT
 } from './constants';
 import { PSE_SPONSORSHIPS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
-import { IndividualOrTeam, PSESponsorshipsFormData } from '../../types';
+import { EventFormat, IndividualOrTeam, PSESponsorshipsFormData } from '../../types';
 import { containURL } from '../../utils';
 
 export const PSESponsorshipsForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
   const [individualOrTeam, setIndividualOrTeam] = useState<IndividualOrTeam>(INDIVIDUAL);
+  const [eventLocation, setEventLocation] = useState<EventFormat>(ONLINE_EVENT);
+  const HAS_EVENT_LOCATION = eventLocation === IN_PERSON_EVENT || eventLocation === HYBRID_EVENT;
   // `unknown` comes from react-select required typings (https://stackoverflow.com/a/54370057)
 
   const methods = useForm<PSESponsorshipsFormData>({
@@ -847,7 +852,6 @@ export const PSESponsorshipsForm: FC = () => {
               name='eventType'
               control={control}
               rules={{
-                required: true,
                 validate: selected => selected.value !== ''
               }}
               defaultValue={{ value: '', label: '' }}
@@ -892,7 +896,10 @@ export const PSESponsorshipsForm: FC = () => {
                   <Select
                     id='eventFormat'
                     options={EVENT_FORMAT_OPTIONS}
-                    onChange={onChange}
+                    onChange={(value: any) => {
+                      onChange(value);
+                      setEventLocation(value);
+                    }}
                     components={{ DropdownIndicator }}
                     placeholder='Select'
                     closeMenuOnSelect={true}
@@ -912,7 +919,12 @@ export const PSESponsorshipsForm: FC = () => {
             />
           </Flex>
 
-          <FormControl id='event-location-control' isRequired mb={8}>
+          <FormControl
+            display={HAS_EVENT_LOCATION ? 'block' : 'none'}
+            id='event-location-control'
+            isRequired={HAS_EVENT_LOCATION}
+            mb={8}
+          >
             <FormLabel htmlFor='eventLocation'>
               <PageText display='inline' fontSize='input'>
                 Event location
@@ -930,7 +942,7 @@ export const PSESponsorshipsForm: FC = () => {
               color='brand.paragraph'
               fontSize='input'
               {...register('eventLocation', {
-                required: true,
+                required: HAS_EVENT_LOCATION,
                 maxLength: 255
               })}
             />
