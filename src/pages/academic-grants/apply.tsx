@@ -13,7 +13,6 @@ const AcademicGrantsApply: NextPage = () => {
       />
 
       <Box
-        bg='white'
         position='relative'
         py={{ md: 12 }}
         px={{ md: 24, lg: 32, xl: 72 }}

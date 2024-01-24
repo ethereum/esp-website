@@ -23,7 +23,7 @@ export const getBgGradient = (path: string) => {
   }
 
   // academic grants gradient
-  if (path.startsWith(ACADEMIC_GRANTS_URL)) {
+  if (path === ACADEMIC_GRANTS_URL) {
     return 'linear(to-b, brand.academicGrantsHero.bgGradient.start 81.77%, brand.academicGrantsHero.bgGradient.end 100%)';
   }
 
