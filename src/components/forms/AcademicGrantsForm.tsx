@@ -10,17 +10,17 @@ import {
   Radio,
   RadioGroup,
   Stack,
-  Textarea,
   useToast
 } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 import { DropdownIndicator, PageText } from '../UI';
 import { SubmitButton } from '../SubmitButton';
-import { Captcha } from '.';
+import { Captcha, Field, TextAreaField, TextField } from '.';
 
 import { api } from './api';
 
@@ -37,34 +37,40 @@ import {
 } from './constants';
 import { ACADEMIC_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
-import { AcademicGrantsFormData, ApplyingAs, GrantsReferralSource } from '../../types';
+import { AcademicGrantsSchema, AcademicGrantsData } from './schemas/AcademicGrants';
 
 export const AcademicGrantsForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
 
-  const [POCisAuthorisedSignatory, setPOCisAuthorisedSignatory] = useState('Yes');
-  const [applyingAs, setApplyingAs] = useState<ApplyingAs | unknown>({
-    value: '',
-    label: ''
-  });
-  const [grantsReferralSource, setGrantsReferralSource] = useState<GrantsReferralSource | unknown>({
-    value: '',
-    label: ''
-  });
-  const methods = useForm<AcademicGrantsFormData>({
-    mode: 'onBlur'
+  const methods = useForm<AcademicGrantsData>({
+    mode: 'onBlur',
+    shouldFocusError: true,
+    defaultValues: {
+      POCisAuthorisedSignatory: true,
+      repeatApplicant: false,
+      canTheEFReachOut: true
+    },
+    resolver: zodResolver(AcademicGrantsSchema)
   });
   const {
     handleSubmit,
     register,
     trigger,
     control,
-    formState: { errors, isValid, isSubmitting },
-    reset
+    formState: { errors, isSubmitting },
+    reset,
+    watch
   } = methods;
 
-  const onSubmit = async (data: AcademicGrantsFormData) => {
+  // for conditional fields, get the current values
+  const applyingAs = watch('applyingAs');
+  const POCisAuthorisedSignatory = watch('POCisAuthorisedSignatory');
+  const referralSource = watch('referralSource');
+
+  const notAuthorisedSignatory = POCisAuthorisedSignatory === false;
+
+  const onSubmit = async (data: AcademicGrantsData) => {
     return api.academicGrants
       .submit(data)
       .then(res => {
@@ -84,20 +90,6 @@ export const AcademicGrantsForm: FC = () => {
       .catch(err => console.error('There has been a problem with your operation: ', err.message));
   };
 
-  const handlePOCisAuthorisedSignatory = (value: string) => {
-    setPOCisAuthorisedSignatory(value);
-  };
-
-  const handleApplyingAs = (value: ApplyingAs) => {
-    setApplyingAs(value);
-  };
-
-  const handleGrantsReferralSource = (source: GrantsReferralSource) => {
-    setGrantsReferralSource(source);
-  };
-
-  const notAuthorisedSignatory = POCisAuthorisedSignatory === 'No';
-
   return (
     <Stack
       w='100%'
@@ -108,144 +100,49 @@ export const AcademicGrantsForm: FC = () => {
       borderRadius={{ md: '10px' }}
     >
       <FormProvider {...methods}>
-        <form id='project-grants-form' onSubmit={handleSubmit(onSubmit)}>
-          <Flex direction='column' mb={8}>
+        <Flex
+          as='form'
+          id='academic-grants-form'
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
+          direction='column'
+          gap={8}
+        >
+          <Flex direction='column'>
             <Flex direction={{ base: 'column', md: 'row' }} mb={3}>
-              <FormControl
-                id='first-name-control'
+              <TextField
+                id='firstName'
+                label='First name'
                 isRequired
                 mr={{ md: 12 }}
                 mb={{ base: 8, md: 0 }}
-              >
-                <FormLabel htmlFor='firstName'>
-                  <PageText display='inline' fontSize='input'>
-                    First name
-                  </PageText>
-                </FormLabel>
+              />
 
-                <Input
-                  id='firstName'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  {...register('firstName', {
-                    required: true,
-                    maxLength: 40
-                  })}
-                />
-
-                {errors?.firstName?.type === 'required' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      First name is required.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.firstName?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      First name cannot exceed 40 characters.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
-
-              <FormControl id='last-name-control' isRequired>
-                <FormLabel htmlFor='lastName'>
-                  <PageText display='inline' fontSize='input'>
-                    Last name
-                  </PageText>
-                </FormLabel>
-                <Input
-                  id='lastName'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  {...register('lastName', { required: true, maxLength: 80 })}
-                />
-
-                {errors?.lastName?.type === 'required' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Last name is required.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.lastName?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Last name cannot exceed 80 characters.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
+              <TextField id='lastName' label='Last name' isRequired />
             </Flex>
 
             {!errors?.firstName && !errors?.lastName && (
               <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                The point of contact for the application.
+                Who is the point of contact for the application?
               </PageText>
             )}
           </Flex>
 
-          <FormControl id='email-control' isRequired mb={8}>
-            <FormLabel htmlFor='email'>
-              <PageText display='inline' fontSize='input'>
-                Email
-              </PageText>
-            </FormLabel>
-            <Input
-              id='email'
-              type='email'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              {...register('email', { required: true })}
-            />
-
-            {errors?.email?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Email is required.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+          <TextField id='email' label='Email' isRequired />
 
           <Controller
             name='POCisAuthorisedSignatory'
             control={control}
-            rules={{ required: true }}
-            defaultValue='Yes'
             render={({ field: { onChange, value } }) => (
-              <FormControl id='POCisAuthorisedSignatory-control' isRequired mb={8}>
-                <FormLabel htmlFor='POCisAuthorisedSignatory'>
-                  <PageText display='inline' fontSize='input'>
-                    Is the point of contact also the authorised signatory?
-                  </PageText>
-                </FormLabel>
-
+              <Field
+                id='POCisAuthorisedSignatory'
+                label='Is the point of contact also the authorised signatory?'
+                isRequired
+              >
                 <RadioGroup
                   id='POCisAuthorisedSignatory'
-                  onChange={value => {
-                    onChange(value);
-                    handlePOCisAuthorisedSignatory(value);
-                  }}
-                  value={value}
+                  onChange={value => onChange(value === 'Yes')}
+                  value={value ? 'Yes' : 'No'}
                   fontSize='input'
                   colorScheme='white'
                   mt={4}
@@ -272,685 +169,265 @@ export const AcademicGrantsForm: FC = () => {
                     </Radio>
                   </Stack>
                 </RadioGroup>
-              </FormControl>
+              </Field>
             )}
           />
 
           <Box display={notAuthorisedSignatory ? 'block' : 'none'}>
             <Fade in={notAuthorisedSignatory} delay={0.25}>
-              <FormControl
-                id='authorisedSignatoryInformation-control'
-                isRequired={notAuthorisedSignatory}
-                mb={8}
-              >
-                <FormLabel htmlFor='authorisedSignatoryInformation' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Name, job title, and email address of the authorised signatory
-                  </PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  e.g.: John Smith, CEO, john@mycompany.com. This is the person who will sign the
-                  contract. They must be someone who can sign contracts on behalf of the entity.
-                </PageText>
-
-                <Input
-                  id='authorisedSignatoryInformation'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  mt={3}
-                  {...register('authorisedSignatoryInformation', {
-                    required: notAuthorisedSignatory,
-                    maxLength: 255
-                  })}
-                />
-
-                {errors?.authorisedSignatoryInformation?.type === 'required' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Authorised Signatory Information is required.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.authorisedSignatoryInformation?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Authorised Signatory Information cannot exceed 255 characters.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
+              <TextField
+                id='authorisedSignatoryInformation'
+                label='Name, job title, and email address of the authorised signatory'
+                helpText='(e.g. John Smith, CEO, john@mycompany.com. This is the person who will sign the contract. They must be someone who can sign contracts on behalf of the entity)'
+              />
             </Fade>
           </Box>
 
           <Controller
             name='applyingAs'
             control={control}
-            rules={{ required: true, validate: selected => selected.value !== '' }}
-            defaultValue={{ value: '', label: '' }}
-            render={({ field: { onChange }, fieldState: { error } }) => (
-              <FormControl id='applyingAs-control' isRequired mb={8}>
-                <FormLabel htmlFor='applyingAs'>
-                  <PageText display='inline' fontSize='input'>
-                    In which capacity are you applying?
-                  </PageText>
-                </FormLabel>
-
-                <Box>
-                  <Select
-                    id='applyingAs'
-                    options={APPLYING_AS_OPTIONS}
-                    onChange={(value: any) => {
-                      onChange(value);
-                      handleApplyingAs(value);
-                    }}
-                    components={{ DropdownIndicator }}
-                    placeholder='Select'
-                    closeMenuOnSelect={true}
-                    selectedOptionColor='brand.option'
-                    chakraStyles={chakraStyles}
-                  />
-
-                  {error && (
-                    <Box mt={1}>
-                      <PageText as='small' fontSize='helpText' color='red.500'>
-                        Please select in which capacity you are applying.
-                      </PageText>
-                    </Box>
-                  )}
-                </Box>
-              </FormControl>
+            render={({ field: { onChange } }) => (
+              <Field id='applyingAs' label='In which capacity are you applying?' isRequired>
+                <Select
+                  id='applyingAs'
+                  options={APPLYING_AS_OPTIONS}
+                  onChange={option =>
+                    onChange((option as typeof APPLYING_AS_OPTIONS[number]).value)
+                  }
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
+              </Field>
             )}
           />
 
-          <Box display={(applyingAs as ApplyingAs).value === OTHER ? 'block' : 'none'}>
-            <Fade in={(applyingAs as ApplyingAs).value === OTHER} delay={0.25}>
-              <FormControl id='applyingAsOther-control' mb={8}>
-                <FormLabel htmlFor='applyingAsOther'>
-                  <PageText fontSize='input'>If other, please specify</PageText>
-                </FormLabel>
-                <Input
-                  id='applyingAsOther'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  mt={3}
-                  {...register('applyingAsOther', {
-                    maxLength: 255
-                  })}
-                />
-
-                {errors?.applyingAsOther?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Applying as info cannot exceed 255 characters.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
+          <Box display={applyingAs === OTHER ? 'block' : 'none'}>
+            <Fade in={applyingAs === OTHER} delay={0.25}>
+              <TextField id='applyingAsOther' label='If other, please specify' />
             </Fade>
           </Box>
 
-          <FormControl id='company-control' isRequired mb={8}>
-            <FormLabel htmlFor='company' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                If applying as an Institution, please specify its name
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Name of your university program, team, or organization. If you do not have an
-              organization name, write &quot;N/A&quot;.
-            </PageText>
-
-            <Input
-              id='company'
-              type='text'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-              {...register('company', {
-                required: true,
-                maxLength: 255
-              })}
-            />
-
-            {errors?.company?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Organization name is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.company?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Organization name cannot exceed 255 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+          <TextField
+            id='company'
+            label='If applying as an Institution, please specify its name'
+            helpText='Name of your university program, team, or organization. If you do not have an organization name, write "N/A"'
+            isRequired
+          />
 
           <Controller
             name='country'
             control={control}
-            rules={{ required: true, validate: selected => selected.value !== '' }}
-            defaultValue={{ value: '', label: '' }}
             render={({ field: { onChange }, fieldState: { error } }) => (
-              <FormControl id='country-control' mb={8} w={{ md: '50%' }} isRequired>
-                <FormLabel htmlFor='country' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Country
-                  </PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Please indicate the country where the Institution/Lead Investigator is located.
-                </PageText>
-
-                <Box mt={3}>
-                  <Select
-                    id='country'
-                    options={COUNTRY_OPTIONS}
-                    onChange={onChange}
-                    components={{ DropdownIndicator }}
-                    placeholder='Select'
-                    closeMenuOnSelect={true}
-                    selectedOptionColor='brand.option'
-                    chakraStyles={chakraStyles}
-                  />
-                </Box>
-
-                {error && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Country is required.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
+              <Field
+                id='country'
+                label='Country'
+                helpText='Please indicate the country where the Institution/Lead Investigator is located'
+                error={error}
+                isRequired
+              >
+                <Select
+                  id='country'
+                  options={COUNTRY_OPTIONS}
+                  onChange={option => {
+                    const value = (option as typeof COUNTRY_OPTIONS[number]).value;
+                    onChange(value);
+                  }}
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
+              </Field>
             )}
           />
 
-          <FormControl id='countriesOfTeam-control' mb={8}>
-            <FormLabel htmlFor='countriesOfTeam' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                If you are a team of distributed researchers, please indicate where your fellow
-                researchers are located.
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              You can write as many countries as needed.
-            </PageText>
-
-            <Input
-              id='countriesOfTeam'
-              type='text'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-              {...register('countriesOfTeam', {
-                maxLength: 255
-              })}
-            />
-
-            {errors?.countriesOfTeam?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Countries list cannot exceed 255 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+          <TextField
+            id='countriesTeam'
+            label='If you are a team of distributed researchers, please indicate where your fellow
+            researchers are located'
+            helpText='You can write as many countries as needed'
+          />
 
           <Controller
             name='timezone'
             control={control}
-            rules={{ required: true, validate: selected => selected.value !== '' }}
-            defaultValue={{ value: '', label: '' }}
             render={({ field: { onChange }, fieldState: { error } }) => (
-              <FormControl id='timezone-control' isRequired mb={8}>
-                <FormLabel htmlFor='timezone' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Your time zone
-                  </PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Please choose your current time zone to help us schedule calls.
-                </PageText>
-
-                <Box mt={3}>
-                  <Select
-                    id='timezone'
-                    options={TIMEZONE_OPTIONS}
-                    onChange={value => {
-                      onChange(value);
-                      trigger('timezone');
-                    }}
-                    components={{ DropdownIndicator }}
-                    placeholder='Select'
-                    closeMenuOnSelect={true}
-                    selectedOptionColor='brand.option'
-                    chakraStyles={chakraStyles}
-                  />
-                </Box>
-
-                {error && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Time zone is required.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
+              <Field
+                id='timezone'
+                label='Time zone'
+                helpText='Please choose your current time zone to help us schedule calls'
+                error={error}
+                isRequired
+              >
+                <Select
+                  id='timezone'
+                  options={TIMEZONE_OPTIONS}
+                  onChange={option => {
+                    onChange((option as typeof TIMEZONE_OPTIONS[number]).value);
+                    trigger('timezone');
+                  }}
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
+              </Field>
             )}
           />
 
-          <FormControl id='project-name-control' isRequired mb={8}>
-            <FormLabel htmlFor='projectName' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Project name
-              </PageText>
-            </FormLabel>
+          <TextField
+            id='projectName'
+            label='Project name'
+            helpText='This should be a concise description of the title of your project'
+            isRequired
+          />
 
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              This should be a concise description of the title of your project.
-            </PageText>
-
-            <Input
-              id='projectName'
-              type='text'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-              {...register('projectName', {
-                required: true,
-                maxLength: 255
-              })}
-            />
-
-            {errors?.projectName?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Project name is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.projectName?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Project name cannot exceed 255 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='project-description-control' isRequired mb={8}>
-            <FormLabel htmlFor='projectDescription' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Brief project summary
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Describe your project in a few sentences (you&apos;ll have the chance to go into more
-              detail in the long form). If it&apos;s already underway, provide links to any existing
-              published work.
-            </PageText>
-
-            <Textarea
-              id='projectDescription'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('projectDescription', {
-                required: true,
-                maxLength: 255
-              })}
-            />
-
-            {errors?.projectDescription?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Project description is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.projectDescription?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Project description cannot exceed 255 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='website-control' isRequired mb={8}>
-            <FormLabel htmlFor='website' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Grant Proposal URL
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Please provide a link to your grant proposal for review.{' '}
-              <Link
-                fontWeight={700}
-                color='brand.orange.200'
-                href={`https://hackmd.io/@rodrigolvc/Example_Grant`}
-                isExternal
-                _hover={{ textDecoration: 'none' }}
-              >
-                Proposal Template
-              </Link>
-            </PageText>
-
-            <Box position='relative'>
-              <PageText fontSize='input' position='absolute' top='28.5px' left={4} zIndex={9}>
-                https://
-              </PageText>
-              <Input
-                id='website'
-                type='text'
-                placeholder='yourgrantproposal.com'
-                bg='white'
-                borderRadius={0}
-                borderColor='brand.border'
-                h='56px'
-                _placeholder={{ fontSize: 'input' }}
-                position='relative'
-                color='brand.paragraph'
-                fontSize='input'
-                pl={16}
-                mt={3}
-                {...register('website', {
-                  required: true,
-                  maxLength: 255
-                })}
-              />
-            </Box>
-
-            {errors?.website?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  The URL cannot exceed 255 characters.
-                </PageText>
-              </Box>
-            )}
-
-            {errors?.website?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  A URL is required.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+          <TextAreaField
+            id='projectDescription'
+            label='Brief project summary'
+            helpText="Describe your project in a few sentences (you'll have the chance to go into more
+              detail in the long form). If it's already underway, provide links to any existing
+              published work"
+            isRequired
+          />
 
           <Controller
             name='projectCategory'
             control={control}
-            rules={{ required: true, validate: selected => selected.value !== '' }}
-            defaultValue={{ value: '', label: '' }}
             render={({ field: { onChange }, fieldState: { error } }) => (
-              <FormControl id='project-category-control' isRequired mb={8}>
-                <FormLabel htmlFor='projectCategory' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Project category
-                  </PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Please choose a category that your project best fits in.
-                </PageText>
-
-                <Box mt={3}>
-                  <Select
-                    id='projectCategory'
-                    options={ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS}
-                    onChange={onChange}
-                    components={{ DropdownIndicator }}
-                    placeholder='Select'
-                    closeMenuOnSelect={true}
-                    selectedOptionColor='brand.option'
-                    chakraStyles={chakraStyles}
-                  />
-
-                  {error && (
-                    <Box mt={1}>
-                      <PageText as='small' fontSize='helpText' color='red.500'>
-                        Project category is required.
-                      </PageText>
-                    </Box>
-                  )}
-                </Box>
-              </FormControl>
-            )}
-          />
-
-          <FormControl id='requested-amount-control' isRequired mb={8} w={{ md: '50%' }}>
-            <FormLabel htmlFor='requestedAmount' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Total budget requested
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Estimated grant amount. Ex: USD 50,000.
-            </PageText>
-
-            <Input
-              id='requestedAmount'
-              type='text'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-              {...register('requestedAmount', {
-                required: true,
-                maxLength: 20
-              })}
-            />
-
-            {errors?.requestedAmount?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Requested amount is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.requestedAmount?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Requested amount cannot exceed 20 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <Controller
-            name='howDidYouHearAboutGrantsWave'
-            rules={{ required: true, validate: selected => selected.value !== '' }}
-            control={control}
-            defaultValue={{ value: '', label: '' }}
-            render={({ field: { onChange } }) => (
-              <FormControl id='howDidYouHearAboutGrantsWave-control' isRequired mb={8}>
-                <FormLabel htmlFor='howDidYouHearAboutGrantsWave'>
-                  <PageText display='inline' fontSize='input'>
-                    How did you hear about this wave of grants?
-                  </PageText>
-                </FormLabel>
-
+              <Field
+                id='projectCategory'
+                label='Project category'
+                helpText='Please choose a category that your project best fits in'
+                error={error}
+                isRequired
+              >
                 <Select
-                  id='howDidYouHearAboutGrantsWave'
-                  options={HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE}
+                  id='projectCategory'
+                  options={ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS}
+                  onChange={option => {
+                    onChange(
+                      (option as typeof ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS[number]).value
+                    );
+                  }}
                   components={{ DropdownIndicator }}
                   placeholder='Select'
                   closeMenuOnSelect={true}
                   selectedOptionColor='brand.option'
                   chakraStyles={chakraStyles}
-                  onChange={(selected: any) => {
-                    onChange(selected);
-                    handleGrantsReferralSource(selected);
-                  }}
                 />
-              </FormControl>
+              </Field>
             )}
           />
 
-          <Box
-            display={
-              (grantsReferralSource as GrantsReferralSource).value === OTHER ? 'block' : 'none'
-            }
-          >
-            <Fade in={(grantsReferralSource as GrantsReferralSource).value === OTHER} delay={0.25}>
-              <FormControl id='referral-source-if-other-control' mb={8}>
-                <FormLabel htmlFor='referralSourceIfOther' mb={1}>
-                  <PageText fontSize='input'>If other, explain how</PageText>
-                </FormLabel>
+          <TextField
+            id='requestAmount'
+            label='Total budget requested'
+            helpText='Estimated grant amount. Ex: USD 50,000.'
+            isRequired
+          />
 
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Please be as specific as possible (e.g. an email received, an individual who
-                  recommended you apply, a link to a tweet, etc.).
-                </PageText>
-
-                <Input
-                  id='referralSourceIfOther'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  mt={3}
-                  {...register('referralSourceIfOther', {
-                    maxLength: 255
-                  })}
+          <Controller
+            name='referralSource'
+            control={control}
+            render={({ field: { onChange }, fieldState: { error } }) => (
+              <Field
+                id='referralSource'
+                label='How did you hear about this wave of grants?'
+                error={error}
+                isRequired
+              >
+                <Select
+                  id='referralSource'
+                  options={HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE}
+                  onChange={option =>
+                    onChange((option as typeof HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE[number]).value)
+                  }
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
                 />
+              </Field>
+            )}
+          />
 
-                {errors?.referralSourceIfOther?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Referral source cannot exceed 255 characters.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
+          <Box display={referralSource === OTHER ? 'block' : 'none'}>
+            <Fade in={referralSource === OTHER} delay={0.25}>
+              <TextAreaField
+                id='referralSourceIfOther'
+                label='If other, explain how'
+                helpText='Please be as specific as possible. (e.g., an email received, an individual who
+              recommended you apply, a link to a tweet, etc.)'
+              />
             </Fade>
           </Box>
 
           <Controller
-            name='wouldYouShareYourResearch'
+            name='shareResearch'
             control={control}
-            defaultValue={{ value: '', label: '' }}
             render={({ field: { onChange }, fieldState: { error } }) => (
-              <FormControl id='wouldYouShareYourResearch-control' mb={8}>
-                <FormLabel htmlFor='wouldYouShareYourResearch'>
-                  <PageText display='inline' fontSize='input'>
-                    If the opportunity presents itself, would you like to share your
-                    findings/research output through a Conference/Discord talk?
-                  </PageText>
-                </FormLabel>
-
+              <Field
+                id='shareResearch'
+                label='If the opportunity presents itself, would you like to share your findings/research output through a Conference/Discord Talk?'
+                error={error}
+              >
                 <Select
-                  id='wouldYouShareYourResearch'
+                  id='shareResearch'
                   options={WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS}
-                  onChange={onChange}
+                  onChange={option => {
+                    onChange(
+                      (option as typeof WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS[number]).value
+                    );
+                  }}
                   components={{ DropdownIndicator }}
                   placeholder='Select'
                   closeMenuOnSelect={true}
                   selectedOptionColor='brand.option'
                   chakraStyles={chakraStyles}
                 />
-              </FormControl>
+              </Field>
             )}
           />
 
-          <FormControl id='linkedinProfile-control' mb={8}>
-            <FormLabel htmlFor='linkedinProfile' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                LinkedIn Profile(s)
-              </PageText>
-            </FormLabel>
+          <TextField
+            id='website'
+            label='Proposal URL'
+            placeholder='https://yourgrantproposal.com'
+            helpText={
+              <>
+                Please provide a link to your grant proposal for review.{' '}
+                <Link
+                  fontWeight={700}
+                  color='brand.orange.200'
+                  href={`https://hackmd.io/@rodrigolvc/Example_Grant`}
+                  isExternal
+                  _hover={{ textDecoration: 'none' }}
+                >
+                  Proposal Template
+                </Link>
+              </>
+            }
+          />
 
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              URL only.
-            </PageText>
+          <TextField id='linkedinProfile' label='LinkedIn Profile(s)' helpText='URL only' />
 
-            <Input
-              id='linkedinProfile'
-              type='text'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-              {...register('linkedinProfile', {
-                maxLength: 255
-              })}
-            />
-
-            {errors?.linkedinProfile?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  LinkedIn profiles cannot exceed 255 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='twitter-control' mb={8}>
+          <FormControl id='twitter-control'>
             <FormLabel htmlFor='twitter' mb={1}>
-              <PageText fontSize='input'>Twitter</PageText>
+              <PageText fontSize='input'>Twitter handle(s)</PageText>
             </FormLabel>
             <PageText fontSize='input' position='absolute' bottom='15.5px' left={4} zIndex={9}>
               @
             </PageText>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Twitter handle for your team or project.
+              Ex: @mytwitterhandle
             </PageText>
 
             <Input
@@ -967,75 +444,37 @@ export const AcademicGrantsForm: FC = () => {
               fontSize='input'
               pl={8}
               mt={3}
-              {...register('twitter', {
-                maxLength: 16
-              })}
+              {...register('twitter')}
             />
 
-            {errors?.twitter?.type === 'maxLength' && (
+            {errors?.twitter && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Twitter handle cannot exceed 16 characters.
+                  {errors?.twitter.message}
                 </PageText>
               </Box>
             )}
           </FormControl>
 
-          <FormControl id='telegram-control' mb={8}>
-            <FormLabel htmlFor='telegram' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Telegram username or alternative contact info
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              In regards to your submission, we&apos;ll get in touch with you via email by default.
-              As backup, if you&apos;d like to provide alternative contact info, you may do so. Not
-              required.
-            </PageText>
-
-            <Input
-              id='telegram'
-              type='text'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-              {...register('telegram', {
-                maxLength: 150
-              })}
-            />
-
-            {errors?.telegram?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Alternative contact info cannot exceed 150 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+          <TextField
+            id='alternativeContact'
+            label='Telegram username or alternative contact info'
+            helpText="In regards to your submission, we'll get in touch with you via email by default. As backup, if you'd like to provide alternative contact info, you may do so. Not required"
+          />
 
           <Controller
             name='repeatApplicant'
             control={control}
-            rules={{ required: true }}
-            defaultValue='No'
             render={({ field: { onChange, value } }) => (
-              <FormControl id='repeat-applicant-control' isRequired mb={8}>
-                <FormLabel htmlFor='repeatApplicant'>
-                  <PageText display='inline' fontSize='input'>
-                    Have you applied before to any grants at the Ethereum Foundation?
-                  </PageText>
-                </FormLabel>
-
+              <Field
+                id='repeatApplicant'
+                label='Have you applied before to any grants at the Ethereum Foundation?'
+                isRequired
+              >
                 <RadioGroup
                   id='repeatApplicant'
-                  onChange={onChange}
-                  value={value}
+                  onChange={value => onChange(value === 'Yes')}
+                  value={value ? 'Yes' : 'No'}
                   fontSize='input'
                   colorScheme='white'
                   mt={4}
@@ -1062,16 +501,16 @@ export const AcademicGrantsForm: FC = () => {
                     </Radio>
                   </Stack>
                 </RadioGroup>
-              </FormControl>
+              </Field>
             )}
           />
 
           <Controller
             name='canTheEFReachOut'
             control={control}
-            defaultValue='Yes'
+            defaultValue={true}
             render={({ field: { onChange, value } }) => (
-              <FormControl id='canTheEFReachOut-control' mb={8}>
+              <FormControl id='canTheEFReachOut-control'>
                 <FormLabel htmlFor='canTheEFReachOut'>
                   <PageText display='inline' fontSize='input'>
                     Is it OK for a member of the Ethereum Foundation to reach out to you (say, in
@@ -1081,8 +520,8 @@ export const AcademicGrantsForm: FC = () => {
 
                 <RadioGroup
                   id='canTheEFReachOut'
-                  onChange={onChange}
-                  value={value}
+                  onChange={value => onChange(value === 'Yes')}
+                  value={value ? 'Yes' : 'No'}
                   fontSize='input'
                   colorScheme='white'
                   mt={4}
@@ -1108,41 +547,13 @@ export const AcademicGrantsForm: FC = () => {
             )}
           />
 
-          <FormControl id='additional-info-control' mb={12}>
-            <FormLabel htmlFor='additionalInfo' mb={1}>
-              <PageText fontSize='input'>
-                Do you have any questions about this grants round, or is there anything else
-                you&apos;d like to share?
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Is there anything we didn&apos;t cover in the above questions? Feel free to add any
-              relevant links here. This is optional.
-            </PageText>
-
-            <Textarea
-              id='additionalInfo'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('additionalInfo', {
-                maxLength: 32768
-              })}
-            />
-
-            {errors?.additionalInfo?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Additional info cannot exceed 32768 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+          <TextAreaField
+            id='additionalInfo'
+            label="Do you have any questions about this grants round, or is there anything else
+            you'd like to share?"
+            helpText="Is there anything we didn't cover in the above questions? Feel free to add any
+            relevant links here. This is optional."
+          />
 
           <Center mb={12}>
             <Captcha />
@@ -1150,14 +561,14 @@ export const AcademicGrantsForm: FC = () => {
 
           <Center>
             <SubmitButton
-              isValid={isValid}
+              isValid
               isSubmitting={isSubmitting}
               height='56px'
               width='310px'
               text='Submit Application'
             />
           </Center>
-        </form>
+        </Flex>
       </FormProvider>
     </Stack>
   );

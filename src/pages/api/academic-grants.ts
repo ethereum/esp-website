@@ -1,13 +1,11 @@
 import jsforce from 'jsforce';
-import { NextApiResponse } from 'next';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 import addRowToSpreadsheet from '../../utils/addRowToSpreadsheet';
 
 import { sanitizeFields, verifyCaptcha } from '../../middlewares';
 
-import { AcademicGrantsNextApiRequest } from '../../types';
-
-async function handler(req: AcademicGrantsNextApiRequest, res: NextApiResponse): Promise<void> {
+async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
   return new Promise(resolve => {
     const { body } = req;
     const {

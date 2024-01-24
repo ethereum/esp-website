@@ -1,5 +1,4 @@
 import {
-  AcademicGrantsFormData,
   DevconGrantsFormData,
   EcodevGrantsFormData,
   GranteeFinanceFormData,
@@ -22,6 +21,8 @@ import {
   API_SMALL_GRANTS_EVENT,
   API_SMALL_GRANTS_PROJECT
 } from './constants';
+
+import type { AcademicGrantsData } from './schemas/AcademicGrants';
 
 const methodOptions = {
   method: 'POST',
@@ -149,26 +150,15 @@ export const api = {
     }
   },
   academicGrants: {
-    submit: (data: AcademicGrantsFormData) => {
-      const academicGrantsRequestOptions: RequestInit = {
-        ...methodOptions,
-        body: JSON.stringify({
-          ...data,
-          POCisAuthorisedSignatory: data.POCisAuthorisedSignatory === 'Yes',
-          applyingAs: data.applyingAs.value,
-          // Company is a required field in SF, we're using the Name as default value if no company provided
-          company: data.company === 'N/A' ? `${data.firstName} ${data.lastName}` : data.company,
-          country: data.country.value,
-          timezone: data.timezone.value,
-          projectCategory: data.projectCategory.value,
-          howDidYouHearAboutGrantsWave: data.howDidYouHearAboutGrantsWave.value,
-          wouldYouShareYourResearch: data.wouldYouShareYourResearch.value,
-          repeatApplicant: data.repeatApplicant === 'Yes',
-          canTheEFReachOut: data.canTheEFReachOut === 'Yes'
-        })
+    submit: (data: AcademicGrantsData) => {
+      const formData = createFormData(data);
+
+      const dataRequestOptions: RequestInit = {
+        method: 'POST',
+        body: formData
       };
 
-      return fetch(API_ACADEMIC_GRANTS, academicGrantsRequestOptions);
+      return fetch(API_ACADEMIC_GRANTS, dataRequestOptions);
     }
   },
   newsletter: {
