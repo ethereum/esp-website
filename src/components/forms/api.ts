@@ -4,6 +4,7 @@ import {
   GranteeFinanceFormData,
   NewsletterFormData,
   OfficeHoursFormData,
+  PSESponsorshipsFormData,
   ProjectGrantsFormData,
   SmallGrantsFormData
 } from './../../types';
@@ -18,6 +19,7 @@ import {
   API_NEWSLETTER_SIGNUP_URL,
   API_OFFICE_HOURS,
   API_PROJECT_GRANTS,
+  API_PSE_SPONSORSHIPS,
   API_SMALL_GRANTS_EVENT,
   API_SMALL_GRANTS_PROJECT
 } from './constants';
@@ -159,6 +161,24 @@ export const api = {
       };
 
       return fetch(API_ACADEMIC_GRANTS, dataRequestOptions);
+    }
+  },
+  pseSponsorships: {
+    submit: (data: PSESponsorshipsFormData) => {
+      const pseSponsorshipsRequestOptions: RequestInit = {
+        ...methodOptions,
+        body: JSON.stringify({
+          ...data,
+          // Company is a required field in SF, we're using the Name as default value if no company provided
+          company: data.company === '' ? `${data.firstName} ${data.lastName}` : data.company,
+          country: data.country.value,
+          website: getWebsite(data.website),
+          eventType: data.eventType.value,
+          eventFormat: data.eventFormat.value
+        })
+      };
+
+      return fetch(API_PSE_SPONSORSHIPS, pseSponsorshipsRequestOptions);
     }
   },
   newsletter: {
