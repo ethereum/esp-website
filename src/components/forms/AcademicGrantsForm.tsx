@@ -20,7 +20,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { DropdownIndicator, PageText } from '../UI';
 import { SubmitButton } from '../SubmitButton';
-import { Captcha, Field, TextAreaField, TextField } from '.';
+import { Captcha, Field, TextAreaField, TextField, UploadFile } from '.';
 
 import { api } from './api';
 
@@ -69,6 +69,14 @@ export const AcademicGrantsForm: FC = () => {
   const referralSource = watch('referralSource');
 
   const notAuthorisedSignatory = POCisAuthorisedSignatory === false;
+
+  const handleDrop = () => {
+    toast({
+      ...TOAST_OPTIONS,
+      title: 'Proposal uploaded!',
+      status: 'success'
+    });
+  };
 
   const onSubmit = async (data: AcademicGrantsData) => {
     return api.academicGrants
@@ -179,6 +187,7 @@ export const AcademicGrantsForm: FC = () => {
                 id='authorisedSignatoryInformation'
                 label='Name, job title, and email address of the authorised signatory'
                 helpText='(e.g. John Smith, CEO, john@mycompany.com. This is the person who will sign the contract. They must be someone who can sign contracts on behalf of the entity)'
+                isRequired
               />
             </Fade>
           </Box>
@@ -296,6 +305,29 @@ export const AcademicGrantsForm: FC = () => {
             isRequired
           />
 
+          <UploadFile
+            id='proposalAttachment'
+            label='Proposal'
+            title='Upload proposal'
+            helpText={
+              <>
+                Attach a PDF proposal. An proposal template is available{' '}
+                <Link
+                  fontWeight={700}
+                  color='brand.orange.100'
+                  href='https://notes.ethereum.org/@YlnZmB-mQ9ah8neq5cLDDg/Grant_Proposal_template'
+                  isExternal
+                  _hover={{ textDecoration: 'none' }}
+                >
+                  here
+                </Link>
+              </>
+            }
+            isRequired
+            onDrop={handleDrop}
+            mb={8}
+          />
+
           <Controller
             name='projectCategory'
             control={control}
@@ -398,22 +430,8 @@ export const AcademicGrantsForm: FC = () => {
 
           <TextField
             id='website'
-            label='Proposal URL'
-            placeholder='https://yourgrantproposal.com'
-            helpText={
-              <>
-                Please provide a link to your grant proposal for review.{' '}
-                <Link
-                  fontWeight={700}
-                  color='brand.orange.200'
-                  href={`https://hackmd.io/@rodrigolvc/Example_Grant`}
-                  isExternal
-                  _hover={{ textDecoration: 'none' }}
-                >
-                  Proposal Template
-                </Link>
-              </>
-            }
+            label='Website'
+            helpText='University website or Google Scholar profile'
           />
 
           <TextField id='linkedinProfile' label='LinkedIn Profile(s)' helpText='URL only' />
