@@ -1,4 +1,4 @@
-import { Accordion, Box, Flex, Link, ListItem, Stack } from '@chakra-ui/react';
+import { Accordion, Box, Flex, Link, ListItem, Stack, Text } from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import type { NextPage } from 'next';
 
@@ -31,7 +31,9 @@ const AcademicGrants: NextPage = () => {
   const [ref6, inView6] = useInView({ threshold: 0.5, initialInView: false });
   const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
   const [ref8, inView8] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref9, inView9] = useInView({ threshold: 0, initialInView: false });
+  const [ref9, inView9] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref10, inView10] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref11, inView11] = useInView({ threshold: 0, initialInView: false });
 
   return (
     <>
@@ -54,7 +56,9 @@ const AcademicGrants: NextPage = () => {
                 inView6,
                 inView7,
                 inView8,
-                inView9
+                inView9,
+                inView10,
+                inView11
               ]}
             />
 
@@ -62,28 +66,32 @@ const AcademicGrants: NextPage = () => {
               <Stack mb={8} mt={{ base: 10, md: 0 }}>
                 <section id='description' ref={ref}>
                   <PageText mb={6}>
-                    In the first Academic Grants Round the Ethereum Foundation awarded 39 grants
-                    from 18 countries. You can see all of the winners listed in the{' '}
-                    <Link
-                      fontWeight={700}
-                      color='brand.orange.100'
-                      href='https://blog.ethereum.org/2022/07/29/academic-grants-grantee-announce'
-                      isExternal
-                      _hover={{ textDecoration: 'none' }}
-                    >
-                      grantee announcement
-                    </Link>
-                    . We&apos;re renewing our support of academic research throughout the Ethereum
-                    ecosystem with the Academic Grants Round 2024!
+                    The Ethereum Foundation is thrilled to announce the Academic Grants Round 2024,
+                    an initiative dedicated to fostering research in the Ethereum ecosystem.
+                    Following the overwhelming success of the 2023 round, where we funded 43
+                    projects from 20 countries, we are eager to continue supporting the academic
+                    contributions. With a focus on a wide array of domains such as, cryptography,
+                    mathematics, zero-knowledge proofs, economics, computation, cybersecurity,
+                    protocol and consensus mechanisms, formal verification, P2P networking, society
+                    and regulation, and hardware, we aim to catalyze research that propels the
+                    Ethereum ecosystem forward.
                   </PageText>
 
                   <PageText mb={6}>
-                    With this grants round, the Ethereum Foundation welcomes more academics to the
-                    table to push forward formal academic research in related domains. Such domains
-                    include theoretical and applied cryptography, mathematics, zero-knowledge
-                    proofs, economics, computation, cybersecurity, protocol and consensus
-                    mechanisms, formal verification, P2P networking, society and regulation, and
-                    hardware.
+                    In 2023, we received an astounding 250 applications, emphasizing the global
+                    academic community’s growing interest in Ethereum. The diversity and quality of
+                    these applications were remarkable. This year, we aim to build on this momentum
+                    by inviting even more researchers and institutions from more countries to
+                    participate. By sponsoring this wave of grants, the Ethereum Foundation
+                    underscores its commitment to supporting rigorous academic work that addresses
+                    key challenges and unlocks new opportunities.
+                  </PageText>
+
+                  <PageText mb={6}>
+                    We are looking for proposals that not only align with our wishlist but also
+                    bring novel perspectives and approaches. We encourage you to draw inspiration
+                    from the wishlist and think creatively about how your research can contribute to
+                    the Ethereum ecosystem.
                   </PageText>
                 </section>
               </Stack>
@@ -109,7 +117,7 @@ const AcademicGrants: NextPage = () => {
                     <Link
                       fontWeight={700}
                       color='brand.orange.100'
-                      href='https://notes.ethereum.org/@djrtwo/academic-grants-wishlist-2023'
+                      href='https://notes.ethereum.org/7YjG-rcTS6GqkmzMuQdmag'
                       isExternal
                       _hover={{ textDecoration: 'none' }}
                     >
@@ -117,47 +125,26 @@ const AcademicGrants: NextPage = () => {
                     </Link>
                     .
                   </PageText>
-
-                  <PageText mb={6}>
-                    We welcome research at any stage, whether it&apos;s a new idea based on the
-                    wishlist, a project that furthers Ethereum-related research you&apos;ve already
-                    undertaken, or a lab experiment.
-                  </PageText>
-
-                  <PageText mb={6}>
-                    Grants will be awarded on a case by case basis and will be reviewed after the
-                    deadline. You may enter more than one proposal as long as each proposal is
-                    unique and meets the{' '}
-                    <Link
-                      fontWeight={700}
-                      color='brand.orange.100'
-                      href='#requirements'
-                      _hover={{ textDecoration: 'none' }}
-                    >
-                      requirements
-                    </Link>
-                    .
-                  </PageText>
                 </section>
 
-                <section id='deadline' ref={ref3}>
-                  <PageSection mb={6}>Deadline</PageSection>
-
-                  <PageText mb={6}>
-                    The deadline for proposals is <strong>Monday, February 27th, 2023</strong>. We
-                    will follow-up regarding your submission by email.
-                  </PageText>
-                </section>
-
-                <section id='requirements' ref={ref4}>
-                  <PageSection mb={6}>Requirements</PageSection>
+                <section id='requirements' ref={ref3}>
+                  <PageSection mb={6}>Application requirements</PageSection>
 
                   <List>
-                    <ListItem>Proposals must be in English.</ListItem>
-                    <ListItem>Work must be free and open source.</ListItem>
-                    <ListItem>Reports must be accessible by a url.</ListItem>
+                    <ListItem>All applications must have a written proposal in PDF format</ListItem>
+                    <List>
+                      <ListItem>Proposals must be in English</ListItem>
+                      <ListItem>
+                        Proposals must include a detailed description, budget, and timeline for the
+                        proposed scope of work
+                      </ListItem>
+                      <ListItem>Proposals must include an applicant profile</ListItem>
+                      <ListItem>
+                        Proposals must include a public repository or link to published work
+                      </ListItem>
+                    </List>
                     <ListItem>
-                      Proposal must include the topics in the{' '}
+                      Here is a{' '}
                       <Link
                         fontWeight={700}
                         color='brand.orange.100'
@@ -166,58 +153,113 @@ const AcademicGrants: NextPage = () => {
                         _hover={{ textDecoration: 'none' }}
                       >
                         template
-                      </Link>
-                      , but you can expand on these.
+                      </Link>{' '}
+                      for a proposal
+                    </ListItem>
+                    <ListItem>Ideas and projects at any stage of development are welcome:</ListItem>
+                    <List>
+                      <ListItem>Idea phase</ListItem>
+                      <ListItem>Proof-of-concept</ListItem>
+                      <ListItem>Work in progress</ListItem>
+                      <ListItem>Fleshed out project</ListItem>
+                    </List>
+                    <ListItem>
+                      Applications are open to individuals, teams, and organizations. Individual
+                      researchers with academic backgrounds, research centers, universities,
+                      think-tanks, educators and other stakeholders interested in Ethereum research
+                    </ListItem>
+                    <ListItem>
+                      Undergraduate researchers will require a posdoctoral advisor
+                    </ListItem>
+                    <ListItem>
+                      Applications are selected for funding on a case-by-case basis. You may submit
+                      more than one application as long as each proposal is unique and meets the
+                      requirements and goals of this round
+                    </ListItem>
+                    <ListItem>
+                      Decisions will be emailed 6 weeks after the application deadline
                     </ListItem>
                   </List>
                 </section>
 
-                <section id='selection-criteria' ref={ref5}>
+                <section id='deadline' ref={ref4}>
+                  <PageSection mb={6}>Deadline</PageSection>
+
+                  <PageText mb={6}>
+                    The deadline for proposals is <strong>Monday, March 5th, 2024</strong>. We will
+                    follow-up regarding your submission by email.
+                  </PageText>
+                </section>
+
+                <section id='eligibility-criteria' ref={ref5}>
+                  <PageSection mb={6}>Eligibility criteria</PageSection>
+
+                  <List>
+                    <ListItem>
+                      Projects must be open source with a free and permissive license
+                    </ListItem>
+                    <ListItem>
+                      Projects must be aligned with the stated goals and wishlist for this round
+                    </ListItem>
+                    <ListItem>
+                      Projects should be public goods that benefit the growth and development of the
+                      Ethereum ZK L2 ecosystem
+                    </ListItem>
+                  </List>
+                </section>
+
+                <section id='not-eligible' ref={ref6}>
+                  <PageSection mb={6}>
+                    What is <i>not</i> eligible
+                  </PageSection>
+
+                  <List>
+                    <ListItem>
+                      Anything that is not legal within the jurisdiction where the work is taking
+                      place
+                    </ListItem>
+                    <ListItem>
+                      Financial products and services (trading platforms, investment products,
+                      stablecoins, lending or betting platforms, etc.)
+                    </ListItem>
+                    <ListItem>
+                      Art projects or social impact projects that don’t fit within the scope of this
+                      round
+                    </ListItem>
+                    <ListItem>Projects requesting retroactive funding</ListItem>
+                    <ListItem>
+                      Projects with a planned token launch or public funding round
+                    </ListItem>
+                  </List>
+                </section>
+
+                <section id='selection-criteria' ref={ref7}>
                   <PageSection mb={6}>Selection criteria</PageSection>
 
                   <PageText mb={6}>
-                    <strong>Surprise us with your creativity!</strong> Here are a few selection
-                    criteria considerations:
+                    Applications to this round will be reviewed and selected for funding by
+                    evalutors from Aztec, Ethereum Foundation, Scroll, Taiko, and zkSync using the
+                    following considerations. Note: depending on the proposal, some criteria might
+                    not be applicable:
                   </PageText>
 
                   <List>
-                    <ListItem>Impact of the proposed research output.</ListItem>
-                    <ListItem>Quality of work and experience of the research team.</ListItem>
-                    <ListItem>Clarity, conciseness and organization of the proposal.</ListItem>
-                    <ListItem>Contribution to the wishlist areas.</ListItem>
+                    <ListItem>Potential impact on the Ethereum ZK L2 ecosystem</ListItem>
                     <ListItem>
-                      Potential of long-term involvement in the Ethereum ecosystem.
+                      Overall value and benefit of project to multiple L2s within the ecosystem
+                    </ListItem>
+                    <ListItem>Clarity, conciseness, and organization of documentation</ListItem>
+                    <ListItem>
+                      Individual or team profile demonstrates an experience and expertise capable of
+                      executing project described
                     </ListItem>
                     <ListItem>
-                      Analyses or visualizations that help a non-technical audience gain insight
-                      into the research.
+                      Timeline of project and requested budget reasonably match the scope of work
                     </ListItem>
                   </List>
                 </section>
 
-                <section id='wishlist' ref={ref6}>
-                  <PageSection mb={6}>Wishlist</PageSection>
-
-                  <PageText mb={6}>
-                    The Ethereum Foundation is interested in research and academic output in the
-                    following domain areas, but don&apos;t let this restrict your creativity. Check
-                    out our{' '}
-                    <Link
-                      fontWeight={700}
-                      color='brand.orange.100'
-                      href='https://notes.ethereum.org/@djrtwo/academic-grants-wishlist-2023'
-                      isExternal
-                      _hover={{ textDecoration: 'none' }}
-                    >
-                      wishlist
-                    </Link>
-                    .
-                  </PageText>
-
-                  <PageText mb={6}>Surprise us with your creativity!</PageText>
-                </section>
-
-                <section id='next-steps-and-support' ref={ref7}>
+                <section id='next-steps-and-support' ref={ref8}>
                   <PageSection mb={6}>Next steps and support</PageSection>
 
                   <PageText mb={6}>
@@ -235,7 +277,31 @@ const AcademicGrants: NextPage = () => {
                   </PageText>
                 </section>
 
-                <section id='faq' ref={ref8}>
+                <section id='wishlist' ref={ref9}>
+                  <PageSection mb={6}>Wishlist</PageSection>
+
+                  <PageText mb={6}>
+                    The Ethereum Foundation is interested in research and academic output in the
+                    following domain areas, but don&apos;t let this restrict your creativity. Check
+                    out our{' '}
+                    <Link
+                      fontWeight={700}
+                      color='brand.orange.100'
+                      href='https://hackmd.io/@rodrigolvc/AGR_2023_Wishlist'
+                      isExternal
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      wishlist
+                    </Link>
+                    .
+                  </PageText>
+
+                  <PageText mb={6}>
+                    <strong>Surprise us with your creativity!</strong>
+                  </PageText>
+                </section>
+
+                <section id='faq' ref={ref10}>
                   <PageSection mb={6}>Frequently asked questions</PageSection>
 
                   <Accordion allowToggle>
@@ -327,36 +393,10 @@ const AcademicGrants: NextPage = () => {
                       </PageText>
                     </FAQItem>
 
-                    <FAQItem question='Has this type of grant been awarded before by the Ethereum Foundation?'>
-                      <PageText>
-                        This is the second time the Ethereum Foundation is launching a specific
-                        grant round to support Ethereum related academic research. We also have an
-                        ongoing support program - the Ecosystem Support Program - which supports
-                        Ethereum related projects in various scopes.
-                      </PageText>
-                    </FAQItem>
-
                     <FAQItem question='Are applications evaluated on a rolling basis or at the end of the deadline?'>
                       <PageText>
                         Project submission will be evaluated after the deadline, and contact will be
                         made with each applicant to inform them about the evaluation outcome.
-                      </PageText>
-                    </FAQItem>
-
-                    <FAQItem question='Can I submit more than one application, or should I combine all the project ideas into one sole application?'>
-                      <PageText>
-                        You should submit one application per project idea/ wishlist area. Multiple
-                        applications per institution are accepted for the Academic Grants Round.
-                        Submitting duplicates or variants of the same application will not improve
-                        your chances of selection.
-                      </PageText>
-                    </FAQItem>
-
-                    <FAQItem question='Can you provide an estimate of the number of submissions and, of those, how many were selected in the previous Academic grants rounds?'>
-                      <PageText>
-                        During the first Academic Grants Round, the Ethereum Foundation received
-                        over 150 applications and issued 39 grants for academic research in 18
-                        countries.
                       </PageText>
                     </FAQItem>
 
@@ -397,7 +437,7 @@ const AcademicGrants: NextPage = () => {
                   </Accordion>
                 </section>
 
-                <section id='apply' ref={ref9}>
+                <section id='apply' ref={ref11}>
                   <Stack mt={6}>
                     <ReadyToApply link={`${ACADEMIC_GRANTS_APPLY_URL}`} />
                   </Stack>

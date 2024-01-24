@@ -19,9 +19,9 @@ export const AcademicGrantsLayout: FC = ({ children }) => {
         title='Academic Grants Round'
       >
         The Ethereum Foundation is sponsoring a wave of grants to support Ethereum-related academic
-        work. This grants round has up to <strong>$1M</strong> in total available funds. Proposals
-        are due <strong>23:59 UTC February 27th, 2024</strong>. All of the details you&apos;ll need
-        to apply can be found below.
+        work. This grants round has <strong>$1M</strong> in total available funds. Proposals are due{' '}
+        <strong>23:59 UTC March 5th, 2024</strong>. All of the details you’ll need to apply can be
+        found below.
       </GrantsHero>
 
       <Stack>{children}</Stack>
