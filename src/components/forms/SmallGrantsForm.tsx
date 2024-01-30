@@ -744,7 +744,7 @@ export const SmallGrantsForm: FC = () => {
                 </FormLabel>
 
                 <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  What is the specific problems, research questions, or needs you are trying to
+                  What are the specific problems, research questions, or needs you are trying to
                   address?
                 </PageText>
 
