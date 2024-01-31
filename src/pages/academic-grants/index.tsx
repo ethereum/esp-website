@@ -307,16 +307,15 @@ const AcademicGrants: NextPage = () => {
                   <Accordion allowToggle>
                     <FAQItem question='Does the Ethereum Foundation have an Indirect Costs Policy?'>
                       <PageText>
-                        ESP has an indirect costs policy for Academic Grants. If you would like a
-                        copy of the policy, please email{' '}
+                        ESP has an{' '}
                         <Link
                           fontWeight={700}
                           color='brand.orange.100'
-                          href={`mailto:${ACADEMIC_GRANTS_EMAIL_ADDRESS}`}
+                          href='/Academic_Grants_Round_-_Indirect_Costs_Guide.pdf'
                           isExternal
                           _hover={{ textDecoration: 'none' }}
                         >
-                          {ACADEMIC_GRANTS_EMAIL_ADDRESS}
+                          indirect costs policy for Academic Grants
                         </Link>
                         .
                       </PageText>
