@@ -3,18 +3,17 @@ import { FC } from 'react';
 
 import { GrantsHero } from '../UI';
 
-import academicGrantsHero from '../../../public/images/academic-grants-hero.png';
-import academicGrantsHeroMobile from '../../../public/images/academic-grants-hero-mobile.png';
+import academicGrantsHero from '../../../public/images/accademic-grants-2024-hero.jpg';
 
 export const AcademicGrantsLayout: FC = ({ children }) => {
   return (
     <Stack>
       <GrantsHero
-        colorBrandConstant='academicGrantsHero'
+        colorBrandConstant='academicGrants2024Hero'
         desktopImage={{ alt: 'Academics doing research about Ethereum', src: academicGrantsHero }}
         mobileImage={{
           alt: 'Academics doing research about Ethereum',
-          src: academicGrantsHeroMobile
+          src: academicGrantsHero
         }}
         title='Academic Grants Round'
       >
