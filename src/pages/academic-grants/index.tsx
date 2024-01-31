@@ -111,13 +111,19 @@ const AcademicGrants: NextPage = () => {
                     Anyone is free to participate in this grants round, as an individual or with a
                     team.
                   </PageText>
+                </section>
+
+                <section id='wishlist' ref={ref3}>
+                  <PageSection mb={6}>Wishlist</PageSection>
 
                   <PageText mb={6}>
-                    Research outputs are encouraged but not limited to the following{' '}
+                    The Ethereum Foundation is interested in research and academic output in the
+                    following domain areas, but don&apos;t let this restrict your creativity. Check
+                    out our{' '}
                     <Link
                       fontWeight={700}
                       color='brand.orange.100'
-                      href='https://notes.ethereum.org/7YjG-rcTS6GqkmzMuQdmag'
+                      href='https://hackmd.io/@rodrigolvc/AGR_2023_Wishlist'
                       isExternal
                       _hover={{ textDecoration: 'none' }}
                     >
@@ -125,9 +131,13 @@ const AcademicGrants: NextPage = () => {
                     </Link>
                     .
                   </PageText>
+
+                  <PageText mb={6}>
+                    <strong>Surprise us with your creativity!</strong>
+                  </PageText>
                 </section>
 
-                <section id='requirements' ref={ref3}>
+                <section id='requirements' ref={ref4}>
                   <PageSection mb={6}>Application requirements</PageSection>
 
                   <List>
@@ -182,7 +192,7 @@ const AcademicGrants: NextPage = () => {
                   </List>
                 </section>
 
-                <section id='deadline' ref={ref4}>
+                <section id='deadline' ref={ref5}>
                   <PageSection mb={6}>Deadline</PageSection>
 
                   <PageText mb={6}>
@@ -191,7 +201,7 @@ const AcademicGrants: NextPage = () => {
                   </PageText>
                 </section>
 
-                <section id='eligibility-criteria' ref={ref5}>
+                <section id='eligibility-criteria' ref={ref6}>
                   <PageSection mb={6}>Eligibility criteria</PageSection>
 
                   <List>
@@ -208,7 +218,7 @@ const AcademicGrants: NextPage = () => {
                   </List>
                 </section>
 
-                <section id='not-eligible' ref={ref6}>
+                <section id='not-eligible' ref={ref7}>
                   <PageSection mb={6}>
                     What is <i>not</i> eligible
                   </PageSection>
@@ -233,7 +243,7 @@ const AcademicGrants: NextPage = () => {
                   </List>
                 </section>
 
-                <section id='selection-criteria' ref={ref7}>
+                <section id='selection-criteria' ref={ref8}>
                   <PageSection mb={6}>Selection criteria</PageSection>
 
                   <PageText mb={6}>
@@ -259,7 +269,7 @@ const AcademicGrants: NextPage = () => {
                   </List>
                 </section>
 
-                <section id='next-steps-and-support' ref={ref8}>
+                <section id='next-steps-and-support' ref={ref9}>
                   <PageSection mb={6}>Next steps and support</PageSection>
 
                   <PageText mb={6}>
@@ -274,30 +284,6 @@ const AcademicGrants: NextPage = () => {
                       {ACADEMIC_GRANTS_EMAIL_ADDRESS}
                     </Link>
                     .
-                  </PageText>
-                </section>
-
-                <section id='wishlist' ref={ref9}>
-                  <PageSection mb={6}>Wishlist</PageSection>
-
-                  <PageText mb={6}>
-                    The Ethereum Foundation is interested in research and academic output in the
-                    following domain areas, but don&apos;t let this restrict your creativity. Check
-                    out our{' '}
-                    <Link
-                      fontWeight={700}
-                      color='brand.orange.100'
-                      href='https://hackmd.io/@rodrigolvc/AGR_2023_Wishlist'
-                      isExternal
-                      _hover={{ textDecoration: 'none' }}
-                    >
-                      wishlist
-                    </Link>
-                    .
-                  </PageText>
-
-                  <PageText mb={6}>
-                    <strong>Surprise us with your creativity!</strong>
                   </PageText>
                 </section>
 
