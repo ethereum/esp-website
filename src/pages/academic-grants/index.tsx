@@ -69,22 +69,20 @@ const AcademicGrants: NextPage = () => {
                     The Ethereum Foundation is thrilled to announce the Academic Grants Round 2024,
                     an initiative dedicated to fostering research in the Ethereum ecosystem.
                     Following the overwhelming success of the 2023 round, where we funded 43
-                    projects from 20 countries, we are eager to continue supporting the academic
-                    contributions. With a focus on a wide array of domains such as, cryptography,
-                    mathematics, zero-knowledge proofs, economics, computation, cybersecurity,
-                    protocol and consensus mechanisms, formal verification, P2P networking, society
-                    and regulation, and hardware, we aim to catalyze research that propels the
-                    Ethereum ecosystem forward.
+                    projects from 20 countries, we are eager to continue supporting academic
+                    contributions. With a focus on a wide array of domains such as, applied and
+                    theoretical cryptography, economics, game theory, security, consensus protocols,
+                    formal verification, p2p networking, society and regulation, and hardware, we
+                    aim to catalyze research that propels the Ethereum ecosystem forward.
                   </PageText>
 
                   <PageText mb={6}>
                     In 2023, we received an astounding 250 applications, emphasizing the global
-                    academic community’s growing interest in Ethereum. The diversity and quality of
-                    these applications were remarkable. This year, we aim to build on this momentum
-                    by inviting even more researchers and institutions from more countries to
-                    participate. By sponsoring this wave of grants, the Ethereum Foundation
-                    underscores its commitment to supporting rigorous academic work that addresses
-                    key challenges and unlocks new opportunities.
+                    academic community’s growing interest in Ethereum. This year, we aim to build on
+                    this momentum by inviting even more researchers and institutions from more
+                    countries to participate. By sponsoring this wave of grants, the Ethereum
+                    Foundation underscores its commitment to supporting rigorous academic work that
+                    addresses key challenges and unlocks new opportunities.
                   </PageText>
 
                   <PageText mb={6}>
@@ -179,7 +177,7 @@ const AcademicGrants: NextPage = () => {
                       think-tanks, educators and other stakeholders interested in Ethereum research
                     </ListItem>
                     <ListItem>
-                      Undergraduate researchers will require a posdoctoral advisor
+                      Undergraduate researchers will require a postdoctoral advisor
                     </ListItem>
                     <ListItem>
                       Applications are selected for funding on a case-by-case basis. You may submit
@@ -208,9 +206,7 @@ const AcademicGrants: NextPage = () => {
                     <ListItem>
                       Projects must be open source with a free and permissive license
                     </ListItem>
-                    <ListItem>
-                      Projects must be aligned with the stated goals and wishlist for this round
-                    </ListItem>
+                    <ListItem>Projects must produce formal academic research</ListItem>
                     <ListItem>
                       Projects should be public goods that benefit the growth and development of the
                       Ethereum ZK L2 ecosystem
@@ -254,17 +250,16 @@ const AcademicGrants: NextPage = () => {
                   </PageText>
 
                   <List>
-                    <ListItem>Potential impact on the Ethereum ZK L2 ecosystem</ListItem>
+                    <ListItem>Impact of the proposed research output</ListItem>
+                    <ListItem>Quality of work and experience of the research team</ListItem>
+                    <ListItem>Clarity, conciseness, and organization of the proposal</ListItem>
+                    <ListItem>Contribution to the wishlist areas</ListItem>
                     <ListItem>
-                      Overall value and benefit of project to multiple L2s within the ecosystem
-                    </ListItem>
-                    <ListItem>Clarity, conciseness, and organization of documentation</ListItem>
-                    <ListItem>
-                      Individual or team profile demonstrates an experience and expertise capable of
-                      executing project described
+                      Potential of long-term involvement in the Ethereum ecosystem
                     </ListItem>
                     <ListItem>
-                      Timeline of project and requested budget reasonably match the scope of work
+                      Analyses of visualizations that help a non-technical audience gain insight
+                      into the research
                     </ListItem>
                   </List>
                 </section>
