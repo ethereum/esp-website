@@ -1,6 +1,7 @@
 export * from './AboutLayout';
 export * from './AcademicGrantsApplyLayout';
 export * from './AcademicGrants2022Layout';
+export * from './AcademicGrants2023Layout';
 export * from './ApplicantsLayout';
 export * from './DevconGrantsLayout';
 export * from './Layer2GrantsLayout';

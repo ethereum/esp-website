@@ -243,20 +243,8 @@
   to = "/ecodev-grants/apply"
   force = true
 [[redirects]]
-  from = "/academic-grants-2023/"
-  to = "/academic-grants/"
-  force = true
-[[redirects]]
   from = "/academic-grants-2023/apply"
   to = "/academic-grants/apply"
-  force = true
-[[redirects]]
-  from = "/academic-grants/apply/"
-  to = "/academic-grants/"
-  force = true
-[[redirects]]
-  from = "/academic-grants/thank-you/"
-  to = "/academic-grants/"
   force = true
 [[redirects]]
   from = "/account-abstraction-grants/apply/"

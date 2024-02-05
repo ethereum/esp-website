@@ -12,6 +12,7 @@ import {
 import { createFormData, getWebsite } from '../../utils';
 
 import {
+  API_ACADEMIC_GRANTS,
   API_DEVCON_GRANTS,
   API_ECODEV_GRANTS,
   API_GRANTEE_FINANCE,
@@ -22,6 +23,8 @@ import {
   API_SMALL_GRANTS_EVENT,
   API_SMALL_GRANTS_PROJECT
 } from './constants';
+
+import type { AcademicGrantsData } from './schemas/AcademicGrants';
 
 const methodOptions = {
   method: 'POST',
@@ -146,6 +149,18 @@ export const api = {
       };
 
       return fetch(API_ECODEV_GRANTS, ecodevGrantsRequestOptions);
+    }
+  },
+  academicGrants: {
+    submit: (data: AcademicGrantsData) => {
+      const formData = createFormData(data);
+
+      const dataRequestOptions: RequestInit = {
+        method: 'POST',
+        body: formData
+      };
+
+      return fetch(API_ACADEMIC_GRANTS, dataRequestOptions);
     }
   },
   pseSponsorships: {
