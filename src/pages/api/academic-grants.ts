@@ -3,8 +3,6 @@ import jsforce from 'jsforce';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import type { File } from 'formidable';
 
-// import addRowToSpreadsheet from '../../utils/addRowToSpreadsheet';
-
 import { multipartyParse, sanitizeFields, verifyCaptcha } from '../../middlewares';
 
 import { AcademicGrantsSchema } from '../../components/forms/schemas/AcademicGrants';
@@ -78,22 +76,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
           return resolve();
         }
 
-        // send submission data to a google spreadsheet
-        try {
-          // TODO: check if this is the correct spreadsheet and if we need it
-          // await addRowToSpreadsheet(
-          //   {
-          //     id: '1plNEZulYdFc6Aw6FHMqPhO8AiQwwdXfoaoU30Pw0KK8',
-          //     sheetName: 'Applications'
-          //   },
-          //   application
-          // );
-        } catch (err) {
-          // as this is something internal we don't want to show this error to the user
-          console.log(err);
-        }
-
-        console.log(`Academic Grants 2023 Lead with ID: ${ret.id} has been created!`);
+        console.log(`Academic Grants 2024 Lead with ID: ${ret.id} has been created!`);
 
         const createdLeadID = ret.id;
         console.log({ createdLeadID });
