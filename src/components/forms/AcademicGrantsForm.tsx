@@ -221,7 +221,7 @@ export const AcademicGrantsForm: FC = () => {
 
           <TextField
             id='company'
-            label='If applying as an Institution, please specify its name'
+            label='Institution or Organization'
             helpText='Name of your university program, team, or organization. If you do not have an organization name, write "N/A"'
             isRequired
           />
@@ -259,6 +259,7 @@ export const AcademicGrantsForm: FC = () => {
             label='If you are a team of distributed researchers, please indicate where your fellow
             researchers are located'
             helpText='You can write as many countries as needed'
+            isRequired
           />
 
           <Controller
