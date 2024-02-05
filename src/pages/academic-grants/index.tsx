@@ -115,12 +115,6 @@ const AcademicGrants: NextPage = () => {
                   </PageText>
 
                   <PageText>
-                    Applications are open to individuals, teams, and organizations. Individual
-                    researchers with academic backgrounds, research centers, universities,
-                    think-tanks, educators and other stakeholders interested in Ethereum research.
-                  </PageText>
-
-                  <PageText>
                     Undergraduate researchers will require a postdoctoral advisor.
                   </PageText>
                 </Section>
@@ -196,10 +190,6 @@ const AcademicGrants: NextPage = () => {
                     follow-up regarding your submission by email. Decisions will be emailed 6-8
                     weeks after the application deadline.
                   </PageText>
-
-                  <PageText>
-                    Decisions will be emailed 6 weeks after the application deadline.
-                  </PageText>
                 </Section>
 
                 <Section id='eligibility-criteria' ref={ref6}>
@@ -242,8 +232,9 @@ const AcademicGrants: NextPage = () => {
                   <PageSection>Selection criteria</PageSection>
 
                   <PageText>
-                    Applications to this round will be reviewed and selected for funding by
-                    evalutors from Aztec, Ethereum Foundation, Scroll, Taiko, and zkSync using the
+                    Applications are selected for funding on a case-by-case basis. You may submit
+                    more than one application as long as each proposal is unique and meets the
+                    requirements and goals of this round. Submissions will be reviewed using the
                     following considerations. Note: depending on the proposal, some criteria might
                     not be applicable:
                   </PageText>
@@ -259,13 +250,6 @@ const AcademicGrants: NextPage = () => {
                     <ListItem>
                       Analyses of visualizations that help a non-technical audience gain insight
                       into the research
-                    </ListItem>
-                    <ListItem>
-                      Applications are selected for funding on a case-by-case basis. You may submit
-                      more than one application as long as each proposal is unique and meets the
-                      requirements and goals of this round. Submissions will be reviewed using the
-                      following considerations. Note: depending on the proposal, some criteria might
-                      not be applicable
                     </ListItem>
                   </List>
                 </Section>
