@@ -129,7 +129,7 @@ const AcademicGrants: NextPage = () => {
                     <Link
                       fontWeight={700}
                       color='brand.orange.100'
-                      href='https://hackmd.io/@rodrigolvc/AGR_2023_Wishlist'
+                      href='https://notes.ethereum.org/@drigolvc/AcademicGrantsWishlist2024'
                       isExternal
                       _hover={{ textDecoration: 'none' }}
                     >
