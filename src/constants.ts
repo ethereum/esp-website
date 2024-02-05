@@ -140,7 +140,7 @@ export const SIDEBAR_LAYER_2_GRANTS_LINKS: SidebarLink[] = [
 
 export const ACADEMIC_GRANTS_URL = '/academic-grants';
 export const SIDEBAR_ACADEMIC_GRANTS_LINKS: SidebarLink[] = [
-  { text: 'Summary', href: `${ACADEMIC_GRANTS_URL}/#description` },
+  { text: 'Summary', href: `${ACADEMIC_GRANTS_URL}/#introduction` },
   { text: 'Submit proposal', href: `${ACADEMIC_GRANTS_URL}/#submit-proposal` },
   { text: 'Wishlist', href: `${ACADEMIC_GRANTS_URL}/#wishlist` },
   { text: 'Application requirements', href: `${ACADEMIC_GRANTS_URL}/#requirements` },
