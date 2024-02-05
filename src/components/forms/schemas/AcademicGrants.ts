@@ -25,7 +25,9 @@ export const AcademicGrantsSchema = z
     authorisedSignatoryInformation: stringFieldSchema('Authorised signatory information', {
       max: MAX_TEXT_LENGTH
     }).optional(),
-    applyingAs: z.string().min(1, 'Please select in which capacity you are applying.'),
+    applyingAs: z
+      .string({ required_error: 'Please select in which capacity you are applying' })
+      .min(1, 'Please select in which capacity you are applying'),
     applyingAsOther: stringFieldSchema('Field', { max: MAX_TEXT_LENGTH }).optional(),
     company: stringFieldSchema('Organization', { min: 1, max: MAX_TEXT_LENGTH }).refine(
       value => !containURL(value),
@@ -40,7 +42,7 @@ export const AcademicGrantsSchema = z
       max: MAX_TEXT_AREA_LENGTH
     }),
     projectCategory: stringFieldSchema('Project category', { min: 1 }),
-    requestAmount: stringFieldSchema('Total budget', { max: 20 }).optional(),
+    requestAmount: stringFieldSchema('Total budget', { min: 1, max: 20 }),
     referralSource: stringFieldSchema('Referral source', { min: 1 }),
     referralSourceIfOther: stringFieldSchema('Field', { max: MAX_TEXT_AREA_LENGTH }).optional(),
     proposalAttachment: z

@@ -195,8 +195,13 @@ export const AcademicGrantsForm: FC = () => {
           <Controller
             name='applyingAs'
             control={control}
-            render={({ field: { onChange } }) => (
-              <Field id='applyingAs' label='In which capacity are you applying?' isRequired>
+            render={({ field: { onChange }, fieldState: { error } }) => (
+              <Field
+                id='applyingAs'
+                label='In which capacity are you applying?'
+                error={error}
+                isRequired
+              >
                 <Select
                   id='applyingAs'
                   options={APPLYING_AS_OPTIONS}
