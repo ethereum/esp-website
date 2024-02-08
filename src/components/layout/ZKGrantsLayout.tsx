@@ -2,7 +2,6 @@ import { Box, Stack, Text } from '@chakra-ui/react';
 import { FC } from 'react';
 
 import zkHero from '../../../public/images/zk-grants.jpg';
-import zkHeroMobile from '../../../public/images/zk-grants-mobile.jpg';
 
 import { GrantsHero } from '../UI';
 
@@ -17,7 +16,7 @@ export const ZKGrantsLayout: FC = ({ children }) => {
         }}
         mobileImage={{
           alt: 'A mad panda scientist working on ethereum',
-          src: zkHeroMobile
+          src: zkHero
         }}
         title='ZK Grants Round'
       >
