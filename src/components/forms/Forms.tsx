@@ -9,18 +9,22 @@ import {
   SmallGrantsForm,
   DevconGrantsForm,
   EcodevGrantsForm,
+  AcademicGrantsForm,
   ZKGrantsForm
 } from './';
 
 import {
+  ACADEMIC_GRANTS_APPLY_URL,
   DEVCON_GRANTS_APPLY_URL,
   ECODEV_GRANTS_APPLY_URL,
   GRANTEE_FINANCE_URL,
   OFFICE_HOURS_APPLY_URL,
   PROJECT_GRANTS_APPLY_URL,
+  PSE_SPONSORSHIPS_APPLY_URL,
   SMALL_GRANTS_APPLY_URL,
   ZK_GRANTS_APPLY_URL
 } from '../../constants';
+import { PSESponsorshipsForm } from './PSESponsorshipsForm';
 
 export const Forms: FC = () => {
   const router = useRouter();
@@ -55,6 +59,16 @@ export const Forms: FC = () => {
       {router.pathname === ECODEV_GRANTS_APPLY_URL && (
         <Box px={{ md: 24, lg: 32, xl: 72 }}>
           <EcodevGrantsForm />
+        </Box>
+      )}
+      {router.pathname === ACADEMIC_GRANTS_APPLY_URL && (
+        <Box px={{ md: 24, lg: 32, xl: 72 }}>
+          <AcademicGrantsForm />
+        </Box>
+      )}
+      {router.pathname === PSE_SPONSORSHIPS_APPLY_URL && (
+        <Box px={{ md: 24, lg: 32, xl: 72 }}>
+          <PSESponsorshipsForm />
         </Box>
       )}
       {router.pathname === ZK_GRANTS_APPLY_URL && (

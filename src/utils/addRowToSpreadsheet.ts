@@ -13,10 +13,10 @@ interface ISpreadsheetConfig {
 }
 
 interface IRow {
-  [header: string]: string | number | boolean;
+  [header: string]: string | number | boolean | undefined;
 }
 
-export default async function addRowToSpreadsheet(spreadsheet: ISpreadsheetConfig, row: IRow) {
+export default async function addRowToSpreadsheet(spreadsheet: ISpreadsheetConfig, rawRow: IRow) {
   if (!credentials) {
     throw new Error('no credentials');
   }
@@ -26,5 +26,16 @@ export default async function addRowToSpreadsheet(spreadsheet: ISpreadsheetConfi
 
   await doc.loadInfo();
   const sheet = doc.sheetsByTitle[spreadsheet.sheetName];
+
+  // remove undefined values in an immutable way
+  const row = Object.keys(rawRow).reduce((newRow, key) => {
+    const value = rawRow[key];
+    if (value !== undefined) {
+      newRow[key] = value;
+    }
+
+    return newRow;
+  }, {} as Record<string, string | number | boolean>);
+
   await sheet.addRow(row);
 }

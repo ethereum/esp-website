@@ -29,17 +29,24 @@ export const PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS = [
 ];
 
 export const ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS = [
-  { value: 'Economics', label: 'Economics' },
   { value: 'Consensus layer', label: 'Consensus layer' },
-  { value: 'Formal Verification', label: 'Formal Verification' },
-  { value: 'Maximal Extractable Value (MEV)', label: 'Maximal Extractable Value (MEV)' },
+  { value: 'Protocol growth & support', label: 'Protocol growth & support' },
   {
     value: 'Cryptography and zero knowledge proofs',
     label: 'Cryptography and zero knowledge proofs'
   },
+  { value: 'Cybersecurity', label: 'Cybersecurity' },
+  { value: 'Economics', label: 'Economics' },
+  { value: 'Formal Verification', label: 'Formal verification' },
+  { value: 'General research', label: 'General research' },
+  { value: 'Governance', label: 'Governance' },
+  { value: 'Government', label: 'Government' },
+  { value: 'Healthcare', label: 'Healthcare' },
+  { value: 'Layer 2', label: 'Layer 2' },
+  { value: 'Maximal Extractable Value (MEV)', label: 'Maximal Extractable Value (MEV)' },
   { value: 'P2P networking', label: 'P2P networking' },
-  { value: 'Hardware', label: 'Hardware' },
-  { value: 'Society and Regulatory', label: 'Society and Regulatory' },
+  { value: 'Privacy', label: 'Privacy' },
+  { value: 'Society and Regulatory', label: 'Society and regulatory' },
   { value: 'Other', label: 'Other' }
 ];
 
@@ -90,6 +97,10 @@ export const EVENT_FORMAT_OPTIONS = [
   { value: 'Online', label: 'Online' },
   { value: 'Hybrid (both)', label: 'Hybrid (both)' }
 ];
+
+export const IN_PERSON_EVENT = EVENT_FORMAT_OPTIONS[0];
+export const ONLINE_EVENT = EVENT_FORMAT_OPTIONS[1];
+export const HYBRID_EVENT = EVENT_FORMAT_OPTIONS[2];
 
 export const WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS = [
   { value: 'Yes', label: 'Yes' },
@@ -1572,6 +1583,7 @@ export const API_ACADEMIC_GRANTS = '/api/academic-grants';
 export const API_DEVCON_GRANTS = '/api/devcon-grants';
 export const API_GRANTEE_FINANCE = '/api/grantee-finance';
 export const API_ECODEV_GRANTS = '/api/ecodev-grants';
+export const API_PSE_SPONSORSHIPS = '/api/pse-sponsorships';
 export const API_ZK_GRANTS = '/api/zk-grants';
 export const API_DATA_COLLECTION_GRANTS = '/api/data-collection-grants';
 export const API_NEWSLETTER_SIGNUP_URL = '/api/newsletter-signup';

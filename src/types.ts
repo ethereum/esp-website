@@ -217,6 +217,37 @@ export interface EcodevGrantsFormData extends CaptchaForm {
   uploadProposal: File;
 }
 
+export interface PSESponsorshipsFormData extends CaptchaForm {
+  firstName: string; // SF API: FirstName
+  lastName: string; // SF API: LastName
+  email: string; // SF API: Email
+  individualOrTeam: IndividualOrTeam; // SF API: Individual_or_Team__c
+  individualOrTeamSummary: string; // SF API: Team_Profile__c
+  company: string; // SF API: Company
+  city: string; // SF API: npsp__CompanyCity__c
+  country: Country; // SF API: npsp__CompanyCountry__c
+  website: string; // SF API: Website
+  twitter: string; // SF API: Twitter__c
+  eventName: string; // SF API: Project_Name__c
+  eventDate: Date; // SF API: Sponsorship_Date__c
+  eventPreviousWork: string; // SF API: Previous_Work__c
+  eventLink: string; // SF API: Sponsorship_Link__c
+  eventDescription: string; // SF API: Sponsorship_Details__c
+  eventTopics: string; // SF API: Sponsorship_Request__c
+  referrals: string; // SF API: Referrals__c
+  pseRationale: string; // SF API: PSE_Rationale__c
+  eventType: EventType; // SF API: Type_of_Event__c
+  eventFormat: EventFormat; // SF API: In_Person__c
+  eventLocation: string; // SF API: Event_Location__c
+  expectedAttendees: number; // SF API: Estimated_Number_of_Attendees__c
+  targetAudience: string; // SF API: Target_Audience__c
+  confirmedSpeakers: string; // SF API: Confirmed_Speakers__c
+  confirmedSponsors: string; // SF API: Confirmed_Sponsors__c
+  eventBudgetBreakdown: string; // SF API: Proposed_Timeline__c
+  eventRequestedAmount: string; // SF API: Sponsorship_Monetary_Request__c
+  additionalInfo: string; // SF API: Additional_Information__c
+}
+
 export type IndividualOrTeam = 'Individual' | 'Team';
 
 export type OfficeHoursRequest = 'Project feedback' | 'Advice';
@@ -405,5 +436,38 @@ export interface SmallGrantsProjectNextApiRequest extends NextApiRequest {
     repeatApplicant: boolean;
     progress: string;
     otherFunding: string;
+  };
+}
+
+export interface PSESponsorshipsNextApiRequest extends NextApiRequest {
+  body: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    individualOrTeam: string;
+    individualOrTeamSummary: string;
+    company: string;
+    city: string;
+    country: string;
+    website: string;
+    twitter: string;
+    eventName: string;
+    eventDate: string;
+    eventPreviousWork: string;
+    eventLink: string;
+    eventDescription: string;
+    eventTopics: string;
+    referrals: string;
+    pseRationale: string;
+    eventType: string;
+    eventFormat: string;
+    eventLocation: string;
+    expectedAttendees: number;
+    targetAudience: string;
+    confirmedSpeakers: string;
+    confirmedSponsors: string;
+    eventBudgetBreakdown: string;
+    eventRequestedAmount: string;
+    additionalInfo: string;
   };
 }
