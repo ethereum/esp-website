@@ -25,7 +25,8 @@ import {
   API_ZK_GRANTS
 } from './constants';
 
-import type { AcademicGrantsData, ZKGrantsData } from './schemas/AcademicGrants';
+import type { AcademicGrantsData } from './schemas/AcademicGrants';
+import type { ZKGrantsData } from './schemas/ZKGrants';
 
 const methodOptions = {
   method: 'POST',
