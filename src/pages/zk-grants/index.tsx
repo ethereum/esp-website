@@ -58,15 +58,16 @@ const RunANodeGrants: NextPage = () => {
                   <PageSection>Introduction</PageSection>
 
                   <PageText>
-                    The Ecosystem Support Program in collaboration with{' '}
-                    <Text as='strong'>Aztec</Text>, <Text as='strong'>Scroll</Text>,{' '}
-                    <Text as='strong'>Taiko</Text> and <Text as='strong'>ZkSync</Text> is launching
-                    this grants initiative to encourage research and development for Zero-Knowledge
-                    proofs and standards for ZK L2s. This collaborative grants round is a first for
-                    the Ecosystem Support Program and will draw on both the funding support and the
-                    technical expertize of the participating L2s. Each of the funders is
-                    contributing <Text as='strong'>$150K</Text> to the shared prize pool that totals{' '}
-                    <Text as='strong'>$750k</Text>.
+                    The Ecosystem Support Program, in collaboration with{' '}
+                    <Text as='strong'>Aztec</Text>, <Text as='strong'>Polygon</Text>,{' '}
+                    <Text as='strong'>Scroll</Text>,<Text as='strong'>Taiko</Text> and{' '}
+                    <Text as='strong'>ZkSync</Text>, is launching this grants initiative to
+                    encourage research and development for Zero-Knowledge proofs and standards for
+                    ZK L2s. This collaborative grants round is a first for the Ecosystem Support
+                    Program and will draw on both the funding support and the technical expertise of
+                    the participating L2s. Each of the funders is contributing{' '}
+                    <Text as='strong'>$150K</Text> to the shared prize pool, which totals{' '}
+                    <Text as='strong'>$900K</Text>.
                   </PageText>
                 </Flex>
 
@@ -174,7 +175,8 @@ const RunANodeGrants: NextPage = () => {
                   <PageText fontWeight='bold'>Deadline</PageText>
                   <PageText>
                     The application window opens for <Text as='strong'>4 weeks</Text> from{' '}
-                    <Text as='strong'>TBD</Text> and closes on <Text as='strong'>TBD</Text>.
+                    <Text as='strong'>Monday, February 19th, 2024</Text>, and closes on{' '}
+                    <Text as='strong'>Monday, March 18th, 2024</Text>.
                   </PageText>
                 </Flex>
 

@@ -25,7 +25,7 @@ export const ZKGrantsLayout: FC = ({ children }) => {
           <Text as='i'>A cofunded proactive grants round to improve the ZK Layer 2 Ecosystem.</Text>
         </Text>
         <Text>
-          <Text as='i'>Proposals are due at 11:59 UTC February 29th 2024</Text>
+          <Text as='i'>Proposals are due at 11:59 UTC March 17th 2024</Text>
         </Text>
         <Text>
           <Text as='i'>All of the details you’ll need to apply can be found below.</Text>
