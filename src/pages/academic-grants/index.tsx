@@ -186,7 +186,7 @@ const AcademicGrants: NextPage = () => {
                   <PageSection>Deadline</PageSection>
 
                   <PageText>
-                    The deadline for proposals is <strong>Monday, March 5th, 2024</strong>. We will
+                    The deadline for proposals is <strong>Monday, March 4th, 2024</strong>. We will
                     follow-up regarding your submission by email. Decisions will be emailed 6-8
                     weeks after the application deadline.
                   </PageText>
