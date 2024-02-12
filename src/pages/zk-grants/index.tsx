@@ -60,8 +60,8 @@ const RunANodeGrants: NextPage = () => {
                   <PageText>
                     The Ecosystem Support Program, in collaboration with{' '}
                     <Text as='strong'>Aztec</Text>, <Text as='strong'>Polygon</Text>,{' '}
-                    <Text as='strong'>Scroll</Text>,<Text as='strong'>Taiko</Text> and{' '}
-                    <Text as='strong'>ZkSync</Text>, is launching this grants initiative to
+                    <Text as='strong'>Scroll</Text>, <Text as='strong'>Taiko</Text> and{' '}
+                    <Text as='strong'>zkSync</Text>, is launching this grants initiative to
                     encourage research and development for Zero-Knowledge proofs and standards for
                     ZK L2s. This collaborative grants round is a first for the Ecosystem Support
                     Program and will draw on both the funding support and the technical expertise of
@@ -222,9 +222,9 @@ const RunANodeGrants: NextPage = () => {
 
                   <PageText>
                     Applications to this round will be reviewed and selected for funding by
-                    evalutors from Aztec, Ethereum Foundation, Scroll, Taiko, and zkSync focusing on
-                    the following criteria. Note: depending on the proposal, some criteria might not
-                    be applicable:
+                    evalutors from Aztec, Ethereum Foundation, Polygon, Scroll, Taiko, and zkSync
+                    focusing on the following criteria. Note: depending on the proposal, some
+                    criteria might not be applicable:
                   </PageText>
 
                   <List>
