@@ -105,35 +105,34 @@ export const Nav: FC = () => {
             {NAV_LINKS.map((nav, idx) => (
               <ListItem key={nav.text} display='inline'>
                 {idx > 0 && <ListIcon as={NavLinkIcon} display='inline-block' pb={1} />}
-                <NextLink href={nav.href}>
-                  <Link
-                    href={nav.href}
-                    target={nav.href === ESP_BLOG_URL ? '_blank' : '_self'}
-                    rel='noopener noreferrer'
-                    _hover={{ textDecoration: 'none' }}
+                <Link
+                  as={NextLink}
+                  href={nav.href}
+                  target={nav.href === ESP_BLOG_URL ? '_blank' : '_self'}
+                  rel='noopener noreferrer'
+                  _hover={{ textDecoration: 'none' }}
+                >
+                  <ImportantText
+                    color='brand.ready.text'
+                    display='inline'
+                    mr={nav.href === ESP_BLOG_URL ? 0 : 2}
+                    _hover={{
+                      borderBottom: '10px solid',
+                      borderBottomColor: 'brand.accent',
+                      transition: 'border-width 0.16s ease-in-out'
+                    }}
+                    sx={
+                      selectedLink(router.pathname, nav.href)
+                        ? {
+                            borderBottom: '10px solid',
+                            borderBottomColor: 'brand.accent'
+                          }
+                        : undefined
+                    }
                   >
-                    <ImportantText
-                      color='brand.ready.text'
-                      display='inline'
-                      mr={nav.href === ESP_BLOG_URL ? 0 : 2}
-                      _hover={{
-                        borderBottom: '10px solid',
-                        borderBottomColor: 'brand.accent',
-                        transition: 'border-width 0.16s ease-in-out'
-                      }}
-                      sx={
-                        selectedLink(router.pathname, nav.href)
-                          ? {
-                              borderBottom: '10px solid',
-                              borderBottomColor: 'brand.accent'
-                            }
-                          : undefined
-                      }
-                    >
-                      {nav.text}
-                    </ImportantText>
-                  </Link>
-                </NextLink>
+                    {nav.text}
+                  </ImportantText>
+                </Link>
               </ListItem>
             ))}
           </UnorderedList>

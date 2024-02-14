@@ -29,11 +29,15 @@ const PageNotFound: NextPage = () => {
             lineHeight='24px'
           >
             Please go back to{' '}
-            <NextLink href='/' passHref>
-              <Link fontWeight={700} color='brand.orange.100' _hover={{ textDecoration: 'none' }}>
-                our home
-              </Link>
-            </NextLink>{' '}
+            <Link
+              as={NextLink}
+              href='/'
+              fontWeight={700}
+              color='brand.orange.100'
+              _hover={{ textDecoration: 'none' }}
+            >
+              our home
+            </Link>{' '}
             to get started.
           </Text>
         </Box>
