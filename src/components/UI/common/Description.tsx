@@ -35,9 +35,9 @@ export const Description: FC<Props> = ({ title, img, children }) => {
           alt={alt}
           width={width}
           height={height}
-          objectFit='cover'
           placeholder='blur'
           priority
+          style={{ objectFit: 'cover' }}
         />
       </Box>
     </Flex>

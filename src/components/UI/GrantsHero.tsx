@@ -58,11 +58,15 @@ export const GrantsHero: FC<Props> = ({
           <Image
             src={mobileImage.src}
             alt={mobileImage.alt}
-            layout='responsive'
-            objectFit='cover'
             width={450}
             height={276}
             placeholder='blur'
+            sizes='100vw'
+            style={{
+              objectFit: 'cover',
+              width: '100%',
+              height: 'auto'
+            }}
           />
         </Box>
 
@@ -71,9 +75,12 @@ export const GrantsHero: FC<Props> = ({
             <Image
               src={desktopImage.src}
               alt={desktopImage.alt}
-              layout='fill'
-              objectFit='cover'
               placeholder='blur'
+              fill
+              sizes='100vw'
+              style={{
+                objectFit: 'cover'
+              }}
             />
           </Box>
 

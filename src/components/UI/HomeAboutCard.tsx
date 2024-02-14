@@ -40,10 +40,14 @@ export const HomeAboutCard: FC<Props> = ({ bgGradient, img, title, link, childre
               alt={alt}
               width={width}
               height={height}
-              layout='responsive'
-              objectFit='cover'
               placeholder='blur'
               quality={85}
+              sizes='(max-width: 768px) 100vw, 50vw'
+              style={{
+                objectFit: 'cover',
+                width: '100%',
+                height: 'auto'
+              }}
             />
           </Box>
         </Stack>
