@@ -1,6 +1,6 @@
 import { Box, Center, Stack } from '@chakra-ui/react';
-import Image from 'next/image';
-import { FC } from 'react';
+import Image, { StaticImageData } from 'next/image';
+import { FC, ReactNode } from 'react';
 
 import { PageSubheading } from '../UI';
 
@@ -11,12 +11,13 @@ interface Props {
   desktopImage: {
     alt: string;
     src: StaticImageData;
-  }
+  };
   mobileImage: {
     alt: string;
     src: StaticImageData;
-  }
+  };
   title: string;
+  children: ReactNode;
 }
 
 export const GrantsHero: FC<Props> = ({

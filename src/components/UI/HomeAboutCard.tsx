@@ -1,6 +1,6 @@
 import { Box, Flex, Stack } from '@chakra-ui/react';
-import { FC } from 'react';
-import Image from 'next/image';
+import { FC, ReactNode } from 'react';
+import Image, { StaticImageData } from 'next/image';
 
 import { PageSection, PageText } from '../../components/UI';
 import { ButtonLink } from '../../components';
@@ -15,6 +15,7 @@ interface Props {
   };
   title: string;
   link: string;
+  children: ReactNode;
 }
 
 export const HomeAboutCard: FC<Props> = ({ bgGradient, img, title, link, children }) => {

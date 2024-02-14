@@ -62,7 +62,7 @@ export const SubmitButton: FC<Props> = ({
 
         <Flex pl={5}>
           {!isSubmitting && !isNewsletter && (
-            <Image src={planeVectorSVG} alt='paper plane vector' height='29px' width='32px' />
+            <Image src={planeVectorSVG} alt='paper plane vector' height={29} width={32} />
           )}
           {isSubmitting && <Spinner color='white' />}
         </Flex>

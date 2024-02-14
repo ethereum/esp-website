@@ -1,8 +1,6 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
-  reactStrictMode: true,
-  target: 'serverless',
-  redirects: async () => {
-    return [];
-  }
+const nextConfig = {
+  /* config options here */
 };
+
+module.exports = nextConfig;

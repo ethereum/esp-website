@@ -1,12 +1,16 @@
 import { Box, Stack, Text } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 import layer2Hero from '../../../public/images/layer-2-grants.png';
 import layer2HeroMobile from '../../../public/images/layer-2-grants-mobile.png';
 
 import { GrantsHero } from '../UI';
 
-export const Layer2GrantsLayout: FC = ({ children }) => {
+type Props = {
+  children: ReactNode;
+};
+
+export const Layer2GrantsLayout: FC<Props> = ({ children }) => {
   return (
     <Box>
       <GrantsHero

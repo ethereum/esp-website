@@ -51,7 +51,7 @@ export const ButtonLink: FC<Props> = ({ label, link, width, isApplyButton }) => 
 
           {isApplyButton && (
             <Flex position='absolute' left={36}>
-              <Image src={planeVectorSVG} alt='paper plane vector' height='29px' width='32px' />
+              <Image src={planeVectorSVG} alt='paper plane vector' height={29} width={32} />
             </Flex>
           )}
         </MotionFlex>

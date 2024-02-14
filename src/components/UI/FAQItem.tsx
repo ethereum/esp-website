@@ -1,11 +1,12 @@
 import { AccordionButton, AccordionItem, AccordionPanel, Box, Stack } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 import { MinusIcon, PlusIcon } from '../../components/UI/icons';
 import { FAQQuestion } from './headings';
 
 interface Props {
   question: string;
+  children: ReactNode;
 }
 
 export const FAQItem: FC<Props> = ({ question, children }) => {

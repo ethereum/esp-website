@@ -1,12 +1,16 @@
 import { Box, Stack } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 import semaphoreHero from '../../../public/images/semaphore-meadow.png';
 import semaphoreHeroMobile from '../../../public/images/semaphore-meadow-mobile.png';
 
 import { DimLayer, GrantsHero } from '../UI';
 
-export const SemaphoreGrantLayout: FC = ({ children }) => {
+type Props = {
+  children: ReactNode;
+};
+
+export const SemaphoreGrantLayout: FC<Props> = ({ children }) => {
   return (
     <Box>
       <DimLayer height='130px' />

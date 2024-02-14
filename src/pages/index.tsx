@@ -56,7 +56,7 @@ const Home: NextPage = () => {
             <Box
               justifyContent='center'
               alignItems='center'
-              direction='column'
+              flexDir='column'
               bgGradient='linear(to-br, brand.stats.bgGradient.start 2.29%, brand.stats.bgGradient.end 101.37%)'
               borderTop='5px solid'
               borderTopColor='brand.heading'

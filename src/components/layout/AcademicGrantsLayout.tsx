@@ -1,11 +1,15 @@
 import { Stack } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 import { GrantsHero } from '../UI';
 
 import academicGrantsHero from '../../../public/images/accademic-grants-2024-hero.jpg';
 
-export const AcademicGrantsLayout: FC = ({ children }) => {
+type Props = {
+  children: ReactNode;
+};
+
+export const AcademicGrantsLayout: FC<Props> = ({ children }) => {
   return (
     <Stack>
       <GrantsHero
