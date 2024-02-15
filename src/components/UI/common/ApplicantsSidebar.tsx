@@ -5,6 +5,7 @@ import NextLink from 'next/link';
 import { PageText } from '..';
 
 import { SidebarLink } from '../../../types';
+import { useActiveHash } from '../../../hooks/useActiveHash';
 
 interface Props {
   sidebarLinks: SidebarLink[];
@@ -12,10 +13,12 @@ interface Props {
 }
 
 export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) => {
+  const hrefs = sidebarLinks.map(({ href }) => href);
+  const activeHash = useActiveHash(hrefs);
+
   // mark a sidebar link as active if previous one is not visible
   // (by the iIntersection Observer) only, to avoid having more than 1 active link
-  const isActiveLink = (idx: number) => sectionsInView[idx] && !sectionsInView[idx - 1];
-
+  const isActiveLink = (idx: number) => hrefs[idx] && !hrefs[idx - 1];
   return (
     <Flex
       display={{ base: 'none', lg: 'block' }}
@@ -33,7 +36,7 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) =
         <Flex key={text} alignItems='center' mb={1}>
           <Box
             borderLeft='5px solid'
-            borderLeftColor={isActiveLink(idx) ? 'brand.accent' : 'transparent'}
+            borderLeftColor={activeHash === href ? 'brand.accent' : 'transparent'}
             h='18px'
           />
 

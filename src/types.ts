@@ -1,4 +1,6 @@
 import { NextApiRequest } from 'next';
+import type { Options } from 'mdast-util-toc';
+
 import {
   PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS,
   APPLYING_AS_OPTIONS,
@@ -262,27 +264,28 @@ export type TokenPreference = 'ETH' | 'DAI';
 
 export type ReasonForMeeting = typeof REASONS_FOR_MEETING;
 
-export type ProjectCategory = typeof PROJECT_CATEGORY_OPTIONS[number];
+export type ProjectCategory = (typeof PROJECT_CATEGORY_OPTIONS)[number];
 
-export type AcademicGrantsProjectCategory = typeof ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS[number];
+export type AcademicGrantsProjectCategory =
+  (typeof ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS)[number];
 
-export type ProjectGrantsProjectCategory = typeof PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS[number];
+export type ProjectGrantsProjectCategory = (typeof PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS)[number];
 
-export type EventType = typeof EVENT_TYPE_OPTIONS[number];
+export type EventType = (typeof EVENT_TYPE_OPTIONS)[number];
 
-export type EventFormat = typeof EVENT_FORMAT_OPTIONS[number];
+export type EventFormat = (typeof EVENT_FORMAT_OPTIONS)[number];
 
-export type WouldYouShareYourResearch = typeof WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS[number];
+export type WouldYouShareYourResearch = (typeof WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS)[number];
 
-export type Country = typeof COUNTRY_OPTIONS[number];
+export type Country = (typeof COUNTRY_OPTIONS)[number];
 
-export type ReferralSource = typeof HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS[number];
+export type ReferralSource = (typeof HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS)[number];
 
-export type GrantsReferralSource = typeof HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE[number];
+export type GrantsReferralSource = (typeof HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE)[number];
 
-export type Timezone = typeof TIMEZONE_OPTIONS[number];
+export type Timezone = (typeof TIMEZONE_OPTIONS)[number];
 
-export type ApplyingAs = typeof APPLYING_AS_OPTIONS[number];
+export type ApplyingAs = (typeof APPLYING_AS_OPTIONS)[number];
 
 export type Href = typeof HOME_URL | typeof APPLICANTS_URL | typeof ABOUT_URL | typeof ESP_BLOG_URL;
 
@@ -471,3 +474,30 @@ export interface PSESponsorshipsNextApiRequest extends NextApiRequest {
     additionalInfo: string;
   };
 }
+
+/**
+ * Table of contents
+ */
+export type SourceHeadingItem = { depth: number; id: string; label: string };
+
+export type ToCNodeEntry = {
+  url?: string;
+  title?: string;
+};
+
+export type TocNodeType =
+  | ToCNodeEntry
+  | {
+      items: TocNodeType[];
+    };
+
+export type ToCItem = {
+  title: string;
+  url: string;
+  items?: ToCItem[];
+};
+
+export type IRemarkTocOptions = {
+  maxDepth?: Options['maxDepth'];
+  callback: (toc: TocNodeType) => void;
+};
