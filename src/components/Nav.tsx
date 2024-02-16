@@ -108,8 +108,7 @@ export const Nav: FC = () => {
                 <Link
                   as={NextLink}
                   href={nav.href}
-                  target={nav.href === ESP_BLOG_URL ? '_blank' : '_self'}
-                  rel='noopener noreferrer'
+                  isExternal={nav.href === ESP_BLOG_URL}
                   _hover={{ textDecoration: 'none' }}
                 >
                   <ImportantText
