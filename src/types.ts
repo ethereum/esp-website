@@ -475,11 +475,15 @@ export interface PSESponsorshipsNextApiRequest extends NextApiRequest {
   };
 }
 
+export type Frontmatter = {
+  metaTitle: string;
+  metaDescription: string;
+  metaImage: string;
+};
+
 /**
  * Table of contents
  */
-export type SourceHeadingItem = { depth: number; id: string; label: string };
-
 export type ToCNodeEntry = {
   url?: string;
   title?: string;
@@ -490,12 +494,6 @@ export type TocNodeType =
   | {
       items: TocNodeType[];
     };
-
-export type ToCItem = {
-  title: string;
-  url: string;
-  items?: ToCItem[];
-};
 
 export type IRemarkTocOptions = {
   maxDepth?: Options['maxDepth'];
