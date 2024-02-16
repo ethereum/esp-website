@@ -10,6 +10,13 @@
   [headers.values]
     Access-Control-Allow-Origin = "https://matomo.ethereum.org"
 
+[functions]
+  included_files = [
+    "node_modules/next/dist/server/future/route-modules/pages/vendored/contexts/router-context*",
+    "node_modules/next/dist/server/future/route-modules/pages/vendored/contexts/amp-context*",
+    "node_modules/next/dist/server/future/route-modules/pages/vendored/contexts/head-manager-context*",
+  ]
+
 # Legacy pages from current site
 
 # Root langs routes
