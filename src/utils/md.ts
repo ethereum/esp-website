@@ -3,7 +3,12 @@ import fs from 'fs';
 import { MARKDOWN_CONTENT_PATH } from '../constants';
 
 export function getContentPaths() {
-  return fs.readdirSync(MARKDOWN_CONTENT_PATH);
+  try {
+    return fs.readdirSync(MARKDOWN_CONTENT_PATH);
+  } catch (e: unknown) {
+    console.error(e);
+    return [];
+  }
 }
 
 export function getMdxSource(slug: string) {
