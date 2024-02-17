@@ -35,7 +35,7 @@ export const ZKGrantsSchema = z.object({
   projectName: stringFieldSchema('Project name', { min: 1, max: MAX_TEXT_LENGTH }),
   projectDescription: stringFieldSchema('Project summary', {
     min: MIN_TEXT_AREA_LENGTH,
-    max: MAX_TEXT_AREA_LENGTH
+    max: 2000
   }),
   projectCategory: stringFieldSchema('Project category', { min: 1 }),
   requestAmount: stringFieldSchema('Total amount', { min: 1, max: 20 }),
