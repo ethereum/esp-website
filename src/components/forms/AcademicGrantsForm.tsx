@@ -415,6 +415,7 @@ export const AcademicGrantsForm: FC = () => {
                 id='shareResearch'
                 label='If the opportunity presents itself, would you like to share your findings/research output through a Conference/Discord Talk?'
                 error={error}
+                isRequired
               >
                 <Select
                   id='shareResearch'
