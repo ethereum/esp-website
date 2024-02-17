@@ -7,15 +7,16 @@ import { useEffect, useState } from 'react';
  * @returns id of the element currently in viewport
  */
 export const useActiveHash = (itemIds: Array<string>, rootMargin = `0% 0% -80% 0%`): string => {
-  const [activeHash, setActiveHash] = useState(``);
+  const [hashes, setHashes] = useState<Record<string, boolean>>(() =>
+    itemIds.reduce((acc, id, index) => ({ [id]: index === 0, ...acc }), {})
+  );
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            setActiveHash(`#${entry.target.id}`);
-          }
+          const hash = `#${entry.target.id}`;
+          setHashes(hashes => ({ ...hashes, [hash]: entry.isIntersecting }));
         });
       },
       { rootMargin }
@@ -39,5 +40,7 @@ export const useActiveHash = (itemIds: Array<string>, rootMargin = `0% 0% -80% 0
     };
   }, [itemIds, rootMargin]);
 
-  return activeHash;
+  const firstActiveHash = itemIds.find(id => hashes[id]);
+
+  return firstActiveHash || itemIds[0];
 };

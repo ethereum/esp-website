@@ -1,20 +1,19 @@
 import { Box, Flex, Link } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import NextLink from 'next/link';
 
 import { PageText } from '..';
 
 import { SidebarLink } from '../../../types';
+import { useActiveHash } from '../../../hooks/useActiveHash';
 
 interface Props {
   sidebarLinks: SidebarLink[];
-  sectionsInView: boolean[];
 }
 
-export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) => {
-  // mark a sidebar link as active if previous one is not visible
-  // (by the iIntersection Observer) only, to avoid having more than 1 active link
-  const isActiveLink = (idx: number) => sectionsInView[idx] && !sectionsInView[idx - 1];
+export const MdSidebar: FC<Props> = ({ sidebarLinks }) => {
+  const hrefs = useMemo(() => sidebarLinks.map(({ href }) => href), [sidebarLinks]);
+  const activeHash = useActiveHash(hrefs, '0px');
 
   return (
     <Flex
@@ -33,18 +32,16 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) =
         <Flex key={text} alignItems='center' mb={1}>
           <Box
             borderLeft='5px solid'
-            borderLeftColor={isActiveLink(idx) ? 'brand.accent' : 'transparent'}
+            borderLeftColor={activeHash === href ? 'brand.accent' : 'transparent'}
             h='18px'
           />
 
           <Box pl={3}>
-            <NextLink href={href}>
-              <Link href={href} _hover={{ textDecoration: 'none' }}>
-                <PageText fontWeight={400} lineHeight='28px' color='brand.orange.100'>
-                  {text}
-                </PageText>
-              </Link>
-            </NextLink>
+            <Link as={NextLink} href={href} _hover={{ textDecoration: 'none' }}>
+              <PageText fontWeight={400} lineHeight='28px' color='brand.orange.100'>
+                {text}
+              </PageText>
+            </Link>
           </Box>
         </Flex>
       ))}

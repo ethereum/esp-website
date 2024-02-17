@@ -1,7 +1,8 @@
 import { ReactNode } from 'react';
 import { Box, Flex, Stack } from '@chakra-ui/react';
 
-import { ApplicantsSidebar, PageMetadata } from '../UI';
+import { PageMetadata } from '../UI';
+import { MdSidebar } from '../UI/md/MdSidebar';
 
 import type { Frontmatter, ToCNodeEntry, TocNodeType } from '../../types';
 
@@ -21,11 +22,10 @@ export const MdLayout = ({ children, frontmatter, tocNodeItems }: LayoutProps) =
       <Box mx={{ md: 12 }} bg='white' position='relative' zIndex={1} mt={{ xl: 12 }}>
         <Stack spacing={10} mb={8} px={{ base: 5, md: 0 }} py={{ base: 3, md: 12 }}>
           <Flex>
-            <ApplicantsSidebar
+            <MdSidebar
               sidebarLinks={tocNodeItems
                 .filter((item): item is ToCNodeEntry => !('items' in item))
                 .map(item => ({ text: item.title || '', href: item.url || '' }))}
-              sectionsInView={[]}
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
