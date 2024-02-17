@@ -1,8 +1,8 @@
 import { Box, Container, ContainerProps } from '@chakra-ui/react';
 import { FC, ReactNode } from 'react';
-import { useRouter } from 'next/router';
 
 import { Footer, FooterBackgroundImage, HomepageHero } from '../UI';
+import { useCurrentPath } from '../../hooks/useCurrentPath';
 import { Forms } from '../forms';
 
 import {
@@ -40,10 +40,10 @@ import {
 } from '../../constants';
 
 export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
-  const router = useRouter();
+  const path = useCurrentPath();
 
   const renderContent = (): ReactNode => {
-    if (router.pathname === HOME_URL) {
+    if (path === HOME_URL) {
       return (
         <>
           <HomepageHero />
@@ -53,7 +53,7 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       );
     }
 
-    if (router.pathname.startsWith(APPLICANTS_URL)) {
+    if (path.startsWith(APPLICANTS_URL)) {
       return (
         <Box mt={-6}>
           <main>
@@ -63,7 +63,7 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       );
     }
 
-    if (router.pathname.startsWith(ABOUT_URL)) {
+    if (path.startsWith(ABOUT_URL)) {
       return (
         <Box mt={-6}>
           <main>
@@ -73,7 +73,7 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       );
     }
 
-    if (router.pathname === DEVCON_GRANTS_URL) {
+    if (path === DEVCON_GRANTS_URL) {
       return (
         <Box mt={{ md: -10, lg: 0 }}>
           <main>
@@ -83,7 +83,7 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       );
     }
 
-    if (router.pathname === ACADEMIC_GRANTS_2022_URL) {
+    if (path === ACADEMIC_GRANTS_2022_URL) {
       return (
         <Box mt={{ md: -10, lg: 0 }}>
           <main>
@@ -93,7 +93,7 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       );
     }
 
-    if (router.pathname === ACADEMIC_GRANTS_2023_URL) {
+    if (path === ACADEMIC_GRANTS_2023_URL) {
       return (
         <Box mt={{ md: -10, lg: 0 }}>
           <main>
@@ -103,7 +103,7 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       );
     }
 
-    if (router.pathname === ACADEMIC_GRANTS_URL) {
+    if (path === ACADEMIC_GRANTS_URL) {
       return (
         <Box mt={{ md: -10, lg: 0 }}>
           <main>
@@ -113,7 +113,7 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       );
     }
 
-    if (router.pathname === MERGE_DATA_CHALLENGE_URL) {
+    if (path === MERGE_DATA_CHALLENGE_URL) {
       return (
         <Box mt={{ md: -10, lg: 0 }}>
           <main>
@@ -124,7 +124,7 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
     }
 
     // TODO: refactor these if conditions ????
-    if (router.pathname === SEMAPHORE_GRANT_URL) {
+    if (path === SEMAPHORE_GRANT_URL) {
       return (
         <Box mt={{ md: -10, lg: 0 }}>
           <main>
@@ -134,7 +134,7 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       );
     }
 
-    if (router.pathname === LAYER_2_GRANTS_URL) {
+    if (path === LAYER_2_GRANTS_URL) {
       return (
         <Box mt={{ md: -10, lg: 0 }}>
           <main>
@@ -144,7 +144,7 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       );
     }
 
-    if (router.pathname === ACCOUNT_ABSTRACTION_GRANTS_URL) {
+    if (path === ACCOUNT_ABSTRACTION_GRANTS_URL) {
       return (
         <Box mt={{ md: -10, lg: 0 }}>
           <main>
@@ -154,7 +154,7 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       );
     }
 
-    if (router.pathname === RUN_A_NODE_GRANTS_URL) {
+    if (path === RUN_A_NODE_GRANTS_URL) {
       return (
         <Box mt={{ md: -10, lg: 0 }}>
           <main>
@@ -164,7 +164,7 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       );
     }
 
-    if (router.pathname === DATA_COLLECTION_ROUND_URL) {
+    if (path === DATA_COLLECTION_ROUND_URL) {
       return (
         <Box mt={{ md: -10, lg: 0 }}>
           <main>
@@ -174,7 +174,7 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
       );
     }
 
-    if (GRANTS_URLS.includes(router.pathname)) {
+    if (GRANTS_URLS.includes(path)) {
       return (
         <Box mt={-6}>
           <main>

@@ -1,15 +1,15 @@
 import { FC } from 'react';
-import { useRouter } from 'next/router';
 import { Box, Link } from '@chakra-ui/react';
 
+import { useCurrentPath } from '../hooks/useCurrentPath';
 import { Banner } from './UI';
 
 import { ACADEMIC_GRANTS_URL } from '../constants';
 
 export const Banners: FC = () => {
-  const router = useRouter();
+  const path = useCurrentPath();
 
-  if (!router.pathname.includes(ACADEMIC_GRANTS_URL)) {
+  if (!path.includes(ACADEMIC_GRANTS_URL)) {
     return (
       <Banner>
         <Box fontSize='paragraph' textAlign='center'>
