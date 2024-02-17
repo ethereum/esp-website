@@ -58,16 +58,15 @@ const RunANodeGrants: NextPage = () => {
                   <PageSection>Introduction</PageSection>
 
                   <PageText>
-                    The Ecosystem Support Program, in collaboration with{' '}
-                    <Text as='strong'>Aztec</Text>, <Text as='strong'>Polygon</Text>,{' '}
-                    <Text as='strong'>Scroll</Text>, <Text as='strong'>Taiko</Text> and{' '}
-                    <Text as='strong'>zkSync</Text>, is launching this grants initiative to
-                    encourage research and development for Zero-Knowledge proofs and standards for
-                    ZK L2s. This collaborative grants round is a first for the Ecosystem Support
-                    Program and will draw on both the funding support and the technical expertise of
-                    the participating L2s. Each of the funders is contributing{' '}
-                    <Text as='strong'>$150K</Text> to the shared prize pool, which totals{' '}
-                    <Text as='strong'>$900K</Text>.
+                    The Ethereum Foundation, in collaboration with <Text as='strong'>Aztec</Text>,{' '}
+                    <Text as='strong'>Polygon</Text>, <Text as='strong'>Scroll</Text>,{' '}
+                    <Text as='strong'>Taiko</Text> and <Text as='strong'>zkSync</Text>, is launching
+                    this grants initiative to encourage research and development for Zero-Knowledge
+                    proofs and standards for ZK L2s. This collaborative grants round is a first for
+                    the Ecosystem Support Program and will draw on both the funding support and the
+                    technical expertise of the participating L2s. Each of the funders and the
+                    Ethereum Foundation contributed <Text as='strong'>$150K</Text> to the shared
+                    prize pool, which totals <Text as='strong'>$900K</Text>.
                   </PageText>
                 </Flex>
 
@@ -91,7 +90,7 @@ const RunANodeGrants: NextPage = () => {
                     </ListItem>
                     <ListItem>
                       Publicly accessible and easy-to-understand security and risk benchmarking for
-                      ZKRs and bridges (a la L2beat)
+                      ZKRs and bridges (à la L2beat)
                     </ListItem>
                     <ListItem>
                       Forced inclusion tools and frontend(?) for ZK and validity-proof based L2s
@@ -168,7 +167,7 @@ const RunANodeGrants: NextPage = () => {
                     <ListItem>
                       Applications are selected for funding on a case-by-case basis. You may submit
                       more than one application as long as each proposal is unique and meets the
-                      requirements and goals of this round
+                      requirements and goals of this round.
                     </ListItem>
                   </List>
 
@@ -177,6 +176,11 @@ const RunANodeGrants: NextPage = () => {
                     The application window opens for <Text as='strong'>4 weeks</Text> from{' '}
                     <Text as='strong'>Monday, February 19th, 2024</Text>, and closes on{' '}
                     <Text as='strong'>Monday, March 18th, 2024</Text>.
+                  </PageText>
+
+                  <PageText>
+                    We will follow-up regarding your submission by email. Decisions will be emailed
+                    6-8 weeks after the application deadline.
                   </PageText>
                 </Flex>
 
@@ -263,6 +267,7 @@ const RunANodeGrants: NextPage = () => {
                     >
                       {GRANTS_EMAIL_ADDRESS}
                     </Link>
+                    .
                   </PageText>
                 </Flex>
 
