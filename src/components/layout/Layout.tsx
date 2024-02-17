@@ -36,7 +36,8 @@ import {
   ACCOUNT_ABSTRACTION_GRANTS_URL,
   RUN_A_NODE_GRANTS_URL,
   DATA_COLLECTION_ROUND_URL,
-  ACADEMIC_GRANTS_2023_URL
+  ACADEMIC_GRANTS_2023_URL,
+  TEST_GRANTS_URL
 } from '../../constants';
 
 export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
@@ -179,6 +180,16 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
         <Box mt={-6}>
           <main>
             <AcademicGrantsApplyLayout>{children}</AcademicGrantsApplyLayout>
+          </main>
+        </Box>
+      );
+    }
+
+    if (path === TEST_GRANTS_URL) {
+      return (
+        <Box mt={-6}>
+          <main>
+            <DataCollectionLayout>{children}</DataCollectionLayout>
           </main>
         </Box>
       );

@@ -49,7 +49,9 @@ export const GrantsHero: FC<Props> = ({
             {title}
           </PageSubheading>
 
-          <PageText textAlign='center'>{children}</PageText>
+          <PageText as={Box} textAlign='center'>
+            {children}
+          </PageText>
         </Stack>
       </Center>
 

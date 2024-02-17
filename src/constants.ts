@@ -203,6 +203,8 @@ export const SIDEBAR_DATA_COLLECTION_GRANTS_LINKS: SidebarLink[] = [
   { text: 'FAQ', href: `${DATA_COLLECTION_ROUND_URL}/#faq` }
 ];
 
+export const TEST_GRANTS_URL = 'data-challenge-4844';
+
 // apply forms
 export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
 export const OFFICE_HOURS_APPLY_URL = '/applicants/office-hours/apply';
