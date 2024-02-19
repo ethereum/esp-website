@@ -1736,7 +1736,7 @@ export const SmallGrantsForm: FC = () => {
                   mt={3}
                   {...register('targetAudience', {
                     required: isAnEvent,
-                    maxLength: 3000
+                    maxLength: 2000
                   })}
                 />
 
@@ -1750,7 +1750,7 @@ export const SmallGrantsForm: FC = () => {
                 {errors?.targetAudience?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Target audience cannot exceed 3000 characters.
+                      Target audience cannot exceed 2000 characters.
                     </PageText>
                   </Box>
                 )}
