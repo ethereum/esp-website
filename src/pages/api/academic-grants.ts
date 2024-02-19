@@ -8,6 +8,7 @@ import { multipartyParse, sanitizeFields, verifyCaptcha } from '../../middleware
 import { AcademicGrantsSchema } from '../../components/forms/schemas/AcademicGrants';
 
 import { MAX_PROPOSAL_FILE_SIZE } from '../../constants';
+import { truncateString } from '../../utils/truncateString';
 
 async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
   return new Promise(resolve => {
@@ -105,7 +106,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         // Document upload
         conn.sobject('ContentVersion').create(
           {
-            Title: `[PROPOSAL] ${application.Project_Name__c} - ${createdLeadID}`,
+            Title: `[PROPOSAL] ${truncateString(
+              application.Project_Name__c || '',
+              200
+            )} - ${createdLeadID}`,
             PathOnClient: uploadProposal.originalFilename,
             VersionData: uploadProposalContent // base64 encoded file content
           },
