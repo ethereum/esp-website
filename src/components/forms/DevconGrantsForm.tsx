@@ -300,14 +300,14 @@ export const DevconGrantsForm: FC = () => {
               h='150px'
               mt={3}
               {...register('eventPreviousWork', {
-                maxLength: 32768
+                maxLength: 2000
               })}
             />
 
             {errors?.eventPreviousWork?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Previous work cannot exceed 32768 characters.
+                  Previous work cannot exceed 2000 characters.
                 </PageText>
               </Box>
             )}
@@ -340,7 +340,7 @@ export const DevconGrantsForm: FC = () => {
               mt={3}
               {...register('teamProfile', {
                 required: true,
-                maxLength: 32768
+                maxLength: 2000
               })}
             />
 
@@ -354,7 +354,7 @@ export const DevconGrantsForm: FC = () => {
             {errors?.teamProfile?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Team profile cannot exceed 32768 characters.
+                  Team profile cannot exceed 2000 characters.
                 </PageText>
               </Box>
             )}
@@ -501,7 +501,7 @@ export const DevconGrantsForm: FC = () => {
               mt={3}
               {...register('sponsorshipDetails', {
                 required: true,
-                maxLength: 32768
+                maxLength: 2000
               })}
             />
 
@@ -515,7 +515,7 @@ export const DevconGrantsForm: FC = () => {
             {errors?.sponsorshipDetails?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Event details cannot exceed 32768 characters.
+                  Event details cannot exceed 2000 characters.
                 </PageText>
               </Box>
             )}
@@ -541,14 +541,14 @@ export const DevconGrantsForm: FC = () => {
               h='150px'
               mt={3}
               {...register('projectDescription', {
-                maxLength: 32768
+                maxLength: 2000
               })}
             />
 
             {errors?.projectDescription?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Project description cannot exceed 32768 characters.
+                  Project description cannot exceed 2000 characters.
                 </PageText>
               </Box>
             )}
@@ -802,14 +802,14 @@ export const DevconGrantsForm: FC = () => {
               h='150px'
               mt={3}
               {...register('confirmedSpeakers', {
-                maxLength: 32768
+                maxLength: 2000
               })}
             />
 
             {errors?.confirmedSpeakers?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Confirmed speakers list cannot exceed 32768 characters.
+                  Confirmed speakers list cannot exceed 2000 characters.
                 </PageText>
               </Box>
             )}
@@ -831,14 +831,14 @@ export const DevconGrantsForm: FC = () => {
               fontSize='input'
               h='150px'
               {...register('confirmedSponsors', {
-                maxLength: 32768
+                maxLength: 2000
               })}
             />
 
             {errors?.confirmedSponsors?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Confirmed sponsors list cannot exceed 32768 characters.
+                  Confirmed sponsors list cannot exceed 2000 characters.
                 </PageText>
               </Box>
             )}
@@ -870,7 +870,7 @@ export const DevconGrantsForm: FC = () => {
               mt={3}
               {...register('proposedTimeline', {
                 required: true,
-                maxLength: 32768
+                maxLength: 2000
               })}
             />
 
@@ -884,7 +884,7 @@ export const DevconGrantsForm: FC = () => {
             {errors?.proposedTimeline?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Proposed timeline cannot exceed 32768 characters.
+                  Proposed timeline cannot exceed 2000 characters.
                 </PageText>
               </Box>
             )}
@@ -956,14 +956,14 @@ export const DevconGrantsForm: FC = () => {
               h='150px'
               mt={3}
               {...register('additionalInfo', {
-                maxLength: 32768
+                maxLength: 2000
               })}
             />
 
             {errors?.additionalInfo?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Additional info cannot exceed 32768 characters.
+                  Additional info cannot exceed 2000 characters.
                 </PageText>
               </Box>
             )}

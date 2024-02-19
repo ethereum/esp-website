@@ -437,7 +437,7 @@ export const OfficeHoursForm: FC = () => {
                   mt={3}
                   {...register('projectDescription', {
                     required: isRequestingProjectFeedback,
-                    maxLength: 32768
+                    maxLength: 2000
                   })}
                 />
 
@@ -451,7 +451,7 @@ export const OfficeHoursForm: FC = () => {
                 {errors?.projectDescription?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Project description cannot exceed 32768 characters.
+                      Project description cannot exceed 2000 characters.
                     </PageText>
                   </Box>
                 )}
@@ -484,7 +484,7 @@ export const OfficeHoursForm: FC = () => {
                   mt={3}
                   {...register('additionalInfo', {
                     required: isRequestingProjectFeedback,
-                    maxLength: 32768
+                    maxLength: 2000
                   })}
                 />
 
@@ -498,7 +498,7 @@ export const OfficeHoursForm: FC = () => {
                 {errors?.additionalInfo?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Additional info cannot exceed 32768 characters.
+                      Additional info cannot exceed 2000 characters.
                     </PageText>
                   </Box>
                 )}
@@ -611,7 +611,7 @@ export const OfficeHoursForm: FC = () => {
               h='150px'
               {...register('otherReasonForMeeting', {
                 required: true,
-                maxLength: 32768
+                maxLength: 2000
               })}
             />
 
@@ -625,7 +625,7 @@ export const OfficeHoursForm: FC = () => {
             {errors?.otherReasonForMeeting?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Reason for meeting cannot exceed 32768 characters.
+                  Reason for meeting cannot exceed 2000 characters.
                 </PageText>
               </Box>
             )}
