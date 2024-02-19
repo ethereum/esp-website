@@ -5,7 +5,7 @@ import { containURL } from '../../../utils';
 import { MAX_PROPOSAL_FILE_SIZE } from '../../../constants';
 
 const MAX_TEXT_LENGTH = 255;
-const MAX_TEXT_AREA_LENGTH = 32768;
+const MAX_TEXT_AREA_LENGTH = 2000;
 const MIN_TEXT_AREA_LENGTH = 500;
 
 const ACCEPTED_FILE_TYPES = ['application/pdf'];

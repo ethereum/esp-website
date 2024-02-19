@@ -5,7 +5,7 @@ import { stringFieldSchema } from './utils';
 import { containURL } from '../../../utils';
 
 const MAX_TEXT_LENGTH = 255;
-const MAX_TEXT_AREA_LENGTH = 32768;
+const MAX_TEXT_AREA_LENGTH = 2000;
 const MIN_TEXT_AREA_LENGTH = 500;
 
 export const RunANodeSchema = z
