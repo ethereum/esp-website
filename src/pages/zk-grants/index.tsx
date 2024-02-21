@@ -326,7 +326,7 @@ const RunANodeGrants: NextPage = () => {
                             being used or adopted by the Ethereum community
                           </ListItem>
                           <ListItem>
-                            Outlinea your project milestones, the people involved and how much time
+                            Outline your project milestones, the people involved and how much time
                             it will take to complete with a budget
                           </ListItem>
                         </List>
