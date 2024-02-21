@@ -174,7 +174,7 @@ const RunANodeGrants: NextPage = () => {
                   <PageText fontWeight='bold'>Deadline</PageText>
                   <PageText>
                     The application window opens for <Text as='strong'>4 weeks</Text> from{' '}
-                    <Text as='strong'>Monday, February 19th, 2024</Text>, and closes on{' '}
+                    <Text as='strong'>Wednesday, February 21st, 2024</Text>, and closes on{' '}
                     <Text as='strong'>Monday, March 18th, 2024</Text>.
                   </PageText>
 
