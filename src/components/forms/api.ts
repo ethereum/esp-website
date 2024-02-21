@@ -21,10 +21,12 @@ import {
   API_PROJECT_GRANTS,
   API_PSE_SPONSORSHIPS,
   API_SMALL_GRANTS_EVENT,
-  API_SMALL_GRANTS_PROJECT
+  API_SMALL_GRANTS_PROJECT,
+  API_DATA_CHALLENGE_GRANTS
 } from './constants';
 
 import type { AcademicGrantsData } from './schemas/AcademicGrants';
+import type { DataChallengeData } from './schemas/DataChallenge4844';
 
 const methodOptions = {
   method: 'POST',
@@ -179,6 +181,18 @@ export const api = {
       };
 
       return fetch(API_PSE_SPONSORSHIPS, pseSponsorshipsRequestOptions);
+    }
+  },
+  dataChallenge: {
+    submit: (data: DataChallengeData) => {
+      const formData = createFormData(data);
+
+      const dataRequestOptions: RequestInit = {
+        method: 'POST',
+        body: formData
+      };
+
+      return fetch(API_DATA_CHALLENGE_GRANTS, dataRequestOptions);
     }
   },
   newsletter: {

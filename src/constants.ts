@@ -203,6 +203,22 @@ export const SIDEBAR_DATA_COLLECTION_GRANTS_LINKS: SidebarLink[] = [
   { text: 'FAQ', href: `${DATA_COLLECTION_ROUND_URL}/#faq` }
 ];
 
+export const DATA_CHALLENGE_ROUND_URL = '/data-challenge-4844';
+// TODO: update links
+export const SIDEBAR_DATA_CHALLENGE_LINKS: SidebarLink[] = [
+  { text: 'Summary', href: `${DATA_CHALLENGE_ROUND_URL}/#introduction` },
+  { text: 'Submit proposal', href: `${DATA_CHALLENGE_ROUND_URL}/#submit-proposal` },
+  { text: 'Wishlist', href: `${DATA_CHALLENGE_ROUND_URL}/#wishlist` },
+  { text: 'Application requirements', href: `${DATA_CHALLENGE_ROUND_URL}/#requirements` },
+  { text: 'Deadline', href: `${DATA_CHALLENGE_ROUND_URL}/#deadline` },
+  { text: 'Eligibility criteria', href: `${DATA_CHALLENGE_ROUND_URL}/#eligibility-criteria` },
+  { text: 'What is not eligible', href: `${DATA_CHALLENGE_ROUND_URL}/#not-eligible` },
+  { text: 'Selection criteria', href: `${DATA_CHALLENGE_ROUND_URL}/#selection-criteria` },
+  { text: 'Next steps and support', href: `${DATA_CHALLENGE_ROUND_URL}/#next-steps-and-support` },
+  { text: 'FAQ', href: `${DATA_CHALLENGE_ROUND_URL}/#faq` },
+  { text: 'Apply', href: `${DATA_CHALLENGE_ROUND_URL}/#apply` }
+];
+
 // apply forms
 export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
 export const OFFICE_HOURS_APPLY_URL = '/applicants/office-hours/apply';
@@ -213,6 +229,7 @@ export const ECODEV_GRANTS_APPLY_URL = '/ecodev-grants/apply';
 export const RUN_A_NODE_GRANTS_APPLY_URL = '/run-a-node-grants/apply';
 export const DATA_COLLECTION_APPLY_URL = '/data-collection-grants/apply';
 export const PSE_SPONSORSHIPS_APPLY_URL = '/pse-sponsorships/apply';
+export const DATA_CHALLENGE_APPLY_URL = '/data-challenge-4844/apply';
 
 // grantee finance form
 export const GRANTEE_FINANCE_URL = '/applicants/grantee-finance';
@@ -228,6 +245,7 @@ export const ECODEV_GRANTS_THANK_YOU_PAGE_URL = '/ecodev-grants/thank-you';
 export const RUN_A_NODE_GRANTS_THANK_YOU_PAGE_URL = '/run-a-node-grants/thank-you';
 export const DATA_COLLECTION_THANK_YOU_PAGE_URL = '/data-collection-grants/thank-you';
 export const PSE_SPONSORSHIPS_THANK_YOU_PAGE_URL = '/pse-sponsorships/thank-you';
+export const DATA_CHALLENGE_THANK_YOU_PAGE_URL = '/data-challenge-4844/thank-you';
 
 // ethereum ecosystem
 export const ETHEREUM_ORG_URL = 'https://ethereum.org/';

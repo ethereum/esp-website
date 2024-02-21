@@ -59,6 +59,12 @@ export const DATA_COLLECTION_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Other', label: 'Other' }
 ];
 
+export const DATA_CHALLENGE_PROJECT_CATEGORY_OPTIONS = [
+  { value: 'Data Analysis', label: 'Data Analysis' },
+  { value: 'Data Visualization', label: 'Data Visualization' },
+  { value: 'Other', label: 'Other' }
+];
+
 // events
 export const EVENT_TYPE_OPTIONS = [
   { value: 'Conference', label: 'Conference' },
@@ -1561,4 +1567,5 @@ export const API_GRANTEE_FINANCE = '/api/grantee-finance';
 export const API_ECODEV_GRANTS = '/api/ecodev-grants';
 export const API_PSE_SPONSORSHIPS = '/api/pse-sponsorships';
 export const API_DATA_COLLECTION_GRANTS = '/api/data-collection-grants';
+export const API_DATA_CHALLENGE_GRANTS = '/api/data-challenge-grants';
 export const API_NEWSLETTER_SIGNUP_URL = '/api/newsletter-signup';
