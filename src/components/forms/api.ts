@@ -21,10 +21,12 @@ import {
   API_PROJECT_GRANTS,
   API_PSE_SPONSORSHIPS,
   API_SMALL_GRANTS_EVENT,
-  API_SMALL_GRANTS_PROJECT
+  API_SMALL_GRANTS_PROJECT,
+  API_ZK_GRANTS
 } from './constants';
 
 import type { AcademicGrantsData } from './schemas/AcademicGrants';
+import type { ZKGrantsData } from './schemas/ZKGrants';
 
 const methodOptions = {
   method: 'POST',
@@ -179,6 +181,18 @@ export const api = {
       };
 
       return fetch(API_PSE_SPONSORSHIPS, pseSponsorshipsRequestOptions);
+    }
+  },
+  zkGrants: {
+    submit: (data: ZKGrantsData) => {
+      const formData = createFormData(data);
+
+      const dataRequestOptions: RequestInit = {
+        method: 'POST',
+        body: formData
+      };
+
+      return fetch(API_ZK_GRANTS, dataRequestOptions);
     }
   },
   newsletter: {

@@ -203,6 +203,22 @@ export const SIDEBAR_DATA_COLLECTION_GRANTS_LINKS: SidebarLink[] = [
   { text: 'FAQ', href: `${DATA_COLLECTION_ROUND_URL}/#faq` }
 ];
 
+export const ZK_GRANTS_URL = '/zk-grants';
+export const ZK_GRANTS_LINKS: SidebarLink[] = [
+  { text: 'Introduction', href: `${ZK_GRANTS_URL}/#introduction` },
+  { text: 'Ideas', href: `${ZK_GRANTS_URL}/#ideas` },
+  { text: 'Application requirements', href: `${ZK_GRANTS_URL}/#application-requirements` },
+  { text: 'Eligibility criteria', href: `${ZK_GRANTS_URL}/#eligibility-criteria` },
+  { text: 'What is not eligible', href: `${ZK_GRANTS_URL}/#not-eligible` },
+  { text: 'Selection criteria', href: `${ZK_GRANTS_URL}/#selection-criteria` },
+  {
+    text: 'Next steps and support',
+    href: `${ZK_GRANTS_URL}/#next-steps-and-support`
+  },
+  { text: 'FAQ', href: `${ZK_GRANTS_URL}/#faq` },
+  { text: 'Apply', href: `${ZK_GRANTS_URL}/#apply` }
+];
+
 // apply forms
 export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
 export const OFFICE_HOURS_APPLY_URL = '/applicants/office-hours/apply';
@@ -213,6 +229,7 @@ export const ECODEV_GRANTS_APPLY_URL = '/ecodev-grants/apply';
 export const RUN_A_NODE_GRANTS_APPLY_URL = '/run-a-node-grants/apply';
 export const DATA_COLLECTION_APPLY_URL = '/data-collection-grants/apply';
 export const PSE_SPONSORSHIPS_APPLY_URL = '/pse-sponsorships/apply';
+export const ZK_GRANTS_APPLY_URL = '/zk-grants/apply';
 
 // grantee finance form
 export const GRANTEE_FINANCE_URL = '/applicants/grantee-finance';
@@ -228,6 +245,7 @@ export const ECODEV_GRANTS_THANK_YOU_PAGE_URL = '/ecodev-grants/thank-you';
 export const RUN_A_NODE_GRANTS_THANK_YOU_PAGE_URL = '/run-a-node-grants/thank-you';
 export const DATA_COLLECTION_THANK_YOU_PAGE_URL = '/data-collection-grants/thank-you';
 export const PSE_SPONSORSHIPS_THANK_YOU_PAGE_URL = '/pse-sponsorships/thank-you';
+export const ZK_GRANTS_THANK_YOU_PAGE_URL = '/zk-grants/thank-you';
 
 // ethereum ecosystem
 export const ETHEREUM_ORG_URL = 'https://ethereum.org/';
