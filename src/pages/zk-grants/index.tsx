@@ -12,7 +12,12 @@ import {
   ReadyToApply
 } from '../../components/UI';
 
-import { GRANTS_EMAIL_ADDRESS, ZK_GRANTS_APPLY_URL, ZK_GRANTS_LINKS } from '../../constants';
+import {
+  GRANTS_EMAIL_ADDRESS,
+  ZK_GRANTS_APPLY_URL,
+  ZK_GRANTS_LINKS,
+  ZK_GRANTS_PREVIEW_URL
+} from '../../constants';
 
 const RunANodeGrants: NextPage = () => {
   // `threshold` option allows us to control the % of visibility required before triggering the Intersection Observer
@@ -32,6 +37,7 @@ const RunANodeGrants: NextPage = () => {
       <PageMetadata
         title='ZK Grants'
         description='ZK grants round co-funded with Aztec, Scroll, Taiko & zkSync to develop the ZK Layer 2 Ecosystem.'
+        image={ZK_GRANTS_PREVIEW_URL}
       />
 
       <Box bg='white' position='relative' mt={{ xl: 12 }}>

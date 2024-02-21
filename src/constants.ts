@@ -354,5 +354,7 @@ export const ACADEMIC_GRANTS_PREVIEW_URL =
 export const DATA_COLLECTION_GRANTS_PREVIEW_URL =
   'https://esp.ethereum.foundation/images/data-collection-proactive-grants.png';
 
+export const ZK_GRANTS_PREVIEW_URL = 'https://esp.ethereum.foundation/images/zk-grants.jpg';
+
 // Thank you and apply urls
 export const GRANTS_URLS = [DEVCON_GRANTS_APPLY_URL, DEVCON_GRANTS_THANK_YOU_PAGE_URL];
