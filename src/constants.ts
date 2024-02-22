@@ -204,18 +204,18 @@ export const SIDEBAR_DATA_COLLECTION_GRANTS_LINKS: SidebarLink[] = [
 ];
 
 export const DATA_CHALLENGE_ROUND_URL = '/data-challenge-4844';
-// TODO: update links
 export const SIDEBAR_DATA_CHALLENGE_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${DATA_CHALLENGE_ROUND_URL}/#introduction` },
-  { text: 'Submit proposal', href: `${DATA_CHALLENGE_ROUND_URL}/#submit-proposal` },
-  { text: 'Wishlist', href: `${DATA_CHALLENGE_ROUND_URL}/#wishlist` },
-  { text: 'Application requirements', href: `${DATA_CHALLENGE_ROUND_URL}/#requirements` },
+  { text: 'The challenge', href: `${DATA_CHALLENGE_ROUND_URL}/#the-challenge` },
+  { text: 'How to submit', href: `${DATA_CHALLENGE_ROUND_URL}/#how-to-submit` },
   { text: 'Deadline', href: `${DATA_CHALLENGE_ROUND_URL}/#deadline` },
-  { text: 'Eligibility criteria', href: `${DATA_CHALLENGE_ROUND_URL}/#eligibility-criteria` },
-  { text: 'What is not eligible', href: `${DATA_CHALLENGE_ROUND_URL}/#not-eligible` },
-  { text: 'Selection criteria', href: `${DATA_CHALLENGE_ROUND_URL}/#selection-criteria` },
-  { text: 'Next steps and support', href: `${DATA_CHALLENGE_ROUND_URL}/#next-steps-and-support` },
-  { text: 'FAQ', href: `${DATA_CHALLENGE_ROUND_URL}/#faq` },
+  { text: 'Prizes', href: `${DATA_CHALLENGE_ROUND_URL}/#prizes` },
+  { text: 'Requirements', href: `${DATA_CHALLENGE_ROUND_URL}/#requirements` },
+  { text: 'Judging criteria', href: `${DATA_CHALLENGE_ROUND_URL}/#judging-criteria` },
+  { text: 'How to get started', href: `${DATA_CHALLENGE_ROUND_URL}/#started` },
+  { text: 'Using existing data', href: `${DATA_CHALLENGE_ROUND_URL}/#existing-data` },
+  { text: 'Helpful resources', href: `${DATA_CHALLENGE_ROUND_URL}/#helpful-resources` },
+  { text: 'Support', href: `${DATA_CHALLENGE_ROUND_URL}/#support` },
   { text: 'Apply', href: `${DATA_CHALLENGE_ROUND_URL}/#apply` }
 ];
 

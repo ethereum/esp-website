@@ -18,7 +18,7 @@ export const DataChallengeLayout: FC = ({ children }) => {
         }}
         title='Data Challenge 4844'
       >
-        TODO
+        The Ethereum Foundation is sponsoring a 4844 data analysis and visualization blog post challenge. Here are all the details you need.
       </GrantsHero>
 
       <Stack>{children}</Stack>

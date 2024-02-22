@@ -1,21 +1,19 @@
-import { Accordion, Box, Flex, forwardRef, Link, ListItem, Stack } from '@chakra-ui/react';
+import { Box, Flex, forwardRef, Link, ListItem, Stack } from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import type { NextPage } from 'next';
 
 import {
   ApplicantsSidebar,
-  FAQItem,
   List,
   PageSection,
   PageText,
   PageMetadata,
-  ReadyToApply
+  ReadyToApply,
+  OrderedList
 } from '../../components/UI';
 
 import {
-  ACADEMIC_GRANTS_EMAIL_ADDRESS,
-  HOME_URL,
-  OFFICE_HOURS_URL,
+  GRANTS_EMAIL_ADDRESS,
   DATA_CHALLENGE_APPLY_URL,
   SIDEBAR_DATA_CHALLENGE_LINKS
 } from '../../constants';
@@ -37,7 +35,8 @@ const DataChallenge: NextPage = () => {
   const [ref8, inView8] = useInView({ threshold: 0.5, initialInView: false });
   const [ref9, inView9] = useInView({ threshold: 0.5, initialInView: false });
   const [ref10, inView10] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref11, inView11] = useInView({ threshold: 0, initialInView: false });
+  const [ref11, inView11] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref12, inView12] = useInView({ threshold: 0, initialInView: false });
 
   return (
     <>
@@ -62,7 +61,8 @@ const DataChallenge: NextPage = () => {
                 inView8,
                 inView9,
                 inView10,
-                inView11
+                inView11,
+                inView12
               ]}
             />
 
@@ -70,344 +70,475 @@ const DataChallenge: NextPage = () => {
               <Stack mb={8} mt={{ base: 10, md: 0 }}>
                 <Section id='introduction' ref={ref}>
                   <PageText>
-                    The Ethereum Foundation is thrilled to announce the Academic Grants Round 2024,
-                    an initiative dedicated to fostering research in the Ethereum ecosystem.
-                    Following the overwhelming success of the 2023 round, where we funded 43
-                    projects from 20 countries, we are eager to continue supporting academic
-                    contributions. With a focus on a wide array of domains such as, applied and
-                    theoretical cryptography, economics, game theory, security, consensus protocols,
-                    formal verification, p2p networking, society and regulation, and hardware, we
-                    aim to catalyze research that propels the Ethereum ecosystem forward.
+                    Calling all Ethereans, data scientists, data engineers, data visualizers,
+                    developers, and anyone interested in digging into Ethereum data!
                   </PageText>
 
                   <PageText>
-                    In 2023, we received an astounding 250 applications, which highlighted the
-                    global academic community’s growing interest in Ethereum. This year, we aim to
-                    build on this momentum by inviting even more researchers and institutions from
-                    more countries to participate. Through this wave of grants, the Ethereum
-                    Foundation underscores its commitment to supporting rigorous academic work that
-                    addresses key challenges and unlocks new opportunities.
+                    <Link
+                      fontWeight={700}
+                      color='brand.orange.100'
+                      href='https://eips.ethereum.org/EIPS/eip-4844'
+                      isExternal
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      EIP-4844
+                    </Link>{' '}
+                    is coming, providing a more scalable gas market for Ethereum’s future – as well
+                    as more data, lots and lots of data. And the Ethereum community needs your help
+                    to make sense of it all.
                   </PageText>
 
-                  <PageText>
-                    We are looking for proposals that not only align with our wishlist but also
-                    bring novel perspectives and approaches. We encourage you to draw inspiration
-                    from the wishlist and think creatively about how your research can contribute to
-                    the Ethereum ecosystem.
-                  </PageText>
+                  <List>
+                    <ListItem>
+                      What new visualizations help provide insight into the blob data market?
+                    </ListItem>
+                    <ListItem>What kinds of protocols are using blobs?</ListItem>
+                    <ListItem>Is there a secondary market for blobs?</ListItem>
+                    <ListItem>
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href='https://notes.ethereum.org/@drigolvc/4844-data-round-wishlist'
+                        isExternal
+                        _hover={{ textDecoration: 'none' }}
+                      >
+                        Full Wishlist
+                      </Link>
+                    </ListItem>
+                  </List>
                 </Section>
               </Stack>
 
               <Stack spacing={10}>
-                <Section id='submit-proposal' ref={ref2}>
-                  <PageSection>Submit proposal</PageSection>
+                <Section id='the-challenge' ref={ref2}>
+                  <PageSection>The challenge</PageSection>
 
-                  <PageText>
-                    Individual researchers with academic backgrounds, research centers,
-                    universities, think-tanks, educators and other stakeholders interested in
-                    research on matters related to Ethereum and its ecosystem are encouraged to
-                    apply.
+                  <PageText fontWeight='bold'>
+                    Document your best 4844 data insights in the most readable blog post possible –
+                    for prizes!
                   </PageText>
 
                   <PageText>
-                    Anyone is free to participate in this grants round, as an individual or with a
-                    team.
+                    The Ethereum Foundation is running this challenge because there’s a lot to learn
+                    and discover from 4844’s mainnet activity. Your findings will give the Ethereum
+                    community – from beginners to researchers and client developers – important
+                    insights into blob data and transactions.
                   </PageText>
 
                   <PageText>
-                    Undergraduate researchers will require a postdoctoral advisor.
-                  </PageText>
-                </Section>
-
-                <Section id='wishlist' ref={ref3}>
-                  <PageSection>Wishlist</PageSection>
-
-                  <PageText>
-                    The Ethereum Foundation is interested in research and academic output in the
-                    following domain areas, but don&apos;t let this restrict your creativity. Check
-                    out our{' '}
+                    In addition to the prompt questions above, here’s a{' '}
                     <Link
                       fontWeight={700}
                       color='brand.orange.100'
-                      href='https://notes.ethereum.org/@drigolvc/AcademicGrantsWishlist2024'
+                      href='https://notes.ethereum.org/@drigolvc/4844-data-round-wishlist'
                       isExternal
                       _hover={{ textDecoration: 'none' }}
                     >
-                      wishlist
+                      wishlist of data analysis avenues to explore
                     </Link>
                     .
                   </PageText>
+                </Section>
+
+                <Section id='how-to-submit' ref={ref3}>
+                  <PageSection>How to submit</PageSection>
+
+                  <PageText>Anyone is free to submit, here’s how:</PageText>
+
+                  <OrderedList>
+                    <ListItem>Collect and analyze 4844 data</ListItem>
+                    <List>
+                      <ListItem>Either with existing tools</ListItem>
+                      <ListItem>
+                        Or for the extra ambitious, build your own tool and tell us about it!
+                      </ListItem>
+                    </List>
+                    <ListItem>Detail out your work in a blog post</ListItem>
+                    <ListItem>Submit!</ListItem>
+                  </OrderedList>
+
+                  <ReadyToApply link={`${DATA_CHALLENGE_APPLY_URL}`} />
 
                   <PageText>
-                    <strong>Surprise us with your creativity!</strong>
+                    <PageText as='i'>
+                      You may submit more than one blog post! So long as each posts focuses on a
+                      different visualisation or piece of analysis.
+                    </PageText>
+                  </PageText>
+
+                  <PageText>
+                    <PageText as='i'>
+                      A group of Ethereum community members will evaluate your submissions and
+                      awards will go to the top blog posts 🏆
+                    </PageText>
                   </PageText>
                 </Section>
 
-                <Section id='requirements' ref={ref4}>
-                  <PageSection>Application requirements</PageSection>
-
-                  <List>
-                    <ListItem>All applications must have a written proposal in PDF format</ListItem>
-                    <List>
-                      <ListItem>Proposals must be in English</ListItem>
-                      <ListItem>
-                        Proposals must include a detailed description, budget, and timeline for the
-                        proposed scope of work
-                      </ListItem>
-                      <ListItem>Proposals must include an applicant profile</ListItem>
-                      <ListItem>
-                        Proposals must include a public repository or link to published work
-                      </ListItem>
-                    </List>
-                    <ListItem>
-                      Here is a{' '}
-                      <Link
-                        fontWeight={700}
-                        color='brand.orange.100'
-                        href='https://hackmd.io/@rodrigolvc/Example_Grant'
-                        isExternal
-                        _hover={{ textDecoration: 'none' }}
-                      >
-                        template
-                      </Link>{' '}
-                      for a proposal
-                    </ListItem>
-                    <ListItem>Ideas and projects at any stage of development are welcome:</ListItem>
-                    <List>
-                      <ListItem>Idea phase</ListItem>
-                      <ListItem>Proof-of-concept</ListItem>
-                      <ListItem>Work in progress</ListItem>
-                      <ListItem>Fleshed out project</ListItem>
-                    </List>
-                  </List>
-                </Section>
-
-                <Section id='deadline' ref={ref5}>
+                <Section id='deadline' ref={ref4}>
                   <PageSection>Deadline</PageSection>
 
                   <PageText>
-                    The deadline for proposals is <strong>Monday, March 4th, 2024</strong>. We will
-                    follow-up regarding your submission by email. Decisions will be emailed 6-8
-                    weeks after the application deadline.
+                    Submissions are due <strong>23:59 UTC June 14th, 2024</strong>.
                   </PageText>
                 </Section>
 
-                <Section id='eligibility-criteria' ref={ref6}>
-                  <PageSection>Eligibility criteria</PageSection>
-
-                  <List>
-                    <ListItem>Projects must produce formal academic research</ListItem>
-                    <ListItem>
-                      Research output must be open-access with a free and permissive license
-                    </ListItem>
-                  </List>
-                </Section>
-
-                <Section id='not-eligible' ref={ref7}>
-                  <PageSection>
-                    What is <i>not</i> eligible
-                  </PageSection>
-
-                  <List>
-                    <ListItem>
-                      Anything that is not legal within the jurisdiction where the work is taking
-                      place
-                    </ListItem>
-                    <ListItem>
-                      Financial products and services (trading platforms, investment products,
-                      stablecoins, lending or betting platforms, etc.)
-                    </ListItem>
-                    <ListItem>
-                      Art projects or social impact projects that don’t fit within the scope of this
-                      round
-                    </ListItem>
-                    <ListItem>Projects requesting retroactive funding</ListItem>
-                    <ListItem>
-                      Projects with a planned token launch or public funding round
-                    </ListItem>
-                  </List>
-                </Section>
-
-                <Section id='selection-criteria' ref={ref8}>
-                  <PageSection>Selection criteria</PageSection>
+                <Section id='prizes' ref={ref5}>
+                  <PageSection>Prizes</PageSection>
 
                   <PageText>
-                    Applications are selected for funding on a case-by-case basis. You may submit
-                    more than one application as long as each proposal is unique and meets the
-                    requirements and goals of this round. Submissions will be reviewed using the
-                    following considerations. Note: depending on the proposal, some criteria might
-                    not be applicable:
+                    Up to <strong>USD $30,000</strong>.
                   </PageText>
 
+                  <PageText>
+                    <PageText as='i'>
+                      Entries must be considered sufficiently impactful/insightful by the community
+                      judging team to be eligible for rewards.
+                    </PageText>
+                  </PageText>
+                </Section>
+
+                <Section id='requirements' ref={ref6}>
+                  <PageSection>Requirements</PageSection>
+
                   <List>
-                    <ListItem>Impact of the proposed research output</ListItem>
-                    <ListItem>Quality of work and experience of the research team</ListItem>
-                    <ListItem>Clarity, conciseness, and organization of the proposal</ListItem>
-                    <ListItem>Contribution to the wishlist areas</ListItem>
+                    <ListItem>Blog post must be in English</ListItem>
+                    <List>
+                      <ListItem>There are no length requirements</ListItem>
+                    </List>
+                    <ListItem>Blog posts must be public and original</ListItem>
+                    <ListItem>Data analysis or visualization must concern EIP-4844 data</ListItem>
                     <ListItem>
-                      Potential of long-term involvement in the Ethereum ecosystem
-                    </ListItem>
-                    <ListItem>
-                      Analyses of visualizations that help a non-technical audience gain insight
-                      into the research
+                      Tools and scripts used (and created) must be free and open source and
+                      referenced in the blog post
                     </ListItem>
                   </List>
                 </Section>
 
-                <Section id='next-steps-and-support' ref={ref9}>
-                  <PageSection>Next steps and support</PageSection>
+                <Section id='judging-criteria' ref={ref7}>
+                  <PageSection>Judging criteria</PageSection>
+
+                  <PageText>
+                    <PageText as='i'>
+                      Prizes for this round will be selected by judges from the Ethereum Foundation
+                      and community using the following considerations. Note: depending on the
+                      proposal, some criteria might not be applicable:
+                    </PageText>
+                  </PageText>
+
+                  <List>
+                    <ListItem>
+                      Overall quality and clarity of data analysis or data visualization
+                    </ListItem>
+                    <List>
+                      <ListItem>Quality of insights into the effects of EIP-4844</ListItem>
+                    </List>
+                    <ListItem>
+                      Insights that lead to substantive changes/improvements in client
+                      implementations or specifications
+                    </ListItem>
+                    <ListItem>
+                      Analyses or visualizations that help a non-technical audience gain insight
+                      into the network
+                    </ListItem>
+                    <ListItem>
+                      Quality of contribution to the Ethereum tooling ecosystem (if applicable)
+                    </ListItem>
+                  </List>
+                </Section>
+
+                <Section id='started' ref={ref8}>
+                  <PageSection>How to get started</PageSection>
+
+                  <List>
+                    <ListItem>
+                      Run / sync a [Mainnet client pair](LINK TO mainnet announcement) (or multiple
+                      clients)
+                    </ListItem>
+                    <ListItem>Dig around a block explorer:</ListItem>
+                    <List>
+                      <ListItem>
+                        <Link
+                          fontWeight={700}
+                          color='brand.orange.100'
+                          href='https://etherscan.io/'
+                          isExternal
+                          _hover={{ textDecoration: 'none' }}
+                        >
+                          Etherscan
+                        </Link>{' '}
+                        /{' '}
+                        <Link
+                          fontWeight={700}
+                          color='brand.orange.100'
+                          href='https://beaconscan.com/'
+                          isExternal
+                          _hover={{ textDecoration: 'none' }}
+                        >
+                          BeaconScan
+                        </Link>
+                      </ListItem>
+                      <ListItem>
+                        <Link
+                          fontWeight={700}
+                          color='brand.orange.100'
+                          href='https://beaconcha.in/'
+                          isExternal
+                          _hover={{ textDecoration: 'none' }}
+                        >
+                          Beaconcha.in
+                        </Link>
+                      </ListItem>
+                    </List>
+                    <ListItem>
+                      Experiment with client APIs for single node statistics (i.e.{' '}
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href='https://github.com/ethereum/beacon-APIs'
+                        isExternal
+                        _hover={{ textDecoration: 'none' }}
+                      >
+                        beacon-APIs
+                      </Link>{' '}
+                      and{' '}
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href='https://github.com/ethereum/execution-apis/'
+                        isExternal
+                        _hover={{ textDecoration: 'none' }}
+                      >
+                        execution-APIs
+                      </Link>
+                      )
+                    </ListItem>
+                    <ListItem>
+                      Experiment with{' '}
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href='https://github.com/ethereum/execution-apis/'
+                        isExternal
+                        _hover={{ textDecoration: 'none' }}
+                      >
+                        ethdo
+                      </Link>
+                      ,{' '}
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href='https://github.com/protolambda/rumor'
+                        isExternal
+                        _hover={{ textDecoration: 'none' }}
+                      >
+                        rumor
+                      </Link>
+                      ,{' '}
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href='https://github.com/protolambda/zcli'
+                        isExternal
+                        _hover={{ textDecoration: 'none' }}
+                      >
+                        zcli
+                      </Link>
+                      ,{' '}
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href='https://github.com/wealdtech/chaind'
+                        isExternal
+                        _hover={{ textDecoration: 'none' }}
+                      >
+                        chaind
+                      </Link>
+                      ,{' '}
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href='https://github.com/blockchain-etl/ethereum-etl'
+                        isExternal
+                        _hover={{ textDecoration: 'none' }}
+                      >
+                        Ethereum ETL
+                      </Link>
+                      ,{' '}
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href='https://github.com/blockchain-etl/ethereum2-etl'
+                        isExternal
+                        _hover={{ textDecoration: 'none' }}
+                      >
+                        Ethereum 2 ETL
+                      </Link>
+                      , and other existing data gathering and analysis tools
+                    </ListItem>
+                    <ListItem>Write new tools to gather data</ListItem>
+                    <ListItem>Crunch some numbers and spin up some graphs</ListItem>
+                    <ListItem>Publish your analysis or visualization!</ListItem>
+                  </List>
+                </Section>
+
+                <Section id='existing-data' ref={ref9}>
+                  <PageSection>Using existing data</PageSection>
+
+                  <PageText>
+                    Access to{' '}
+                    <Link
+                      fontWeight={700}
+                      color='brand.orange.100'
+                      href='https://github.com/ethpandaops/xatu'
+                      isExternal
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      Xatu
+                    </Link>{' '}
+                    data is available on request via a clickhouse client. This data includes
+                    captured{' '}
+                    <Link
+                      fontWeight={700}
+                      color='brand.orange.100'
+                      href='https://ethereum.github.io/beacon-APIs/#/Events/eventstream'
+                      isExternal
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      Beacon API event stream
+                    </Link>{' '}
+                    and mempool events from multiple sentries in various continents.{' '}
+                    <Link
+                      fontWeight={700}
+                      color='brand.orange.100'
+                      href='https://dbt.platform.ethpandaops.io/#!/source/source.xatu.clickhouse.beacon_api_eth_v1_beacon_committee'
+                      isExternal
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      Here
+                    </Link>{' '}
+                    is the list of tables available.
+                  </PageText>
+                </Section>
+
+                <Section id='helpful-resources' ref={ref10}>
+                  <PageSection>Helpful resources</PageSection>
+
+                  <List>
+                    <ListItem>
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href='https://www.eip4844.com/'
+                        isExternal
+                        _hover={{ textDecoration: 'none' }}
+                      >
+                        4844 Overview
+                      </Link>
+                    </ListItem>
+                    <ListItem>Specs</ListItem>
+                    <List>
+                      <ListItem>
+                        <Link
+                          fontWeight={700}
+                          color='brand.orange.100'
+                          href='https://github.com/ethereum/consensus-specs'
+                          isExternal
+                          _hover={{ textDecoration: 'none' }}
+                        >
+                          Consensus Layer specs
+                        </Link>
+                      </ListItem>
+                      <ListItem>
+                        <Link
+                          fontWeight={700}
+                          color='brand.orange.100'
+                          href='https://github.com/ethereum/execution-specs'
+                          isExternal
+                          _hover={{ textDecoration: 'none' }}
+                        >
+                          Execution Layer specs
+                        </Link>
+                      </ListItem>
+                      <ListItem>
+                        <Link
+                          fontWeight={700}
+                          color='brand.orange.100'
+                          href='https://eips.ethereum.org/EIPS/eip-4844'
+                          isExternal
+                          _hover={{ textDecoration: 'none' }}
+                        >
+                          EIP 4844
+                        </Link>
+                      </ListItem>
+                      <ListItem>
+                        <Link
+                          fontWeight={700}
+                          color='brand.orange.100'
+                          href='https://github.com/ethereum/execution-apis/blob/main/src/engine/specification.md'
+                          isExternal
+                          _hover={{ textDecoration: 'none' }}
+                        >
+                          Engine API
+                        </Link>
+                      </ListItem>
+                    </List>
+                    <ListItem>
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href='https://notes.ethereum.org/@MarioHavel/merge-resources'
+                        isExternal
+                        _hover={{ textDecoration: 'none' }}
+                      >
+                        Mega Merge Resource List
+                      </Link>
+                    </ListItem>
+                    <ListItem>
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href='https://github.com/timbeiko/eth-roadmap-faq'
+                        isExternal
+                        _hover={{ textDecoration: 'none' }}
+                      >
+                        Ethereum Roadmap FAQ
+                      </Link>
+                    </ListItem>
+                    <ListItem>
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href='https://discord.gg/VmG7Uxc'
+                        isExternal
+                        _hover={{ textDecoration: 'none' }}
+                      >
+                        Eth R&D
+                      </Link>{' '}
+                      Discord
+                    </ListItem>
+                  </List>
+                </Section>
+
+                <Section id='support' ref={ref11}>
+                  <PageSection>Support</PageSection>
 
                   <PageText>
                     For any general support questions about your submission, please email{' '}
                     <Link
                       fontWeight={700}
                       color='brand.orange.100'
-                      href={`mailto:${ACADEMIC_GRANTS_EMAIL_ADDRESS}`}
+                      href={`mailto:${GRANTS_EMAIL_ADDRESS}`}
                       isExternal
                       _hover={{ textDecoration: 'none' }}
                     >
-                      {ACADEMIC_GRANTS_EMAIL_ADDRESS}
+                      {GRANTS_EMAIL_ADDRESS}
                     </Link>
                     .
                   </PageText>
                 </Section>
 
-                <Section id='faq' ref={ref10}>
-                  <PageSection>Frequently asked questions</PageSection>
-
-                  <Accordion allowToggle>
-                    <FAQItem question='Does the Ethereum Foundation have an Indirect Costs Policy?'>
-                      <PageText>
-                        ESP has an{' '}
-                        <Link
-                          fontWeight={700}
-                          color='brand.orange.100'
-                          href='/Academic_Grants_Round_-_Indirect_Costs_Guide.pdf'
-                          isExternal
-                          _hover={{ textDecoration: 'none' }}
-                        >
-                          indirect costs policy for Academic Grants
-                        </Link>
-                        .
-                      </PageText>
-                    </FAQItem>
-
-                    <FAQItem question='Who can submit proposals for Academic Grants Round?'>
-                      <PageText>
-                        Academic institutions, consortia of universities, research centres,
-                        universities, think-tanks and individuals with prior research experience.
-                      </PageText>
-                    </FAQItem>
-
-                    <FAQItem question='What makes for a good proposal?'>
-                      <PageText>
-                        In short, we need enough information to understand your goals, the research
-                        problem you&apos;re aiming to tackle, the academic output, information on
-                        previous research work, who&apos;s involved and estimation regarding time
-                        and budget. The more details you provide, the more likely we&apos;ll be able
-                        to help.
-                      </PageText>
-
-                      <Box>
-                        <PageText>For example:</PageText>
-                        <List>
-                          <ListItem>
-                            Clearly showing the research area you&apos;re digging into.
-                          </ListItem>
-                          <ListItem>
-                            Outlining the output. Is it a research paper or lab work that will
-                            culminate in an experimental report?
-                          </ListItem>
-                          <ListItem>
-                            Clearly stating the impact your research will have and how you foresee
-                            your findings being used by the Ethereum community.
-                          </ListItem>
-                          <ListItem>
-                            Detailed description of your project, milestones, the people involved
-                            and how much time you think it will take to complete.
-                          </ListItem>
-                        </List>
-                      </Box>
-                    </FAQItem>
-
-                    <FAQItem question='What stage does my idea or project need to be in?'>
-                      <PageText>
-                        If you have a follow-up idea of a previous research you conducted or if your
-                        research is aligned with the wishlist domains, we want to hear about it! The
-                        goal is to advance knowledge that pushes the Ethereum ecosystem forward.
-                      </PageText>
-                    </FAQItem>
-
-                    <FAQItem question='What should the output be?'>
-                      <PageText>
-                        We are aiming to receive academic and formal research outputs, be it a
-                        research paper, an experimental report or some sort of comprehensive
-                        research output. Whatever the output, the information should be open-source
-                        and available for the broader community to use. The Intellectual Property
-                        can still be owned by the research team, but it is key that the output is
-                        open source.
-                      </PageText>
-                    </FAQItem>
-
-                    <FAQItem question='What is the budget available for this round?'>
-                      <PageText>
-                        This grants round has up to $1 Million in total, which is to be distributed
-                        among selected projects.
-                      </PageText>
-                    </FAQItem>
-
-                    <FAQItem question='What is the expected duration of the research project?'>
-                      <PageText>
-                        We envision projects to take between 6 to 12 months, however, we are open to
-                        some flexibility depending on the project proposal.
-                      </PageText>
-                    </FAQItem>
-
-                    <FAQItem question='Are applications evaluated on a rolling basis or at the end of the deadline?'>
-                      <PageText>
-                        Project submission will be evaluated after the deadline, and contact will be
-                        made with each applicant to inform them about the evaluation outcome.
-                      </PageText>
-                    </FAQItem>
-
-                    <FAQItem question='What if I miss the deadline?'>
-                      <PageText>
-                        We encourage you to submit an inquiry for support through the Ecosystem
-                        Support Program.
-                      </PageText>
-
-                      <PageText>
-                        The Ethereum Foundation has a general grants initiative called the{' '}
-                        <Link
-                          fontWeight={700}
-                          color='brand.orange.100'
-                          href={HOME_URL}
-                          _hover={{ textDecoration: 'none' }}
-                        >
-                          Ecosystem Support Program (ESP)
-                        </Link>
-                        .
-                      </PageText>
-
-                      <PageText>
-                        If you miss the deadline for this dedicated round of grants, but have a
-                        proposal that advances the Ethereum ecosystem, we encourage you to book an
-                        appointment for{' '}
-                        <Link
-                          fontWeight={700}
-                          color='brand.orange.100'
-                          href={OFFICE_HOURS_URL}
-                          _hover={{ textDecoration: 'none' }}
-                        >
-                          ESP&apos;s Office Hours
-                        </Link>
-                        .
-                      </PageText>
-                    </FAQItem>
-                  </Accordion>
-                </Section>
-
-                <Section id='apply' ref={ref11}>
+                <Section id='apply' ref={ref12}>
                   <Stack>
                     <ReadyToApply link={`${DATA_CHALLENGE_APPLY_URL}`} />
                   </Stack>
