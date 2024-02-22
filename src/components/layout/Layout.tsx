@@ -19,6 +19,7 @@ import {
   RunANodeGrantLayout,
   DataCollectionLayout,
   AcademicGrants2023Layout,
+  ZKGrantsLayout,
   DataChallengeLayout
 } from '../layout';
 import { Nav } from '../../components';
@@ -38,6 +39,7 @@ import {
   RUN_A_NODE_GRANTS_URL,
   DATA_COLLECTION_ROUND_URL,
   ACADEMIC_GRANTS_2023_URL,
+  ZK_GRANTS_URL,
   DATA_CHALLENGE_ROUND_URL
 } from '../../constants';
 
@@ -171,6 +173,16 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
         <Box mt={{ md: -10, lg: 0 }}>
           <main>
             <DataCollectionLayout>{children}</DataCollectionLayout>
+          </main>
+        </Box>
+      );
+    }
+
+    if (router.pathname === ZK_GRANTS_URL) {
+      return (
+        <Box mt={{ md: -10, lg: 0 }}>
+          <main>
+            <ZKGrantsLayout>{children}</ZKGrantsLayout>
           </main>
         </Box>
       );
