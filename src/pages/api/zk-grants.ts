@@ -5,19 +5,19 @@ import type { File } from 'formidable';
 
 import { multipartyParse, sanitizeFields, verifyCaptcha } from '../../middlewares';
 
-import { AcademicGrantsSchema } from '../../components/forms/schemas/AcademicGrants';
+import { ZKGrantsSchema } from '../../components/forms/schemas/ZKGrants';
 
 import { MAX_PROPOSAL_FILE_SIZE } from '../../constants';
-import { truncateString } from '../../utils/truncateString';
 
 async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
   return new Promise(resolve => {
     const fields = { ...req.fields, ...req.files };
+
     const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
       process.env;
 
     // validate fields against the schema
-    const result = AcademicGrantsSchema.safeParse(fields);
+    const result = ZKGrantsSchema.safeParse(fields);
     if (!result.success) {
       const formatted = result.error.format();
       console.error(formatted);
@@ -40,32 +40,32 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
 
       // SF mapping
       const application = {
-        FirstName: result.data.firstName,
-        LastName: result.data.lastName,
-        Email: result.data.email,
-        POC_is_authorised_signatory__c: result.data.POCisAuthorisedSignatory,
-        Authorised_Signatory_Information__c: result.data.authorisedSignatoryInformation,
-        Applying_as_a__c: result.data.applyingAs,
-        Applying_as_Other__c: result.data.applyingAsOther,
-        Company: result.data.company,
-        npsp__CompanyCountry__c: result.data.country,
-        Countries_of_Team__c: result.data.countriesTeam,
-        Time_Zone__c: result.data.timezone,
-        Project_Name__c: result.data.projectName,
-        Project_Description__c: result.data.projectDescription,
-        Category__c: result.data.projectCategory,
-        Requested_Amount__c: result.data.requestAmount,
-        Referral_Source__c: result.data.referralSource,
-        Referral_Source_if_Other__c: result.data.referralSourceIfOther,
-        Would_you_share_your_research__c: result.data.shareResearch,
-        LinkedIn_Profile__c: result.data.linkedinProfile,
-        Twitter__c: result.data.twitter,
-        Website: result.data.website,
-        Alternative_Contact__c: result.data.alternativeContact,
-        Repeat_Applicant__c: result.data.repeatApplicant,
-        Can_the_EF_reach_out__c: result.data.canTheEFReachOut,
-        Additional_Information__c: result.data.additionalInfo,
-        Proactive_Community_Grants_Round__c: 'Academic Grants Round 2024', // this value is hardwired, depending on the type of grant round
+        FirstName: fields.firstName,
+        LastName: fields.lastName,
+        Email: fields.email,
+        Title: fields.title,
+        Company: fields.company,
+        Applying_as_a__c: fields.applyingAs,
+        Applying_as_Other__c: fields.applyingAsOther,
+        npsp__CompanyCountry__c: fields.country,
+        Time_Zone__c: fields.timezone,
+        Countries_of_Team__c: fields.countriesTeam,
+        Project_Name__c: fields.projectName,
+        Project_Description__c: fields.projectDescription,
+        Category__c: fields.projectCategory,
+        Requested_Amount__c: fields.requestAmount,
+        Github_Link__c: fields.projectRepoLink,
+        Would_you_share_your_research__c: fields.shareResearch,
+        Website: fields.website,
+        Twitter__c: fields.twitter,
+        Github_Username__c: fields.github,
+        Alternative_Contact__c: fields.alternativeContact,
+        Repeat_Applicant__c: fields.repeatApplicant,
+        Can_the_EF_reach_out__c: fields.canTheEFReachOut,
+        Additional_Information__c: fields.additionalInfo,
+        Referral_Source__c: fields.referralSource,
+        Referral_Source_if_Other__c: fields.referralSourceIfOther,
+        Proactive_Community_Grants_Round__c: 'ZK Grant Round 2024', // this value is hardwired, depending on the type of grant round
         LeadSource: 'Webform',
         RecordTypeId: process.env.SF_RECORD_TYPE_GRANTS_ROUND!
       };
@@ -78,12 +78,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
           return resolve();
         }
 
-        console.log(`Academic Grants 2024 Lead with ID: ${ret.id} has been created!`);
+        console.log(`ZK Grants Lead with ID: ${ret.id} has been created!`);
 
         const createdLeadID = ret.id;
         console.log({ createdLeadID });
 
-        const uploadProposal = result.data.proposalAttachment as File;
+        const uploadProposal = fields.proposalAttachment as File;
         console.log({ uploadProposal });
 
         if (!uploadProposal) {
@@ -106,10 +106,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         // Document upload
         conn.sobject('ContentVersion').create(
           {
-            Title: `[PROPOSAL] ${truncateString(
-              application.Project_Name__c || '',
-              200
-            )} - ${createdLeadID}`,
+            Title: `[PROPOSAL] ${application.Project_Name__c} - ${createdLeadID}`,
             PathOnClient: uploadProposal.originalFilename,
             VersionData: uploadProposalContent // base64 encoded file content
           },
@@ -153,5 +150,6 @@ export const config = {
 };
 
 export default multipartyParse(sanitizeFields(verifyCaptcha(handler)), {
-  maxFileSize: MAX_PROPOSAL_FILE_SIZE
+  maxFileSize: MAX_PROPOSAL_FILE_SIZE,
+  encoding: 'utf-8'
 });

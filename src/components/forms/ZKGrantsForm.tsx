@@ -6,69 +6,66 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Link,
-  Radio,
-  RadioGroup,
   Stack,
-  useToast
+  RadioGroup,
+  Radio,
+  useToast,
+  Link
 } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
 import { FC } from 'react';
-import { Controller, FormProvider, useForm } from 'react-hook-form';
+import { Controller, FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { DropdownIndicator, PageText } from '../UI';
 import { SubmitButton } from '../SubmitButton';
-import { Captcha, Field, TextAreaField, TextField, UploadFile } from '.';
+import { Captcha, Field, TextField, TextAreaField, UploadFile } from '.';
 
 import { api } from './api';
 
 import { chakraStyles } from './selectStyles';
 
 import {
-  ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS,
   APPLYING_AS_OPTIONS,
   COUNTRY_OPTIONS,
   HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE,
   OTHER,
   TIMEZONE_OPTIONS,
-  WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS
+  WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS,
+  ZK_GRANTS_PROJECT_CATEGORY_OPTIONS
 } from './constants';
-import { ACADEMIC_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
+import { TOAST_OPTIONS, ZK_GRANTS_THANK_YOU_PAGE_URL } from '../../constants';
 
-import { AcademicGrantsSchema, AcademicGrantsData } from './schemas/AcademicGrants';
+import { ZKGrantsSchema, ZKGrantsData } from './schemas/ZKGrants';
 
-export const AcademicGrantsForm: FC = () => {
+export const ZKGrantsForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
 
-  const methods = useForm<AcademicGrantsData>({
+  const methods = useForm<ZKGrantsData>({
     mode: 'onBlur',
     shouldFocusError: true,
     defaultValues: {
-      POCisAuthorisedSignatory: true,
       repeatApplicant: false,
       canTheEFReachOut: true
     },
-    resolver: zodResolver(AcademicGrantsSchema)
+    resolver: zodResolver(ZKGrantsSchema)
   });
+
   const {
     handleSubmit,
     register,
-    trigger,
     control,
+    trigger,
     formState: { errors, isSubmitting },
-    reset,
-    watch
+    watch,
+    reset
   } = methods;
 
   // for conditional fields, get the current values
   const applyingAs = watch('applyingAs');
-  const POCisAuthorisedSignatory = watch('POCisAuthorisedSignatory');
   const referralSource = watch('referralSource');
-
-  const notAuthorisedSignatory = POCisAuthorisedSignatory === false;
 
   const handleDrop = () => {
     toast({
@@ -78,20 +75,19 @@ export const AcademicGrantsForm: FC = () => {
     });
   };
 
-  const onSubmit = async (data: AcademicGrantsData) => {
-    return api.academicGrants
+  const onSubmit: SubmitHandler<ZKGrantsData> = async data => {
+    return api.zkGrants
       .submit(data)
       .then(res => {
         if (res.ok) {
           reset();
-          router.push(ACADEMIC_GRANTS_THANK_YOU_PAGE_URL);
+          router.push(ZK_GRANTS_THANK_YOU_PAGE_URL);
         } else {
           toast({
             ...TOAST_OPTIONS,
             title: 'Something went wrong while submitting, please try again.',
             status: 'error'
           });
-
           throw new Error('Network response was not OK');
         }
       })
@@ -110,7 +106,7 @@ export const AcademicGrantsForm: FC = () => {
       <FormProvider {...methods}>
         <Flex
           as='form'
-          id='academic-grants-form'
+          id='zk-grants-form'
           onSubmit={handleSubmit(onSubmit)}
           noValidate
           direction='column'
@@ -138,70 +134,13 @@ export const AcademicGrantsForm: FC = () => {
 
           <TextField id='email' label='Email' isRequired />
 
-          <Controller
-            name='POCisAuthorisedSignatory'
-            control={control}
-            render={({ field: { onChange, value } }) => (
-              <Field
-                id='POCisAuthorisedSignatory'
-                label='Is the point of contact also the authorised signatory?'
-                isRequired
-              >
-                <RadioGroup
-                  id='POCisAuthorisedSignatory'
-                  onChange={value => onChange(value === 'Yes')}
-                  value={value ? 'Yes' : 'No'}
-                  fontSize='input'
-                  colorScheme='white'
-                  mt={4}
-                >
-                  <Stack direction='row'>
-                    <Radio
-                      id='POCisAuthorisedSignatory-yes'
-                      size='lg'
-                      name='POCisAuthorisedSignatory'
-                      value='Yes'
-                      defaultChecked
-                      mr={8}
-                    >
-                      <PageText fontSize='input'>Yes</PageText>
-                    </Radio>
-
-                    <Radio
-                      id='POCisAuthorisedSignatory-no'
-                      size='lg'
-                      name='POCisAuthorisedSignatory'
-                      value='No'
-                    >
-                      <PageText fontSize='input'>No</PageText>
-                    </Radio>
-                  </Stack>
-                </RadioGroup>
-              </Field>
-            )}
-          />
-
-          <Box display={notAuthorisedSignatory ? 'block' : 'none'}>
-            <Fade in={notAuthorisedSignatory} delay={0.25}>
-              <TextField
-                id='authorisedSignatoryInformation'
-                label='Name, job title, and email address of the authorised signatory'
-                helpText='(e.g. John Smith, CEO, john@mycompany.com. This is the person who will sign the contract. They must be someone who can sign contracts on behalf of the entity)'
-                isRequired
-              />
-            </Fade>
-          </Box>
+          <TextField id='title' label='Title' isRequired />
 
           <Controller
             name='applyingAs'
             control={control}
-            render={({ field: { onChange }, fieldState: { error } }) => (
-              <Field
-                id='applyingAs'
-                label='In which capacity are you applying?'
-                error={error}
-                isRequired
-              >
+            render={({ field: { onChange } }) => (
+              <Field id='applyingAs' label='In which capacity are you applying?' isRequired>
                 <Select
                   id='applyingAs'
                   options={APPLYING_AS_OPTIONS}
@@ -226,73 +165,73 @@ export const AcademicGrantsForm: FC = () => {
 
           <TextField
             id='company'
-            label='Institution or Organization'
+            label='If applying as an Organization, please specify its name'
             helpText='Name of your university program, team, or organization. If you do not have an organization name, write "N/A"'
             isRequired
           />
 
-          <Controller
-            name='country'
-            control={control}
-            render={({ field: { onChange }, fieldState: { error } }) => (
-              <Field
-                id='country'
-                label='Country'
-                helpText='Please indicate the country where the Institution/Lead Investigator is located'
-                error={error}
-                isRequired
-              >
-                <Select
+          <Flex direction={{ base: 'column', md: 'row' }} gap={12} mb={3}>
+            <Controller
+              name='country'
+              control={control}
+              render={({ field: { onChange }, fieldState: { error } }) => (
+                <Field
                   id='country'
-                  options={COUNTRY_OPTIONS}
-                  onChange={option => {
-                    const value = (option as typeof COUNTRY_OPTIONS[number]).value;
-                    onChange(value);
-                  }}
-                  components={{ DropdownIndicator }}
-                  placeholder='Select'
-                  closeMenuOnSelect={true}
-                  selectedOptionColor='brand.option'
-                  chakraStyles={chakraStyles}
-                />
-              </Field>
-            )}
-          />
+                  label='Country'
+                  helpText='Please indicate the country where the Institution/ Lead Investigator is located'
+                  error={error}
+                  isRequired
+                >
+                  <Select
+                    id='country'
+                    options={COUNTRY_OPTIONS}
+                    onChange={option => {
+                      const value = (option as typeof COUNTRY_OPTIONS[number]).value;
+                      onChange(value);
+                    }}
+                    components={{ DropdownIndicator }}
+                    placeholder='Select'
+                    closeMenuOnSelect={true}
+                    selectedOptionColor='brand.option'
+                    chakraStyles={chakraStyles}
+                  />
+                </Field>
+              )}
+            />
+
+            <Controller
+              name='timezone'
+              control={control}
+              render={({ field: { onChange }, fieldState: { error } }) => (
+                <Field
+                  id='timezone'
+                  label='Time zone'
+                  helpText='Please choose your current time zone to help us schedule calls if needed'
+                  error={error}
+                  isRequired
+                >
+                  <Select
+                    id='timezone'
+                    options={TIMEZONE_OPTIONS}
+                    onChange={option => {
+                      onChange((option as typeof TIMEZONE_OPTIONS[number]).value);
+                      trigger('timezone');
+                    }}
+                    components={{ DropdownIndicator }}
+                    placeholder='Select'
+                    closeMenuOnSelect={true}
+                    selectedOptionColor='brand.option'
+                    chakraStyles={chakraStyles}
+                  />
+                </Field>
+              )}
+            />
+          </Flex>
 
           <TextField
             id='countriesTeam'
-            label='If you are a team of distributed researchers, please indicate where your fellow
-            researchers are located'
+            label='If you are a team of distributed researchers, please indicate where your fellow researchers are located'
             helpText='You can write as many countries as needed'
-            isRequired
-          />
-
-          <Controller
-            name='timezone'
-            control={control}
-            render={({ field: { onChange }, fieldState: { error } }) => (
-              <Field
-                id='timezone'
-                label='Time zone'
-                helpText='Please choose your current time zone to help us schedule calls'
-                error={error}
-                isRequired
-              >
-                <Select
-                  id='timezone'
-                  options={TIMEZONE_OPTIONS}
-                  onChange={option => {
-                    onChange((option as typeof TIMEZONE_OPTIONS[number]).value);
-                    trigger('timezone');
-                  }}
-                  components={{ DropdownIndicator }}
-                  placeholder='Select'
-                  closeMenuOnSelect={true}
-                  selectedOptionColor='brand.option'
-                  chakraStyles={chakraStyles}
-                />
-              </Field>
-            )}
           />
 
           <TextField
@@ -305,10 +244,48 @@ export const AcademicGrantsForm: FC = () => {
           <TextAreaField
             id='projectDescription'
             label='Brief project summary'
-            helpText="Describe your project in a few sentences (you'll have the chance to go into more
-              detail in the long form). If it's already underway, provide links to any existing
-              published work"
+            helpText="Describe your project in a few sentences (you'll have the chance to go into more detail in your proposal)"
             isRequired
+          />
+
+          <Controller
+            name='projectCategory'
+            control={control}
+            render={({ field: { onChange }, fieldState: { error } }) => (
+              <Field
+                id='projectCategory'
+                label='Project category'
+                helpText='Please choose a category that your project best fits in'
+                error={error}
+                isRequired
+              >
+                <Select
+                  id='projectCategory'
+                  options={ZK_GRANTS_PROJECT_CATEGORY_OPTIONS}
+                  onChange={option => {
+                    onChange((option as typeof ZK_GRANTS_PROJECT_CATEGORY_OPTIONS[number]).value);
+                  }}
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
+              </Field>
+            )}
+          />
+
+          <TextField
+            id='requestAmount'
+            label='Total budget requested'
+            helpText='Estimated grant amount. Ex: USD 20,000'
+            isRequired
+          />
+
+          <TextField
+            id='projectRepoLink'
+            label='Project repo link'
+            helpText='If your project has a Github repo please provide the link'
           />
 
           <UploadFile
@@ -331,81 +308,7 @@ export const AcademicGrantsForm: FC = () => {
             }
             isRequired
             onDrop={handleDrop}
-            mb={8}
           />
-
-          <Controller
-            name='projectCategory'
-            control={control}
-            render={({ field: { onChange }, fieldState: { error } }) => (
-              <Field
-                id='projectCategory'
-                label='Project category'
-                helpText='Please choose a category that your project best fits in'
-                error={error}
-                isRequired
-              >
-                <Select
-                  id='projectCategory'
-                  options={ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS}
-                  onChange={option => {
-                    onChange(
-                      (option as typeof ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS[number]).value
-                    );
-                  }}
-                  components={{ DropdownIndicator }}
-                  placeholder='Select'
-                  closeMenuOnSelect={true}
-                  selectedOptionColor='brand.option'
-                  chakraStyles={chakraStyles}
-                />
-              </Field>
-            )}
-          />
-
-          <TextField
-            id='requestAmount'
-            label='Total budget requested'
-            helpText='Estimated grant amount. Ex: USD 50,000.'
-            isRequired
-          />
-
-          <Controller
-            name='referralSource'
-            control={control}
-            render={({ field: { onChange }, fieldState: { error } }) => (
-              <Field
-                id='referralSource'
-                label='How did you hear about this wave of grants?'
-                error={error}
-                isRequired
-              >
-                <Select
-                  id='referralSource'
-                  options={HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE}
-                  onChange={option =>
-                    onChange((option as typeof HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE[number]).value)
-                  }
-                  components={{ DropdownIndicator }}
-                  placeholder='Select'
-                  closeMenuOnSelect={true}
-                  selectedOptionColor='brand.option'
-                  chakraStyles={chakraStyles}
-                />
-              </Field>
-            )}
-          />
-
-          <Box display={referralSource === OTHER ? 'block' : 'none'}>
-            <Fade in={referralSource === OTHER} delay={0.25}>
-              <TextAreaField
-                id='referralSourceIfOther'
-                label='If other, explain how'
-                helpText='Please be as specific as possible. (e.g., an email received, an individual who
-              recommended you apply, a link to a tweet, etc.)'
-              />
-            </Fade>
-          </Box>
 
           <Controller
             name='shareResearch'
@@ -415,7 +318,6 @@ export const AcademicGrantsForm: FC = () => {
                 id='shareResearch'
                 label='If the opportunity presents itself, would you like to share your findings/research output through a Conference/Discord Talk?'
                 error={error}
-                isRequired
               >
                 <Select
                   id='shareResearch'
@@ -435,13 +337,7 @@ export const AcademicGrantsForm: FC = () => {
             )}
           />
 
-          <TextField
-            id='website'
-            label='Website'
-            helpText='University website or Google Scholar profile'
-          />
-
-          <TextField id='linkedinProfile' label='LinkedIn Profile(s)' helpText='URL only' />
+          <TextField id='website' label='Website' />
 
           <FormControl id='twitter-control'>
             <FormLabel htmlFor='twitter' mb={1}>
@@ -476,6 +372,44 @@ export const AcademicGrantsForm: FC = () => {
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
                   {errors?.twitter.message}
+                </PageText>
+              </Box>
+            )}
+          </FormControl>
+
+          <FormControl id='github-control'>
+            <FormLabel htmlFor='github' mb={1}>
+              <PageText fontSize='input'>Github handle(s)</PageText>
+            </FormLabel>
+            <PageText fontSize='input' position='absolute' bottom='15.5px' left={4} zIndex={9}>
+              @
+            </PageText>
+
+            <PageText as='small' fontSize='helpText' color='brand.helpText'>
+              Ex: @mygithub
+            </PageText>
+
+            <Input
+              id='github'
+              type='text'
+              placeholder='yourgithubhandle'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              h='56px'
+              _placeholder={{ fontSize: 'input' }}
+              position='relative'
+              color='brand.paragraph'
+              fontSize='input'
+              pl={8}
+              mt={3}
+              {...register('github')}
+            />
+
+            {errors?.github && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  {errors?.github.message}
                 </PageText>
               </Box>
             )}
@@ -574,11 +508,47 @@ export const AcademicGrantsForm: FC = () => {
 
           <TextAreaField
             id='additionalInfo'
-            label="Do you have any questions about this grants round, or is there anything else
-            you'd like to share?"
+            label='Do you have any questions about this grant round?'
             helpText="Is there anything we didn't cover in the above questions? Feel free to add any
-            relevant links here. This is optional."
+            relevant links here. This is optional"
           />
+
+          <Controller
+            name='referralSource'
+            control={control}
+            render={({ field: { onChange }, fieldState: { error } }) => (
+              <Field
+                id='referralSource'
+                label='How did you hear about the this grant round?'
+                error={error}
+                isRequired
+              >
+                <Select
+                  id='referralSource'
+                  options={HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE}
+                  onChange={option =>
+                    onChange((option as typeof HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE[number]).value)
+                  }
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
+              </Field>
+            )}
+          />
+
+          <Box display={referralSource === OTHER ? 'block' : 'none'}>
+            <Fade in={referralSource === OTHER} delay={0.25}>
+              <TextAreaField
+                id='referralSourceIfOther'
+                label="If 'Other' is chosen"
+                helpText='Please be as specific as possible. (e.g., an email received, an individual who
+              recommended you apply, a link to a tweet, etc.)'
+              />
+            </Fade>
+          </Box>
 
           <Center mb={12}>
             <Captcha />

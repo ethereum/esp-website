@@ -5,6 +5,7 @@ import type { File } from 'formidable';
 
 import { multipartyParse, verifyCaptcha, sanitizeFields } from '../../middlewares';
 import { MAX_PROPOSAL_FILE_SIZE } from '../../constants';
+import { truncateString } from '../../utils/truncateString';
 
 async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
   return new Promise(resolve => {
@@ -108,7 +109,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
           // Document upload
           conn.sobject('ContentVersion').create(
             {
-              Title: `[Document] ${application.Project_Name__c} - ${createdLeadID}`,
+              Title: `[Document] ${truncateString(
+                (application.Project_Name__c || '').toString(),
+                200
+              )} - ${createdLeadID}`,
               PathOnClient: uploadProposal.originalFilename,
               VersionData: uploadProposalContent // base64 encoded file content
             },

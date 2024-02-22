@@ -10,7 +10,7 @@ const MIN_TEXT_AREA_LENGTH = 500;
 
 const ACCEPTED_FILE_TYPES = ['application/pdf'];
 
-export const DataCollectionSchema = z.object({
+export const ZKGrantsSchema = z.object({
   firstName: stringFieldSchema('First name', { min: 1, max: 40 }).refine(
     value => !containURL(value),
     'First name cannot contain a URL'
@@ -61,4 +61,4 @@ export const DataCollectionSchema = z.object({
   captchaToken: stringFieldSchema('Captcha', { min: 1 })
 });
 
-export type DataCollectionData = z.infer<typeof DataCollectionSchema>;
+export type ZKGrantsData = z.infer<typeof ZKGrantsSchema>;
