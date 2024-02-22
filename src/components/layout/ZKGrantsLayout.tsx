@@ -1,11 +1,15 @@
 import { Box, Stack, Text } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 import zkHero from '../../../public/images/zk-grants.jpg';
 
 import { GrantsHero } from '../UI';
 
-export const ZKGrantsLayout: FC = ({ children }) => {
+type Props = {
+  children: ReactNode;
+};
+
+export const ZKGrantsLayout: FC<Props> = ({ children }) => {
   return (
     <Box>
       <GrantsHero
