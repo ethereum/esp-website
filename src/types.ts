@@ -154,6 +154,7 @@ export interface OfficeHoursFormData extends CaptchaForm {
   projectCategory: ProjectCategory; // SF API: Category__c
   otherReasonForMeeting: string; // SF API: Reason_for_meeting_if_Other__c
   howDidYouHearAboutESP: ReferralSource; // SF API: Referral_Source__c
+  country: Country; // SF API: npsp__CompanyCountry__c
   timezone: Timezone; // SF API: Time_Zone__c
 }
 
@@ -320,6 +321,7 @@ export interface OfficeHoursNextApiRequest extends NextApiRequest {
     projectCategory: string;
     otherReasonForMeeting: string;
     howDidYouHearAboutESP: string;
+    country: string;
     timezone: string;
   };
 }

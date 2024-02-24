@@ -44,6 +44,7 @@ export const api = {
           company: data.company === '' ? `${data.firstName} ${data.lastName}` : data.company,
           projectCategory: data.projectCategory.value,
           howDidYouHearAboutESP: data.howDidYouHearAboutESP.value,
+          country: data.country.value,
           timezone: data.timezone.value
         })
       };
