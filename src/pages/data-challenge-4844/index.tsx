@@ -15,7 +15,8 @@ import {
 import {
   GRANTS_EMAIL_ADDRESS,
   DATA_CHALLENGE_APPLY_URL,
-  SIDEBAR_DATA_CHALLENGE_LINKS
+  SIDEBAR_DATA_CHALLENGE_LINKS,
+  DATA_CHALLENGE_GRANTS_PREVIEW_URL
 } from '../../constants';
 
 const Section = forwardRef((props, ref) => (
@@ -43,6 +44,7 @@ const DataChallenge: NextPage = () => {
       <PageMetadata
         title='Data Challenge 4844'
         description='' // TODO
+        image={DATA_CHALLENGE_GRANTS_PREVIEW_URL}
       />
 
       <Box mx={{ md: 12 }} bg='white' position='relative' zIndex={1} mt={{ xl: 12 }}>
