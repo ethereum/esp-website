@@ -37,7 +37,8 @@ const DataChallenge: NextPage = () => {
   const [ref9, inView9] = useInView({ threshold: 0.5, initialInView: false });
   const [ref10, inView10] = useInView({ threshold: 0.5, initialInView: false });
   const [ref11, inView11] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref12, inView12] = useInView({ threshold: 0, initialInView: false });
+  const [ref12, inView12] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref13, inView13] = useInView({ threshold: 0, initialInView: false });
 
   return (
     <>
@@ -64,7 +65,8 @@ const DataChallenge: NextPage = () => {
                 inView9,
                 inView10,
                 inView11,
-                inView12
+                inView12,
+                inView13
               ]}
             />
 
@@ -90,30 +92,11 @@ const DataChallenge: NextPage = () => {
                     as more data, lots and lots of data. And the Ethereum community needs your help
                     to make sense of it all.
                   </PageText>
-
-                  <List>
-                    <ListItem>
-                      What new visualizations help provide insight into the blob data market?
-                    </ListItem>
-                    <ListItem>What kinds of protocols are using blobs?</ListItem>
-                    <ListItem>How does blob gossip perform on the mainnet p2p network?</ListItem>
-                    <ListItem>
-                      <Link
-                        fontWeight={700}
-                        color='brand.orange.100'
-                        href='https://notes.ethereum.org/@drigolvc/4844-data-round-wishlist'
-                        isExternal
-                        _hover={{ textDecoration: 'none' }}
-                      >
-                        Full Wishlist
-                      </Link>
-                    </ListItem>
-                  </List>
                 </Section>
               </Stack>
 
               <Stack spacing={10}>
-                <Section id='the-challenge' ref={ref2}>
+                <Section id='the-challenge' ref={ref3}>
                   <PageSection>The challenge</PageSection>
 
                   <PageText fontWeight='bold'>
@@ -127,6 +110,18 @@ const DataChallenge: NextPage = () => {
                     community – from beginners to researchers and client developers – important
                     insights into blob data and transactions.
                   </PageText>
+                </Section>
+
+                <Section id='wishlist' ref={ref2}>
+                  <PageSection>Wishlist</PageSection>
+
+                  <List>
+                    <ListItem>
+                      What new visualizations help provide insight into the blob data market?
+                    </ListItem>
+                    <ListItem>What kinds of protocols are using blobs?</ListItem>
+                    <ListItem>How does blob gossip perform on the mainnet p2p network?</ListItem>
+                  </List>
 
                   <PageText>
                     In addition to the prompt questions above, here’s a{' '}
@@ -143,7 +138,20 @@ const DataChallenge: NextPage = () => {
                   </PageText>
                 </Section>
 
-                <Section id='how-to-submit' ref={ref3}>
+                <Section id='prizes' ref={ref6}>
+                  <PageSection>Prizes</PageSection>
+
+                  <PageText>
+                    Up to <strong>USD $30,000</strong>
+                  </PageText>
+
+                  <PageText>
+                    Entries must be considered sufficiently impactful/insightful by the community
+                    judging team to be eligible for rewards.
+                  </PageText>
+                </Section>
+
+                <Section id='how-to-submit' ref={ref4}>
                   <PageSection>How to submit</PageSection>
 
                   <PageText>Anyone is free to submit, here’s how:</PageText>
@@ -160,47 +168,13 @@ const DataChallenge: NextPage = () => {
                     <ListItem>Submit!</ListItem>
                   </OrderedList>
 
-                  <ReadyToApply link={`${DATA_CHALLENGE_APPLY_URL}`} />
-
                   <PageText>
-                    <PageText as='i'>
-                      You may submit more than one blog post! So long as each posts focuses on a
-                      different visualisation or piece of analysis.
-                    </PageText>
-                  </PageText>
-
-                  <PageText>
-                    <PageText as='i'>
-                      A group of Ethereum community members will evaluate your submissions and
-                      awards will go to the top blog posts 🏆
-                    </PageText>
+                    You may submit more than one blog post! So long as each posts focuses on a
+                    different visualisation or piece of analysis.
                   </PageText>
                 </Section>
 
-                <Section id='deadline' ref={ref4}>
-                  <PageSection>Deadline</PageSection>
-
-                  <PageText>
-                    Submissions are due <strong>23:59 UTC June 14th, 2024</strong>.
-                  </PageText>
-                </Section>
-
-                <Section id='prizes' ref={ref5}>
-                  <PageSection>Prizes</PageSection>
-
-                  <PageText>
-                    Up to <strong>USD $30,000</strong>
-                  </PageText>
-
-                  <PageText>
-                    <PageText as='i'>
-                      Entries must be considered sufficiently impactful/insightful by the community
-                      judging team to be eligible for rewards.
-                    </PageText>
-                  </PageText>
-                </Section>
-
-                <Section id='requirements' ref={ref6}>
+                <Section id='requirements' ref={ref7}>
                   <PageSection>Requirements</PageSection>
 
                   <List>
@@ -217,15 +191,21 @@ const DataChallenge: NextPage = () => {
                   </List>
                 </Section>
 
-                <Section id='judging-criteria' ref={ref7}>
+                <Section id='deadline' ref={ref5}>
+                  <PageSection>Deadline</PageSection>
+
+                  <PageText>
+                    Submissions are due <strong>23:59 UTC June 14th, 2024</strong>.
+                  </PageText>
+                </Section>
+
+                <Section id='judging-criteria' ref={ref8}>
                   <PageSection>Judging criteria</PageSection>
 
                   <PageText>
-                    <PageText as='i'>
-                      Prizes for this round will be selected by judges from the Ethereum Foundation
-                      and community using the following considerations. Note: depending on the
-                      proposal, some criteria might not be applicable:
-                    </PageText>
+                    Prizes for this round will be selected by judges from the Ethereum Foundation
+                    and community using the following considerations. Note: depending on the
+                    proposal, some criteria might not be applicable:
                   </PageText>
 
                   <List>
@@ -249,7 +229,7 @@ const DataChallenge: NextPage = () => {
                   </List>
                 </Section>
 
-                <Section id='started' ref={ref8}>
+                <Section id='started' ref={ref9}>
                   <PageSection>How to get started</PageSection>
 
                   <List>
@@ -381,7 +361,7 @@ const DataChallenge: NextPage = () => {
                   </List>
                 </Section>
 
-                <Section id='existing-data' ref={ref9}>
+                <Section id='existing-data' ref={ref10}>
                   <PageSection>Using existing data</PageSection>
 
                   <PageText>
@@ -420,7 +400,7 @@ const DataChallenge: NextPage = () => {
                   </PageText>
                 </Section>
 
-                <Section id='helpful-resources' ref={ref10}>
+                <Section id='helpful-resources' ref={ref11}>
                   <PageSection>Helpful resources</PageSection>
 
                   <List>
@@ -541,7 +521,7 @@ const DataChallenge: NextPage = () => {
                   </List>
                 </Section>
 
-                <Section id='support' ref={ref11}>
+                <Section id='support' ref={ref12}>
                   <PageSection>Support</PageSection>
 
                   <PageText>
@@ -559,7 +539,7 @@ const DataChallenge: NextPage = () => {
                   </PageText>
                 </Section>
 
-                <Section id='apply' ref={ref12}>
+                <Section id='apply' ref={ref13}>
                   <Stack>
                     <ReadyToApply link={`${DATA_CHALLENGE_APPLY_URL}`} />
                   </Stack>

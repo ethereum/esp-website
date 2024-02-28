@@ -206,6 +206,7 @@ export const SIDEBAR_DATA_COLLECTION_GRANTS_LINKS: SidebarLink[] = [
 export const DATA_CHALLENGE_ROUND_URL = '/data-challenge-4844';
 export const SIDEBAR_DATA_CHALLENGE_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${DATA_CHALLENGE_ROUND_URL}/#introduction` },
+  { text: 'Wishlist', href: `${DATA_CHALLENGE_ROUND_URL}/#wishlist` },
   { text: 'The challenge', href: `${DATA_CHALLENGE_ROUND_URL}/#the-challenge` },
   { text: 'How to submit', href: `${DATA_CHALLENGE_ROUND_URL}/#how-to-submit` },
   { text: 'Deadline', href: `${DATA_CHALLENGE_ROUND_URL}/#deadline` },
