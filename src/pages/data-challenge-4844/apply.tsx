@@ -2,15 +2,15 @@ import { Box, Link, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 
 import { PageMetadata, PageSubheading, PageText } from '../../components/UI';
-import { ACADEMIC_GRANTS_PREVIEW_URL, GRANTS_EMAIL_ADDRESS } from '../../constants';
+import { DATA_CHALLENGE_GRANTS_PREVIEW_URL, GRANTS_EMAIL_ADDRESS } from '../../constants';
 
 const DataChallengeApply: NextPage = () => {
   return (
     <>
       <PageMetadata
         title='Data Challenge 4844 Application'
-        description='' // TODO: add description
-        image={ACADEMIC_GRANTS_PREVIEW_URL} // TODO: add image
+        description='Submit an application for the Data Challenge 4844 from the Ecosystem Support Program.'
+        image={DATA_CHALLENGE_GRANTS_PREVIEW_URL}
       />
 
       <Box
@@ -22,7 +22,7 @@ const DataChallengeApply: NextPage = () => {
         <Stack>
           <section id='description'>
             <PageSubheading mb={8} textAlign='center'>
-              Apply to Academic Grants
+              Apply to Data Challenge 4844
             </PageSubheading>
 
             <PageText textAlign='center'>
