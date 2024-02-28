@@ -60,7 +60,7 @@ export const DATA_COLLECTION_PROJECT_CATEGORY_OPTIONS = [
 ];
 
 export const ZK_GRANTS_PROJECT_CATEGORY_OPTIONS = [
-  { value: "Applied ZKP", label: "Applied ZKP" },
+  { value: 'Applied ZKP', label: 'Applied ZKP' },
   { value: 'Community and education', label: 'Community and education' },
   { value: 'Consensus layer', label: 'Consensus layer' },
   {
@@ -81,6 +81,12 @@ export const ZK_GRANTS_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Privacy', label: 'Privacy' },
   { value: 'Society and Regulatory', label: 'Society and Regulatory' },
   { value: 'UX/UI', label: 'UX/UI' },
+  { value: 'Other', label: 'Other' }
+];
+
+export const DATA_CHALLENGE_PROJECT_CATEGORY_OPTIONS = [
+  { value: 'Data Analysis', label: 'Data Analysis' },
+  { value: 'Data Visualization', label: 'Data Visualization' },
   { value: 'Other', label: 'Other' }
 ];
 
@@ -1587,4 +1593,5 @@ export const API_ECODEV_GRANTS = '/api/ecodev-grants';
 export const API_PSE_SPONSORSHIPS = '/api/pse-sponsorships';
 export const API_ZK_GRANTS = '/api/zk-grants';
 export const API_DATA_COLLECTION_GRANTS = '/api/data-collection-grants';
+export const API_DATA_CHALLENGE_GRANTS = '/api/data-challenge-grants';
 export const API_NEWSLETTER_SIGNUP_URL = '/api/newsletter-signup';

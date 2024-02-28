@@ -22,11 +22,13 @@ import {
   API_PSE_SPONSORSHIPS,
   API_SMALL_GRANTS_EVENT,
   API_SMALL_GRANTS_PROJECT,
-  API_ZK_GRANTS
+  API_ZK_GRANTS,
+  API_DATA_CHALLENGE_GRANTS
 } from './constants';
 
 import type { AcademicGrantsData } from './schemas/AcademicGrants';
 import type { ZKGrantsData } from './schemas/ZKGrants';
+import type { DataChallengeData } from './schemas/DataChallenge4844';
 
 const methodOptions = {
   method: 'POST',
@@ -193,6 +195,16 @@ export const api = {
       };
 
       return fetch(API_ZK_GRANTS, dataRequestOptions);
+    }
+  },
+  dataChallenge: {
+    submit: (data: DataChallengeData) => {
+      const dataRequestOptions: RequestInit = {
+        ...methodOptions,
+        body: JSON.stringify(data)
+      };
+
+      return fetch(API_DATA_CHALLENGE_GRANTS, dataRequestOptions);
     }
   },
   newsletter: {

@@ -12,4 +12,5 @@ export * from './AccountAbstractionGrantsLayout';
 export * from './RunANodeGrantLayout';
 export * from './DataCollectionLayout';
 export * from './ZKGrantsLayout';
+export * from './DataChallengeLayout';
 export * from './Layout';
