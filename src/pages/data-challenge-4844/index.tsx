@@ -44,7 +44,7 @@ const DataChallenge: NextPage = () => {
     <>
       <PageMetadata
         title='Data Challenge 4844'
-        description='' // TODO
+        description='The Ethereum Foundation is sponsoring a 4844 data analysis and visualization blog post challenge. Here are all the details you need.'
         image={DATA_CHALLENGE_GRANTS_PREVIEW_URL}
       />
 
