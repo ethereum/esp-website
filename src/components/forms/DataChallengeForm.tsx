@@ -287,12 +287,12 @@ export const DataChallengeForm: FC = () => {
             isRequired
           />
 
-          <TextField id='website' label='Website' />
+          <TextField id='website' label='Blog Post' helpText='Link to your blog post submission' />
 
           <TextAreaField
             id='projectDescription'
             label='Brief project summary'
-            helpText="Describe your project in a few sentences (you'll have the chance to go into more detail in your proposal)"
+            helpText="Describe your project in a few sentences (you'll have the chance to go into more detail in the attached proposal). If it's already underway, provide links to any existing published work."
             isRequired
           />
 
