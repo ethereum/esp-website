@@ -199,11 +199,9 @@ export const api = {
   },
   dataChallenge: {
     submit: (data: DataChallengeData) => {
-      const formData = createFormData(data);
-
       const dataRequestOptions: RequestInit = {
-        method: 'POST',
-        body: formData
+        ...methodOptions,
+        body: JSON.stringify(data)
       };
 
       return fetch(API_DATA_CHALLENGE_GRANTS, dataRequestOptions);
