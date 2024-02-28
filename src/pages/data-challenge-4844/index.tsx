@@ -96,7 +96,7 @@ const DataChallenge: NextPage = () => {
                       What new visualizations help provide insight into the blob data market?
                     </ListItem>
                     <ListItem>What kinds of protocols are using blobs?</ListItem>
-                    <ListItem>Is there a secondary market for blobs?</ListItem>
+                    <ListItem>How does blob gossip perform on the mainnet p2p network?</ListItem>
                     <ListItem>
                       <Link
                         fontWeight={700}
@@ -189,7 +189,7 @@ const DataChallenge: NextPage = () => {
                   <PageSection>Prizes</PageSection>
 
                   <PageText>
-                    Up to <strong>USD $30,000</strong>.
+                    Up to <strong>USD $30,000</strong>
                   </PageText>
 
                   <PageText>
@@ -253,10 +253,7 @@ const DataChallenge: NextPage = () => {
                   <PageSection>How to get started</PageSection>
 
                   <List>
-                    <ListItem>
-                      Run / sync a [Mainnet client pair](LINK TO mainnet announcement) (or multiple
-                      clients)
-                    </ListItem>
+                    <ListItem>Run / sync a Mainnet client pair</ListItem>
                     <ListItem>Dig around a block explorer:</ListItem>
                     <List>
                       <ListItem>
@@ -489,11 +486,11 @@ const DataChallenge: NextPage = () => {
                       <Link
                         fontWeight={700}
                         color='brand.orange.100'
-                        href='https://notes.ethereum.org/@MarioHavel/merge-resources'
+                        href='https://blog.ethereum.org/2024/02/27/dencun-mainnet-announcement'
                         isExternal
                         _hover={{ textDecoration: 'none' }}
                       >
-                        Mega Merge Resource List
+                        Dencun Mainnet Announcement
                       </Link>
                     </ListItem>
                     <ListItem>
@@ -518,6 +515,28 @@ const DataChallenge: NextPage = () => {
                         Eth R&D
                       </Link>{' '}
                       Discord
+                    </ListItem>
+                    <ListItem>
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href='https://blog.ethereum.org/2022/12/05/merge-data-challenge-results'
+                        isExternal
+                        _hover={{ textDecoration: 'none' }}
+                      >
+                        Merge Data Challenge Results
+                      </Link>
+                    </ListItem>
+                    <ListItem>
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href='https://blog.ethereum.org/2020/11/17/medalla-data-challenge-results'
+                        isExternal
+                        _hover={{ textDecoration: 'none' }}
+                      >
+                        Medalla Data Challenge Results
+                      </Link>
                     </ListItem>
                   </List>
                 </Section>
