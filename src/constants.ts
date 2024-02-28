@@ -3,6 +3,7 @@ import { NavLink, SidebarLink, TabsMap } from './types';
 
 // metadata
 export const HEAD_TITLE = 'Ethereum Foundation ESP';
+export const SITE_URL = 'https://esp.ethereum.foundation';
 
 // home
 export const HOME_URL = '/';
