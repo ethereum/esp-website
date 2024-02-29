@@ -287,7 +287,12 @@ export const DataChallengeForm: FC = () => {
             isRequired
           />
 
-          <TextField id='website' label='Blog Post' helpText='Link to your blog post submission' />
+          <TextField
+            id='website'
+            label='Blog Post'
+            helpText='Link to your blog post submission'
+            isRequired
+          />
 
           <TextAreaField
             id='projectDescription'

@@ -33,7 +33,7 @@ export const DataChallengeSchema = z.object({
     max: MAX_TEXT_LENGTH
   }).optional(),
   projectName: stringFieldSchema('Project name', { min: 1, max: MAX_TEXT_LENGTH }),
-  website: stringFieldSchema('Website', { max: MAX_TEXT_LENGTH }).optional(),
+  website: stringFieldSchema('Blog post', { min: 1, max: MAX_TEXT_LENGTH }),
   projectDescription: stringFieldSchema('Project summary', {
     min: MIN_TEXT_AREA_LENGTH,
     max: MAX_TEXT_AREA_LENGTH
