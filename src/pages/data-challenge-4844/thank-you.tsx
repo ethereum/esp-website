@@ -10,7 +10,7 @@ const DataChallengeThankYou: NextPage = () => {
     <>
       <PageMetadata
         title='Thank you'
-        description='Thank you for applying to Data Challenge 4844.'
+        description='Thank you for applying to 4844 Data Challenge.'
       />
       <Head>
         <meta name='robots' content='noindex' />
@@ -32,7 +32,7 @@ const DataChallengeThankYou: NextPage = () => {
             </Heading>
 
             <PageSubheading mb={16} textAlign='center'>
-              for applying to Data Challenge 4844
+              for applying to 4844 Data Challenge
             </PageSubheading>
 
             <PageText mb={6} textAlign='center'>

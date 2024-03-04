@@ -70,7 +70,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
           return resolve();
         }
 
-        console.log(`Data Challenge 4844 Grants Lead with ID: ${ret.id} has been created!`);
+        console.log(`4844 Data Challenge Grants Lead with ID: ${ret.id} has been created!`);
 
         res.status(200).json({ status: 'ok' });
         return resolve();

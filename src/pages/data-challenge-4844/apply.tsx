@@ -8,8 +8,8 @@ const DataChallengeApply: NextPage = () => {
   return (
     <>
       <PageMetadata
-        title='Data Challenge 4844 Application'
-        description='Submit an application for the Data Challenge 4844 from the Ecosystem Support Program.'
+        title='4844 Data Challenge Application'
+        description='Submit an application for the 4844 Data Challenge from the Ecosystem Support Program.'
         image={DATA_CHALLENGE_GRANTS_PREVIEW_URL}
       />
 
@@ -22,7 +22,7 @@ const DataChallengeApply: NextPage = () => {
         <Stack>
           <section id='description'>
             <PageSubheading mb={8} textAlign='center'>
-              Apply to Data Challenge 4844
+              Apply to 4844 Data Challenge
             </PageSubheading>
 
             <PageText textAlign='center'>
