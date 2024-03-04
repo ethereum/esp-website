@@ -27,7 +27,7 @@ export const Banners: FC = () => {
           </Link>{' '}
           and{' '}
           <Link fontWeight={700} href={DATA_CHALLENGE_ROUND_URL}>
-            Data Challenge 4844
+            4844 Data Challenge
           </Link>{' '}
           grants rounds. See the details and apply.
         </Box>

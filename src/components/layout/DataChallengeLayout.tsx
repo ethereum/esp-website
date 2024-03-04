@@ -21,7 +21,7 @@ export const DataChallengeLayout: FC = ({ children }) => {
           alt,
           src: dataChallengeGrantsHero
         }}
-        title='Data Challenge 4844'
+        title='4844 Data Challenge'
       >
         The Ethereum Foundation is sponsoring a 4844 data analysis and visualization blog post
         challenge. Here are all the details you need.
