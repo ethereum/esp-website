@@ -150,8 +150,7 @@ export const SIDEBAR_ACADEMIC_GRANTS_LINKS: SidebarLink[] = [
   { text: 'What is not eligible', href: `${ACADEMIC_GRANTS_URL}/#not-eligible` },
   { text: 'Selection criteria', href: `${ACADEMIC_GRANTS_URL}/#selection-criteria` },
   { text: 'Next steps and support', href: `${ACADEMIC_GRANTS_URL}/#next-steps-and-support` },
-  { text: 'FAQ', href: `${ACADEMIC_GRANTS_URL}/#faq` },
-  { text: 'Apply', href: `${ACADEMIC_GRANTS_URL}/#apply` }
+  { text: 'FAQ', href: `${ACADEMIC_GRANTS_URL}/#faq` }
 ];
 
 export const ACCOUNT_ABSTRACTION_GRANTS_URL = '/account-abstraction-grants';
