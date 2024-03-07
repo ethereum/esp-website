@@ -30,7 +30,7 @@ export const PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS = [
 
 export const ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Consensus layer', label: 'Consensus layer' },
-  { value: 'Protocol growth & support', label: 'Protocol growth & support' },
+  { value: 'Protocol growth and support', label: 'Protocol growth and support' },
   {
     value: 'Cryptography and zero knowledge proofs',
     label: 'Cryptography and zero knowledge proofs'
