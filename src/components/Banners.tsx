@@ -4,13 +4,12 @@ import { Box, Link } from '@chakra-ui/react';
 
 import { Banner } from './UI';
 
-import { ACADEMIC_GRANTS_URL, DATA_CHALLENGE_ROUND_URL, ZK_GRANTS_URL } from '../constants';
+import { DATA_CHALLENGE_ROUND_URL, ZK_GRANTS_URL } from '../constants';
 
 export const Banners: FC = () => {
   const router = useRouter();
 
   if (
-    !router.pathname.includes(ACADEMIC_GRANTS_URL) &&
     !router.pathname.includes(ZK_GRANTS_URL) &&
     !router.pathname.includes(DATA_CHALLENGE_ROUND_URL)
   ) {
@@ -18,10 +17,6 @@ export const Banners: FC = () => {
       <Banner>
         <Box fontSize='paragraph' textAlign='center'>
           Applications are open for the{' '}
-          <Link fontWeight={700} href={ACADEMIC_GRANTS_URL}>
-            Academic
-          </Link>
-          ,{' '}
           <Link fontWeight={700} href={ZK_GRANTS_URL}>
             ZK
           </Link>{' '}

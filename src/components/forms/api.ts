@@ -12,7 +12,6 @@ import {
 import { createFormData, getWebsite } from '../../utils';
 
 import {
-  API_ACADEMIC_GRANTS,
   API_DEVCON_GRANTS,
   API_ECODEV_GRANTS,
   API_GRANTEE_FINANCE,
@@ -26,7 +25,6 @@ import {
   API_DATA_CHALLENGE_GRANTS
 } from './constants';
 
-import type { AcademicGrantsData } from './schemas/AcademicGrants';
 import type { ZKGrantsData } from './schemas/ZKGrants';
 import type { DataChallengeData } from './schemas/DataChallenge4844';
 
@@ -154,18 +152,6 @@ export const api = {
       };
 
       return fetch(API_ECODEV_GRANTS, ecodevGrantsRequestOptions);
-    }
-  },
-  academicGrants: {
-    submit: (data: AcademicGrantsData) => {
-      const formData = createFormData(data);
-
-      const dataRequestOptions: RequestInit = {
-        method: 'POST',
-        body: formData
-      };
-
-      return fetch(API_ACADEMIC_GRANTS, dataRequestOptions);
     }
   },
   pseSponsorships: {
