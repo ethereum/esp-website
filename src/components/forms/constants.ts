@@ -1,32 +1,33 @@
 // project categories
 export const PROJECT_CATEGORY_OPTIONS = [
-  { value: 'Community and education', label: 'Community and education' },
+  { value: 'Community Initiative', label: 'Community Initiative' },
   { value: 'Community event', label: 'Community event' },
   { value: 'Consensus layer', label: 'Consensus layer' },
-  {
-    value: 'Cryptography and zero knowledge proofs',
-    label: 'Cryptography and zero knowledge proofs'
-  },
+  { value: 'Cryptography Research', label: 'Cryptography Research' },
+  { value: 'dApp Development', label: 'dApp Development' },
+  { value: 'Decentralized Identity', label: 'Decentralized Identity' },
+  { value: 'DeFi', label: 'DeFi' },
   { value: 'Developer experience and tooling', label: 'Developer experience and tooling' },
+  { value: 'Educational Content', label: 'Educational Content' },
   { value: 'Execution layer', label: 'Execution layer' },
+  { value: 'Formal Verification', label: 'Formal Verification' },
   { value: 'General research', label: 'General research' },
+  { value: 'Governance', label: 'Governance' },
   { value: 'Layer 2', label: 'Layer 2' },
+  { value: 'NFTs / Digital Art', label: 'NFTs / Digital Art' },
+  { value: 'Privacy', label: 'Privacy' },
+  { value: 'Security', label: 'Security' },
+  { value: 'Token Development / Tokenomics', label: 'Token Development / Tokenomics' },
+  { value: 'UX/UI', label: 'UX/UI' },
+  { value: 'Zero Knowledge Proofs', label: 'Zero Knowledge Proofs' },
+  { value: 'Zero Knowledge Applications', label: 'Zero Knowledge Applications' },
   { value: 'Other', label: 'Other' }
 ];
 
-export const PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS = [
-  { value: 'Community and education', label: 'Community and education' },
-  { value: 'Consensus layer', label: 'Consensus layer' },
-  {
-    value: 'Cryptography and zero knowledge proofs',
-    label: 'Cryptography and zero knowledge proofs'
-  },
-  { value: 'Developer experience and tooling', label: 'Developer experience and tooling' },
-  { value: 'Execution layer', label: 'Execution layer' },
-  { value: 'General research', label: 'General research' },
-  { value: 'Layer 2', label: 'Layer 2' },
-  { value: 'Other', label: 'Other' }
-];
+// same list as above, but without Community event
+export const PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS = PROJECT_CATEGORY_OPTIONS.filter(
+  category => category.value !== 'Community event'
+);
 
 export const ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Consensus layer', label: 'Consensus layer' },
