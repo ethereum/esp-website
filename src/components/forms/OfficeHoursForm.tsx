@@ -31,6 +31,7 @@ import {
   PROJECT_CATEGORY_OPTIONS,
   TEAM,
   PROJECT_FEEDBACK,
+  COUNTRY_OPTIONS,
   TIMEZONE_OPTIONS
 } from './constants';
 import { OFFICE_HOURS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
@@ -630,6 +631,44 @@ export const OfficeHoursForm: FC = () => {
               </Box>
             )}
           </FormControl>
+
+          <Controller
+            name='country'
+            control={control}
+            rules={{ required: true, validate: selected => selected.value !== '' }}
+            defaultValue={{ value: '', label: '' }}
+            render={({ field: { onChange }, fieldState: { error } }) => (
+              <FormControl id='country-control' isRequired mb={8}>
+                <FormLabel htmlFor='country'>
+                  <PageText display='inline' fontSize='input'>
+                    Country
+                  </PageText>
+                </FormLabel>
+
+                <Select
+                  id='country'
+                  options={COUNTRY_OPTIONS}
+                  onChange={value => {
+                    onChange(value);
+                    trigger('country');
+                  }}
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
+
+                {error && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Country is required.
+                    </PageText>
+                  </Box>
+                )}
+              </FormControl>
+            )}
+          />
 
           <Controller
             name='timezone'
