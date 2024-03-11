@@ -9,15 +9,14 @@ import {
   PageSection,
   PageText,
   PageMetadata,
-  ReadyToApply
+  BannerApplicationClosed
 } from '../../components/UI';
 
 import {
   ACADEMIC_GRANTS_EMAIL_ADDRESS,
   HOME_URL,
   OFFICE_HOURS_URL,
-  SIDEBAR_ACADEMIC_GRANTS_LINKS,
-  ACADEMIC_GRANTS_APPLY_URL
+  SIDEBAR_ACADEMIC_GRANTS_LINKS
 } from '../../constants';
 
 const Section = forwardRef((props, ref) => (
@@ -36,8 +35,7 @@ const AcademicGrants: NextPage = () => {
   const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
   const [ref8, inView8] = useInView({ threshold: 0.5, initialInView: false });
   const [ref9, inView9] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref10, inView10] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref11, inView11] = useInView({ threshold: 0, initialInView: false });
+  const [ref10, inView10] = useInView({ threshold: 0, initialInView: false });
 
   return (
     <>
@@ -61,12 +59,13 @@ const AcademicGrants: NextPage = () => {
                 inView7,
                 inView8,
                 inView9,
-                inView10,
-                inView11
+                inView10
               ]}
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
+              <BannerApplicationClosed mb={12} />
+
               <Stack mb={8} mt={{ base: 10, md: 0 }}>
                 <Section id='introduction' ref={ref}>
                   <PageText>
@@ -405,12 +404,6 @@ const AcademicGrants: NextPage = () => {
                       </PageText>
                     </FAQItem>
                   </Accordion>
-                </Section>
-
-                <Section id='apply' ref={ref11}>
-                  <Stack>
-                    <ReadyToApply link={`${ACADEMIC_GRANTS_APPLY_URL}`} />
-                  </Stack>
                 </Section>
               </Stack>
             </Box>

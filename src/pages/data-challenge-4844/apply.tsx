@@ -2,19 +2,18 @@ import { Box, Link, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 
 import { PageMetadata, PageSubheading, PageText } from '../../components/UI';
-import { ACADEMIC_GRANTS_PREVIEW_URL, DEVCON_GRANTS_EMAIL_ADDRESS } from '../../constants';
+import { DATA_CHALLENGE_GRANTS_PREVIEW_URL, GRANTS_EMAIL_ADDRESS } from '../../constants';
 
-const DevconGrantsApply: NextPage = () => {
+const DataChallengeApply: NextPage = () => {
   return (
     <>
       <PageMetadata
-        title='Join the Road to Devcon'
-        description='To promote education around Ethereum in Southeast Asia along the Road to Devcon, we would like to offer support (both monetary and otherwise) to meetups, events, and other educational initiatives happening within the SEA region before Devcon 7.'
-        image={ACADEMIC_GRANTS_PREVIEW_URL}
+        title='4844 Data Challenge Application'
+        description='Submit an application for the 4844 Data Challenge from the Ecosystem Support Program.'
+        image={DATA_CHALLENGE_GRANTS_PREVIEW_URL}
       />
 
       <Box
-        bg='white'
         position='relative'
         py={{ md: 12 }}
         px={{ md: 24, lg: 32, xl: 72 }}
@@ -23,20 +22,19 @@ const DevconGrantsApply: NextPage = () => {
         <Stack>
           <section id='description'>
             <PageSubheading mb={8} textAlign='center'>
-              Apply for Support on the Road to Devcon
+              Apply to 4844 Data Challenge
             </PageSubheading>
 
             <PageText textAlign='center'>
-              If you have questions before submitting an application for financial or non-financial
-              support, you may contact us at{' '}
+              If you have questions before submitting a grant application, you may contact us at{' '}
               <Link
                 fontWeight={700}
                 color='brand.orange.100'
-                href={`mailto:${DEVCON_GRANTS_EMAIL_ADDRESS}`}
+                href={`mailto:${GRANTS_EMAIL_ADDRESS}`}
                 isExternal
                 _hover={{ textDecoration: 'none' }}
               >
-                {DEVCON_GRANTS_EMAIL_ADDRESS}
+                {GRANTS_EMAIL_ADDRESS}
               </Link>
               .
             </PageText>
@@ -47,4 +45,4 @@ const DevconGrantsApply: NextPage = () => {
   );
 };
 
-export default DevconGrantsApply;
+export default DataChallengeApply;

@@ -10,6 +10,8 @@ import {
   RUN_A_NODE_GRANTS_URL,
   DATA_COLLECTION_ROUND_URL,
   ACADEMIC_GRANTS_2023_URL,
+  ZK_GRANTS_URL,
+  DATA_CHALLENGE_ROUND_URL,
   TEST_GRANTS_URL
 } from '../constants';
 
@@ -27,7 +29,9 @@ export const getLayoutHeight = (path: string) =>
           ACCOUNT_ABSTRACTION_GRANTS_URL,
           RUN_A_NODE_GRANTS_URL,
           DATA_COLLECTION_ROUND_URL,
-          TEST_GRANTS_URL
+          TEST_GRANTS_URL,
+          ZK_GRANTS_URL,
+          DATA_CHALLENGE_ROUND_URL
         ].includes(path)
       ? '810px'
       : '550px';

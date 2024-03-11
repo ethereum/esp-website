@@ -73,7 +73,7 @@ export const GrantsHero: FC<Props> = ({
         </Box>
 
         <Box display={{ base: 'none', md: 'block' }}>
-          <Box>
+          <Box maxW={1400}>
             <Image
               src={desktopImage.src}
               alt={desktopImage.alt}

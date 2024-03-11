@@ -340,14 +340,14 @@ export const PSESponsorshipsForm: FC = () => {
               h='150px'
               mt={3}
               {...register('individualOrTeamSummary', {
-                maxLength: 32768
+                maxLength: 2000
               })}
             />
 
             {errors?.individualOrTeamSummary?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Team summary cannot exceed 32768 characters.
+                  Team summary cannot exceed 2000 characters.
                 </PageText>
               </Box>
             )}
@@ -640,14 +640,14 @@ export const PSESponsorshipsForm: FC = () => {
               h='150px'
               mt={3}
               {...register('eventPreviousWork', {
-                maxLength: 32768
+                maxLength: 2000
               })}
             />
 
             {errors?.eventPreviousWork?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Previous work cannot exceed 32768 characters.
+                  Previous work cannot exceed 2000 characters.
                 </PageText>
               </Box>
             )}
@@ -714,7 +714,7 @@ export const PSESponsorshipsForm: FC = () => {
               mt={3}
               {...register('eventDescription', {
                 required: true,
-                maxLength: 32768
+                maxLength: 2000
               })}
             />
 
@@ -728,7 +728,7 @@ export const PSESponsorshipsForm: FC = () => {
             {errors?.eventDescription?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Event details cannot exceed 32768 characters.
+                  Event details cannot exceed 2000 characters.
                 </PageText>
               </Box>
             )}
@@ -758,7 +758,7 @@ export const PSESponsorshipsForm: FC = () => {
               mt={3}
               {...register('eventTopics', {
                 required: true,
-                maxLength: 32768
+                maxLength: 2000
               })}
             />
 
@@ -772,7 +772,7 @@ export const PSESponsorshipsForm: FC = () => {
             {errors?.eventTopics?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Event topics cannot exceed 32768 characters.
+                  Event topics cannot exceed 2000 characters.
                 </PageText>
               </Box>
             )}
@@ -834,14 +834,14 @@ export const PSESponsorshipsForm: FC = () => {
               h='150px'
               mt={3}
               {...register('pseRationale', {
-                maxLength: 32768
+                maxLength: 2000
               })}
             />
 
             {errors?.pseRationale?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  The reasons cannot exceed 32768 characters.
+                  The reasons cannot exceed 2000 characters.
                 </PageText>
               </Box>
             )}
@@ -1019,7 +1019,7 @@ export const PSESponsorshipsForm: FC = () => {
               mt={3}
               {...register('targetAudience', {
                 required: true,
-                maxLength: 3000
+                maxLength: 2000
               })}
             />
 
@@ -1033,7 +1033,7 @@ export const PSESponsorshipsForm: FC = () => {
             {errors?.targetAudience?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Target audience cannot exceed 3000 characters.
+                  Target audience cannot exceed 2000 characters.
                 </PageText>
               </Box>
             )}
@@ -1062,14 +1062,14 @@ export const PSESponsorshipsForm: FC = () => {
               h='150px'
               mt={3}
               {...register('confirmedSpeakers', {
-                maxLength: 32768
+                maxLength: 2000
               })}
             />
 
             {errors?.confirmedSpeakers?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Confirmed speakers list cannot exceed 32768 characters.
+                  Confirmed speakers list cannot exceed 2000 characters.
                 </PageText>
               </Box>
             )}
@@ -1091,14 +1091,14 @@ export const PSESponsorshipsForm: FC = () => {
               fontSize='input'
               h='150px'
               {...register('confirmedSponsors', {
-                maxLength: 32768
+                maxLength: 2000
               })}
             />
 
             {errors?.confirmedSponsors?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Confirmed sponsors list cannot exceed 32768 characters.
+                  Confirmed sponsors list cannot exceed 2000 characters.
                 </PageText>
               </Box>
             )}
@@ -1128,7 +1128,7 @@ export const PSESponsorshipsForm: FC = () => {
               mt={3}
               {...register('eventBudgetBreakdown', {
                 required: true,
-                maxLength: 32768
+                maxLength: 2000
               })}
             />
 
@@ -1142,7 +1142,7 @@ export const PSESponsorshipsForm: FC = () => {
             {errors?.eventBudgetBreakdown?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Budget breakdown cannot exceed 32768 characters.
+                  Budget breakdown cannot exceed 2000 characters.
                 </PageText>
               </Box>
             )}
@@ -1220,14 +1220,14 @@ export const PSESponsorshipsForm: FC = () => {
               h='150px'
               mt={3}
               {...register('additionalInfo', {
-                maxLength: 32768
+                maxLength: 2000
               })}
             />
 
             {errors?.additionalInfo?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Additional info cannot exceed 32768 characters.
+                  Additional info cannot exceed 2000 characters.
                 </PageText>
               </Box>
             )}
