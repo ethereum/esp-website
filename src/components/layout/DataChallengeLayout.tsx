@@ -1,11 +1,15 @@
 import { Stack } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 import { GrantsHero } from '../UI';
 
 import dataChallengeGrantsHero from '../../../public/images/data-challenge-4844-hero.jpg';
 
-export const DataChallengeLayout: FC = ({ children }) => {
+type Props = {
+  children: ReactNode;
+};
+
+export const DataChallengeLayout: FC<Props> = ({ children }) => {
   const alt =
     'A person standing at the top of a hill looking at a vast landscape that contains things with the shape of different types of charts';
 
