@@ -57,7 +57,7 @@
     "prettier": "^3.2.5",
     "typescript": "^5.3.3",
     "validator": "^13.9.0",
-    "zod": "^3.21.4"
+    "zod": "^3.22.3"
   },
   "keywords": [
     "nextjs",
