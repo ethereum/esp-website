@@ -12,12 +12,16 @@ export const FooterBackgroundImage: FC = () => {
         <Image
           src={footerBackgroundMobile}
           alt='People gathered around the Ethereum tree'
-          layout='responsive'
-          objectFit='cover'
           width={450}
           height={200}
           placeholder='blur'
           quality={90}
+          sizes='100vw'
+          style={{
+            objectFit: 'cover',
+            width: '100%',
+            height: 'auto'
+          }}
         />
       </Box>
 
@@ -25,12 +29,16 @@ export const FooterBackgroundImage: FC = () => {
         <Image
           src={footerBackground}
           alt='People gathered around the Ethereum tree'
-          layout='responsive'
-          objectFit='cover'
           width={1440}
           height={335}
           placeholder='blur'
           quality={90}
+          sizes='100vw'
+          style={{
+            objectFit: 'cover',
+            width: '100%',
+            height: 'auto'
+          }}
         />
       </Box>
     </Box>

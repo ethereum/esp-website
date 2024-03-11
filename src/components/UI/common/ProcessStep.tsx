@@ -1,11 +1,12 @@
 import { Grid, GridItem } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 import { PageText, StepArrow, StepHeader } from '../';
 
 interface Props {
   title: string;
   isLastStep?: boolean;
+  children: ReactNode;
 }
 
 export const ProcessStep: FC<Props> = ({ title, isLastStep, children }) => {

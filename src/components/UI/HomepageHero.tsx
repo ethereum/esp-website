@@ -42,11 +42,15 @@ export const HomepageHero: FC = () => {
           <Image
             src={homepageHeroMobile}
             alt='People gathered around the Ethereum tree'
-            layout='responsive'
-            objectFit='cover'
             width={450}
             height={427}
             placeholder='blur'
+            sizes='100vw'
+            style={{
+              objectFit: 'cover',
+              width: '100%',
+              height: 'auto'
+            }}
           />
         </Box>
 
@@ -55,9 +59,12 @@ export const HomepageHero: FC = () => {
             <Image
               src={homepageHero}
               alt='People gathered around the Ethereum tree'
-              layout='fill'
-              objectFit='cover'
               placeholder='blur'
+              sizes='100vw'
+              fill
+              style={{
+                objectFit: 'cover'
+              }}
             />
           </Box>
 

@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { Box, ChakraProps } from '@chakra-ui/react';
+import { Box, BoxProps } from '@chakra-ui/react';
 
-interface Props extends ChakraProps {}
+interface Props extends BoxProps {}
 
 export const Banner: FC<Props> = ({ children, ...props }) => {
   return (

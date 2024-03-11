@@ -1,12 +1,16 @@
 import { Box, Stack, Text } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 import { DimLayer, GrantsHero } from '../UI';
 
 import accountAbstractionGrantsHero from '../../../public/images/account-abstraction-hero.jpeg';
 import accountAbstractionGrantsHeroMobile from '../../../public/images/account-abstraction-hero-mobile.jpeg';
 
-export const AccountAbstractionGrantsLayout: FC = ({ children }) => {
+type Props = {
+  children: ReactNode;
+};
+
+export const AccountAbstractionGrantsLayout: FC<Props> = ({ children }) => {
   return (
     <Box>
       <DimLayer height='130px' />

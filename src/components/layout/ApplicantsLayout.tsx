@@ -1,6 +1,6 @@
 import { Stack } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import { FC, useState } from 'react';
+import { FC, ReactNode, useState } from 'react';
 
 import { Description, NavigationTabs } from '../UI';
 
@@ -16,7 +16,11 @@ import {
   SMALL_GRANTS_URL
 } from '../../constants';
 
-export const ApplicantsLayout: FC = ({ children }) => {
+type Props = {
+  children: ReactNode;
+};
+
+export const ApplicantsLayout: FC<Props> = ({ children }) => {
   const router = useRouter();
   const [tabIndex, setTabIndex] = useState(APPLICANTS_TABS_MAP[router.pathname]);
 

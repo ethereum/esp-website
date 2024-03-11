@@ -1,5 +1,5 @@
 import { Flex, Stack } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 import { ImportantText } from '../headings';
 import { PageText } from '../text';
@@ -9,6 +9,7 @@ import { ButtonLink } from '../..';
 interface Props {
   title: string;
   link: string;
+  children: ReactNode;
 }
 
 export const ApplicationTypeCard: FC<Props> = ({ title, link, children }) => {

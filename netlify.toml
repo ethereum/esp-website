@@ -3,12 +3,19 @@
   publish = ".next"
 
 [build.environment]
-  NODE_VERSION = "16.14.0"
+  NODE_VERSION = "18.17.0"
 
 [[headers]]
   for = "/*"
   [headers.values]
     Access-Control-Allow-Origin = "https://matomo.ethereum.org"
+
+[functions]
+  included_files = [
+    "node_modules/next/dist/server/future/route-modules/pages/vendored/contexts/router-context*",
+    "node_modules/next/dist/server/future/route-modules/pages/vendored/contexts/amp-context*",
+    "node_modules/next/dist/server/future/route-modules/pages/vendored/contexts/head-manager-context*",
+  ]
 
 # Legacy pages from current site
 

@@ -38,13 +38,11 @@ export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) =
           />
 
           <Box pl={3}>
-            <NextLink href={href}>
-              <Link href={href} _hover={{ textDecoration: 'none' }}>
-                <PageText fontWeight={400} lineHeight='28px' color='brand.orange.100'>
-                  {text}
-                </PageText>
-              </Link>
-            </NextLink>
+            <Link as={NextLink} href={href} _hover={{ textDecoration: 'none' }}>
+              <PageText fontWeight={400} lineHeight='28px' color='brand.orange.100'>
+                {text}
+              </PageText>
+            </Link>
           </Box>
         </Flex>
       ))}

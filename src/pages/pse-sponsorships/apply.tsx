@@ -28,10 +28,12 @@ const PSESponsorshipsApply: NextPage = () => {
         <Center>
           <Image
             src={pseSponsorshipsHero}
-            alt={''}
-            layout='intrinsic'
-            objectFit='cover'
+            alt=''
             placeholder='blur'
+            sizes='100vw'
+            style={{
+              objectFit: 'cover'
+            }}
           />
         </Center>
 

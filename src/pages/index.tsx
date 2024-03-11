@@ -56,7 +56,7 @@ const Home: NextPage = () => {
             <Box
               justifyContent='center'
               alignItems='center'
-              direction='column'
+              flexDir='column'
               bgGradient='linear(to-br, brand.stats.bgGradient.start 2.29%, brand.stats.bgGradient.end 101.37%)'
               borderTop='5px solid'
               borderTopColor='brand.heading'
@@ -79,7 +79,6 @@ const Home: NextPage = () => {
                     <Image
                       src={smallSucculentSVG}
                       alt='small succulent plant representing allocation in 2019'
-                      layout='fixed'
                     />
                   </Box>
                 </GridItem>
@@ -112,7 +111,6 @@ const Home: NextPage = () => {
                     <Image
                       src={mediumSucculentSVG}
                       alt='medium succulent plant representing allocation in 2020'
-                      layout='fixed'
                     />
                   </Box>
                 </GridItem>
@@ -150,7 +148,6 @@ const Home: NextPage = () => {
                     <Image
                       src={bigSucculentSVG}
                       alt='big opened succulent plant representing allocation in 2021'
-                      layout='fixed'
                     />
                   </Box>
                 </GridItem>

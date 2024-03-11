@@ -20,7 +20,7 @@ export const ApplicationAttentionMsg: FC = () => {
       alignItems='center'
     >
       <Flex position='absolute' left={6}>
-        <Image src={attentionSVG} alt='attention icon vector' height='35px' width='40px' />
+        <Image src={attentionSVG} alt='attention icon vector' height={35} width={40} />
       </Flex>
 
       <PageText fontSize='input' ml={16}>

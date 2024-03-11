@@ -1,6 +1,6 @@
 import { Stack } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import { FC, useState } from 'react';
+import { FC, ReactNode, useState } from 'react';
 
 import { Description, NavigationTabs } from '../UI';
 
@@ -14,7 +14,11 @@ import {
 
 import aboutHero from '../../../public/images/about-hero.png';
 
-export const AboutLayout: FC = ({ children }) => {
+type Props = {
+  children: ReactNode;
+};
+
+export const AboutLayout: FC<Props> = ({ children }) => {
   const router = useRouter();
   const [tabIndex, setTabIndex] = useState(ABOUT_TABS_MAP[router.pathname]);
 

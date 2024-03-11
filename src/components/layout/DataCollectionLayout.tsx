@@ -1,12 +1,16 @@
 import { Box, Stack, Text } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 import dataCollectionHero from '../../../public/images/data-collection-proactive-grants.png';
 import dataCollectionHeroMobile from '../../../public/images/data-collection-proactive-grants-mobile.png';
 
 import { GrantsHero } from '../UI';
 
-export const DataCollectionLayout: FC = ({ children }) => {
+type Props = {
+  children: ReactNode;
+};
+
+export const DataCollectionLayout: FC<Props> = ({ children }) => {
   const alt =
     'A person standing at the top of a hill looking at a vast landscape that contains things with the shape of different types of charts';
 
