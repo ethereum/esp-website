@@ -236,7 +236,7 @@ export const ZK_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Apply', href: `${ZK_GRANTS_URL}/#apply` }
 ];
 
-export const TEST_GRANTS_URL = 'data-challenge-4844';
+export const TEST_GRANTS_URL = 'test';
 
 // apply forms
 export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
