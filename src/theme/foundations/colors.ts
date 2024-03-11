@@ -116,6 +116,13 @@ export const colors = {
         end: 'rgba(235, 209, 251, 0)'
       }
     },
+    dataChallengeHero: {
+      titleWhiteBox: ' rgba(255, 255, 255, 0.85)',
+      bgGradient: {
+        start: '#5a7dc1',
+        end: 'rgba(235, 209, 251, 0)'
+      }
+    },
     helpText: '#7c7ba1',
     warning: '#f0f6fd',
     homepageHero: '#f8e8fc',

@@ -2,14 +2,15 @@ import { Box, Link, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 
 import { PageMetadata, PageSubheading, PageText } from '../../components/UI';
-import { ACADEMIC_GRANTS_EMAIL_ADDRESS } from '../../constants';
+import { DATA_CHALLENGE_GRANTS_PREVIEW_URL, GRANTS_EMAIL_ADDRESS } from '../../constants';
 
-const AcademicGrantsApply: NextPage = () => {
+const DataChallengeApply: NextPage = () => {
   return (
     <>
       <PageMetadata
-        title='Academic Grants Application'
-        description='Submit an application for an Academic Grant from the Ecosystem Support Program.'
+        title='4844 Data Challenge Application'
+        description='Submit an application for the 4844 Data Challenge from the Ecosystem Support Program.'
+        image={DATA_CHALLENGE_GRANTS_PREVIEW_URL}
       />
 
       <Box
@@ -21,7 +22,7 @@ const AcademicGrantsApply: NextPage = () => {
         <Stack>
           <section id='description'>
             <PageSubheading mb={8} textAlign='center'>
-              Apply to Academic Grants
+              Apply to 4844 Data Challenge
             </PageSubheading>
 
             <PageText textAlign='center'>
@@ -29,11 +30,11 @@ const AcademicGrantsApply: NextPage = () => {
               <Link
                 fontWeight={700}
                 color='brand.orange.100'
-                href={`mailto:${ACADEMIC_GRANTS_EMAIL_ADDRESS}`}
+                href={`mailto:${GRANTS_EMAIL_ADDRESS}`}
                 isExternal
                 _hover={{ textDecoration: 'none' }}
               >
-                {ACADEMIC_GRANTS_EMAIL_ADDRESS}
+                {GRANTS_EMAIL_ADDRESS}
               </Link>
               .
             </PageText>
@@ -44,4 +45,4 @@ const AcademicGrantsApply: NextPage = () => {
   );
 };
 
-export default AcademicGrantsApply;
+export default DataChallengeApply;

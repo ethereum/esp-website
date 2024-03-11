@@ -3,12 +3,15 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 
 import { PageMetadata, PageSubheading, PageText } from '../../components/UI';
-import { ACADEMIC_GRANTS_EMAIL_ADDRESS } from '../../constants';
+import { GRANTS_EMAIL_ADDRESS } from '../../constants';
 
-const AcademicGrantsThankYou: NextPage = () => {
+const DataChallengeThankYou: NextPage = () => {
   return (
     <>
-      <PageMetadata title='Thank you' description='Thank you for applying to Academic Grants.' />
+      <PageMetadata
+        title='Thank you'
+        description='Thank you for applying to 4844 Data Challenge.'
+      />
       <Head>
         <meta name='robots' content='noindex' />
       </Head>
@@ -29,7 +32,7 @@ const AcademicGrantsThankYou: NextPage = () => {
             </Heading>
 
             <PageSubheading mb={16} textAlign='center'>
-              for applying to Academic Grants
+              for applying to 4844 Data Challenge
             </PageSubheading>
 
             <PageText mb={6} textAlign='center'>
@@ -38,11 +41,11 @@ const AcademicGrantsThankYou: NextPage = () => {
               <Link
                 fontWeight={700}
                 color='brand.orange.100'
-                href={`mailto:${ACADEMIC_GRANTS_EMAIL_ADDRESS}`}
+                href={`mailto:${GRANTS_EMAIL_ADDRESS}`}
                 isExternal
                 _hover={{ textDecoration: 'none' }}
               >
-                {ACADEMIC_GRANTS_EMAIL_ADDRESS}
+                {GRANTS_EMAIL_ADDRESS}
               </Link>
               .
             </PageText>
@@ -53,4 +56,4 @@ const AcademicGrantsThankYou: NextPage = () => {
   );
 };
 
-export default AcademicGrantsThankYou;
+export default DataChallengeThankYou;

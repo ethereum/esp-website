@@ -735,7 +735,7 @@ export const GranteeFinanceForm: FC = () => {
                   h='150px'
                   mt={3}
                   {...register('notes', {
-                    maxLength: 32768
+                    maxLength: 2000
                   })}
                 />
 
@@ -750,7 +750,7 @@ export const GranteeFinanceForm: FC = () => {
                 {errors?.notes?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Notes cannot exceed 32768 characters.
+                      Notes cannot exceed 2000 characters.
                     </PageText>
                   </Box>
                 )}

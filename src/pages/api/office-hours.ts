@@ -21,6 +21,7 @@ async function handler(req: OfficeHoursNextApiRequest, res: NextApiResponse): Pr
       projectCategory: Category__c,
       otherReasonForMeeting: Reason_for_meeting_if_Other__c,
       howDidYouHearAboutESP: Referral_Source__c,
+      country: npsp__CompanyCountry__c,
       timezone: Time_Zone__c
     } = body;
     const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
@@ -52,6 +53,7 @@ async function handler(req: OfficeHoursNextApiRequest, res: NextApiResponse): Pr
           Category__c: Category__c.trim(),
           Reason_for_meeting_if_Other__c: Reason_for_meeting_if_Other__c.trim(),
           Referral_Source__c: Referral_Source__c.trim(),
+          npsp__CompanyCountry__c: npsp__CompanyCountry__c.trim(),
           Time_Zone__c: Time_Zone__c.trim(),
           LeadSource: 'Webform',
           RecordTypeId: process.env.SF_RECORD_TYPE_OFFICE_HOURS

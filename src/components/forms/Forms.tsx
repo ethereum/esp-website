@@ -9,18 +9,20 @@ import {
   SmallGrantsForm,
   DevconGrantsForm,
   EcodevGrantsForm,
-  AcademicGrantsForm
+  ZKGrantsForm,
+  DataChallengeForm
 } from './';
 
 import {
-  ACADEMIC_GRANTS_APPLY_URL,
+  DATA_CHALLENGE_APPLY_URL,
   DEVCON_GRANTS_APPLY_URL,
   ECODEV_GRANTS_APPLY_URL,
   GRANTEE_FINANCE_URL,
   OFFICE_HOURS_APPLY_URL,
   PROJECT_GRANTS_APPLY_URL,
   PSE_SPONSORSHIPS_APPLY_URL,
-  SMALL_GRANTS_APPLY_URL
+  SMALL_GRANTS_APPLY_URL,
+  ZK_GRANTS_APPLY_URL
 } from '../../constants';
 import { PSESponsorshipsForm } from './PSESponsorshipsForm';
 
@@ -59,14 +61,19 @@ export const Forms: FC = () => {
           <EcodevGrantsForm />
         </Box>
       )}
-      {router.pathname === ACADEMIC_GRANTS_APPLY_URL && (
-        <Box px={{ md: 24, lg: 32, xl: 72 }}>
-          <AcademicGrantsForm />
-        </Box>
-      )}
       {router.pathname === PSE_SPONSORSHIPS_APPLY_URL && (
         <Box px={{ md: 24, lg: 32, xl: 72 }}>
           <PSESponsorshipsForm />
+        </Box>
+      )}
+      {router.pathname === ZK_GRANTS_APPLY_URL && (
+        <Box px={{ md: 24, lg: 32, xl: 72 }}>
+          <ZKGrantsForm />
+        </Box>
+      )}
+      {router.pathname === DATA_CHALLENGE_APPLY_URL && (
+        <Box px={{ md: 24, lg: 32, xl: 72 }}>
+          <DataChallengeForm />
         </Box>
       )}
     </Stack>
