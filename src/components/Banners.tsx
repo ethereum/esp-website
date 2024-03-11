@@ -10,8 +10,8 @@ export const Banners: FC = () => {
   const path = useCurrentPath();
 
   if (
-    !router.pathname.includes(ZK_GRANTS_URL) &&
-    !router.pathname.includes(DATA_CHALLENGE_ROUND_URL)
+    !path.includes(ZK_GRANTS_URL) &&
+    !path.includes(DATA_CHALLENGE_ROUND_URL)
   ) {
     return (
       <Banner>
