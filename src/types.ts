@@ -481,6 +481,7 @@ export type Frontmatter = {
   metaTitle: string;
   metaDescription: string;
   metaImage: string;
+  isClosed: boolean;
 };
 
 /**

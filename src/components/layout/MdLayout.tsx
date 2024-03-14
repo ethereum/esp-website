@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { Box, Flex, Stack } from '@chakra-ui/react';
 
-import { PageMetadata } from '../UI';
+import { BannerApplicationClosed, PageMetadata } from '../UI';
 import { MdSidebar } from '../UI/md/MdSidebar';
 
 import type { Frontmatter, ToCNodeEntry, TocNodeType } from '../../types';
@@ -13,7 +13,7 @@ type LayoutProps = {
 };
 
 export const MdLayout = ({ children, frontmatter, tocNodeItems }: LayoutProps) => {
-  const { metaTitle, metaDescription, metaImage } = frontmatter;
+  const { metaTitle, metaDescription, metaImage, isClosed } = frontmatter;
 
   return (
     <Stack>
@@ -29,6 +29,8 @@ export const MdLayout = ({ children, frontmatter, tocNodeItems }: LayoutProps) =
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
+              {isClosed && <BannerApplicationClosed mb={12} />}
+
               <Flex gap={6} direction='column'>
                 {children}
               </Flex>

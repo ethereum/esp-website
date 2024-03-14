@@ -63,7 +63,7 @@ export const SIDEBAR_SMALL_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Apply', href: `${SMALL_GRANTS_URL}/#apply` }
 ];
 
-export const ACADEMIC_GRANTS_2022_URL = '/academic-grants-2022';
+export const ACADEMIC_GRANTS_2022_URL = 'academic-grants-2022';
 export const SIDEBAR_ACADEMIC_GRANTS_2022_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${ACADEMIC_GRANTS_2022_URL}/#description` },
   { text: 'Submit proposal', href: `${ACADEMIC_GRANTS_2022_URL}/#submit-proposal` },
