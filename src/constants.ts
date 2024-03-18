@@ -232,8 +232,7 @@ export const ZK_GRANTS_LINKS: SidebarLink[] = [
     text: 'Next steps and support',
     href: `${ZK_GRANTS_URL}/#next-steps-and-support`
   },
-  { text: 'FAQ', href: `${ZK_GRANTS_URL}/#faq` },
-  { text: 'Apply', href: `${ZK_GRANTS_URL}/#apply` }
+  { text: 'FAQ', href: `${ZK_GRANTS_URL}/#faq` }
 ];
 
 // apply forms
@@ -247,7 +246,6 @@ export const RUN_A_NODE_GRANTS_APPLY_URL = '/run-a-node-grants/apply';
 export const DATA_COLLECTION_APPLY_URL = '/data-collection-grants/apply';
 export const PSE_SPONSORSHIPS_APPLY_URL = '/pse-sponsorships/apply';
 export const DATA_CHALLENGE_APPLY_URL = '/data-challenge-4844/apply';
-export const ZK_GRANTS_APPLY_URL = '/zk-grants/apply';
 
 // grantee finance form
 export const GRANTEE_FINANCE_URL = '/applicants/grantee-finance';
@@ -264,7 +262,6 @@ export const RUN_A_NODE_GRANTS_THANK_YOU_PAGE_URL = '/run-a-node-grants/thank-yo
 export const DATA_COLLECTION_THANK_YOU_PAGE_URL = '/data-collection-grants/thank-you';
 export const PSE_SPONSORSHIPS_THANK_YOU_PAGE_URL = '/pse-sponsorships/thank-you';
 export const DATA_CHALLENGE_THANK_YOU_PAGE_URL = '/data-challenge-4844/thank-you';
-export const ZK_GRANTS_THANK_YOU_PAGE_URL = '/zk-grants/thank-you';
 
 // ethereum ecosystem
 export const ETHEREUM_ORG_URL = 'https://ethereum.org/';

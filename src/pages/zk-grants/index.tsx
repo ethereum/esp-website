@@ -4,20 +4,15 @@ import type { NextPage } from 'next';
 
 import {
   ApplicantsSidebar,
+  BannerApplicationClosed,
   FAQItem,
   List,
   PageMetadata,
   PageSection,
-  PageText,
-  ReadyToApply
+  PageText
 } from '../../components/UI';
 
-import {
-  GRANTS_EMAIL_ADDRESS,
-  ZK_GRANTS_APPLY_URL,
-  ZK_GRANTS_LINKS,
-  ZK_GRANTS_PREVIEW_URL
-} from '../../constants';
+import { GRANTS_EMAIL_ADDRESS, ZK_GRANTS_LINKS, ZK_GRANTS_PREVIEW_URL } from '../../constants';
 
 const RunANodeGrants: NextPage = () => {
   // `threshold` option allows us to control the % of visibility required before triggering the Intersection Observer
@@ -29,8 +24,7 @@ const RunANodeGrants: NextPage = () => {
   const [ref5, inView5] = useInView({ threshold: 0.5, initialInView: false });
   const [ref6, inView6] = useInView({ threshold: 0.5, initialInView: false });
   const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref8, inView8] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref9, inView9] = useInView({ threshold: 0, initialInView: false });
+  const [ref8, inView8] = useInView({ threshold: 0, initialInView: false });
 
   return (
     <>
@@ -53,12 +47,13 @@ const RunANodeGrants: NextPage = () => {
                 inView5,
                 inView6,
                 inView7,
-                inView8,
-                inView9
+                inView8
               ]}
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
+              <BannerApplicationClosed mb={12} />
+
               <Stack spacing={10}>
                 <Flex as='section' id='introduction' ref={ref} gap={6} direction='column'>
                   <PageSection>Introduction</PageSection>
@@ -369,12 +364,6 @@ const RunANodeGrants: NextPage = () => {
                       </PageText>
                     </FAQItem>
                   </Accordion>
-                </Flex>
-
-                <Flex as='section' id='apply' ref={ref9} gap={6} direction='column'>
-                  <Stack>
-                    <ReadyToApply link={`${ZK_GRANTS_APPLY_URL}`} />
-                  </Stack>
                 </Flex>
               </Stack>
             </Box>
