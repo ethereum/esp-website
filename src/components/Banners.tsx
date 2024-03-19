@@ -17,14 +17,10 @@ export const Banners: FC = () => {
       <Banner>
         <Box fontSize='paragraph' textAlign='center'>
           Applications are open for the{' '}
-          <Link fontWeight={700} href={ZK_GRANTS_URL}>
-            ZK
-          </Link>{' '}
-          and{' '}
           <Link fontWeight={700} href={DATA_CHALLENGE_ROUND_URL}>
             4844 Data Challenge
           </Link>{' '}
-          grants rounds. See the details and apply.
+          grants round. See the details and apply.
         </Box>
       </Banner>
     );
