@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import { init } from '@socialgouv/matomo-next';
 
 import { Layout } from '../components/layout';
 import { Banners } from '../components';
+import { useCurrentPath } from '../hooks/useCurrentPath';
 
 import { getBg, getBgGradient, getLayoutHeight } from '../utils';
 
@@ -24,7 +24,7 @@ import favicon16 from '../../public/images/favicon-16x16.png';
 import favicon32 from '../../public/images/favicon-32x32.png';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const router = useRouter();
+  const path = useCurrentPath();
 
   useEffect(() => {
     init({
@@ -47,9 +47,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
         <Layout
           position='relative'
-          bg={getBg(router.pathname)}
-          bgGradient={getBgGradient(router.pathname)}
-          h={{ base: '600px', lg: getLayoutHeight(router.pathname) }}
+          bg={getBg(path)}
+          bgGradient={getBgGradient(path)}
+          h={{ base: '600px', lg: getLayoutHeight(path) }}
         >
           <Component {...pageProps} />
         </Layout>

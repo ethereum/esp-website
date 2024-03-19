@@ -377,3 +377,6 @@ export const DATA_CHALLENGE_GRANTS_PREVIEW_URL =
 
 // Thank you and apply urls
 export const GRANTS_URLS = [DEVCON_GRANTS_APPLY_URL, DEVCON_GRANTS_THANK_YOU_PAGE_URL];
+
+// Markdown
+export const MARKDOWN_CONTENT_PATH = 'src/content';

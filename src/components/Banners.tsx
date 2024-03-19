@@ -1,17 +1,17 @@
 import { FC } from 'react';
-import { useRouter } from 'next/router';
 import { Box, Link } from '@chakra-ui/react';
 
+import { useCurrentPath } from '../hooks/useCurrentPath';
 import { Banner } from './UI';
 
 import { DATA_CHALLENGE_ROUND_URL, ZK_GRANTS_URL } from '../constants';
 
 export const Banners: FC = () => {
-  const router = useRouter();
+  const path = useCurrentPath();
 
   if (
-    !router.pathname.includes(ZK_GRANTS_URL) &&
-    !router.pathname.includes(DATA_CHALLENGE_ROUND_URL)
+    !path.includes(ZK_GRANTS_URL) &&
+    !path.includes(DATA_CHALLENGE_ROUND_URL)
   ) {
     return (
       <Banner>
