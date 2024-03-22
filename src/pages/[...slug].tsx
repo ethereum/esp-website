@@ -2,11 +2,12 @@ import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import type { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next/types';
 import type { ParsedUrlQuery } from 'querystring';
-import { Accordion, Link, ListItem } from '@chakra-ui/react';
+import { Accordion, ListItem } from '@chakra-ui/react';
 
 import { FAQItem, List, PageSection, PageText, ReadyToApply } from '../components/UI';
 import { MdLayout } from '../components/layout/MdLayout';
 import { MdLink } from '../components/UI/md/MdLink';
+import { MdSummary } from '../components/UI/md/MdSummary';
 
 import remarkInferToc from '../utils/remark/remarkInferToc';
 import rehypeHeadingIds from '../utils/remark/rehypeHeadingIds';
@@ -50,7 +51,8 @@ export const getStaticProps = (async ({ params }) => {
   const mdxSource = await serialize<Record<string, unknown>, Frontmatter>(mdxText, {
     mdxOptions: {
       remarkPlugins: [[remarkInferToc, { callback: tocCallback }]],
-      rehypePlugins: [[rehypeHeadingIds]]
+      rehypePlugins: [[rehypeHeadingIds]],
+      format: 'mdx'
     },
     parseFrontmatter: true
   });
@@ -66,7 +68,8 @@ const components = {
   li: ListItem,
   ReadyToApply,
   Accordion,
-  FAQItem
+  FAQItem,
+  MdSummary
 };
 
 export default function Page({

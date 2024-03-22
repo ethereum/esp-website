@@ -383,3 +383,4 @@ export const GRANTS_URLS = [DEVCON_GRANTS_APPLY_URL, DEVCON_GRANTS_THANK_YOU_PAG
 
 // Markdown
 export const MARKDOWN_CONTENT_PATH = 'src/content';
+export const MARKDOWN_SUMMARY_ID = 'summary';
