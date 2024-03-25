@@ -6,7 +6,8 @@ import { useEffect, useState } from 'react';
  * @param {*} rootMargin
  * @returns id of the element currently in viewport
  */
-export const useActiveHash = (itemIds: Array<string>, rootMargin = `0% 0% -80% 0%`): string => {
+export const useActiveHash = (itemIds: Array<string>, rootMargin = `0% 0% -80% 0%`) => {
+  const [lastActiveHash, setLastActiveHash] = useState<string>(itemIds[0]);
   const [hashes, setHashes] = useState<Record<string, boolean>>(() =>
     itemIds.reduce((acc, id, index) => ({ [id]: index === 0, ...acc }), {})
   );
@@ -40,7 +41,13 @@ export const useActiveHash = (itemIds: Array<string>, rootMargin = `0% 0% -80% 0
     };
   }, [itemIds, rootMargin]);
 
-  const firstActiveHash = itemIds.find(id => hashes[id]);
+  useEffect(() => {
+    const firstActiveHash = itemIds.find(id => hashes[id]);
 
-  return firstActiveHash || itemIds[0];
+    if (firstActiveHash) {
+      setLastActiveHash(firstActiveHash);
+    }
+  }, [hashes, itemIds]);
+
+  return lastActiveHash;
 };
