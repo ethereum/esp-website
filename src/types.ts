@@ -125,6 +125,8 @@ export interface GranteeFinanceFormData extends CaptchaForm {
   // ETH/DAI
   tokenPreference: TokenPreference;
   l2Payment: L2PaymentPreference; // SF API: Layer2_Payment__c
+  l2Network: string; // SF API: Layer_2_Network__c
+  l2NetworkOther: string; // SF API: Layer_2_Network_Other__c
 
   // ETH
   ethAddress: string; // SF API: ETH_Address__c
@@ -263,27 +265,28 @@ export type TokenPreference = 'ETH' | 'DAI';
 
 export type ReasonForMeeting = typeof REASONS_FOR_MEETING;
 
-export type ProjectCategory = typeof PROJECT_CATEGORY_OPTIONS[number];
+export type ProjectCategory = (typeof PROJECT_CATEGORY_OPTIONS)[number];
 
-export type AcademicGrantsProjectCategory = typeof ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS[number];
+export type AcademicGrantsProjectCategory =
+  (typeof ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS)[number];
 
-export type ProjectGrantsProjectCategory = typeof PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS[number];
+export type ProjectGrantsProjectCategory = (typeof PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS)[number];
 
-export type EventType = typeof EVENT_TYPE_OPTIONS[number];
+export type EventType = (typeof EVENT_TYPE_OPTIONS)[number];
 
-export type EventFormat = typeof EVENT_FORMAT_OPTIONS[number];
+export type EventFormat = (typeof EVENT_FORMAT_OPTIONS)[number];
 
-export type WouldYouShareYourResearch = typeof WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS[number];
+export type WouldYouShareYourResearch = (typeof WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS)[number];
 
-export type Country = typeof COUNTRY_OPTIONS[number];
+export type Country = (typeof COUNTRY_OPTIONS)[number];
 
-export type ReferralSource = typeof HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS[number];
+export type ReferralSource = (typeof HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS)[number];
 
-export type GrantsReferralSource = typeof HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE[number];
+export type GrantsReferralSource = (typeof HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE)[number];
 
-export type Timezone = typeof TIMEZONE_OPTIONS[number];
+export type Timezone = (typeof TIMEZONE_OPTIONS)[number];
 
-export type ApplyingAs = typeof APPLYING_AS_OPTIONS[number];
+export type ApplyingAs = (typeof APPLYING_AS_OPTIONS)[number];
 
 export type Href = typeof HOME_URL | typeof APPLICANTS_URL | typeof ABOUT_URL | typeof ESP_BLOG_URL;
 
@@ -341,6 +344,8 @@ export interface GranteeFinanceNextApiRequest extends NextApiRequest {
     SWIFTCode: string;
     granteeSecurityID: string;
     l2Payment: boolean;
+    l2Network: string;
+    l2NetworkOther: string;
   };
 }
 

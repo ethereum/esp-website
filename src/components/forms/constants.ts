@@ -116,6 +116,12 @@ export const WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS = [
   { value: 'Maybe', label: 'Maybe' }
 ];
 
+// grantee finance
+export const SUPPORTED_LAYERS_2_OPTIONS = [
+  { value: 'Arbitrum', label: 'Arbitrum' },
+  { value: 'Optimism', label: 'Optimism' }
+];
+
 // countries
 export const COUNTRY_OPTIONS = [
   {

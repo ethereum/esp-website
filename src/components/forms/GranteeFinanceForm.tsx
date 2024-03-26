@@ -15,8 +15,9 @@ import {
 import { FC, useState } from 'react';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import { Select } from 'chakra-react-select';
 
-import { PageText } from '../UI';
+import { PageText, DropdownIndicator } from '../UI';
 import { SubmitButton } from '../SubmitButton';
 import { Captcha } from '.';
 
@@ -28,7 +29,10 @@ import {
   TOAST_OPTIONS
 } from '../../constants';
 
+import { chakraStyles } from './selectStyles';
+
 import { GranteeFinanceFormData, TokenPreference, PaymentPreference } from '../../types';
+import { SUPPORTED_LAYERS_2_OPTIONS } from './constants';
 
 export const GranteeFinanceForm: FC = () => {
   const [paymentPreference, setPaymentPreference] = useState<PaymentPreference>('');
@@ -57,6 +61,7 @@ export const GranteeFinanceForm: FC = () => {
   // for conditional fields, get the current values
   const bankAddress = watch('bankAddress');
   const fiatCurrencyCode = watch('fiatCurrencyCode');
+  const isL2Selected = watch('l2Payment')?.includes('Yes');
 
   // if the bank address contains the string 'India' or the fiat currency code
   // is 'INR', alert for IFSC code within Notes field
@@ -328,6 +333,80 @@ export const GranteeFinanceForm: FC = () => {
                   </FormControl>
                 )}
               />
+
+              <Box display={isL2Selected ? 'block' : 'none'}>
+                <Fade in={isL2Selected} delay={0.25}>
+                  <Controller
+                    name='l2Network'
+                    control={control}
+                    render={({ field: { onChange } }) => (
+                      <FormControl id='l2Network-control' mb={8}>
+                        <FormLabel htmlFor='l2Network' mb={1}>
+                          <PageText display='inline' fontSize='input'>
+                            Which Layer 2 Network?
+                          </PageText>
+                        </FormLabel>
+
+                        <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                          These are the networks we currently support.
+                        </PageText>
+
+                        <Box mt={3}>
+                          <Select
+                            id='l2Network'
+                            options={SUPPORTED_LAYERS_2_OPTIONS}
+                            onChange={option =>
+                              onChange(
+                                (option as (typeof SUPPORTED_LAYERS_2_OPTIONS)[number]).value
+                              )
+                            }
+                            components={{ DropdownIndicator }}
+                            placeholder='Select'
+                            closeMenuOnSelect={true}
+                            selectedOptionColor='brand.option'
+                            chakraStyles={chakraStyles}
+                          />
+                        </Box>
+                      </FormControl>
+                    )}
+                  />
+
+                  <FormControl id='l2NetworkOther' mb={8}>
+                    <FormLabel htmlFor='l2NetworkOther' mb={1}>
+                      <PageText display='inline' fontSize='input'>
+                        If the Layer 2 network you would like is not available, please let us know
+                        which networks you would like supported, separated by commas
+                      </PageText>
+                    </FormLabel>
+
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      This question is optional and meant to help the disbursement team gather data
+                      on which Layer 2 networks are most requested.
+                    </PageText>
+
+                    <Textarea
+                      id='l2NetworkOther'
+                      bg='white'
+                      borderRadius={0}
+                      borderColor='brand.border'
+                      color='brand.paragraph'
+                      fontSize='input'
+                      h='72px'
+                      mt={3}
+                      resize='none'
+                      {...register('l2NetworkOther', { maxLength: 255 })}
+                    />
+
+                    {errors?.l2NetworkOther?.type === 'maxLength' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Field cannot exceed 255 characters.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
+                </Fade>
+              </Box>
             </Fade>
           </Box>
 
