@@ -62,7 +62,6 @@ export const GranteeFinanceForm: FC = () => {
   const bankAddress = watch('bankAddress');
   const fiatCurrencyCode = watch('fiatCurrencyCode');
   const isL2Selected = watch('l2Payment')?.includes('Yes');
-  const selectedL2Network = watch('l2Network');
 
   // if the bank address contains the string 'India' or the fiat currency code
   // is 'INR', alert for IFSC code within Notes field
@@ -340,12 +339,8 @@ export const GranteeFinanceForm: FC = () => {
                   <Controller
                     name='l2Network'
                     control={control}
-                    rules={{
-                      required: isL2Selected,
-                      validate: value => value !== ''
-                    }}
-                    render={({ field: { onChange }, fieldState: { error } }) => (
-                      <FormControl id='l2Network-control' isRequired={receivesCrypto} mb={8}>
+                    render={({ field: { onChange } }) => (
+                      <FormControl id='l2Network-control' mb={8}>
                         <FormLabel htmlFor='l2Network' mb={1}>
                           <PageText display='inline' fontSize='input'>
                             Which Layer 2 Network?
@@ -372,56 +367,44 @@ export const GranteeFinanceForm: FC = () => {
                             chakraStyles={chakraStyles}
                           />
                         </Box>
-
-                        {error && (
-                          <Box mt={1}>
-                            <PageText as='small' fontSize='helpText' color='red.500'>
-                              Layer 2 network is required.
-                            </PageText>
-                          </Box>
-                        )}
                       </FormControl>
                     )}
                   />
 
-                  <Box display={selectedL2Network === 'Other' ? 'block' : 'none'}>
-                    <Fade in={selectedL2Network === 'Other'} delay={0.25}>
-                      <FormControl id='l2NetworkOther' mb={8}>
-                        <FormLabel htmlFor='l2NetworkOther' mb={1}>
-                          <PageText display='inline' fontSize='input'>
-                            If the Layer 2 network you would like is not available, please let us
-                            know which networks you would like supported, separated by commas
-                          </PageText>
-                        </FormLabel>
+                  <FormControl id='l2NetworkOther' mb={8}>
+                    <FormLabel htmlFor='l2NetworkOther' mb={1}>
+                      <PageText display='inline' fontSize='input'>
+                        If the Layer 2 network you would like is not available, please let us know
+                        which networks you would like supported, separated by commas
+                      </PageText>
+                    </FormLabel>
 
-                        <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                          This question is optional and meant to help the disbursement team gather
-                          data on which Layer 2 networks are most requested.
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      This question is optional and meant to help the disbursement team gather data
+                      on which Layer 2 networks are most requested.
+                    </PageText>
+
+                    <Textarea
+                      id='l2NetworkOther'
+                      bg='white'
+                      borderRadius={0}
+                      borderColor='brand.border'
+                      color='brand.paragraph'
+                      fontSize='input'
+                      h='72px'
+                      mt={3}
+                      resize='none'
+                      {...register('l2NetworkOther', { maxLength: 255 })}
+                    />
+
+                    {errors?.l2NetworkOther?.type === 'maxLength' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Field cannot exceed 255 characters.
                         </PageText>
-
-                        <Textarea
-                          id='l2NetworkOther'
-                          bg='white'
-                          borderRadius={0}
-                          borderColor='brand.border'
-                          color='brand.paragraph'
-                          fontSize='input'
-                          h='72px'
-                          mt={3}
-                          resize='none'
-                          {...register('l2NetworkOther', { maxLength: 255 })}
-                        />
-
-                        {errors?.l2NetworkOther?.type === 'maxLength' && (
-                          <Box mt={1}>
-                            <PageText as='small' fontSize='helpText' color='red.500'>
-                              Field cannot exceed 255 characters.
-                            </PageText>
-                          </Box>
-                        )}
-                      </FormControl>
-                    </Fade>
-                  </Box>
+                      </Box>
+                    )}
+                  </FormControl>
                 </Fade>
               </Box>
             </Fade>
