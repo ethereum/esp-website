@@ -9,13 +9,15 @@ import {
   SmallGrantsForm,
   DevconGrantsForm,
   EcodevGrantsForm,
-  DataChallengeForm
+  DataChallengeForm,
+  EPFApplicationForm
 } from './';
 
 import {
   DATA_CHALLENGE_APPLY_URL,
   DEVCON_GRANTS_APPLY_URL,
   ECODEV_GRANTS_APPLY_URL,
+  EPF_APPLICATION_APPLY_URL,
   GRANTEE_FINANCE_URL,
   OFFICE_HOURS_APPLY_URL,
   PROJECT_GRANTS_APPLY_URL,
@@ -67,6 +69,11 @@ export const Forms: FC = () => {
       {router.pathname === DATA_CHALLENGE_APPLY_URL && (
         <Box px={{ md: 24, lg: 32, xl: 72 }}>
           <DataChallengeForm />
+        </Box>
+      )}
+      {router.pathname === EPF_APPLICATION_APPLY_URL && (
+        <Box px={{ md: 24, lg: 32, xl: 72 }}>
+          <EPFApplicationForm />
         </Box>
       )}
     </Stack>

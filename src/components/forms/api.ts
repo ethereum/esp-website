@@ -21,11 +21,12 @@ import {
   API_PSE_SPONSORSHIPS,
   API_SMALL_GRANTS_EVENT,
   API_SMALL_GRANTS_PROJECT,
-  API_DATA_CHALLENGE_GRANTS
+  API_DATA_CHALLENGE_GRANTS,
+  API_EPF_APPLICATION
 } from './constants';
 
-import type { ZKGrantsData } from './schemas/ZKGrants';
 import type { DataChallengeData } from './schemas/DataChallenge4844';
+import type { EPFData } from './schemas/EPFApplication';
 
 const methodOptions = {
   method: 'POST',
@@ -179,6 +180,16 @@ export const api = {
       };
 
       return fetch(API_DATA_CHALLENGE_GRANTS, dataRequestOptions);
+    }
+  },
+  epfApplication: {
+    submit: (data: EPFData) => {
+      const epfApplicationRequestOptions: RequestInit = {
+        ...methodOptions,
+        body: JSON.stringify(data)
+      };
+
+      return fetch(API_EPF_APPLICATION, epfApplicationRequestOptions);
     }
   },
   newsletter: {
