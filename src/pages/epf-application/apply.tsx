@@ -1,4 +1,4 @@
-import { Center, Flex, Stack } from '@chakra-ui/react';
+import { Box, Center, Flex } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 
@@ -16,25 +16,23 @@ const EPFApply: NextPage = () => {
         image={EPF_APPLICATION_PREVIEW_URL}
       />
 
-      <Flex
-        direction='column'
-        py={{ md: 12 }}
-        px={{ sm: 5, md: 24, lg: 32, xl: 72 }}
-        pb={5}
-        mt={{ base: 0, md: 6 }}
-        gap={8}
-      >
-        <Center>
-          <Image src={epfHero} alt='' placeholder='blur' height={400} />
-        </Center>
+      <Flex direction='column' px={{ sm: 5, md: 24, lg: 32, xl: 72 }} pb={5} gap={8}>
+        <Image
+          src={epfHero}
+          alt=''
+          placeholder='blur'
+          fill
+          sizes='100vw'
+          style={{ objectFit: 'cover', zIndex: -1 }}
+        />
 
-        <Stack>
-          <section id='description'>
+        <Center>
+          <Box as='section' id='description' px={{ base: 10, md: 9 }} pb={{ base: 3, md: 12 }}>
             <PageSubheading mb={8} textAlign='center'>
               Ethereum Protocol Fellowship Application
             </PageSubheading>
-          </section>
-        </Stack>
+          </Box>
+        </Center>
       </Flex>
     </>
   );
