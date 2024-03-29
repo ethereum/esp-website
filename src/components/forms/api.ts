@@ -107,7 +107,8 @@ export const api = {
         body: JSON.stringify({
           ...data,
           l2Payment: data.l2Payment === 'Yes',
-          l2Network: data.l2Network || ''
+          // if l2Network is 'Other', send an empty string to SF because 'Other' doesn't exist in SF
+          l2Network: data.l2Network !== 'Other' ? data.l2Network : ''
         })
       };
 
