@@ -27,7 +27,7 @@ export const EPFSchema = z.object({
   timezone: stringFieldSchema('Time zone', { min: 1 }),
   referralSourceIfOther: stringFieldSchema('EPF cohort', { min: 1, max: MAX_TEXT_LENGTH }),
   referralSource: stringFieldSchema('EPF referral', {
-    max: MAX_TEXT_AREA_LENGTH
+    max: MAX_TEXT_LENGTH
   }).optional(),
   projectName: stringFieldSchema('Project name', { min: 1, max: MAX_TEXT_LENGTH }),
   projectDescription: stringFieldSchema('Project summary', {

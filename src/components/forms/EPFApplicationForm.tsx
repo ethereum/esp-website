@@ -207,7 +207,7 @@ export const EPFApplicationForm: FC = () => {
 
           <TextField id='referralSourceIfOther' label='EPF Cohort' isRequired />
 
-          <TextAreaField
+          <TextField
             id='referralSource'
             label='EPF Referral'
             helpText="Include the person's name and details of their referral"
