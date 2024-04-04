@@ -24,7 +24,6 @@ import {
   API_DATA_CHALLENGE_GRANTS
 } from './constants';
 
-import type { ZKGrantsData } from './schemas/ZKGrants';
 import type { DataChallengeData } from './schemas/DataChallenge4844';
 
 const methodOptions = {
