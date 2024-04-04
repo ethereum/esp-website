@@ -205,7 +205,12 @@ export const EPFApplicationForm: FC = () => {
             />
           </Flex>
 
-          <TextField id='referralSourceIfOther' label='EPF Cohort' isRequired />
+          <TextField
+            id='referralSourceIfOther'
+            label='EPF Cohort'
+            helpText='Which cohort were you a part of?'
+            isRequired
+          />
 
           <TextField
             id='referralSource'
