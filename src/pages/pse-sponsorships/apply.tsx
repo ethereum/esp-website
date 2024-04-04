@@ -12,7 +12,7 @@ const PSESponsorshipsApply: NextPage = () => {
     <>
       <PageMetadata
         title='PSE Sponsorships Application'
-        description='Submit Sponsorship Application to Privacy & Scaling Explorations.'
+        description='Submit Application to Privacy & Scaling Explorations.'
       />
       <Head>
         <meta name='robots' content='noindex' />
@@ -40,7 +40,7 @@ const PSESponsorshipsApply: NextPage = () => {
         <Stack mt={6}>
           <section id='description'>
             <PageSubheading mb={8} textAlign='center'>
-              Submit Sponsorship Application to Privacy & Scaling Explorations
+              Submit Application to Privacy & Scaling Explorations
             </PageSubheading>
           </section>
         </Stack>
