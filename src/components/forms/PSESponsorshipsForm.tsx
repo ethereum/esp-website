@@ -34,7 +34,8 @@ import {
   ONLINE_EVENT,
   IN_PERSON_EVENT,
   HYBRID_EVENT,
-  PSE_SPONSORSHIP_CATEGORY_OPTIONS
+  PSE_SPONSORSHIP_CATEGORY_OPTIONS,
+  COMMUNITY_EVENT
 } from './constants';
 import { PSE_SPONSORSHIPS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
@@ -413,7 +414,7 @@ export const PSESponsorshipsForm: FC = () => {
             name='category'
             control={control}
             defaultValue={{ value: '', label: '' }}
-            render={({ field: { onChange } }) => (
+            render={({ field: { onChange }, fieldState: { error } }) => (
               <FormControl id='event-type-control' mb={8} mr={{ md: 12 }}>
                 <FormLabel htmlFor='eventType'>
                   <PageText display='inline' fontSize='input' mb={1}>
@@ -429,13 +430,24 @@ export const PSESponsorshipsForm: FC = () => {
                 <Select
                   id='eventType'
                   options={PSE_SPONSORSHIP_CATEGORY_OPTIONS}
-                  onChange={onChange}
+                  onChange={(e: any) => {
+                    onChange(e);
+                    setIsCommunityEvent(e.value === COMMUNITY_EVENT);
+                  }}
                   components={{ DropdownIndicator }}
                   placeholder='Select'
                   closeMenuOnSelect={true}
                   selectedOptionColor='brand.option'
                   chakraStyles={chakraStyles}
                 />
+
+                {error && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Category is required.
+                    </PageText>
+                  </Box>
+                )}
               </FormControl>
             )}
           />
@@ -889,7 +901,7 @@ export const PSESponsorshipsForm: FC = () => {
                   name='eventType'
                   control={control}
                   defaultValue={{ value: '', label: '' }}
-                  render={({ field: { onChange }, fieldState: { error } }) => (
+                  render={({ field: { onChange } }) => (
                     <FormControl id='event-type-control' mb={8} mr={{ md: 12 }}>
                       <FormLabel htmlFor='eventType'>
                         <PageText display='inline' fontSize='input'>
