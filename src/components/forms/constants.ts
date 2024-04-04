@@ -1541,6 +1541,12 @@ export const APPLYING_AS_OPTIONS = [
   { value: 'Other', label: 'Other' }
 ];
 
+// PSE Sponsorship
+export const PSE_SPONSORSHIP_CATEGORY_OPTIONS = [
+  { value: 'Community event', label: 'Community event' },
+  { value: 'Quadratic Funding Initiative', label: 'Quadratic Funding Initiative' }
+];
+
 // office hours
 export const TEAM = 'Team';
 export const INDIVIDUAL = 'Individual';
