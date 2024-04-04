@@ -59,6 +59,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         Company: result.data.projectName, // Company is a required field in SF, we're using the Project Name as the value
         Proactive_Community_Grants_Round__c: 'Ethereum Protocol Fellowship', // this value is hardwired, depending on the type of grant round
         LeadSource: 'Webform',
+        Pipeline_Entry__c: 'Protocol Support',
         RecordTypeId: process.env.SF_RECORD_TYPE_EPF!
       };
 
