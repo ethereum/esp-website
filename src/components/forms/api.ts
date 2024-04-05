@@ -21,7 +21,8 @@ import {
   API_PSE_SPONSORSHIPS,
   API_SMALL_GRANTS_EVENT,
   API_SMALL_GRANTS_PROJECT,
-  API_DATA_CHALLENGE_GRANTS
+  API_DATA_CHALLENGE_GRANTS,
+  COMMUNITY_EVENT
 } from './constants';
 
 import type { DataChallengeData } from './schemas/DataChallenge4844';
@@ -164,9 +165,14 @@ export const api = {
           category: data.category.value,
           country: data.country.value,
           website: getWebsite(data.website),
-          eventType: data.eventType.value,
-          eventFormat: data.eventFormat.value,
-          eventLocation: data.eventLocation ? data.eventLocation.trim() : ''
+          // The following fields are optional when Category is 'Quadratic Funding Initiative' and needs to be set
+          // to an empty string as a fallback to avoid .trim() to fail
+          eventType: data.eventType ? data.eventType.value : '',
+          eventFormat: data.eventFormat ? data.eventFormat.value : '',
+          eventLocation: data.eventLocation ? data.eventLocation : '',
+          contactTelegram: data.contactTelegram ? data.contactTelegram : '',
+          city: data.city ? data.city : '',
+          whyEthereum: data.whyEthereum ? data.whyEthereum : ''
         })
       };
 

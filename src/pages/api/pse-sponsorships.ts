@@ -89,7 +89,7 @@ async function handler(req: PSESponsorshipsNextApiRequest, res: NextApiResponse)
         Additional_Information__c: Additional_Information__c.trim(),
         Category__c: Category__c.trim(),
         Alternative_Contact__c: Alternative_Contact__c.trim(),
-        whyEthereum: Why_Ethereum__c.trim(),
+        Why_Ethereum__c: Why_Ethereum__c.trim(),
         LeadSource: 'Webform',
         Pipeline_Entry__c: 'Privacy and Scaling',
         // Community event should map to SF_RECORD_TYPE_PSE_COMMUNITY_EVENT Lead Record Type
