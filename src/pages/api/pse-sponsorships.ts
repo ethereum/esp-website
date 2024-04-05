@@ -15,6 +15,7 @@ async function handler(req: PSESponsorshipsNextApiRequest, res: NextApiResponse)
       individualOrTeam: Individual_or_Team__c,
       individualOrTeamSummary: Team_Profile__c,
       company: Company,
+      category: Category__c,
       city: npsp__CompanyCity__c,
       country: npsp__CompanyCountry__c,
       website: Website,
@@ -53,6 +54,8 @@ async function handler(req: PSESponsorshipsNextApiRequest, res: NextApiResponse)
         return resolve();
       }
 
+      const isCommunityEvent = Category__c.trim() == 'Community event';
+
       const application = {
         FirstName: FirstName.trim(),
         LastName: LastName.trim(),
@@ -82,10 +85,14 @@ async function handler(req: PSESponsorshipsNextApiRequest, res: NextApiResponse)
         Proposed_Timeline__c: Proposed_Timeline__c.trim(),
         Sponsorship_Monetary_Request__c: Sponsorship_Monetary_Request__c.trim(),
         Additional_Information__c: Additional_Information__c.trim(),
-        Category__c: 'Community event', // this value is hardwired for PSE Sponsorships
+        Category__c: Category__c.trim(),
         LeadSource: 'Webform',
         Pipeline_Entry__c: 'Privacy and Scaling',
-        RecordTypeId: process.env.SF_RECORD_TYPE_PSE_SPONSORSHIPS!
+        // Community event should map to SF_RECORD_TYPE_PSE_COMMUNITY_EVENT Lead Record Type
+        // Quadratic Funding Initiative should map to SF_RECORD_TYPE_PSE_QFI Lead Record Type
+        RecordTypeId: isCommunityEvent
+          ? process.env.SF_RECORD_TYPE_PSE_COMMUNITY_EVENT!
+          : process.env.SF_RECORD_TYPE_PSE_QFI!
       };
 
       // Single record creation
