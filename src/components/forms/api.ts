@@ -21,8 +21,7 @@ import {
   API_PSE_SPONSORSHIPS,
   API_SMALL_GRANTS_EVENT,
   API_SMALL_GRANTS_PROJECT,
-  API_DATA_CHALLENGE_GRANTS,
-  COMMUNITY_EVENT
+  API_DATA_CHALLENGE_GRANTS
 } from './constants';
 
 import type { DataChallengeData } from './schemas/DataChallenge4844';
@@ -161,18 +160,10 @@ export const api = {
         body: JSON.stringify({
           ...data,
           // Company is a required field in SF, we're using the Name as default value if no company provided
-          company: data.company === '' ? `${data.firstName} ${data.lastName}` : data.company,
+          company: data.company ? data.company : `${data.firstName} ${data.lastName}`,
           category: data.category.value,
           country: data.country.value,
-          website: getWebsite(data.website),
-          // The following fields are optional when Category is 'Quadratic Funding Initiative' and needs to be set
-          // to an empty string as a fallback to avoid .trim() to fail
-          eventType: data.eventType ? data.eventType.value : '',
-          eventFormat: data.eventFormat ? data.eventFormat.value : '',
-          eventLocation: data.eventLocation ? data.eventLocation : '',
-          contactTelegram: data.contactTelegram ? data.contactTelegram : '',
-          city: data.city ? data.city : '',
-          whyEthereum: data.whyEthereum ? data.whyEthereum : ''
+          website: getWebsite(data.website)
         })
       };
 

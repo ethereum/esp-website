@@ -269,18 +269,14 @@ export const PSESponsorshipsForm: FC = () => {
           {individualOrTeam === TEAM && (
             <>
               <Fade in={individualOrTeam === TEAM} delay={0.25}>
-                <FormControl
-                  id='individual-or-team-control'
-                  isRequired={individualOrTeam === TEAM}
-                  mb={8}
-                >
-                  <FormLabel htmlFor='individualOrTeam'>
+                <FormControl id='company-control' isRequired={individualOrTeam === TEAM} mb={8}>
+                  <FormLabel htmlFor='company'>
                     <PageText display='inline' fontSize='input'>
                       Name of organization or entity
                     </PageText>
                   </FormLabel>
                   <Input
-                    id='individualOrTeam'
+                    id='company'
                     type='text'
                     placeholder="Enter the name of organization or entity you're submitting for"
                     bg='white'
@@ -290,28 +286,28 @@ export const PSESponsorshipsForm: FC = () => {
                     _placeholder={{ fontSize: 'input' }}
                     color='brand.paragraph'
                     fontSize='input'
-                    {...register('individualOrTeamSummary', {
+                    {...register('company', {
                       required: individualOrTeam === TEAM,
                       maxLength: 255,
                       validate: value => !containURL(value)
                     })}
                   />
 
-                  {errors?.individualOrTeam?.type === 'required' && (
+                  {errors?.company?.type === 'required' && (
                     <Box mt={1}>
                       <PageText as='small' fontSize='helpText' color='red.500'>
                         Organization name is required.
                       </PageText>
                     </Box>
                   )}
-                  {errors?.individualOrTeam?.type === 'maxLength' && (
+                  {errors?.company?.type === 'maxLength' && (
                     <Box mt={1}>
                       <PageText as='small' fontSize='helpText' color='red.500'>
                         Organization name cannot exceed 255 characters.
                       </PageText>
                     </Box>
                   )}
-                  {errors?.individualOrTeam?.type === 'validate' && (
+                  {errors?.company?.type === 'validate' && (
                     <Box mt={1}>
                       <PageText as='small' fontSize='helpText' color='red.500'>
                         Organization name cannot contain a URL.
@@ -323,91 +319,203 @@ export const PSESponsorshipsForm: FC = () => {
             </>
           )}
 
-          {isCommunityEvent && (
-            <FormControl id='individual-or-team-summary-control' mb={8}>
-              <FormLabel htmlFor='individualOrTeamSummary' mb={1}>
-                <PageText display='inline' fontSize='input'>
-                  Individual or team summary
-                </PageText>
-              </FormLabel>
-
-              <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                Tell us about yourself, your experience, and your motivations. Feel free to link to
-                any biography pages, LinkedIn pages, etc.
-              </PageText>
-
-              <Textarea
-                id='individualOrTeamSummary'
-                bg='white'
-                borderRadius={0}
-                borderColor='brand.border'
-                _placeholder={{ fontSize: 'input' }}
-                color='brand.paragraph'
-                fontSize='input'
-                h='150px'
-                mt={3}
-                {...register('individualOrTeamSummary', {
-                  maxLength: 2000
-                })}
-              />
-
-              {errors?.individualOrTeamSummary?.type === 'maxLength' && (
-                <Box mt={1}>
-                  <PageText as='small' fontSize='helpText' color='red.500'>
-                    Team summary cannot exceed 2000 characters.
-                  </PageText>
-                </Box>
-              )}
-            </FormControl>
-          )}
-
-          <FormControl id='company-control' isRequired mb={8}>
-            <FormLabel htmlFor='company' mb={1}>
+          <FormControl id='individual-or-team-summary-control' mb={8}>
+            <FormLabel htmlFor='individualOrTeamSummary' mb={1}>
               <PageText display='inline' fontSize='input'>
-                Name of organization or entity
+                Individual or team summary
               </PageText>
             </FormLabel>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Name of your team or entity you&apos;re submitting for. If your organization
-              doesn&apos;t have a formal name, just try to describe it in a few words!
+              Tell us about yourself, your experience, and your motivations. Feel free to link to
+              any biography pages, LinkedIn pages, etc.
+            </PageText>
+
+            <Textarea
+              id='individualOrTeamSummary'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              _placeholder={{ fontSize: 'input' }}
+              color='brand.paragraph'
+              fontSize='input'
+              h='150px'
+              mt={3}
+              {...register('individualOrTeamSummary', {
+                maxLength: 2000
+              })}
+            />
+
+            {errors?.individualOrTeamSummary?.type === 'maxLength' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Team summary cannot exceed 2000 characters.
+                </PageText>
+              </Box>
+            )}
+          </FormControl>
+
+          <Flex direction='column' mb={8}>
+            <Flex direction={{ base: 'column', md: 'row' }} mb={3}>
+              <FormControl id='city-control' mr={{ md: 12 }} mb={{ base: 8, md: 0 }}>
+                <FormLabel htmlFor='city'>
+                  <PageText fontSize='input'>City</PageText>
+                </FormLabel>
+
+                <Input
+                  id='city'
+                  type='text'
+                  bg='white'
+                  borderRadius={0}
+                  borderColor='brand.border'
+                  h='56px'
+                  _placeholder={{ fontSize: 'input' }}
+                  color='brand.paragraph'
+                  fontSize='input'
+                  {...register('city', {
+                    maxLength: 255
+                  })}
+                />
+
+                {errors?.city?.type === 'maxLength' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      City name cannot exceed 255 characters.
+                    </PageText>
+                  </Box>
+                )}
+              </FormControl>
+
+              <Controller
+                name='country'
+                control={control}
+                defaultValue={{ value: '', label: '' }}
+                render={({ field: { onChange } }) => (
+                  <FormControl id='country-control' isRequired={isCommunityEvent}>
+                    <FormLabel htmlFor='country'>
+                      <PageText display='inline' fontSize='input'>
+                        Country
+                      </PageText>
+                    </FormLabel>
+
+                    <Select
+                      id='country'
+                      options={COUNTRY_OPTIONS}
+                      onChange={onChange}
+                      components={{ DropdownIndicator }}
+                      placeholder='Select'
+                      closeMenuOnSelect={true}
+                      selectedOptionColor='brand.option'
+                      chakraStyles={chakraStyles}
+                    />
+                  </FormControl>
+                )}
+              />
+            </Flex>
+
+            <PageText as='small' fontSize='helpText' color='brand.helpText'>
+              Where are you and your team located? This is optional.
+            </PageText>
+          </Flex>
+
+          <FormControl id='website-control' mb={8}>
+            <FormLabel htmlFor='website'>
+              <PageText fontSize='input'>Website</PageText>
+            </FormLabel>
+            <PageText fontSize='input' position='absolute' bottom='15.5px' left={4} zIndex={9}>
+              https://
+            </PageText>
+            <Input
+              id='website'
+              type='text'
+              placeholder='yourwebsiteaddress.com'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              h='56px'
+              _placeholder={{ fontSize: 'input' }}
+              position='relative'
+              color='brand.paragraph'
+              fontSize='input'
+              pl={16}
+              {...register('website', {
+                maxLength: 255
+              })}
+            />
+
+            {errors?.website?.type === 'maxLength' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Website cannot exceed 255 characters.
+                </PageText>
+              </Box>
+            )}
+          </FormControl>
+
+          <FormControl id='twitter-control' mb={8}>
+            <FormLabel htmlFor='twitter'>
+              <PageText fontSize='input'>Twitter</PageText>
+            </FormLabel>
+
+            <PageText fontSize='input' position='absolute' bottom='15.5px' left={4} zIndex={9}>
+              @
             </PageText>
 
             <Input
-              id='company'
+              id='twitter'
+              type='text'
+              placeholder='twitter_handle'
+              bg='white'
+              borderRadius={0}
+              borderColor='brand.border'
+              h='56px'
+              _placeholder={{ fontSize: 'input' }}
+              position='relative'
+              color='brand.paragraph'
+              fontSize='input'
+              pl={8}
+              {...register('twitter', {
+                maxLength: 16
+              })}
+            />
+
+            {errors?.twitter?.type === 'maxLength' && (
+              <Box mt={1}>
+                <PageText as='small' fontSize='helpText' color='red.500'>
+                  Twitter handle cannot exceed 16 characters.
+                </PageText>
+              </Box>
+            )}
+          </FormControl>
+
+          <FormControl id='contact-telegram' w={{ md: '50%' }} pr={{ md: 6 }} mb={8}>
+            <FormLabel htmlFor='contact-telegram' mb={1}>
+              <PageText fontSize='input'>Contact Telegram</PageText>
+            </FormLabel>
+
+            <PageText as='small' fontSize='helpText' color='brand.helpText'>
+              What is the Telegram handle of your primary contact person?
+            </PageText>
+
+            <Input
+              id='contactTelegram'
               type='text'
               bg='white'
               borderRadius={0}
               borderColor='brand.border'
               h='56px'
+              _placeholder={{ fontSize: 'input' }}
               color='brand.paragraph'
               fontSize='input'
-              mt={3}
-              {...register('company', {
-                required: true,
-                maxLength: 255,
-                validate: value => !containURL(value)
+              {...register('contactTelegram', {
+                maxLength: 150
               })}
             />
 
-            {errors?.company?.type === 'required' && (
+            {errors?.contactTelegram?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Organization name is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.company?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Organization name cannot exceed 255 characters.
-                </PageText>
-              </Box>
-            )}
-            {errors?.company?.type === 'validate' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Organization name cannot contain a URL.
+                  Contact Telegram handle cannot exceed 150 characters.
                 </PageText>
               </Box>
             )}
@@ -461,151 +569,6 @@ export const PSESponsorshipsForm: FC = () => {
               {/* Community event */}
               {isCommunityEvent && (
                 <>
-                  <Flex direction='column' mb={8}>
-                    <Flex direction={{ base: 'column', md: 'row' }} mb={3}>
-                      <FormControl id='city-control' mr={{ md: 12 }} mb={{ base: 8, md: 0 }}>
-                        <FormLabel htmlFor='city'>
-                          <PageText fontSize='input'>City</PageText>
-                        </FormLabel>
-
-                        <Input
-                          id='city'
-                          type='text'
-                          bg='white'
-                          borderRadius={0}
-                          borderColor='brand.border'
-                          h='56px'
-                          _placeholder={{ fontSize: 'input' }}
-                          color='brand.paragraph'
-                          fontSize='input'
-                          {...register('city', {
-                            maxLength: 255
-                          })}
-                        />
-
-                        {errors?.city?.type === 'maxLength' && (
-                          <Box mt={1}>
-                            <PageText as='small' fontSize='helpText' color='red.500'>
-                              City name cannot exceed 255 characters.
-                            </PageText>
-                          </Box>
-                        )}
-                      </FormControl>
-
-                      <Controller
-                        name='country'
-                        control={control}
-                        defaultValue={{ value: '', label: '' }}
-                        render={({ field: { onChange } }) => (
-                          <FormControl id='country-control' isRequired={isCommunityEvent}>
-                            <FormLabel htmlFor='country'>
-                              <PageText display='inline' fontSize='input'>
-                                Country
-                              </PageText>
-                            </FormLabel>
-
-                            <Select
-                              id='country'
-                              options={COUNTRY_OPTIONS}
-                              onChange={onChange}
-                              components={{ DropdownIndicator }}
-                              placeholder='Select'
-                              closeMenuOnSelect={true}
-                              selectedOptionColor='brand.option'
-                              chakraStyles={chakraStyles}
-                            />
-                          </FormControl>
-                        )}
-                      />
-                    </Flex>
-
-                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                      Where are you and your team located? This is optional
-                    </PageText>
-                  </Flex>
-
-                  <FormControl id='website-control' mb={8}>
-                    <FormLabel htmlFor='website'>
-                      <PageText fontSize='input'>Website</PageText>
-                    </FormLabel>
-                    <PageText
-                      fontSize='input'
-                      position='absolute'
-                      bottom='15.5px'
-                      left={4}
-                      zIndex={9}
-                    >
-                      https://
-                    </PageText>
-                    <Input
-                      id='website'
-                      type='text'
-                      placeholder='yourwebsiteaddress.com'
-                      bg='white'
-                      borderRadius={0}
-                      borderColor='brand.border'
-                      h='56px'
-                      _placeholder={{ fontSize: 'input' }}
-                      position='relative'
-                      color='brand.paragraph'
-                      fontSize='input'
-                      pl={16}
-                      {...register('website', {
-                        maxLength: 255
-                      })}
-                    />
-
-                    {errors?.website?.type === 'maxLength' && (
-                      <Box mt={1}>
-                        <PageText as='small' fontSize='helpText' color='red.500'>
-                          Website cannot exceed 255 characters.
-                        </PageText>
-                      </Box>
-                    )}
-                  </FormControl>
-
-                  <FormControl id='twitter-control' mb={8}>
-                    <FormLabel htmlFor='twitter'>
-                      <PageText fontSize='input'>Twitter</PageText>
-                    </FormLabel>
-
-                    <PageText
-                      fontSize='input'
-                      position='absolute'
-                      bottom='15.5px'
-                      left={4}
-                      zIndex={9}
-                    >
-                      @
-                    </PageText>
-
-                    <Input
-                      id='twitter'
-                      type='text'
-                      placeholder='twitter_handle'
-                      bg='white'
-                      borderRadius={0}
-                      borderColor='brand.border'
-                      h='56px'
-                      _placeholder={{ fontSize: 'input' }}
-                      position='relative'
-                      color='brand.paragraph'
-                      fontSize='input'
-                      pl={8}
-                      {...register('twitter', {
-                        maxLength: 16
-                      })}
-                    />
-
-                    {errors?.twitter?.type === 'maxLength' && (
-                      <Box mt={1}>
-                        <PageText as='small' fontSize='helpText' color='red.500'>
-                          Twitter handle cannot exceed 16 characters.
-                        </PageText>
-                      </Box>
-                    )}
-                  </FormControl>
-
                   <FormControl id='event-name-control' isRequired={isCommunityEvent} mb={8}>
                     <FormLabel htmlFor='eventName' mb={1}>
                       <PageText display='inline' fontSize='input'>
@@ -650,7 +613,13 @@ export const PSESponsorshipsForm: FC = () => {
                     )}
                   </FormControl>
 
-                  <FormControl id='event-date-control' isRequired={isCommunityEvent} mb={8}>
+                  <FormControl
+                    id='event-date-control'
+                    isRequired={isCommunityEvent}
+                    w={{ md: '50%' }}
+                    pr={{ md: 6 }}
+                    mb={8}
+                  >
                     <FormLabel htmlFor='eventDate' mb={1}>
                       <PageText display='inline' fontSize='input'>
                         Event date
@@ -1312,107 +1281,6 @@ export const PSESponsorshipsForm: FC = () => {
               {/* Quadratic Funding Initiative */}
               {!isCommunityEvent && (
                 <>
-                  <FormControl id='contact-telegram' w={{ md: '50%' }} mr={{ md: 12 }} mb={8}>
-                    <FormLabel htmlFor='contact-telegram' mb={1}>
-                      <PageText fontSize='input'>Contact Telegram</PageText>
-                    </FormLabel>
-
-                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                      What is the Telegram handle of your primary contact person?
-                    </PageText>
-
-                    <Input
-                      id='contactTelegram'
-                      type='text'
-                      bg='white'
-                      borderRadius={0}
-                      borderColor='brand.border'
-                      h='56px'
-                      _placeholder={{ fontSize: 'input' }}
-                      color='brand.paragraph'
-                      fontSize='input'
-                      {...register('contactTelegram', {
-                        maxLength: 150
-                      })}
-                    />
-
-                    {errors?.contactTelegram?.type === 'maxLength' && (
-                      <Box mt={1}>
-                        <PageText as='small' fontSize='helpText' color='red.500'>
-                          Contact Telegram handle cannot exceed 150 characters.
-                        </PageText>
-                      </Box>
-                    )}
-                  </FormControl>
-
-                  <FormControl id='qf-individual-or-team-summary-control' mb={8}>
-                    <FormLabel htmlFor='QFIndividualOrTeamSummary' mb={1}>
-                      <PageText display='inline' fontSize='input'>
-                        Individual or team profile
-                      </PageText>
-                    </FormLabel>
-
-                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                      Tell us about your team and experience with quadratic funding. Please include
-                      contact information and link to any biography pages, LinkedIn pages, etc.
-                    </PageText>
-
-                    <Textarea
-                      id='QFIndividualOrTeamSummary'
-                      bg='white'
-                      borderRadius={0}
-                      borderColor='brand.border'
-                      _placeholder={{ fontSize: 'input' }}
-                      color='brand.paragraph'
-                      fontSize='input'
-                      h='150px'
-                      mt={3}
-                      // Same SF field as individualOrTeamSummary
-                      {...register('individualOrTeamSummary', {
-                        maxLength: 2000
-                      })}
-                    />
-
-                    {errors?.individualOrTeamSummary?.type === 'maxLength' && (
-                      <Box mt={1}>
-                        <PageText as='small' fontSize='helpText' color='red.500'>
-                          Team summary cannot exceed 2000 characters.
-                        </PageText>
-                      </Box>
-                    )}
-                  </FormControl>
-
-                  <Controller
-                    name='country'
-                    control={control}
-                    defaultValue={{ value: '', label: '' }}
-                    render={({ field: { onChange } }) => (
-                      <FormControl
-                        id='country-control'
-                        mb={8}
-                        w={{ md: '50%' }}
-                        isRequired={!isCommunityEvent}
-                      >
-                        <FormLabel htmlFor='country'>
-                          <PageText display='inline' fontSize='input'>
-                            Country
-                          </PageText>
-                        </FormLabel>
-
-                        <Select
-                          id='country'
-                          options={COUNTRY_OPTIONS}
-                          onChange={onChange}
-                          components={{ DropdownIndicator }}
-                          placeholder='Select'
-                          closeMenuOnSelect={true}
-                          selectedOptionColor='brand.option'
-                          chakraStyles={chakraStyles}
-                        />
-                      </FormControl>
-                    )}
-                  />
-
                   <FormControl id='qf-event-name-control' isRequired={!isCommunityEvent} mb={8}>
                     <FormLabel htmlFor='QFeventName' mb={1}>
                       <PageText display='inline' fontSize='input'>
@@ -1421,8 +1289,8 @@ export const PSESponsorshipsForm: FC = () => {
                     </FormLabel>
 
                     <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                      What&apos;s the name of the event you&apos;ll be running through round with?
-                      If not applicable, write &quot;N/A&quot;
+                      What&apos;s the name of the event you&apos;ll be running the round with? If
+                      not applicable, write &quot;N/A&quot;
                     </PageText>
 
                     <Input
@@ -1453,46 +1321,6 @@ export const PSESponsorshipsForm: FC = () => {
                       <Box mt={1}>
                         <PageText as='small' fontSize='helpText' color='red.500'>
                           Event name cannot exceed 255 characters.
-                        </PageText>
-                      </Box>
-                    )}
-                  </FormControl>
-
-                  <FormControl id='website-control' mb={8}>
-                    <FormLabel htmlFor='website'>
-                      <PageText fontSize='input'>Website</PageText>
-                    </FormLabel>
-                    <PageText
-                      fontSize='input'
-                      position='absolute'
-                      bottom='15.5px'
-                      left={4}
-                      zIndex={9}
-                    >
-                      https://
-                    </PageText>
-                    <Input
-                      id='website'
-                      type='text'
-                      placeholder='yourwebsiteaddress.com'
-                      bg='white'
-                      borderRadius={0}
-                      borderColor='brand.border'
-                      h='56px'
-                      _placeholder={{ fontSize: 'input' }}
-                      position='relative'
-                      color='brand.paragraph'
-                      fontSize='input'
-                      pl={16}
-                      {...register('website', {
-                        maxLength: 255
-                      })}
-                    />
-
-                    {errors?.website?.type === 'maxLength' && (
-                      <Box mt={1}>
-                        <PageText as='small' fontSize='helpText' color='red.500'>
-                          Website cannot exceed 255 characters.
                         </PageText>
                       </Box>
                     )}
@@ -1536,34 +1364,78 @@ export const PSESponsorshipsForm: FC = () => {
                     )}
                   </FormControl>
 
-                  <FormControl id='round-date-control' isRequired={!isCommunityEvent} mb={8}>
-                    <FormLabel htmlFor='roundDate' mb={1}>
-                      <PageText display='inline' fontSize='input'>
-                        Round date
+                  <Flex direction={{ base: 'column', md: 'row' }}>
+                    <FormControl
+                      id='round-date-control'
+                      isRequired={!isCommunityEvent}
+                      mr={{ md: 12 }}
+                      mb={8}
+                    >
+                      <FormLabel htmlFor='roundDate' mb={1}>
+                        <PageText display='inline' fontSize='input'>
+                          Round date
+                        </PageText>
+                      </FormLabel>
+
+                      <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                        When do you expect to launch your QF round?
                       </PageText>
-                    </FormLabel>
 
-                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                      When do you expect to launch your QF round?
-                    </PageText>
+                      <Input
+                        id='roundDate'
+                        type='date'
+                        bg='white'
+                        borderRadius={0}
+                        borderColor='brand.border'
+                        h='56px'
+                        _placeholder={{ fontSize: 'input' }}
+                        color='brand.paragraph'
+                        fontSize='input'
+                        mt={3}
+                        // has same SF field as eventDate
+                        {...register('eventDate', {
+                          required: !isCommunityEvent
+                        })}
+                      />
+                    </FormControl>
 
-                    <Input
-                      id='roundDate'
-                      type='date'
-                      bg='white'
-                      borderRadius={0}
-                      borderColor='brand.border'
-                      h='56px'
-                      _placeholder={{ fontSize: 'input' }}
-                      color='brand.paragraph'
-                      fontSize='input'
-                      mt={3}
-                      // has same SF field as eventDate
-                      {...register('eventDate', {
-                        required: !isCommunityEvent
-                      })}
-                    />
-                  </FormControl>
+                    <FormControl id='round-size-participants-control' mb={8}>
+                      <FormLabel htmlFor='roundSizeParticipants' mb={1}>
+                        <PageText display='inline' fontSize='input'>
+                          Round size - Participants
+                        </PageText>
+                      </FormLabel>
+
+                      <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                        How many participants do you estimate will vote or contribute to the round?
+                      </PageText>
+
+                      <Input
+                        id='roundSizeParticipants'
+                        type='number'
+                        bg='white'
+                        borderRadius={0}
+                        borderColor='brand.border'
+                        h='56px'
+                        _placeholder={{ fontSize: 'input' }}
+                        color='brand.paragraph'
+                        fontSize='input'
+                        mt={3}
+                        // Same SF field as expectedAttendees
+                        {...register('expectedAttendees', {
+                          maxLength: 18
+                        })}
+                      />
+
+                      {errors?.expectedAttendees?.type === 'maxLength' && (
+                        <Box mt={1}>
+                          <PageText as='small' fontSize='helpText' color='red.500'>
+                            Expected number cannot exceed 18 characters.
+                          </PageText>
+                        </Box>
+                      )}
+                    </FormControl>
+                  </Flex>
 
                   <FormControl id='round-size-projects-control' mb={8}>
                     <FormLabel htmlFor='roundSizeProjects' mb={1}>
@@ -1597,48 +1469,6 @@ export const PSESponsorshipsForm: FC = () => {
                       <Box mt={1}>
                         <PageText as='small' fontSize='helpText' color='red.500'>
                           Round size - Projects cannot exceed 2000 characters.
-                        </PageText>
-                      </Box>
-                    )}
-                  </FormControl>
-
-                  <FormControl
-                    id='round-size-participants-control'
-                    mb={8}
-                    w={{ md: '50%' }}
-                    pr={{ lg: 6 }}
-                  >
-                    <FormLabel htmlFor='roundSizeParticipants' mb={1}>
-                      <PageText display='inline' fontSize='input'>
-                        Round size - Participants
-                      </PageText>
-                    </FormLabel>
-
-                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                      How many participants do you estimate will vote or contribute to the round?
-                    </PageText>
-
-                    <Input
-                      id='roundSizeParticipants'
-                      type='number'
-                      bg='white'
-                      borderRadius={0}
-                      borderColor='brand.border'
-                      h='56px'
-                      _placeholder={{ fontSize: 'input' }}
-                      color='brand.paragraph'
-                      fontSize='input'
-                      mt={3}
-                      // Same SF field as expectedAttendees
-                      {...register('expectedAttendees', {
-                        maxLength: 18
-                      })}
-                    />
-
-                    {errors?.expectedAttendees?.type === 'maxLength' && (
-                      <Box mt={1}>
-                        <PageText as='small' fontSize='helpText' color='red.500'>
-                          Expected number cannot exceed 18 characters.
                         </PageText>
                       </Box>
                     )}
