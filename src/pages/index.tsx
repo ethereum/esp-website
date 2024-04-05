@@ -85,7 +85,7 @@ const Home: NextPage = () => {
                 <GridItem alignSelf='center' mr={{ lg: 20, xl: 12 }}>
                   <Stack>
                     <PageSection as='h4' textAlign='left' mb={2}>
-                      2019
+                      2021
                     </PageSection>
 
                     <Box>
@@ -94,15 +94,15 @@ const Home: NextPage = () => {
                         fontWeight={200}
                         mb={1}
                       >
-                        $7.7{' '}
+                        136{' '}
                         <PageText as='span' fontSize='stats'>
-                          million
+                          projects
                         </PageText>
                       </PageText>
                     </Box>
 
                     <PageText fontSize='faq.question' fontWeight={400} mb={1}>
-                      68 projects
+                      $26.9 million
                     </PageText>
                   </Stack>
                 </GridItem>
@@ -117,7 +117,7 @@ const Home: NextPage = () => {
                 <GridItem alignSelf='center' mr={{ lg: 20, xl: 12 }}>
                   <Stack>
                     <PageSection as='h4' textAlign='left' mb={2}>
-                      2020
+                      2022
                     </PageSection>
 
                     <Box>
@@ -126,15 +126,15 @@ const Home: NextPage = () => {
                         fontWeight={200}
                         mb={1}
                       >
-                        $12.9{' '}
+                        397{' '}
                         <PageText as='span' fontSize='stats'>
-                          million
+                          projects
                         </PageText>
                       </PageText>
                     </Box>
 
                     <PageText fontSize='faq.question' fontWeight={400} mb={1}>
-                      99 projects
+                      $30.0 million
                     </PageText>
                   </Stack>
                 </GridItem>
@@ -154,7 +154,7 @@ const Home: NextPage = () => {
                 <GridItem alignSelf='center' mb={{ base: 8, lg: 0 }}>
                   <Stack>
                     <PageSection as='h4' textAlign='left' mb={2}>
-                      2021
+                      2023
                     </PageSection>
 
                     <Box>
@@ -163,15 +163,15 @@ const Home: NextPage = () => {
                         fontWeight={200}
                         mb={1}
                       >
-                        $26.9{' '}
+                        498{' '}
                         <PageText as='span' fontSize='stats'>
-                          million
+                          projects
                         </PageText>
                       </PageText>
                     </Box>
 
                     <PageText fontSize='faq.question' fontWeight={400} mb={1}>
-                      136 projects
+                      $61.1 million
                     </PageText>
                   </Stack>
                 </GridItem>
