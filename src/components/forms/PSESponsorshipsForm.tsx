@@ -322,41 +322,43 @@ export const PSESponsorshipsForm: FC = () => {
             </>
           )}
 
-          <FormControl id='individual-or-team-summary-control' mb={8}>
-            <FormLabel htmlFor='individualOrTeamSummary' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Individual or team summary
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Tell us about yourself, your experience, and your motivations. Feel free to link to
-              any biography pages, LinkedIn pages, etc.
-            </PageText>
-
-            <Textarea
-              id='individualOrTeamSummary'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('individualOrTeamSummary', {
-                maxLength: 2000
-              })}
-            />
-
-            {errors?.individualOrTeamSummary?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Team summary cannot exceed 2000 characters.
+          {isCommunityEvent && (
+            <FormControl id='individual-or-team-summary-control' mb={8}>
+              <FormLabel htmlFor='individualOrTeamSummary' mb={1}>
+                <PageText display='inline' fontSize='input'>
+                  Individual or team summary
                 </PageText>
-              </Box>
-            )}
-          </FormControl>
+              </FormLabel>
+
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Tell us about yourself, your experience, and your motivations. Feel free to link to
+                any biography pages, LinkedIn pages, etc.
+              </PageText>
+
+              <Textarea
+                id='individualOrTeamSummary'
+                bg='white'
+                borderRadius={0}
+                borderColor='brand.border'
+                _placeholder={{ fontSize: 'input' }}
+                color='brand.paragraph'
+                fontSize='input'
+                h='150px'
+                mt={3}
+                {...register('individualOrTeamSummary', {
+                  maxLength: 2000
+                })}
+              />
+
+              {errors?.individualOrTeamSummary?.type === 'maxLength' && (
+                <Box mt={1}>
+                  <PageText as='small' fontSize='helpText' color='red.500'>
+                    Team summary cannot exceed 2000 characters.
+                  </PageText>
+                </Box>
+              )}
+            </FormControl>
+          )}
 
           <FormControl id='company-control' isRequired mb={8}>
             <FormLabel htmlFor='company' mb={1}>
@@ -1324,8 +1326,8 @@ export const PSESponsorshipsForm: FC = () => {
                 )}
               </FormControl>
 
-              <FormControl id='individual-or-team-summary-control' mb={8}>
-                <FormLabel htmlFor='individualOrTeamSummary' mb={1}>
+              <FormControl id='qf-individual-or-team-summary-control' mb={8}>
+                <FormLabel htmlFor='QFIndividualOrTeamSummary' mb={1}>
                   <PageText display='inline' fontSize='input'>
                     Individual or team profile
                   </PageText>
@@ -1337,7 +1339,7 @@ export const PSESponsorshipsForm: FC = () => {
                 </PageText>
 
                 <Textarea
-                  id='individualOrTeamSummary'
+                  id='QFIndividualOrTeamSummary'
                   bg='white'
                   borderRadius={0}
                   borderColor='brand.border'
@@ -1346,6 +1348,7 @@ export const PSESponsorshipsForm: FC = () => {
                   fontSize='input'
                   h='150px'
                   mt={3}
+                  // Same SF field as individualOrTeamSummary
                   {...register('individualOrTeamSummary', {
                     maxLength: 2000
                   })}
@@ -1494,6 +1497,7 @@ export const PSESponsorshipsForm: FC = () => {
                   mt={3}
                   // has same SF field as eventDescription
                   {...register('eventDescription', {
+                    required: isCommunityEvent,
                     maxLength: 2000
                   })}
                 />
@@ -1507,7 +1511,7 @@ export const PSESponsorshipsForm: FC = () => {
                 )}
               </FormControl>
 
-              <FormControl id='round-date-control' mb={8}>
+              <FormControl id='round-date-control' isRequired={!isCommunityEvent} mb={8}>
                 <FormLabel htmlFor='roundDate' mb={1}>
                   <PageText display='inline' fontSize='input'>
                     Round date
@@ -1530,7 +1534,9 @@ export const PSESponsorshipsForm: FC = () => {
                   fontSize='input'
                   mt={3}
                   // has same SF field as eventDate
-                  {...register('eventDate')}
+                  {...register('eventDate', {
+                    required: !isCommunityEvent
+                  })}
                 />
               </FormControl>
 
@@ -1557,6 +1563,7 @@ export const PSESponsorshipsForm: FC = () => {
                   mt={3}
                   // Same SF field as targetAudience
                   {...register('targetAudience', {
+                    required: isCommunityEvent,
                     maxLength: 2000
                   })}
                 />
@@ -1672,6 +1679,7 @@ export const PSESponsorshipsForm: FC = () => {
                   mt={3}
                   // Same SF field as eventRequestedAmount
                   {...register('eventRequestedAmount', {
+                    required: isCommunityEvent,
                     maxLength: 255
                   })}
                 />
@@ -1708,6 +1716,7 @@ export const PSESponsorshipsForm: FC = () => {
                   mt={3}
                   // Same SF field as eventBudgetBreakdown
                   {...register('eventBudgetBreakdown', {
+                    required: isCommunityEvent,
                     maxLength: 2000
                   })}
                 />

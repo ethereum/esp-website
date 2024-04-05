@@ -165,7 +165,8 @@ export const api = {
           country: data.country.value,
           website: getWebsite(data.website),
           eventType: data.eventType.value,
-          eventFormat: data.eventFormat.value
+          eventFormat: data.eventFormat.value,
+          eventLocation: data.eventLocation ? data.eventLocation.trim() : ''
         })
       };
 
