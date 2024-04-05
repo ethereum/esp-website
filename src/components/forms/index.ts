@@ -8,4 +8,5 @@ export * from './SmallGrantsForm';
 export * from './DevconGrantsForm';
 export * from './EcodevGrantsForm';
 export * from './DataChallengeForm';
+export * from './EPFApplicationForm';
 export * from './fields';

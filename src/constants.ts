@@ -246,6 +246,7 @@ export const RUN_A_NODE_GRANTS_APPLY_URL = '/run-a-node-grants/apply';
 export const DATA_COLLECTION_APPLY_URL = '/data-collection-grants/apply';
 export const PSE_SPONSORSHIPS_APPLY_URL = '/pse-sponsorships/apply';
 export const DATA_CHALLENGE_APPLY_URL = '/data-challenge-4844/apply';
+export const EPF_APPLICATION_APPLY_URL = '/epf-application/apply';
 
 // grantee finance form
 export const GRANTEE_FINANCE_URL = '/applicants/grantee-finance';
@@ -262,6 +263,7 @@ export const RUN_A_NODE_GRANTS_THANK_YOU_PAGE_URL = '/run-a-node-grants/thank-yo
 export const DATA_COLLECTION_THANK_YOU_PAGE_URL = '/data-collection-grants/thank-you';
 export const PSE_SPONSORSHIPS_THANK_YOU_PAGE_URL = '/pse-sponsorships/thank-you';
 export const DATA_CHALLENGE_THANK_YOU_PAGE_URL = '/data-challenge-4844/thank-you';
+export const EPF_APPLICATION_THANK_YOU_PAGE_URL = '/epf-application/thank-you';
 
 // ethereum ecosystem
 export const ETHEREUM_ORG_URL = 'https://ethereum.org/';
@@ -374,6 +376,8 @@ export const ZK_GRANTS_PREVIEW_URL = 'https://esp.ethereum.foundation/images/zk-
 
 export const DATA_CHALLENGE_GRANTS_PREVIEW_URL =
   'https://esp.ethereum.foundation/images/data-challenge-4844-hero.jpg';
+
+export const EPF_APPLICATION_PREVIEW_URL = 'https://esp.ethereum.foundation/images/epf-hero.jpg';
 
 // Thank you and apply urls
 export const GRANTS_URLS = [DEVCON_GRANTS_APPLY_URL, DEVCON_GRANTS_THANK_YOU_PAGE_URL];

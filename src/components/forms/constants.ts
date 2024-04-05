@@ -91,6 +91,36 @@ export const DATA_CHALLENGE_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Other', label: 'Other' }
 ];
 
+export const EPF_APPLICATION_PROJECT_CATEGORY_OPTIONS = [
+  { value: 'Applied ZKP', label: 'Applied ZKP' },
+  { value: 'Community and Education', label: 'Community and Education' },
+  { value: 'Consensus layer', label: 'Consensus layer' },
+  {
+    value: 'Cryptography and zero knowledge proofs',
+    label: 'Cryptography and zero knowledge proofs'
+  },
+  { value: 'Cybersecurity', label: 'Cybersecurity' },
+  { value: 'Data Analysis', label: 'Data Analysis' },
+  { value: 'Data Visualization', label: 'Data Visualization' },
+  { value: 'Developer experience and tooling', label: 'Developer experience and tooling' },
+  { value: 'Economics', label: 'Economics' },
+  { value: 'Execution layer', label: 'Execution layer' },
+  { value: 'Formal Verification', label: 'Formal Verification' },
+  { value: 'General research', label: 'General research' },
+  { value: 'Governance', label: 'Governance' },
+  { value: 'Government', label: 'Government' },
+  { value: 'Hardware', label: 'Hardware' },
+  { value: 'Healthcare', label: 'Healthcare' },
+  { value: 'Layer 2', label: 'Layer 2' },
+  { value: 'Maximal Extractable Value (MEV)', label: 'Maximal Extractable Value (MEV)' },
+  { value: 'P2P networking', label: 'P2P networking' },
+  { value: 'Privacy', label: 'Privacy' },
+  { value: 'Protocol growth & support', label: 'Protocol growth & support' },
+  { value: 'Society and Regulatory', label: 'Society and Regulatory' },
+  { value: 'UX/UI', label: 'UX/UI' },
+  { value: 'Other', label: 'Other' }
+];
+
 // events
 export const EVENT_TYPE_OPTIONS = [
   { value: 'Conference', label: 'Conference' },
@@ -1600,4 +1630,5 @@ export const API_ECODEV_GRANTS = '/api/ecodev-grants';
 export const API_PSE_SPONSORSHIPS = '/api/pse-sponsorships';
 export const API_DATA_COLLECTION_GRANTS = '/api/data-collection-grants';
 export const API_DATA_CHALLENGE_GRANTS = '/api/data-challenge-grants';
+export const API_EPF_APPLICATION = '/api/epf-application';
 export const API_NEWSLETTER_SIGNUP_URL = '/api/newsletter-signup';
