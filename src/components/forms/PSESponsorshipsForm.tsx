@@ -415,7 +415,13 @@ export const PSESponsorshipsForm: FC = () => {
             control={control}
             defaultValue={{ value: '', label: '' }}
             render={({ field: { onChange }, fieldState: { error } }) => (
-              <FormControl id='event-type-control' mb={8} mr={{ md: 12 }} isRequired>
+              <FormControl
+                id='event-type-control'
+                mb={8}
+                pr={{ md: 6 }}
+                w={{ md: '50%' }}
+                isRequired
+              >
                 <FormLabel htmlFor='eventType'>
                   <PageText display='inline' fontSize='input'>
                     Category
