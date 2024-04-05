@@ -484,5 +484,7 @@ export interface PSESponsorshipsNextApiRequest extends NextApiRequest {
     eventBudgetBreakdown: string;
     eventRequestedAmount: string;
     additionalInfo: string;
+    contactTelegram: string;
+    whyEthereum: string;
   };
 }

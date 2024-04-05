@@ -37,7 +37,9 @@ async function handler(req: PSESponsorshipsNextApiRequest, res: NextApiResponse)
       confirmedSponsors: Confirmed_Sponsors__c,
       eventBudgetBreakdown: Proposed_Timeline__c,
       eventRequestedAmount: Sponsorship_Monetary_Request__c,
-      additionalInfo: Additional_Information__c
+      additionalInfo: Additional_Information__c,
+      contactTelegram: Alternative_Contact__c,
+      whyEthereum: Why_Ethereum__c
     } = body;
     const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
       process.env;
@@ -86,6 +88,8 @@ async function handler(req: PSESponsorshipsNextApiRequest, res: NextApiResponse)
         Sponsorship_Monetary_Request__c: Sponsorship_Monetary_Request__c.trim(),
         Additional_Information__c: Additional_Information__c.trim(),
         Category__c: Category__c.trim(),
+        Alternative_Contact__c: Alternative_Contact__c.trim(),
+        whyEthereum: Why_Ethereum__c.trim(),
         LeadSource: 'Webform',
         Pipeline_Entry__c: 'Privacy and Scaling',
         // Community event should map to SF_RECORD_TYPE_PSE_COMMUNITY_EVENT Lead Record Type
