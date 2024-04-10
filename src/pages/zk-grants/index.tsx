@@ -227,7 +227,7 @@ const RunANodeGrants: NextPage = () => {
 
                   <PageText>
                     Applications to this round will be reviewed and selected for funding by
-                    evalutors from Aztec, Ethereum Foundation, Polygon, Scroll, Taiko, and zkSync
+                    evaluators from Aztec, Ethereum Foundation, Polygon, Scroll, Taiko, and zkSync
                     focusing on the following criteria. Note: depending on the proposal, some
                     criteria might not be applicable:
                   </PageText>
