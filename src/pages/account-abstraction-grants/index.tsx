@@ -368,7 +368,7 @@ const AccountAbstractionGrants: NextPage = () => {
                       </Link>
                     </ListItem>
                     <ListItem>
-                      Join the Account Abstraction converation in the{' '}
+                      Join the Account Abstraction conversation in the{' '}
                       <Link
                         fontWeight={700}
                         color='brand.orange.100'
@@ -414,7 +414,7 @@ const AccountAbstractionGrants: NextPage = () => {
 
                     <FAQItem question='Why are budgets limited to $50,000?'>
                       <PageText>
-                        While recognizing this might not be enought to sustain projects in the long
+                        While recognizing this might not be enough to sustain projects in the long
                         term, the intent of the grants round is to foster and kick-start multiple
                         new projects related to Account Abstraction. Furthermore, projects can{' '}
                         <Link
