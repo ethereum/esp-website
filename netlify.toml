@@ -17,6 +17,10 @@
     "node_modules/next/dist/server/future/route-modules/pages/vendored/contexts/head-manager-context*",
   ]
 
+# TEMP override for testing purposes
+[context.deploy-preview.environment]
+  GOOGLE_GRANTS_SHEET_API_URL=https://docs.google.com/spreadsheets/d/e/2PACX-1vTa1MqNHUj0ilVyxNW6hOio_wzvV_KL8TDYIV8t66dHC77yQVdjqZbPdJV7IgYqpPvUFVEjOP64RvWb/pub?output=csv
+
 # Legacy pages from current site
 
 # Root langs routes

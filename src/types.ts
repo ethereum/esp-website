@@ -296,7 +296,6 @@ export interface NavLink {
 }
 
 export interface Grant {
-  Quarter: string;
   Category: string;
   Project: string;
   Recipient: string;
