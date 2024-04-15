@@ -12,7 +12,7 @@ import { Grant } from '../../types';
 
 // clean up empty grants
 const cleanUpGrants = (grants: Grant[]): Grant[] => {
-  return grants.filter(grant => grant.Project && grant.Recipient);
+  return grants.filter(grant => grant.Project);
 };
 
 // getStaticProps runs server-side only (on build-time)
