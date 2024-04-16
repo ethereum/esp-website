@@ -6,9 +6,14 @@ import Papa from 'papaparse';
 import { LatestGranteesList } from '../../components/forms';
 import { PageSection, PageText, PageMetadata } from '../../components/UI';
 
-import { CURRENT_GRANTS_QUARTERS, ESP_BLOG_URL } from '../../constants';
+import { ESP_BLOG_URL } from '../../constants';
 
 import { Grant } from '../../types';
+
+// clean up empty grants
+const cleanUpGrants = (grants: Grant[]): Grant[] => {
+  return grants.filter(grant => grant.Project);
+};
 
 // getStaticProps runs server-side only (on build-time)
 // https://nextjs.org/docs/basic-features/data-fetching/get-static-props#write-server-side-code-directly
@@ -19,7 +24,10 @@ export const getStaticProps: GetStaticProps = async context => {
       return new Promise<Grant[]>((resolve, reject) => {
         Papa.parse(res.data, {
           header: true,
-          complete: results => resolve(results.data as Grant[]),
+          complete: results => {
+            const grants = results.data as Grant[];
+            return resolve(cleanUpGrants(grants));
+          },
           error: err => reject(err.message)
         });
       });
@@ -38,8 +46,6 @@ interface Props {
 }
 
 const WhoWeSupport: NextPage<Props> = ({ grants }) => {
-  const grantsList = grants.filter(grant => CURRENT_GRANTS_QUARTERS.includes(grant.Quarter));
-
   return (
     <>
       <PageMetadata
@@ -84,9 +90,9 @@ const WhoWeSupport: NextPage<Props> = ({ grants }) => {
             </PageText>
           </section>
 
-          <section id='latest-grantees'>
+          <section id='recent-grantees'>
             <PageSection mb={6} textAlign='center'>
-              Latest Grantees
+              Recent Grantees
             </PageSection>
 
             <PageText mb={16}>
@@ -94,7 +100,7 @@ const WhoWeSupport: NextPage<Props> = ({ grants }) => {
               periodically, so make sure to check back once in a while for updates!
             </PageText>
 
-            <LatestGranteesList grantsList={grantsList} />
+            <LatestGranteesList grantsList={grants} />
           </section>
         </Stack>
       </Box>
