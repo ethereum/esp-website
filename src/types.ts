@@ -251,7 +251,7 @@ export interface PSESponsorshipsFormData extends CaptchaForm {
   eventBudgetBreakdown: string; // SF API: Proposed_Timeline__c
   eventRequestedAmount: string; // SF API: Sponsorship_Monetary_Request__c
   additionalInfo: string; // SF API: Additional_Information__c
-  // Optional fields for Quadratic Funding Initiative option
+  // Optional fields for Quadratic Funding option
   contactTelegram: string; // SF API: Alternative_Contact__c
   whyEthereum: string; // SF API: Why_Ethereum__c
 }

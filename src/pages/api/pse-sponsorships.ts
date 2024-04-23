@@ -93,7 +93,7 @@ async function handler(req: PSESponsorshipsNextApiRequest, res: NextApiResponse)
         LeadSource: 'Webform',
         Pipeline_Entry__c: 'Privacy and Scaling',
         // Community event should map to SF_RECORD_TYPE_PSE_COMMUNITY_EVENT Lead Record Type
-        // Quadratic Funding Initiative should map to SF_RECORD_TYPE_PSE_QFI Lead Record Type
+        // Quadratic Funding should map to SF_RECORD_TYPE_PSE_QFI Lead Record Type
         RecordTypeId: isCommunityEvent
           ? process.env.SF_RECORD_TYPE_PSE_COMMUNITY_EVENT!
           : process.env.SF_RECORD_TYPE_PSE_QFI!

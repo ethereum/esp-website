@@ -1278,7 +1278,7 @@ export const PSESponsorshipsForm: FC = () => {
                 </>
               )}
 
-              {/* Quadratic Funding Initiative */}
+              {/* Quadratic Funding */}
               {!isCommunityEvent && (
                 <>
                   <FormControl id='qf-event-name-control' isRequired={!isCommunityEvent} mb={8}>

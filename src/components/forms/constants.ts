@@ -1544,7 +1544,8 @@ export const APPLYING_AS_OPTIONS = [
 // PSE Sponsorship
 export const PSE_SPONSORSHIP_CATEGORY_OPTIONS = [
   { value: 'Community event', label: 'Community event' },
-  { value: 'Quadratic Funding Initiative', label: 'Quadratic Funding Initiative' }
+  { value: 'Quadratic Funding', label: 'Quadratic Funding' },
+  { value: 'Retroactive Public Goods Funding', label: 'Retroactive Public Goods Funding' }
 ];
 
 // office hours
