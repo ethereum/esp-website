@@ -163,7 +163,10 @@ export const api = {
           company: data.company ? data.company : `${data.firstName} ${data.lastName}`,
           category: data.category.value,
           country: data.country.value,
-          website: getWebsite(data.website)
+          website: getWebsite(data.website),
+          // `eventType` and `eventFormat` are available for 'Community Event' category only
+          eventType: data.eventType?.value ?? '',
+          eventFormat: data.eventFormat?.value ?? ''
         })
       };
 

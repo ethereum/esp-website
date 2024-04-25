@@ -327,7 +327,7 @@ export const PSESponsorshipsForm: FC = () => {
             </FormLabel>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Tell us about yourself, your experience, and your motivations. Feel free to link to
+              Tell us about your team and experience. Please include contact information and link to
               any biography pages, LinkedIn pages, etc.
             </PageText>
 
@@ -1334,8 +1334,8 @@ export const PSESponsorshipsForm: FC = () => {
                     </FormLabel>
 
                     <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                      A short description of the QF round. What is the goal of the round and who is
-                      the intended audience?
+                      A short description of the round. What is the goal of the round and who is the
+                      intended audience?
                     </PageText>
 
                     <Textarea
@@ -1378,7 +1378,7 @@ export const PSESponsorshipsForm: FC = () => {
                       </FormLabel>
 
                       <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                        When do you expect to launch your QF round?
+                        When do you expect to launch your round?
                       </PageText>
 
                       <Input
@@ -1476,7 +1476,7 @@ export const PSESponsorshipsForm: FC = () => {
 
                   <FormControl id='qf-round-website-control' mb={8}>
                     <FormLabel htmlFor='QFRoundWebsite' mb={1}>
-                      <PageText fontSize='input'>QF Round Website?</PageText>
+                      <PageText fontSize='input'>Round Website?</PageText>
                     </FormLabel>
 
                     <PageText as='small' fontSize='helpText' color='brand.helpText'>
@@ -1517,7 +1517,7 @@ export const PSESponsorshipsForm: FC = () => {
                     </FormLabel>
 
                     <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                      What is the total amount in USD you&apos;re seeking (including for the QF
+                      What is the total amount in USD you&apos;re seeking (including for the
                       matching pool)?
                     </PageText>
 
