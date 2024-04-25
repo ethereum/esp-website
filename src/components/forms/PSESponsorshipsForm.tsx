@@ -525,6 +525,7 @@ export const PSESponsorshipsForm: FC = () => {
             name='category'
             control={control}
             defaultValue={{ value: '', label: '' }}
+            rules={{ required: true, validate: selected => selected.value !== '' }}
             render={({ field: { onChange }, fieldState: { error } }) => (
               <FormControl id='category-control' mb={8} pr={{ md: 6 }} w={{ md: '50%' }} isRequired>
                 <FormLabel htmlFor='category'>
