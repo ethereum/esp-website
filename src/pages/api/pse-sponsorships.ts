@@ -15,6 +15,7 @@ async function handler(req: PSESponsorshipsNextApiRequest, res: NextApiResponse)
       individualOrTeam: Individual_or_Team__c,
       individualOrTeamSummary: Team_Profile__c,
       company: Company,
+      category: Category__c,
       city: npsp__CompanyCity__c,
       country: npsp__CompanyCountry__c,
       website: Website,
@@ -36,7 +37,9 @@ async function handler(req: PSESponsorshipsNextApiRequest, res: NextApiResponse)
       confirmedSponsors: Confirmed_Sponsors__c,
       eventBudgetBreakdown: Proposed_Timeline__c,
       eventRequestedAmount: Sponsorship_Monetary_Request__c,
-      additionalInfo: Additional_Information__c
+      additionalInfo: Additional_Information__c,
+      contactTelegram: Alternative_Contact__c,
+      whyEthereum: Why_Ethereum__c
     } = body;
     const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
       process.env;
@@ -53,6 +56,8 @@ async function handler(req: PSESponsorshipsNextApiRequest, res: NextApiResponse)
         return resolve();
       }
 
+      const isCommunityEvent = Category__c.trim() == 'Community event';
+
       const application = {
         FirstName: FirstName.trim(),
         LastName: LastName.trim(),
@@ -60,32 +65,38 @@ async function handler(req: PSESponsorshipsNextApiRequest, res: NextApiResponse)
         Individual_or_Team__c: Individual_or_Team__c.trim(),
         Team_Profile__c: Team_Profile__c.trim(),
         Company: Company.trim(),
-        npsp__CompanyCity__c: npsp__CompanyCity__c.trim(),
+        npsp__CompanyCity__c: (npsp__CompanyCity__c ?? '').trim(),
         npsp__CompanyCountry__c: npsp__CompanyCountry__c.trim(),
         Website: Website.trim(),
         Twitter__c: Twitter__c.trim(),
         Project_Name__c: Project_Name__c.trim(),
         Sponsorship_Date__c: Sponsorship_Date__c.trim(),
-        Previous_Work__c: Previous_Work__c.trim(),
+        Previous_Work__c: (Previous_Work__c ?? '').trim(),
         Sponsorship_Link__c: Sponsorship_Link__c.trim(),
         Sponsorship_Details__c: Sponsorship_Details__c.trim(),
-        Sponsorship_Request__c: Sponsorship_Request__c.trim(),
-        Referrals__c: Referrals__c.trim(),
-        PSE_Rationale__c: PSE_Rationale__c.trim(),
+        Sponsorship_Request__c: (Sponsorship_Request__c ?? '').trim(),
+        Referrals__c: (Referrals__c ?? '').trim(),
+        PSE_Rationale__c: (PSE_Rationale__c ?? '').trim(),
         Type_of_Event__c: Type_of_Event__c.trim(),
         In_Person__c: In_Person__c.trim(),
-        Event_Location__c: Event_Location__c.trim(),
+        Event_Location__c: (Event_Location__c ?? '').trim(),
         Estimated_Number_of_Attendees__c,
         Target_Audience__c: Target_Audience__c.trim(),
-        Confirmed_Speakers__c: Confirmed_Speakers__c.trim(),
-        Confirmed_Sponsors__c: Confirmed_Sponsors__c.trim(),
+        Confirmed_Speakers__c: (Confirmed_Speakers__c ?? '').trim(),
+        Confirmed_Sponsors__c: (Confirmed_Sponsors__c ?? '').trim(),
         Proposed_Timeline__c: Proposed_Timeline__c.trim(),
         Sponsorship_Monetary_Request__c: Sponsorship_Monetary_Request__c.trim(),
-        Additional_Information__c: Additional_Information__c.trim(),
-        Category__c: 'Community event', // this value is hardwired for PSE Sponsorships
+        Additional_Information__c: (Additional_Information__c ?? '').trim(),
+        Category__c: Category__c.trim(),
+        Alternative_Contact__c: (Alternative_Contact__c ?? '').trim(),
+        Why_Ethereum__c: (Why_Ethereum__c ?? '').trim(),
         LeadSource: 'Webform',
         Pipeline_Entry__c: 'Privacy and Scaling',
-        RecordTypeId: process.env.SF_RECORD_TYPE_PSE_SPONSORSHIPS!
+        // Community event should map to SF_RECORD_TYPE_PSE_COMMUNITY_EVENT Lead Record Type
+        // Quadratic Funding should map to SF_RECORD_TYPE_PSE_QFI Lead Record Type
+        RecordTypeId: isCommunityEvent
+          ? process.env.SF_RECORD_TYPE_PSE_COMMUNITY_EVENT!
+          : process.env.SF_RECORD_TYPE_PSE_QFI!
       };
 
       // Single record creation

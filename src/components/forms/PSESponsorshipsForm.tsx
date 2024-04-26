@@ -33,7 +33,9 @@ import {
   TEAM,
   ONLINE_EVENT,
   IN_PERSON_EVENT,
-  HYBRID_EVENT
+  HYBRID_EVENT,
+  PSE_SPONSORSHIP_CATEGORY_OPTIONS,
+  COMMUNITY_EVENT
 } from './constants';
 import { PSE_SPONSORSHIPS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
@@ -45,6 +47,8 @@ export const PSESponsorshipsForm: FC = () => {
   const toast = useToast();
   const [individualOrTeam, setIndividualOrTeam] = useState<IndividualOrTeam>(INDIVIDUAL);
   const [eventLocation, setEventLocation] = useState<EventFormat>(ONLINE_EVENT);
+  const [isCommunityEvent, setIsCommunityEvent] = useState(true);
+  const [categoryIsNotEmpty, setCategoryIsNotEmpty] = useState(false);
 
   const HAS_EVENT_LOCATION = eventLocation === IN_PERSON_EVENT || eventLocation === HYBRID_EVENT;
 
@@ -262,60 +266,58 @@ export const PSESponsorshipsForm: FC = () => {
             )}
           />
 
-          <Box display={individualOrTeam === TEAM ? 'block' : 'none'}>
-            <Fade in={individualOrTeam === TEAM} delay={0.25}>
-              <FormControl
-                id='individual-or-team-control'
-                isRequired={individualOrTeam === TEAM}
-                mb={8}
-              >
-                <FormLabel htmlFor='individualOrTeam'>
-                  <PageText display='inline' fontSize='input'>
-                    Name of organization or entity
-                  </PageText>
-                </FormLabel>
-                <Input
-                  id='individualOrTeam'
-                  type='text'
-                  placeholder="Enter the name of organization or entity you're submitting for"
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  {...register('individualOrTeamSummary', {
-                    required: individualOrTeam === TEAM,
-                    maxLength: 255,
-                    validate: value => !containURL(value)
-                  })}
-                />
+          {individualOrTeam === TEAM && (
+            <>
+              <Fade in={individualOrTeam === TEAM} delay={0.25}>
+                <FormControl id='company-control' isRequired={individualOrTeam === TEAM} mb={8}>
+                  <FormLabel htmlFor='company'>
+                    <PageText display='inline' fontSize='input'>
+                      Name of organization or entity
+                    </PageText>
+                  </FormLabel>
+                  <Input
+                    id='company'
+                    type='text'
+                    placeholder="Enter the name of organization or entity you're submitting for"
+                    bg='white'
+                    borderRadius={0}
+                    borderColor='brand.border'
+                    h='56px'
+                    _placeholder={{ fontSize: 'input' }}
+                    color='brand.paragraph'
+                    fontSize='input'
+                    {...register('company', {
+                      required: individualOrTeam === TEAM,
+                      maxLength: 255,
+                      validate: value => !containURL(value)
+                    })}
+                  />
 
-                {errors?.individualOrTeam?.type === 'required' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Organization name is required.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.individualOrTeam?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Organization name cannot exceed 255 characters.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.individualOrTeam?.type === 'validate' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Organization name cannot contain a URL.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
-            </Fade>
-          </Box>
+                  {errors?.company?.type === 'required' && (
+                    <Box mt={1}>
+                      <PageText as='small' fontSize='helpText' color='red.500'>
+                        Organization name is required.
+                      </PageText>
+                    </Box>
+                  )}
+                  {errors?.company?.type === 'maxLength' && (
+                    <Box mt={1}>
+                      <PageText as='small' fontSize='helpText' color='red.500'>
+                        Organization name cannot exceed 255 characters.
+                      </PageText>
+                    </Box>
+                  )}
+                  {errors?.company?.type === 'validate' && (
+                    <Box mt={1}>
+                      <PageText as='small' fontSize='helpText' color='red.500'>
+                        Organization name cannot contain a URL.
+                      </PageText>
+                    </Box>
+                  )}
+                </FormControl>
+              </Fade>
+            </>
+          )}
 
           <FormControl id='individual-or-team-summary-control' mb={8}>
             <FormLabel htmlFor='individualOrTeamSummary' mb={1}>
@@ -325,7 +327,7 @@ export const PSESponsorshipsForm: FC = () => {
             </FormLabel>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Tell us about yourself, your experience, and your motivations. Feel free to link to
+              Tell us about your team and experience. Please include contact information and link to
               any biography pages, LinkedIn pages, etc.
             </PageText>
 
@@ -348,58 +350,6 @@ export const PSESponsorshipsForm: FC = () => {
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
                   Team summary cannot exceed 2000 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='company-control' isRequired mb={8}>
-            <FormLabel htmlFor='company' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Name of organization or entity
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Name of your team or entity you&apos;re submitting for. If your organization
-              doesn&apos;t have a formal name, just try to describe it in a few words!
-            </PageText>
-
-            <Input
-              id='company'
-              type='text'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-              {...register('company', {
-                required: true,
-                maxLength: 255,
-                validate: value => !containURL(value)
-              })}
-            />
-
-            {errors?.company?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Organization name is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.company?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Organization name cannot exceed 255 characters.
-                </PageText>
-              </Box>
-            )}
-            {errors?.company?.type === 'validate' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Organization name cannot contain a URL.
                 </PageText>
               </Box>
             )}
@@ -441,7 +391,7 @@ export const PSESponsorshipsForm: FC = () => {
                 control={control}
                 defaultValue={{ value: '', label: '' }}
                 render={({ field: { onChange } }) => (
-                  <FormControl id='country-control' isRequired>
+                  <FormControl id='country-control' isRequired={isCommunityEvent}>
                     <FormLabel htmlFor='country'>
                       <PageText display='inline' fontSize='input'>
                         Country
@@ -464,7 +414,7 @@ export const PSESponsorshipsForm: FC = () => {
             </Flex>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Where are you and your team located? This is optional
+              Where are you and your team located? This is optional.
             </PageText>
           </Flex>
 
@@ -538,19 +488,17 @@ export const PSESponsorshipsForm: FC = () => {
             )}
           </FormControl>
 
-          <FormControl id='event-name-control' isRequired mb={8}>
-            <FormLabel htmlFor='eventName' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Event name
-              </PageText>
+          <FormControl id='contact-telegram' w={{ md: '50%' }} pr={{ md: 6 }} mb={8}>
+            <FormLabel htmlFor='contact-telegram' mb={1}>
+              <PageText fontSize='input'>Contact Telegram</PageText>
             </FormLabel>
 
             <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              What&apos;s the official title of your event?
+              What is the Telegram handle of your primary contact person?
             </PageText>
 
             <Input
-              id='eventName'
+              id='contactTelegram'
               type='text'
               bg='white'
               borderRadius={0}
@@ -559,679 +507,1119 @@ export const PSESponsorshipsForm: FC = () => {
               _placeholder={{ fontSize: 'input' }}
               color='brand.paragraph'
               fontSize='input'
-              mt={3}
-              {...register('eventName', {
-                required: true,
-                maxLength: 255
+              {...register('contactTelegram', {
+                maxLength: 150
               })}
             />
 
-            {errors?.eventName?.type === 'required' && (
+            {errors?.contactTelegram?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Event name is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.eventName?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Event name cannot exceed 255 characters.
+                  Contact Telegram handle cannot exceed 150 characters.
                 </PageText>
               </Box>
             )}
           </FormControl>
 
-          <FormControl id='event-date-control' isRequired mb={8}>
-            <FormLabel htmlFor='eventDate' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Event date
-              </PageText>
-            </FormLabel>
+          <Controller
+            name='category'
+            control={control}
+            defaultValue={{ value: '', label: '' }}
+            rules={{ required: true, validate: selected => selected.value !== '' }}
+            render={({ field: { onChange }, fieldState: { error } }) => (
+              <FormControl id='category-control' mb={8} pr={{ md: 6 }} w={{ md: '50%' }} isRequired>
+                <FormLabel htmlFor='category'>
+                  <PageText display='inline' fontSize='input'>
+                    Category
+                  </PageText>
+                </FormLabel>
 
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Please enter the first date of your event (MM/DD/YYYY)
-            </PageText>
-
-            <Input
-              id='eventDate'
-              type='date'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-              {...register('eventDate', {
-                required: true
-              })}
-            />
-
-            {errors?.eventDate?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Event date is required.
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  Please choose a category that your project best fits in. Additional questions will
+                  appear based on your selection.
                 </PageText>
-              </Box>
-            )}
-          </FormControl>
 
-          <FormControl id='event-previous-work-control' mb={8}>
-            <FormLabel htmlFor='eventPreviousWork' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                List of any previous events you&apos;ve organized
-              </PageText>
-            </FormLabel>
+                <Select
+                  id='category'
+                  options={PSE_SPONSORSHIP_CATEGORY_OPTIONS}
+                  onChange={(e: any) => {
+                    onChange(e);
+                    setIsCommunityEvent(e.value === COMMUNITY_EVENT);
+                    setCategoryIsNotEmpty(true);
+                  }}
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
 
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              The more information the better!
-            </PageText>
-
-            <Textarea
-              id='eventPreviousWork'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('eventPreviousWork', {
-                maxLength: 2000
-              })}
-            />
-
-            {errors?.eventPreviousWork?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Previous work cannot exceed 2000 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='event-link-control' mb={8}>
-            <FormLabel htmlFor='eventLink' mb={1}>
-              <PageText fontSize='input'>
-                Is there a website for this event? Paste the link here.
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Meetup, Facebook page, event site, etc (URL only).
-            </PageText>
-
-            <Input
-              id='eventLink'
-              type='text'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-              {...register('eventLink', {
-                maxLength: 255
-              })}
-            />
-
-            {errors?.eventLink?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  URL cannot exceed 255 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='event-description-control' isRequired mb={8}>
-            <FormLabel htmlFor='eventDescription' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Describe your event
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              For example: Will your agenda include talks, workshops, discussions? What is your
-              planned format - round table, showcase or a more informal setting? What are your goals
-              for the event?
-            </PageText>
-
-            <Textarea
-              id='eventDescription'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('eventDescription', {
-                required: true,
-                maxLength: 2000
-              })}
-            />
-
-            {errors?.eventDescription?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Event details are required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.eventDescription?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Event details cannot exceed 2000 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='event-topics-control' isRequired mb={8}>
-            <FormLabel htmlFor='eventTopics' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Event topics
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Please briefly describe the topics you plan to cover at this event. For example:
-              staking, zero knowledge, defi, social impact, NFTs, etc.
-            </PageText>
-
-            <Textarea
-              id='eventTopics'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('eventTopics', {
-                required: true,
-                maxLength: 2000
-              })}
-            />
-
-            {errors?.eventTopics?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Event topics are required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.eventTopics?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Event topics cannot exceed 2000 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='referrals-control' mb={8}>
-            <FormLabel htmlFor='referrals' mb={1}>
-              <PageText fontSize='input'>Who referred you?</PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Please write the name of the person who shared this form with you.
-            </PageText>
-
-            <Input
-              id='referrals'
-              type='text'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              {...register('referrals', {
-                maxLength: 255
-              })}
-            />
-
-            {errors?.referrals?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Referrals info cannot exceed 255 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='pse-rationale-control' mb={8}>
-            <FormLabel htmlFor='pseRationale' mb={1}>
-              <PageText fontSize='input'>
-                What do you hope PSE&apos;s support will add to this event?
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Are there specific topics or values that are especially relevant to PSE? Why PSE
-              rather than EF generally?
-            </PageText>
-
-            <Textarea
-              id='pseRationale'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('pseRationale', {
-                maxLength: 2000
-              })}
-            />
-
-            {errors?.pseRationale?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  The reasons cannot exceed 2000 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <Flex direction={{ base: 'column', lg: 'row' }}>
-            <Controller
-              name='eventType'
-              control={control}
-              defaultValue={{ value: '', label: '' }}
-              render={({ field: { onChange }, fieldState: { error } }) => (
-                <FormControl id='event-type-control' mb={8} mr={{ md: 12 }}>
-                  <FormLabel htmlFor='eventType'>
-                    <PageText display='inline' fontSize='input'>
-                      What type of event is this?
+                {error && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Category is required.
                     </PageText>
-                  </FormLabel>
+                  </Box>
+                )}
+              </FormControl>
+            )}
+          />
 
-                  <Select
-                    id='eventType'
-                    options={EVENT_TYPE_OPTIONS}
-                    onChange={onChange}
-                    components={{ DropdownIndicator }}
-                    placeholder='Select'
-                    closeMenuOnSelect={true}
-                    selectedOptionColor='brand.option'
-                    chakraStyles={chakraStyles}
-                  />
-                </FormControl>
-              )}
-            />
-
-            <Controller
-              name='eventFormat'
-              control={control}
-              rules={{
-                required: true,
-                validate: selected => selected.value !== ''
-              }}
-              defaultValue={{ value: '', label: '' }}
-              render={({ field: { onChange }, fieldState: { error } }) => (
-                <FormControl id='event-format-control' isRequired mb={8}>
-                  <FormLabel htmlFor='eventFormat'>
-                    <PageText display='inline' fontSize='input'>
-                      Is your event in-person or online?
-                    </PageText>
-                  </FormLabel>
-
-                  <Select
-                    id='eventFormat'
-                    options={EVENT_FORMAT_OPTIONS}
-                    onChange={(value: any) => {
-                      onChange(value);
-                      setEventLocation(value);
-                    }}
-                    components={{ DropdownIndicator }}
-                    placeholder='Select'
-                    closeMenuOnSelect={true}
-                    selectedOptionColor='brand.option'
-                    chakraStyles={chakraStyles}
-                  />
-
-                  {error && (
-                    <Box mt={1}>
-                      <PageText as='small' fontSize='helpText' color='red.500'>
-                        Event format is required.
+          {categoryIsNotEmpty && (
+            <>
+              {/* Community event */}
+              {isCommunityEvent && (
+                <>
+                  <FormControl id='event-name-control' isRequired={isCommunityEvent} mb={8}>
+                    <FormLabel htmlFor='eventName' mb={1}>
+                      <PageText display='inline' fontSize='input'>
+                        Event name
                       </PageText>
-                    </Box>
+                    </FormLabel>
+
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      What&apos;s the official title of your event?
+                    </PageText>
+
+                    <Input
+                      id='eventName'
+                      type='text'
+                      bg='white'
+                      borderRadius={0}
+                      borderColor='brand.border'
+                      h='56px'
+                      _placeholder={{ fontSize: 'input' }}
+                      color='brand.paragraph'
+                      fontSize='input'
+                      mt={3}
+                      {...register('eventName', {
+                        required: isCommunityEvent,
+                        maxLength: 255
+                      })}
+                    />
+
+                    {errors?.eventName?.type === 'required' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Event name is required.
+                        </PageText>
+                      </Box>
+                    )}
+                    {errors?.eventName?.type === 'maxLength' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Event name cannot exceed 255 characters.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
+
+                  <FormControl
+                    id='event-date-control'
+                    isRequired={isCommunityEvent}
+                    w={{ md: '50%' }}
+                    pr={{ md: 6 }}
+                    mb={8}
+                  >
+                    <FormLabel htmlFor='eventDate' mb={1}>
+                      <PageText display='inline' fontSize='input'>
+                        Event date
+                      </PageText>
+                    </FormLabel>
+
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      Please enter the first date of your event (MM/DD/YYYY)
+                    </PageText>
+
+                    <Input
+                      id='eventDate'
+                      type='date'
+                      bg='white'
+                      borderRadius={0}
+                      borderColor='brand.border'
+                      h='56px'
+                      _placeholder={{ fontSize: 'input' }}
+                      color='brand.paragraph'
+                      fontSize='input'
+                      mt={3}
+                      {...register('eventDate', {
+                        required: isCommunityEvent
+                      })}
+                    />
+
+                    {errors?.eventDate?.type === 'required' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Event date is required.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
+
+                  <FormControl id='event-previous-work-control' mb={8}>
+                    <FormLabel htmlFor='eventPreviousWork' mb={1}>
+                      <PageText display='inline' fontSize='input'>
+                        List of any previous events you&apos;ve organized
+                      </PageText>
+                    </FormLabel>
+
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      The more information the better!
+                    </PageText>
+
+                    <Textarea
+                      id='eventPreviousWork'
+                      bg='white'
+                      borderRadius={0}
+                      borderColor='brand.border'
+                      _placeholder={{ fontSize: 'input' }}
+                      color='brand.paragraph'
+                      fontSize='input'
+                      h='150px'
+                      mt={3}
+                      {...register('eventPreviousWork', {
+                        maxLength: 2000
+                      })}
+                    />
+
+                    {errors?.eventPreviousWork?.type === 'maxLength' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Previous work cannot exceed 2000 characters.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
+
+                  <FormControl id='event-link-control' mb={8}>
+                    <FormLabel htmlFor='eventLink' mb={1}>
+                      <PageText fontSize='input'>
+                        Is there a website for this event? Paste the link here.
+                      </PageText>
+                    </FormLabel>
+
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      Meetup, Facebook page, event site, etc (URL only).
+                    </PageText>
+
+                    <Input
+                      id='eventLink'
+                      type='text'
+                      bg='white'
+                      borderRadius={0}
+                      borderColor='brand.border'
+                      h='56px'
+                      _placeholder={{ fontSize: 'input' }}
+                      color='brand.paragraph'
+                      fontSize='input'
+                      mt={3}
+                      {...register('eventLink', {
+                        maxLength: 255
+                      })}
+                    />
+
+                    {errors?.eventLink?.type === 'maxLength' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          URL cannot exceed 255 characters.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
+
+                  <FormControl id='event-description-control' isRequired={isCommunityEvent} mb={8}>
+                    <FormLabel htmlFor='eventDescription' mb={1}>
+                      <PageText display='inline' fontSize='input'>
+                        Describe your event
+                      </PageText>
+                    </FormLabel>
+
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      For example: Will your agenda include talks, workshops, discussions? What is
+                      your planned format - round table, showcase or a more informal setting? What
+                      are your goals for the event?
+                    </PageText>
+
+                    <Textarea
+                      id='eventDescription'
+                      bg='white'
+                      borderRadius={0}
+                      borderColor='brand.border'
+                      _placeholder={{ fontSize: 'input' }}
+                      color='brand.paragraph'
+                      fontSize='input'
+                      h='150px'
+                      mt={3}
+                      {...register('eventDescription', {
+                        required: isCommunityEvent,
+                        maxLength: 2000
+                      })}
+                    />
+
+                    {errors?.eventDescription?.type === 'required' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Event details are required.
+                        </PageText>
+                      </Box>
+                    )}
+                    {errors?.eventDescription?.type === 'maxLength' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Event details cannot exceed 2000 characters.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
+
+                  <FormControl id='event-topics-control' isRequired={isCommunityEvent} mb={8}>
+                    <FormLabel htmlFor='eventTopics' mb={1}>
+                      <PageText display='inline' fontSize='input'>
+                        Event topics
+                      </PageText>
+                    </FormLabel>
+
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      Please briefly describe the topics you plan to cover at this event. For
+                      example: staking, zero knowledge, defi, social impact, NFTs, etc.
+                    </PageText>
+
+                    <Textarea
+                      id='eventTopics'
+                      bg='white'
+                      borderRadius={0}
+                      borderColor='brand.border'
+                      _placeholder={{ fontSize: 'input' }}
+                      color='brand.paragraph'
+                      fontSize='input'
+                      h='150px'
+                      mt={3}
+                      {...register('eventTopics', {
+                        required: isCommunityEvent,
+                        maxLength: 2000
+                      })}
+                    />
+
+                    {errors?.eventTopics?.type === 'required' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Event topics are required.
+                        </PageText>
+                      </Box>
+                    )}
+                    {errors?.eventTopics?.type === 'maxLength' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Event topics cannot exceed 2000 characters.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
+
+                  <FormControl id='referrals-control' mb={8}>
+                    <FormLabel htmlFor='referrals' mb={1}>
+                      <PageText fontSize='input'>Who referred you?</PageText>
+                    </FormLabel>
+
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      Please write the name of the person who shared this form with you.
+                    </PageText>
+
+                    <Input
+                      id='referrals'
+                      type='text'
+                      bg='white'
+                      borderRadius={0}
+                      borderColor='brand.border'
+                      h='56px'
+                      _placeholder={{ fontSize: 'input' }}
+                      color='brand.paragraph'
+                      fontSize='input'
+                      {...register('referrals', {
+                        maxLength: 255
+                      })}
+                    />
+
+                    {errors?.referrals?.type === 'maxLength' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Referrals info cannot exceed 255 characters.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
+
+                  <FormControl id='pse-rationale-control' mb={8}>
+                    <FormLabel htmlFor='pseRationale' mb={1}>
+                      <PageText fontSize='input'>
+                        What do you hope PSE&apos;s support will add to this event?
+                      </PageText>
+                    </FormLabel>
+
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      Are there specific topics or values that are especially relevant to PSE? Why
+                      PSE rather than EF generally?
+                    </PageText>
+
+                    <Textarea
+                      id='pseRationale'
+                      bg='white'
+                      borderRadius={0}
+                      borderColor='brand.border'
+                      _placeholder={{ fontSize: 'input' }}
+                      color='brand.paragraph'
+                      fontSize='input'
+                      h='150px'
+                      mt={3}
+                      {...register('pseRationale', {
+                        maxLength: 2000
+                      })}
+                    />
+
+                    {errors?.pseRationale?.type === 'maxLength' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          The reasons cannot exceed 2000 characters.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
+
+                  <Flex direction={{ base: 'column', lg: 'row' }}>
+                    <Controller
+                      name='eventType'
+                      control={control}
+                      defaultValue={{ value: '', label: '' }}
+                      render={({ field: { onChange } }) => (
+                        <FormControl id='event-type-control' mb={8} mr={{ md: 12 }}>
+                          <FormLabel htmlFor='eventType'>
+                            <PageText display='inline' fontSize='input'>
+                              What type of event is this?
+                            </PageText>
+                          </FormLabel>
+
+                          <Select
+                            id='eventType'
+                            options={EVENT_TYPE_OPTIONS}
+                            onChange={onChange}
+                            components={{ DropdownIndicator }}
+                            placeholder='Select'
+                            closeMenuOnSelect={true}
+                            selectedOptionColor='brand.option'
+                            chakraStyles={chakraStyles}
+                          />
+                        </FormControl>
+                      )}
+                    />
+
+                    <Controller
+                      name='eventFormat'
+                      control={control}
+                      rules={{
+                        required: isCommunityEvent,
+                        validate: selected => selected.value !== ''
+                      }}
+                      defaultValue={{ value: '', label: '' }}
+                      render={({ field: { onChange }, fieldState: { error } }) => (
+                        <FormControl id='event-format-control' isRequired={isCommunityEvent} mb={8}>
+                          <FormLabel htmlFor='eventFormat'>
+                            <PageText display='inline' fontSize='input'>
+                              Is your event in-person or online?
+                            </PageText>
+                          </FormLabel>
+
+                          <Select
+                            id='eventFormat'
+                            options={EVENT_FORMAT_OPTIONS}
+                            onChange={(value: any) => {
+                              onChange(value);
+                              setEventLocation(value);
+                            }}
+                            components={{ DropdownIndicator }}
+                            placeholder='Select'
+                            closeMenuOnSelect={true}
+                            selectedOptionColor='brand.option'
+                            chakraStyles={chakraStyles}
+                          />
+
+                          {error && (
+                            <Box mt={1}>
+                              <PageText as='small' fontSize='helpText' color='red.500'>
+                                Event format is required.
+                              </PageText>
+                            </Box>
+                          )}
+                        </FormControl>
+                      )}
+                    />
+                  </Flex>
+
+                  {HAS_EVENT_LOCATION && (
+                    <FormControl id='event-location-control' isRequired={HAS_EVENT_LOCATION} mb={8}>
+                      <FormLabel htmlFor='eventLocation'>
+                        <PageText display='inline' fontSize='input'>
+                          Event location
+                        </PageText>
+                      </FormLabel>
+
+                      <Input
+                        id='eventLocation'
+                        type='text'
+                        bg='white'
+                        borderRadius={0}
+                        borderColor='brand.border'
+                        h='56px'
+                        _placeholder={{ fontSize: 'input' }}
+                        color='brand.paragraph'
+                        fontSize='input'
+                        {...register('eventLocation', {
+                          required: HAS_EVENT_LOCATION,
+                          maxLength: 255
+                        })}
+                      />
+
+                      {errors?.eventLocation?.type === 'required' && (
+                        <Box mt={1}>
+                          <PageText as='small' fontSize='helpText' color='red.500'>
+                            Event location is required.
+                          </PageText>
+                        </Box>
+                      )}
+                      {errors?.eventLocation?.type === 'maxLength' && (
+                        <Box mt={1}>
+                          <PageText as='small' fontSize='helpText' color='red.500'>
+                            Event location cannot exceed 255 characters.
+                          </PageText>
+                        </Box>
+                      )}
+                    </FormControl>
                   )}
-                </FormControl>
+
+                  <FormControl
+                    id='expected-attendees-control'
+                    mb={8}
+                    w={{ md: '50%' }}
+                    pr={{ lg: 6 }}
+                  >
+                    <FormLabel htmlFor='expectedAttendees' mb={1}>
+                      <PageText display='inline' fontSize='input'>
+                        Expected number of attendees/registrants
+                      </PageText>
+                    </FormLabel>
+
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      Enter a whole number. Ex: 300.
+                    </PageText>
+
+                    <Input
+                      id='expectedAttendees'
+                      type='number'
+                      bg='white'
+                      borderRadius={0}
+                      borderColor='brand.border'
+                      h='56px'
+                      _placeholder={{ fontSize: 'input' }}
+                      color='brand.paragraph'
+                      fontSize='input'
+                      mt={3}
+                      {...register('expectedAttendees', {
+                        maxLength: 18
+                      })}
+                    />
+
+                    {errors?.expectedAttendees?.type === 'maxLength' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Expected number cannot exceed 18 characters.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
+
+                  <FormControl id='target-audience-control' isRequired={isCommunityEvent} mb={8}>
+                    <FormLabel htmlFor='targetAudience' mb={1}>
+                      <PageText display='inline' fontSize='input'>
+                        Target audience
+                      </PageText>
+                    </FormLabel>
+
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      Ex: developers, entrepreneurs, general community.
+                    </PageText>
+
+                    <Textarea
+                      id='targetAudience'
+                      bg='white'
+                      borderRadius={0}
+                      borderColor='brand.border'
+                      _placeholder={{ fontSize: 'input' }}
+                      color='brand.paragraph'
+                      fontSize='input'
+                      h='150px'
+                      mt={3}
+                      {...register('targetAudience', {
+                        required: isCommunityEvent,
+                        maxLength: 2000
+                      })}
+                    />
+
+                    {errors?.targetAudience?.type === 'required' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Target audience is required.
+                        </PageText>
+                      </Box>
+                    )}
+                    {errors?.targetAudience?.type === 'maxLength' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Target audience cannot exceed 2000 characters.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
+
+                  <FormControl id='confirmed-speakers-control' mb={8}>
+                    <FormLabel htmlFor='confirmedSpeakers' mb={1}>
+                      <PageText display='inline' fontSize='input'>
+                        List any confirmed speakers
+                      </PageText>
+                    </FormLabel>
+
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      Please list their full names and topic discussion. If you do not have any
+                      confirmed speakers, please explain why.
+                    </PageText>
+
+                    <Textarea
+                      id='confirmedSpeakers'
+                      bg='white'
+                      borderRadius={0}
+                      borderColor='brand.border'
+                      _placeholder={{ fontSize: 'input' }}
+                      color='brand.paragraph'
+                      fontSize='input'
+                      h='150px'
+                      mt={3}
+                      {...register('confirmedSpeakers', {
+                        maxLength: 2000
+                      })}
+                    />
+
+                    {errors?.confirmedSpeakers?.type === 'maxLength' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Confirmed speakers list cannot exceed 2000 characters.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
+
+                  <FormControl id='confirmed-sponsors-control' mb={8}>
+                    <FormLabel htmlFor='confirmedSponsors'>
+                      <PageText display='inline' fontSize='input'>
+                        List any confirmed sponsors
+                      </PageText>
+                    </FormLabel>
+                    <Textarea
+                      id='confirmedSponsors'
+                      bg='white'
+                      borderRadius={0}
+                      borderColor='brand.border'
+                      _placeholder={{ fontSize: 'input' }}
+                      color='brand.paragraph'
+                      fontSize='input'
+                      h='150px'
+                      {...register('confirmedSponsors', {
+                        maxLength: 2000
+                      })}
+                    />
+
+                    {errors?.confirmedSponsors?.type === 'maxLength' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Confirmed sponsors list cannot exceed 2000 characters.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
+
+                  <FormControl
+                    id='event-budget-breakdown-control'
+                    isRequired={isCommunityEvent}
+                    mb={8}
+                  >
+                    <FormLabel htmlFor='eventBudgetBreakdown' mb={1}>
+                      <PageText display='inline' fontSize='input'>
+                        Budget breakdown
+                      </PageText>
+                    </FormLabel>
+
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      Please itemize your anticipated costs - best estimates are ok if things are
+                      not yet confirmed or dependent on final attendee count.
+                    </PageText>
+
+                    <Textarea
+                      id='eventBudgetBreakdown'
+                      bg='white'
+                      borderRadius={0}
+                      borderColor='brand.border'
+                      _placeholder={{ fontSize: 'input' }}
+                      color='brand.paragraph'
+                      fontSize='input'
+                      h='150px'
+                      mt={3}
+                      {...register('eventBudgetBreakdown', {
+                        required: isCommunityEvent,
+                        maxLength: 2000
+                      })}
+                    />
+
+                    {errors?.eventBudgetBreakdown?.type === 'required' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Budget breakdown is required.
+                        </PageText>
+                      </Box>
+                    )}
+                    {errors?.eventBudgetBreakdown?.type === 'maxLength' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Budget breakdown cannot exceed 2000 characters.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
+
+                  <FormControl
+                    id='event-requested-amount-control'
+                    isRequired={isCommunityEvent}
+                    mb={8}
+                    w={{ md: '50%' }}
+                    pr={{ lg: 6 }}
+                  >
+                    <FormLabel htmlFor='eventRequestedAmount' mb={1}>
+                      <PageText display='inline' fontSize='input'>
+                        Requested sponsorship amount
+                      </PageText>
+                    </FormLabel>
+
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      Ex: USD 500.
+                    </PageText>
+
+                    <Input
+                      id='eventRequestedAmount'
+                      type='text'
+                      bg='white'
+                      borderRadius={0}
+                      borderColor='brand.border'
+                      h='56px'
+                      _placeholder={{ fontSize: 'input' }}
+                      color='brand.paragraph'
+                      fontSize='input'
+                      mt={3}
+                      {...register('eventRequestedAmount', {
+                        required: isCommunityEvent,
+                        maxLength: 255
+                      })}
+                    />
+
+                    {errors?.eventRequestedAmount?.type === 'required' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Requested amount is required.
+                        </PageText>
+                      </Box>
+                    )}
+                    {errors?.eventRequestedAmount?.type === 'maxLength' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Requested amount cannot exceed 255 characters.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
+
+                  <FormControl id='additional-info-control' mb={8}>
+                    <FormLabel htmlFor='additionalInfo' mb={1}>
+                      <PageText fontSize='input'>Anything else you&apos;d like to share?</PageText>
+                    </FormLabel>
+
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      Is there anything we should know about that hasn&apos;t been covered by the
+                      questions above? You also have the option to link any supporting documents or
+                      relevant sites here.
+                    </PageText>
+
+                    <Textarea
+                      id='additionalInfo'
+                      bg='white'
+                      borderRadius={0}
+                      borderColor='brand.border'
+                      _placeholder={{ fontSize: 'input' }}
+                      color='brand.paragraph'
+                      fontSize='input'
+                      h='150px'
+                      mt={3}
+                      {...register('additionalInfo', {
+                        maxLength: 2000
+                      })}
+                    />
+
+                    {errors?.additionalInfo?.type === 'maxLength' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Additional info cannot exceed 2000 characters.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
+                </>
               )}
-            />
-          </Flex>
 
-          <FormControl
-            display={HAS_EVENT_LOCATION ? 'block' : 'none'}
-            id='event-location-control'
-            isRequired={HAS_EVENT_LOCATION}
-            mb={8}
-          >
-            <FormLabel htmlFor='eventLocation'>
-              <PageText display='inline' fontSize='input'>
-                Event location
-              </PageText>
-            </FormLabel>
+              {/* Quadratic Funding */}
+              {!isCommunityEvent && (
+                <>
+                  <FormControl id='qf-event-name-control' isRequired={!isCommunityEvent} mb={8}>
+                    <FormLabel htmlFor='QFeventName' mb={1}>
+                      <PageText display='inline' fontSize='input'>
+                        Event name
+                      </PageText>
+                    </FormLabel>
 
-            <Input
-              id='eventLocation'
-              type='text'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              {...register('eventLocation', {
-                required: HAS_EVENT_LOCATION,
-                maxLength: 255
-              })}
-            />
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      What&apos;s the name of the event you&apos;ll be running the round with? If
+                      not applicable, write &quot;N/A&quot;
+                    </PageText>
 
-            {errors?.eventLocation?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Event location is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.eventLocation?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Event location cannot exceed 255 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+                    <Input
+                      id='QFeventName'
+                      type='text'
+                      bg='white'
+                      borderRadius={0}
+                      borderColor='brand.border'
+                      h='56px'
+                      _placeholder={{ fontSize: 'input' }}
+                      color='brand.paragraph'
+                      fontSize='input'
+                      mt={3}
+                      {...register('eventName', {
+                        required: !isCommunityEvent,
+                        maxLength: 255
+                      })}
+                    />
 
-          <FormControl id='expected-attendees-control' mb={8} w={{ md: '50%' }} pr={{ lg: 6 }}>
-            <FormLabel htmlFor='expectedAttendees' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Expected number of attendees/registrants
-              </PageText>
-            </FormLabel>
+                    {errors?.eventName?.type === 'required' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Event name is required.
+                        </PageText>
+                      </Box>
+                    )}
+                    {errors?.eventName?.type === 'maxLength' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Event name cannot exceed 255 characters.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
 
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Enter a whole number. Ex: 300.
-            </PageText>
+                  <FormControl id='round-description-control' mb={8}>
+                    <FormLabel htmlFor='roundDescription' mb={1}>
+                      <PageText display='inline' fontSize='input'>
+                        Round description
+                      </PageText>
+                    </FormLabel>
 
-            <Input
-              id='expectedAttendees'
-              type='number'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-              {...register('expectedAttendees', {
-                maxLength: 18
-              })}
-            />
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      A short description of the round. What is the goal of the round and who is the
+                      intended audience?
+                    </PageText>
 
-            {errors?.expectedAttendees?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Expected number cannot exceed 18 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+                    <Textarea
+                      id='roundDescription'
+                      bg='white'
+                      borderRadius={0}
+                      borderColor='brand.border'
+                      _placeholder={{ fontSize: 'input' }}
+                      color='brand.paragraph'
+                      fontSize='input'
+                      h='150px'
+                      mt={3}
+                      // has same SF field as eventDescription
+                      {...register('eventDescription', {
+                        required: isCommunityEvent,
+                        maxLength: 2000
+                      })}
+                    />
 
-          <FormControl id='target-audience-control' isRequired mb={8}>
-            <FormLabel htmlFor='targetAudience' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Target audience
-              </PageText>
-            </FormLabel>
+                    {errors?.eventDescription?.type === 'maxLength' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Round description details cannot exceed 2000 characters.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
 
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Ex: developers, entrepreneurs, general community.
-            </PageText>
+                  <Flex direction={{ base: 'column', md: 'row' }}>
+                    <FormControl
+                      id='round-date-control'
+                      isRequired={!isCommunityEvent}
+                      mr={{ md: 12 }}
+                      mb={8}
+                    >
+                      <FormLabel htmlFor='roundDate' mb={1}>
+                        <PageText display='inline' fontSize='input'>
+                          Round date
+                        </PageText>
+                      </FormLabel>
 
-            <Textarea
-              id='targetAudience'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('targetAudience', {
-                required: true,
-                maxLength: 2000
-              })}
-            />
+                      <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                        When do you expect to launch your round?
+                      </PageText>
 
-            {errors?.targetAudience?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Target audience is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.targetAudience?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Target audience cannot exceed 2000 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+                      <Input
+                        id='roundDate'
+                        type='date'
+                        bg='white'
+                        borderRadius={0}
+                        borderColor='brand.border'
+                        h='56px'
+                        _placeholder={{ fontSize: 'input' }}
+                        color='brand.paragraph'
+                        fontSize='input'
+                        mt={3}
+                        // has same SF field as eventDate
+                        {...register('eventDate', {
+                          required: !isCommunityEvent
+                        })}
+                      />
+                    </FormControl>
 
-          <FormControl id='confirmed-speakers-control' mb={8}>
-            <FormLabel htmlFor='confirmedSpeakers' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                List any confirmed speakers
-              </PageText>
-            </FormLabel>
+                    <FormControl id='round-size-participants-control' mb={8}>
+                      <FormLabel htmlFor='roundSizeParticipants' mb={1}>
+                        <PageText display='inline' fontSize='input'>
+                          Round size - Participants
+                        </PageText>
+                      </FormLabel>
 
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Please list their full names and topic discussion. If you do not have any confirmed
-              speakers, please explain why.
-            </PageText>
+                      <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                        How many participants do you estimate will vote or contribute to the round?
+                      </PageText>
 
-            <Textarea
-              id='confirmedSpeakers'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('confirmedSpeakers', {
-                maxLength: 2000
-              })}
-            />
+                      <Input
+                        id='roundSizeParticipants'
+                        type='number'
+                        bg='white'
+                        borderRadius={0}
+                        borderColor='brand.border'
+                        h='56px'
+                        _placeholder={{ fontSize: 'input' }}
+                        color='brand.paragraph'
+                        fontSize='input'
+                        mt={3}
+                        // Same SF field as expectedAttendees
+                        {...register('expectedAttendees', {
+                          maxLength: 18
+                        })}
+                      />
 
-            {errors?.confirmedSpeakers?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Confirmed speakers list cannot exceed 2000 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+                      {errors?.expectedAttendees?.type === 'maxLength' && (
+                        <Box mt={1}>
+                          <PageText as='small' fontSize='helpText' color='red.500'>
+                            Expected number cannot exceed 18 characters.
+                          </PageText>
+                        </Box>
+                      )}
+                    </FormControl>
+                  </Flex>
 
-          <FormControl id='confirmed-sponsors-control' mb={8}>
-            <FormLabel htmlFor='confirmedSponsors'>
-              <PageText display='inline' fontSize='input'>
-                List any confirmed sponsors
-              </PageText>
-            </FormLabel>
-            <Textarea
-              id='confirmedSponsors'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              {...register('confirmedSponsors', {
-                maxLength: 2000
-              })}
-            />
+                  <FormControl id='round-size-projects-control' mb={8}>
+                    <FormLabel htmlFor='roundSizeProjects' mb={1}>
+                      <PageText display='inline' fontSize='input'>
+                        Round size - Projects
+                      </PageText>
+                    </FormLabel>
 
-            {errors?.confirmedSponsors?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Confirmed sponsors list cannot exceed 2000 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      How many recipient projects do you estimate will participate in the round?
+                    </PageText>
 
-          <FormControl id='event-budget-breakdown-control' isRequired mb={8}>
-            <FormLabel htmlFor='eventBudgetBreakdown' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Budget breakdown
-              </PageText>
-            </FormLabel>
+                    <Textarea
+                      id='roundSizeProjects'
+                      bg='white'
+                      borderRadius={0}
+                      borderColor='brand.border'
+                      _placeholder={{ fontSize: 'input' }}
+                      color='brand.paragraph'
+                      fontSize='input'
+                      h='150px'
+                      mt={3}
+                      // Same SF field as targetAudience
+                      {...register('targetAudience', {
+                        required: isCommunityEvent,
+                        maxLength: 2000
+                      })}
+                    />
 
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Please itemize your anticipated costs - best estimates are ok if things are not yet
-              confirmed or dependent on final attendee count.
-            </PageText>
+                    {errors?.targetAudience?.type === 'maxLength' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Round size - Projects cannot exceed 2000 characters.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
 
-            <Textarea
-              id='eventBudgetBreakdown'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('eventBudgetBreakdown', {
-                required: true,
-                maxLength: 2000
-              })}
-            />
+                  <FormControl id='qf-round-website-control' mb={8}>
+                    <FormLabel htmlFor='QFRoundWebsite' mb={1}>
+                      <PageText fontSize='input'>Round Website?</PageText>
+                    </FormLabel>
 
-            {errors?.eventBudgetBreakdown?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Budget breakdown is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.eventBudgetBreakdown?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Budget breakdown cannot exceed 2000 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      URL only.
+                    </PageText>
 
-          <FormControl
-            id='event-requested-amount-control'
-            isRequired
-            mb={8}
-            w={{ md: '50%' }}
-            pr={{ lg: 6 }}
-          >
-            <FormLabel htmlFor='eventRequestedAmount' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Requested sponsorship amount
-              </PageText>
-            </FormLabel>
+                    <Input
+                      id='QFRoundWebsite'
+                      type='text'
+                      bg='white'
+                      borderRadius={0}
+                      borderColor='brand.border'
+                      h='56px'
+                      _placeholder={{ fontSize: 'input' }}
+                      color='brand.paragraph'
+                      fontSize='input'
+                      mt={3}
+                      // Same SF field as eventLink
+                      {...register('eventLink', {
+                        maxLength: 255
+                      })}
+                    />
 
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Ex: USD 500.
-            </PageText>
+                    {errors?.eventLink?.type === 'maxLength' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          QF Round Website URL cannot exceed 255 characters.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
 
-            <Input
-              id='eventRequestedAmount'
-              type='text'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-              {...register('eventRequestedAmount', {
-                required: true,
-                maxLength: 255
-              })}
-            />
+                  <FormControl id='qf-grant-amount-control' mb={8} w={{ md: '50%' }} pr={{ lg: 6 }}>
+                    <FormLabel htmlFor='QFGrantAmount' mb={1}>
+                      <PageText display='inline' fontSize='input'>
+                        Grant amount
+                      </PageText>
+                    </FormLabel>
 
-            {errors?.eventRequestedAmount?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Requested amount is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.eventRequestedAmount?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Requested amount cannot exceed 255 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      What is the total amount in USD you&apos;re seeking (including for the
+                      matching pool)?
+                    </PageText>
 
-          <FormControl id='additional-info-control' mb={8}>
-            <FormLabel htmlFor='additionalInfo' mb={1}>
-              <PageText fontSize='input'>Anything else you&apos;d like to share?</PageText>
-            </FormLabel>
+                    <Input
+                      id='QFGrantAmount'
+                      type='text'
+                      bg='white'
+                      borderRadius={0}
+                      borderColor='brand.border'
+                      h='56px'
+                      _placeholder={{ fontSize: 'input' }}
+                      color='brand.paragraph'
+                      fontSize='input'
+                      mt={3}
+                      // Same SF field as eventRequestedAmount
+                      {...register('eventRequestedAmount', {
+                        required: isCommunityEvent,
+                        maxLength: 255
+                      })}
+                    />
 
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Is there anything we should know about that hasn&apos;t been covered by the questions
-              above? You also have the option to link any supporting documents or relevant sites
-              here.
-            </PageText>
+                    {errors?.eventRequestedAmount?.type === 'maxLength' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Grant amount cannot exceed 255 characters.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
 
-            <Textarea
-              id='additionalInfo'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('additionalInfo', {
-                maxLength: 2000
-              })}
-            />
+                  <FormControl id='qf-use-of-funds-control' mb={8}>
+                    <FormLabel htmlFor='QFUseOfFunds' mb={1}>
+                      <PageText display='inline' fontSize='input'>
+                        Use of funds
+                      </PageText>
+                    </FormLabel>
 
-            {errors?.additionalInfo?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Additional info cannot exceed 2000 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      How does your project plan to use/allocate this funding?
+                    </PageText>
+
+                    <Textarea
+                      id='QFUseOfFunds'
+                      bg='white'
+                      borderRadius={0}
+                      borderColor='brand.border'
+                      _placeholder={{ fontSize: 'input' }}
+                      color='brand.paragraph'
+                      fontSize='input'
+                      h='150px'
+                      mt={3}
+                      // Same SF field as eventBudgetBreakdown
+                      {...register('eventBudgetBreakdown', {
+                        required: isCommunityEvent,
+                        maxLength: 2000
+                      })}
+                    />
+
+                    {errors?.eventBudgetBreakdown?.type === 'maxLength' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Use of funds details cannot exceed 2000 characters.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
+
+                  <FormControl id='why-ethereum-control' mb={8}>
+                    <FormLabel htmlFor='whyEthereum'>
+                      <PageText display='inline' fontSize='input'>
+                        Why are you interested in quadratic funding?
+                      </PageText>
+                    </FormLabel>
+
+                    <Textarea
+                      id='whyEthereum'
+                      bg='white'
+                      borderRadius={0}
+                      borderColor='brand.border'
+                      _placeholder={{ fontSize: 'input' }}
+                      color='brand.paragraph'
+                      fontSize='input'
+                      h='150px'
+                      mt={3}
+                      {...register('whyEthereum', {
+                        maxLength: 2000
+                      })}
+                    />
+
+                    {errors?.whyEthereum?.type === 'maxLength' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Cannot exceed 2000 characters.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
+                </>
+              )}
+            </>
+          )}
 
           <Stack mb={10}>
             <PageText fontSize='input' fontWeight={700} mb={-1}>

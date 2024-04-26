@@ -162,11 +162,13 @@ export const api = {
         body: JSON.stringify({
           ...data,
           // Company is a required field in SF, we're using the Name as default value if no company provided
-          company: data.company === '' ? `${data.firstName} ${data.lastName}` : data.company,
+          company: data.company ? data.company : `${data.firstName} ${data.lastName}`,
+          category: data.category.value,
           country: data.country.value,
           website: getWebsite(data.website),
-          eventType: data.eventType.value,
-          eventFormat: data.eventFormat.value
+          // `eventType` and `eventFormat` are available for 'Community Event' category only
+          eventType: data.eventType?.value ?? '',
+          eventFormat: data.eventFormat?.value ?? ''
         })
       };
 

@@ -11,7 +11,8 @@ import {
   REASONS_FOR_MEETING,
   TIMEZONE_OPTIONS,
   WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS,
-  ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS
+  ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS,
+  PSE_SPONSORSHIP_CATEGORY_OPTIONS
 } from './components/forms/constants';
 import { ABOUT_URL, APPLICANTS_URL, ESP_BLOG_URL, HOME_URL } from './constants';
 
@@ -227,6 +228,7 @@ export interface PSESponsorshipsFormData extends CaptchaForm {
   individualOrTeam: IndividualOrTeam; // SF API: Individual_or_Team__c
   individualOrTeamSummary: string; // SF API: Team_Profile__c
   company: string; // SF API: Company
+  category: PSESponsorshipCategory; // SF API: Category__c
   city: string; // SF API: npsp__CompanyCity__c
   country: Country; // SF API: npsp__CompanyCountry__c
   website: string; // SF API: Website
@@ -249,6 +251,9 @@ export interface PSESponsorshipsFormData extends CaptchaForm {
   eventBudgetBreakdown: string; // SF API: Proposed_Timeline__c
   eventRequestedAmount: string; // SF API: Sponsorship_Monetary_Request__c
   additionalInfo: string; // SF API: Additional_Information__c
+  // Optional fields for Quadratic Funding option
+  contactTelegram: string; // SF API: Alternative_Contact__c
+  whyEthereum: string; // SF API: Why_Ethereum__c
 }
 
 export type IndividualOrTeam = 'Individual' | 'Team';
@@ -271,6 +276,8 @@ export type AcademicGrantsProjectCategory =
   (typeof ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS)[number];
 
 export type ProjectGrantsProjectCategory = (typeof PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS)[number];
+
+export type PSESponsorshipCategory = (typeof PSE_SPONSORSHIP_CATEGORY_OPTIONS)[number];
 
 export type EventType = (typeof EVENT_TYPE_OPTIONS)[number];
 
@@ -453,6 +460,7 @@ export interface PSESponsorshipsNextApiRequest extends NextApiRequest {
     individualOrTeam: string;
     individualOrTeamSummary: string;
     company: string;
+    category: string;
     city: string;
     country: string;
     website: string;
@@ -475,5 +483,7 @@ export interface PSESponsorshipsNextApiRequest extends NextApiRequest {
     eventBudgetBreakdown: string;
     eventRequestedAmount: string;
     additionalInfo: string;
+    contactTelegram: string;
+    whyEthereum: string;
   };
 }
