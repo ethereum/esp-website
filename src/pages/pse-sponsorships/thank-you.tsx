@@ -31,7 +31,7 @@ const PSESponsorshipsThankYou: NextPage = () => {
             </Heading>
 
             <PageSubheading mb={16} textAlign='center'>
-              for applying to the Privacy & Scaling Explorations Sponsorship
+              for applying to Privacy & Scaling Explorations
             </PageSubheading>
           </section>
         </Stack>
