@@ -1589,7 +1589,7 @@ export const PSESponsorshipsForm: FC = () => {
                   <FormControl id='why-ethereum-control' mb={8}>
                     <FormLabel htmlFor='whyEthereum'>
                       <PageText display='inline' fontSize='input'>
-                        Why are you interested in quadratic funding?
+                        Why are you interested in receiving this funding?
                       </PageText>
                     </FormLabel>
 
