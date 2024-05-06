@@ -268,6 +268,17 @@ const DataChallenge: NextPage = () => {
                           Beaconcha.in
                         </Link>
                       </ListItem>
+                      <ListItem>
+                        <Link
+                          fontWeight={700}
+                          color='brand.orange.100'
+                          href='https://ethernow.xyz/'
+                          isExternal
+                          _hover={{ textDecoration: 'none' }}
+                        >
+                          Ethernow.xyz
+                        </Link>
+                      </ListItem>
                     </List>
                     <ListItem>
                       Experiment with client APIs for single node statistics (i.e.{' '}
@@ -358,6 +369,18 @@ const DataChallenge: NextPage = () => {
                     <ListItem>Write new tools to gather data</ListItem>
                     <ListItem>Crunch some numbers and spin up some graphs</ListItem>
                     <ListItem>Publish your analysis or visualization!</ListItem>
+                    <ListItem>
+                      Analyze blobs post 4096 epochs through data archive tools such as the{' '}
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href='https://docs.blocknative.com/blocknative-data-archive/blob-archive'
+                        isExternal
+                        _hover={{ textDecoration: 'none' }}
+                      >
+                        Blob Archive
+                      </Link>
+                    </ListItem>
                   </List>
                 </Section>
 
