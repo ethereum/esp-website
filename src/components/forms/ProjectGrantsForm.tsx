@@ -34,6 +34,7 @@ import uploadSVG from '../../../public/images/upload.svg';
 
 import {
   COUNTRY_OPTIONS,
+  FIAT_CURRENCY_OPTIONS,
   HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS,
   OTHER,
   PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS,
@@ -741,55 +742,107 @@ export const ProjectGrantsForm: FC = () => {
             )}
           </FormControl>
 
-          <FormControl
-            id='requested-amount-control'
-            isRequired
-            mb={8}
-            w={{ md: '50%' }}
-            pr={{ lg: 6 }}
-          >
-            <FormLabel htmlFor='requestedAmount' mb={1}>
+          <Stack>
+            <Stack>
               <PageText display='inline' fontSize='input'>
                 Requested amount
               </PageText>
-            </FormLabel>
 
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Estimated grant amount. Ex: USD 50,000.
-            </PageText>
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Choose denominated currency and enter a whole number in the Amount field
+              </PageText>
+            </Stack>
+            <Flex direction={{ base: 'column', md: 'row' }}>
+              <FormControl
+                id='fiat-currency-control'
+                isRequired
+                mb={8}
+                w={{ md: '50%' }}
+                pr={{ lg: 6 }}
+              >
+                <Controller
+                  name='fiatCurrency'
+                  control={control}
+                  defaultValue={{ value: '', label: '' }}
+                  rules={{ required: true, validate: selected => selected.value !== '' }}
+                  render={({ field: { onChange, onBlur }, fieldState: { error } }) => (
+                    <FormControl id='fiat-currency-control' isRequired>
+                      <FormLabel htmlFor='fiatCurrency'>
+                        <PageText display='inline' fontSize='input'>
+                          Fiat currency
+                        </PageText>
+                      </FormLabel>
 
-            <Input
-              id='requestedAmount'
-              type='text'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-              {...register('requestedAmount', {
-                required: true,
-                maxLength: 20
-              })}
-            />
+                      <Select
+                        id='fiat-currency'
+                        options={FIAT_CURRENCY_OPTIONS}
+                        onBlur={onBlur}
+                        onChange={onChange}
+                        components={{ DropdownIndicator }}
+                        placeholder='Select'
+                        closeMenuOnSelect={true}
+                        selectedOptionColor='brand.option'
+                        chakraStyles={chakraStyles}
+                      />
 
-            {errors?.requestedAmount?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Requested amount is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.requestedAmount?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Requested amount cannot exceed 20 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+                      {error && (
+                        <Box mt={1}>
+                          <PageText as='small' fontSize='helpText' color='red.500'>
+                            Fiat currency is required.
+                          </PageText>
+                        </Box>
+                      )}
+                    </FormControl>
+                  )}
+                />
+              </FormControl>
+
+              <FormControl
+                id='requested-amount-control'
+                isRequired
+                mb={8}
+                w={{ md: '50%' }}
+                pr={{ lg: 6 }}
+              >
+                <FormLabel htmlFor='projectRequestedAmount'>
+                  <PageText display='inline' fontSize='input'>
+                    Amount
+                  </PageText>
+                </FormLabel>
+
+                <Input
+                  id='projectRequestedAmount'
+                  type='number'
+                  bg='white'
+                  borderRadius={0}
+                  borderColor='brand.border'
+                  h='56px'
+                  _placeholder={{ fontSize: 'input' }}
+                  color='brand.paragraph'
+                  fontSize='input'
+                  {...register('requestedAmount', {
+                    required: true,
+                    maxLength: 30
+                  })}
+                />
+
+                {errors?.requestedAmount?.type === 'required' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Requested amount is required.
+                    </PageText>
+                  </Box>
+                )}
+                {errors?.requestedAmount?.type === 'maxLength' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Requested amount cannot exceed 30 characters.
+                    </PageText>
+                  </Box>
+                )}
+              </FormControl>
+            </Flex>
+          </Stack>
 
           <FormControl id='why-is-project-important-control' isRequired mb={8}>
             <FormLabel htmlFor='whyIsProjectImportant' mb={1}>

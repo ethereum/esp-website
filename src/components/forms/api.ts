@@ -61,6 +61,7 @@ export const api = {
         website: getWebsite(data.website),
         projectCategory: data.projectCategory.value,
         country: data.country.value,
+        fiatCurrency: data.fiatCurrency.value,
         timezone: data.timezone.value,
         howDidYouHearAboutESP: data.howDidYouHearAboutESP.value,
         repeatApplicant: data.repeatApplicant === 'Yes'

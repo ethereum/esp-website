@@ -44,6 +44,7 @@ export interface ProjectGrantsFormData extends CaptchaForm {
   progress: string; // SF API: Progress__c
   problemBeingSolved: string; // SF API: Problem_Being_Solved__c
   proposedTimeline: string; // SF API: Proposed_Timeline__c
+  fiatCurrency: FiatCurrency; // SF API: CurrencyIsoCode
   requestedAmount: string; // SF API: Requested_Amount__c
   whyIsProjectImportant: string; // SF API: Impact__c
   howDoesYourProjectDiffer: string; // SF API: How_is_it_different__c
