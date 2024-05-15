@@ -81,7 +81,7 @@ export interface SmallGrantsFormData extends CaptchaForm {
   howDidYouHearAboutESP: ReferralSource; // SF API: Referral_Source__c
   referrals: string; // SF API: Referrals__c
   additionalInfo: string; // SF API: Additional_Information__c
-  fiatCurrency: FiatCurrency; // SF API: Fiat_Currency__c
+  fiatCurrency: FiatCurrency; // SF API: CurrencyIsoCode
   // Project specific
   projectName: string; // SF API: Project_Name__c
   projectRepo: string; // SF API: Github_Link__c
@@ -139,7 +139,7 @@ export interface GranteeFinanceFormData extends CaptchaForm {
 
   // FIAT
   beneficiaryAddress: string; // SF API: Beneficiary_Address__c
-  fiatCurrencyCode: string; // SF API: Fiat_Currency__c
+  fiatCurrencyCode: string; // SF API: CurrencyIsoCode
   bankName: string; // SF API: Bank_Name__c
   bankAddress: string; // SF API: Bank_Address__c
   IBAN: string; // SF API: IBAN_Account_Number__c
@@ -416,6 +416,7 @@ export interface SmallGrantsEventNextApiRequest extends NextApiRequest {
     confirmedSpeakers: string;
     confirmedSponsors: string;
     eventBudgetBreakdown: string;
+    fiatCurrency: string;
     eventRequestedAmount: string;
     eventLocation: string;
   };
@@ -444,6 +445,7 @@ export interface SmallGrantsProjectNextApiRequest extends NextApiRequest {
     problemBeingSolved: string;
     whyIsProjectImportant: string;
     howDoesYourProjectDiffer: string;
+    fiatCurrency: string;
     projectRequestedAmount: string;
     proposedTimeline: string;
     isYourProjectPublicGood: string;

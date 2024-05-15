@@ -38,6 +38,7 @@ async function handler(req: SmallGrantsEventNextApiRequest, res: NextApiResponse
       confirmedSpeakers: Confirmed_Speakers__c,
       confirmedSponsors: Confirmed_Sponsors__c,
       eventBudgetBreakdown: Proposed_Timeline__c,
+      fiatCurrency: CurrencyIsoCode,
       eventRequestedAmount: Sponsorship_Monetary_Request__c,
       eventLocation: Event_Location__c
     } = body;
@@ -88,6 +89,7 @@ async function handler(req: SmallGrantsEventNextApiRequest, res: NextApiResponse
           Confirmed_Speakers__c: Confirmed_Speakers__c.trim(),
           Confirmed_Sponsors__c: Confirmed_Sponsors__c.trim(),
           Proposed_Timeline__c: Proposed_Timeline__c.trim(),
+          CurrencyIsoCode: CurrencyIsoCode.trim(),
           Sponsorship_Monetary_Request__c: Sponsorship_Monetary_Request__c.trim(),
           LeadSource: 'Webform',
           RecordTypeId: process.env.SF_RECORD_TYPE_SPONSORSHIPS
