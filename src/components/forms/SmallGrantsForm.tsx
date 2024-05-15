@@ -940,7 +940,7 @@ export const SmallGrantsForm: FC = () => {
 
                     <Input
                       id='projectRequestedAmount'
-                      type='text'
+                      type='number'
                       bg='white'
                       borderRadius={0}
                       borderColor='brand.border'
@@ -2006,7 +2006,7 @@ export const SmallGrantsForm: FC = () => {
 
                     <Input
                       id='eventRequestedAmount'
-                      type='text'
+                      type='number'
                       bg='white'
                       borderRadius={0}
                       borderColor='brand.border'
