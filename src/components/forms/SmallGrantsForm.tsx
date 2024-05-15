@@ -882,7 +882,7 @@ export const SmallGrantsForm: FC = () => {
 
                 <Flex direction={{ base: 'column', md: 'row' }}>
                   <FormControl
-                    id='project-requested-amount-control'
+                    id='fiat-currency-control'
                     isRequired={isAProject}
                     mb={8}
                     w={{ md: '50%' }}
@@ -923,21 +923,6 @@ export const SmallGrantsForm: FC = () => {
                         </FormControl>
                       )}
                     />
-
-                    {/* {errors?.projectRequestedAmount?.type === 'required' && (
-                    <Box mt={1}>
-                      <PageText as='small' fontSize='helpText' color='red.500'>
-                        Requested amount is required.
-                      </PageText>
-                    </Box>
-                  )}
-                  {errors?.projectRequestedAmount?.type === 'maxLength' && (
-                    <Box mt={1}>
-                      <PageText as='small' fontSize='helpText' color='red.500'>
-                        Requested amount cannot exceed 20 characters.
-                      </PageText>
-                    </Box>
-                  )} */}
                   </FormControl>
 
                   <FormControl
@@ -1950,55 +1935,108 @@ export const SmallGrantsForm: FC = () => {
                 )}
               </FormControl>
 
-              <FormControl
-                id='event-requested-amount-control'
-                isRequired={isAnEvent}
-                mb={8}
-                w={{ md: '50%' }}
-                pr={{ lg: 6 }}
-              >
-                <FormLabel htmlFor='eventRequestedAmount' mb={1}>
+              <Stack>
+                <Stack>
                   <PageText display='inline' fontSize='input'>
-                    Requested sponsorship amount
+                    Requested amount
                   </PageText>
-                </FormLabel>
 
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Ex: USD 500.
-                </PageText>
+                  <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                    Choose denominated currency and enter a whole number in the Amount field
+                  </PageText>
+                </Stack>
 
-                <Input
-                  id='eventRequestedAmount'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  mt={3}
-                  {...register('eventRequestedAmount', {
-                    required: isAnEvent,
-                    maxLength: 255
-                  })}
-                />
+                <Flex direction={{ base: 'column', md: 'row' }}>
+                  <FormControl
+                    id='fiat-currency-control'
+                    isRequired={isAProject}
+                    mb={8}
+                    w={{ md: '50%' }}
+                    pr={{ lg: 6 }}
+                  >
+                    <Controller
+                      name='fiatCurrency'
+                      control={control}
+                      defaultValue={{ value: '', label: '' }}
+                      rules={{ required: true, validate: selected => selected.value !== '' }}
+                      render={({ field: { onChange, onBlur }, fieldState: { error } }) => (
+                        <FormControl id='fiat-currency-control' isRequired>
+                          <FormLabel htmlFor='fiatCurrency'>
+                            <PageText display='inline' fontSize='input'>
+                              Fiat currency
+                            </PageText>
+                          </FormLabel>
 
-                {errors?.eventRequestedAmount?.type === 'required' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Requested amount is required.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.eventRequestedAmount?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Requested amount cannot exceed 255 characters.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
+                          <Select
+                            id='fiat-currency'
+                            options={FIAT_CURRENCY_OPTIONS}
+                            onBlur={onBlur}
+                            onChange={onChange}
+                            components={{ DropdownIndicator }}
+                            placeholder='Select'
+                            closeMenuOnSelect={true}
+                            selectedOptionColor='brand.option'
+                            chakraStyles={chakraStyles}
+                          />
+
+                          {error && (
+                            <Box mt={1}>
+                              <PageText as='small' fontSize='helpText' color='red.500'>
+                                Fiat currency is required.
+                              </PageText>
+                            </Box>
+                          )}
+                        </FormControl>
+                      )}
+                    />
+                  </FormControl>
+
+                  <FormControl
+                    id='event-requested-amount-control'
+                    isRequired={isAnEvent}
+                    mb={8}
+                    w={{ md: '50%' }}
+                    pr={{ lg: 6 }}
+                  >
+                    <FormLabel htmlFor='eventRequestedAmount'>
+                      <PageText display='inline' fontSize='input'>
+                        Amount
+                      </PageText>
+                    </FormLabel>
+
+                    <Input
+                      id='eventRequestedAmount'
+                      type='text'
+                      bg='white'
+                      borderRadius={0}
+                      borderColor='brand.border'
+                      h='56px'
+                      _placeholder={{ fontSize: 'input' }}
+                      color='brand.paragraph'
+                      fontSize='input'
+                      {...register('eventRequestedAmount', {
+                        required: isAnEvent,
+                        maxLength: 30
+                      })}
+                    />
+
+                    {errors?.eventRequestedAmount?.type === 'required' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Requested amount is required.
+                        </PageText>
+                      </Box>
+                    )}
+                    {errors?.eventRequestedAmount?.type === 'maxLength' && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Requested amount cannot exceed 30 characters.
+                        </PageText>
+                      </Box>
+                    )}
+                  </FormControl>
+                </Flex>
+              </Stack>
             </Fade>
           </Box>
 
