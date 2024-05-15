@@ -1544,6 +1544,19 @@ export const TIMEZONE_OPTIONS = [
   }
 ];
 
+// fiat currency
+export const FIAT_CURRENCY_OPTIONS = [
+  { value: 'AUD', label: 'AUD' },
+  { value: 'CAD', label: 'CAD' },
+  { value: 'CNY', label: 'CNY' },
+  { value: 'EUR', label: 'EUR' },
+  { value: 'GBP', label: 'GBP' },
+  { value: 'INR', label: 'INR' },
+  { value: 'JPY', label: 'JPY' },
+  { value: 'KRW', label: 'KRW' },
+  { value: 'USD', label: 'USD' }
+];
+
 // how did you hear about ESP
 export const HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS = [
   { value: 'Ethereum Blog', label: 'Ethereum Blog' },
