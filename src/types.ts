@@ -90,7 +90,7 @@ export interface SmallGrantsFormData extends CaptchaForm {
   problemBeingSolved: string; // SF API: Problem_Being_Solved__c
   whyIsProjectImportant: string; // SF API: Impact__c
   howDoesYourProjectDiffer: string; // SF API: How_is_it_different__c
-  projectRequestedAmount: string; // SF API: Requested_Amount__c
+  projectRequestedAmount: number; // SF API: Requested_Amount__c
   proposedTimeline: string; // SF API: Proposed_Timeline__c
   isYourProjectPublicGood: string; // SF API: Is_it_a_Public_Good__c
   isOpenSource: string; // SF API: Is_it_Open_Source__c
@@ -113,7 +113,7 @@ export interface SmallGrantsFormData extends CaptchaForm {
   confirmedSpeakers: string; // SF API: Confirmed_Speakers__c
   confirmedSponsors: string; // SF API: Confirmed_Sponsors__c
   eventBudgetBreakdown: string; // SF API: Proposed_Timeline__c
-  eventRequestedAmount: string; // SF API: Sponsorship_Monetary_Request__c
+  eventRequestedAmount: number; // SF API: Sponsorship_Monetary_Request__c
   eventLocation: string; // SF API: Event_Location__c
 }
 
