@@ -12,7 +12,8 @@ import {
   TIMEZONE_OPTIONS,
   WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS,
   ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS,
-  PSE_SPONSORSHIP_CATEGORY_OPTIONS
+  PSE_SPONSORSHIP_CATEGORY_OPTIONS,
+  FIAT_CURRENCY_OPTIONS
 } from './components/forms/constants';
 import { ABOUT_URL, APPLICANTS_URL, ESP_BLOG_URL, HOME_URL } from './constants';
 
@@ -80,6 +81,7 @@ export interface SmallGrantsFormData extends CaptchaForm {
   howDidYouHearAboutESP: ReferralSource; // SF API: Referral_Source__c
   referrals: string; // SF API: Referrals__c
   additionalInfo: string; // SF API: Additional_Information__c
+  fiatCurrency: Country; // SF API: CurrencyIsoCode
   // Project specific
   projectName: string; // SF API: Project_Name__c
   projectRepo: string; // SF API: Github_Link__c
@@ -286,6 +288,8 @@ export type EventFormat = (typeof EVENT_FORMAT_OPTIONS)[number];
 export type WouldYouShareYourResearch = (typeof WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS)[number];
 
 export type Country = (typeof COUNTRY_OPTIONS)[number];
+
+export type FiatCurrency = (typeof FIAT_CURRENCY_OPTIONS)[number];
 
 export type ReferralSource = (typeof HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS)[number];
 
