@@ -33,7 +33,8 @@ import {
   EVENT_FORMAT_OPTIONS,
   EVENT_TYPE_OPTIONS,
   PROJECT_CATEGORY_OPTIONS,
-  TEAM
+  TEAM,
+  FIAT_CURRENCY_OPTIONS
 } from './constants';
 import { SMALL_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
@@ -876,29 +877,43 @@ export const SmallGrantsForm: FC = () => {
                   w={{ md: '50%' }}
                   pr={{ lg: 6 }}
                 >
-                  <FormLabel htmlFor='projectRequestedAmount'>
-                    <PageText display='inline' fontSize='input'>
-                      Fiat currency
-                    </PageText>
-                  </FormLabel>
+                  <Controller
+                    name='fiatCurrency'
+                    control={control}
+                    defaultValue={{ value: '', label: '' }}
+                    rules={{ required: true, validate: selected => selected.value !== '' }}
+                    render={({ field: { onChange, onBlur }, fieldState: { error } }) => (
+                      <FormControl id='fiat-currency-control' isRequired>
+                        <FormLabel htmlFor='fiatCurrency'>
+                          <PageText display='inline' fontSize='input'>
+                            Fiat currency
+                          </PageText>
+                        </FormLabel>
 
-                  <Input
-                    id='projectRequestedAmount'
-                    type='text'
-                    bg='white'
-                    borderRadius={0}
-                    borderColor='brand.border'
-                    h='56px'
-                    _placeholder={{ fontSize: 'input' }}
-                    color='brand.paragraph'
-                    fontSize='input'
-                    {...register('projectRequestedAmount', {
-                      required: isAProject,
-                      maxLength: 20
-                    })}
+                        <Select
+                          id='fiat-currency'
+                          options={FIAT_CURRENCY_OPTIONS}
+                          onBlur={onBlur}
+                          onChange={onChange}
+                          components={{ DropdownIndicator }}
+                          placeholder='Select'
+                          closeMenuOnSelect={true}
+                          selectedOptionColor='brand.option'
+                          chakraStyles={chakraStyles}
+                        />
+
+                        {error && (
+                          <Box mt={1}>
+                            <PageText as='small' fontSize='helpText' color='red.500'>
+                              Fiat currency is required.
+                            </PageText>
+                          </Box>
+                        )}
+                      </FormControl>
+                    )}
                   />
 
-                  {errors?.projectRequestedAmount?.type === 'required' && (
+                  {/* {errors?.projectRequestedAmount?.type === 'required' && (
                     <Box mt={1}>
                       <PageText as='small' fontSize='helpText' color='red.500'>
                         Requested amount is required.
@@ -911,7 +926,7 @@ export const SmallGrantsForm: FC = () => {
                         Requested amount cannot exceed 20 characters.
                       </PageText>
                     </Box>
-                  )}
+                  )} */}
                 </FormControl>
 
                 <FormControl
