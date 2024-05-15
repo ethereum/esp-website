@@ -868,55 +868,97 @@ export const SmallGrantsForm: FC = () => {
                 )}
               </FormControl>
 
-              <FormControl
-                id='project-requested-amount-control'
-                isRequired={isAProject}
-                mb={8}
-                w={{ md: '50%' }}
-                pr={{ lg: 6 }}
-              >
-                <FormLabel htmlFor='projectRequestedAmount' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Requested amount
-                  </PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Ex: EUR 10,000.
-                </PageText>
-
-                <Input
-                  id='projectRequestedAmount'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  mt={3}
-                  {...register('projectRequestedAmount', {
-                    required: isAProject,
-                    maxLength: 20
-                  })}
-                />
-
-                {errors?.projectRequestedAmount?.type === 'required' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Requested amount is required.
+              <Flex direction={{ base: 'column', md: 'row' }}>
+                <FormControl
+                  id='project-requested-amount-control'
+                  isRequired={isAProject}
+                  mb={8}
+                  w={{ md: '50%' }}
+                  pr={{ lg: 6 }}
+                >
+                  <FormLabel htmlFor='projectRequestedAmount'>
+                    <PageText display='inline' fontSize='input'>
+                      Fiat currency
                     </PageText>
-                  </Box>
-                )}
-                {errors?.projectRequestedAmount?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Requested amount cannot exceed 20 characters.
+                  </FormLabel>
+
+                  <Input
+                    id='projectRequestedAmount'
+                    type='text'
+                    bg='white'
+                    borderRadius={0}
+                    borderColor='brand.border'
+                    h='56px'
+                    _placeholder={{ fontSize: 'input' }}
+                    color='brand.paragraph'
+                    fontSize='input'
+                    {...register('projectRequestedAmount', {
+                      required: isAProject,
+                      maxLength: 20
+                    })}
+                  />
+
+                  {errors?.projectRequestedAmount?.type === 'required' && (
+                    <Box mt={1}>
+                      <PageText as='small' fontSize='helpText' color='red.500'>
+                        Requested amount is required.
+                      </PageText>
+                    </Box>
+                  )}
+                  {errors?.projectRequestedAmount?.type === 'maxLength' && (
+                    <Box mt={1}>
+                      <PageText as='small' fontSize='helpText' color='red.500'>
+                        Requested amount cannot exceed 20 characters.
+                      </PageText>
+                    </Box>
+                  )}
+                </FormControl>
+
+                <FormControl
+                  id='project-requested-amount-control'
+                  isRequired={isAProject}
+                  mb={8}
+                  w={{ md: '50%' }}
+                  pr={{ lg: 6 }}
+                >
+                  <FormLabel htmlFor='projectRequestedAmount'>
+                    <PageText display='inline' fontSize='input'>
+                      Amount
                     </PageText>
-                  </Box>
-                )}
-              </FormControl>
+                  </FormLabel>
+
+                  <Input
+                    id='projectRequestedAmount'
+                    type='text'
+                    bg='white'
+                    borderRadius={0}
+                    borderColor='brand.border'
+                    h='56px'
+                    _placeholder={{ fontSize: 'input' }}
+                    color='brand.paragraph'
+                    fontSize='input'
+                    {...register('projectRequestedAmount', {
+                      required: isAProject,
+                      maxLength: 30
+                    })}
+                  />
+
+                  {errors?.projectRequestedAmount?.type === 'required' && (
+                    <Box mt={1}>
+                      <PageText as='small' fontSize='helpText' color='red.500'>
+                        Requested amount is required.
+                      </PageText>
+                    </Box>
+                  )}
+                  {errors?.projectRequestedAmount?.type === 'maxLength' && (
+                    <Box mt={1}>
+                      <PageText as='small' fontSize='helpText' color='red.500'>
+                        Requested amount cannot exceed 30 characters.
+                      </PageText>
+                    </Box>
+                  )}
+                </FormControl>
+              </Flex>
 
               <FormControl id='proposed-timeline-control' isRequired={isAProject} mb={8}>
                 <FormLabel htmlFor='proposedTimeline' mb={1}>
