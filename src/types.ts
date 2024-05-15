@@ -81,7 +81,7 @@ export interface SmallGrantsFormData extends CaptchaForm {
   howDidYouHearAboutESP: ReferralSource; // SF API: Referral_Source__c
   referrals: string; // SF API: Referrals__c
   additionalInfo: string; // SF API: Additional_Information__c
-  fiatCurrency: Country; // SF API: CurrencyIsoCode
+  fiatCurrency: FiatCurrency; // SF API: Fiat_Currency__c
   // Project specific
   projectName: string; // SF API: Project_Name__c
   projectRepo: string; // SF API: Github_Link__c
