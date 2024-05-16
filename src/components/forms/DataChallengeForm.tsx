@@ -288,6 +288,7 @@ export const DataChallengeForm: FC = () => {
                   id='countriesTeam'
                   options={COUNTRY_OPTIONS}
                   isMulti
+                  isClearable={false}
                   onChange={(options: any) => {
                     // TODO: fix multi-select typings
                     onChange(options.map((option: any) => option.value).join(';')); // multi-select field for `countriesTeam` field
