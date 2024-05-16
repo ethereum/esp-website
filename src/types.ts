@@ -12,7 +12,8 @@ import {
   TIMEZONE_OPTIONS,
   WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS,
   ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS,
-  PSE_SPONSORSHIP_CATEGORY_OPTIONS
+  PSE_SPONSORSHIP_CATEGORY_OPTIONS,
+  FIAT_CURRENCY_OPTIONS
 } from './components/forms/constants';
 import { ABOUT_URL, APPLICANTS_URL, ESP_BLOG_URL, HOME_URL } from './constants';
 
@@ -43,6 +44,7 @@ export interface ProjectGrantsFormData extends CaptchaForm {
   progress: string; // SF API: Progress__c
   problemBeingSolved: string; // SF API: Problem_Being_Solved__c
   proposedTimeline: string; // SF API: Proposed_Timeline__c
+  fiatCurrency: FiatCurrency; // SF API: CurrencyIsoCode
   requestedAmount: string; // SF API: Requested_Amount__c
   whyIsProjectImportant: string; // SF API: Impact__c
   howDoesYourProjectDiffer: string; // SF API: How_is_it_different__c
@@ -80,6 +82,7 @@ export interface SmallGrantsFormData extends CaptchaForm {
   howDidYouHearAboutESP: ReferralSource; // SF API: Referral_Source__c
   referrals: string; // SF API: Referrals__c
   additionalInfo: string; // SF API: Additional_Information__c
+  fiatCurrency: FiatCurrency; // SF API: CurrencyIsoCode
   // Project specific
   projectName: string; // SF API: Project_Name__c
   projectRepo: string; // SF API: Github_Link__c
@@ -88,7 +91,7 @@ export interface SmallGrantsFormData extends CaptchaForm {
   problemBeingSolved: string; // SF API: Problem_Being_Solved__c
   whyIsProjectImportant: string; // SF API: Impact__c
   howDoesYourProjectDiffer: string; // SF API: How_is_it_different__c
-  projectRequestedAmount: string; // SF API: Requested_Amount__c
+  projectRequestedAmount: number; // SF API: Requested_Amount__c
   proposedTimeline: string; // SF API: Proposed_Timeline__c
   isYourProjectPublicGood: string; // SF API: Is_it_a_Public_Good__c
   isOpenSource: string; // SF API: Is_it_Open_Source__c
@@ -111,7 +114,7 @@ export interface SmallGrantsFormData extends CaptchaForm {
   confirmedSpeakers: string; // SF API: Confirmed_Speakers__c
   confirmedSponsors: string; // SF API: Confirmed_Sponsors__c
   eventBudgetBreakdown: string; // SF API: Proposed_Timeline__c
-  eventRequestedAmount: string; // SF API: Sponsorship_Monetary_Request__c
+  eventRequestedAmount: number; // SF API: Sponsorship_Monetary_Request__c
   eventLocation: string; // SF API: Event_Location__c
 }
 
@@ -137,7 +140,7 @@ export interface GranteeFinanceFormData extends CaptchaForm {
 
   // FIAT
   beneficiaryAddress: string; // SF API: Beneficiary_Address__c
-  fiatCurrencyCode: string; // SF API: Fiat_Currency__c
+  fiatCurrencyCode: string; // SF API: CurrencyIsoCode
   bankName: string; // SF API: Bank_Name__c
   bankAddress: string; // SF API: Bank_Address__c
   IBAN: string; // SF API: IBAN_Account_Number__c
@@ -287,6 +290,8 @@ export type WouldYouShareYourResearch = (typeof WOULD_YOU_SHARE_YOUR_RESEARCH_OP
 
 export type Country = (typeof COUNTRY_OPTIONS)[number];
 
+export type FiatCurrency = (typeof FIAT_CURRENCY_OPTIONS)[number];
+
 export type ReferralSource = (typeof HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS)[number];
 
 export type GrantsReferralSource = (typeof HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE)[number];
@@ -412,6 +417,7 @@ export interface SmallGrantsEventNextApiRequest extends NextApiRequest {
     confirmedSpeakers: string;
     confirmedSponsors: string;
     eventBudgetBreakdown: string;
+    fiatCurrency: string;
     eventRequestedAmount: string;
     eventLocation: string;
   };
@@ -440,6 +446,7 @@ export interface SmallGrantsProjectNextApiRequest extends NextApiRequest {
     problemBeingSolved: string;
     whyIsProjectImportant: string;
     howDoesYourProjectDiffer: string;
+    fiatCurrency: string;
     projectRequestedAmount: string;
     proposedTimeline: string;
     isYourProjectPublicGood: string;

@@ -46,6 +46,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
       Progress__c: fieldsSanitized.progress,
       Problem_Being_Solved__c: fieldsSanitized.problemBeingSolved,
       Proposed_Timeline__c: fieldsSanitized.proposedTimeline,
+      CurrencyIsoCode: fieldsSanitized.fiatCurrency,
       Requested_Amount__c: fieldsSanitized.requestedAmount,
       Impact__c: fieldsSanitized.whyIsProjectImportant,
       How_is_it_different__c: fieldsSanitized.howDoesYourProjectDiffer,

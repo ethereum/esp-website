@@ -191,7 +191,7 @@ export const DataChallengeForm: FC = () => {
                   id='applyingAs'
                   options={APPLYING_AS_OPTIONS}
                   onChange={option =>
-                    onChange((option as typeof APPLYING_AS_OPTIONS[number]).value)
+                    onChange((option as (typeof APPLYING_AS_OPTIONS)[number]).value)
                   }
                   components={{ DropdownIndicator }}
                   placeholder='Select'
@@ -232,7 +232,7 @@ export const DataChallengeForm: FC = () => {
                     id='country'
                     options={COUNTRY_OPTIONS}
                     onChange={option => {
-                      const value = (option as typeof COUNTRY_OPTIONS[number]).value;
+                      const value = (option as (typeof COUNTRY_OPTIONS)[number]).value;
                       onChange(value);
                     }}
                     components={{ DropdownIndicator }}
@@ -260,7 +260,7 @@ export const DataChallengeForm: FC = () => {
                     id='timezone'
                     options={TIMEZONE_OPTIONS}
                     onChange={option => {
-                      onChange((option as typeof TIMEZONE_OPTIONS[number]).value);
+                      onChange((option as (typeof TIMEZONE_OPTIONS)[number]).value);
                       trigger('timezone');
                     }}
                     components={{ DropdownIndicator }}
@@ -274,10 +274,33 @@ export const DataChallengeForm: FC = () => {
             />
           </Flex>
 
-          <TextField
-            id='countriesTeam'
-            label='If you are a team of distributed researchers, please indicate where your fellow researchers are located'
-            helpText='You can write as many countries as needed'
+          <Controller
+            name='countriesTeam'
+            control={control}
+            render={({ field: { onChange }, fieldState: { error } }) => (
+              <Field
+                id='countriesTeam'
+                label='If you are a team of distributed researchers, please indicate where your fellow researchers are located'
+                helpText='You can write as many countries as needed'
+                error={error}
+              >
+                <Select
+                  id='countriesTeam'
+                  options={COUNTRY_OPTIONS}
+                  isMulti
+                  isClearable={false}
+                  onChange={(options: any) => {
+                    // TODO: fix multi-select typings
+                    onChange(options.map((option: any) => option.value).join(';')); // multi-select field for `countriesTeam` field
+                  }}
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
+              </Field>
+            )}
           />
 
           <TextField
@@ -323,7 +346,7 @@ export const DataChallengeForm: FC = () => {
                   options={DATA_CHALLENGE_PROJECT_CATEGORY_OPTIONS}
                   onChange={option => {
                     onChange(
-                      (option as typeof DATA_CHALLENGE_PROJECT_CATEGORY_OPTIONS[number]).value
+                      (option as (typeof DATA_CHALLENGE_PROJECT_CATEGORY_OPTIONS)[number]).value
                     );
                   }}
                   components={{ DropdownIndicator }}
@@ -350,7 +373,7 @@ export const DataChallengeForm: FC = () => {
                   id='referralSource'
                   options={HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE}
                   onChange={option =>
-                    onChange((option as typeof HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE[number]).value)
+                    onChange((option as (typeof HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE)[number]).value)
                   }
                   components={{ DropdownIndicator }}
                   placeholder='Select'

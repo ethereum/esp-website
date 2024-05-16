@@ -34,7 +34,7 @@ export const AcademicGrantsSchema = z
       'Organization cannot contain a URL'
     ),
     country: stringFieldSchema('Country', { min: 1 }),
-    countriesTeam: stringFieldSchema('Countries of team', { min: 1 }),
+    countriesTeam: stringFieldSchema('Countries of team', { min: 1 }).optional(),
     timezone: stringFieldSchema('Time zone', { min: 1 }),
     projectName: stringFieldSchema('Project name', { min: 1, max: MAX_TEXT_LENGTH }),
     projectDescription: stringFieldSchema('Project description', {

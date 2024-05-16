@@ -32,6 +32,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         return resolve();
       }
 
+      console.log(result.data);
+
       const application = {
         FirstName: result.data.firstName,
         LastName: result.data.lastName,

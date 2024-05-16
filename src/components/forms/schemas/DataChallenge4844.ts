@@ -29,9 +29,7 @@ export const DataChallengeSchema = z.object({
   ),
   country: stringFieldSchema('Country', { min: 1 }),
   timezone: stringFieldSchema('Time zone', { min: 1 }),
-  countriesTeam: stringFieldSchema('Countries of team', {
-    max: MAX_TEXT_LENGTH
-  }).optional(),
+  countriesTeam: stringFieldSchema('Countries of team', { min: 1 }).optional(),
   projectName: stringFieldSchema('Project name', { min: 1, max: MAX_TEXT_LENGTH }),
   website: stringFieldSchema('Blog post', { min: 1, max: MAX_TEXT_LENGTH }),
   projectDescription: stringFieldSchema('Project summary', {

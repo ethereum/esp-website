@@ -61,6 +61,7 @@ export const api = {
         website: getWebsite(data.website),
         projectCategory: data.projectCategory.value,
         country: data.country.value,
+        fiatCurrency: data.fiatCurrency.value,
         timezone: data.timezone.value,
         howDidYouHearAboutESP: data.howDidYouHearAboutESP.value,
         repeatApplicant: data.repeatApplicant === 'Yes'
@@ -85,6 +86,7 @@ export const api = {
           // Company is a required field in SF, we're using the Name as default value if no company provided
           company: data.company === '' ? `${data.firstName} ${data.lastName}` : data.company,
           country: data.country.value,
+          fiatCurrency: data.fiatCurrency.value,
           website: getWebsite(data.website),
           projectCategory: data.projectCategory.value,
           repeatApplicant: data.repeatApplicant === 'Yes',
