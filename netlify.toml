@@ -285,3 +285,7 @@
   from = "/data-collection-grants/thank-you/"
   to = "/data-collection-grants/"
   force = true
+[[redirects]]
+  from = "/data-challenge-4844/apply/"
+  to = "/data-challenge-4844/"
+  force = true
