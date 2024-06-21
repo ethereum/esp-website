@@ -216,8 +216,7 @@ export const SIDEBAR_DATA_CHALLENGE_LINKS: SidebarLink[] = [
   { text: 'How to get started', href: `${DATA_CHALLENGE_ROUND_URL}/#started` },
   { text: 'Using existing data', href: `${DATA_CHALLENGE_ROUND_URL}/#existing-data` },
   { text: 'Helpful resources', href: `${DATA_CHALLENGE_ROUND_URL}/#helpful-resources` },
-  { text: 'Support', href: `${DATA_CHALLENGE_ROUND_URL}/#support` },
-  { text: 'Apply', href: `${DATA_CHALLENGE_ROUND_URL}/#apply` }
+  { text: 'Support', href: `${DATA_CHALLENGE_ROUND_URL}/#support` }
 ];
 
 export const ZK_GRANTS_URL = '/zk-grants';
@@ -245,7 +244,6 @@ export const ECODEV_GRANTS_APPLY_URL = '/ecodev-grants/apply';
 export const RUN_A_NODE_GRANTS_APPLY_URL = '/run-a-node-grants/apply';
 export const DATA_COLLECTION_APPLY_URL = '/data-collection-grants/apply';
 export const PSE_SPONSORSHIPS_APPLY_URL = '/pse-sponsorships/apply';
-export const DATA_CHALLENGE_APPLY_URL = '/data-challenge-4844/apply';
 export const EPF_APPLICATION_APPLY_URL = '/epf-application/apply';
 
 // grantee finance form
@@ -262,7 +260,6 @@ export const ECODEV_GRANTS_THANK_YOU_PAGE_URL = '/ecodev-grants/thank-you';
 export const RUN_A_NODE_GRANTS_THANK_YOU_PAGE_URL = '/run-a-node-grants/thank-you';
 export const DATA_COLLECTION_THANK_YOU_PAGE_URL = '/data-collection-grants/thank-you';
 export const PSE_SPONSORSHIPS_THANK_YOU_PAGE_URL = '/pse-sponsorships/thank-you';
-export const DATA_CHALLENGE_THANK_YOU_PAGE_URL = '/data-challenge-4844/thank-you';
 export const EPF_APPLICATION_THANK_YOU_PAGE_URL = '/epf-application/thank-you';
 
 // ethereum ecosystem

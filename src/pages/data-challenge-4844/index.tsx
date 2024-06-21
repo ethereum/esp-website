@@ -8,13 +8,12 @@ import {
   PageSection,
   PageText,
   PageMetadata,
-  ReadyToApply,
-  OrderedList
+  OrderedList,
+  BannerApplicationClosed
 } from '../../components/UI';
 
 import {
   GRANTS_EMAIL_ADDRESS,
-  DATA_CHALLENGE_APPLY_URL,
   SIDEBAR_DATA_CHALLENGE_LINKS,
   DATA_CHALLENGE_GRANTS_PREVIEW_URL
 } from '../../constants';
@@ -37,8 +36,7 @@ const DataChallenge: NextPage = () => {
   const [ref9, inView9] = useInView({ threshold: 0.5, initialInView: false });
   const [ref10, inView10] = useInView({ threshold: 0.5, initialInView: false });
   const [ref11, inView11] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref12, inView12] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref13, inView13] = useInView({ threshold: 0, initialInView: false });
+  const [ref12, inView12] = useInView({ threshold: 0, initialInView: false });
 
   return (
     <>
@@ -65,12 +63,13 @@ const DataChallenge: NextPage = () => {
                 inView9,
                 inView10,
                 inView11,
-                inView12,
-                inView13
+                inView12
               ]}
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
+              <BannerApplicationClosed mb={12} />
+
               <Stack mb={8} mt={{ base: 10, md: 0 }}>
                 <Section id='introduction' ref={ref}>
                   <PageText>
@@ -560,12 +559,6 @@ const DataChallenge: NextPage = () => {
                     </Link>
                     .
                   </PageText>
-                </Section>
-
-                <Section id='apply' ref={ref13}>
-                  <Stack>
-                    <ReadyToApply link={`${DATA_CHALLENGE_APPLY_URL}`} />
-                  </Stack>
                 </Section>
               </Stack>
             </Box>
