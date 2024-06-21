@@ -24,7 +24,7 @@
     "chakra-react-select": "^3.0.1",
     "chakra-ui-markdown-renderer": "^4.0.0",
     "focus-visible": "^5.2.0",
-    "formidable": "^2.0.1",
+    "formidable": "^3.2.4",
     "framer-motion": "^11.0.5",
     "google-spreadsheet": "^3.2.0",
     "jsforce": "^1.11.0",
