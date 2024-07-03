@@ -108,7 +108,8 @@ export const api = {
         body: JSON.stringify({
           ...data,
           l2Payment: data.l2Payment === 'Yes',
-          l2Network: data.l2Network ?? ''
+          l2Network: data.l2Network ?? '',
+          isCentralizedExchange: data.isCentralizedExchange === 'Yes'
         })
       };
 

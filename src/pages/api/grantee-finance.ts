@@ -23,7 +23,8 @@ async function handler(req: GranteeFinanceNextApiRequest, res: NextApiResponse):
       granteeSecurityID: Contract_ID__c,
       l2Payment: Layer2_Payment__c,
       l2Network: Layer_2_Network__c,
-      l2NetworkOther: Layer_2_Network_Other__c
+      l2NetworkOther: Layer_2_Network_Other__c,
+      isCentralizedExchange: Centralized_Exchange_Address__c
     } = body;
     const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
       process.env;
@@ -68,7 +69,8 @@ async function handler(req: GranteeFinanceNextApiRequest, res: NextApiResponse):
             SWIFT_Code_BIC__c: SWIFT_Code_BIC__c.trim(),
             Layer2_Payment__c, // this is a boolean value, no trim applied
             Layer_2_Network__c: Layer_2_Network__c.trim(),
-            Layer_2_Network_Other__c: Layer_2_Network_Other__c.trim()
+            Layer_2_Network_Other__c: Layer_2_Network_Other__c.trim(),
+            Centralized_Exchange_Address__c
           },
           (err, ret) => {
             if (err || !ret.success) {

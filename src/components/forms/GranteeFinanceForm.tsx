@@ -538,6 +538,60 @@ export const GranteeFinanceForm: FC = () => {
             </Fade>
           </Box>
 
+          <Box display={receivesCrypto ? 'block' : 'none'}>
+            <Fade in={receivesCrypto} delay={0.25}>
+              <Controller
+                name='isCentralizedExchange'
+                control={control}
+                rules={{ required: receivesCrypto }}
+                defaultValue='No'
+                render={({ field: { onChange, value } }) => (
+                  <FormControl
+                    id='isCentralizedExchange-control'
+                    isRequired={receivesCrypto}
+                    mb={8}
+                  >
+                    <FormLabel htmlFor='isCentralizedExchange' mb={1}>
+                      <PageText display='inline' fontSize='input'>
+                        Is this address hosted on a centralized exchange?
+                      </PageText>
+                    </FormLabel>
+
+                    <RadioGroup
+                      id='isCentralizedExchange'
+                      onChange={onChange}
+                      value={value}
+                      fontSize='input'
+                      colorScheme='white'
+                      mt={3}
+                    >
+                      <Stack direction='row'>
+                        <Radio
+                          id='is-centralized-exchange-yes'
+                          size='lg'
+                          name='isCentralizedExchange'
+                          value='Yes'
+                          mr={8}
+                        >
+                          <PageText fontSize='input'>Yes</PageText>
+                        </Radio>
+
+                        <Radio
+                          id='is-centralized-exchange-no'
+                          size='lg'
+                          name='isCentralizedExchange'
+                          value='No'
+                        >
+                          <PageText fontSize='input'>No</PageText>
+                        </Radio>
+                      </Stack>
+                    </RadioGroup>
+                  </FormControl>
+                )}
+              />
+            </Fade>
+          </Box>
+
           <Box display={receivesFiat ? 'block' : 'none'}>
             <Fade in={receivesFiat} delay={0.25}>
               <FormControl id='beneficiary-address-control' isRequired={receivesFiat} mb={8}>
