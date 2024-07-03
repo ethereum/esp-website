@@ -131,6 +131,7 @@ export interface GranteeFinanceFormData extends CaptchaForm {
   l2Payment: L2PaymentPreference; // SF API: Layer2_Payment__c
   l2Network: string; // SF API: Layer_2_Network__c
   l2NetworkOther: string; // SF API: Layer_2_Network_Other__c
+  isCentralizedExchange: string; // SF API: Centralized_Exchange_Address__c
 
   // ETH
   ethAddress: string; // SF API: ETH_Address__c
@@ -357,6 +358,7 @@ export interface GranteeFinanceNextApiRequest extends NextApiRequest {
     l2Payment: boolean;
     l2Network: string;
     l2NetworkOther: string;
+    isCentralizedExchange: boolean;
   };
 }
 
