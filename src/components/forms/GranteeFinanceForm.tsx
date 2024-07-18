@@ -382,43 +382,6 @@ export const GranteeFinanceForm: FC = () => {
                       </FormControl>
                     )}
                   />
-
-                  <FormControl id='l2NetworkOther' mb={8}>
-                    <FormLabel htmlFor='l2NetworkOther' mb={1}>
-                      <PageText display='inline' fontSize='input'>
-                        If the Layer 2 network you would like is not available, please let us know
-                        which networks you would like supported, separated by commas
-                      </PageText>
-                    </FormLabel>
-
-                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                      This question is optional and meant to help the disbursement team gather data
-                      on which Layer 2 networks are most requested.
-                    </PageText>
-
-                    <Textarea
-                      id='l2NetworkOther'
-                      bg='white'
-                      borderRadius={0}
-                      borderColor='brand.border'
-                      color='brand.paragraph'
-                      fontSize='input'
-                      h='72px'
-                      mt={3}
-                      resize='none'
-                      {...register('l2NetworkOther', {
-                        maxLength: 255
-                      })}
-                    />
-
-                    {errors?.l2NetworkOther?.type === 'maxLength' && (
-                      <Box mt={1}>
-                        <PageText as='small' fontSize='helpText' color='red.500'>
-                          Field cannot exceed 255 characters.
-                        </PageText>
-                      </Box>
-                    )}
-                  </FormControl>
                 </Fade>
               </Box>
             </Fade>
