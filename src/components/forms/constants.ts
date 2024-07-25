@@ -149,7 +149,8 @@ export const WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS = [
 // grantee finance
 export const SUPPORTED_LAYERS_2_OPTIONS = [
   { value: 'Arbitrum', label: 'Arbitrum' },
-  { value: 'Optimism', label: 'Optimism' }
+  { value: 'Optimism', label: 'Optimism' },
+  { value: 'ZKSync', label: 'ZKSync' }
 ];
 
 // countries
