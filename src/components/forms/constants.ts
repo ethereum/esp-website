@@ -124,8 +124,8 @@ export const EPF_APPLICATION_PROJECT_CATEGORY_OPTIONS = [
 export const PSE_APPLICATION_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Applied ZKP', label: 'Applied ZKP' },
   { value: 'Community Initiative', label: 'Community Initiative' },
-  { value: 'Cryptographic Research', label: 'Cryptographic Research' },
-  { value: 'Developer Tooling', label: 'Developer Tooling' },
+  { value: 'Cryptography Research', label: 'Cryptography Research' },
+  { value: 'Developer experience and tooling', label: 'Developer experience and tooling' },
   { value: 'Educational Content', label: 'Educational Content' },
   { value: 'Privacy', label: 'Privacy' },
   { value: 'Zero Knowledge Proofs', label: 'Zero Knowledge Proofs' },
