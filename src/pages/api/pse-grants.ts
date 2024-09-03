@@ -67,10 +67,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         RecordTypeId: process.env.SF_RECORD_TYPE_PSE_GRANTS!
       };
 
-      console.log(application);
-      res.status(200).json({ status: 'ok' });
-      return resolve();
-
       // Single record creation
       conn.sobject('Lead').create(application, async (err, ret) => {
         if (err || !ret.success) {
