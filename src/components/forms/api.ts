@@ -21,10 +21,12 @@ import {
   API_PSE_SPONSORSHIPS,
   API_SMALL_GRANTS_EVENT,
   API_SMALL_GRANTS_PROJECT,
-  API_EPF_APPLICATION
+  API_EPF_APPLICATION,
+  API_PSE_APPLICATION
 } from './constants';
 
 import type { EPFData } from './schemas/EPFApplication';
+import type { PSEData } from './schemas/PSEGrants';
 
 const methodOptions = {
   method: 'POST',
@@ -174,6 +176,16 @@ export const api = {
       };
 
       return fetch(API_PSE_SPONSORSHIPS, pseSponsorshipsRequestOptions);
+    }
+  },
+  pseGrants: {
+    submit: (data: PSEData) => {
+      const pseGrantsRequestOptions: RequestInit = {
+        ...methodOptions,
+        body: JSON.stringify(data)
+      };
+
+      return fetch(API_PSE_APPLICATION, pseGrantsRequestOptions);
     }
   },
   epfApplication: {

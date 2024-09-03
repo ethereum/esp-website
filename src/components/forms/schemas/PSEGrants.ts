@@ -11,7 +11,7 @@ export const PSESchema = z
   .object({
     projectName: stringFieldSchema('Project name', { min: 1, max: MAX_TEXT_LENGTH }),
     projectOverview: stringFieldSchema('Project overview', { min: 1, max: MAX_TEXT_LENGTH }),
-    impact: stringFieldSchema('Impact', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
+    impact: stringFieldSchema('Rationale', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
     projectDescription: stringFieldSchema('Project description', {
       min: MIN_TEXT_AREA_LENGTH,
       max: MAX_TEXT_AREA_LENGTH
@@ -20,7 +20,7 @@ export const PSESchema = z
     isOpenSource: z.boolean(),
     openSourceDetails: z.string().optional(),
     challenges: stringFieldSchema('Challenges', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
-    proposalAttachment: z.string().url({ message: 'Invalid URL' }).optional(),
+    proposalAttachment: z.union([z.literal(''), z.string().trim().url({ message: 'Invalid URL' })]),
     projectRepoLink: stringFieldSchema('Project repo link', { min: 1 }).url({
       message: 'Invalid URL'
     }),
@@ -35,14 +35,16 @@ export const PSESchema = z
       'Last name cannot contain a URL'
     ),
     email: z.string().email({ message: 'Invalid email address' }),
-    company: stringFieldSchema('Company', { max: MAX_TEXT_LENGTH }).optional(),
+    company: stringFieldSchema('Organization', { max: MAX_TEXT_LENGTH })
+      .refine(value => !containURL(value), 'Organization cannot contain a URL')
+      .optional(),
     discord: stringFieldSchema('Discord', { max: 60 }),
     alternativeContact: stringFieldSchema('Alternative contact', { max: 150 }).optional(),
     website: stringFieldSchema('Website', { min: 1 }).url({
       message: 'Invalid URL'
     }),
     country: stringFieldSchema('Country', { min: 1 }),
-    countriesOfTeam: stringFieldSchema('Countries of team', { min: 1 }).optional(),
+    countriesOfTeam: z.string().optional(),
     timezone: stringFieldSchema('Time zone', { min: 1 }),
 
     // Development Roadmap

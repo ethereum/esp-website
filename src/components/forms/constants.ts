@@ -1664,3 +1664,4 @@ export const API_PSE_SPONSORSHIPS = '/api/pse-sponsorships';
 export const API_DATA_COLLECTION_GRANTS = '/api/data-collection-grants';
 export const API_EPF_APPLICATION = '/api/epf-application';
 export const API_NEWSLETTER_SIGNUP_URL = '/api/newsletter-signup';
+export const API_PSE_APPLICATION = '/api/pse-grants';

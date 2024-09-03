@@ -40,13 +40,29 @@ export const PSEApplicationForm: FC = () => {
     handleSubmit,
     control,
     watch,
+    reset,
     formState: { isSubmitting }
   } = methods;
 
   const isOpenSource = watch('isOpenSource');
 
   const onSubmit: SubmitHandler<PSEData> = async data => {
-    console.log(data);
+    return api.pseGrants
+      .submit(data)
+      .then(res => {
+        if (res.ok) {
+          reset();
+          router.push(PSE_APPLICATION_THANK_YOU_PAGE_URL);
+        } else {
+          toast({
+            ...TOAST_OPTIONS,
+            title: 'Something went wrong while submitting, please try again.',
+            status: 'error'
+          });
+          throw new Error('Network response was not OK');
+        }
+      })
+      .catch(err => console.error('There has been a problem with your operation: ', err.message));
   };
 
   return (
