@@ -44,7 +44,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         PSE_Project_Overview__c: result.data.projectOverview,
         Impact__c: result.data.impact,
         Project_Description__c: result.data.projectDescription,
-        Project_Category__c: result.data.projectCategory,
+        Category__c: result.data.projectCategory,
         Requested_Amount__c: result.data.requestedAmount,
         Referrals__c: result.data.referrals,
         Website: result.data.website,
