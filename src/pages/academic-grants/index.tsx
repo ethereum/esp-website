@@ -1,4 +1,4 @@
-import { Accordion, Box, Flex, forwardRef, Link, ListItem, Stack } from '@chakra-ui/react';
+import { Accordion, Box, Center, Flex, forwardRef, Link, ListItem, Stack } from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import type { NextPage } from 'next';
 
@@ -9,7 +9,8 @@ import {
   PageSection,
   PageText,
   PageMetadata,
-  BannerApplicationClosed
+  BannerApplicationClosed,
+  Banner
 } from '../../components/UI';
 
 import {
@@ -18,6 +19,8 @@ import {
   OFFICE_HOURS_URL,
   SIDEBAR_ACADEMIC_GRANTS_LINKS
 } from '../../constants';
+
+import AGRMailingForm from '../../components/AGRMailingForm';
 
 const Section = forwardRef((props, ref) => (
   <Flex as='section' ref={ref} gap={6} direction='column' {...props} />
@@ -64,7 +67,19 @@ const AcademicGrants: NextPage = () => {
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
-              <BannerApplicationClosed mb={12} />
+              <BannerApplicationClosed mb={12}></BannerApplicationClosed>
+
+              <Banner
+                bgGradient='linear(to-br, brand.whoWeSupport.bgGradient.start 0%, brand.whoWeSupport.bgGradient.end 100%)'
+                color='brand.heading'
+                py={6}
+                borderRadius='xl'
+                flexDirection='column'
+                textAlign='center'
+                mb={12}
+              >
+                <AGRMailingForm />
+              </Banner>
 
               <Stack mb={8} mt={{ base: 10, md: 0 }}>
                 <Section id='introduction' ref={ref}>
