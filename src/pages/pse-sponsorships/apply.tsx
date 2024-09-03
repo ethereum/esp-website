@@ -40,7 +40,7 @@ const PSESponsorshipsApply: NextPage = () => {
         <Stack mt={6}>
           <section id='description'>
             <PageSubheading mb={8} textAlign='center'>
-              Submit Application to Privacy & Scaling Explorations
+              Submit Sponsorship Request to Privacy & Scaling Explorations
             </PageSubheading>
           </section>
         </Stack>
