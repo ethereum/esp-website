@@ -39,7 +39,7 @@ export const PSESchema = z
       .refine(value => !containURL(value), 'Organization cannot contain a URL')
       .optional(),
     discord: stringFieldSchema('Discord', { max: 60 }),
-    alternativeContact: stringFieldSchema('Alternative contact', { max: 150 }).optional(),
+    alternativeContact: stringFieldSchema('Notion account', { max: 150 }).optional(),
     website: stringFieldSchema('Website', { min: 1 }).url({
       message: 'Invalid URL'
     }),

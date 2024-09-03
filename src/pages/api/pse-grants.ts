@@ -53,7 +53,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         Additional_Information__c: result.data.additionalInfo,
         Github_Link__c: result.data.projectRepoLink,
         Discord__c: result.data.discord,
-        Notion_Account__c: result.data.alternativeContact,
         Is_it_Open_Source__c: result.data.isOpenSource ? result.data.openSourceDetails : '',
         Challenges__c: result.data.challenges,
         File_Attachment_Public_Link__c: result.data.proposalAttachment,
