@@ -221,10 +221,35 @@ export const PSEApplicationForm: FC = () => {
             )}
           />
 
-          <TextField
-            id='countriesOfTeam'
-            label='Countries of Team'
-            helpText='If you are a team of distributed researchers, please indicate where your fellow researchers are located. You can write as many countries as needed.'
+          <Controller
+            name='countriesOfTeam'
+            control={control}
+            render={({ field: { onChange }, fieldState: { error } }) => (
+              <Field
+                id='countriesOfTeam'
+                label='Countries of Team'
+                helpText='If you are a team of distributed researchers, please indicate where your fellow researchers are located. You can write as many countries as needed.'
+                error={error}
+              >
+                <Select
+                  id='projectCategory'
+                  options={COUNTRY_OPTIONS}
+                  isMulti
+                  onChange={selectedOptions => {
+                    onChange(
+                      (selectedOptions as typeof COUNTRY_OPTIONS)
+                        .map(option => option.value)
+                        .join(',')
+                    );
+                  }}
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
+              </Field>
+            )}
           />
 
           <Controller
