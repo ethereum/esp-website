@@ -5,7 +5,7 @@ import { Controller, FormProvider, SubmitHandler, useForm } from 'react-hook-for
 import { useRouter } from 'next/router';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { DropdownIndicator, PageText } from '../UI';
+import { DropdownIndicator, PageSection, PageText } from '../UI';
 import { SubmitButton } from '../SubmitButton';
 import { Captcha, Field, TextField, TextAreaField } from '.';
 
@@ -83,6 +83,8 @@ export const PSEApplicationForm: FC = () => {
           direction='column'
           gap={8}
         >
+          <PageSection mt={12}>Project Details</PageSection>
+
           <TextField id='projectName' label='Project Name' isRequired />
 
           <TextAreaField
@@ -185,6 +187,8 @@ export const PSEApplicationForm: FC = () => {
             isRequired
           />
 
+          <PageSection mt={12}>Applicant Details</PageSection>
+
           <Flex direction={{ base: 'column', md: 'row' }} gap={8}>
             <TextField id='firstName' label='First Name' isRequired />
             <TextField id='lastName' label='Last Name' isRequired />
@@ -279,6 +283,8 @@ export const PSEApplicationForm: FC = () => {
             )}
           />
 
+          <PageSection mt={12}>Development Roadmap</PageSection>
+
           <TextAreaField
             id='proposedTimeline'
             label='Roadmap Overview'
@@ -306,6 +312,8 @@ export const PSEApplicationForm: FC = () => {
             helpText='Estimated grant amount, i.e. USD 50,000. Proposals should include a detailed budget breakdown for requested amount.'
             isRequired
           />
+
+          <PageSection mt={12}>Additional Information</PageSection>
 
           <TextField
             id='referrals'
