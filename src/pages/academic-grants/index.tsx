@@ -70,9 +70,7 @@ const AcademicGrants: NextPage = () => {
               <BannerApplicationClosed mb={12}></BannerApplicationClosed>
 
               <Banner
-                border='1px solid'
-                borderColor='brand.border'
-                bg='transparent'
+                bgGradient='linear(to-br, brand.whoWeSupport.bgGradient.start 0%, brand.whoWeSupport.bgGradient.end 100%)'
                 color='brand.heading'
                 py={6}
                 borderRadius='xl'
