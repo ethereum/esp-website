@@ -16,7 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { email, name, university } = AGRMailingSchema.parse(req.body);
 
     await apiInstance.createContact({
-      listIds: [4],
+      listIds: [3],
       email: email,
       attributes: {
         FULLNAME: name,
