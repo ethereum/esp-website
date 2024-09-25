@@ -68,6 +68,11 @@ export const GranteeFinanceForm: FC = () => {
   const isIndianBank =
     bankAddress?.toLowerCase().includes('india') || fiatCurrencyCode?.toLowerCase() === 'inr';
 
+  // if the fiat currency code is 'KRW', alert for National ID of the individual,
+  // or the Tax ID of the entity in the Notes field
+  const isKoreanBank =
+    bankAddress?.toLowerCase().includes('korea') || fiatCurrencyCode?.toLowerCase() === 'krw';
+
   const onSubmit = async (data: GranteeFinanceFormData) => {
     return api.granteeFinance
       .submit(data)
@@ -853,6 +858,14 @@ export const GranteeFinanceForm: FC = () => {
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
                       If you are using an Indian bank, please include your IFSC code
+                    </PageText>
+                  </Box>
+                )}
+
+                {isKoreanBank && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      If you are using a Korean bank, please include your National ID or Tax ID
                     </PageText>
                   </Box>
                 )}
