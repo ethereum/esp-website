@@ -7,11 +7,11 @@ import { PageMetadata, PageSubheading } from '../../components/UI';
 
 import pseSponsorshipsHero from '../../../public/images/pse-sponsorships.png';
 
-const PSESponsorshipsApply: NextPage = () => {
+const PSEApplicationPage: NextPage = () => {
   return (
     <>
       <PageMetadata
-        title='PSE Sponsorships Application'
+        title='PSE Grants Application'
         description='Submit Application to Privacy & Scaling Explorations.'
       />
       <Head>
@@ -40,7 +40,7 @@ const PSESponsorshipsApply: NextPage = () => {
         <Stack mt={6}>
           <section id='description'>
             <PageSubheading mb={8} textAlign='center'>
-              Submit Sponsorship Request to Privacy & Scaling Explorations
+              Submit Application to Privacy & Scaling Explorations
             </PageSubheading>
           </section>
         </Stack>
@@ -49,4 +49,4 @@ const PSESponsorshipsApply: NextPage = () => {
   );
 };
 
-export default PSESponsorshipsApply;
+export default PSEApplicationPage;
