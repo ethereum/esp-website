@@ -62,48 +62,31 @@ const DevconGrants: NextPage = () => {
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
               <Stack mb={8} mt={{ base: 10, md: 0 }}>
                 <section id='description' ref={ref}>
-                  <PageSubheading mb={8}>Join the Road to Devcon</PageSubheading>
-
-                  <PageText mb={6}>Calling all community organizers!</PageText>
+                  <PageSubheading mb={8}>What are Devcon Satellite Events?</PageSubheading>
 
                   <PageText mb={6}>
-                    We are excited to announce that we will be launching a funding round to support
-                    and empower the Ethereum community in Southeast Asia. Inspired by the
-                    involvement of the flourishing Latin American Ethereum community at Devcon VI in
-                    Bogotá, we aim to create a similar impact in Southeast Asia with the Road to
-                    Devcon 7.
+                    Devcon Satellite Events are an effort to decentralize Devcon, to give the
+                    opportunity to foster a community among those who can&apos;t make it to Bangkok
+                    due to distance, timing, cost, or other constraints, and to boost local Ethereum
+                    communities.
                   </PageText>
 
                   <PageText mb={6}>
-                    One of the reasons we plan to{' '}
-                    <Link
-                      fontWeight={700}
-                      color='brand.orange.100'
-                      href='https://blog.ethereum.org/2023/02/28/devcon-7-update'
-                      isExternal
-                      _hover={{ textDecoration: 'none' }}
-                    >
-                      organize Devcon in 2024 instead of 2023
-                    </Link>{' '}
-                    is to give more time for your local communities to grow and blossom. We want to
-                    help new grassroots communities sprout up{' '}
-                    <Link
-                      fontWeight={700}
-                      color='brand.orange.100'
-                      href='https://www.youtube.com/watch?v=2_9YoS_1ut4'
-                      isExternal
-                      _hover={{ textDecoration: 'none' }}
-                    >
-                      in the infinite garden
-                    </Link>
-                    . Let&apos;s see what kind of magic you can create!
+                    Devcon Satellite Events can be just a simple get-together of friends watching
+                    the live streams with pizza, bigger meetups to rewatch the recorded keynote
+                    talks at a time that&apos;s better suited for your community, or a chance to
+                    recap and discuss Devcon updates with your local community after Devcon.
+                  </PageText>
+
+                  <PageText mb={6}>
+                    These satellite events should take place during or after Devcon Week, between
+                    November 11 - December 8, 2024. They are self-organized and totally independent.
                   </PageText>
 
                   <PageText>
-                    In collaboration with the Ecosystem Support team, this funding round will be a
-                    wave of small sponsorships (up to $1,000) to help cover costs incurred in
-                    organizing small-scale events, such as local meetups or topical workshops, and
-                    other local educational initiatives.
+                    Devcon and the Ecosystem Support Program are teaming up to support the 10 best
+                    submissions for Devcon Satellite Events around the globe with up to $1,000 each!
+                    The deadline for proposals is November 22, 2024.
                   </PageText>
                 </section>
               </Stack>
@@ -134,12 +117,31 @@ const DevconGrants: NextPage = () => {
                   <PageText mb={6}>To be eligible for a grant, your event should be:</PageText>
 
                   <List>
-                    <ListItem>Ethereum focused</ListItem>
+                    <ListItem>Ethereum focused, streaming Devcon talks and programming</ListItem>
                     <ListItem>Free to attend</ListItem>
                     <ListItem>Open to anyone</ListItem>
                     <ListItem>Not focused on investment, price or token sales</ListItem>
                     <ListItem>Events that have already taken place are not eligible</ListItem>
-                    <ListItem>Focused in Southeast Asia (or nearby regions)</ListItem>
+                  </List>
+                </section>
+
+                <section id='eligibility' ref={ref3}>
+                  <PageSection mb={6}>Some ideas for Devcon Satellite Events</PageSection>
+
+                  <List>
+                    <ListItem>
+                      Small events (5 - 25 people): A meetup to watch the live streams with pizzas
+                    </ListItem>
+                    <ListItem>
+                      Medium events (25 - 50 people): Showing recorded keynote talks or the best
+                      talks around a specific topic, and in-person discussion rounds, taking place
+                      one week after Devcon.
+                    </ListItem>
+                    <ListItem>
+                      Large events (100 - 200 people): People coming together in a venue with
+                      organized tickets and catering, a live broadcast of what’s happening, and
+                      workshops or discussion panels
+                    </ListItem>
                   </List>
                 </section>
 
@@ -225,7 +227,7 @@ const DevconGrants: NextPage = () => {
                   <PageSection mb={6}>Frequently asked questions</PageSection>
 
                   <Accordion allowToggle>
-                    <FAQItem question='Who can submit proposals for Road to Devcon Meetup and Event Grants?'>
+                    <FAQItem question='Who can submit proposals for Devcon Satellite Events?'>
                       <PageText>
                         Events of any size, location, demographic or (Ethereum-related) topic are
                         welcome to apply as long as they meet the{' '}
