@@ -1,4 +1,14 @@
-import { Accordion, Box, Flex, Link, ListItem, Stack, UnorderedList } from '@chakra-ui/react';
+import {
+  Accordion,
+  Box,
+  Flex,
+  Heading,
+  Link,
+  ListItem,
+  Stack,
+  Text,
+  UnorderedList
+} from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import type { NextPage } from 'next';
 
@@ -11,7 +21,9 @@ import {
   PageText,
   PageMetadata,
   ReadyToApply,
-  OrderedList
+  OrderedList,
+  BannerApplicationClosed,
+  Banner
 } from '../../components/UI';
 
 import {
@@ -60,6 +72,25 @@ const DevconGrants: NextPage = () => {
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
+              <Banner
+                bgGradient='linear(to-br, brand.closedBanner.bgGradient.start 10%, brand.closedBanner.bgGradient.end 100%)'
+                color='brand.heading'
+                py={6}
+                borderRadius='xl'
+                flexDirection='column'
+                textAlign='center'
+                mb={12}
+              >
+                <Heading fontSize='h4' fontWeight={700} mb={2}>
+                  Applications for the Road to Devcon Grants Round are closed. However, sponsorship
+                  applications for Devcon Satellite Events are open!
+                </Heading>
+                <Text fontSize='paragraph' fontWeight={300}>
+                  If you&apos;re interested in submitting a proposal for a Devcon Satellite Event,
+                  please read the eligibility criteria and apply below.
+                </Text>
+              </Banner>
+
               <Stack mb={8} mt={{ base: 10, md: 0 }}>
                 <section id='description' ref={ref}>
                   <PageSubheading mb={8}>What are Devcon Satellite Events?</PageSubheading>
@@ -135,11 +166,11 @@ const DevconGrants: NextPage = () => {
                     <ListItem>
                       Medium events (25 - 50 people): Showing recorded keynote talks or the best
                       talks around a specific topic, and in-person discussion rounds, taking place
-                      one week after Devcon.
+                      one week after Devcon
                     </ListItem>
                     <ListItem>
                       Large events (100 - 200 people): People coming together in a venue with
-                      organized tickets and catering, a live broadcast of what’s happening, and
+                      organized tickets and catering, a live broadcast of what&apos;s happening, and
                       workshops or discussion panels
                     </ListItem>
                   </List>
