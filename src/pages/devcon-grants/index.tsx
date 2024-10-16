@@ -110,14 +110,19 @@ const DevconGrants: NextPage = () => {
                   </PageText>
 
                   <PageText mb={6}>
-                    These satellite events should take place during or after Devcon Week, between
-                    November 11 - December 8, 2024. They are self-organized and totally independent.
+                    These satellite events should take place during or after Devcon Week, between{' '}
+                    <strong>November 11 - December 8, 2024</strong>. They are self-organized and
+                    totally independent.
+                  </PageText>
+
+                  <PageText mb={6}>
+                    Devcon and the Ecosystem Support Program are teaming up to support the 10 best
+                    submissions for Devcon Satellite Events around the globe with{' '}
+                    <strong>up to $1,000 each!</strong>
                   </PageText>
 
                   <PageText>
-                    Devcon and the Ecosystem Support Program are teaming up to support the 10 best
-                    submissions for Devcon Satellite Events around the globe with up to $1,000 each!
-                    The deadline for proposals is November 22, 2024.
+                    <strong>The deadline for proposals is November 22, 2024.</strong>
                   </PageText>
                 </section>
               </Stack>
