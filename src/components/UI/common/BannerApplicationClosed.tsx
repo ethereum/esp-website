@@ -5,9 +5,11 @@ import { Banner } from './Banner';
 
 import { APPLICANTS_URL } from '../../../constants';
 
-interface Props extends ChakraProps {}
+interface Props extends ChakraProps {
+  children?: React.ReactNode;
+}
 
-export const BannerApplicationClosed: FC<Props> = props => {
+export const BannerApplicationClosed: FC<Props> = ({ children, ...props }) => {
   return (
     <Banner
       bgGradient='linear(to-br, brand.closedBanner.bgGradient.start 10%, brand.closedBanner.bgGradient.end 100%)'
@@ -35,6 +37,7 @@ export const BannerApplicationClosed: FC<Props> = props => {
         </Link>
         .
       </Text>
+      {children}
     </Banner>
   );
 };
