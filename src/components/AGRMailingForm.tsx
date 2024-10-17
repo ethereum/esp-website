@@ -5,7 +5,6 @@ import {
   Box,
   BoxProps,
   Button,
-  Center,
   Flex,
   FormControl,
   FormErrorMessage,
@@ -15,7 +14,7 @@ import {
   VStack,
   useToast
 } from '@chakra-ui/react';
-import { PageSection, PageText } from './UI';
+import { PageText } from './UI';
 
 export const AGRMailingSchema = z.object({
   email: z.string().email({ message: 'Invalid email address' }),
@@ -30,7 +29,7 @@ const AGRMailingForm = (props: BoxProps) => {
     register,
     handleSubmit,
     reset,
-    formState: { errors }
+    formState: { errors, isSubmitting }
   } = useForm<FormData>({
     resolver: zodResolver(AGRMailingSchema)
   });
@@ -105,6 +104,7 @@ const AGRMailingForm = (props: BoxProps) => {
             color='white'
             backgroundColor='brand.accent'
             _hover={{ bg: 'brand.hover' }}
+            isLoading={isSubmitting}
           >
             Subscribe for updates
           </Button>
