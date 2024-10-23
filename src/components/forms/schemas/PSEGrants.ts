@@ -9,15 +9,16 @@ const MIN_TEXT_AREA_LENGTH = 500;
 
 export const PSESchema = z
   .object({
+    // Project Details
     projectName: stringFieldSchema('Project name', { min: 1, max: MAX_TEXT_LENGTH }),
-    impact: stringFieldSchema('Rationale', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
     projectDescription: stringFieldSchema('Project description', {
       min: MIN_TEXT_AREA_LENGTH,
       max: MAX_TEXT_AREA_LENGTH
     }),
+    impact: stringFieldSchema('Rationale', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
     isOpenSource: z.boolean(),
     openSourceDetails: z.string().optional(),
-    proposalAttachment: z.union([z.literal(''), z.string().trim().url({ message: 'Invalid URL' })]),
+    proposalAttachment: z.string().trim().url({ message: 'Invalid URL' }),
     projectRepoLink: stringFieldSchema('Project repository', { min: 1 }).url({
       message: 'Invalid URL'
     }),

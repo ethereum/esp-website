@@ -33,31 +33,36 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
       }
 
       const application = {
+        // Project Details
+        Project_Name__c: result.data.projectName,
+        Project_Description__c: result.data.projectDescription,
+        Impact__c: result.data.impact,
+        Is_it_Open_Source__c: result.data.isOpenSource ? result.data.openSourceDetails : '',
+        File_Attachment_Public_Link__c: result.data.proposalAttachment,
+        Github_Link__c: result.data.projectRepoLink,
+        Requested_Amount__c: result.data.requestedAmount,
+
+        // Applicant Details
         FirstName: result.data.firstName,
         LastName: result.data.lastName,
         Email: result.data.email,
         Company: result.data.company || `${result.data.firstName} ${result.data.lastName}`,
+        Discord__c: result.data.discord,
+        Twitter__c: result.data.twitter,
+        Alternative_Contact__c: result.data.alternativeContact,
+        npsp__CompanyCity__c: result.data.companyCity,
+        Website: result.data.website,
         npsp__CompanyCountry__c: result.data.country,
         Countries_of_Team__c: result.data.countriesOfTeam,
         Time_Zone__c: result.data.timezone,
-        Project_Name__c: result.data.projectName,
-        Impact__c: result.data.impact,
-        Project_Description__c: result.data.projectDescription,
-        Requested_Amount__c: result.data.requestedAmount,
-        Referrals__c: result.data.referrals,
-        Website: result.data.website,
-        Alternative_Contact__c: result.data.alternativeContact,
-        Repeat_Applicant__c: result.data.repeatApplicant,
-        Additional_Information__c: result.data.additionalInfo,
-        Github_Link__c: result.data.projectRepoLink,
-        Discord__c: result.data.discord,
-        Twitter__c: result.data.twitter,
-        npsp__CompanyCity__c: result.data.companyCity,
-        Is_it_Open_Source__c: result.data.isOpenSource ? result.data.openSourceDetails : '',
-        File_Attachment_Public_Link__c: result.data.proposalAttachment,
+
+        // Additional Information
         Related_PSE_Project__c: result.data.relatedPSEProject,
+        Referrals__c: result.data.referrals,
         Sustainability_Plan__c: result.data.sustainabilityPlan,
         Other_Projects__c: result.data.otherProjects,
+        Repeat_Applicant__c: result.data.repeatApplicant,
+        Additional_Information__c: result.data.additionalInfo,
 
         LeadSource: 'Webform',
         Pipeline_Entry__c: 'Privacy and Scaling',

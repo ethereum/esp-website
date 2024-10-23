@@ -144,6 +144,7 @@ export const PSEApplicationForm: FC = () => {
                 </Link>
               </div>
             }
+            isRequired
           />
 
           <TextField
@@ -304,7 +305,6 @@ export const PSEApplicationForm: FC = () => {
               <Field
                 id='repeatApplicant'
                 label='Have you applied before to any grants at the Ethereum Foundation?'
-                isRequired
               >
                 <RadioGroup
                   id='repeatApplicant'
