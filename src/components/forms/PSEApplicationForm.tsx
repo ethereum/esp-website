@@ -1,4 +1,4 @@
-import { Center, Flex, Stack, RadioGroup, Radio, useToast, Collapse } from '@chakra-ui/react';
+import { Center, Flex, Stack, RadioGroup, Radio, useToast, Collapse, Link } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
 import { FC } from 'react';
 import { Controller, FormProvider, SubmitHandler, useForm } from 'react-hook-form';
@@ -83,14 +83,14 @@ export const PSEApplicationForm: FC = () => {
 
           <TextField id='projectName' label='Project Name' isRequired />
 
+          <TextAreaField id='projectDescription' label='Project Description' isRequired />
+
           <TextAreaField
             id='impact'
             label='Short Rationale'
             helpText='Describe the potential impact of this project, how it differs from similar ones, and how it will result in a public good.'
             isRequired
           />
-
-          <TextAreaField id='projectDescription' label='Project Detail' isRequired />
 
           <Controller
             name='isOpenSource'
@@ -129,14 +129,27 @@ export const PSEApplicationForm: FC = () => {
 
           <TextField
             id='proposalAttachment'
-            label='Proposal Attachment'
-            helpText='Include a link to a hackmd, pdf, etc. for content that may be difficult to include on the form e.g. mathematical expressions.'
+            label='Proposal URL'
+            helpText={
+              <div>
+                Link to full proposal using hackmd proposal template{' '}
+                <Link
+                  fontWeight={700}
+                  color='brand.orange.100'
+                  href='https://hackmd.io/@28POrCkqSYCpNAIdvae0ag/r1trYkmIh'
+                  isExternal
+                  _hover={{ textDecoration: 'none' }}
+                >
+                  here
+                </Link>
+              </div>
+            }
           />
 
           <TextField
             id='projectRepoLink'
-            label='Project Repo Link'
-            helpText='If your project has a Github repo please provide the link.'
+            label='Project Repository'
+            helpText='Provide a link to your project repository.'
             isRequired
           />
 
@@ -156,13 +169,13 @@ export const PSEApplicationForm: FC = () => {
 
           <TextField id='email' label='Email' isRequired />
           <TextField id='company' label='Organization / Team' />
+          <TextField id='website' label='Website' isRequired />
           <TextField id='discord' label='Discord' isRequired />
           <TextField
             id='alternativeContact'
             label='Notion Account'
             helpText='Insert Notion account email if different from the above email'
           />
-          <TextField id='website' label='Website' isRequired />
 
           <Controller
             name='country'
@@ -247,7 +260,8 @@ export const PSEApplicationForm: FC = () => {
 
           <TextField
             id='referrals'
-            label='How did you know about the PSE Grant Program?'
+            label='PSE Contact'
+            helpText='Please provide the name of the person at PSE you have discussed this project with or who directed you to apply, if applicable.'
             isRequired
           />
 

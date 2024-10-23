@@ -18,7 +18,7 @@ export const PSESchema = z
     isOpenSource: z.boolean(),
     openSourceDetails: z.string().optional(),
     proposalAttachment: z.union([z.literal(''), z.string().trim().url({ message: 'Invalid URL' })]),
-    projectRepoLink: stringFieldSchema('Project repo link', { min: 1 }).url({
+    projectRepoLink: stringFieldSchema('Project repository', { min: 1 }).url({
       message: 'Invalid URL'
     }),
 
