@@ -13,11 +13,7 @@ import { api } from './api';
 
 import { chakraStyles } from './selectStyles';
 
-import {
-  COUNTRY_OPTIONS,
-  TIMEZONE_OPTIONS,
-  PSE_APPLICATION_PROJECT_CATEGORY_OPTIONS
-} from './constants';
+import { COUNTRY_OPTIONS, TIMEZONE_OPTIONS } from './constants';
 import { TOAST_OPTIONS, PSE_APPLICATION_THANK_YOU_PAGE_URL } from '../../constants';
 
 import { PSEData, PSESchema } from './schemas/PSEGrants';
@@ -88,13 +84,6 @@ export const PSEApplicationForm: FC = () => {
           <TextField id='projectName' label='Project Name' isRequired />
 
           <TextAreaField
-            id='projectOverview'
-            label='Overview'
-            helpText='A brief project description in 250 characters or less.'
-            isRequired
-          />
-
-          <TextAreaField
             id='impact'
             label='Short Rationale'
             helpText='Describe the potential impact of this project, how it differs from similar ones, and how it will result in a public good.'
@@ -102,35 +91,6 @@ export const PSEApplicationForm: FC = () => {
           />
 
           <TextAreaField id='projectDescription' label='Project Detail' isRequired />
-
-          <Controller
-            name='projectCategory'
-            control={control}
-            render={({ field: { onChange }, fieldState: { error } }) => (
-              <Field
-                id='projectCategory'
-                label='Project Category'
-                helpText='Please choose a category that your project best fits in.'
-                error={error}
-                isRequired
-              >
-                <Select
-                  id='projectCategory'
-                  options={PSE_APPLICATION_PROJECT_CATEGORY_OPTIONS}
-                  onChange={option => {
-                    onChange(
-                      (option as (typeof PSE_APPLICATION_PROJECT_CATEGORY_OPTIONS)[number]).value
-                    );
-                  }}
-                  components={{ DropdownIndicator }}
-                  placeholder='Select'
-                  closeMenuOnSelect={true}
-                  selectedOptionColor='brand.option'
-                  chakraStyles={chakraStyles}
-                />
-              </Field>
-            )}
-          />
 
           <Controller
             name='isOpenSource'
@@ -167,13 +127,6 @@ export const PSEApplicationForm: FC = () => {
             />
           </Collapse>
 
-          <TextAreaField
-            id='challenges'
-            label='Risks and Challenges'
-            helpText='Describe key risks and challenges to your project.'
-            isRequired
-          />
-
           <TextField
             id='proposalAttachment'
             label='Proposal Attachment'
@@ -184,6 +137,13 @@ export const PSEApplicationForm: FC = () => {
             id='projectRepoLink'
             label='Project Repo Link'
             helpText='If your project has a Github repo please provide the link.'
+            isRequired
+          />
+
+          <TextField
+            id='requestedAmount'
+            label='Total Budget Request'
+            helpText='Estimated grant amount, i.e. USD 50,000. Proposals should include a detailed budget breakdown for requested amount.'
             isRequired
           />
 
@@ -236,7 +196,7 @@ export const PSEApplicationForm: FC = () => {
                 error={error}
               >
                 <Select
-                  id='projectCategory'
+                  id='countriesOfTeam'
                   options={COUNTRY_OPTIONS}
                   isMulti
                   onChange={selectedOptions => {
@@ -281,36 +241,6 @@ export const PSEApplicationForm: FC = () => {
                 />
               </Field>
             )}
-          />
-
-          <PageSection mt={12}>Development Roadmap</PageSection>
-
-          <TextAreaField
-            id='proposedTimeline'
-            label='Roadmap Overview'
-            helpText='Include: 
-    - Total Estimated Duration: Duration of the whole project
-    - Full-time equivalent (FTE): Workload of an employed person
-    - Total Costs: Amount of Payment for the whole project. (optional)'
-            isRequired
-          />
-
-          <TextAreaField
-            id='progress'
-            label='Roadmap Milestones'
-            helpText='Include: 
-    - Estimated duration per milestone    
-    - Estimated FTE and cost per milestone
-    - Estimated delivery dates 
-    - Deliverables and specifications'
-            isRequired
-          />
-
-          <TextField
-            id='requestedAmount'
-            label='Total Budget Request'
-            helpText='Estimated grant amount, i.e. USD 50,000. Proposals should include a detailed budget breakdown for requested amount.'
-            isRequired
           />
 
           <PageSection mt={12}>Additional Information</PageSection>

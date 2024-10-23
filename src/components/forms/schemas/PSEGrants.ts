@@ -10,16 +10,13 @@ const MIN_TEXT_AREA_LENGTH = 500;
 export const PSESchema = z
   .object({
     projectName: stringFieldSchema('Project name', { min: 1, max: MAX_TEXT_LENGTH }),
-    projectOverview: stringFieldSchema('Project overview', { min: 1, max: MAX_TEXT_LENGTH }),
     impact: stringFieldSchema('Rationale', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
     projectDescription: stringFieldSchema('Project description', {
       min: MIN_TEXT_AREA_LENGTH,
       max: MAX_TEXT_AREA_LENGTH
     }),
-    projectCategory: stringFieldSchema('Project category', { min: 1 }),
     isOpenSource: z.boolean(),
     openSourceDetails: z.string().optional(),
-    challenges: stringFieldSchema('Challenges', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
     proposalAttachment: z.union([z.literal(''), z.string().trim().url({ message: 'Invalid URL' })]),
     projectRepoLink: stringFieldSchema('Project repo link', { min: 1 }).url({
       message: 'Invalid URL'
@@ -48,8 +45,6 @@ export const PSESchema = z
     timezone: stringFieldSchema('Time zone', { min: 1 }),
 
     // Development Roadmap
-    proposedTimeline: stringFieldSchema('Roadmap overview', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
-    progress: stringFieldSchema('Roadmap milestones', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
     requestedAmount: stringFieldSchema('Total budget', { min: 1, max: 20 }),
 
     // Additional Information

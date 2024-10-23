@@ -41,10 +41,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         Countries_of_Team__c: result.data.countriesOfTeam,
         Time_Zone__c: result.data.timezone,
         Project_Name__c: result.data.projectName,
-        PSE_Project_Overview__c: result.data.projectOverview,
         Impact__c: result.data.impact,
         Project_Description__c: result.data.projectDescription,
-        Category__c: result.data.projectCategory,
         Requested_Amount__c: result.data.requestedAmount,
         Referrals__c: result.data.referrals,
         Website: result.data.website,
@@ -54,15 +52,13 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         Github_Link__c: result.data.projectRepoLink,
         Discord__c: result.data.discord,
         Is_it_Open_Source__c: result.data.isOpenSource ? result.data.openSourceDetails : '',
-        Challenges__c: result.data.challenges,
         File_Attachment_Public_Link__c: result.data.proposalAttachment,
-        Proposed_Timeline__c: result.data.proposedTimeline,
-        Progress__c: result.data.progress,
         Sustainability_Plan__c: result.data.sustainabilityPlan,
         Other_Projects__c: result.data.otherProjects,
 
         LeadSource: 'Webform',
         Pipeline_Entry__c: 'Privacy and Scaling',
+        Category__c: 'Applied ZKP',
         RecordTypeId: process.env.SF_RECORD_TYPE_PSE_GRANTS!
       };
 

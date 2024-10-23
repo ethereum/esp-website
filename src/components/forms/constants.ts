@@ -121,18 +121,6 @@ export const EPF_APPLICATION_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Other', label: 'Other' }
 ];
 
-export const PSE_APPLICATION_PROJECT_CATEGORY_OPTIONS = [
-  { value: 'Applied ZKP', label: 'Applied ZKP' },
-  { value: 'Community Initiative', label: 'Community Initiative' },
-  { value: 'Cryptography Research', label: 'Cryptography Research' },
-  { value: 'Developer experience and tooling', label: 'Developer experience and tooling' },
-  { value: 'Educational Content', label: 'Educational Content' },
-  { value: 'Privacy', label: 'Privacy' },
-  { value: 'Zero Knowledge Proofs', label: 'Zero Knowledge Proofs' },
-  { value: 'Zero Knowledge Applications', label: 'Zero Knowledge Applications' },
-  { value: 'Other', label: 'Other' }
-];
-
 // events
 export const EVENT_TYPE_OPTIONS = [
   { value: 'Conference', label: 'Conference' },
