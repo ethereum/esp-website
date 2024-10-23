@@ -171,11 +171,13 @@ export const PSEApplicationForm: FC = () => {
           <TextField id='company' label='Organization / Team' />
           <TextField id='website' label='Website' isRequired />
           <TextField id='discord' label='Discord' isRequired />
+          <TextField id='twitter' label='Twitter' />
           <TextField
             id='alternativeContact'
             label='Notion Account'
             helpText='Insert Notion account email if different from the above email'
           />
+          <TextField id='companyCity' label='Company City' isRequired />
 
           <Controller
             name='country'
@@ -257,6 +259,26 @@ export const PSEApplicationForm: FC = () => {
           />
 
           <PageSection mt={12}>Additional Information</PageSection>
+
+          <TextField
+            id='relatedPSEProject'
+            label='Related PSE Project'
+            helpText={
+              <div>
+                Which PSE project does your proposal relate to? See the{' '}
+                <Link
+                  fontWeight={700}
+                  color='brand.orange.100'
+                  href='https://pse.dev/en/projects'
+                  isExternal
+                  _hover={{ textDecoration: 'none' }}
+                >
+                  complete list of PSE projects
+                </Link>
+              </div>
+            }
+            isRequired
+          />
 
           <TextField
             id='referrals'

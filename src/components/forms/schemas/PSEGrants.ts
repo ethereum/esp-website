@@ -21,6 +21,7 @@ export const PSESchema = z
     projectRepoLink: stringFieldSchema('Project repository', { min: 1 }).url({
       message: 'Invalid URL'
     }),
+    requestedAmount: stringFieldSchema('Total budget', { min: 1, max: 20 }),
 
     // Applicant Details
     firstName: stringFieldSchema('First name', { min: 1, max: 40 }).refine(
@@ -36,7 +37,9 @@ export const PSESchema = z
       .refine(value => !containURL(value), 'Organization cannot contain a URL')
       .optional(),
     discord: stringFieldSchema('Discord', { max: 60 }),
+    twitter: stringFieldSchema('Twitter', { max: 40 }).optional(),
     alternativeContact: stringFieldSchema('Notion account', { max: 150 }).optional(),
+    companyCity: stringFieldSchema('Company city', { min: 1, max: MAX_TEXT_LENGTH }),
     website: stringFieldSchema('Website', { min: 1 }).url({
       message: 'Invalid URL'
     }),
@@ -44,10 +47,8 @@ export const PSESchema = z
     countriesOfTeam: z.string().optional(),
     timezone: stringFieldSchema('Time zone', { min: 1 }),
 
-    // Development Roadmap
-    requestedAmount: stringFieldSchema('Total budget', { min: 1, max: 20 }),
-
     // Additional Information
+    relatedPSEProject: stringFieldSchema('Related PSE project', { min: 1, max: MAX_TEXT_LENGTH }),
     referrals: stringFieldSchema('Field', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
     sustainabilityPlan: stringFieldSchema('Field', {
       max: MAX_TEXT_AREA_LENGTH

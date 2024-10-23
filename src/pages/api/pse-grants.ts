@@ -51,8 +51,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         Additional_Information__c: result.data.additionalInfo,
         Github_Link__c: result.data.projectRepoLink,
         Discord__c: result.data.discord,
+        Twitter__c: result.data.twitter,
+        npsp__CompanyCity__c: result.data.companyCity,
         Is_it_Open_Source__c: result.data.isOpenSource ? result.data.openSourceDetails : '',
         File_Attachment_Public_Link__c: result.data.proposalAttachment,
+        Related_PSE_Project__c: result.data.relatedPSEProject,
         Sustainability_Plan__c: result.data.sustainabilityPlan,
         Other_Projects__c: result.data.otherProjects,
 
