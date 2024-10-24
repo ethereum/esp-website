@@ -41,6 +41,7 @@
     "sharp": "^0.33.2"
   },
   "devDependencies": {
+    "@getbrevo/brevo": "^2.2.0",
     "@hookform/resolvers": "^3.1.0",
     "@types/formidable": "^2.0.4",
     "@types/google-spreadsheet": "^3.1.5",
