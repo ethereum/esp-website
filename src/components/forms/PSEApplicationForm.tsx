@@ -132,7 +132,8 @@ export const PSEApplicationForm: FC = () => {
             label='Proposal URL'
             helpText={
               <div>
-                Link to full proposal using hackmd proposal template{' '}
+                Include below a link to your detailed project proposal. Use the HackMD proposal
+                template{' '}
                 <Link
                   fontWeight={700}
                   color='brand.orange.100'
@@ -142,6 +143,7 @@ export const PSEApplicationForm: FC = () => {
                 >
                   here
                 </Link>
+                .
               </div>
             }
             isRequired
