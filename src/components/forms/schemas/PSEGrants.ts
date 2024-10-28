@@ -22,6 +22,7 @@ export const PSESchema = z
     projectRepoLink: stringFieldSchema('Project repository', { min: 1 }).url({
       message: 'Invalid URL'
     }),
+    fiatCurrency: stringFieldSchema('Fiat currency', { min: 1 }),
     requestedAmount: stringFieldSchema('Total budget', { min: 1, max: 20 }),
 
     // Applicant Details

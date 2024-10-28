@@ -40,6 +40,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         Is_it_Open_Source__c: result.data.isOpenSource ? result.data.openSourceDetails : '',
         File_Attachment_Public_Link__c: result.data.proposalAttachment,
         Github_Link__c: result.data.projectRepoLink,
+        CurrencyIsoCode: result.data.fiatCurrency,
         Requested_Amount__c: result.data.requestedAmount,
 
         // Applicant Details

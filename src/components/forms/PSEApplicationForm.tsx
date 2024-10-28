@@ -13,7 +13,7 @@ import { api } from './api';
 
 import { chakraStyles } from './selectStyles';
 
-import { COUNTRY_OPTIONS, TIMEZONE_OPTIONS } from './constants';
+import { COUNTRY_OPTIONS, FIAT_CURRENCY_OPTIONS, TIMEZONE_OPTIONS } from './constants';
 import { TOAST_OPTIONS, PSE_APPLICATION_THANK_YOU_PAGE_URL } from '../../constants';
 
 import { PSEData, PSESchema } from './schemas/PSEGrants';
@@ -27,7 +27,8 @@ export const PSEApplicationForm: FC = () => {
     shouldFocusError: true,
     defaultValues: {
       isOpenSource: false,
-      repeatApplicant: false
+      repeatApplicant: false,
+      fiatCurrency: 'USD'
     },
     resolver: zodResolver(PSESchema)
   });
@@ -156,12 +157,43 @@ export const PSEApplicationForm: FC = () => {
             isRequired
           />
 
-          <TextField
-            id='requestedAmount'
-            label='Total Budget Request'
-            helpText='Estimated grant amount, i.e. USD 50,000. Proposals should include a detailed budget breakdown for requested amount.'
-            isRequired
-          />
+          <Stack>
+            <Stack>
+              <PageText display='inline' fontSize='input'>
+                Requested amount
+              </PageText>
+
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Estimated grant amount, i.e. USD 50,000. Proposals should include a detailed budget
+                breakdown for requested amount.
+              </PageText>
+            </Stack>
+            <Flex direction={{ base: 'column', md: 'row' }} gap={8}>
+              <Controller
+                name='fiatCurrency'
+                control={control}
+                render={({ field: { value, onChange }, fieldState: { error } }) => (
+                  <Field id='fiatCurrency' label='Fiat currency' error={error} isRequired>
+                    <Select
+                      id='fiatCurrency'
+                      value={FIAT_CURRENCY_OPTIONS.find(option => option.value === value)}
+                      options={FIAT_CURRENCY_OPTIONS}
+                      onChange={option => {
+                        onChange((option as (typeof FIAT_CURRENCY_OPTIONS)[number]).value);
+                      }}
+                      components={{ DropdownIndicator }}
+                      placeholder='Select'
+                      closeMenuOnSelect={true}
+                      selectedOptionColor='brand.option'
+                      chakraStyles={chakraStyles}
+                    />
+                  </Field>
+                )}
+              />
+
+              <TextField id='requestedAmount' label='Total Budget Request' isRequired />
+            </Flex>
+          </Stack>
 
           <PageSection mt={12}>Applicant Details</PageSection>
 
