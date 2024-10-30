@@ -51,7 +51,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         Discord__c: result.data.discord,
         Twitter__c: result.data.twitter,
         Alternative_Contact__c: result.data.alternativeContact,
-        npsp__CompanyCity__c: result.data.companyCity,
+        npsp__CompanyCity__c: result.data.city,
         Website: result.data.website,
         npsp__CompanyCountry__c: result.data.country,
         Countries_of_Team__c: result.data.countriesOfTeam,

@@ -38,10 +38,10 @@ export const PSESchema = z
     company: stringFieldSchema('Organization', { max: MAX_TEXT_LENGTH })
       .refine(value => !containURL(value), 'Organization cannot contain a URL')
       .optional(),
-    discord: stringFieldSchema('Discord', { max: 60 }),
+    discord: stringFieldSchema('Discord', { max: 60 }).optional(),
     twitter: stringFieldSchema('Twitter', { max: 40 }).optional(),
     alternativeContact: stringFieldSchema('Notion account', { max: 150 }).optional(),
-    companyCity: stringFieldSchema('Company city', { min: 1, max: MAX_TEXT_LENGTH }),
+    city: stringFieldSchema('City', { max: MAX_TEXT_LENGTH }).optional(),
     website: stringFieldSchema('Website', { min: 1 }).url({
       message: 'Invalid URL'
     }),

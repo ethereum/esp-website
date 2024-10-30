@@ -205,14 +205,18 @@ export const PSEApplicationForm: FC = () => {
           <TextField id='email' label='Email' isRequired />
           <TextField id='company' label='Organization / Team' />
           <TextField id='website' label='Website' isRequired />
-          <TextField id='discord' label='Discord' isRequired />
+          <TextField id='discord' label='Discord' />
           <TextField id='twitter' label='Twitter' />
           <TextField
             id='alternativeContact'
             label='Notion Account'
             helpText='Insert Notion account email if different from the above email'
           />
-          <TextField id='companyCity' label='Company City' isRequired />
+          <TextField
+            id='city'
+            label='City'
+            helpText='City that the organization or primary contact is based in.'
+          />
 
           <Controller
             name='country'

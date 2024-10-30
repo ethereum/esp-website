@@ -63,7 +63,11 @@ const PSEApplicationPage: NextPage = () => {
               >
                 HackMD proposal template
               </Link>{' '}
-              to be considered for funding. For more information about PSE, visit:{' '}
+              to be considered for funding.
+            </PageText>
+
+            <PageText>
+              For more information about PSE, visit:{' '}
               <Link
                 fontWeight={700}
                 color='brand.orange.100'
