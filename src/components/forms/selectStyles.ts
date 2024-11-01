@@ -9,9 +9,21 @@ export const chakraStyles: ChakraStylesConfig = {
   }),
   control: provided => ({
     ...provided,
+    display: 'flex',
     borderRadius: 0,
-    h: '56px',
+    minH: '56px',
     fontSize: 'input'
+  }),
+  indicatorsContainer: provided => ({
+    ...provided,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }),
+  valueContainer: provided => ({
+    ...provided,
+    display: 'flex',
+    alignItems: 'center'
   }),
   dropdownIndicator: provided => ({
     ...provided,
@@ -44,5 +56,9 @@ export const chakraStyles: ChakraStylesConfig = {
     fontSize: 'input',
     pl: '17px',
     h: '50px'
+  }),
+  clearIndicator: provided => ({
+    ...provided,
+    color: 'brand.divider.200'
   })
 };
