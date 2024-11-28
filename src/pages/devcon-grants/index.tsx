@@ -111,7 +111,7 @@ const DevconGrants: NextPage = () => {
 
                   <PageText mb={6}>
                     These satellite events should take place during or after Devcon Week, between{' '}
-                    <strong>November 11 - December 8, 2024</strong>. They are self-organized and
+                    <strong>November 11 - January 31, 2025</strong>. They are self-organized and
                     totally independent.
                   </PageText>
 
@@ -122,7 +122,7 @@ const DevconGrants: NextPage = () => {
                   </PageText>
 
                   <PageText>
-                    <strong>The deadline for proposals is November 22, 2024.</strong>
+                    <strong>The deadline for proposals is January 31, 2025.</strong>
                   </PageText>
                 </section>
               </Stack>
