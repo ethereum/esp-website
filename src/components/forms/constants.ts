@@ -1545,6 +1545,41 @@ export const TIMEZONE_OPTIONS = [
   }
 ];
 
+// PSE Projects
+export const PSE_PROJECTS_OPTIONS = [
+  { value: 'Anon Aadhaar', label: 'Anon Aadhaar' },
+  { value: 'Bandada', label: 'Bandada' },
+  { value: 'chiquito', label: 'chiquito' },
+  { value: 'Discreetly', label: 'Discreetly' },
+  { value: 'DSL Working Group', label: 'DSL Working Group' },
+  { value: 'ECIP Halo2 Implementation', label: 'ECIP Halo2 Implementation' },
+  { value: 'Excubiae', label: 'Excubiae' },
+  { value: 'jubmoji.quest', label: 'jubmoji.quest' },
+  { value: 'MACI', label: 'MACI' },
+  { value: 'Mopro', label: 'Mopro' },
+  { value: 'MPC Research', label: 'MPC Research' },
+  { value: 'MPCStats', label: 'MPCStats' },
+  { value: 'nfctap.xyz', label: 'nfctap.xyz' },
+  { value: 'OpenPassport', label: 'OpenPassport' },
+  { value: 'p0tion', label: 'p0tion' },
+  { value: 'P256', label: 'P256' },
+  { value: 'Perpetual Powers of Tau', label: 'Perpetual Powers of Tau' },
+  { value: 'PSE Security', label: 'PSE Security' },
+  { value: 'Rate-Limiting Nullifier', label: 'Rate-Limiting Nullifier' },
+  { value: 'Semaphore', label: 'Semaphore' },
+  { value: 'Summa', label: 'Summa' },
+  { value: 'TLSNotary', label: 'TLSNotary' },
+  { value: 'Trusted Setups', label: 'Trusted Setups' },
+  { value: 'VoiceDeck', label: 'VoiceDeck' },
+  { value: 'WAX', label: 'WAX' },
+  { value: 'ZK-ID', label: 'ZK-ID' },
+  { value: 'ZK-Kit', label: 'ZK-Kit' },
+  { value: 'zkemail', label: 'zkemail' },
+  { value: 'zkEVM Community Edition', label: 'zkEVM Community Edition' },
+  { value: 'ZKML', label: 'ZKML' },
+  { value: 'ZKP2P', label: 'ZKP2P' }
+];
+
 // fiat currency
 export const FIAT_CURRENCY_OPTIONS = [
   { value: 'AUD', label: 'AUD' },
