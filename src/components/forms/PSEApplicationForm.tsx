@@ -13,7 +13,12 @@ import { api } from './api';
 
 import { chakraStyles } from './selectStyles';
 
-import { COUNTRY_OPTIONS, FIAT_CURRENCY_OPTIONS, TIMEZONE_OPTIONS } from './constants';
+import {
+  COUNTRY_OPTIONS,
+  FIAT_CURRENCY_OPTIONS,
+  TIMEZONE_OPTIONS,
+  PSE_PROJECTS_OPTIONS
+} from './constants';
 import { TOAST_OPTIONS, PSE_APPLICATION_THANK_YOU_PAGE_URL } from '../../constants';
 
 import { PSEData, PSESchema } from './schemas/PSEGrants';
@@ -299,24 +304,49 @@ export const PSEApplicationForm: FC = () => {
 
           <PageSection mt={12}>Additional Information</PageSection>
 
-          <TextField
-            id='relatedPSEProject'
-            label='Related PSE Project'
-            helpText={
-              <div>
-                Which PSE project does your proposal relate to? See the{' '}
-                <Link
-                  fontWeight={700}
-                  color='brand.orange.100'
-                  href='https://pse.dev/en/projects'
-                  isExternal
-                  _hover={{ textDecoration: 'none' }}
-                >
-                  complete list of PSE projects
-                </Link>
-              </div>
-            }
-            isRequired
+          <Controller
+            name='relatedPSEProject'
+            control={control}
+            render={({ field: { onChange }, fieldState: { error } }) => (
+              <Field
+                id='relatedPSEProject'
+                label='Related PSE Project'
+                helpText={
+                  <div>
+                    Which PSE project does your proposal relate to? See the{' '}
+                    <Link
+                      fontWeight={700}
+                      color='brand.orange.100'
+                      href='https://pse.dev/en/projects'
+                      isExternal
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      complete list of PSE projects
+                    </Link>
+                  </div>
+                }
+                error={error}
+                isRequired
+              >
+                <Select
+                  id='relatedPSEProject'
+                  options={PSE_PROJECTS_OPTIONS}
+                  isMulti
+                  onChange={selectedOptions => {
+                    onChange(
+                      (selectedOptions as typeof PSE_PROJECTS_OPTIONS)
+                        .map(option => option.value)
+                        .join(',')
+                    );
+                  }}
+                  components={{ DropdownIndicator }}
+                  placeholder='Select'
+                  closeMenuOnSelect={true}
+                  selectedOptionColor='brand.option'
+                  chakraStyles={chakraStyles}
+                />
+              </Field>
+            )}
           />
 
           <TextField
