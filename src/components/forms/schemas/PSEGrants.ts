@@ -50,7 +50,7 @@ export const PSESchema = z
     timezone: stringFieldSchema('Time zone', { min: 1 }),
 
     // Additional Information
-    relatedPSEProject: stringFieldSchema('Related PSE project', { min: 1, max: MAX_TEXT_LENGTH }),
+    relatedPSEProject: stringFieldSchema('Related PSE project', { min: 1 }),
     referrals: stringFieldSchema('Field', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
     sustainabilityPlan: stringFieldSchema('Field', {
       max: MAX_TEXT_AREA_LENGTH

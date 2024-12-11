@@ -1545,6 +1545,24 @@ export const TIMEZONE_OPTIONS = [
   }
 ];
 
+// PSE Projects
+export const PSE_PROJECTS_OPTIONS = [
+  { value: 'Anon Aadhaar', label: 'Anon Aadhaar' },
+  { value: 'OpenPassport', label: 'OpenPassport' },
+  { value: 'TLSNotary', label: 'TLSNotary' },
+  { value: 'ZK Email', label: 'ZK Email' },
+  { value: 'zkID Standards', label: 'zkID Standards' },
+  { value: 'Bandada', label: 'Bandada' },
+  { value: 'Cursive', label: 'Cursive' },
+  { value: 'MACI', label: 'MACI' },
+  { value: 'Semaphore', label: 'Semaphore' },
+  { value: 'ZKP2P', label: 'ZKP2P' },
+  { value: 'ZKStats/MPCStats', label: 'ZKStats/MPCStats' },
+  { value: 'Mopro', label: 'Mopro' },
+  { value: 'RISC-V zkVM', label: 'RISC-V zkVM' },
+  { value: 'ZK-Kit', label: 'ZK-Kit' }
+];
+
 // fiat currency
 export const FIAT_CURRENCY_OPTIONS = [
   { value: 'AUD', label: 'AUD' },
