@@ -85,30 +85,30 @@ const AcademicGrants: NextPage = () => {
               <Stack mb={8} mt={{ base: 10, md: 0 }}>
                 <Section id='introduction' ref={ref}>
                   <PageText>
-                    The Ethereum Foundation is thrilled to announce the Academic Grants Round 2024,
-                    an initiative dedicated to fostering research in the Ethereum ecosystem.
-                    Following the overwhelming success of the 2023 round, where we funded 43
-                    projects from 20 countries, we are eager to continue supporting academic
-                    contributions. With a focus on a wide array of domains such as, applied and
-                    theoretical cryptography, economics, game theory, security, consensus protocols,
-                    formal verification, p2p networking, society and regulation, and hardware, we
-                    aim to catalyze research that propels the Ethereum ecosystem forward.
+                    The Ethereum Foundation is delighted to announce the 2025 Academic Grants Round,
+                    an initiative dedicated to advancing cutting-edge academic research that
+                    strengthens and expands the Ethereum ecosystem. Building on the success of the
+                    previous two rounds in 2023 and 2024, this year, we welcome proposals across a
+                    wide range of disciplines, including Economics & Game Theory, Theoretical and
+                    Applied Cryptography, Consensus and Protocol Design, Networking & P2P, Client
+                    Engineering, Security, Formal Verification, and the Humanities. Through this
+                    effort, we aim to empower researchers to explore new frontiers and deliver
+                    impactful work that propels Ethereum forward.
                   </PageText>
 
                   <PageText>
-                    In 2023, we received an astounding 250 applications, which highlighted the
-                    global academic community’s growing interest in Ethereum. This year, we aim to
-                    build on this momentum by inviting even more researchers and institutions from
-                    more countries to participate. Through this wave of grants, the Ethereum
-                    Foundation underscores its commitment to supporting rigorous academic work that
-                    addresses key challenges and unlocks new opportunities.
+                    In 2024, we received an incredible 300 applications, from 25 different
+                    countries, highlighting the global academic community’s increasing engagement
+                    with Ethereum. The breadth and quality of these submissions were truly
+                    impressive. This year, we aim to build on that success by welcoming even more
+                    researchers and institutions from around the world to participate.
                   </PageText>
 
                   <PageText>
-                    We are looking for proposals that not only align with our wishlist but also
-                    bring novel perspectives and approaches. We encourage you to draw inspiration
-                    from the wishlist and think creatively about how your research can contribute to
-                    the Ethereum ecosystem.
+                    We are seeking proposals that not only align with our wishlist but also
+                    introduce fresh perspectives and innovative approaches. We encourage researchers
+                    to take inspiration from the wishlist while thinking creatively about how their
+                    work can make meaningful contributions to the Ethereum ecosystem.
                   </PageText>
                 </Section>
               </Stack>
@@ -118,33 +118,22 @@ const AcademicGrants: NextPage = () => {
                   <PageSection>Submit proposal</PageSection>
 
                   <PageText>
-                    Individual researchers with academic backgrounds, research centers,
-                    universities, think-tanks, educators and other stakeholders interested in
-                    research on matters related to Ethereum and its ecosystem are encouraged to
-                    apply.
+                    Researchers from academic institutions, universities, research centers, think
+                    tanks, educators, and other stakeholders with a focus on Ethereum and its
+                    ecosystem are invited to apply.
                   </PageText>
 
                   <PageText>
-                    Anyone is free to participate in this grants round, as an individual or with a
-                    team.
+                    Participation is open to everyone—whether as an individual or as part of a team.
                   </PageText>
 
                   <PageText>
-                    Undergraduate researchers will require a postdoctoral advisor.
-                  </PageText>
-                </Section>
-
-                <Section id='wishlist' ref={ref3}>
-                  <PageSection>Wishlist</PageSection>
-
-                  <PageText>
-                    The Ethereum Foundation is interested in research and academic output in the
-                    following domain areas, but don&apos;t let this restrict your creativity. Check
-                    out our{' '}
+                    We welcome research contributions aligned with, but not restricted to, the
+                    topics outlined in our{' '}
                     <Link
                       fontWeight={700}
                       color='brand.orange.100'
-                      href='https://notes.ethereum.org/@drigolvc/AcademicGrantsWishlist2024'
+                      href='https://notes.ethereum.org/@NvgRvBVYTXOplMwKfGkATA/SJVJ8fTN1x/'
                       isExternal
                       _hover={{ textDecoration: 'none' }}
                     >
@@ -152,14 +141,10 @@ const AcademicGrants: NextPage = () => {
                     </Link>
                     .
                   </PageText>
-
-                  <PageText>
-                    <strong>Surprise us with your creativity!</strong>
-                  </PageText>
                 </Section>
 
                 <Section id='requirements' ref={ref4}>
-                  <PageSection>Application requirements</PageSection>
+                  <PageSection>Requirements</PageSection>
 
                   <List>
                     <ListItem>All applications must have a written proposal in PDF format</ListItem>
@@ -194,6 +179,22 @@ const AcademicGrants: NextPage = () => {
                       <ListItem>Work in progress</ListItem>
                       <ListItem>Fleshed out project</ListItem>
                     </List>
+                    <ListItem>
+                      Applications are open to individuals, teams, and organizations. Individual
+                      researchers with academic backgrounds, research centers, universities,
+                      think-tanks, educators and other stakeholders interested in Ethereum research
+                    </ListItem>
+                    <ListItem>
+                      Undergraduate researchers will require a posdoctoral advisor
+                    </ListItem>
+                    <ListItem>
+                      Applications are selected for funding on a case-by-case basis. You may submit
+                      more than one application as long as each proposal is unique and meets the
+                      requirements and goals of this round
+                    </ListItem>
+                    <ListItem>
+                      Decisions will be emailed 6 weeks after the application deadline
+                    </ListItem>
                   </List>
                 </Section>
 
@@ -201,9 +202,8 @@ const AcademicGrants: NextPage = () => {
                   <PageSection>Deadline</PageSection>
 
                   <PageText>
-                    The deadline for proposals is <strong>Monday, March 4th, 2024</strong>. We will
-                    follow-up regarding your submission by email. Decisions will be emailed 6-8
-                    weeks after the application deadline.
+                    The application window opens for 6 weeks from Monday, January 20th, 2025 and
+                    closes on Monday, March 1sh, 2025.
                   </PageText>
                 </Section>
 
@@ -269,8 +269,32 @@ const AcademicGrants: NextPage = () => {
                   </List>
                 </Section>
 
+                <Section id='wishlist' ref={ref3}>
+                  <PageSection>Wishlist</PageSection>
+
+                  <PageText>
+                    The Ethereum Foundation is interested in research and academic output in the
+                    following domain areas, but don&apos;t let this restrict your creativity. Check
+                    out our{' '}
+                    <Link
+                      fontWeight={700}
+                      color='brand.orange.100'
+                      href='https://notes.ethereum.org/@NvgRvBVYTXOplMwKfGkATA/SJVJ8fTN1x/'
+                      isExternal
+                      _hover={{ textDecoration: 'none' }}
+                    >
+                      wishlist
+                    </Link>
+                    .
+                  </PageText>
+
+                  <PageText>
+                    <strong>Surprise us with your creativity!</strong>
+                  </PageText>
+                </Section>
+
                 <Section id='next-steps-and-support' ref={ref9}>
-                  <PageSection>Next steps and support</PageSection>
+                  <PageSection>Support</PageSection>
 
                   <PageText>
                     For any general support questions about your submission, please email{' '}
@@ -366,8 +390,8 @@ const AcademicGrants: NextPage = () => {
 
                     <FAQItem question='What is the budget available for this round?'>
                       <PageText>
-                        This grants round has up to $1 Million in total, which is to be distributed
-                        among selected projects.
+                        This grants round has up to $1.5 Million in total, which is to be
+                        distributed among selected projects.
                       </PageText>
                     </FAQItem>
 
