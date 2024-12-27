@@ -9,16 +9,15 @@ import {
   PageSection,
   PageText,
   PageMetadata,
-  Banner,
-  ReadyToApply
+  BannerApplicationClosed,
+  Banner
 } from '../../components/UI';
 
 import {
-  ACADEMIC_GRANTS_APPLY_URL,
   ACADEMIC_GRANTS_EMAIL_ADDRESS,
   HOME_URL,
   OFFICE_HOURS_URL,
-  SIDEBAR_ACADEMIC_GRANTS_LINKS
+  SIDEBAR_ACADEMIC_GRANTS_2024_LINKS
 } from '../../constants';
 
 import AGRMailingForm from '../../components/AGRMailingForm';
@@ -39,13 +38,12 @@ const AcademicGrants: NextPage = () => {
   const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
   const [ref8, inView8] = useInView({ threshold: 0.5, initialInView: false });
   const [ref9, inView9] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref10, inView10] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref11, inView11] = useInView({ threshold: 0, initialInView: false });
+  const [ref10, inView10] = useInView({ threshold: 0, initialInView: false });
 
   return (
     <>
       <PageMetadata
-        title='Academic Grants Round'
+        title='Academic Grants Round 2024'
         description='The Ethereum Foundation is sponsoring a wave of grants to support Ethereum-related academic work. Find all the details you need to apply here.'
       />
 
@@ -53,7 +51,7 @@ const AcademicGrants: NextPage = () => {
         <Stack spacing={10} mb={8} px={{ base: 5, md: 0 }} py={{ base: 3, md: 12 }}>
           <Flex>
             <ApplicantsSidebar
-              sidebarLinks={SIDEBAR_ACADEMIC_GRANTS_LINKS}
+              sidebarLinks={SIDEBAR_ACADEMIC_GRANTS_2024_LINKS}
               sectionsInView={[
                 inView,
                 inView2,
@@ -64,12 +62,13 @@ const AcademicGrants: NextPage = () => {
                 inView7,
                 inView8,
                 inView9,
-                inView10,
-                inView11
+                inView10
               ]}
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
+              <BannerApplicationClosed mb={12}></BannerApplicationClosed>
+
               <Banner
                 bgGradient='linear(to-br, brand.whoWeSupport.bgGradient.start 0%, brand.whoWeSupport.bgGradient.end 100%)'
                 color='brand.heading'
@@ -420,12 +419,6 @@ const AcademicGrants: NextPage = () => {
                       </PageText>
                     </FAQItem>
                   </Accordion>
-                </Section>
-
-                <Section id='apply' ref={ref11}>
-                  <Stack>
-                    <ReadyToApply link={`${ACADEMIC_GRANTS_APPLY_URL}`} />
-                  </Stack>
                 </Section>
               </Stack>
             </Box>

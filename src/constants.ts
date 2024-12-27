@@ -150,7 +150,22 @@ export const SIDEBAR_ACADEMIC_GRANTS_LINKS: SidebarLink[] = [
   { text: 'What is not eligible', href: `${ACADEMIC_GRANTS_URL}/#not-eligible` },
   { text: 'Selection criteria', href: `${ACADEMIC_GRANTS_URL}/#selection-criteria` },
   { text: 'Next steps and support', href: `${ACADEMIC_GRANTS_URL}/#next-steps-and-support` },
-  { text: 'FAQ', href: `${ACADEMIC_GRANTS_URL}/#faq` }
+  { text: 'FAQ', href: `${ACADEMIC_GRANTS_URL}/#faq` },
+  { text: 'Apply', href: `${ACADEMIC_GRANTS_URL}/#apply` }
+];
+
+export const ACADEMIC_GRANTS_URL_2024 = '/academic-grants-2024';
+export const SIDEBAR_ACADEMIC_GRANTS_2024_LINKS: SidebarLink[] = [
+  { text: 'Summary', href: `${ACADEMIC_GRANTS_URL_2024}/#introduction` },
+  { text: 'Submit proposal', href: `${ACADEMIC_GRANTS_URL_2024}/#submit-proposal` },
+  { text: 'Wishlist', href: `${ACADEMIC_GRANTS_URL_2024}/#wishlist` },
+  { text: 'Application requirements', href: `${ACADEMIC_GRANTS_URL_2024}/#requirements` },
+  { text: 'Deadline', href: `${ACADEMIC_GRANTS_URL_2024}/#deadline` },
+  { text: 'Eligibility criteria', href: `${ACADEMIC_GRANTS_URL_2024}/#eligibility-criteria` },
+  { text: 'What is not eligible', href: `${ACADEMIC_GRANTS_URL_2024}/#not-eligible` },
+  { text: 'Selection criteria', href: `${ACADEMIC_GRANTS_URL_2024}/#selection-criteria` },
+  { text: 'Next steps and support', href: `${ACADEMIC_GRANTS_URL_2024}/#next-steps-and-support` },
+  { text: 'FAQ', href: `${ACADEMIC_GRANTS_URL_2024}/#faq` }
 ];
 
 export const ACCOUNT_ABSTRACTION_GRANTS_URL = '/account-abstraction-grants';

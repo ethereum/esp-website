@@ -254,14 +254,6 @@
   to = "/academic-grants/apply"
   force = true
 [[redirects]]
-  from = "/academic-grants/apply/"
-  to = "/academic-grants/"
-  force = true
-[[redirects]]
-  from = "/academic-grants/thank-you/"
-  to = "/academic-grants/"
-  force = true
-[[redirects]]
   from = "/account-abstraction-grants/apply/"
   to = "/account-abstraction-grants/"
   force = true
