@@ -226,7 +226,7 @@ export const AcademicGrantsForm: FC = () => {
 
           <TextField
             id='company'
-            label='Institution or Organization'
+            label='If applying as an Institution, please specify its name'
             helpText='Name of your university program, team, or organization. If you do not have an organization name, write "N/A"'
             isRequired
           />
@@ -311,7 +311,7 @@ export const AcademicGrantsForm: FC = () => {
             isRequired
           />
 
-          <UploadFile
+          {/* <UploadFile
             id='proposalAttachment'
             label='Proposal'
             title='Upload proposal'
@@ -332,7 +332,7 @@ export const AcademicGrantsForm: FC = () => {
             isRequired
             onDrop={handleDrop}
             mb={8}
-          />
+          /> */}
 
           <Controller
             name='projectCategory'
@@ -363,11 +363,71 @@ export const AcademicGrantsForm: FC = () => {
             )}
           />
 
+          <TextAreaField
+            id='teamProfile'
+            label="Team/ Individuals description -  A brief summary of your team's relevant experience"
+            helpText='Who is working on this project? Give us a bit of info and include relevant links, if available! Please provide other projects or research papers (ideally public and/or open source), engagements or other types of proof that your team has the necessary experience to undertake the project you are applying for.'
+            isRequired
+          />
+
+          <TextField
+            id='previousWork'
+            label='Relevant past publications'
+            helpText='Any links for us to review? E.g. research papers, blog posts, etc.'
+            isRequired
+          />
+
+          <TextAreaField
+            id='grantScope'
+            label='Grant scope'
+            helpText='What are you going to research? What is the expected output?'
+            isRequired
+          />
+
+          <TextAreaField
+            id='impact'
+            label='Project goals & success factors'
+            helpText='What are you hoping to accomplish with this grant? How do you define and measure success for this project?'
+            isRequired
+          />
+
+          <TextAreaField
+            id='problemBeingSolved'
+            label='What problem are you trying to solve?'
+            isRequired
+          />
+
+          <TextAreaField
+            id='isYourProjectPublicGood'
+            label='How does this project benefit the greater Ethereum ecosystem?'
+            isRequired
+          />
+
           <TextField
             id='requestAmount'
             label='Total budget requested'
             helpText='Estimated grant amount. Ex: USD 50,000.'
             isRequired
+          />
+
+          <TextAreaField
+            id='proposedTimeline'
+            label='Budget breakdown and Project roadmap'
+            helpText='Please include a brief explanation on the milestones/roadmap in a 3-6 months timeframe, along with expected deliverables. Also outline how the funds will be used for the research project and or members of the team.'
+            isRequired
+          />
+
+          <TextAreaField
+            id='challenges'
+            label='Challenges'
+            helpText='Have you come across any obstacles thus far? If so, how have you attempted to tackle these issues? Have you been successful in overcoming them?'
+            isRequired
+          />
+
+          <TextAreaField
+            id='additionalSupportReq'
+            label='Additional support requests'
+            helpText='Aside from funding and financial support, are there other resources that would help you or your team succeed?'
           />
 
           <Controller
@@ -432,12 +492,6 @@ export const AcademicGrantsForm: FC = () => {
                 />
               </Field>
             )}
-          />
-
-          <TextField
-            id='website'
-            label='Website'
-            helpText='University website or Google Scholar profile'
           />
 
           <TextField id='linkedinProfile' label='LinkedIn Profile(s)' helpText='URL only' />

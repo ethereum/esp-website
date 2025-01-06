@@ -42,19 +42,38 @@ export const AcademicGrantsSchema = z
       max: MAX_TEXT_AREA_LENGTH
     }),
     projectCategory: stringFieldSchema('Project category', { min: 1 }),
+    teamProfile: stringFieldSchema('Team profile', { min: 1, max: MAX_TEXT_LENGTH }),
+    grantScope: stringFieldSchema('Grant scope', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
+    previousWork: stringFieldSchema('Previous work', { min: 1, max: MAX_TEXT_LENGTH }),
+    impact: stringFieldSchema('Project goals', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
+    problemBeingSolved: stringFieldSchema('Problem being solved', {
+      min: 1,
+      max: MAX_TEXT_AREA_LENGTH
+    }),
+    isYourProjectPublicGood: stringFieldSchema('Field', {
+      min: 1,
+      max: MAX_TEXT_AREA_LENGTH
+    }),
     requestAmount: stringFieldSchema('Total budget', { min: 1, max: 20 }),
+    proposedTimeline: stringFieldSchema('Proposed timeline', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
+    challenges: stringFieldSchema('Challenges', {
+      min: MIN_TEXT_AREA_LENGTH,
+      max: MAX_TEXT_AREA_LENGTH
+    }),
+    additionalSupportReq: stringFieldSchema('Additional support required', {
+      max: MAX_TEXT_AREA_LENGTH
+    }).optional(),
     referralSource: stringFieldSchema('Referral source', { min: 1 }),
     referralSourceIfOther: stringFieldSchema('Field', { max: MAX_TEXT_AREA_LENGTH }).optional(),
-    proposalAttachment: z
-      .any()
-      .refine(file => !!file, 'Proposal is required.')
-      .refine(file => file?.size <= MAX_PROPOSAL_FILE_SIZE, `Max file size is 4MB.`)
-      .refine(
-        file => ACCEPTED_FILE_TYPES.includes(file?.type || file?.mimetype),
-        'Only .pdf files are accepted.'
-      ),
+    // proposalAttachment: z
+    //   .any()
+    //   .refine(file => !!file, 'Proposal is required.')
+    //   .refine(file => file?.size <= MAX_PROPOSAL_FILE_SIZE, `Max file size is 4MB.`)
+    //   .refine(
+    //     file => ACCEPTED_FILE_TYPES.includes(file?.type || file?.mimetype),
+    //     'Only .pdf files are accepted.'
+    //   ),
     shareResearch: stringFieldSchema('Share research', { min: 1 }),
-    website: stringFieldSchema('Website', { max: MAX_TEXT_LENGTH }).optional(),
     linkedinProfile: stringFieldSchema('LinkedIn profiles', { max: MAX_TEXT_LENGTH }).optional(),
     twitter: stringFieldSchema('Twitter handle', { max: 16 }).optional(),
     alternativeContact: stringFieldSchema('Alternative contact info', { max: 150 }).optional(),

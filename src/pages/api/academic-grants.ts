@@ -53,18 +53,26 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         Project_Name__c: result.data.projectName,
         Project_Description__c: result.data.projectDescription,
         Category__c: result.data.projectCategory,
+        Team_Profile__c: result.data.teamProfile,
+        Previous_Work__c: result.data.previousWork,
+        Grant_Scope__c: result.data.grantScope,
+        Impact__c: result.data.impact,
+        Problem_Being_Solved__c: result.data.problemBeingSolved,
+        Is_it_a_Public_Good__c: result.data.isYourProjectPublicGood,
         Requested_Amount__c: result.data.requestAmount,
+        Proposed_Timeline__c: result.data.proposedTimeline,
+        Challenges__c: result.data.challenges,
+        Additional_support_requests__c: result.data.additionalSupportReq,
         Referral_Source__c: result.data.referralSource,
         Referral_Source_if_Other__c: result.data.referralSourceIfOther,
         Would_you_share_your_research__c: result.data.shareResearch,
         LinkedIn_Profile__c: result.data.linkedinProfile,
         Twitter__c: result.data.twitter,
-        Website: result.data.website,
         Alternative_Contact__c: result.data.alternativeContact,
         Repeat_Applicant__c: result.data.repeatApplicant,
         Can_the_EF_reach_out__c: result.data.canTheEFReachOut,
         Additional_Information__c: result.data.additionalInfo,
-        Proactive_Community_Grants_Round__c: 'Academic Grants Round 2024', // this value is hardwired, depending on the type of grant round
+        Proactive_Community_Grants_Round__c: 'Academic Grants Round', // this value is hardwired, depending on the type of grant round
         RecordTypeId: process.env.SF_RECORD_TYPE_GRANTS_ROUND!
       };
 
@@ -81,61 +89,61 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         const createdLeadID = ret.id;
         console.log({ createdLeadID });
 
-        const uploadProposal = result.data.proposalAttachment as File;
-        console.log({ uploadProposal });
+        // const uploadProposal = result.data.proposalAttachment as File;
+        // console.log({ uploadProposal });
 
-        if (!uploadProposal) {
-          res.status(200).json({ status: 'ok' });
-          return resolve();
-        }
+        // if (!uploadProposal) {
+        //   res.status(200).json({ status: 'ok' });
+        //   return resolve();
+        // }
 
-        let uploadProposalContent;
-        try {
-          // turn file into base64 encoding
-          uploadProposalContent = fs.readFileSync(uploadProposal.filepath, {
-            encoding: 'base64'
-          });
-        } catch (error) {
-          console.error(error);
-          res.status(500).json({ status: 'fail' });
-          return resolve();
-        }
+        // let uploadProposalContent;
+        // try {
+        //   // turn file into base64 encoding
+        //   uploadProposalContent = fs.readFileSync(uploadProposal.filepath, {
+        //     encoding: 'base64'
+        //   });
+        // } catch (error) {
+        //   console.error(error);
+        //   res.status(500).json({ status: 'fail' });
+        //   return resolve();
+        // }
 
         // Document upload
-        conn.sobject('ContentVersion').create(
-          {
-            Title: `[PROPOSAL] ${application.Project_Name__c} - ${createdLeadID}`,
-            PathOnClient: uploadProposal.originalFilename,
-            VersionData: uploadProposalContent // base64 encoded file content
-          },
-          async (err, uploadedFile) => {
-            if (err || !uploadedFile.success) {
-              console.error(err);
+        // conn.sobject('ContentVersion').create(
+        //   {
+        //     Title: `[PROPOSAL] ${application.Project_Name__c} - ${createdLeadID}`,
+        //     PathOnClient: uploadProposal.originalFilename,
+        //     VersionData: uploadProposalContent // base64 encoded file content
+        //   },
+        //   async (err, uploadedFile) => {
+        //     if (err || !uploadedFile.success) {
+        //       console.error(err);
 
-              res.status(400).json({ status: 'fail' });
-              return resolve();
-            } else {
-              console.log({ uploadedFile });
-              console.log(`Document has been uploaded successfully!`);
+        //       res.status(400).json({ status: 'fail' });
+        //       return resolve();
+        //     } else {
+        //       console.log({ uploadedFile });
+        //       console.log(`Document has been uploaded successfully!`);
 
-              const contentDocument = await conn
-                .sobject<{
-                  Id: string;
-                  ContentDocumentId: string;
-                }>('ContentVersion')
-                .retrieve(uploadedFile.id);
+        //       const contentDocument = await conn
+        //         .sobject<{
+        //           Id: string;
+        //           ContentDocumentId: string;
+        //         }>('ContentVersion')
+        //         .retrieve(uploadedFile.id);
 
-              await conn.sobject('ContentDocumentLink').create({
-                ContentDocumentId: contentDocument.ContentDocumentId,
-                LinkedEntityId: createdLeadID,
-                ShareType: 'V'
-              });
+        //       await conn.sobject('ContentDocumentLink').create({
+        //         ContentDocumentId: contentDocument.ContentDocumentId,
+        //         LinkedEntityId: createdLeadID,
+        //         ShareType: 'V'
+        //       });
 
-              res.status(200).json({ status: 'ok' });
-              return resolve();
-            }
-          }
-        );
+        //       res.status(200).json({ status: 'ok' });
+        //       return resolve();
+        //     }
+        //   }
+        // );
       });
     });
   });
