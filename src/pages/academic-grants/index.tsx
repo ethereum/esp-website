@@ -143,7 +143,7 @@ const AcademicGrants: NextPage = () => {
                   </PageText>
                 </Section>
 
-                <Section id='requirements' ref={ref4}>
+                <Section id='requirements' ref={ref3}>
                   <PageSection>Requirements</PageSection>
 
                   <List>
@@ -198,7 +198,7 @@ const AcademicGrants: NextPage = () => {
                   </List>
                 </Section>
 
-                <Section id='deadline' ref={ref5}>
+                <Section id='deadline' ref={ref4}>
                   <PageSection>Deadline</PageSection>
 
                   <PageText>
@@ -207,7 +207,7 @@ const AcademicGrants: NextPage = () => {
                   </PageText>
                 </Section>
 
-                <Section id='eligibility-criteria' ref={ref6}>
+                <Section id='eligibility-criteria' ref={ref5}>
                   <PageSection>Eligibility criteria</PageSection>
 
                   <List>
@@ -218,7 +218,7 @@ const AcademicGrants: NextPage = () => {
                   </List>
                 </Section>
 
-                <Section id='not-eligible' ref={ref7}>
+                <Section id='not-eligible' ref={ref6}>
                   <PageSection>
                     What is <i>not</i> eligible
                   </PageSection>
@@ -243,7 +243,7 @@ const AcademicGrants: NextPage = () => {
                   </List>
                 </Section>
 
-                <Section id='selection-criteria' ref={ref8}>
+                <Section id='selection-criteria' ref={ref7}>
                   <PageSection>Selection criteria</PageSection>
 
                   <PageText>
@@ -269,7 +269,7 @@ const AcademicGrants: NextPage = () => {
                   </List>
                 </Section>
 
-                <Section id='wishlist' ref={ref3}>
+                <Section id='wishlist' ref={ref8}>
                   <PageSection>Wishlist</PageSection>
 
                   <PageText>
@@ -293,7 +293,7 @@ const AcademicGrants: NextPage = () => {
                   </PageText>
                 </Section>
 
-                <Section id='next-steps-and-support' ref={ref9}>
+                <Section id='support' ref={ref9}>
                   <PageSection>Support</PageSection>
 
                   <PageText>
