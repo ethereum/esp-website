@@ -202,11 +202,9 @@ export const api = {
   },
   academicGrants: {
     submit: (data: AcademicGrantsData) => {
-      const formData = createFormData(data);
-
       const dataRequestOptions: RequestInit = {
-        method: 'POST',
-        body: formData
+        ...methodOptions,
+        body: JSON.stringify(data)
       };
 
       return fetch(API_ACADEMIC_GRANTS, dataRequestOptions);

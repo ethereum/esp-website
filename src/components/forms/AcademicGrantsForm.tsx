@@ -390,7 +390,7 @@ export const AcademicGrantsForm: FC = () => {
           <TextAreaField
             id='proposedTimeline'
             label='Budget breakdown and Project roadmap'
-            helpText='Please include a brief explanation on the milestones/roadmap in a 3-6 months timeframe, along with expected deliverables. Also outline how the funds will be used for the research project and or members of the team.'
+            helpText='Please include a brief explanation on the milestones/roadmap in a 3-6 months timeframe, along with expected deliverables. Also outline how the funds will be used for the research project and or members of the team'
             isRequired
           />
 
@@ -514,7 +514,7 @@ export const AcademicGrantsForm: FC = () => {
           <TextField
             id='alternativeContact'
             label='Telegram username or alternative contact info'
-            helpText="In regards to your submission, we'll get in touch with you via email by default. As backup, if you'd like to provide alternative contact info, you may do so. Not required"
+            helpText="In regards to your submission, we'll get in touch with you via email by default. As backup, if you'd like to provide alternative contact info, you may do so"
           />
 
           <Controller
@@ -607,7 +607,7 @@ export const AcademicGrantsForm: FC = () => {
             label="Do you have any questions about this grants round, or is there anything else
               you'd like to share?"
             helpText="Is there anything we didn't cover in the above questions? Feel free to add any
-              relevant links here. This is optional."
+              relevant links here"
           />
 
           <Center mb={12}>

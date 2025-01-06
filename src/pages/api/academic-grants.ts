@@ -1,20 +1,18 @@
 import jsforce from 'jsforce';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { multipartyParse, sanitizeFields, verifyCaptcha } from '../../middlewares';
+import { sanitizeFields, verifyCaptcha } from '../../middlewares';
 
 import { AcademicGrantsSchema } from '../../components/forms/schemas/AcademicGrants';
 
-import { MAX_PROPOSAL_FILE_SIZE } from '../../constants';
-
 async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
   return new Promise(resolve => {
-    const fields = { ...req.fields, ...req.files };
+    const { body } = req;
     const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
       process.env;
 
     // validate fields against the schema
-    const result = AcademicGrantsSchema.safeParse(fields);
+    const result = AcademicGrantsSchema.safeParse(body);
     if (!result.success) {
       const formatted = result.error.format();
       console.error(formatted);
@@ -88,12 +86,4 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
   });
 }
 
-export const config = {
-  api: {
-    bodyParser: false
-  }
-};
-
-export default multipartyParse(sanitizeFields(verifyCaptcha(handler)), {
-  maxFileSize: MAX_PROPOSAL_FILE_SIZE
-});
+export default sanitizeFields(verifyCaptcha(handler));
