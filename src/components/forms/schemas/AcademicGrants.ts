@@ -2,13 +2,10 @@ import * as z from 'zod';
 
 import { stringFieldSchema } from './utils';
 import { containURL } from '../../../utils';
-import { MAX_PROPOSAL_FILE_SIZE } from '../../../constants';
 
 const MAX_TEXT_LENGTH = 255;
 const MAX_TEXT_AREA_LENGTH = 2000;
 const MIN_TEXT_AREA_LENGTH = 500;
-
-const ACCEPTED_FILE_TYPES = ['application/pdf'];
 
 export const AcademicGrantsSchema = z
   .object({
@@ -65,14 +62,6 @@ export const AcademicGrantsSchema = z
     }).optional(),
     referralSource: stringFieldSchema('Referral source', { min: 1 }),
     referralSourceIfOther: stringFieldSchema('Field', { max: MAX_TEXT_AREA_LENGTH }).optional(),
-    // proposalAttachment: z
-    //   .any()
-    //   .refine(file => !!file, 'Proposal is required.')
-    //   .refine(file => file?.size <= MAX_PROPOSAL_FILE_SIZE, `Max file size is 4MB.`)
-    //   .refine(
-    //     file => ACCEPTED_FILE_TYPES.includes(file?.type || file?.mimetype),
-    //     'Only .pdf files are accepted.'
-    //   ),
     shareResearch: stringFieldSchema('Share research', { min: 1 }),
     linkedinProfile: stringFieldSchema('LinkedIn profiles', { max: MAX_TEXT_LENGTH }).optional(),
     twitter: stringFieldSchema('Twitter handle', { max: 16 }).optional(),

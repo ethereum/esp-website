@@ -1,7 +1,5 @@
-import fs from 'fs';
 import jsforce from 'jsforce';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import type { File } from 'formidable';
 
 import { multipartyParse, sanitizeFields, verifyCaptcha } from '../../middlewares';
 
@@ -84,66 +82,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
           return resolve();
         }
 
-        console.log(`Academic Grants 2024 Lead with ID: ${ret.id} has been created!`);
-
-        const createdLeadID = ret.id;
-        console.log({ createdLeadID });
-
-        // const uploadProposal = result.data.proposalAttachment as File;
-        // console.log({ uploadProposal });
-
-        // if (!uploadProposal) {
-        //   res.status(200).json({ status: 'ok' });
-        //   return resolve();
-        // }
-
-        // let uploadProposalContent;
-        // try {
-        //   // turn file into base64 encoding
-        //   uploadProposalContent = fs.readFileSync(uploadProposal.filepath, {
-        //     encoding: 'base64'
-        //   });
-        // } catch (error) {
-        //   console.error(error);
-        //   res.status(500).json({ status: 'fail' });
-        //   return resolve();
-        // }
-
-        // Document upload
-        // conn.sobject('ContentVersion').create(
-        //   {
-        //     Title: `[PROPOSAL] ${application.Project_Name__c} - ${createdLeadID}`,
-        //     PathOnClient: uploadProposal.originalFilename,
-        //     VersionData: uploadProposalContent // base64 encoded file content
-        //   },
-        //   async (err, uploadedFile) => {
-        //     if (err || !uploadedFile.success) {
-        //       console.error(err);
-
-        //       res.status(400).json({ status: 'fail' });
-        //       return resolve();
-        //     } else {
-        //       console.log({ uploadedFile });
-        //       console.log(`Document has been uploaded successfully!`);
-
-        //       const contentDocument = await conn
-        //         .sobject<{
-        //           Id: string;
-        //           ContentDocumentId: string;
-        //         }>('ContentVersion')
-        //         .retrieve(uploadedFile.id);
-
-        //       await conn.sobject('ContentDocumentLink').create({
-        //         ContentDocumentId: contentDocument.ContentDocumentId,
-        //         LinkedEntityId: createdLeadID,
-        //         ShareType: 'V'
-        //       });
-
-        //       res.status(200).json({ status: 'ok' });
-        //       return resolve();
-        //     }
-        //   }
-        // );
+        console.log(`Academic Grants 2025 Lead with ID: ${ret.id} has been created!`);
       });
     });
   });
