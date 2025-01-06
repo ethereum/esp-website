@@ -30,24 +30,16 @@ export const PROJECT_GRANTS_PROJECT_CATEGORY_OPTIONS = PROJECT_CATEGORY_OPTIONS.
 );
 
 export const ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS = [
+  { value: 'Economics', label: 'Economics' },
   { value: 'Consensus layer', label: 'Consensus layer' },
-  { value: 'Protocol growth and support', label: 'Protocol growth and support' },
+  { value: 'Formal Verification', label: 'Formal verification' },
+  { value: 'Maximal Extractable Value (MEV)', label: 'Maximal Extractable Value (MEV)' },
   {
     value: 'Cryptography and zero knowledge proofs',
     label: 'Cryptography and zero knowledge proofs'
   },
-  { value: 'Cybersecurity', label: 'Cybersecurity' },
-  { value: 'Economics', label: 'Economics' },
-  { value: 'Formal Verification', label: 'Formal verification' },
-  { value: 'General research', label: 'General research' },
-  { value: 'Governance', label: 'Governance' },
-  { value: 'Government', label: 'Government' },
-  { value: 'Healthcare', label: 'Healthcare' },
-  { value: 'Layer 2', label: 'Layer 2' },
-  { value: 'Maximal Extractable Value (MEV)', label: 'Maximal Extractable Value (MEV)' },
   { value: 'P2P networking', label: 'P2P networking' },
-  { value: 'Privacy', label: 'Privacy' },
-  { value: 'Society and Regulatory', label: 'Society and regulatory' },
+  { value: 'Hardware', label: 'Hardware' },
   { value: 'Other', label: 'Other' }
 ];
 

@@ -43,7 +43,7 @@ export const AcademicGrantsSchema = z
     grantScope: stringFieldSchema('Grant scope', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
     previousWork: stringFieldSchema('Previous work', { min: 1, max: MAX_TEXT_LENGTH }),
     impact: stringFieldSchema('Project goals', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
-    problemBeingSolved: stringFieldSchema('Problem being solved', {
+    problemBeingSolved: stringFieldSchema('Field', {
       min: 1,
       max: MAX_TEXT_AREA_LENGTH
     }),
@@ -52,7 +52,7 @@ export const AcademicGrantsSchema = z
       max: MAX_TEXT_AREA_LENGTH
     }),
     requestAmount: stringFieldSchema('Total budget', { min: 1, max: 20 }),
-    proposedTimeline: stringFieldSchema('Proposed timeline', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
+    proposedTimeline: stringFieldSchema('Field', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
     challenges: stringFieldSchema('Challenges', {
       min: MIN_TEXT_AREA_LENGTH,
       max: MAX_TEXT_AREA_LENGTH

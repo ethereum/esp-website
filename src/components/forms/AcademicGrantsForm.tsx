@@ -311,29 +311,6 @@ export const AcademicGrantsForm: FC = () => {
             isRequired
           />
 
-          {/* <UploadFile
-            id='proposalAttachment'
-            label='Proposal'
-            title='Upload proposal'
-            helpText={
-              <>
-                Attach a PDF proposal. An proposal template is available{' '}
-                <Link
-                  fontWeight={700}
-                  color='brand.orange.100'
-                  href='https://notes.ethereum.org/@YlnZmB-mQ9ah8neq5cLDDg/Grant_Proposal_template'
-                  isExternal
-                  _hover={{ textDecoration: 'none' }}
-                >
-                  here
-                </Link>
-              </>
-            }
-            isRequired
-            onDrop={handleDrop}
-            mb={8}
-          /> */}
-
           <Controller
             name='projectCategory'
             control={control}
@@ -366,7 +343,7 @@ export const AcademicGrantsForm: FC = () => {
           <TextAreaField
             id='teamProfile'
             label="Team/ Individuals description -  A brief summary of your team's relevant experience"
-            helpText='Who is working on this project? Give us a bit of info and include relevant links, if available! Please provide other projects or research papers (ideally public and/or open source), engagements or other types of proof that your team has the necessary experience to undertake the project you are applying for.'
+            helpText='Who is working on this project? Give us a bit of info and include relevant links, if available! Please provide other projects or research papers (ideally public and/or open source), engagements or other types of proof that your team has the necessary experience to undertake the project you are applying for'
             isRequired
           />
 
