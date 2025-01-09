@@ -3,7 +3,7 @@ import { FC, ReactNode } from 'react';
 
 import { GrantsHero } from '../UI';
 
-import academicGrantsHero from '../../../public/images/accademic-grants-2024-hero.jpg';
+import academicGrantsHero from '../../../public/images/academic-grants-25-hero.jpeg';
 
 type Props = {
   children: ReactNode;
@@ -13,7 +13,7 @@ export const AcademicGrantsLayout: FC<Props> = ({ children }) => {
   return (
     <Stack>
       <GrantsHero
-        colorBrandConstant='academicGrants2024Hero'
+        colorBrandConstant='academicGrants2025Hero'
         desktopImage={{ alt: 'Academics doing research about Ethereum', src: academicGrantsHero }}
         mobileImage={{
           alt: 'Academics doing research about Ethereum',

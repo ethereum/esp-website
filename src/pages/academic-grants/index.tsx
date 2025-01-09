@@ -22,6 +22,7 @@ import {
 } from '../../constants';
 
 import AGRMailingForm from '../../components/AGRMailingForm';
+import academicGrantsHero from '../../../public/images/academic-grants-25-hero.jpeg';
 
 const Section = forwardRef((props, ref) => (
   <Flex as='section' ref={ref} gap={6} direction='column' {...props} />
@@ -47,6 +48,7 @@ const AcademicGrants: NextPage = () => {
       <PageMetadata
         title='Academic Grants Round'
         description='The Ethereum Foundation is sponsoring a wave of grants to support Ethereum-related academic work. Find all the details you need to apply here.'
+        image={academicGrantsHero.src}
       />
 
       <Box mx={{ md: 12 }} bg='white' position='relative' zIndex={1} mt={{ xl: 12 }}>
