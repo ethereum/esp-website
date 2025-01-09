@@ -186,7 +186,7 @@ export const AcademicGrantsForm: FC = () => {
               <TextField
                 id='authorisedSignatoryInformation'
                 label='Name, job title, and email address of the authorised signatory'
-                helpText='(e.g. John Smith, CEO, john@mycompany.com. This is the person who will sign the contract. They must be someone who can sign contracts on behalf of the entity)'
+                helpText='An authorised signatory is someone authorized to sign a legal contract on behalf of the entity'
                 isRequired
               />
             </Fade>
@@ -226,8 +226,8 @@ export const AcademicGrantsForm: FC = () => {
 
           <TextField
             id='company'
-            label='If applying as an Institution, please specify its name'
-            helpText='Name of your university program, team, or organization. If you do not have an organization name, write "N/A"'
+            label='Organization'
+            helpText='Name of the institution, university program, team, or organization. If you do not have an organization name, write "N/A"'
             isRequired
           />
 
@@ -261,9 +261,8 @@ export const AcademicGrantsForm: FC = () => {
 
           <TextField
             id='countriesTeam'
-            label='If you are a team of distributed researchers, please indicate where your fellow
-              researchers are located'
-            helpText='You can write as many countries as needed'
+            label='Countries of team'
+            helpText='If you are a team of distributed researchers, please indicate where your fellow researchers are located. You can write as many countries as needed'
             isRequired
           />
 
@@ -306,9 +305,38 @@ export const AcademicGrantsForm: FC = () => {
             id='projectDescription'
             label='Brief project summary'
             helpText="Describe your project in a few sentences (you'll have the chance to go into more
-                detail in the long form). If it's already underway, provide links to any existing
-                published work"
+              detail in the long form). If it's already underway, provide links to any existing
+              published work"
             isRequired
+          />
+
+          <UploadFile
+            id='proposalAttachment'
+            label='Proposal'
+            title='Upload proposal'
+            helpText={
+              <>
+                Attach a PDF proposal for this scope of work. A proposal template is available{' '}
+                <Link
+                  fontWeight={700}
+                  color='brand.orange.100'
+                  href='https://hackmd.io/@rodrigolvc/Example_Grant'
+                  isExternal
+                  _hover={{ textDecoration: 'none' }}
+                >
+                  here
+                </Link>
+              </>
+            }
+            isRequired
+            onDrop={handleDrop}
+            mb={8}
+          />
+
+          <TextField
+            id='projectRepo'
+            label='Project link'
+            helpText='URL to a public link or repository for the project'
           />
 
           <Controller
@@ -340,71 +368,11 @@ export const AcademicGrantsForm: FC = () => {
             )}
           />
 
-          <TextAreaField
-            id='teamProfile'
-            label="Team/ Individuals description -  A brief summary of your team's relevant experience"
-            helpText='Who is working on this project? Give us a bit of info and include relevant links, if available! Please provide other projects or research papers (ideally public and/or open source), engagements or other types of proof that your team has the necessary experience to undertake the project you are applying for'
-            isRequired
-          />
-
-          <TextField
-            id='previousWork'
-            label='Relevant past publications'
-            helpText='Any links for us to review? E.g. research papers, blog posts, etc.'
-            isRequired
-          />
-
-          <TextAreaField
-            id='grantScope'
-            label='Grant scope'
-            helpText='What are you going to research? What is the expected output?'
-            isRequired
-          />
-
-          <TextAreaField
-            id='impact'
-            label='Project goals & success factors'
-            helpText='What are you hoping to accomplish with this grant? How do you define and measure success for this project?'
-            isRequired
-          />
-
-          <TextAreaField
-            id='problemBeingSolved'
-            label='What problem are you trying to solve?'
-            isRequired
-          />
-
-          <TextAreaField
-            id='isYourProjectPublicGood'
-            label='How does this project benefit the greater Ethereum ecosystem?'
-            isRequired
-          />
-
           <TextField
             id='requestAmount'
-            label='Total budget requested'
-            helpText='Estimated grant amount. Ex: USD 50,000.'
+            label='Budget requested'
+            helpText='Estimated grant amount, i.e. USD 50,000. Proposals should include a detailed budget breakdown for requested amount'
             isRequired
-          />
-
-          <TextAreaField
-            id='proposedTimeline'
-            label='Budget breakdown and Project roadmap'
-            helpText='Please include a brief explanation on the milestones/roadmap in a 3-6 months timeframe, along with expected deliverables. Also outline how the funds will be used for the research project and or members of the team'
-            isRequired
-          />
-
-          <TextAreaField
-            id='challenges'
-            label='Challenges'
-            helpText='Have you come across any obstacles thus far? If so, how have you attempted to tackle these issues? Have you been successful in overcoming them?'
-            isRequired
-          />
-
-          <TextAreaField
-            id='additionalSupportReq'
-            label='Additional support requests'
-            helpText='Aside from funding and financial support, are there other resources that would help you or your team succeed?'
           />
 
           <Controller
@@ -413,7 +381,7 @@ export const AcademicGrantsForm: FC = () => {
             render={({ field: { onChange }, fieldState: { error } }) => (
               <Field
                 id='referralSource'
-                label='How did you hear about this wave of grants?'
+                label='How did you hear about this grant round?'
                 error={error}
                 isRequired
               >
@@ -439,37 +407,10 @@ export const AcademicGrantsForm: FC = () => {
                 id='referralSourceIfOther'
                 label='If other, explain how'
                 helpText='Please be as specific as possible. (e.g., an email received, an individual who
-                recommended you apply, a link to a tweet, etc.)'
+              recommended you apply, a link to a tweet, etc.)'
               />
             </Fade>
           </Box>
-
-          <Controller
-            name='shareResearch'
-            control={control}
-            render={({ field: { onChange }, fieldState: { error } }) => (
-              <Field
-                id='shareResearch'
-                label='If the opportunity presents itself, would you like to share your findings/research output through a Conference/Discord Talk?'
-                error={error}
-              >
-                <Select
-                  id='shareResearch'
-                  options={WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS}
-                  onChange={option => {
-                    onChange(
-                      (option as (typeof WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS)[number]).value
-                    );
-                  }}
-                  components={{ DropdownIndicator }}
-                  placeholder='Select'
-                  closeMenuOnSelect={true}
-                  selectedOptionColor='brand.option'
-                  chakraStyles={chakraStyles}
-                />
-              </Field>
-            )}
-          />
 
           <TextField id='linkedinProfile' label='LinkedIn Profile(s)' helpText='URL only' />
 
@@ -510,6 +451,12 @@ export const AcademicGrantsForm: FC = () => {
               </Box>
             )}
           </FormControl>
+
+          <TextField
+            id='website'
+            label='Website'
+            helpText='University website or Google Scholar profile'
+          />
 
           <TextField
             id='alternativeContact'
@@ -605,9 +552,9 @@ export const AcademicGrantsForm: FC = () => {
           <TextAreaField
             id='additionalInfo'
             label="Do you have any questions about this grants round, or is there anything else
-              you'd like to share?"
+            you'd like to share?"
             helpText="Is there anything we didn't cover in the above questions? Feel free to add any
-              relevant links here"
+            relevant links here"
           />
 
           <Center mb={12}>

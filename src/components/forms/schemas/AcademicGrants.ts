@@ -2,10 +2,13 @@ import * as z from 'zod';
 
 import { stringFieldSchema } from './utils';
 import { containURL } from '../../../utils';
+import { MAX_PROPOSAL_FILE_SIZE } from '../../../constants';
 
 const MAX_TEXT_LENGTH = 255;
 const MAX_TEXT_AREA_LENGTH = 2000;
 const MIN_TEXT_AREA_LENGTH = 500;
+
+const ACCEPTED_FILE_TYPES = ['application/pdf'];
 
 export const AcademicGrantsSchema = z
   .object({
@@ -38,33 +41,22 @@ export const AcademicGrantsSchema = z
       min: MIN_TEXT_AREA_LENGTH,
       max: MAX_TEXT_AREA_LENGTH
     }),
+    proposalAttachment: z
+      .any()
+      .refine(file => !!file, 'Proposal is required.')
+      .refine(file => file?.size <= MAX_PROPOSAL_FILE_SIZE, `Max file size is 4MB.`)
+      .refine(
+        file => ACCEPTED_FILE_TYPES.includes(file?.type || file?.mimetype),
+        'Only .pdf files are accepted.'
+      ),
+    projectRepo: stringFieldSchema('Project link', { max: MAX_TEXT_LENGTH }).optional(),
     projectCategory: stringFieldSchema('Project category', { min: 1 }),
-    teamProfile: stringFieldSchema('Team profile', { min: 1, max: MAX_TEXT_LENGTH }),
-    grantScope: stringFieldSchema('Grant scope', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
-    previousWork: stringFieldSchema('Previous work', { min: 1, max: MAX_TEXT_LENGTH }),
-    impact: stringFieldSchema('Project goals', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
-    problemBeingSolved: stringFieldSchema('Field', {
-      min: 1,
-      max: MAX_TEXT_AREA_LENGTH
-    }),
-    isYourProjectPublicGood: stringFieldSchema('Field', {
-      min: 1,
-      max: MAX_TEXT_AREA_LENGTH
-    }),
     requestAmount: stringFieldSchema('Total budget', { min: 1, max: 20 }),
-    proposedTimeline: stringFieldSchema('Field', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
-    challenges: stringFieldSchema('Challenges', {
-      min: MIN_TEXT_AREA_LENGTH,
-      max: MAX_TEXT_AREA_LENGTH
-    }),
-    additionalSupportReq: stringFieldSchema('Additional support required', {
-      max: MAX_TEXT_AREA_LENGTH
-    }).optional(),
     referralSource: stringFieldSchema('Referral source', { min: 1 }),
     referralSourceIfOther: stringFieldSchema('Field', { max: MAX_TEXT_AREA_LENGTH }).optional(),
-    shareResearch: stringFieldSchema('Share research', { min: 1 }),
     linkedinProfile: stringFieldSchema('LinkedIn profiles', { max: MAX_TEXT_LENGTH }).optional(),
     twitter: stringFieldSchema('Twitter handle', { max: 16 }).optional(),
+    website: stringFieldSchema('Website', { max: MAX_TEXT_LENGTH }).optional(),
     alternativeContact: stringFieldSchema('Alternative contact info', { max: 150 }).optional(),
     repeatApplicant: z.boolean(),
     canTheEFReachOut: z.boolean().optional(),
