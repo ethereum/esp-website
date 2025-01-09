@@ -69,6 +69,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         Can_the_EF_reach_out__c: result.data.canTheEFReachOut,
         Additional_Information__c: result.data.additionalInfo,
         Proactive_Community_Grants_Round__c: 'Academic Grants Round 2025', // this value is hardwired, depending on the type of grant round
+        LeadSource: 'Webform',
         RecordTypeId: process.env.SF_RECORD_TYPE_GRANTS_ROUND!
       };
 
