@@ -32,8 +32,7 @@ import {
   COUNTRY_OPTIONS,
   HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE,
   OTHER,
-  TIMEZONE_OPTIONS,
-  WOULD_YOU_SHARE_YOUR_RESEARCH_OPTIONS
+  TIMEZONE_OPTIONS
 } from './constants';
 import { ACADEMIC_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
@@ -263,7 +262,6 @@ export const AcademicGrantsForm: FC = () => {
             id='countriesTeam'
             label='Countries of team'
             helpText='If you are a team of distributed researchers, please indicate where your fellow researchers are located. You can write as many countries as needed'
-            isRequired
           />
 
           <Controller

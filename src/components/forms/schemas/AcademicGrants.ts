@@ -34,7 +34,7 @@ export const AcademicGrantsSchema = z
       'Organization cannot contain a URL'
     ),
     country: stringFieldSchema('Country', { min: 1 }),
-    countriesTeam: stringFieldSchema('Countries of team', { min: 1 }).optional(),
+    countriesTeam: z.string().optional(),
     timezone: stringFieldSchema('Time zone', { min: 1 }),
     projectName: stringFieldSchema('Project name', { min: 1, max: MAX_TEXT_LENGTH }),
     projectDescription: stringFieldSchema('Project description', {
@@ -49,14 +49,14 @@ export const AcademicGrantsSchema = z
         file => ACCEPTED_FILE_TYPES.includes(file?.type || file?.mimetype),
         'Only .pdf files are accepted.'
       ),
-    projectRepo: stringFieldSchema('Project link', { max: MAX_TEXT_LENGTH }).optional(),
+    projectRepo: z.union([z.literal(''), z.string().trim().url()]),
     projectCategory: stringFieldSchema('Project category', { min: 1 }),
     requestAmount: stringFieldSchema('Total budget', { min: 1, max: 20 }),
     referralSource: stringFieldSchema('Referral source', { min: 1 }),
     referralSourceIfOther: stringFieldSchema('Field', { max: MAX_TEXT_AREA_LENGTH }).optional(),
-    linkedinProfile: stringFieldSchema('LinkedIn profiles', { max: MAX_TEXT_LENGTH }).optional(),
+    linkedinProfile: z.union([z.literal(''), z.string().trim().url()]),
     twitter: stringFieldSchema('Twitter handle', { max: 16 }).optional(),
-    website: stringFieldSchema('Website', { max: MAX_TEXT_LENGTH }).optional(),
+    website: z.union([z.literal(''), z.string().trim().url()]),
     alternativeContact: stringFieldSchema('Alternative contact info', { max: 150 }).optional(),
     repeatApplicant: z.boolean(),
     canTheEFReachOut: z.boolean().optional(),

@@ -1587,7 +1587,6 @@ export const HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE = [
 // academic & account abstraction grants
 export const APPLYING_AS_OPTIONS = [
   { value: 'An individual', label: 'An individual' },
-  { value: 'A team', label: 'A team' },
   { value: 'A university', label: 'A university' },
   { value: 'A consortium of universities', label: 'A consortium of universities' },
   { value: 'A think-tank', label: 'A think-tank' },
