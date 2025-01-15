@@ -135,7 +135,7 @@ const AcademicGrants: NextPage = () => {
                     <Link
                       fontWeight={700}
                       color='brand.orange.100'
-                      href='https://notes.ethereum.org/@NvgRvBVYTXOplMwKfGkATA/SJVJ8fTN1x/'
+                      href='https://efdn.notion.site/Academic-Grants-Round-2025-Wishlist-17bd9895554180f9a9c1e98d1eee7aec'
                       isExternal
                       _hover={{ textDecoration: 'none' }}
                     >
@@ -281,7 +281,7 @@ const AcademicGrants: NextPage = () => {
                     <Link
                       fontWeight={700}
                       color='brand.orange.100'
-                      href='https://notes.ethereum.org/@NvgRvBVYTXOplMwKfGkATA/SJVJ8fTN1x/'
+                      href='https://efdn.notion.site/Academic-Grants-Round-2025-Wishlist-17bd9895554180f9a9c1e98d1eee7aec'
                       isExternal
                       _hover={{ textDecoration: 'none' }}
                     >
