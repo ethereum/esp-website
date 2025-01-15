@@ -30,6 +30,7 @@ import {
   ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS,
   APPLYING_AS_OPTIONS,
   COUNTRY_OPTIONS,
+  FIAT_CURRENCY_OPTIONS,
   HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE,
   OTHER,
   TIMEZONE_OPTIONS
@@ -366,12 +367,43 @@ export const AcademicGrantsForm: FC = () => {
             )}
           />
 
-          <TextField
-            id='requestAmount'
-            label='Budget requested'
-            helpText='Estimated grant amount, i.e. USD 50,000. Proposals should include a detailed budget breakdown for requested amount'
-            isRequired
-          />
+          <Stack>
+            <Stack>
+              <PageText display='inline' fontSize='input'>
+                Requested amount
+              </PageText>
+
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Estimated grant amount, i.e. USD 50,000. Proposals should include a detailed budget
+                breakdown for requested amount
+              </PageText>
+            </Stack>
+            <Flex direction={{ base: 'column', md: 'row' }} gap={8}>
+              <Controller
+                name='fiatCurrency'
+                control={control}
+                render={({ field: { value, onChange }, fieldState: { error } }) => (
+                  <Field id='fiatCurrency' label='Fiat currency' error={error} isRequired>
+                    <Select
+                      id='fiatCurrency'
+                      value={FIAT_CURRENCY_OPTIONS.find(option => option.value === value)}
+                      options={FIAT_CURRENCY_OPTIONS}
+                      onChange={option => {
+                        onChange((option as (typeof FIAT_CURRENCY_OPTIONS)[number]).value);
+                      }}
+                      components={{ DropdownIndicator }}
+                      placeholder='Select'
+                      closeMenuOnSelect={true}
+                      selectedOptionColor='brand.option'
+                      chakraStyles={chakraStyles}
+                    />
+                  </Field>
+                )}
+              />
+
+              <TextField id='requestedAmount' label='Amount' isRequired />
+            </Flex>
+          </Stack>
 
           <Controller
             name='referralSource'

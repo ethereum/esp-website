@@ -55,6 +55,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         Project_Description__c: result.data.projectDescription,
         Github_Link__c: result.data.projectRepo,
         Category__c: result.data.projectCategory,
+        CurrencyIsoCode: result.data.fiatCurrency,
         Requested_Amount__c: result.data.requestAmount,
         Referral_Source__c: result.data.referralSource,
         Referral_Source_if_Other__c: result.data.referralSourceIfOther,
