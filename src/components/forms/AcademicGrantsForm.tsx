@@ -482,11 +482,7 @@ export const AcademicGrantsForm: FC = () => {
             )}
           </FormControl>
 
-          <TextField
-            id='website'
-            label='Website'
-            helpText='University website or Google Scholar profile'
-          />
+          <TextField id='website' label='Website' helpText='Google Scholar profile' isRequired />
 
           <TextField
             id='alternativeContact'
