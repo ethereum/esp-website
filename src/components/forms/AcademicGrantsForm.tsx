@@ -401,7 +401,7 @@ export const AcademicGrantsForm: FC = () => {
                 )}
               />
 
-              <TextField id='requestedAmount' label='Amount' isRequired />
+              <TextField id='requestAmount' label='Amount' isRequired />
             </Flex>
           </Stack>
 
