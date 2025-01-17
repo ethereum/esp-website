@@ -319,7 +319,7 @@ export const AcademicGrantsForm: FC = () => {
                 <Link
                   fontWeight={700}
                   color='brand.orange.100'
-                  href='https://hackmd.io/@rodrigolvc/Example_Grant'
+                  href='https://notes.ethereum.org/@drigolvc/Grant_Proposal_template/'
                   isExternal
                   _hover={{ textDecoration: 'none' }}
                 >
