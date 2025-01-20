@@ -10,4 +10,5 @@ export * from './EcodevGrantsForm';
 export * from './EPFApplicationForm';
 export * from './PSEApplicationForm';
 export * from './PSESponsorshipsForm';
+export * from './AcademicGrantsForm';
 export * from './fields';

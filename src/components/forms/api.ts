@@ -22,11 +22,13 @@ import {
   API_SMALL_GRANTS_EVENT,
   API_SMALL_GRANTS_PROJECT,
   API_EPF_APPLICATION,
-  API_PSE_APPLICATION
+  API_PSE_APPLICATION,
+  API_ACADEMIC_GRANTS
 } from './constants';
 
 import type { EPFData } from './schemas/EPFApplication';
 import type { PSEData } from './schemas/PSEGrants';
+import type { AcademicGrantsData } from './schemas/AcademicGrants';
 
 const methodOptions = {
   method: 'POST',
@@ -196,6 +198,18 @@ export const api = {
       };
 
       return fetch(API_EPF_APPLICATION, epfApplicationRequestOptions);
+    }
+  },
+  academicGrants: {
+    submit: (data: AcademicGrantsData) => {
+      const formData = createFormData(data);
+
+      const dataRequestOptions: RequestInit = {
+        method: 'POST',
+        body: formData
+      };
+
+      return fetch(API_ACADEMIC_GRANTS, dataRequestOptions);
     }
   },
   newsletter: {

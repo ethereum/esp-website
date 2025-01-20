@@ -74,10 +74,10 @@ export const colors = {
         end: 'rgba(235, 209, 251, 0)'
       }
     },
-    academicGrants2024Hero: {
+    academicGrants2025Hero: {
       titleWhiteBox: 'rgba(255, 255, 255, 0.6)',
       bgGradient: {
-        start: '#c174de',
+        start: '#cc9eb0',
         end: 'rgba(235, 209, 251, 0)'
       }
     },
