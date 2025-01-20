@@ -583,6 +583,12 @@ export const AcademicGrantsForm: FC = () => {
             relevant links here"
           />
 
+          <TextAreaField
+            id="addtionalSupport"
+            label="Apart from financial support, what else do you need from the EF?"
+            helpText="Beyond financial support, what support would you need from the Ethereum Foundation to execute on this project?"
+          />
+
           <Center mb={12}>
             <Captcha />
           </Center>

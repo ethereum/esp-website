@@ -61,6 +61,9 @@ export const AcademicGrantsSchema = z
     repeatApplicant: z.boolean(),
     canTheEFReachOut: z.boolean().optional(),
     additionalInfo: stringFieldSchema('Additional info', { max: MAX_TEXT_AREA_LENGTH }).optional(),
+    additionalSupport: stringFieldSchema('Additional support', {
+      max: MAX_TEXT_AREA_LENGTH
+    }).optional(),
     captchaToken: stringFieldSchema('Captcha', { min: 1 })
   })
   .refine(
