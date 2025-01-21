@@ -187,7 +187,7 @@ const AcademicGrants: NextPage = () => {
                       think-tanks, educators and other stakeholders interested in Ethereum research
                     </ListItem>
                     <ListItem>
-                      Undergraduate researchers will require a posdoctoral advisor
+                      Undergraduate researchers will require a postdoctoral advisor
                     </ListItem>
                     <ListItem>
                       Applications are selected for funding on a case-by-case basis. You may submit
