@@ -28,6 +28,7 @@ import {
 
 import {
   PECTRA_PGR_APPLY_URL,
+  PECTRA_PGR_EMAIL_ADDRESS,
   SIDEBAR_PECTRA_PGR_LINKS
 } from '../../constants'
 
@@ -318,14 +319,13 @@ const PectraPGR: NextPage = () => {
                 </Section>
               </Stack>
 
-              {/* TODO: ADD EMAIL */}
               <Stack mb={8} spacing={10}>
                 <Section id="get-involved" ref={ref9}>
                   <PageSection>Get involved</PageSection>
                   <PageText>Have questions? Want to learn more?</PageText>
                   <List>
                     <ListItem>
-                      Reach out to use via <Link fontWeight={700} color='brand.orange.100' href=''>Email</Link>.
+                      Reach out to use via <Link fontWeight={700} color='brand.orange.100' href={`mailto:${PECTRA_PGR_EMAIL_ADDRESS}`}>Email</Link>.
                     </ListItem>
                   </List>
                 </Section>

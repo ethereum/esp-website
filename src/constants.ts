@@ -323,6 +323,7 @@ export const SEMAPHORE_GRANT_EMAIL_ADDRESS = 'semaphore-grants@ethereum.org';
 export const LAYER_2_GRANTS_EMAIL_ADDRESS = 'layer2grants@ethereum.org';
 export const ACCOUNT_ABSTRACTION_GRANTS_EMAIL_ADDRESS = 'account-abstraction@ethereum.org';
 export const GRANTS_EMAIL_ADDRESS = 'grant-rounds@ethereum.org';
+export const PECTRA_PGR_EMAIL_ADDRESS = 'pectra-pgr@ethereum.org'; // TODO: CONFIRM EMAIL ADDRESS
 
 // applicants tabs
 export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Small Grants', 'Project Grants'];
