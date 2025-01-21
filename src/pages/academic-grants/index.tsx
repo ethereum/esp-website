@@ -187,7 +187,7 @@ const AcademicGrants: NextPage = () => {
                       think-tanks, educators and other stakeholders interested in Ethereum research
                     </ListItem>
                     <ListItem>
-                      Undergraduate researchers will require a posdoctoral advisor
+                      Undergraduate researchers will require a postdoctoral advisor
                     </ListItem>
                     <ListItem>
                       Applications are selected for funding on a case-by-case basis. You may submit
@@ -205,7 +205,7 @@ const AcademicGrants: NextPage = () => {
 
                   <PageText>
                     The application window opens for 6 weeks from Monday, January 20th, 2025 and
-                    closes on Monday, March 1sh, 2025.
+                    closes on Monday, March 16th, 2025.
                   </PageText>
                 </Section>
 
