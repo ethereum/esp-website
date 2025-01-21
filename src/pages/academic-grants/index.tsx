@@ -205,7 +205,7 @@ const AcademicGrants: NextPage = () => {
 
                   <PageText>
                     The application window opens for 6 weeks from Monday, January 20th, 2025 and
-                    closes on Monday, March 1sh, 2025.
+                    closes on Monday, March 16th, 2025.
                   </PageText>
                 </Section>
 
