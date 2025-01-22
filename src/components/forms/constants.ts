@@ -43,6 +43,25 @@ export const ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Other', label: 'Other' }
 ];
 
+export const PECTRA_PGR_PROJECT_CATEGORY_OPTIONS = [
+  { value: 'Consensus layer', label: 'Consensus layer' },
+  { value: 'Core Protocol Development', label: 'Core Protocol Development' },
+  { value: 'Cryptography and zero knowledge proofs', label: 'Cryptography and zero knowledge proofs' },
+  { value: 'Cybersecurity', label: 'Cybersecurity' },
+  { value: 'Economics', label: 'Economics' },
+  { value: 'Formal Verification', label: 'Formal Verification' },
+  { value: 'General research', label: 'General research' },
+  { value: 'Governance', label: 'Governance' },
+  { value: 'Government', label: 'Government' },
+  { value: 'Healthcare', label: 'Healthcare' },
+  { value: 'Layer 2', label: 'Layer 2' },
+  { value: 'Maximal Extractable Value (MEV)', label: 'Maximal Extractable Value (MEV)' },
+  { value: 'P2P networking', label: 'P2P networking' },
+  { value: 'Privacy', label: 'Privacy' },
+  { value: 'Society and Regulatory', label: 'Society and Regulatory' },
+  { value: 'Other', label: 'Other' }
+]
+
 export const DATA_COLLECTION_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Community and education', label: 'Community and education' },
   { value: 'Data Analysis', label: 'Data Analysis' },
@@ -1662,3 +1681,4 @@ export const API_DATA_COLLECTION_GRANTS = '/api/data-collection-grants';
 export const API_EPF_APPLICATION = '/api/epf-application';
 export const API_NEWSLETTER_SIGNUP_URL = '/api/newsletter-signup';
 export const API_PSE_APPLICATION = '/api/pse-grants';
+export const API_PECTRA_PGR = '/api/pectra-pgr';

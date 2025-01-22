@@ -71,7 +71,8 @@ const PectraPGR: NextPage = () => {
                 inView6,
                 inView7,
                 inView8,
-                inView9
+                inView9,
+                inView10,
               ]}
             />
 
@@ -244,7 +245,7 @@ const PectraPGR: NextPage = () => {
                       <strong>Financial products</strong> (e.g., trading, investment products, lending, betting, etc.).
                     </ListItem>
                     <ListItem>
-                      Art projects or social impact projects that don't fit within the scope of this round.
+                      Art projects or social impact projects that don&apos;t fit within the scope of this round.
                     </ListItem>
                     <ListItem>
                       Projects requesting retroactive funding
