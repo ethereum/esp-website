@@ -87,13 +87,11 @@ const AcademicGrants: NextPage = () => {
               <Stack mb={8} mt={{ base: 10, md: 0 }}>
                 <Section id='introduction' ref={ref}>
                   <PageText>
-                    The Ethereum Foundation is delighted to announce the 2025 Academic Grants Round,
-                    an initiative dedicated to advancing cutting-edge academic research that
-                    strengthens and expands the Ethereum ecosystem. Building on the success of the
+                  The Ethereum Foundation is sponsoring the 2025 Academic Grants Round, a pioneering initiative aimed at empowering and expanding the frontiers of Ethereum-related academic research. Building on the success of the
                     previous two rounds in 2023 and 2024, this year, we welcome proposals across a
-                    wide range of disciplines, including Economics & Game Theory, Theoretical and
+                    wide range of disciplines, including <strong>Economics & Game Theory, Theoretical and
                     Applied Cryptography, Consensus and Protocol Design, Networking & P2P, Client
-                    Engineering, Security, Formal Verification, and the Humanities. Through this
+                    Engineering, Security, Formal Verification, and the Humanities</strong>. Through this
                     effort, we aim to empower researchers to explore new frontiers and deliver
                     impactful work that propels Ethereum forward.
                   </PageText>

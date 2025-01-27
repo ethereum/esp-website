@@ -73,7 +73,8 @@ const AGRMailingForm = (props: BoxProps) => {
       <Heading fontSize='h4' fontWeight={700} mb={2}>
         Subscribe to our mailing list
       </Heading>
-      <PageText mb={4}>Receive updates when the Academic Grants Round opens again.</PageText>
+      {/* TODO: Add back when AGR is over */}
+      {/* <PageText mb={4}>Receive updates when the Academic Grants Round opens again.</PageText> */}
       <Box
         as='form'
         onSubmit={handleSubmit(onSubmit)}
