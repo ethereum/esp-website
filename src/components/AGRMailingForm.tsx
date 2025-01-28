@@ -47,9 +47,11 @@ const AGRMailingForm = (props: BoxProps) => {
     const res = await fetch('/api/agr-mailing', req);
 
     if (!res.ok) {
+      const data = await res.json();
+
       toast({
         title: 'Error',
-        description: 'There was an error subscribing to the mailing list.',
+        description: data.message || 'There was an error subscribing to the mailing list.',
         status: 'error',
         duration: 5000,
         isClosable: true

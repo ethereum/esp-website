@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { z } from 'zod';
-import { ContactsApi, ContactsApiApiKeys } from '@getbrevo/brevo';
+import { ContactsApi, ContactsApiApiKeys, HttpError } from '@getbrevo/brevo';
 
 import { AGRMailingSchema } from '../../components/AGRMailingForm';
 
@@ -29,6 +29,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (error instanceof z.ZodError) {
       return res.status(400).json({ message: 'Invalid input', errors: error.errors });
     }
+    if (error instanceof HttpError) {
+      const code = error.body.code;
+      if (code === "duplicate_parameter") {
+        return res.status(400).json({ message: 'You are already subscribed to the mailing list' });
+      }
+    }
+
     console.error('Error adding contact:', error);
     res.status(500).json({ message: 'Error adding contact' });
   }
