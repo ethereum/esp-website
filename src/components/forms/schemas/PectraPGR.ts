@@ -30,6 +30,7 @@ export const PectraPGRSchema = z.object({
   timezone: stringFieldSchema('Time zone', { min: 1 }),
   projectName: stringFieldSchema('Project name', { min: 1, max: MAX_TEXT_LENGTH }),
   projectDescription: stringFieldSchema('Project description', {
+    min: 1,
     max: MIN_TEXT_AREA_LENGTH
   }),
   impact: stringFieldSchema('Impact', {
