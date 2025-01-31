@@ -281,3 +281,7 @@
   from = "/data-challenge-4844/apply/"
   to = "/data-challenge-4844/"
   force = true
+[[redirects]]
+  from = "/devcon-grants/apply/"
+  to = "/devcon-grants/"
+  force = true
