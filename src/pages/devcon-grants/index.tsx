@@ -72,24 +72,10 @@ const DevconGrants: NextPage = () => {
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
-              <Banner
-                bgGradient='linear(to-br, brand.closedBanner.bgGradient.start 10%, brand.closedBanner.bgGradient.end 100%)'
-                color='brand.heading'
-                py={6}
-                borderRadius='xl'
-                flexDirection='column'
-                textAlign='center'
+              <BannerApplicationClosed
+                title='Applications for the Road to Devcon Grants Round and Devcon Satellite Events funding round are closed.'
                 mb={12}
-              >
-                <Heading fontSize='h4' fontWeight={700} mb={2}>
-                  Applications for the Road to Devcon Grants Round are closed. However, sponsorship
-                  applications for Devcon Satellite Events are open!
-                </Heading>
-                <Text fontSize='paragraph' fontWeight={300}>
-                  If you&apos;re interested in submitting a proposal for a Devcon Satellite Event,
-                  please read the eligibility criteria and apply below.
-                </Text>
-              </Banner>
+              />
 
               <Stack mb={8} mt={{ base: 10, md: 0 }}>
                 <section id='description' ref={ref}>
