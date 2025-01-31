@@ -81,6 +81,13 @@ export const colors = {
         end: 'rgba(235, 209, 251, 0)'
       }
     },
+    pectraPGRHero: {
+      titleWhiteBox: 'rgba(255, 255, 255, 0.6)',
+      bgGradient: {
+        start: '#cc9eb0',
+        end: 'rgba(235, 209, 251, 0)'
+      }
+    },
     accountAbstractionHero: {
       titleWhiteBox: 'rgba(255, 255, 255, 0.8)',
       bgGradient: {
