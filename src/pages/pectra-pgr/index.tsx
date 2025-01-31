@@ -168,7 +168,7 @@ const PectraPGR: NextPage = () => {
                     href='https://notes.ethereum.org/@BOR4/HyhTGy48Jl'
                     isExternal
                   >
-                    Read more about the wishlist
+                    Check out the Pectra wishlist
                   </Link>
                 </Section>
               </Stack>
