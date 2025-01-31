@@ -59,6 +59,12 @@ export const PectraPGRSchema = z.object({
   alternativeContact: stringFieldSchema('Alternative contact info', { max: 150 }).optional(),
   repeatApplicant: z.boolean(),
   additionalInfo: stringFieldSchema('Additional info', { max: MAX_TEXT_AREA_LENGTH }).optional(),
-})
+}).refine(
+  data => data.individualOrTeam && data.company === "",
+  {
+    message: `Organization is required`,
+    path: ['company']
+  }
+)
 
 export type PectraPGRData = z.infer<typeof PectraPGRSchema>

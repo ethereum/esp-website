@@ -167,53 +167,12 @@ export const PectraPGRForm: FC = () => {
 
           <Box display={individualOrTeam === TEAM ? 'block' : 'none'}>
             <Fade in={individualOrTeam === TEAM} delay={0.25}>
-              <FormControl id='company-control' isRequired={individualOrTeam === TEAM} mb={8}>
-                <FormLabel htmlFor='company' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Name of organization or entity
-                  </PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Name of your team or entity you&apos;re submitting for. If your organization
-                  doesn&apos;t have a formal name, just try to describe it in a few words!
-                </PageText>
-
-                <Input
-                  id='company'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  color='brand.paragraph'
-                  fontSize='input'
-                  mt={3}
-                  {...register('company')}
-                />
-
-                {errors?.company?.type === 'required' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Organization name is required.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.company?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Organization name cannot exceed 255 characters.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.company?.type === 'validate' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Organization name cannot contain a URL.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
+              <TextField
+                id='company'
+                label='Name of organization or entity'
+                helpText='Name of your team or entity you&apos;re submitting for. If your organization doesn&apos;t have a formal name, just try to describe it in a few words!'
+                isRequired
+              />
             </Fade>
           </Box>
 
