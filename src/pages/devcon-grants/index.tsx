@@ -1,14 +1,4 @@
-import {
-  Accordion,
-  Box,
-  Flex,
-  Heading,
-  Link,
-  ListItem,
-  Stack,
-  Text,
-  UnorderedList
-} from '@chakra-ui/react';
+import { Accordion, Box, Flex, Link, ListItem, Stack, UnorderedList } from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import type { NextPage } from 'next';
 
@@ -20,10 +10,8 @@ import {
   PageSubheading,
   PageText,
   PageMetadata,
-  ReadyToApply,
   OrderedList,
-  BannerApplicationClosed,
-  Banner
+  BannerApplicationClosed
 } from '../../components/UI';
 
 import {
@@ -43,8 +31,7 @@ const DevconGrants: NextPage = () => {
   const [ref4, inView4] = useInView({ threshold: 0.5, initialInView: false });
   const [ref5, inView5] = useInView({ threshold: 0.3, initialInView: false });
   const [ref6, inView6] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref8, inView8] = useInView({ threshold: 0, initialInView: false });
+  const [ref7, inView7] = useInView({ threshold: 0, initialInView: false });
 
   return (
     <>
@@ -59,37 +46,14 @@ const DevconGrants: NextPage = () => {
           <Flex>
             <ApplicantsSidebar
               sidebarLinks={SIDEBAR_DEVCON_GRANTS_LINKS}
-              sectionsInView={[
-                inView,
-                inView2,
-                inView3,
-                inView4,
-                inView5,
-                inView6,
-                inView7,
-                inView8
-              ]}
+              sectionsInView={[inView, inView2, inView3, inView4, inView5, inView6, inView7]}
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
-              <Banner
-                bgGradient='linear(to-br, brand.closedBanner.bgGradient.start 10%, brand.closedBanner.bgGradient.end 100%)'
-                color='brand.heading'
-                py={6}
-                borderRadius='xl'
-                flexDirection='column'
-                textAlign='center'
+              <BannerApplicationClosed
+                title='Applications for the Road to Devcon Grants Round and Devcon Satellite Events funding round are closed.'
                 mb={12}
-              >
-                <Heading fontSize='h4' fontWeight={700} mb={2}>
-                  Applications for the Road to Devcon Grants Round are closed. However, sponsorship
-                  applications for Devcon Satellite Events are open!
-                </Heading>
-                <Text fontSize='paragraph' fontWeight={300}>
-                  If you&apos;re interested in submitting a proposal for a Devcon Satellite Event,
-                  please read the eligibility criteria and apply below.
-                </Text>
-              </Banner>
+              />
 
               <Stack mb={8} mt={{ base: 10, md: 0 }}>
                 <section id='description' ref={ref}>
@@ -324,12 +288,6 @@ const DevconGrants: NextPage = () => {
                       </PageText>
                     </FAQItem>
                   </Accordion>
-                </section>
-
-                <section id='apply' ref={ref8}>
-                  <Stack mt={6}>
-                    <ReadyToApply link={`${DEVCON_GRANTS_APPLY_URL}`} />
-                  </Stack>
                 </section>
               </Stack>
             </Box>
