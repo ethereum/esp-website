@@ -25,7 +25,19 @@ export const PectraPGRSchema = z.object({
     'Please select whether you are applying as an individual or a team.',
     { min: 1, max: MAX_TEXT_LENGTH }
   ),
-  company: stringFieldSchema('Company name', { max: MAX_TEXT_LENGTH }).optional(),
+  company: stringFieldSchema('Company name', { max: MAX_TEXT_LENGTH })
+    .refine(
+      (data) => data !== undefined && data.trim() !== '',
+      { message: 'Organization name is required' }
+    )
+    .refine(
+      (data) => data.length <= MAX_TEXT_LENGTH,
+      { message: 'Organization name cannot exceed 255 characters' }
+    )
+    .refine(
+      (data) => !containURL(data),
+      { message: 'Organization name cannot contain a URL' }
+    ),
   country: stringFieldSchema('Country', { min: 1 }),
   timezone: stringFieldSchema('Time zone', { min: 1 }),
   projectName: stringFieldSchema('Project name', { min: 1, max: MAX_TEXT_LENGTH }),
@@ -59,12 +71,6 @@ export const PectraPGRSchema = z.object({
   alternativeContact: stringFieldSchema('Alternative contact info', { max: 150 }).optional(),
   repeatApplicant: z.boolean(),
   additionalInfo: stringFieldSchema('Additional info', { max: MAX_TEXT_AREA_LENGTH }).optional(),
-}).refine(
-  data => data.individualOrTeam && data.company === "",
-  {
-    message: `Organization is required`,
-    path: ['company']
-  }
-)
+})
 
 export type PectraPGRData = z.infer<typeof PectraPGRSchema>
