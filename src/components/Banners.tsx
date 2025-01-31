@@ -4,7 +4,7 @@ import { Box, Link } from '@chakra-ui/react';
 
 import { Banner } from './UI';
 
-import { ACADEMIC_GRANTS_URL } from '../constants';
+import { ACADEMIC_GRANTS_URL, PECTRA_PGR_URL } from '../constants';
 
 export const Banners: FC = () => {
   const router = useRouter();
@@ -16,6 +16,9 @@ export const Banners: FC = () => {
           Applications are open for the{' '}
           <Link fontWeight={700} href={ACADEMIC_GRANTS_URL}>
             Academic Grants Round
+          </Link>{' '} and{' '}
+          <Link fontWeight={700} href={PECTRA_PGR_URL}>
+            Pectra PGR Round
           </Link>{' '}
           . See the details and apply.
         </Box>
