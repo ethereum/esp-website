@@ -18,7 +18,7 @@ export const Banners: FC = () => {
             Academic Grants Round
           </Link>{' '} and{' '}
           <Link fontWeight={700} href={PECTRA_PGR_URL}>
-            Pectra PGR Round
+            Pectra Proactive Grant Round
           </Link>{' '}
           . See the details and apply.
         </Box>
