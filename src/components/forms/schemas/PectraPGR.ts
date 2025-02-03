@@ -62,14 +62,16 @@ export const PectraPGRSchema = z.object({
   additionalInfo: stringFieldSchema('Additional info', { max: MAX_TEXT_AREA_LENGTH }).optional(),
   captchaToken: stringFieldSchema('Captcha', { min: 1 })
 }).refine((data) => {
-  console.log(data.company, data.company.trim())
-  return data.individualOrTeam === 'Team' && data.company !== undefined && data.company.trim() !== ''
+  if (data.individualOrTeam !== 'Team') return true
+  return data.company !== undefined && data.company.trim() !== ''
 }, { message: 'Organization name is required', path: ['company'] })
 .refine((data) => {
-  return data.individualOrTeam === 'Team' && data.company.length <= MAX_TEXT_LENGTH
+  if (data.individualOrTeam !== 'Team') return true
+  return data.company.length <= MAX_TEXT_LENGTH
 }, { message: 'Organization name cannot exceed 255 characters', path: ['company'] })
 .refine((data) => {
-  return data.individualOrTeam === 'Team' && !containURL(data.company)
+  if (data.individualOrTeam !== 'Team') return true
+  return !containURL(data.company)
 }, { message: "Organization name cannot contain a URL", path: ['company'] })
 
 export type PectraPGRData = z.infer<typeof PectraPGRSchema>
