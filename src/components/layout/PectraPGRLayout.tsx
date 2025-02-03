@@ -3,7 +3,7 @@ import { FC, ReactNode } from 'react';
 
 import { GrantsHero } from '../UI';
 
-import academicGrantsHero from '../../../public/images/academic-grants-25-hero.jpeg';
+import pectraPGRHero from '../../../public/images/pectra-pgr-hero.jpeg';
 
 type Props = {
   children: ReactNode;
@@ -12,17 +12,16 @@ type Props = {
 export const PectraPGRLayout: FC<Props> = ({ children }) => {
   return (
     <Stack>
-      {/* TODO: Fix copy here with date */}
       <GrantsHero
         colorBrandConstant='pectraPGRHero'
-        desktopImage={{ alt: 'Academics doing research about Ethereum', src: academicGrantsHero }}
+        desktopImage={{ alt: 'Academics doing research about Ethereum', src: pectraPGRHero }}
         mobileImage={{
           alt: 'Academics doing research about Ethereum',
-          src: academicGrantsHero
+          src: pectraPGRHero
         }}
         title='Pectra Proactive Grant Round'
       >
-        The Ethereum Foundation is sponsoring a wave of grants to support Ethereum ecosystem in preparation for the upcoming Pectra network upgrade. This grants round has ??? in total available funds. Proposals are due ???. All of the details you’ll need to apply can be found below.
+        The Ethereum Foundation is sponsoring a wave of grants to support Ethereum ecosystem in preparation for the upcoming Pectra network upgrade. This grants round has 200k in total available funds. Proposals are due February 23rd. All of the details you’ll need to apply can be found below.
       </GrantsHero> 
 
       <Stack>{children}</Stack>

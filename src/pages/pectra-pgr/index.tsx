@@ -32,7 +32,7 @@ import {
   SIDEBAR_PECTRA_PGR_LINKS
 } from '../../constants'
 
-import pectraPGRHero from '../../../public/images/academic-grants-25-hero.jpeg' //TODO: Change image source to actual Pectra PGR hero image
+import pectraPGRHero from '../../../public/images/pectra-pgr-hero.jpeg'
 
 const Section = forwardRef((props, ref) => (
   <Flex as='section' ref={ref} gap={6} direction='column' {...props} />
