@@ -173,7 +173,6 @@ const PectraPGR: NextPage = () => {
                 </Section>
               </Stack>
 
-              {/* TODO: GET DATES FOR THIS TABLE */}
               <Stack mb={8} spacing={10}>
                 <Section id='timeline' ref={ref3}>
                   <PageSection>Timeline</PageSection>
@@ -200,7 +199,7 @@ const PectraPGR: NextPage = () => {
                         </Tr>
                         <Tr>
                           <Td>Grant Awards Announced</Td>
-                          <Td>[Insert date]</Td>
+                          <Td>March 24th</Td>
                         </Tr>
                       </Tbody>
                     </Table>
