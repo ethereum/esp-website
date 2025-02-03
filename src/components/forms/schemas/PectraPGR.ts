@@ -67,7 +67,7 @@ export const PectraPGRSchema = z.object({
   referralSourceIfOther: stringFieldSchema('Field', { max: MAX_TEXT_AREA_LENGTH }).optional(),
   linkedinProfile: z.union([z.literal(''), z.string().trim().url()]),
   twitter: stringFieldSchema('Twitter handle', { max: 16 }).optional(),
-  website: z.string().trim().url().optional(),
+  website: z.union([z.literal(""), z.string().trim().url()]),
   alternativeContact: stringFieldSchema('Alternative contact info', { max: 150 }).optional(),
   repeatApplicant: z.boolean(),
   additionalInfo: stringFieldSchema('Additional info', { max: MAX_TEXT_AREA_LENGTH }).optional(),
