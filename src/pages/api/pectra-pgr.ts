@@ -62,7 +62,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         Repeat_Applicant__c: result.data.repeatApplicant,
         Additional_Information__c: result.data.additionalInfo,
         RecordTypeId: process.env.SF_RECORD_TYPE_GRANTS_ROUND!,
-        Proactive_Community_Grants_Round__c: 'Pectra Grants Round 2025',
+        Proactive_Community_Grants_Round__c: 'Pectra',
         LeadSource: 'Webform'
       };
 

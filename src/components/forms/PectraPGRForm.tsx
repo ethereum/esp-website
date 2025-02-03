@@ -93,8 +93,6 @@ export const PectraPGRForm: FC = () => {
     .catch(err => console.error('There has been a problem with your operation: ', err.message))
   }
 
-  console.log(errors)
-
   return (
     <Stack
       w='100%'
