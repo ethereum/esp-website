@@ -17,6 +17,7 @@ import {
   API_GRANTEE_FINANCE,
   API_NEWSLETTER_SIGNUP_URL,
   API_OFFICE_HOURS,
+  API_PECTRA_PGR,
   API_PROJECT_GRANTS,
   API_PSE_SPONSORSHIPS,
   API_SMALL_GRANTS_EVENT,
@@ -29,6 +30,7 @@ import {
 import type { EPFData } from './schemas/EPFApplication';
 import type { PSEData } from './schemas/PSEGrants';
 import type { AcademicGrantsData } from './schemas/AcademicGrants';
+import type { PectraPGRData } from './schemas/PectraPGR';
 
 const methodOptions = {
   method: 'POST',
@@ -210,6 +212,23 @@ export const api = {
       };
 
       return fetch(API_ACADEMIC_GRANTS, dataRequestOptions);
+    }
+  },
+  pectraPGR: {
+    submit: (data: PectraPGRData) => {
+
+      const curatedData: { [key: string]: any } = {
+        ...data,
+        company: data.individualOrTeam === 'Individual' && data.company === '' ? `${data.firstName} ${data.lastName}` : data.company,
+      }
+      const formData = createFormData(curatedData);
+
+      const dataRequestOptions: RequestInit = {
+        method: 'POST',
+        body: formData
+      };
+
+      return fetch(API_PECTRA_PGR, dataRequestOptions);
     }
   },
   newsletter: {

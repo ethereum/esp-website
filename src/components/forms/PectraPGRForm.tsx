@@ -11,48 +11,50 @@ import {
   RadioGroup,
   Stack,
   useToast
-} from '@chakra-ui/react';
-import { Select } from 'chakra-react-select';
-import { FC } from 'react';
-import { Controller, FormProvider, useForm } from 'react-hook-form';
-import { useRouter } from 'next/router';
-import { zodResolver } from '@hookform/resolvers/zod';
+} from '@chakra-ui/react'
+import { Select } from 'chakra-react-select'
+import { FC } from 'react'
+import { Controller, FormProvider, useForm } from 'react-hook-form'
+import { useRouter } from 'next/router'
+import { zodResolver } from '@hookform/resolvers/zod'
 
-import { DropdownIndicator, PageText } from '../UI';
-import { SubmitButton } from '../SubmitButton';
-import { Captcha, Field, TextAreaField, TextField, UploadFile } from '.';
+import { DropdownIndicator, PageText } from '../UI'
+import { SubmitButton } from '../SubmitButton'
+import { Captcha, Field, TextAreaField, TextField, UploadFile } from '.'
 
-import { api } from './api';
+import { api } from './api'
 
-import { chakraStyles } from './selectStyles';
+import { chakraStyles } from './selectStyles'
 
 import {
-  ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS,
-  APPLYING_AS_OPTIONS,
   COUNTRY_OPTIONS,
   FIAT_CURRENCY_OPTIONS,
   HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE,
+  INDIVIDUAL,
   OTHER,
-  TIMEZONE_OPTIONS
-} from './constants';
-import { ACADEMIC_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
+  PECTRA_PGR_PROJECT_CATEGORY_OPTIONS,
+  TEAM,
+  TIMEZONE_OPTIONS,
+} from './constants'
 
-import { AcademicGrantsSchema, AcademicGrantsData } from './schemas/AcademicGrants';
+import { PECTRA_PGR_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants'
 
-export const AcademicGrantsForm: FC = () => {
-  const router = useRouter();
-  const toast = useToast();
+import { PectraPGRSchema, PectraPGRData } from './schemas/PectraPGR'
 
-  const methods = useForm<AcademicGrantsData>({
+export const PectraPGRForm: FC = () => {
+  const router = useRouter()
+  const toast = useToast()
+
+  const methods = useForm<PectraPGRData>({
     mode: 'onBlur',
     shouldFocusError: true,
     defaultValues: {
-      POCisAuthorisedSignatory: true,
-      repeatApplicant: false,
-      canTheEFReachOut: true
+      individualOrTeam: INDIVIDUAL,
+      repeatApplicant: false
     },
-    resolver: zodResolver(AcademicGrantsSchema)
-  });
+    resolver: zodResolver(PectraPGRSchema)
+  })
+
   const {
     handleSubmit,
     register,
@@ -61,14 +63,10 @@ export const AcademicGrantsForm: FC = () => {
     formState: { errors, isSubmitting },
     reset,
     watch
-  } = methods;
+  } = methods
 
-  // for conditional fields, get the current values
-  const applyingAs = watch('applyingAs');
-  const POCisAuthorisedSignatory = watch('POCisAuthorisedSignatory');
-  const referralSource = watch('referralSource');
-
-  const notAuthorisedSignatory = POCisAuthorisedSignatory === false;
+  const individualOrTeam = watch('individualOrTeam')
+  const referralSource = watch('referralSource')
 
   const handleDrop = () => {
     toast({
@@ -76,27 +74,25 @@ export const AcademicGrantsForm: FC = () => {
       title: 'Proposal uploaded!',
       status: 'success'
     });
-  };
+  }
 
-  const onSubmit = async (data: AcademicGrantsData) => {
-    return api.academicGrants
-      .submit(data)
-      .then(res => {
-        if (res.ok) {
-          reset();
-          router.push(ACADEMIC_GRANTS_THANK_YOU_PAGE_URL);
-        } else {
-          toast({
-            ...TOAST_OPTIONS,
-            title: 'Something went wrong while submitting, please try again.',
-            status: 'error'
-          });
+  const onSubmit = async (data: PectraPGRData) => {
+    return api.pectraPGR.submit(data).then(res => {
+      if (res.ok) {
+        reset()
+        router.push(PECTRA_PGR_THANK_YOU_PAGE_URL)
+      } else {
+        toast({
+          ...TOAST_OPTIONS,
+          title: 'Something went wrong while submitting, please try again.',
+          status: 'error'
+        })
 
-          throw new Error('Network response was not OK');
-        }
-      })
-      .catch(err => console.error('There has been a problem with your operation: ', err.message));
-  };
+        throw new Error('Network response was not OK')
+      }
+    })
+    .catch(err => console.error('There has been a problem with your operation: ', err.message))
+  }
 
   return (
     <Stack
@@ -110,7 +106,7 @@ export const AcademicGrantsForm: FC = () => {
       <FormProvider {...methods}>
         <Flex
           as='form'
-          id='academic-grants-form'
+          id='pectra-pgr-form'
           onSubmit={handleSubmit(onSubmit)}
           noValidate
           direction='column'
@@ -139,41 +135,31 @@ export const AcademicGrantsForm: FC = () => {
           <TextField id='email' label='Email' isRequired />
 
           <Controller
-            name='POCisAuthorisedSignatory'
+            name='individualOrTeam'
             control={control}
             render={({ field: { onChange, value } }) => (
-              <Field
-                id='POCisAuthorisedSignatory'
-                label='Is the point of contact also the authorised signatory?'
-                isRequired
-              >
+              <Field id='individualOrTeam' label='Individual or team?' isRequired>
                 <RadioGroup
-                  id='POCisAuthorisedSignatory'
-                  onChange={value => onChange(value === 'Yes')}
-                  value={value ? 'Yes' : 'No'}
+                  id='individualOrTeam'
+                  onChange={onChange}
+                  value={value}
                   fontSize='input'
                   colorScheme='white'
                   mt={4}
                 >
                   <Stack direction='row'>
                     <Radio
-                      id='POCisAuthorisedSignatory-yes'
+                      id='repeat-applicant-yes'
                       size='lg'
-                      name='POCisAuthorisedSignatory'
-                      value='Yes'
-                      defaultChecked
+                      name='individualOrTeam'
+                      value={INDIVIDUAL}
                       mr={8}
                     >
-                      <PageText fontSize='input'>Yes</PageText>
+                      <PageText fontSize='input'>{INDIVIDUAL}</PageText>
                     </Radio>
 
-                    <Radio
-                      id='POCisAuthorisedSignatory-no'
-                      size='lg'
-                      name='POCisAuthorisedSignatory'
-                      value='No'
-                    >
-                      <PageText fontSize='input'>No</PageText>
+                    <Radio id='repeat-applicant-no' size='lg' name='individualOrTeam' value={TEAM}>
+                      <PageText fontSize='input'>{TEAM}</PageText>
                     </Radio>
                   </Stack>
                 </RadioGroup>
@@ -181,55 +167,16 @@ export const AcademicGrantsForm: FC = () => {
             )}
           />
 
-          <Box display={notAuthorisedSignatory ? 'block' : 'none'}>
-            <Fade in={notAuthorisedSignatory} delay={0.25}>
+          <Box display={individualOrTeam === TEAM ? 'block' : 'none'}>
+            <Fade in={individualOrTeam === TEAM} delay={0.25}>
               <TextField
-                id='authorisedSignatoryInformation'
-                label='Name, job title, and email address of the authorised signatory'
-                helpText='An authorised signatory is someone authorized to sign a legal contract on behalf of the entity'
+                id='company'
+                label='Name of organization or entity'
+                helpText='Name of your team or entity you&apos;re submitting for. If your organization doesn&apos;t have a formal name, just try to describe it in a few words!'
                 isRequired
               />
             </Fade>
           </Box>
-
-          <Controller
-            name='applyingAs'
-            control={control}
-            render={({ field: { onChange }, fieldState: { error } }) => (
-              <Field
-                id='applyingAs'
-                label='In which capacity are you applying?'
-                error={error}
-                isRequired
-              >
-                <Select
-                  id='applyingAs'
-                  options={APPLYING_AS_OPTIONS}
-                  onChange={option =>
-                    onChange((option as (typeof APPLYING_AS_OPTIONS)[number]).value)
-                  }
-                  components={{ DropdownIndicator }}
-                  placeholder='Select'
-                  closeMenuOnSelect={true}
-                  selectedOptionColor='brand.option'
-                  chakraStyles={chakraStyles}
-                />
-              </Field>
-            )}
-          />
-
-          <Box display={applyingAs === OTHER ? 'block' : 'none'}>
-            <Fade in={applyingAs === OTHER} delay={0.25}>
-              <TextField id='applyingAsOther' label='If other, please specify' />
-            </Fade>
-          </Box>
-
-          <TextField
-            id='company'
-            label='Organization'
-            helpText='Name of the institution, university program, team, or organization. If you do not have an organization name, write "N/A"'
-            isRequired
-          />
 
           <Controller
             name='country'
@@ -257,12 +204,6 @@ export const AcademicGrantsForm: FC = () => {
                 />
               </Field>
             )}
-          />
-
-          <TextField
-            id='countriesTeam'
-            label='Countries of team'
-            helpText='If you are a team of distributed researchers, please indicate where your fellow researchers are located. You can write as many countries as needed'
           />
 
           <Controller
@@ -309,10 +250,22 @@ export const AcademicGrantsForm: FC = () => {
             isRequired
           />
 
+          <TextAreaField
+            id='impact'
+            label='Why is your project important?'
+            isRequired
+          />
+
+          <TextAreaField
+            id='howIsItDifferent'
+            label='How is it different?'
+            isRequired
+          />
+
           <UploadFile
             id='proposalAttachment'
             label='Proposal'
-            title='Upload proposal'
+            title='Proposal upload'
             helpText={
               <>
                 Attach a PDF proposal for this scope of work. A proposal template is available{' '}
@@ -332,12 +285,6 @@ export const AcademicGrantsForm: FC = () => {
             mb={8}
           />
 
-          <TextField
-            id='projectRepo'
-            label='Project link'
-            helpText='URL to a public link or repository for the project'
-          />
-
           <Controller
             name='projectCategory'
             control={control}
@@ -351,10 +298,10 @@ export const AcademicGrantsForm: FC = () => {
               >
                 <Select
                   id='projectCategory'
-                  options={ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS}
+                  options={PECTRA_PGR_PROJECT_CATEGORY_OPTIONS}
                   onChange={option => {
                     onChange(
-                      (option as (typeof ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS)[number]).value
+                      (option as (typeof PECTRA_PGR_PROJECT_CATEGORY_OPTIONS)[number]).value
                     );
                   }}
                   components={{ DropdownIndicator }}
@@ -366,7 +313,6 @@ export const AcademicGrantsForm: FC = () => {
               </Field>
             )}
           />
-
           <Stack>
             <Stack>
               <PageText display='inline' fontSize='input'>
@@ -437,7 +383,7 @@ export const AcademicGrantsForm: FC = () => {
                 id='referralSourceIfOther'
                 label='If other, explain how'
                 helpText='Please be as specific as possible. (e.g., an email received, an individual who
-              recommended you apply, a link to a tweet, etc.)'
+              recommended you apply, a link to a tweet, etc.).'
               />
             </Fade>
           </Box>
@@ -482,12 +428,12 @@ export const AcademicGrantsForm: FC = () => {
             )}
           </FormControl>
 
-          <TextField id='website' label='Website' helpText='Google Scholar profile' isRequired />
+          <TextField id='website' label='Website' helpText='University website or Google Scholar profile' />
 
           <TextField
             id='alternativeContact'
             label='Telegram username or alternative contact info'
-            helpText="In regards to your submission, we'll get in touch with you via email by default. As backup, if you'd like to provide alternative contact info, you may do so"
+            helpText="In regards to your submission, we'll get in touch with you via email by default. As backup, if you'd like to provide alternative contact info, you may do so."
           />
 
           <Controller
@@ -533,60 +479,12 @@ export const AcademicGrantsForm: FC = () => {
             )}
           />
 
-          <Controller
-            name='canTheEFReachOut'
-            control={control}
-            defaultValue={true}
-            render={({ field: { onChange, value } }) => (
-              <FormControl id='canTheEFReachOut-control'>
-                <FormLabel htmlFor='canTheEFReachOut'>
-                  <PageText display='inline' fontSize='input'>
-                    Is it OK for a member of the Ethereum Foundation to reach out to you (say, in
-                    regards to getting involved in other opportunities that may come up)?
-                  </PageText>
-                </FormLabel>
-
-                <RadioGroup
-                  id='canTheEFReachOut'
-                  onChange={value => onChange(value === 'Yes')}
-                  value={value ? 'Yes' : 'No'}
-                  fontSize='input'
-                  colorScheme='white'
-                  mt={4}
-                >
-                  <Stack direction='row'>
-                    <Radio
-                      id='canTheEFReachOut-yes'
-                      size='lg'
-                      name='canTheEFReachOut'
-                      value='Yes'
-                      defaultChecked
-                      mr={8}
-                    >
-                      <PageText fontSize='input'>Yes</PageText>
-                    </Radio>
-
-                    <Radio id='canTheEFReachOut-no' size='lg' name='canTheEFReachOut' value='No'>
-                      <PageText fontSize='input'>No</PageText>
-                    </Radio>
-                  </Stack>
-                </RadioGroup>
-              </FormControl>
-            )}
-          />
-
           <TextAreaField
             id='additionalInfo'
             label="Do you have any questions about this grants round, or is there anything else
             you'd like to share?"
             helpText="Is there anything we didn't cover in the above questions? Feel free to add any
-            relevant links here"
-          />
-
-          <TextAreaField
-            id="addtionalSupport"
-            label="Apart from financial support, what else do you need from the EF?"
-            helpText="Beyond financial support, what support would you need from the Ethereum Foundation to execute on this project?"
+            relevant links here."
           />
 
           <Center mb={12}>
@@ -605,5 +503,5 @@ export const AcademicGrantsForm: FC = () => {
         </Flex>
       </FormProvider>
     </Stack>
-  );
-};
+  )
+}
