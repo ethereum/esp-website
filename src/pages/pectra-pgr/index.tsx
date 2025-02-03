@@ -188,15 +188,15 @@ const PectraPGR: NextPage = () => {
                       <Tbody>
                         <Tr>
                           <Td>Proposal Submission Opens</Td>
-                          <Td>[Insert Start Date]</Td>
+                          <Td>February 3rd</Td>
                         </Tr>
                         <Tr>
                           <Td>Submission Deadline</Td>
-                          <Td>[Insert deadline]</Td>
+                          <Td>February 23rd</Td>
                         </Tr>
                         <Tr>
                           <Td>Review and Selection</Td>
-                          <Td>[Insert date range]</Td>
+                          <Td>February 24th - March 9th</Td>
                         </Tr>
                         <Tr>
                           <Td>Grant Awards Announced</Td>
