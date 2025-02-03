@@ -20,7 +20,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
     const result = PectraPGRSchema.safeParse(fields);
     if (!result.success) {
       const formatted = result.error.format();
-      console.error(formatted);
+      console.error('Validation Error:', formatted);
 
       res.status(500).end();
       return resolve();
@@ -33,8 +33,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
 
     conn.login(SF_PROD_USERNAME!, `${SF_PROD_PASSWORD}${SF_PROD_SECURITY_TOKEN}`, err => {
       if (err) {
-        console.error(err);
-        res.status(500).end();
+        console.error('Salesforce Login Error:', err);
+        res.status(500).json({ status: 'fail', message: 'Salesforce login failed.' });
         return resolve();
       }
 
@@ -70,8 +70,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
       // Single record creation
       conn.sobject('Lead').create(application, async (err, ret) => {
         if (err || !ret.success) {
-          console.error(err);
-          res.status(400).json({ status: 'fail' });
+          console.error('Salesforce Lead Creation Error:', err, ret);
+          res.status(400).json({ status: 'fail', message: 'Failed to create Lead in Salesforce.' });
           return resolve();
         }
 
@@ -95,8 +95,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
             encoding: 'base64'
           });
         } catch (error) {
-          console.error(error);
-          res.status(500).json({ status: 'fail' });
+          console.error('File Read Error:', error);
+          res.status(500).json({ status: 'fail', message: 'Failed to read proposal file.' });
           return resolve();
         }
 
@@ -112,9 +112,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
           },
           async (err, uploadedFile) => {
             if (err || !uploadedFile.success) {
-              console.error(err);
-
-              res.status(400).json({ status: 'fail' });
+              console.error('Salesforce ContentVersion Upload Error:', err);
+              res.status(400).json({ status: 'fail', message: 'Failed to upload proposal file.' });
               return resolve();
             } else {
               console.log({ uploadedFile });
