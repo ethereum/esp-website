@@ -49,6 +49,7 @@ export const PectraPGRForm: FC = () => {
     shouldFocusError: true,
     defaultValues: {
       individualOrTeam: INDIVIDUAL,
+      repeatApplicant: false
     },
     resolver: zodResolver(PectraPGRSchema)
   })
