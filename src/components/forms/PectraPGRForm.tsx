@@ -28,6 +28,7 @@ import { chakraStyles } from './selectStyles'
 
 import {
   COUNTRY_OPTIONS,
+  FIAT_CURRENCY_OPTIONS,
   HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE,
   INDIVIDUAL,
   OTHER,
@@ -312,13 +313,43 @@ export const PectraPGRForm: FC = () => {
               </Field>
             )}
           />
+          <Stack>
+            <Stack>
+              <PageText display='inline' fontSize='input'>
+                Requested amount
+              </PageText>
 
-          <TextField
-            id='requestAmount'
-            label='Requested amount'
-            helpText='Estimated grant amount. Ex: USD 50,000. Proposals should include a detailed budget breakdown for requested amount.'
-            isRequired
-          />
+              <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                Estimated grant amount, i.e. USD 50,000. Proposals should include a detailed budget
+                breakdown for requested amount.
+              </PageText>
+            </Stack>
+            <Flex direction={{ base: 'column', md: 'row' }} gap={8}>
+              <Controller
+                name='fiatCurrency'
+                control={control}
+                render={({ field: { value, onChange }, fieldState: { error } }) => (
+                  <Field id='fiatCurrency' label='Fiat currency' error={error} isRequired>
+                    <Select
+                      id='fiatCurrency'
+                      value={FIAT_CURRENCY_OPTIONS.find(option => option.value === value)}
+                      options={FIAT_CURRENCY_OPTIONS}
+                      onChange={option => {
+                        onChange((option as (typeof FIAT_CURRENCY_OPTIONS)[number]).value);
+                      }}
+                      components={{ DropdownIndicator }}
+                      placeholder='Select'
+                      closeMenuOnSelect={true}
+                      selectedOptionColor='brand.option'
+                      chakraStyles={chakraStyles}
+                    />
+                  </Field>
+                )}
+              />
+
+              <TextField id='requestAmount' label='Amount' isRequired />
+            </Flex>
+          </Stack>
 
           <Controller
             name='referralSource'
@@ -352,7 +383,7 @@ export const PectraPGRForm: FC = () => {
                 id='referralSourceIfOther'
                 label='If other, explain how'
                 helpText='Please be as specific as possible. (e.g., an email received, an individual who
-              recommended you apply, a link to a tweet, etc.)'
+              recommended you apply, a link to a tweet, etc.).'
               />
             </Fade>
           </Box>
@@ -402,7 +433,7 @@ export const PectraPGRForm: FC = () => {
           <TextField
             id='alternativeContact'
             label='Telegram username or alternative contact info'
-            helpText="In regards to your submission, we'll get in touch with you via email by default. As backup, if you'd like to provide alternative contact info, you may do so"
+            helpText="In regards to your submission, we'll get in touch with you via email by default. As backup, if you'd like to provide alternative contact info, you may do so."
           />
 
           <Controller
@@ -453,7 +484,7 @@ export const PectraPGRForm: FC = () => {
             label="Do you have any questions about this grants round, or is there anything else
             you'd like to share?"
             helpText="Is there anything we didn't cover in the above questions? Feel free to add any
-            relevant links here"
+            relevant links here."
           />
 
           <Center mb={12}>

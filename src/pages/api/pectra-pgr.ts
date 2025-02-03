@@ -52,6 +52,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         Impact__c: result.data.impact,
         How_is_it_different__c: result.data.howIsItDifferent,
         Category__c: result.data.projectCategory,
+        CurrencyIsoCode: result.data.fiatCurrency,
         Requested_Amount__c: result.data.requestAmount,
         Referral_Source__c: result.data.referralSource,
         Referral_Source_if_Other__c: result.data.referralSourceIfOther,

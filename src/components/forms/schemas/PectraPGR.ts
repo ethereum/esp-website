@@ -50,6 +50,7 @@ export const PectraPGRSchema = z.object({
     'Only .pdf files are accepted.'
   ),
   projectCategory: stringFieldSchema('Project category', { min: 1 }),
+  fiatCurrency: stringFieldSchema('Fiat currency', { min: 1 }),
   requestAmount: stringFieldSchema('Total budget', { min: 1, max: 20 }),
   referralSource: stringFieldSchema('Referral source', { min: 1 }),
   referralSourceIfOther: stringFieldSchema('Field', { max: MAX_TEXT_AREA_LENGTH }).optional(),

@@ -375,7 +375,7 @@ export const AcademicGrantsForm: FC = () => {
 
               <PageText as='small' fontSize='helpText' color='brand.helpText'>
                 Estimated grant amount, i.e. USD 50,000. Proposals should include a detailed budget
-                breakdown for requested amount
+                breakdown for requested amount.
               </PageText>
             </Stack>
             <Flex direction={{ base: 'column', md: 'row' }} gap={8}>
