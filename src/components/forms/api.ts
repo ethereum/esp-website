@@ -216,7 +216,12 @@ export const api = {
   },
   pectraPGR: {
     submit: (data: PectraPGRData) => {
-      const formData = createFormData(data);
+
+      const curatedData: { [key: string]: any } = {
+        ...data,
+        company: data.individualOrTeam === 'Individual' && data.company === '' ? `${data.firstName} ${data.lastName}` : data.company,
+      }
+      const formData = createFormData(curatedData);
 
       const dataRequestOptions: RequestInit = {
         method: 'POST',
