@@ -59,6 +59,7 @@ export const PectraPGRSchema = z.object({
   alternativeContact: stringFieldSchema('Alternative contact info', { max: 150 }).optional(),
   repeatApplicant: z.boolean(),
   additionalInfo: stringFieldSchema('Additional info', { max: MAX_TEXT_AREA_LENGTH }).optional(),
+  captchaToken: stringFieldSchema('Captcha', { min: 1 })
 }).refine((data) => {
   console.log(data.company, data.company.trim())
   return data.individualOrTeam === 'Team' && data.company !== undefined && data.company.trim() !== ''
