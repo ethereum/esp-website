@@ -103,6 +103,7 @@ const PectraPGR: NextPage = () => {
                   <Link
                     fontWeight={700}
                     color='brand.orange.100'
+                    textDecoration='underline'
                     href='https://eips.ethereum.org/EIPS/eip-7600'
                     isExternal
                   >
@@ -160,11 +161,12 @@ const PectraPGR: NextPage = () => {
                     </List>
                   </OrderedList>
                   <PageText>
-                    <strong>Note:</strong> We also maintain a <strong>wishlist</strong> of ideas and priorities for the Pectra upgrade. You are <strong>not required</strong> to submit a project from the wishlist—it is provided for inspiration.
+                    <strong>Note:</strong> We also maintain a <strong><Link href='https://notes.ethereum.org/@BOR4/HyhTGy48Jl' textDecoration='underline' isExternal>wishlist</Link></strong> of ideas and priorities for the Pectra upgrade. You are <strong>not required</strong> to submit a project from the wishlist—it is provided for inspiration.
                   </PageText>
                   <Link
                     fontWeight={700}
                     color='brand.orange.100'
+                    textDecoration='underline'
                     href='https://notes.ethereum.org/@BOR4/HyhTGy48Jl'
                     isExternal
                   >
@@ -260,6 +262,7 @@ const PectraPGR: NextPage = () => {
                     <ListItem>
                       Read the <Link fontWeight={700}
                         color='brand.orange.100'
+                        textDecoration='underline'
                         href='https://notes.ethereum.org/@BOR4/HJVaegyByl'
                         isExternal
                       >
@@ -273,6 +276,7 @@ const PectraPGR: NextPage = () => {
                   </OrderedList>
                   <Link
                     fontWeight={700}
+                    textDecoration='underline'
                     color='brand.orange.100'
                     href='/pectra-pgr/apply'
                   >
