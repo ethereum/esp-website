@@ -12,43 +12,38 @@ import {
   Th,
   Thead,
   Tr
-} from '@chakra-ui/react'
-import { useInView } from 'react-intersection-observer'
-import type { NextPage } from 'next'
+} from '@chakra-ui/react';
+import { useInView } from 'react-intersection-observer';
+import type { NextPage } from 'next';
 
 import {
   ApplicantsSidebar,
+  BannerApplicationClosed,
   List,
   OrderedList,
   PageMetadata,
   PageSection,
-  PageText,
-  ReadyToApply,
-} from '../../components/UI'
+  PageText
+} from '../../components/UI';
 
-import {
-  PECTRA_PGR_APPLY_URL,
-  PECTRA_PGR_EMAIL_ADDRESS,
-  SIDEBAR_PECTRA_PGR_LINKS
-} from '../../constants'
+import { PECTRA_PGR_EMAIL_ADDRESS, SIDEBAR_PECTRA_PGR_LINKS } from '../../constants';
 
-import pectraPGRHero from '../../../public/images/pectra-pgr-hero.jpeg'
+import pectraPGRHero from '../../../public/images/pectra-pgr-hero.jpeg';
 
 const Section = forwardRef((props, ref) => (
   <Flex as='section' ref={ref} gap={6} direction='column' {...props} />
-))
+));
 
 const PectraPGR: NextPage = () => {
-  const [ref, inView] = useInView({ threshold: 0 })
-  const [ref2, inView2] = useInView({ threshold: 0, initialInView: false })
-  const [ref3, inView3] = useInView({ threshold: 0.5, initialInView: false })
-  const [ref4, inView4] = useInView({ threshold: 0.5, initialInView: false })
-  const [ref5, inView5] = useInView({ threshold: 0.3, initialInView: false })
-  const [ref6, inView6] = useInView({ threshold: 0.5, initialInView: false })
-  const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false })
-  const [ref8, inView8] = useInView({ threshold: 0.5, initialInView: false })
-  const [ref9, inView9] = useInView({ threshold: 0.5, initialInView: false })
-  const [ref10, inView10] = useInView({ threshold: 0.5, initialInView: false })
+  const [ref, inView] = useInView({ threshold: 0 });
+  const [ref2, inView2] = useInView({ threshold: 0, initialInView: false });
+  const [ref3, inView3] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref4, inView4] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref5, inView5] = useInView({ threshold: 0.3, initialInView: false });
+  const [ref6, inView6] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref8, inView8] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref9, inView9] = useInView({ threshold: 0.5, initialInView: false });
   return (
     <>
       <PageMetadata
@@ -71,20 +66,25 @@ const PectraPGR: NextPage = () => {
                 inView6,
                 inView7,
                 inView8,
-                inView9,
-                inView10,
+                inView9
               ]}
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
+              <BannerApplicationClosed mb={12} />
+
               <Stack mb={8} mt={{ base: 10, md: 0 }}>
                 <Section id='about-the-grant-round' ref={ref}>
                   <PageSection>About the Grant Round</PageSection>
                   <PageText>
-                    The <strong>Pectra Proactive Grant Round</strong> aims to address the lag in tooling, infrastructure, and ecosystem readiness following major Ethereum upgrades.
+                    The <strong>Pectra Proactive Grant Round</strong> aims to address the lag in
+                    tooling, infrastructure, and ecosystem readiness following major Ethereum
+                    upgrades.
                   </PageText>
                   <PageText>
-                    The Ethereum Foundation recognizes the challenges introduced by delayed updates in essential tooling post-upgrade. This grant round is a targeted initiative to ensure the ecosystem is:
+                    The Ethereum Foundation recognizes the challenges introduced by delayed updates
+                    in essential tooling post-upgrade. This grant round is a targeted initiative to
+                    ensure the ecosystem is:
                   </PageText>
                   <List>
                     <ListItem>
@@ -98,7 +98,8 @@ const PectraPGR: NextPage = () => {
                     </ListItem>
                   </List>
                   <PageText>
-                    By providing funding and fostering proactive preparation, we aim to eliminate reactive, last-minute solutions and promote a culture of early readiness.
+                    By providing funding and fostering proactive preparation, we aim to eliminate
+                    reactive, last-minute solutions and promote a culture of early readiness.
                   </PageText>
                   <Link
                     fontWeight={700}
@@ -116,16 +117,21 @@ const PectraPGR: NextPage = () => {
                 <Section id='key-focus-areas' ref={ref2}>
                   <PageSection>Key focus areas</PageSection>
                   <PageText>
-                    Proposals submitted to the Pectra Proactive Grant Round should align with one or more of the following focus areas:
+                    Proposals submitted to the Pectra Proactive Grant Round should align with one or
+                    more of the following focus areas:
                   </PageText>
                   <OrderedList>
-                    <ListItem><strong>Core Protocol Support</strong></ListItem>
+                    <ListItem>
+                      <strong>Core Protocol Support</strong>
+                    </ListItem>
                     <List>
                       <ListItem>
-                        Development of tooling and libraries that directly support protocol-level changes introduced in Pectra.
+                        Development of tooling and libraries that directly support protocol-level
+                        changes introduced in Pectra.
                       </ListItem>
                       <ListItem>
-                        Creation of infrastructure to ensure seamless integration of Pectra-related updates into the core protocol.
+                        Creation of infrastructure to ensure seamless integration of Pectra-related
+                        updates into the core protocol.
                       </ListItem>
                     </List>
                     <ListItem>
@@ -139,11 +145,11 @@ const PectraPGR: NextPage = () => {
                         Creation of new tools to support EIPs directly tied to Pectra.
                       </ListItem>
                     </List>
-                    <ListItem><strong>Testing and Security</strong></ListItem>
+                    <ListItem>
+                      <strong>Testing and Security</strong>
+                    </ListItem>
                     <List>
-                      <ListItem>
-                        Enhancements to testing frameworks and infrastructure.
-                      </ListItem>
+                      <ListItem>Enhancements to testing frameworks and infrastructure.</ListItem>
                       <ListItem>
                         Tools that improve network security before and after Pectra upgrades.
                       </ListItem>
@@ -153,15 +159,29 @@ const PectraPGR: NextPage = () => {
                     </ListItem>
                     <List>
                       <ListItem>
-                        Projects that track and analyze the adoption of changes introduced by Pectra.
+                        Projects that track and analyze the adoption of changes introduced by
+                        Pectra.
                       </ListItem>
                       <ListItem>
-                        Tools or frameworks to measure the impact of Pectra related EIPs on the Ethereum ecosystem and protocol.
+                        Tools or frameworks to measure the impact of Pectra related EIPs on the
+                        Ethereum ecosystem and protocol.
                       </ListItem>
                     </List>
                   </OrderedList>
                   <PageText>
-                    <strong>Note:</strong> We also maintain a <strong><Link href='https://notes.ethereum.org/@BOR4/HyhTGy48Jl' textDecoration='underline' isExternal>wishlist</Link></strong> of ideas and priorities for the Pectra upgrade. You are <strong>not required</strong> to submit a project from the wishlist—it is provided for inspiration.
+                    <strong>Note:</strong> We also maintain a{' '}
+                    <strong>
+                      <Link
+                        href='https://notes.ethereum.org/@BOR4/HyhTGy48Jl'
+                        textDecoration='underline'
+                        isExternal
+                      >
+                        wishlist
+                      </Link>
+                    </strong>{' '}
+                    of ideas and priorities for the Pectra upgrade. You are{' '}
+                    <strong>not required</strong> to submit a project from the wishlist—it is
+                    provided for inspiration.
                   </PageText>
                   <Link
                     fontWeight={700}
@@ -213,23 +233,28 @@ const PectraPGR: NextPage = () => {
                 <Section id='eligibility' ref={ref4}>
                   <PageSection>Eligibility</PageSection>
                   <PageText>
-                    If you have an idea that aligns with the key focus area of Pectra Proactive Grant Round, we encourage you to apply!
+                    If you have an idea that aligns with the key focus area of Pectra Proactive
+                    Grant Round, we encourage you to apply!
                   </PageText>
                   <List>
                     <ListItem>
-                      Projects <strong>must be open source</strong> with a free and permissive license.
+                      Projects <strong>must be open source</strong> with a free and permissive
+                      license.
                     </ListItem>
                     <ListItem>
-                      Projects <strong>must be aligned with the stated goals and wishlist</strong> for this round.
+                      Projects <strong>must be aligned with the stated goals and wishlist</strong>{' '}
+                      for this round.
                     </ListItem>
                     <ListItem>
-                      We accept proposals from <strong>individuals, teams, or organizations</strong>.
+                      We accept proposals from <strong>individuals, teams, or organizations</strong>
+                      .
                     </ListItem>
                     <ListItem>
                       We <strong>do not fund past work</strong>.
                     </ListItem>
                     <ListItem>
-                      Builders of <strong>any age, origin, identity, or background</strong> are welcome to apply.
+                      Builders of <strong>any age, origin, identity, or background</strong> are
+                      welcome to apply.
                     </ListItem>
                   </List>
                 </Section>
@@ -240,17 +265,18 @@ const PectraPGR: NextPage = () => {
                   <PageSection>What is NOT eligible</PageSection>
                   <List>
                     <ListItem>
-                      Anything that is <strong>not legal</strong> within the jurisdiction where the work is taking place.
+                      Anything that is <strong>not legal</strong> within the jurisdiction where the
+                      work is taking place.
                     </ListItem>
                     <ListItem>
-                      <strong>Financial products</strong> (e.g., trading, investment products, lending, betting, etc.).
+                      <strong>Financial products</strong> (e.g., trading, investment products,
+                      lending, betting, etc.).
                     </ListItem>
                     <ListItem>
-                      Art projects or social impact projects that don&apos;t fit within the scope of this round.
+                      Art projects or social impact projects that don&apos;t fit within the scope of
+                      this round.
                     </ListItem>
-                    <ListItem>
-                      Projects requesting retroactive funding
-                    </ListItem>
+                    <ListItem>Projects requesting retroactive funding</ListItem>
                   </List>
                 </Section>
               </Stack>
@@ -260,7 +286,9 @@ const PectraPGR: NextPage = () => {
                   <PageSection>How to apply</PageSection>
                   <OrderedList>
                     <ListItem>
-                      Read the <Link fontWeight={700}
+                      Read the{' '}
+                      <Link
+                        fontWeight={700}
                         color='brand.orange.100'
                         textDecoration='underline'
                         href='https://notes.ethereum.org/@BOR4/HJVaegyByl'
@@ -270,9 +298,7 @@ const PectraPGR: NextPage = () => {
                       </Link>
                       .
                     </ListItem>
-                    <ListItem>
-                      Submit your proposal following the guidelines.
-                    </ListItem>
+                    <ListItem>Submit your proposal following the guidelines.</ListItem>
                   </OrderedList>
                   <Link
                     fontWeight={700}
@@ -285,18 +311,18 @@ const PectraPGR: NextPage = () => {
                 </Section>
               </Stack>
 
-              
               <Stack mb={8} spacing={10}>
                 <Section id='grant-size' ref={ref7}>
                   <PageSection>Grant size</PageSection>
                   <PageText>
-                    Grants will vary based on the project scope and deliverables. Submit a clear budget breakdown and timeline.
+                    Grants will vary based on the project scope and deliverables. Submit a clear
+                    budget breakdown and timeline.
                   </PageText>
                 </Section>
               </Stack>
 
               <Stack mb={8} spacing={10}>
-                <Section id="resources" ref={ref8}>
+                <Section id='resources' ref={ref8}>
                   <PageSection>Resources</PageSection>
                   <List>
                     <ListItem>
@@ -324,20 +350,22 @@ const PectraPGR: NextPage = () => {
               </Stack>
 
               <Stack mb={8} spacing={10}>
-                <Section id="get-involved" ref={ref9}>
+                <Section id='get-involved' ref={ref9}>
                   <PageSection>Get involved</PageSection>
                   <PageText>Have questions? Want to learn more?</PageText>
                   <List>
                     <ListItem>
-                      Reach out to use via <Link fontWeight={700} color='brand.orange.100' href={`mailto:${PECTRA_PGR_EMAIL_ADDRESS}`}>Email</Link>.
+                      Reach out to use via{' '}
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href={`mailto:${PECTRA_PGR_EMAIL_ADDRESS}`}
+                      >
+                        Email
+                      </Link>
+                      .
                     </ListItem>
                   </List>
-                </Section>
-              </Stack>
-
-              <Stack mb={8} spacing={10}>
-                <Section id="apply" ref={ref10}>
-                  <ReadyToApply link={`${PECTRA_PGR_APPLY_URL}`} />
                 </Section>
               </Stack>
             </Box>
@@ -345,7 +373,7 @@ const PectraPGR: NextPage = () => {
         </Stack>
       </Box>
     </>
-  )
-}
+  );
+};
 
-export default PectraPGR
+export default PectraPGR;

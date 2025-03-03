@@ -11,5 +11,4 @@ export * from './EPFApplicationForm';
 export * from './PSEApplicationForm';
 export * from './PSESponsorshipsForm';
 export * from './AcademicGrantsForm';
-export * from './PectraPGRForm';
 export * from './fields';

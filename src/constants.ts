@@ -95,7 +95,7 @@ export const SIDEBAR_DEVCON_GRANTS_LINKS: SidebarLink[] = [
   { text: 'How to apply', href: `${DEVCON_GRANTS_URL}/#how-to-apply` },
   { text: 'Selection criteria', href: `${DEVCON_GRANTS_URL}/#selection-criteria` },
   { text: 'Next steps and support', href: `${DEVCON_GRANTS_URL}/#next-steps-and-support` },
-  { text: 'FAQ', href: `${DEVCON_GRANTS_URL}/#faq` },
+  { text: 'FAQ', href: `${DEVCON_GRANTS_URL}/#faq` }
 ];
 
 export const MERGE_DATA_CHALLENGE_URL = '/merge-data-challenge';
@@ -169,15 +169,15 @@ export const SIDEBAR_ACADEMIC_GRANTS_2024_LINKS: SidebarLink[] = [
 
 export const PECTRA_PGR_URL = '/pectra-pgr';
 export const SIDEBAR_PECTRA_PGR_LINKS: SidebarLink[] = [
-  { text: "About the Grant Round", href: `${PECTRA_PGR_URL}/#about-the-grant-round` },
-  { text: "Key focus areas", href: `${PECTRA_PGR_URL}/#key-focus-areas` },
-  { text: "Timeline", href: `${PECTRA_PGR_URL}/#timeline` },
-  { text: "Eligibility", href: `${PECTRA_PGR_URL}/#eligibility` },
-  { text: "What is NOT eligible", href: `${PECTRA_PGR_URL}/#what-is-not-eligible` },
-  { text: "How to apply", href: `${PECTRA_PGR_URL}/#how-to-apply` },
-  { text: "Grant size", href: `${PECTRA_PGR_URL}/#grant-size` },
-  { text: "Resources", href: `${PECTRA_PGR_URL}/#resources` },
-  { text: "Get involved", href: `${PECTRA_PGR_URL}/#get-involved` },
+  { text: 'About the Grant Round', href: `${PECTRA_PGR_URL}/#about-the-grant-round` },
+  { text: 'Key focus areas', href: `${PECTRA_PGR_URL}/#key-focus-areas` },
+  { text: 'Timeline', href: `${PECTRA_PGR_URL}/#timeline` },
+  { text: 'Eligibility', href: `${PECTRA_PGR_URL}/#eligibility` },
+  { text: 'What is NOT eligible', href: `${PECTRA_PGR_URL}/#what-is-not-eligible` },
+  { text: 'How to apply', href: `${PECTRA_PGR_URL}/#how-to-apply` },
+  { text: 'Grant size', href: `${PECTRA_PGR_URL}/#grant-size` },
+  { text: 'Resources', href: `${PECTRA_PGR_URL}/#resources` },
+  { text: 'Get involved', href: `${PECTRA_PGR_URL}/#get-involved` }
 ];
 
 export const ACCOUNT_ABSTRACTION_GRANTS_URL = '/account-abstraction-grants';
@@ -322,7 +322,7 @@ export const SEMAPHORE_GRANT_EMAIL_ADDRESS = 'semaphore-grants@ethereum.org';
 export const LAYER_2_GRANTS_EMAIL_ADDRESS = 'layer2grants@ethereum.org';
 export const ACCOUNT_ABSTRACTION_GRANTS_EMAIL_ADDRESS = 'account-abstraction@ethereum.org';
 export const GRANTS_EMAIL_ADDRESS = 'grant-rounds@ethereum.org';
-export const PECTRA_PGR_EMAIL_ADDRESS = 'grant-rounds@ethereum.org'; 
+export const PECTRA_PGR_EMAIL_ADDRESS = 'grant-rounds@ethereum.org';
 // applicants tabs
 export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Small Grants', 'Project Grants'];
 export const APPLICANTS_TABS_MAP: TabsMap = {

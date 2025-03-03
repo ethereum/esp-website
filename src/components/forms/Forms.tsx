@@ -12,8 +12,7 @@ import {
   EPFApplicationForm,
   PSESponsorshipsForm,
   PSEApplicationForm,
-  AcademicGrantsForm,
-  PectraPGRForm,
+  AcademicGrantsForm
 } from './';
 
 import {
@@ -23,7 +22,6 @@ import {
   EPF_APPLICATION_APPLY_URL,
   GRANTEE_FINANCE_URL,
   OFFICE_HOURS_APPLY_URL,
-  PECTRA_PGR_APPLY_URL,
   PROJECT_GRANTS_APPLY_URL,
   PSE_APPLICATION_APPLY_URL,
   PSE_SPONSORSHIPS_APPLY_URL,
@@ -83,11 +81,6 @@ export const Forms: FC = () => {
       {router.pathname === EPF_APPLICATION_APPLY_URL && (
         <Box px={{ md: 24, lg: 32, xl: 72 }}>
           <EPFApplicationForm />
-        </Box>
-      )}
-      {router.pathname === PECTRA_PGR_APPLY_URL && (
-        <Box px={{ md: 24, lg: 32, xl: 72 }}>
-          <PectraPGRForm />
         </Box>
       )}
     </Stack>
