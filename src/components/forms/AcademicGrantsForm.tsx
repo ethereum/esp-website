@@ -433,7 +433,7 @@ export const AcademicGrantsForm: FC = () => {
 
           <Box display={referralSource === OTHER ? 'block' : 'none'}>
             <Fade in={referralSource === OTHER} delay={0.25}>
-              <TextAreaField
+              <TextField
                 id='referralSourceIfOther'
                 label='If other, explain how'
                 helpText='Please be as specific as possible. (e.g., an email received, an individual who
@@ -584,9 +584,9 @@ export const AcademicGrantsForm: FC = () => {
           />
 
           <TextAreaField
-            id="addtionalSupport"
-            label="Apart from financial support, what else do you need from the EF?"
-            helpText="Beyond financial support, what support would you need from the Ethereum Foundation to execute on this project?"
+            id='addtionalSupport'
+            label='Apart from financial support, what else do you need from the EF?'
+            helpText='Beyond financial support, what support would you need from the Ethereum Foundation to execute on this project?'
           />
 
           <Center mb={12}>

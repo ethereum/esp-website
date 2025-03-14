@@ -55,7 +55,7 @@ export const RunANodeSchema = z
       max: MAX_TEXT_AREA_LENGTH
     }),
     referralSource: stringFieldSchema('Referral source', { min: 1 }),
-    referralSourceIfOther: stringFieldSchema('Field', { max: MAX_TEXT_AREA_LENGTH }).optional(),
+    referralSourceIfOther: stringFieldSchema('Field', { max: MAX_TEXT_LENGTH }).optional(),
     telegram: stringFieldSchema('Alternative contact info', { max: 150 }).optional(),
     twitter: stringFieldSchema('Twitter handle', { max: 16 }).optional(),
     linkedinProfile: stringFieldSchema('LinkedIn profiles', { max: MAX_TEXT_LENGTH }).optional(),

@@ -53,7 +53,7 @@ export const AcademicGrantsSchema = z
     fiatCurrency: stringFieldSchema('Fiat currency', { min: 1 }),
     requestAmount: stringFieldSchema('Total budget', { min: 1, max: 20 }),
     referralSource: stringFieldSchema('Referral source', { min: 1 }),
-    referralSourceIfOther: stringFieldSchema('Field', { max: MAX_TEXT_AREA_LENGTH }).optional(),
+    referralSourceIfOther: stringFieldSchema('Field', { max: MAX_TEXT_LENGTH }).optional(),
     linkedinProfile: z.union([z.literal(''), z.string().trim().url()]),
     twitter: stringFieldSchema('Twitter handle', { max: 16 }).optional(),
     website: z
