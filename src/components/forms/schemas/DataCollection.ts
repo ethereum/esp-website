@@ -55,7 +55,7 @@ export const DataCollectionSchema = z.object({
   canTheEFReachOut: z.boolean(),
   additionalInfo: stringFieldSchema('Additional info', { max: MAX_TEXT_AREA_LENGTH }).optional(),
   referralSource: stringFieldSchema('Referral source', { min: 1 }),
-  referralSourceIfOther: stringFieldSchema('Field', { max: MAX_TEXT_AREA_LENGTH }).optional(),
+  referralSourceIfOther: stringFieldSchema('Field', { max: MAX_TEXT_LENGTH }).optional(),
   captchaToken: stringFieldSchema('Captcha', { min: 1 })
 });
 

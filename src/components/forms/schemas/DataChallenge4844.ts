@@ -39,7 +39,7 @@ export const DataChallengeSchema = z.object({
   projectRepoLink: z.string().optional(),
   projectCategory: stringFieldSchema('Project category', { min: 1 }),
   referralSource: stringFieldSchema('Referral source', { min: 1 }),
-  referralSourceIfOther: stringFieldSchema('Field', { max: MAX_TEXT_AREA_LENGTH }).optional(),
+  referralSourceIfOther: stringFieldSchema('Field', { max: MAX_TEXT_LENGTH }).optional(),
   linkedin: stringFieldSchema('LinkedIn handle', { max: 40 }).optional(),
   twitter: stringFieldSchema('Twitter handle', { max: 40 }).optional(),
   alternativeContact: stringFieldSchema('Alternative contact info', { max: 150 }).optional(),
