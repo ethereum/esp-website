@@ -46,7 +46,10 @@ export const ACADEMIC_GRANTS_PROJECT_CATEGORY_OPTIONS = [
 export const PECTRA_PGR_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Consensus layer', label: 'Consensus layer' },
   { value: 'Core Protocol Development', label: 'Core Protocol Development' },
-  { value: 'Cryptography and zero knowledge proofs', label: 'Cryptography and zero knowledge proofs' },
+  {
+    value: 'Cryptography and zero knowledge proofs',
+    label: 'Cryptography and zero knowledge proofs'
+  },
   { value: 'Cybersecurity', label: 'Cybersecurity' },
   { value: 'Economics', label: 'Economics' },
   { value: 'Formal Verification', label: 'Formal Verification' },
@@ -60,7 +63,7 @@ export const PECTRA_PGR_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Privacy', label: 'Privacy' },
   { value: 'Society and Regulatory', label: 'Society and Regulatory' },
   { value: 'Other', label: 'Other' }
-]
+];
 
 export const DATA_COLLECTION_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Community and education', label: 'Community and education' },
@@ -1036,7 +1039,7 @@ export const COUNTRY_OPTIONS = [
   },
   {
     value: 'TW',
-    label: 'Taiwan, Province of China'
+    label: 'Taiwan'
   },
   {
     value: 'TJ',
