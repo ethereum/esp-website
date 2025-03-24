@@ -23,7 +23,7 @@ export const AcademicGrantsLayout: FC<Props> = ({ children }) => {
       >
         The Ethereum Foundation is sponsoring a wave of grants to support Ethereum-related academic
         work. This grants round has <strong>$2M</strong> in total available funds. Proposals are due{' '}
-        <strong>23:59 AoE March 25th, 2025</strong>. All of the details you’ll need to apply can be
+        <strong>23:59 AoE March 24th, 2025</strong>. All of the details you’ll need to apply can be
         found below.
       </GrantsHero>
 
