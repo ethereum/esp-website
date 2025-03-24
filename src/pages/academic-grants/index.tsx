@@ -10,10 +10,11 @@ import {
   PageText,
   PageMetadata,
   Banner,
-  BannerApplicationClosed
+  ReadyToApply
 } from '../../components/UI';
 
 import {
+  ACADEMIC_GRANTS_APPLY_URL,
   ACADEMIC_GRANTS_EMAIL_ADDRESS,
   HOME_URL,
   OFFICE_HOURS_URL,
@@ -39,7 +40,8 @@ const AcademicGrants: NextPage = () => {
   const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
   const [ref8, inView8] = useInView({ threshold: 0.5, initialInView: false });
   const [ref9, inView9] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref10, inView10] = useInView({ threshold: 0, initialInView: false });
+  const [ref10, inView10] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref11, inView11] = useInView({ threshold: 0, initialInView: false });
 
   return (
     <>
@@ -64,13 +66,12 @@ const AcademicGrants: NextPage = () => {
                 inView7,
                 inView8,
                 inView9,
-                inView10
+                inView10,
+                inView11
               ]}
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
-              <BannerApplicationClosed mb={12} />
-
               <Banner
                 bgGradient='linear(to-br, brand.whoWeSupport.bgGradient.start 0%, brand.whoWeSupport.bgGradient.end 100%)'
                 color='brand.heading'
@@ -207,7 +208,7 @@ const AcademicGrants: NextPage = () => {
 
                   <PageText>
                     The application window opens for 6 weeks from Monday, January 20th, 2025 and
-                    closes on Sunday, March 23rd, 2025.
+                    closes on Tuesday, March 25th, 2025.
                   </PageText>
                 </Section>
 
@@ -448,6 +449,12 @@ const AcademicGrants: NextPage = () => {
                       </PageText>
                     </FAQItem>
                   </Accordion>
+                </Section>
+
+                <Section id='apply' ref={ref11}>
+                  <Stack>
+                    <ReadyToApply link={`${ACADEMIC_GRANTS_APPLY_URL}`} />
+                  </Stack>
                 </Section>
               </Stack>
             </Box>
