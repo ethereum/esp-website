@@ -17,10 +17,11 @@ import {
   COUNTRY_OPTIONS,
   FIAT_CURRENCY_OPTIONS,
   TIMEZONE_OPTIONS,
-  CATEGORY_OPTIONS,
-  TYPE_OF_EVENT_OPTIONS,
-  IN_PERSON_OPTIONS,
-  REFERRAL_SOURCE_OPTIONS
+  DESTINO_DEVCONNECT_CATEGORY_OPTIONS,
+  EVENT_TYPE_OPTIONS,
+  DESTINO_DEVCONNECT_EVENT_TYPE_OPTIONS,
+  DESTINO_DEVCONNECT_REFERRAL_SOURCE_OPTIONS,
+  EVENT_FORMAT_OPTIONS
 } from './constants';
 import { DEVCON_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
@@ -107,10 +108,10 @@ export const DestinoDevconnectForm: FC = () => {
                 >
                   <RadioGroup onChange={onChange} value={value}>
                     <Stack direction='row' spacing={4}>
-                      <Radio value='Individual'>
+                      <Radio value='An individual'>
                         <PageText fontSize='input'>Individual</PageText>
                       </Radio>
-                      <Radio value='Team'>
+                      <Radio value='A team'>
                         <PageText fontSize='input'>Team</PageText>
                       </Radio>
                     </Stack>
@@ -180,9 +181,11 @@ export const DestinoDevconnectForm: FC = () => {
                 <Field id='category' label='Category' error={error} isRequired>
                   <Select
                     id='category'
-                    options={CATEGORY_OPTIONS}
+                    options={DESTINO_DEVCONNECT_CATEGORY_OPTIONS}
                     onChange={option => {
-                      onChange((option as (typeof CATEGORY_OPTIONS)[number]).value);
+                      onChange(
+                        (option as (typeof DESTINO_DEVCONNECT_CATEGORY_OPTIONS)[number]).value
+                      );
                     }}
                     components={{ DropdownIndicator }}
                     placeholder='Select'
@@ -261,9 +264,11 @@ export const DestinoDevconnectForm: FC = () => {
                     >
                       <Select
                         id='typeOfEvent'
-                        options={TYPE_OF_EVENT_OPTIONS}
+                        options={DESTINO_DEVCONNECT_EVENT_TYPE_OPTIONS}
                         onChange={option => {
-                          onChange((option as (typeof TYPE_OF_EVENT_OPTIONS)[number]).value);
+                          onChange(
+                            (option as (typeof DESTINO_DEVCONNECT_EVENT_TYPE_OPTIONS)[number]).value
+                          );
                         }}
                         components={{ DropdownIndicator }}
                         placeholder='Select'
@@ -287,9 +292,9 @@ export const DestinoDevconnectForm: FC = () => {
                     >
                       <Select
                         id='inPerson'
-                        options={IN_PERSON_OPTIONS}
+                        options={EVENT_FORMAT_OPTIONS}
                         onChange={option => {
-                          onChange((option as (typeof IN_PERSON_OPTIONS)[number]).value);
+                          onChange((option as (typeof EVENT_FORMAT_OPTIONS)[number]).value);
                         }}
                         components={{ DropdownIndicator }}
                         placeholder='Select'
@@ -357,9 +362,12 @@ export const DestinoDevconnectForm: FC = () => {
                 >
                   <Select
                     id='referralSource'
-                    options={REFERRAL_SOURCE_OPTIONS}
+                    options={DESTINO_DEVCONNECT_REFERRAL_SOURCE_OPTIONS}
                     onChange={option => {
-                      onChange((option as (typeof REFERRAL_SOURCE_OPTIONS)[number]).value);
+                      onChange(
+                        (option as (typeof DESTINO_DEVCONNECT_REFERRAL_SOURCE_OPTIONS)[number])
+                          .value
+                      );
                     }}
                     components={{ DropdownIndicator }}
                     placeholder='Select'
