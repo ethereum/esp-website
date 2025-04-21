@@ -11,7 +11,8 @@ import {
   PageText,
   PageMetadata,
   OrderedList,
-  BannerApplicationClosed
+  BannerApplicationClosed,
+  ReadyToApply
 } from '../../components/UI';
 
 import {
@@ -31,8 +32,8 @@ const DevconGrants: NextPage = () => {
   const [ref4, inView4] = useInView({ threshold: 0.5, initialInView: false });
   const [ref5, inView5] = useInView({ threshold: 0.3, initialInView: false });
   const [ref6, inView6] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref7, inView7] = useInView({ threshold: 0, initialInView: false });
-
+  const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref8, inView8] = useInView({ threshold: 0, initialInView: false });
   return (
     <>
       <PageMetadata
@@ -46,7 +47,16 @@ const DevconGrants: NextPage = () => {
           <Flex>
             <ApplicantsSidebar
               sidebarLinks={SIDEBAR_DEVCON_GRANTS_LINKS}
-              sectionsInView={[inView, inView2, inView3, inView4, inView5, inView6, inView7]}
+              sectionsInView={[
+                inView,
+                inView2,
+                inView3,
+                inView4,
+                inView5,
+                inView6,
+                inView7,
+                inView8
+              ]}
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
@@ -288,6 +298,12 @@ const DevconGrants: NextPage = () => {
                       </PageText>
                     </FAQItem>
                   </Accordion>
+                </section>
+
+                <section id='apply' ref={ref8}>
+                  <Stack mt={6}>
+                    <ReadyToApply link={`${DEVCON_GRANTS_APPLY_URL}`} />
+                  </Stack>
                 </section>
               </Stack>
             </Box>

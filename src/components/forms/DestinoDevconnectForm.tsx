@@ -22,7 +22,7 @@ import {
   IN_PERSON_OPTIONS,
   REFERRAL_SOURCE_OPTIONS
 } from './constants';
-import { TOAST_OPTIONS } from '../../constants';
+import { DEVCON_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
 import { DestinoDevconnectSchema, DestinoDevconnectData } from './schemas/DestinoDevconnect';
 
@@ -61,7 +61,7 @@ export const DestinoDevconnectForm: FC = () => {
       .then(res => {
         if (res.ok) {
           reset();
-          router.push('/destino-devconnect/thank-you');
+          router.push(DEVCON_GRANTS_THANK_YOU_PAGE_URL);
         } else {
           toast({
             ...TOAST_OPTIONS,
