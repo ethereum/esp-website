@@ -69,16 +69,16 @@ export const TenYearAnniversaryFrom: FC = () => {
 
             <TextField id='email' label='Email' isRequired />
 
-            <TextField id='company' label='Name of organization or entity' isRequired />
-            <TextAreaField id='teamProfile' label='Profile' isRequired />
-            <TextAreaField id='previousWork' label='Previous Work' isRequired />
+            <TextField id='company' label='Name of company, team, or organization. If you do not have an organization name, write "N/A"' isRequired />
+            <TextAreaField id='teamProfile' label='Tell us about yourself, your experience, and your motivations. Feel free to link to any biography pages, LinkedIn pages, etc.' isRequired />
+            <TextAreaField id='previousWork' label='List of any previous events you’ve organized.' isRequired />
             <TextField id='twitter' label='Twitter Handle(s)' />
             <TextField
               id='alternativeContact'
-              label='Telegram Username or Alternative Contact Info'
+              label="We will contact you via email by default. As backup, if you'd like to provide alternative contact info, you may do so."
             />
 
-<Flex direction={{ base: 'column', md: 'row' }} gap={8}>
+            <Flex direction={{ base: 'column', md: 'row' }} gap={8}>
               <Controller
                 name='country'
                 control={control}
@@ -129,13 +129,13 @@ export const TenYearAnniversaryFrom: FC = () => {
               <DateField id='eventDate' label='Event Date' isRequired />
             </Flex>
 
-            <TextField id='eventLink' label='Event Link' isRequired />
-            <TextAreaField id='eventDescription' label='Event Summary' isRequired />
+            <TextField id='eventLink' label='Is there a website for this event? Paste the link here.' isRequired />
+            <TextAreaField id='eventDescription' label='Describe your event, including planned format and goals for the event.' isRequired />
 
             <TextField id='eventLocation' label='Event Location' isRequired />
-            <TextAreaField id='proposedTimeline' label='Budget breakdown' isRequired />
+            <TextAreaField id='proposedTimeline' label='The maximum sponsorship amount for this round is 500 USD. In this space, itemize your anticipated costs. Best estimates are ok if things are not yet confirmed or dependent on final attendee count.' isRequired />
 
-            <PageSection>Requested Amount</PageSection>
+            <PageSection>Choose denominated currency and enter a whole number in the Amount field</PageSection>
 
             <Flex direction={{ base: 'column', md: 'row' }} gap={8}>
               <Controller

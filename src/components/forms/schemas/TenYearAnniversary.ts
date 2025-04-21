@@ -23,7 +23,7 @@ export const TenYearAnniversarySchema = z.object({
     max: MAX_TEXT_LENGTH
   })
     .refine(value => !containURL(value), 'Organization cannot contain a URL')
-    .optional(),
+    .refine(value => value !== '', 'Organization is required'),
   teamProfile: stringFieldSchema('Profile', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
   previousWork: stringFieldSchema('Previous Work', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
   twitter: stringFieldSchema('Twitter Handle(s)', { max: 16 }).optional(),
@@ -34,14 +34,32 @@ export const TenYearAnniversarySchema = z.object({
   timezone: stringFieldSchema('Time Zone', { min: 1 }),
 
   // Event Details
-  eventName: stringFieldSchema('Event Name', { max: MAX_TEXT_LENGTH }).optional(),
-  eventDescription: stringFieldSchema('Event Summary', { max: MAX_TEXT_AREA_LENGTH }),
-  eventLink: z.string(),
-  eventDate: z.string(),
-  eventLocation: stringFieldSchema('Event Location', { max: MAX_TEXT_LENGTH }),
+  eventName: stringFieldSchema('Event Name', { max: MAX_TEXT_LENGTH }).refine(
+    value => value !== '',
+    'Event name is required'
+  ),
+  eventDescription: stringFieldSchema('Event Summary', { max: MAX_TEXT_AREA_LENGTH }).refine(
+    value => value !== '',
+    'Event description is required'
+  ),
+  eventLink: z.string().refine(
+    value => value !== '',
+    'Event link is required'
+  ),
+  eventDate: z.string().refine(
+    value => value !== '',
+    'Event date is required'
+  ),
+  eventLocation: stringFieldSchema('Event Location', { max: MAX_TEXT_LENGTH }).refine(
+    value => value !== '',
+    'Event location is required'
+  ),
   proposedTimeline: stringFieldSchema('Budget breakdown', {
     max: MAX_TEXT_AREA_LENGTH
-  }),
+  }).refine(
+    value => value !== '',
+    'Proposed timeline is required'
+  ),
 
   // Requested Amount
   fiatCurrency: stringFieldSchema('Fiat Currency', { min: 1 }),
@@ -60,26 +78,4 @@ export const TenYearAnniversarySchema = z.object({
     additionalInfo: stringFieldSchema('Do you have any questions about this grant round?', {
       max: MAX_TEXT_AREA_LENGTH
     }).optional(),
-}).refine(data => {
-  return (
-    data.eventName !== '' &&
-    data.eventDate !== '' &&
-    data.eventDescription !== '' &&
-    data.proposedTimeline !== ''
-  )
-}, data => {
-  if (!data.eventName) {
-    return { path: ['eventName'], message: 'Event name is required' };
-  }
-  if (!data.eventDate) {
-    return { path: ['eventDate'], message: 'Event date is required' };
-  }
-  if (!data.eventDescription) {
-    return { path: ['eventDescription'], message: 'Event description is required' };
-  }
-  if (!data.proposedTimeline) {
-    return { path: ['proposedTimeline'], message: 'Proposed timeline is required' };
-  }
-
-  return { path: [], message: '' };
 });
