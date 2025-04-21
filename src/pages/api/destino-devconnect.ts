@@ -65,7 +65,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         Confirmed_Speakers__c: result.data.confirmedSpeakers,
         Confirmed_Sponsors__c: result.data.confirmedSponsors,
         Proposed_Timeline__c: result.data.proposedTimeline,
-        Fiat_Currency__c: result.data.fiatCurrency,
+        CurrencyIsoCode: result.data.fiatCurrency,
         Requested_Amount__c: result.data.requestedAmount,
         Referral_Source__c: result.data.referralSource,
         Referrals__c: result.data.referrals,
