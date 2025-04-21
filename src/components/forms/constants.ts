@@ -1685,6 +1685,7 @@ export const API_EPF_APPLICATION = '/api/epf-application';
 export const API_NEWSLETTER_SIGNUP_URL = '/api/newsletter-signup';
 export const API_PSE_APPLICATION = '/api/pse-grants';
 export const API_PECTRA_PGR = '/api/pectra-pgr';
+export const API_TEN_YEAR_ANNIVERSARY = '/api/10-year-anniversary';
 
 export const CATEGORY_OPTIONS = [
   { value: 'Community Event', label: 'Community Event' },
