@@ -56,7 +56,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         Sponsorship_Date__c: result.data.eventDate,
         Sponsorship_Link__c: result.data.eventLink,
         Sponsorship_Details__c: result.data.eventDescription,
-        Sponsorship_Topics__c: result.data.eventTopics,
+        Sponsorship_Request__c: result.data.eventTopics,
         Type_of_Event__c: result.data.typeOfEvent,
         In_Person__c: result.data.inPerson,
         Event_Location__c: result.data.eventLocation,
