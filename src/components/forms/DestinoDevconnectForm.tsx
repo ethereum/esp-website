@@ -53,7 +53,7 @@ export const DestinoDevconnectForm: FC = () => {
   const category = watch('category');
   const isCommunityEvent = category === 'Community Event';
   const isCommunityInitiative = category === 'Community Initiative';
-  const isTeam = watch('applyingAs') === 'Team';
+  const isTeam = watch('applyingAs') === 'A team';
   const isInPerson = watch('inPerson') === 'In-person';
 
   const onSubmit = async (data: DestinoDevconnectData) => {
