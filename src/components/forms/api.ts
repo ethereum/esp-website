@@ -31,6 +31,7 @@ import type { EPFData } from './schemas/EPFApplication';
 import type { PSEData } from './schemas/PSEGrants';
 import type { AcademicGrantsData } from './schemas/AcademicGrants';
 import type { PectraPGRData } from './schemas/PectraPGR';
+import type { DestinoDevconnectData } from './schemas/DestinoDevconnect';
 
 const methodOptions = {
   method: 'POST',
@@ -216,11 +217,13 @@ export const api = {
   },
   pectraPGR: {
     submit: (data: PectraPGRData) => {
-
       const curatedData: { [key: string]: any } = {
         ...data,
-        company: data.individualOrTeam === 'Individual' && data.company === '' ? `${data.firstName} ${data.lastName}` : data.company,
-      }
+        company:
+          data.individualOrTeam === 'Individual' && data.company === ''
+            ? `${data.firstName} ${data.lastName}`
+            : data.company
+      };
       const formData = createFormData(curatedData);
 
       const dataRequestOptions: RequestInit = {
@@ -241,6 +244,17 @@ export const api = {
       };
 
       return fetch(API_NEWSLETTER_SIGNUP_URL, newsletterRequestOptions);
+    }
+  },
+  destinoDevconnect: {
+    submit: async (data: DestinoDevconnectData) => {
+      return fetch('/api/destino-devconnect', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
     }
   }
 };
