@@ -21,18 +21,14 @@ export const DevconGrantsLayout: FC<Props> = ({ children }) => {
           src: academicGrantsHeroMobile
         }}
         title='Destino Devconnect Grants'
+        subheading='A local grant round to bring Argentina onchain'
       >
-        <Stack gap={2}>
-          <Text fontWeight={700}>A local grant round to bring Argentina onchain</Text>
-          <Text>
-            <Text as='span' fontWeight={700}>
-              Devconnect ARG
-            </Text>{' '}
-            is coming to Buenos Aires from November 17–22, 2025. In the months leading up to it,
-            we&apos;re supporting community-led efforts across Argentina and Latam to grow Ethereum
-            adoption locally.
-          </Text>
-        </Stack>
+        <Text as='span' fontWeight={700}>
+          Devconnect ARG
+        </Text>{' '}
+        is coming to Buenos Aires from November 17–22, 2025. In the months leading up to it,
+        we&apos;re supporting community-led efforts across Argentina and Latam to grow Ethereum
+        adoption locally.
       </GrantsHero>
 
       <Stack>{children}</Stack>

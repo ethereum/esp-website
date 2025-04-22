@@ -11,7 +11,6 @@ import {
   PageText,
   PageMetadata,
   OrderedList,
-  BannerApplicationClosed,
   ReadyToApply
 } from '../../components/UI';
 
@@ -33,7 +32,8 @@ const DevconGrants: NextPage = () => {
   const [ref5, inView5] = useInView({ threshold: 0.3, initialInView: false });
   const [ref6, inView6] = useInView({ threshold: 0.5, initialInView: false });
   const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref8, inView8] = useInView({ threshold: 0, initialInView: false });
+  const [ref8, inView8] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref9, inView9] = useInView({ threshold: 0, initialInView: false });
   return (
     <>
       <PageMetadata
@@ -55,7 +55,8 @@ const DevconGrants: NextPage = () => {
                 inView5,
                 inView6,
                 inView7,
-                inView8
+                inView8,
+                inView9
               ]}
             />
 
@@ -107,7 +108,7 @@ const DevconGrants: NextPage = () => {
                   </List>
                 </section>
 
-                <section id='eligibility' ref={ref3}>
+                <section id='ideas' ref={ref4}>
                   <PageSection mb={6}>
                     Some ideas for Destino Devconnect events or initiatives
                   </PageSection>
@@ -143,7 +144,7 @@ const DevconGrants: NextPage = () => {
                   </List>
                 </section>
 
-                <section id='how-to-apply' ref={ref4}>
+                <section id='how-to-apply' ref={ref5}>
                   <PageSection mb={6}>How to apply</PageSection>
 
                   <OrderedList>
@@ -186,7 +187,7 @@ const DevconGrants: NextPage = () => {
                   </PageText>
                 </section>
 
-                <section id='selection-criteria' ref={ref5}>
+                <section id='selection-criteria' ref={ref6}>
                   <PageSection mb={6}>Selection criteria</PageSection>
 
                   <List>
@@ -202,7 +203,7 @@ const DevconGrants: NextPage = () => {
                   </List>
                 </section>
 
-                <section id='next-steps-and-support' ref={ref6}>
+                <section id='next-steps-and-support' ref={ref7}>
                   <PageSection mb={6}>Next steps and support</PageSection>
 
                   <PageText mb={6}>
@@ -220,7 +221,7 @@ const DevconGrants: NextPage = () => {
                   </PageText>
                 </section>
 
-                <section id='faq' ref={ref7}>
+                <section id='faq' ref={ref8}>
                   <PageSection mb={6}>Frequently asked questions</PageSection>
 
                   <Accordion allowToggle>
@@ -287,7 +288,7 @@ const DevconGrants: NextPage = () => {
                   </Accordion>
                 </section>
 
-                <section id='apply' ref={ref8}>
+                <section id='apply' ref={ref9}>
                   <Stack mt={6}>
                     <ReadyToApply link={`${DEVCON_GRANTS_APPLY_URL}`} />
                   </Stack>
