@@ -135,6 +135,11 @@ export const EPF_APPLICATION_PROJECT_CATEGORY_OPTIONS = [
   { value: 'Other', label: 'Other' }
 ];
 
+export const DESTINO_DEVCONNECT_CATEGORY_OPTIONS = [
+  { value: 'Community Event', label: 'Community Event' },
+  { value: 'Community Initiative', label: 'Community Initiative' }
+];
+
 // events
 export const EVENT_TYPE_OPTIONS = [
   { value: 'Conference', label: 'Conference' },
@@ -142,6 +147,11 @@ export const EVENT_TYPE_OPTIONS = [
   { value: 'Meetup', label: 'Meetup' },
   { value: 'Speaker Series', label: 'Speaker Series' },
   { value: 'Other', label: 'Other' }
+];
+
+export const DESTINO_DEVCONNECT_EVENT_TYPE_OPTIONS = [
+  { value: 'Small Community Event', label: 'Small Community Event' },
+  ...EVENT_TYPE_OPTIONS
 ];
 
 export const EVENT_FORMAT_OPTIONS = [
@@ -1599,6 +1609,11 @@ export const HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS = [
   { value: 'Social Media', label: 'Social Media' },
   { value: 'Other team/project in ecosystem', label: 'Other team/project in ecosystem' },
   { value: 'Other', label: 'Other' }
+];
+
+export const DESTINO_DEVCONNECT_REFERRAL_SOURCE_OPTIONS = [
+  { value: 'Email received', label: 'Email received' },
+  ...HOW_DID_YOU_HEAR_ABOUT_ESP_OPTIONS
 ];
 
 export const HOW_DID_YOU_HEAR_ABOUT_GRANTS_WAVE = [

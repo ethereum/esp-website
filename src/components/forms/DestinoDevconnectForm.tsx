@@ -17,10 +17,11 @@ import {
   COUNTRY_OPTIONS,
   FIAT_CURRENCY_OPTIONS,
   TIMEZONE_OPTIONS,
-  CATEGORY_OPTIONS,
-  TYPE_OF_EVENT_OPTIONS,
-  IN_PERSON_OPTIONS,
-  REFERRAL_SOURCE_OPTIONS
+  DESTINO_DEVCONNECT_CATEGORY_OPTIONS,
+  EVENT_TYPE_OPTIONS,
+  DESTINO_DEVCONNECT_EVENT_TYPE_OPTIONS,
+  DESTINO_DEVCONNECT_REFERRAL_SOURCE_OPTIONS,
+  EVENT_FORMAT_OPTIONS
 } from './constants';
 import { DEVCON_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
@@ -52,7 +53,7 @@ export const DestinoDevconnectForm: FC = () => {
   const category = watch('category');
   const isCommunityEvent = category === 'Community Event';
   const isCommunityInitiative = category === 'Community Initiative';
-  const isTeam = watch('applyingAs') === 'Team';
+  const isTeam = watch('applyingAs') === 'A team';
   const isInPerson = watch('inPerson') === 'In-person';
 
   const onSubmit = async (data: DestinoDevconnectData) => {
@@ -107,10 +108,10 @@ export const DestinoDevconnectForm: FC = () => {
                 >
                   <RadioGroup onChange={onChange} value={value}>
                     <Stack direction='row' spacing={4}>
-                      <Radio value='Individual'>
+                      <Radio value='An individual'>
                         <PageText fontSize='input'>Individual</PageText>
                       </Radio>
-                      <Radio value='Team'>
+                      <Radio value='A team'>
                         <PageText fontSize='input'>Team</PageText>
                       </Radio>
                     </Stack>
@@ -180,9 +181,11 @@ export const DestinoDevconnectForm: FC = () => {
                 <Field id='category' label='Category' error={error} isRequired>
                   <Select
                     id='category'
-                    options={CATEGORY_OPTIONS}
+                    options={DESTINO_DEVCONNECT_CATEGORY_OPTIONS}
                     onChange={option => {
-                      onChange((option as (typeof CATEGORY_OPTIONS)[number]).value);
+                      onChange(
+                        (option as (typeof DESTINO_DEVCONNECT_CATEGORY_OPTIONS)[number]).value
+                      );
                     }}
                     components={{ DropdownIndicator }}
                     placeholder='Select'
@@ -203,10 +206,16 @@ export const DestinoDevconnectForm: FC = () => {
                 <TextField id='projectRepoLink' label='Project Repo Link' />
                 <TextAreaField
                   id='problemBeingSolved'
-                  label='What problem(s) are being solved by within the scope of the grant?'
+                  label='What local challenge or opportunity are you addressing?'
+                  helpText='What problem, gap, or opportunity are you tackling through your initiative?'
                   isRequired
                 />
-                <TextAreaField id='impact' label='Why is your project important?' isRequired />
+                <TextAreaField
+                  id='impact'
+                  label='Why does your initiative matter for Argentina or Latam?'
+                  helpText='Why is your idea relevant for your community? How will it help bring more people or institutions onchain?'
+                  isRequired
+                />
                 <TextAreaField
                   id='howIsItDifferent'
                   label='How does your project differ from similar ones?'
@@ -247,7 +256,12 @@ export const DestinoDevconnectForm: FC = () => {
 
                 <TextField id='eventLink' label='Event Link' />
                 <TextAreaField id='eventDescription' label='Event Summary' isRequired />
-                <TextAreaField id='eventTopics' label='Event topics' isRequired />
+                <TextAreaField
+                  id='eventTopics'
+                  label='Event topics'
+                  helpText='Please briefly describe the topics you plan to cover at this event (e.g. stablecoins, local governance, institutional adoption, identity, community building, etc.) and how you’ll explore how Ethereum can create real-world impact in Argentina and Latin America. '
+                  isRequired
+                />
 
                 <Controller
                   name='typeOfEvent'
@@ -261,9 +275,11 @@ export const DestinoDevconnectForm: FC = () => {
                     >
                       <Select
                         id='typeOfEvent'
-                        options={TYPE_OF_EVENT_OPTIONS}
+                        options={DESTINO_DEVCONNECT_EVENT_TYPE_OPTIONS}
                         onChange={option => {
-                          onChange((option as (typeof TYPE_OF_EVENT_OPTIONS)[number]).value);
+                          onChange(
+                            (option as (typeof DESTINO_DEVCONNECT_EVENT_TYPE_OPTIONS)[number]).value
+                          );
                         }}
                         components={{ DropdownIndicator }}
                         placeholder='Select'
@@ -287,9 +303,9 @@ export const DestinoDevconnectForm: FC = () => {
                     >
                       <Select
                         id='inPerson'
-                        options={IN_PERSON_OPTIONS}
+                        options={EVENT_FORMAT_OPTIONS}
                         onChange={option => {
-                          onChange((option as (typeof IN_PERSON_OPTIONS)[number]).value);
+                          onChange((option as (typeof EVENT_FORMAT_OPTIONS)[number]).value);
                         }}
                         components={{ DropdownIndicator }}
                         placeholder='Select'
@@ -351,15 +367,18 @@ export const DestinoDevconnectForm: FC = () => {
               render={({ field: { onChange }, fieldState: { error } }) => (
                 <Field
                   id='referralSource'
-                  label='How did you hear about this grant round?'
+                  label='How did you hear about the Destino Devconnect grants?'
                   error={error}
                   isRequired
                 >
                   <Select
                     id='referralSource'
-                    options={REFERRAL_SOURCE_OPTIONS}
+                    options={DESTINO_DEVCONNECT_REFERRAL_SOURCE_OPTIONS}
                     onChange={option => {
-                      onChange((option as (typeof REFERRAL_SOURCE_OPTIONS)[number]).value);
+                      onChange(
+                        (option as (typeof DESTINO_DEVCONNECT_REFERRAL_SOURCE_OPTIONS)[number])
+                          .value
+                      );
                     }}
                     components={{ DropdownIndicator }}
                     placeholder='Select'
@@ -373,7 +392,7 @@ export const DestinoDevconnectForm: FC = () => {
 
             <TextAreaField
               id='referrals'
-              label='Did anyone recommend that you submit an application to the Ecosystem Support Program?'
+              label='Did anyone recommend that you submit an application to the Destino Devconnect grants?'
             />
             <TextAreaField
               id='additionalInfo'
@@ -388,12 +407,15 @@ export const DestinoDevconnectForm: FC = () => {
                   id='repeatApplicant'
                   label='Have you applied before to any grants at the Ethereum Foundation?'
                 >
-                  <RadioGroup onChange={onChange} value={value ? 'true' : 'false'}>
+                  <RadioGroup
+                    onChange={value => onChange(value === 'Yes')}
+                    value={value ? 'Yes' : 'No'}
+                  >
                     <Stack direction='row' spacing={4}>
-                      <Radio value='true'>
+                      <Radio value='Yes'>
                         <PageText fontSize='input'>Yes</PageText>
                       </Radio>
-                      <Radio value='false'>
+                      <Radio value='No'>
                         <PageText fontSize='input'>No</PageText>
                       </Radio>
                     </Stack>

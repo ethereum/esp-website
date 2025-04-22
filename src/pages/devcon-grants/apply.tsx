@@ -9,7 +9,7 @@ const DevconGrantsApply: NextPage = () => {
     <>
       <PageMetadata
         title='Apply for Destino Devconnect Grants'
-        description=''
+        description='A local grant round to bring Argentina onchain.'
         image={ACADEMIC_GRANTS_PREVIEW_URL}
       />
 

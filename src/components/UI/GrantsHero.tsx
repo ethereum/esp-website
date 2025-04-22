@@ -17,6 +17,7 @@ interface Props {
     src: StaticImageData;
   };
   title: string;
+  subheading?: string;
   children: ReactNode;
 }
 
@@ -25,6 +26,7 @@ export const GrantsHero: FC<Props> = ({
   desktopImage,
   mobileImage,
   title,
+  subheading,
   children
 }) => {
   return (
@@ -48,6 +50,12 @@ export const GrantsHero: FC<Props> = ({
           >
             {title}
           </PageSubheading>
+
+          {subheading && (
+            <PageText textAlign='center' fontWeight={700} mb={2}>
+              {subheading}
+            </PageText>
+          )}
 
           <PageText textAlign='center'>{children}</PageText>
         </Stack>

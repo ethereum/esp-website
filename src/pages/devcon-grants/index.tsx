@@ -11,7 +11,6 @@ import {
   PageText,
   PageMetadata,
   OrderedList,
-  BannerApplicationClosed,
   ReadyToApply
 } from '../../components/UI';
 
@@ -33,12 +32,13 @@ const DevconGrants: NextPage = () => {
   const [ref5, inView5] = useInView({ threshold: 0.3, initialInView: false });
   const [ref6, inView6] = useInView({ threshold: 0.5, initialInView: false });
   const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref8, inView8] = useInView({ threshold: 0, initialInView: false });
+  const [ref8, inView8] = useInView({ threshold: 0.5, initialInView: false });
+  const [ref9, inView9] = useInView({ threshold: 0, initialInView: false });
   return (
     <>
       <PageMetadata
-        title='Join the Road to Devcon'
-        description='To promote education around Ethereum in Southeast Asia along the Road to Devcon, we would like to offer support (both monetary and otherwise) to meetups, events, and other educational initiatives happening within the SEA region before Devcon 7.'
+        title='Destino Devconnect Grants'
+        description='A local grant round to bring Argentina onchain.'
         image={ACADEMIC_GRANTS_PREVIEW_URL}
       />
 
@@ -55,107 +55,96 @@ const DevconGrants: NextPage = () => {
                 inView5,
                 inView6,
                 inView7,
-                inView8
+                inView8,
+                inView9
               ]}
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
-              <BannerApplicationClosed
-                title='Applications for the Road to Devcon Grants Round and Devcon Satellite Events funding round are closed.'
-                mb={12}
-              />
-
               <Stack mb={8} mt={{ base: 10, md: 0 }}>
                 <section id='description' ref={ref}>
-                  <PageSubheading mb={8}>What are Devcon Satellite Events?</PageSubheading>
+                  <PageSubheading mb={8}>What are Destino Devconnect grants?</PageSubheading>
 
                   <PageText mb={6}>
-                    Devcon Satellite Events are an effort to decentralize Devcon, to give the
-                    opportunity to foster a community among those who can&apos;t make it to Bangkok
-                    due to distance, timing, cost, or other constraints, and to boost local Ethereum
-                    communities.
-                  </PageText>
-
-                  <PageText mb={6}>
-                    Devcon Satellite Events can be just a simple get-together of friends watching
-                    the live streams with pizza, bigger meetups to rewatch the recorded keynote
-                    talks at a time that&apos;s better suited for your community, or a chance to
-                    recap and discuss Devcon updates with your local community after Devcon.
-                  </PageText>
-
-                  <PageText mb={6}>
-                    These satellite events should take place during or after Devcon Week, between{' '}
-                    <strong>November 11 - January 31, 2025</strong>. They are self-organized and
-                    totally independent.
-                  </PageText>
-
-                  <PageText mb={6}>
-                    Devcon and the Ecosystem Support Program are teaming up to support the 10 best
-                    submissions for Devcon Satellite Events around the globe with{' '}
-                    <strong>up to $1,000 each!</strong>
-                  </PageText>
-
-                  <PageText>
-                    <strong>The deadline for proposals is January 31, 2025.</strong>
+                    Destino Devconnect is a local grants round focused on supporting events and
+                    initiatives that help bring Argentina and the broader Latam region onchain.
+                    Grants of up to $1,000 USD are available for impactful efforts that align with
+                    this mission.
                   </PageText>
                 </section>
               </Stack>
 
               <Stack spacing={10}>
                 <section id='who' ref={ref2}>
-                  <PageSection mb={6}>Who</PageSection>
+                  <PageSection mb={6}>Who we&apos;re looking for</PageSection>
 
-                  <PageText mb={6}>We want to hear from organizers of:</PageText>
+                  <PageText mb={6}>We want to hear from:</PageText>
 
                   <List>
-                    <ListItem>Meetups</ListItem>
-                    <ListItem>University clubs</ListItem>
-                    <ListItem>Workshops</ListItem>
-                    <ListItem>Hackathons</ListItem>
-                    <ListItem>Grassroots communities</ListItem>
-                    <ListItem>Local education initiatives or projects</ListItem>
+                    <ListItem>Community organizers</ListItem>
+                    <ListItem>Educators and workshop hosts</ListItem>
+                    <ListItem>University groups or clubs</ListItem>
+                    <ListItem>Hackathon or meetup organizers</ListItem>
+                    <ListItem>Builders and teams running local initiatives</ListItem>
+                    <ListItem>
+                      Anyone passionate about Ethereum&apos;s potential in the region
+                    </ListItem>
                   </List>
-
-                  <PageText mt={6}>
-                    Other community efforts - creative formats are welcome to apply!
-                  </PageText>
                 </section>
 
                 <section id='eligibility' ref={ref3}>
                   <PageSection mb={6}>Eligibility</PageSection>
 
-                  <PageText mb={6}>To be eligible for a grant, your event should be:</PageText>
+                  <PageText mb={6}>
+                    To be eligible for a Destino Devconnect grant, your event or initiative should:
+                  </PageText>
 
                   <List>
-                    <ListItem>Ethereum focused, streaming Devcon talks and programming</ListItem>
-                    <ListItem>Free to attend</ListItem>
-                    <ListItem>Open to anyone</ListItem>
+                    <ListItem>Be focused on Ethereum adoption, education, or application</ListItem>
+                    <ListItem>Free to attend and open to anyone</ListItem>
                     <ListItem>Not focused on investment, price or token sales</ListItem>
+                    <ListItem>Be based in Argentina or the wider Latin American region</ListItem>
                     <ListItem>Events that have already taken place are not eligible</ListItem>
                   </List>
                 </section>
 
-                <section id='eligibility' ref={ref3}>
-                  <PageSection mb={6}>Some ideas for Devcon Satellite Events</PageSection>
+                <section id='ideas' ref={ref4}>
+                  <PageSection mb={6}>
+                    Some ideas for Destino Devconnect events or initiatives
+                  </PageSection>
 
                   <List>
                     <ListItem>
-                      Small events (5 - 25 people): A meetup to watch the live streams with pizzas
+                      Beginner-friendly meetups to onboard newcomers to Ethereum wallets and apps
                     </ListItem>
                     <ListItem>
-                      Medium events (25 - 50 people): Showing recorded keynote talks or the best
-                      talks around a specific topic, and in-person discussion rounds, taking place
-                      one week after Devcon
+                      Workshops or study groups on Ethereum development, privacy, or public goods
                     </ListItem>
                     <ListItem>
-                      Large events (100 - 200 people): People coming together in a venue with
-                      organized tickets and catering, a live broadcast of what&apos;s happening, and
-                      workshops or discussion panels
+                      Local governance experiments or hackathons exploring decentralized
+                      decision-making
+                    </ListItem>
+                    <ListItem>
+                      Mentorship sessions connecting experienced devs with newer builders
+                    </ListItem>
+                    <ListItem>
+                      Showcases of local Ethereum projects, use cases, or community tools
+                    </ListItem>
+                    <ListItem>
+                      Collaborations with universities to introduce students to Ethereum
+                    </ListItem>
+                    <ListItem>
+                      Community strategy sessions on how Ethereum can support real needs in your
+                      area
+                    </ListItem>
+                    <ListItem>
+                      Creative formats from activations to street pop-ups that help bring Ethereum
+                      into the public
                     </ListItem>
                   </List>
                 </section>
 
-                <section id='how-to-apply' ref={ref4}>
+                <section id='how-to-apply' ref={ref5}>
                   <PageSection mb={6}>How to apply</PageSection>
 
                   <OrderedList>
@@ -172,16 +161,14 @@ const DevconGrants: NextPage = () => {
                       with your event idea and detailed budget request
                     </ListItem>
 
-                    <ListItem>
-                      Wait to hear back from the Devcon team about event and budget approval
-                    </ListItem>
+                    <ListItem>Wait to hear back from the Devconnect team about approval</ListItem>
 
                     <ListItem>
                       If approved, we will notify your team and send an invoice request for the
                       approved budget
                     </ListItem>
 
-                    <ListItem>Host your event and document it!</ListItem>
+                    <ListItem>Host your event or initiative and document it!</ListItem>
 
                     <UnorderedList>
                       <ListItem>Take photos of the event showing the number present</ListItem>
@@ -191,7 +178,7 @@ const DevconGrants: NextPage = () => {
                     </UnorderedList>
 
                     <ListItem>
-                      Follow up with the Devcon team with a review of the event and the
+                      Follow up with the Devconnect team with a review of the event and the
                       documentation material from #4
                     </ListItem>
                   </OrderedList>
@@ -200,7 +187,7 @@ const DevconGrants: NextPage = () => {
                   </PageText>
                 </section>
 
-                <section id='selection-criteria' ref={ref5}>
+                <section id='selection-criteria' ref={ref6}>
                   <PageSection mb={6}>Selection criteria</PageSection>
 
                   <List>
@@ -209,13 +196,14 @@ const DevconGrants: NextPage = () => {
                     </ListItem>
                     <ListItem>How does the plan aim to publicize and expand reach?</ListItem>
                     <ListItem>
-                      Does the group have a history of organizing successful events?
+                      Does the group have a history of organizing successful events or initiatives?
                     </ListItem>
                     <ListItem>What is the purpose of the funding requested?</ListItem>
+                    <ListItem>How does the initiative help to bring Argentina onchain?</ListItem>
                   </List>
                 </section>
 
-                <section id='next-steps-and-support' ref={ref6}>
+                <section id='next-steps-and-support' ref={ref7}>
                   <PageSection mb={6}>Next steps and support</PageSection>
 
                   <PageText mb={6}>
@@ -233,14 +221,14 @@ const DevconGrants: NextPage = () => {
                   </PageText>
                 </section>
 
-                <section id='faq' ref={ref7}>
+                <section id='faq' ref={ref8}>
                   <PageSection mb={6}>Frequently asked questions</PageSection>
 
                   <Accordion allowToggle>
-                    <FAQItem question='Who can submit proposals for Devcon Satellite Events?'>
+                    <FAQItem question='Who can submit proposals for Destino Devconnect?'>
                       <PageText>
-                        Events of any size, location, demographic or (Ethereum-related) topic are
-                        welcome to apply as long as they meet the{' '}
+                        Events or initiatives of any size, location, demographic or
+                        (Ethereum-related) topic are welcome to apply as long as they meet the{' '}
                         <Link
                           fontWeight={700}
                           color='brand.orange.100'
@@ -300,7 +288,7 @@ const DevconGrants: NextPage = () => {
                   </Accordion>
                 </section>
 
-                <section id='apply' ref={ref8}>
+                <section id='apply' ref={ref9}>
                   <Stack mt={6}>
                     <ReadyToApply link={`${DEVCON_GRANTS_APPLY_URL}`} />
                   </Stack>
