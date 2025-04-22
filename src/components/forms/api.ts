@@ -6,7 +6,7 @@ import {
   OfficeHoursFormData,
   PSESponsorshipsFormData,
   ProjectGrantsFormData,
-  SmallGrantsFormData
+  SmallGrantsFormData,
 } from './../../types';
 
 import { createFormData, getWebsite } from '../../utils';
@@ -24,7 +24,8 @@ import {
   API_SMALL_GRANTS_PROJECT,
   API_EPF_APPLICATION,
   API_PSE_APPLICATION,
-  API_ACADEMIC_GRANTS
+  API_ACADEMIC_GRANTS,
+  API_TEN_YEAR_ANNIVERSARY,
 } from './constants';
 
 import type { EPFData } from './schemas/EPFApplication';
@@ -32,6 +33,7 @@ import type { PSEData } from './schemas/PSEGrants';
 import type { AcademicGrantsData } from './schemas/AcademicGrants';
 import type { PectraPGRData } from './schemas/PectraPGR';
 import type { DestinoDevconnectData } from './schemas/DestinoDevconnect';
+import type { TenYearAnniversaryData } from './schemas/TenYearAnniversary';
 
 const methodOptions = {
   method: 'POST',
@@ -246,6 +248,17 @@ export const api = {
   destinoDevconnect: {
     submit: async (data: DestinoDevconnectData) => {
       return fetch('/api/destino-devconnect', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+    }
+  },
+  tenYearAnniversary: {
+    submit: async (data: TenYearAnniversaryData) => {
+      return fetch(API_TEN_YEAR_ANNIVERSARY, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
