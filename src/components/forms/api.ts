@@ -256,7 +256,8 @@ export const api = {
           company:
             data.company && data.company !== ''
               ? data.company
-              : `${data.firstName} ${data.lastName}`
+              : `${data.firstName} ${data.lastName}`,
+          eventDate: data.eventDate === '' ? undefined : data.eventDate
         })
       });
     }

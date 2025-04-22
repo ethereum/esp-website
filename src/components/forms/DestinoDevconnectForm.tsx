@@ -396,12 +396,15 @@ export const DestinoDevconnectForm: FC = () => {
                   id='repeatApplicant'
                   label='Have you applied before to any grants at the Ethereum Foundation?'
                 >
-                  <RadioGroup onChange={onChange} value={value ? 'true' : 'false'}>
+                  <RadioGroup
+                    onChange={value => onChange(value === 'Yes')}
+                    value={value ? 'Yes' : 'No'}
+                  >
                     <Stack direction='row' spacing={4}>
-                      <Radio value='true'>
+                      <Radio value='Yes'>
                         <PageText fontSize='input'>Yes</PageText>
                       </Radio>
-                      <Radio value='false'>
+                      <Radio value='No'>
                         <PageText fontSize='input'>No</PageText>
                       </Radio>
                     </Stack>

@@ -117,7 +117,7 @@ export const DestinoDevconnectSchema = z
       max: MAX_TEXT_AREA_LENGTH
     }).optional(),
     repeatApplicant: z.boolean(),
-    canTheEFReachOut: z.boolean(),
+    canTheEFReachOut: z.boolean().optional(),
     captchaToken: stringFieldSchema('Captcha', { min: 1 })
   })
   .refine(
