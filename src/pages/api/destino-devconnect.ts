@@ -87,6 +87,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
 
         application = {
           ...baseApplication,
+          Project_Name__c: result.data.eventName,
           Sponsorship_Date__c: eventDate,
           Sponsorship_Link__c: result.data.eventLink,
           Sponsorship_Details__c: result.data.eventDescription,
