@@ -11,7 +11,7 @@ const TenYearAnniversaryApply: NextPage = () => {
   return (
     <>
       <PageMetadata
-        title='Apply for 10 Years of Ethereum Anniversary'
+        title='Apply for 10 Years of Ethereum meetups'
         description=''
         image={TEN_YEAR_ANNIVERSARY_PREVIEW_URL}
       />
@@ -26,7 +26,7 @@ const TenYearAnniversaryApply: NextPage = () => {
         <Stack>
           <section id='description'>
             <PageSubheading mb={8} textAlign='center'>
-              Apply for 10 Years of Ethereum Anniversary
+              Apply for 10 Years of Ethereum meetups
             </PageSubheading>
 
             <PageText textAlign='center'>

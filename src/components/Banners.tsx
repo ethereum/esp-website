@@ -16,7 +16,7 @@ export const Banners: FC = () => {
         <Box fontSize='paragraph' textAlign='center'>
           Applications for the{' '}
           <Link href={TEN_YEAR_ANNIVERSARY_URL} fontWeight={700}>
-            10 Years of Ethereum Anniversary
+            10 Years of Ethereum meetups
           </Link>{' '}
           are now open!
         </Box>

@@ -10,7 +10,7 @@ const TenYearAnniversaryThankYou: NextPage = () => {
     <>
       <PageMetadata
         title='Thank you'
-        description='Thank you for applying to 10 Years of Ethereum Anniversary.'
+        description='Thank you for applying to 10 Years of Ethereum meetups.'
       />
       <Head>
         <meta name='robots' content='noindex' />
@@ -32,7 +32,7 @@ const TenYearAnniversaryThankYou: NextPage = () => {
             </Heading>
 
             <PageSubheading mb={16} textAlign='center'>
-              for applying to 10 Years of Ethereum Anniversary
+              for applying to 10 Years of Ethereum meetups
             </PageSubheading>
             
             <PageText mb={6} textAlign='center'>

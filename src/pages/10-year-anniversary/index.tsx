@@ -174,24 +174,10 @@ const TenYearAnniversary: NextPage = () => {
                   </PageSection>
 
                   <Accordion allowToggle>
-                    <FAQItem question='Who can submit proposals for a 10 Years of Ethereum Meetup?'>
+                    <FAQItem question='Who can submit proposals for a meetup?'>
                       <PageText>
                         Anyone! Events of any size, location, demographic are welcome to apply as long as they meet the application criteria.
                       </PageText>
-                    </FAQItem>
-
-                    <FAQItem question='What are the requirements or the application?'>
-                      <List>
-                        <ListItem>
-                          Please read the <Link fontWeight={700} color='brand.orange.100' href="#eligibility">eligibility</Link> criteria above to make sure your event is eligible.
-                        </ListItem>
-                        <ListItem>
-                          Events may be held in any language, but we&apos;re currently only able to accept proposals in English.
-                        </ListItem>
-                        <ListItem>
-                          Events must be publicly posted and have a shareable url or meetup link
-                        </ListItem>
-                      </List>
                     </FAQItem>
 
                     <FAQItem question='What if I miss the deadline, my event is not eligible or I want to request an amount above the limit of this round?'>

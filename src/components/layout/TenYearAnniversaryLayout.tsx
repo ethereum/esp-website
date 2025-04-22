@@ -15,15 +15,15 @@ export const TenYearAnniversaryLayout: FC<Props> = ({ children }) => {
       <GrantsHero
         colorBrandConstant='academicGrantsHero'
         desktopImage={{
-          alt: '10 Years of Ethereum Anniversary',
+          alt: '10 Years of Ethereum meetups',
           src: tenYearAnniversaryHero,
           quality: 100
         }}
         mobileImage={{
-          alt: '10 Years of Ethereum Anniversary',
+          alt: '10 Years of Ethereum meetups',
           src: tenYearAnniversaryHero
         }}
-        title='10 Years of Ethereum Anniversary'
+        title='10 Years of Ethereum meetups'
       >
         {/* TODO: Add the correct text */}
         Ethereum is turning 10 years old! We are celebrating this milestone with a series of events
