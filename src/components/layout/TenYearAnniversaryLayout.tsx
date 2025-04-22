@@ -3,7 +3,7 @@ import { Link, Stack } from '@chakra-ui/react';
 
 import { GrantsHero } from '../UI';
 
-import tenYearAnniversaryHero from '../../../public/images/10-year-anniversary.jpeg';
+import tenYearAnniversaryHero from '../../../public/images/10-year-anniversary.jpg';
 
 type Props = {
   children: ReactNode;
