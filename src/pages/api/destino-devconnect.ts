@@ -32,9 +32,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
 
       // Company is a required field in SF, we're using the Full Name as default value if no company provided
       const company =
-        result.data.company === ''
-          ? `${result.data.firstName} ${result.data.lastName}`
-          : result.data.company;
+        result.data.company
+          ? result.data.company
+          : `${result.data.firstName} ${result.data.lastName}`
 
       // SF mapping
       const baseApplication = {
