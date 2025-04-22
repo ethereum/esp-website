@@ -250,15 +250,7 @@ export const api = {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          ...data,
-          // Company is a required field in SF, we're using the Name as default value if no company provided
-          company:
-            data.company && data.company !== ''
-              ? data.company
-              : `${data.firstName} ${data.lastName}`,
-          eventDate: data.eventDate === '' ? undefined : data.eventDate
-        })
+        body: JSON.stringify(data)
       });
     }
   }
