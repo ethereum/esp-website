@@ -147,10 +147,13 @@ const TenYearAnniversary: NextPage = () => {
 
                   <List>
                     <ListItem>
-                      What is the purpose of the funding request?
+                      Application is aligned with the focus of this round and meets eligibility criteria.
                     </ListItem>
                     <ListItem>
-                      Does the group have a history of organizing successful events?
+                      Funding request is within the limits of this round.
+                    </ListItem>
+                    <ListItem>
+                      Applicant has previous experience and/or success organizing Ethereum community events.
                     </ListItem>
                   </List>
                 </section>
