@@ -1,11 +1,11 @@
-import { Center, Flex, Radio, RadioGroup, Stack, useToast } from '@chakra-ui/react';
+import { Center, Flex, Stack, useToast } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
 import { FC } from 'react';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { PageText, DropdownIndicator, PageSection } from '../UI';
+import { DropdownIndicator, PageSection } from '../UI';
 import { SubmitButton } from '../SubmitButton';
 import { Captcha, Field, TextAreaField, TextField, DateField } from '.';
 
@@ -17,12 +17,9 @@ import {
   COUNTRY_OPTIONS,
   FIAT_CURRENCY_OPTIONS,
   TIMEZONE_OPTIONS,
-  CATEGORY_OPTIONS,
-  TYPE_OF_EVENT_OPTIONS,
-  IN_PERSON_OPTIONS,
   REFERRAL_SOURCE_OPTIONS
 } from './constants';
-import { DEVCON_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
+import { TEN_YEAR_ANNIVERSARY_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
 import { TenYearAnniversarySchema, TenYearAnniversaryData } from './schemas/TenYearAnniversary';
 
@@ -39,13 +36,27 @@ export const TenYearAnniversaryFrom: FC = () => {
   const {
     handleSubmit,
     control,
-    watch,
     reset,
     formState: { isSubmitting }
   } = methods;
 
   const onSubmit = async (data: TenYearAnniversaryData) => {
-    console.log(data);
+    return api.tenYearAnniversary
+      .submit(data)
+      .then(res => {
+        if (res.ok) {
+          reset();
+          router.push(TEN_YEAR_ANNIVERSARY_THANK_YOU_PAGE_URL);
+        } else {
+          toast({
+            ...TOAST_OPTIONS,
+            title: 'Something went wrong while submitting, please try again.',
+            status: 'error'
+          });
+          throw new Error('Network response was not OK');
+        }
+      })
+      .catch(err => console.error('There has been a problem with your operation: ', err.message));
   };
 
   return (

@@ -3,9 +3,7 @@ import { Link, Stack } from '@chakra-ui/react';
 
 import { GrantsHero } from '../UI';
 
-// TODO: Add the correct image
-import academicGrantsHero from '../../../public/images/academic-grants-hero.png';
-import academicGrantsHeroMobile from '../../../public/images/academic-grants-hero-mobile.png';
+import tenYearAnniversaryHero from '../../../public/images/10-year-anniversary.jpeg';
 
 type Props = {
   children: ReactNode;
@@ -14,13 +12,12 @@ type Props = {
 export const TenYearAnniversaryLayout: FC<Props> = ({ children }) => {
   return (
     <Stack>
-      {/* TODO: Add the correct image */}
       <GrantsHero
         colorBrandConstant='academicGrantsHero'
-        desktopImage={{ alt: 'Academics doing research about Ethereum', src: academicGrantsHero }}
+        desktopImage={{ alt: '10 Years of Ethereum Anniversary', src: tenYearAnniversaryHero }}
         mobileImage={{
-          alt: 'Academics doing research about Ethereum',
-          src: academicGrantsHeroMobile
+          alt: '10 Years of Ethereum Anniversary',
+          src: tenYearAnniversaryHero
         }}
         title='10 Years of Ethereum Anniversary'
       >

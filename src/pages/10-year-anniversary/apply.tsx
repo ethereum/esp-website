@@ -2,16 +2,18 @@ import { Box, Link, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 
 import { PageMetadata, PageSubheading, PageText } from '../../components/UI';
-import { ACADEMIC_GRANTS_PREVIEW_URL, GRANTS_EMAIL_ADDRESS } from '../../constants';
+import {
+  TEN_YEAR_ANNIVERSARY_PREVIEW_URL,
+  GRANTS_EMAIL_ADDRESS
+} from '../../constants';
 
 const TenYearAnniversaryApply: NextPage = () => {
   return (
     <>
-      {/* TODO: Add the correct image */}
       <PageMetadata
         title='Apply for 10 Years of Ethereum Anniversary'
         description=''
-        image={ACADEMIC_GRANTS_PREVIEW_URL}
+        image={TEN_YEAR_ANNIVERSARY_PREVIEW_URL}
       />
 
       <Box

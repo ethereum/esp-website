@@ -408,6 +408,9 @@ export const ACCOUNT_ABSTRACTION_GRANTS_PREVIEW_URL =
 export const ACADEMIC_GRANTS_PREVIEW_URL =
   'https://esp.ethereum.foundation/images/academic-grants-hero.png';
 
+export const TEN_YEAR_ANNIVERSARY_PREVIEW_URL =
+  'https://esp.ethereum.foundation/images/10-year-anniversary.jpeg';
+
 export const DATA_COLLECTION_GRANTS_PREVIEW_URL =
   'https://esp.ethereum.foundation/images/data-collection-proactive-grants.png';
 

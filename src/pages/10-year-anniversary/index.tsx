@@ -19,7 +19,7 @@ import {
   TEN_YEAR_ANNIVERSARY_APPLY_URL,
   SIDEBAR_TEN_YEAR_ANNIVERSARY_LINKS,
   GRANTS_EMAIL_ADDRESS,
-  ACADEMIC_GRANTS_PREVIEW_URL //TODO: Replace with correct image when ready
+  TEN_YEAR_ANNIVERSARY_PREVIEW_URL
 } from '../../constants';
 
 const TenYearAnniversary: NextPage = () => {
@@ -39,7 +39,7 @@ const TenYearAnniversary: NextPage = () => {
       <PageMetadata
         title='10 Years of Ethereum Meetups'
         description='10 Years of Ethereum Meetups are a series of global meetups to celebrate the 10 year anniversary of the Genesis block.'
-        image={ACADEMIC_GRANTS_PREVIEW_URL}
+        image={TEN_YEAR_ANNIVERSARY_PREVIEW_URL}
       />
       <Box mx={{ md: 12 }} bg='white' position='relative' zIndex={1} mt={{ xl: 12 }}>
         <Stack spacing={10} mb={8} px={{ base: 5, md: 0 }} py={{ base: 3, md: 12 }}>
