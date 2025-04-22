@@ -11,4 +11,5 @@ export * from './EPFApplicationForm';
 export * from './PSEApplicationForm';
 export * from './PSESponsorshipsForm';
 export * from './AcademicGrantsForm';
+export * from './DestinoDevconnectForm';
 export * from './fields';

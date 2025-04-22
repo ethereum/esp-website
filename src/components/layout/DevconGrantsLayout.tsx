@@ -1,11 +1,10 @@
 import { FC, ReactNode } from 'react';
-import { Link, Stack } from '@chakra-ui/react';
+import { Stack, Text } from '@chakra-ui/react';
 
 import { GrantsHero } from '../UI';
 
 import academicGrantsHero from '../../../public/images/academic-grants-hero.png';
 import academicGrantsHeroMobile from '../../../public/images/academic-grants-hero-mobile.png';
-import { DEVCON_URL } from '../../constants';
 
 type Props = {
   children: ReactNode;
@@ -21,21 +20,15 @@ export const DevconGrantsLayout: FC<Props> = ({ children }) => {
           alt: 'Academics doing research about Ethereum',
           src: academicGrantsHeroMobile
         }}
-        title='Road to Devcon Grants'
+        title='Destino Devconnect Grants'
+        subheading='A local grant round to bring Argentina onchain'
       >
-        <Link
-          fontWeight={700}
-          color='brand.orange.100'
-          href={DEVCON_URL}
-          isExternal
-          _hover={{ textDecoration: 'none' }}
-        >
-          Devcon 7
-        </Link>{' '}
-        is heading to Southeast Asia in 2024! In an effort to promote education on Ethereum in
-        Southeast Asia prior to Devcon 7, we are excited to offer financial and non-financial
-        support for meetups, events, and other educational initiatives happening along the Road to
-        Devcon. Read on for details.
+        <Text as='span' fontWeight={700}>
+          Devconnect ARG
+        </Text>{' '}
+        is coming to Buenos Aires from November 17–22, 2025. In the months leading up to it,
+        we&apos;re supporting community-led efforts across Argentina and Latam to grow Ethereum
+        adoption locally.
       </GrantsHero>
 
       <Stack>{children}</Stack>

@@ -92,10 +92,12 @@ export const SIDEBAR_DEVCON_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${DEVCON_GRANTS_URL}/#description` },
   { text: 'Who', href: `${DEVCON_GRANTS_URL}/#who` },
   { text: 'Eligibility', href: `${DEVCON_GRANTS_URL}/#eligibility` },
+  { text: 'Ideas', href: `${DEVCON_GRANTS_URL}/#ideas` },
   { text: 'How to apply', href: `${DEVCON_GRANTS_URL}/#how-to-apply` },
   { text: 'Selection criteria', href: `${DEVCON_GRANTS_URL}/#selection-criteria` },
   { text: 'Next steps and support', href: `${DEVCON_GRANTS_URL}/#next-steps-and-support` },
-  { text: 'FAQ', href: `${DEVCON_GRANTS_URL}/#faq` }
+  { text: 'FAQ', href: `${DEVCON_GRANTS_URL}/#faq` },
+  { text: 'Apply', href: `${DEVCON_GRANTS_URL}/#apply` }
 ];
 
 export const MERGE_DATA_CHALLENGE_URL = '/merge-data-challenge';
@@ -315,7 +317,7 @@ export const ESP_WISHLIST_URL =
   'https://efdn.notion.site/Ecosystem-Support-Program-Wishlist-ae88ec8d8fc34d01be96d35ddaff7d23';
 export const ESP_EMAIL_ADDRESS = 'esp@ethereum.org';
 export const ACADEMIC_GRANTS_EMAIL_ADDRESS = 'academic-grants@ethereum.org';
-export const DEVCON_GRANTS_EMAIL_ADDRESS = 'support@devcon.org';
+export const DEVCON_GRANTS_EMAIL_ADDRESS = 'support@devconnect.org';
 export const MERGE_DATA_CHALLENGE_EMAIL_ADDRESS = 'datachallenge@ethereum.org';
 export const SEMAPHORE_GRANT_EMAIL_ADDRESS = 'semaphore-grants@ethereum.org';
 export const LAYER_2_GRANTS_EMAIL_ADDRESS = 'layer2grants@ethereum.org';
