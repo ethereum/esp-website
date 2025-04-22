@@ -57,8 +57,14 @@ export const DestinoDevconnectForm: FC = () => {
   const isInPerson = watch('inPerson') === 'In-person';
 
   const onSubmit = async (data: DestinoDevconnectData) => {
+    const payload: DestinoDevconnectData = { ...data };
+
+    if (payload.applyingAs === 'An individual') {
+      payload.company = '';
+    }
+
     return api.destinoDevconnect
-      .submit(data)
+      .submit(payload)
       .then(res => {
         if (res.ok) {
           reset();
@@ -68,6 +74,9 @@ export const DestinoDevconnectForm: FC = () => {
             ...TOAST_OPTIONS,
             title: 'Something went wrong while submitting, please try again.',
             status: 'error'
+          });
+          res.text().then(text => {
+             console.error('API Error Response:', text);
           });
           throw new Error('Network response was not OK');
         }
