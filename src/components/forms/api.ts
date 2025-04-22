@@ -130,7 +130,7 @@ export const api = {
         body: JSON.stringify({
           ...data,
           // Company is a required field in SF, we're using the Name as default value if no company provided
-          company: data.company === 'N/A' ? `${data.firstName} ${data.lastName}` : data.company
+          company: data.company ? data.company : `${data.firstName} ${data.lastName}`
         })
       };
 
