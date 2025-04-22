@@ -184,7 +184,6 @@ export const TenYearAnniversaryFrom: FC = () => {
                   id='referralSource'
                   label='How did you hear about this grant round?'
                   error={error}
-                  isRequired
                 >
                   <Select
                     id='referralSource'

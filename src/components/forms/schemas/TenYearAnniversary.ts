@@ -20,6 +20,7 @@ export const TenYearAnniversarySchema = z.object({
   ),
   email: z.string().email({ message: 'Invalid email address' }),
   company: stringFieldSchema('Name of organization or entity', {
+    min: 1,
     max: MAX_TEXT_LENGTH
   })
     .refine(value => !containURL(value), 'Organization cannot contain a URL')
