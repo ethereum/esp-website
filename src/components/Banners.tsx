@@ -4,13 +4,13 @@ import { Box, Link } from '@chakra-ui/react';
 
 import { Banner } from './UI';
 
-import { ACADEMIC_GRANTS_URL, TEN_YEAR_ANNIVERSARY_URL } from '../constants';
+import { TEN_YEAR_ANNIVERSARY_URL } from '../constants';
 
 export const Banners: FC = () => {
   const router = useRouter();
 
   // TODO: Add banner content
-  if (!router.pathname.includes(ACADEMIC_GRANTS_URL)) {
+  if (!router.pathname.includes(TEN_YEAR_ANNIVERSARY_URL)) {
     return (
       <Banner>
         <Box fontSize='paragraph' textAlign='center'>
