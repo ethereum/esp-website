@@ -57,7 +57,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         Additional_Information__c: result.data.additionalInfo,
         Repeat_Applicant__c: result.data.repeatApplicant,
         Can_the_EF_reach_out__c: result.data.canTheEFReachOut,
-        Applying_as_a__c: result.data.applyingAs,
+        // Ignoring this field as requested by the team since it was not in the SF schema
+        // Applying_as_a__c: result.data.applyingAs,
         Proactive_Community_Grants_Round__c: 'Destino Devconnect',
         LeadSource: 'Webform',
         RecordTypeId: process.env.SF_RECORD_TYPE_SPONSORSHIPS!
