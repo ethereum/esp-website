@@ -206,10 +206,16 @@ export const DestinoDevconnectForm: FC = () => {
                 <TextField id='projectRepoLink' label='Project Repo Link' />
                 <TextAreaField
                   id='problemBeingSolved'
-                  label='What problem(s) are being solved by within the scope of the grant?'
+                  label='What local challenge or opportunity are you addressing?'
+                  helpText='What problem, gap, or opportunity are you tackling through your initiative?'
                   isRequired
                 />
-                <TextAreaField id='impact' label='Why is your project important?' isRequired />
+                <TextAreaField
+                  id='impact'
+                  label='Why does your initiative matter for Argentina or Latam?'
+                  helpText='Why is your idea relevant for your community? How will it help bring more people or institutions onchain?'
+                  isRequired
+                />
                 <TextAreaField
                   id='howIsItDifferent'
                   label='How does your project differ from similar ones?'
@@ -250,7 +256,12 @@ export const DestinoDevconnectForm: FC = () => {
 
                 <TextField id='eventLink' label='Event Link' />
                 <TextAreaField id='eventDescription' label='Event Summary' isRequired />
-                <TextAreaField id='eventTopics' label='Event topics' isRequired />
+                <TextAreaField
+                  id='eventTopics'
+                  label='Event topics'
+                  helpText='Please briefly describe the topics you plan to cover at this event (e.g. stablecoins, local governance, institutional adoption, identity, community building, etc.) and how you’ll explore how Ethereum can create real-world impact in Argentina and Latin America. '
+                  isRequired
+                />
 
                 <Controller
                   name='typeOfEvent'
@@ -356,7 +367,7 @@ export const DestinoDevconnectForm: FC = () => {
               render={({ field: { onChange }, fieldState: { error } }) => (
                 <Field
                   id='referralSource'
-                  label='How did you hear about this grant round?'
+                  label='How did you hear about the Destino Devconnect grants?'
                   error={error}
                   isRequired
                 >
@@ -381,7 +392,7 @@ export const DestinoDevconnectForm: FC = () => {
 
             <TextAreaField
               id='referrals'
-              label='Did anyone recommend that you submit an application to the Ecosystem Support Program?'
+              label='Did anyone recommend that you submit an application to the Destino Devconnect grants?'
             />
             <TextAreaField
               id='additionalInfo'
