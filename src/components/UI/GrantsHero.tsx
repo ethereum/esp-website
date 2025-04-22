@@ -11,10 +11,12 @@ interface Props {
   desktopImage: {
     alt: string;
     src: StaticImageData;
+    quality?: number;
   };
   mobileImage: {
     alt: string;
     src: StaticImageData;
+    quality?: number;
   };
   title: string;
   subheading?: string;
@@ -69,6 +71,7 @@ export const GrantsHero: FC<Props> = ({
             width={450}
             height={276}
             placeholder='blur'
+            quality={mobileImage.quality}
             sizes='100vw'
             style={{
               objectFit: 'cover',
@@ -85,6 +88,7 @@ export const GrantsHero: FC<Props> = ({
               alt={desktopImage.alt}
               placeholder='blur'
               fill
+              quality={desktopImage.quality}
               sizes='100vw'
               style={{
                 objectFit: 'cover'
