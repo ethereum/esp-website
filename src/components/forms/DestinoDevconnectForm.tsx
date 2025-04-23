@@ -441,7 +441,7 @@ export const DestinoDevconnectForm: FC = () => {
                   id='canTheEFReachOut'
                   label='Have you applied for or received other funding?'
                 >
-                  <RadioGroup onChange={onChange} value={value ? 'true' : 'false'}>
+                  <RadioGroup onChange={value => onChange(value === 'true')} value={value ? 'true' : 'false'}>
                     <Stack direction='row' spacing={4}>
                       <Radio value='true'>
                         <PageText fontSize='input'>Yes</PageText>
