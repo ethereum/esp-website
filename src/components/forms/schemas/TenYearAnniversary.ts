@@ -43,24 +43,15 @@ export const TenYearAnniversarySchema = z.object({
     value => value !== '',
     'Event description is required'
   ),
-  eventLink: z.string().refine(
-    value => value !== '',
-    'Event link is required'
-  ),
-  eventDate: z.string().refine(
-    value => value !== '',
-    'Event date is required'
-  ),
+  eventLink: z.string().refine(value => value !== '', 'Event link is required'),
+  eventDate: z.string().refine(value => value !== '', 'Event date is required'),
   eventLocation: stringFieldSchema('Event Location', { max: MAX_TEXT_LENGTH }).refine(
     value => value !== '',
     'Event location is required'
   ),
   proposedTimeline: stringFieldSchema('Budget breakdown', {
     max: MAX_TEXT_AREA_LENGTH
-  }).refine(
-    value => value !== '',
-    'Proposed timeline is required'
-  ),
+  }).refine(value => value !== '', 'Proposed timeline is required'),
 
   // Requested Amount
   fiatCurrency: stringFieldSchema('Fiat Currency', { min: 1 }),
@@ -68,15 +59,16 @@ export const TenYearAnniversarySchema = z.object({
     .number({ invalid_type_error: 'Amount must be a number' })
     .min(1, 'Amount must be at least 1'),
 
-    // Additional Details
-    referralSource: stringFieldSchema('How did you hear about this grant round?', { min: 1 }),
-    referrals: stringFieldSchema(
-      'Did anyone recommend that you submit an application to the Ecosystem Support Program?',
-      {
-        max: MAX_TEXT_AREA_LENGTH
-      }
-    ).optional(),
-    additionalInfo: stringFieldSchema('Do you have any questions about this grant round?', {
+  // Additional Details
+  referralSource: stringFieldSchema('How did you hear about this grant round?', { min: 1 }),
+  referrals: stringFieldSchema(
+    'Did anyone recommend that you submit an application to the Ecosystem Support Program?',
+    {
       max: MAX_TEXT_AREA_LENGTH
-    }).optional(),
+    }
+  ).optional(),
+  additionalInfo: stringFieldSchema('Do you have any questions about this grant round?', {
+    max: MAX_TEXT_AREA_LENGTH
+  }).optional(),
+  captchaToken: stringFieldSchema('Captcha', { min: 1 })
 });
