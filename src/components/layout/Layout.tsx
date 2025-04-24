@@ -22,6 +22,7 @@ import {
   ZKGrantsLayout,
   DataChallengeLayout,
   PectraPGRLayout,
+  TenYearAnniversaryLayout,
 } from '../layout';
 import { Nav } from '../../components';
 
@@ -43,6 +44,7 @@ import {
   ZK_GRANTS_URL,
   DATA_CHALLENGE_ROUND_URL,
   PECTRA_PGR_URL,
+  TEN_YEAR_ANNIVERSARY_URL,
 } from '../../constants';
 
 export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
@@ -88,6 +90,17 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
         </Box>
       );
     }
+
+    if (router.pathname === TEN_YEAR_ANNIVERSARY_URL) {
+      return (
+        <Box mt={{ md: -10, lg: 0 }}>
+          <main>
+            <TenYearAnniversaryLayout>{children}</TenYearAnniversaryLayout>
+          </main>
+        </Box>
+      )
+    }
+    
 
     if (router.pathname === ACADEMIC_GRANTS_2022_URL) {
       return (

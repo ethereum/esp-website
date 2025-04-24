@@ -1700,3 +1700,35 @@ export const API_EPF_APPLICATION = '/api/epf-application';
 export const API_NEWSLETTER_SIGNUP_URL = '/api/newsletter-signup';
 export const API_PSE_APPLICATION = '/api/pse-grants';
 export const API_PECTRA_PGR = '/api/pectra-pgr';
+export const API_TEN_YEAR_ANNIVERSARY = '/api/10-year-anniversary';
+
+export const CATEGORY_OPTIONS = [
+  { value: 'Community Event', label: 'Community Event' },
+  { value: 'Community Initiative', label: 'Community Initiative' }
+];
+
+export const TYPE_OF_EVENT_OPTIONS = [
+  { value: 'Conference', label: 'Conference' },
+  { value: 'Hackathon', label: 'Hackathon' },
+  { value: 'Meetup', label: 'Meetup' },
+  { value: 'Small Community Event', label: 'Small Community Event' },
+  { value: 'Speaker Series', label: 'Speaker Series' },
+  { value: 'Other', label: 'Other' }
+];
+
+export const IN_PERSON_OPTIONS = [
+  { value: 'In-person', label: 'In-person' },
+  { value: 'Online', label: 'Online' },
+  { value: 'Hybrid (both)', label: 'Hybrid (both)' }
+];
+
+export const REFERRAL_SOURCE_OPTIONS = [
+  { value: 'Email received', label: 'Email received' },
+  { value: 'ESP Newsletter', label: 'ESP Newsletter' },
+  { value: 'Ethereum.org', label: 'Ethereum.org' },
+  { value: 'Ethereum Blog', label: 'Ethereum Blog' },
+  { value: 'Ethereum Community Events', label: 'Ethereum Community Events' },
+  { value: 'Other team/project in ecosystem', label: 'Other team/project in ecosystem' },
+  { value: 'Social Media', label: 'Social Media' },
+  { value: 'Other', label: 'Other' }
+];

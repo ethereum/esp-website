@@ -100,6 +100,18 @@ export const SIDEBAR_DEVCON_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Apply', href: `${DEVCON_GRANTS_URL}/#apply` }
 ];
 
+export const TEN_YEAR_ANNIVERSARY_URL = '/10-year-anniversary';
+export const SIDEBAR_TEN_YEAR_ANNIVERSARY_LINKS: SidebarLink[] = [
+  { text: 'Summary', href: `${TEN_YEAR_ANNIVERSARY_URL}/#description` },
+  { text: 'Who should apply', href: `${TEN_YEAR_ANNIVERSARY_URL}/#who-should-apply` },
+  { text: 'Eligibility', href: `${TEN_YEAR_ANNIVERSARY_URL}/#eligibility` },
+  { text: 'How to apply', href: `${TEN_YEAR_ANNIVERSARY_URL}/#how-to-apply` },
+  { text: 'Selection criteria', href: `${TEN_YEAR_ANNIVERSARY_URL}/#selection-criteria` },
+  { text: 'Next steps', href: `${TEN_YEAR_ANNIVERSARY_URL}/#next-steps` },
+  { text: 'FAQ', href: `${TEN_YEAR_ANNIVERSARY_URL}/#faq` },
+  { text: 'Apply', href: `${TEN_YEAR_ANNIVERSARY_URL}/#apply` }
+];
+
 export const MERGE_DATA_CHALLENGE_URL = '/merge-data-challenge';
 export const SIDEBAR_MERGE_DATA_CHALLENGE_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${MERGE_DATA_CHALLENGE_URL}/#description` },
@@ -275,6 +287,7 @@ export const PSE_SPONSORSHIPS_APPLY_URL = '/pse-sponsorships/apply';
 export const PSE_APPLICATION_APPLY_URL = '/pse-grants/apply';
 export const EPF_APPLICATION_APPLY_URL = '/epf-application/apply';
 export const PECTRA_PGR_APPLY_URL = '/pectra-pgr/apply';
+export const TEN_YEAR_ANNIVERSARY_APPLY_URL = '/10-year-anniversary/apply';
 
 // grantee finance form
 export const GRANTEE_FINANCE_URL = '/applicants/grantee-finance';
@@ -293,6 +306,7 @@ export const PSE_SPONSORSHIPS_THANK_YOU_PAGE_URL = '/pse-sponsorships/thank-you'
 export const EPF_APPLICATION_THANK_YOU_PAGE_URL = '/epf-application/thank-you';
 export const PSE_APPLICATION_THANK_YOU_PAGE_URL = '/pse-grants/thank-you';
 export const PECTRA_PGR_THANK_YOU_PAGE_URL = '/pectra-pgr/thank-you';
+export const TEN_YEAR_ANNIVERSARY_THANK_YOU_PAGE_URL = '/10-year-anniversary/thank-you';
 
 // ethereum ecosystem
 export const ETHEREUM_ORG_URL = 'https://ethereum.org/';
@@ -394,6 +408,9 @@ export const ACCOUNT_ABSTRACTION_GRANTS_PREVIEW_URL =
 
 export const ACADEMIC_GRANTS_PREVIEW_URL =
   'https://esp.ethereum.foundation/images/academic-grants-hero.png';
+
+export const TEN_YEAR_ANNIVERSARY_PREVIEW_URL =
+  'https://esp.ethereum.foundation/images/10-year-anniversary.jpg';
 
 export const DATA_COLLECTION_GRANTS_PREVIEW_URL =
   'https://esp.ethereum.foundation/images/data-collection-proactive-grants.png';

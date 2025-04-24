@@ -15,3 +15,4 @@ export * from './ZKGrantsLayout';
 export * from './DataChallengeLayout';
 export * from './PectraPGRLayout';
 export * from './Layout';
+export * from './TenYearAnniversaryLayout';

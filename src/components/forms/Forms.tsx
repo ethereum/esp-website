@@ -12,7 +12,8 @@ import {
   PSESponsorshipsForm,
   PSEApplicationForm,
   AcademicGrantsForm,
-  DestinoDevconnectForm
+  DestinoDevconnectForm,
+  TenYearAnniversaryFrom
 } from './';
 
 import {
@@ -25,7 +26,8 @@ import {
   PROJECT_GRANTS_APPLY_URL,
   PSE_APPLICATION_APPLY_URL,
   PSE_SPONSORSHIPS_APPLY_URL,
-  SMALL_GRANTS_APPLY_URL
+  SMALL_GRANTS_APPLY_URL,
+  TEN_YEAR_ANNIVERSARY_APPLY_URL
 } from '../../constants';
 
 export const Forms: FC = () => {
@@ -81,6 +83,11 @@ export const Forms: FC = () => {
       {router.pathname === EPF_APPLICATION_APPLY_URL && (
         <Box px={{ md: 24, lg: 32, xl: 72 }}>
           <EPFApplicationForm />
+        </Box>
+      )}
+      {router.pathname === TEN_YEAR_ANNIVERSARY_APPLY_URL && (
+        <Box px={{ md: 24, lg: 32, xl: 72 }}>
+          <TenYearAnniversaryFrom />
         </Box>
       )}
     </Stack>
