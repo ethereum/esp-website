@@ -57,7 +57,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         LeadSource: 'Webform',
         RecordTypeId: process.env.SF_RECORD_TYPE_SPONSORSHIPS!,
         Category__c: 'Community Event',
-        Type_of_Event__c: 'Meet Up',
+        Type_of_Event__c: 'Meetup'
       };
 
       // Single record creation
