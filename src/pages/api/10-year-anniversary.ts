@@ -49,7 +49,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         Event_location__c: result.data.eventLocation,
         Proposed_Timeline__c: result.data.proposedTimeline,
         CurrencyIsoCode: result.data.fiatCurrency,
-        Sponsorship_Request__c: result.data.requestedAmount,
+        Sponsorship_Monetary_Request__c: result.data.requestedAmount,
         Referral_Source__c: result.data.referralSource,
         Referrals__c: result.data.referrals,
         Additional_Information__c: result.data.additionalInfo,
