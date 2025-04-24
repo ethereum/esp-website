@@ -26,7 +26,7 @@ export const TenYearAnniversarySchema = z.object({
     .refine(value => !containURL(value), 'Organization cannot contain a URL')
     .refine(value => value !== '', 'Organization is required'),
   teamProfile: stringFieldSchema('Profile', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
-  previousWork: stringFieldSchema('Previous Work', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
+  previousWork: stringFieldSchema('This field', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
   twitter: stringFieldSchema('Twitter Handle(s)', { max: 16 }).optional(),
   alternativeContact: stringFieldSchema('Telegram Username or Alternative Contact Info', {
     max: 150
