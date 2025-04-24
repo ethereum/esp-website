@@ -106,7 +106,7 @@ export interface SmallGrantsFormData extends CaptchaForm {
   eventPreviousWork: string; // SF API: Previous_Work__c
   sponsorshipLink: string; // SF API: Sponsorship_Link__c
   sponsorshipDetails: string; // SF API: Sponsorship_Details__c
-  sponsorshipTopics: string; // SF API: Sponsorship_Request__c
+  sponsorshipTopics: string; // SF API: Sponsorship_Topics__c
   eventType: EventType; // SF API: Type_of_Event__c
   eventFormat: EventFormat; // SF API: In_Person__c
   expectedAttendees: number; // SF API: Estimated_Number_of_Attendees__c
@@ -241,7 +241,7 @@ export interface PSESponsorshipsFormData extends CaptchaForm {
   eventPreviousWork: string; // SF API: Previous_Work__c
   eventLink: string; // SF API: Sponsorship_Link__c
   eventDescription: string; // SF API: Sponsorship_Details__c
-  eventTopics: string; // SF API: Sponsorship_Request__c
+  eventTopics: string; // SF API: Sponsorship_Topics__c
   referrals: string; // SF API: Referrals__c
   pseRationale: string; // SF API: PSE_Rationale__c
   eventType: EventType; // SF API: Type_of_Event__c
