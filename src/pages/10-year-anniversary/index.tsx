@@ -113,7 +113,6 @@ const TenYearAnniversary: NextPage = () => {
                     <ListItem>Ethereum focused</ListItem>
                     <ListItem>Free to attend</ListItem>
                     <ListItem>Open to anyone</ListItem>
-                    <ListItem>Not focused on investment, price or token sales</ListItem>
                     <ListItem>Scheduled for July 30, 2025</ListItem>
                   </List>
                 </section>
