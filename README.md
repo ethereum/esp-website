@@ -64,7 +64,7 @@ The following list describes the main elements of the project structure:
   - `hooks`: custom hooks.
   - `middlewares`: custom middlewares (required for captcha input validation).
   - `pages`: includes components that renders to pages and [NextJS API Routes](https://nextjs.org/docs/api-routes/introduction).
-  - `theme`: contains the [Chakra UI custom theme](https://chakra-ui.com/docs/styled-system/theming/customize-theme), organized in `foundations` and `components` for better scaling.
+  - `theme`: contains the [Chakra UI custom theme](https://chakra-ui.com/docs/theming/customization/overview), organized in `foundations` and `components` for better scaling.
   - `utils`
   - `constants.ts`: this is the _global_ constants file (we have another one for specific _form constants_), containing URLs and lists of elements we use across the site.
   - `global.css`: global stylesheet.
@@ -129,8 +129,8 @@ To learn more about Next.js, take a look at the following resources:
 
 ### Adding ChakraUI to a NextJS project
 
-[This](https://chakra-ui.com/guides/getting-started/nextjs-guide) is a very clear and step-by-step guide on it.
+[This](https://chakra-ui.com/docs/get-started/frameworks/next-app) is a very clear and step-by-step guide on it.
 
 ### Learning ChakraUI
 
-We recommend checking the [official docs](https://chakra-ui.com/docs/getting-started).
+We recommend checking the [official docs](https://chakra-ui.com/docs/get-started/installation).
