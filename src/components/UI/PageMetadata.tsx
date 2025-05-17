@@ -9,12 +9,14 @@ interface Props {
   title: string;
   description: string;
   image?: string;
+  noindex?: boolean;
 }
 
 export const PageMetadata: FC<Props> = ({
   title,
   description,
-  image = HOMEPAGE_HERO_MOBILE_URL
+  image = HOMEPAGE_HERO_MOBILE_URL,
+  noindex = false
 }) => {
   const { asPath } = useRouter();
   const fullTitle = `${title} | ${HEAD_TITLE}`;
@@ -25,6 +27,8 @@ export const PageMetadata: FC<Props> = ({
       <title>{fullTitle}</title>
       <link rel='canonical' href={canonicalUrl} />
 
+      {noindex && <meta name='robots' content='noindex' />}
+      
       <meta name='title' content={fullTitle} />
       <meta name='description' content={description} />
       <meta name='application-name' content='Ethereum Foundation ESP' />

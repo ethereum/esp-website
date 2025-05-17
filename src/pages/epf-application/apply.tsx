@@ -14,6 +14,7 @@ const EPFApply: NextPage = () => {
         title='Ethereum Protocol Fellowship Application'
         description='' // TODO: Add description
         image={EPF_APPLICATION_PREVIEW_URL}
+        noindex={true}
       />
 
       <Flex direction='column' px={{ sm: 5, md: 24, lg: 32, xl: 72 }} pb={5} gap={8}>
