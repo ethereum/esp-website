@@ -88,8 +88,6 @@ export const UploadFile: FC<UploadFileProps> = ({
     ...dropzoneProps
   });
 
-  console.log('files', files);
-
   return (
     <Controller
       name={id}
@@ -113,6 +111,7 @@ export const UploadFile: FC<UploadFileProps> = ({
               justifyContent='space-evenly'
               py={9}
               px={{ base: 6, md: 16 }}
+              mt={4}
             >
               <Grid templateColumns='150px 1fr'>
                 <GridItem alignSelf='center'>
@@ -120,23 +119,16 @@ export const UploadFile: FC<UploadFileProps> = ({
                     <Image src={uploadSVG} alt='Upload file' height={42} width={44} />
                   </Box>
                 </GridItem>
-                <GridItem mb={files?.length ? 4 : 0}>
-                  <Stack>
-                    <PageText fontSize='input' fontWeight={700} mb={2}>
-                      {title}
-                    </PageText>
-
-                    <PageText
-                      as='small'
-                      fontSize='helpText'
-                      color='brand.helpText'
-                      lineHeight='17px'
-                      display='inline-block'
-                      mb={2}
-                    >
-                      Click here or drag file to this box.
-                    </PageText>
-                  </Stack>
+                <GridItem mb={files?.length ? 4 : 0} display='flex' alignItems='center'>
+                  <PageText
+                    as='small'
+                    fontSize='helpText'
+                    color='brand.helpText'
+                    lineHeight='17px'
+                    display='inline-block'
+                  >
+                    Click here or drag {multiple ? 'files' : 'a file'} into this box.
+                  </PageText>
                 </GridItem>
                 <GridItem colStart={2}>
                   <Flex flexWrap='wrap' gap={2}>
