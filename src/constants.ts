@@ -377,6 +377,11 @@ export const HCAPTCHA_VERIFY_URL = 'https://hcaptcha.com/siteverify';
 // api
 export const DOWNLOAD_APPLICATION_URL = '/projectGrantsApplication.docx';
 
+// form validation
+export const MAX_TEXT_LENGTH = 255;
+export const MAX_TEXT_AREA_LENGTH = 2000;
+export const MIN_TEXT_AREA_LENGTH = 500;
+
 // proposal upload file size limit (4mb)
 export const MAX_PROPOSAL_FILE_SIZE = 4194304;
 

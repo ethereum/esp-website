@@ -26,6 +26,8 @@ import { api } from './api';
 import {
   ESP_EMAIL_ADDRESS,
   GRANTEE_FINANCE_THANK_YOU_PAGE_URL,
+  MAX_TEXT_AREA_LENGTH,
+  MAX_TEXT_LENGTH,
   TOAST_OPTIONS
 } from '../../constants';
 
@@ -585,7 +587,10 @@ export const GranteeFinanceForm: FC = () => {
                   h='72px'
                   mt={3}
                   resize='none'
-                  {...register('beneficiaryAddress', { required: receivesFiat, maxLength: 255 })}
+                  {...register('beneficiaryAddress', {
+                    required: receivesFiat,
+                    maxLength: MAX_TEXT_LENGTH
+                  })}
                 />
 
                 {errors?.beneficiaryAddress?.type === 'required' && (
@@ -598,7 +603,7 @@ export const GranteeFinanceForm: FC = () => {
                 {errors?.beneficiaryAddress?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Beneficiary address cannot exceed 255 characters.
+                      Beneficiary address cannot exceed {MAX_TEXT_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -667,7 +672,10 @@ export const GranteeFinanceForm: FC = () => {
                   h='72px'
                   mt={3}
                   resize='none'
-                  {...register('bankAddress', { required: receivesFiat, maxLength: 255 })}
+                  {...register('bankAddress', {
+                    required: receivesFiat,
+                    maxLength: MAX_TEXT_LENGTH
+                  })}
                 />
 
                 {errors?.bankAddress?.type === 'required' && (
@@ -680,7 +688,7 @@ export const GranteeFinanceForm: FC = () => {
                 {errors?.bankAddress?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Bank address cannot exceed 255 characters.
+                      Bank address cannot exceed {MAX_TEXT_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -850,7 +858,7 @@ export const GranteeFinanceForm: FC = () => {
                   h='150px'
                   mt={3}
                   {...register('notes', {
-                    maxLength: 2000
+                    maxLength: MAX_TEXT_AREA_LENGTH
                   })}
                 />
 
@@ -873,7 +881,7 @@ export const GranteeFinanceForm: FC = () => {
                 {errors?.notes?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Notes cannot exceed 2000 characters.
+                      Notes cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}

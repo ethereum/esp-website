@@ -42,6 +42,8 @@ import {
 } from './constants';
 import {
   MAX_PROPOSAL_FILE_SIZE,
+  MAX_TEXT_AREA_LENGTH,
+  MAX_TEXT_LENGTH,
   PROJECT_GRANTS_THANK_YOU_PAGE_URL,
   TOAST_OPTIONS
 } from '../../constants';
@@ -293,7 +295,7 @@ export const ProjectGrantsForm: FC = () => {
               mt={3}
               {...register('company', {
                 required: true,
-                maxLength: 255,
+                maxLength: MAX_TEXT_LENGTH,
                 validate: value => !containURL(value)
               })}
             />
@@ -308,7 +310,7 @@ export const ProjectGrantsForm: FC = () => {
             {errors?.company?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Organization name cannot exceed 255 characters.
+                  Organization name cannot exceed {MAX_TEXT_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -346,7 +348,7 @@ export const ProjectGrantsForm: FC = () => {
               mt={3}
               {...register('teamProfile', {
                 required: true,
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
@@ -360,7 +362,7 @@ export const ProjectGrantsForm: FC = () => {
             {errors?.teamProfile?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Team profile cannot exceed 2000 characters.
+                  Team profile cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -433,14 +435,14 @@ export const ProjectGrantsForm: FC = () => {
               pl={16}
               mt={3}
               {...register('website', {
-                maxLength: 255
+                maxLength: MAX_TEXT_LENGTH
               })}
             />
 
             {errors?.website?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Website cannot exceed 255 characters.
+                  Website cannot exceed {MAX_TEXT_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -470,7 +472,7 @@ export const ProjectGrantsForm: FC = () => {
               mt={3}
               {...register('projectName', {
                 required: true,
-                maxLength: 255
+                maxLength: MAX_TEXT_LENGTH
               })}
             />
 
@@ -484,7 +486,7 @@ export const ProjectGrantsForm: FC = () => {
             {errors?.projectName?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Project name cannot exceed 255 characters.
+                  Project name cannot exceed {MAX_TEXT_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -511,14 +513,14 @@ export const ProjectGrantsForm: FC = () => {
               fontSize='input'
               mt={3}
               {...register('projectRepo', {
-                maxLength: 255
+                maxLength: MAX_TEXT_LENGTH
               })}
             />
 
             {errors?.projectRepo?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Repo name cannot exceed 255 characters.
+                  Repo name cannot exceed {MAX_TEXT_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -591,7 +593,7 @@ export const ProjectGrantsForm: FC = () => {
               mt={3}
               {...register('projectDescription', {
                 required: true,
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
@@ -605,7 +607,7 @@ export const ProjectGrantsForm: FC = () => {
             {errors?.projectDescription?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Project description cannot exceed 2000 characters.
+                  Project description cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -635,7 +637,7 @@ export const ProjectGrantsForm: FC = () => {
               mt={3}
               {...register('progress', {
                 required: true,
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
@@ -649,7 +651,7 @@ export const ProjectGrantsForm: FC = () => {
             {errors?.progress?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed 2000 characters.
+                  Cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -678,7 +680,7 @@ export const ProjectGrantsForm: FC = () => {
               mt={3}
               {...register('problemBeingSolved', {
                 required: true,
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
@@ -692,7 +694,7 @@ export const ProjectGrantsForm: FC = () => {
             {errors?.problemBeingSolved?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed 2000 characters.
+                  Cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -722,7 +724,7 @@ export const ProjectGrantsForm: FC = () => {
               mt={3}
               {...register('proposedTimeline', {
                 required: true,
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
@@ -736,7 +738,7 @@ export const ProjectGrantsForm: FC = () => {
             {errors?.proposedTimeline?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed 2000 characters.
+                  Cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -868,7 +870,7 @@ export const ProjectGrantsForm: FC = () => {
               mt={3}
               {...register('whyIsProjectImportant', {
                 required: true,
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
@@ -882,7 +884,7 @@ export const ProjectGrantsForm: FC = () => {
             {errors?.whyIsProjectImportant?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed 2000 characters.
+                  Cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -912,7 +914,7 @@ export const ProjectGrantsForm: FC = () => {
               mt={3}
               {...register('howDoesYourProjectDiffer', {
                 required: true,
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
@@ -926,7 +928,7 @@ export const ProjectGrantsForm: FC = () => {
             {errors?.howDoesYourProjectDiffer?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed 2000 characters.
+                  Cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -957,7 +959,7 @@ export const ProjectGrantsForm: FC = () => {
               mt={3}
               {...register('isYourProjectPublicGood', {
                 required: true,
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
@@ -971,7 +973,7 @@ export const ProjectGrantsForm: FC = () => {
             {errors?.isYourProjectPublicGood?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed 2000 characters.
+                  Cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -1000,7 +1002,7 @@ export const ProjectGrantsForm: FC = () => {
               mt={3}
               {...register('isOpenSource', {
                 required: true,
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
@@ -1014,7 +1016,7 @@ export const ProjectGrantsForm: FC = () => {
             {errors?.isOpenSource?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed 2000 characters.
+                  Cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -1044,7 +1046,7 @@ export const ProjectGrantsForm: FC = () => {
               mt={3}
               {...register('whyEthereum', {
                 required: true,
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
@@ -1058,7 +1060,7 @@ export const ProjectGrantsForm: FC = () => {
             {errors?.whyEthereum?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed 2000 characters.
+                  Cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -1088,7 +1090,7 @@ export const ProjectGrantsForm: FC = () => {
               mt={3}
               {...register('challenges', {
                 required: true,
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
@@ -1102,7 +1104,7 @@ export const ProjectGrantsForm: FC = () => {
             {errors?.challenges?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed 2000 characters.
+                  Cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -1127,7 +1129,7 @@ export const ProjectGrantsForm: FC = () => {
               mt={3}
               {...register('sustainabilityPlan', {
                 required: true,
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
@@ -1141,7 +1143,7 @@ export const ProjectGrantsForm: FC = () => {
             {errors?.sustainabilityPlan?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed 2000 characters.
+                  Cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -1166,7 +1168,7 @@ export const ProjectGrantsForm: FC = () => {
               mt={3}
               {...register('otherProjects', {
                 required: true,
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
@@ -1180,7 +1182,7 @@ export const ProjectGrantsForm: FC = () => {
             {errors?.otherProjects?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed 2000 characters.
+                  Cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -1252,7 +1254,7 @@ export const ProjectGrantsForm: FC = () => {
               mt={3}
               {...register('otherFunding', {
                 required: true,
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
@@ -1266,7 +1268,7 @@ export const ProjectGrantsForm: FC = () => {
             {errors?.otherFunding?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed 2000 characters.
+                  Cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -1288,14 +1290,14 @@ export const ProjectGrantsForm: FC = () => {
               h='150px'
               mt={3}
               {...register('additionalInfo', {
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
             {errors?.additionalInfo?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Additional info cannot exceed 2000 characters.
+                  Additional info cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -1319,14 +1321,14 @@ export const ProjectGrantsForm: FC = () => {
                   color='brand.paragraph'
                   fontSize='input'
                   {...register('city', {
-                    maxLength: 255
+                    maxLength: MAX_TEXT_LENGTH
                   })}
                 />
 
                 {errors?.city?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      City name cannot exceed 255 characters.
+                      City name cannot exceed {MAX_TEXT_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -1469,14 +1471,14 @@ export const ProjectGrantsForm: FC = () => {
                   fontSize='input'
                   mt={3}
                   {...register('referralSourceIfOther', {
-                    maxLength: 255
+                    maxLength: MAX_TEXT_LENGTH
                   })}
                 />
 
                 {errors?.referralSourceIfOther?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Referral source cannot exceed 255 characters.
+                      Referral source cannot exceed {MAX_TEXT_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -1507,14 +1509,14 @@ export const ProjectGrantsForm: FC = () => {
               h='150px'
               mt={3}
               {...register('referrals', {
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
             {errors?.referrals?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Referral name cannot exceed 2000 characters.
+                  Referral name cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}

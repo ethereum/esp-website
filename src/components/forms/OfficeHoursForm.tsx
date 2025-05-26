@@ -34,7 +34,12 @@ import {
   COUNTRY_OPTIONS,
   TIMEZONE_OPTIONS
 } from './constants';
-import { OFFICE_HOURS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
+import {
+  OFFICE_HOURS_THANK_YOU_PAGE_URL,
+  TOAST_OPTIONS,
+  MAX_TEXT_AREA_LENGTH,
+  MAX_TEXT_LENGTH
+} from '../../constants';
 
 import { IndividualOrTeam, OfficeHoursFormData, OfficeHoursRequest } from '../../types';
 import { containURL } from '../../utils';
@@ -283,7 +288,7 @@ export const OfficeHoursForm: FC = () => {
                   mt={3}
                   {...register('company', {
                     required: isTeam,
-                    maxLength: 255,
+                    maxLength: MAX_TEXT_LENGTH,
                     validate: value => !containURL(value)
                   })}
                 />
@@ -298,7 +303,7 @@ export const OfficeHoursForm: FC = () => {
                 {errors?.company?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Organization name cannot exceed 255 characters.
+                      Organization name cannot exceed {MAX_TEXT_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -391,7 +396,7 @@ export const OfficeHoursForm: FC = () => {
                   mt={3}
                   {...register('projectName', {
                     required: isRequestingProjectFeedback,
-                    maxLength: 255
+                    maxLength: MAX_TEXT_LENGTH
                   })}
                 />
 
@@ -405,7 +410,7 @@ export const OfficeHoursForm: FC = () => {
                 {errors?.projectName?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Project name cannot exceed 255 characters.
+                      Project name cannot exceed {MAX_TEXT_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -438,7 +443,7 @@ export const OfficeHoursForm: FC = () => {
                   mt={3}
                   {...register('projectDescription', {
                     required: isRequestingProjectFeedback,
-                    maxLength: 2000
+                    maxLength: MAX_TEXT_AREA_LENGTH
                   })}
                 />
 
@@ -452,7 +457,7 @@ export const OfficeHoursForm: FC = () => {
                 {errors?.projectDescription?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Project description cannot exceed 2000 characters.
+                      Project description cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -485,7 +490,7 @@ export const OfficeHoursForm: FC = () => {
                   mt={3}
                   {...register('additionalInfo', {
                     required: isRequestingProjectFeedback,
-                    maxLength: 2000
+                    maxLength: MAX_TEXT_AREA_LENGTH
                   })}
                 />
 
@@ -499,7 +504,7 @@ export const OfficeHoursForm: FC = () => {
                 {errors?.additionalInfo?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Additional info cannot exceed 2000 characters.
+                      Additional info cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -612,7 +617,7 @@ export const OfficeHoursForm: FC = () => {
               h='150px'
               {...register('otherReasonForMeeting', {
                 required: true,
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
@@ -626,7 +631,7 @@ export const OfficeHoursForm: FC = () => {
             {errors?.otherReasonForMeeting?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Reason for meeting cannot exceed 2000 characters.
+                  Reason for meeting cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}

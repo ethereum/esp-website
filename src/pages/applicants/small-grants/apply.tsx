@@ -7,7 +7,7 @@ import {
   PageText,
   PrivacyPolicyAgreement
 } from '../../../components/UI';
-import { SMALL_GRANTS_URL } from '../../../constants';
+import { SMALL_GRANTS_URL, MAX_TEXT_AREA_LENGTH } from '../../../constants';
 
 const SmallGrantsApply: NextPage = () => {
   return (
@@ -28,8 +28,9 @@ const SmallGrantsApply: NextPage = () => {
               <PageText mb={6}>
                 This webform collects information about you and your project. Use the spaces below
                 to answer the following questions thoughtfully and thoroughly. Each field has a
-                limit of 2000 characters. The information you provide now is what we&apos;ll use to
-                determine whether to award a grant. If you have any questions, please visit the{' '}
+                limit of {MAX_TEXT_AREA_LENGTH} characters. The information you provide now is what
+                we&apos;ll use to determine whether to award a grant. If you have any questions,
+                please visit the{' '}
                 <Link fontWeight={700} color='brand.orange.100' href={`${SMALL_GRANTS_URL}/#faq`}>
                   Small Grants FAQ
                 </Link>{' '}

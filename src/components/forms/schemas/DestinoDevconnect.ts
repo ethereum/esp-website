@@ -2,9 +2,7 @@ import * as z from 'zod';
 
 import { stringFieldSchema } from './utils';
 import { containURL } from '../../../utils';
-
-const MAX_TEXT_LENGTH = 255;
-const MAX_TEXT_AREA_LENGTH = 2000;
+import { MAX_TEXT_LENGTH, MAX_TEXT_AREA_LENGTH } from '../../../constants';
 
 const baseSchema = z.object({
   // Contact Information

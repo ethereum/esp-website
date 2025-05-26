@@ -2,10 +2,7 @@ import * as z from 'zod';
 
 import { stringFieldSchema } from './utils';
 import { containURL } from '../../../utils';
-
-const MAX_TEXT_LENGTH = 255;
-const MAX_TEXT_AREA_LENGTH = 2000;
-const MIN_TEXT_AREA_LENGTH = 500;
+import { MAX_TEXT_LENGTH, MAX_TEXT_AREA_LENGTH, MIN_TEXT_AREA_LENGTH } from '../../../constants';
 
 export const EPFSchema = z.object({
   firstName: stringFieldSchema('First name', { min: 1, max: 40 }).refine(

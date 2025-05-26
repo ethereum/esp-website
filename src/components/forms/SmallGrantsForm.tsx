@@ -36,7 +36,12 @@ import {
   TEAM,
   FIAT_CURRENCY_OPTIONS
 } from './constants';
-import { SMALL_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
+import {
+  MAX_TEXT_AREA_LENGTH,
+  MAX_TEXT_LENGTH,
+  SMALL_GRANTS_THANK_YOU_PAGE_URL,
+  TOAST_OPTIONS
+} from '../../constants';
 
 import {
   IndividualOrTeam,
@@ -358,7 +363,7 @@ export const SmallGrantsForm: FC = () => {
               mt={3}
               {...register('individualOrTeamSummary', {
                 required: true,
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
@@ -372,7 +377,7 @@ export const SmallGrantsForm: FC = () => {
             {errors?.individualOrTeamSummary?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Team summary cannot exceed 2000 characters.
+                  Team summary cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -396,14 +401,14 @@ export const SmallGrantsForm: FC = () => {
                   color='brand.paragraph'
                   fontSize='input'
                   {...register('city', {
-                    maxLength: 255
+                    maxLength: MAX_TEXT_LENGTH
                   })}
                 />
 
                 {errors?.city?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      City name cannot exceed 255 characters.
+                      City name cannot exceed {MAX_TEXT_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -474,14 +479,14 @@ export const SmallGrantsForm: FC = () => {
               fontSize='input'
               pl={16}
               {...register('website', {
-                maxLength: 255
+                maxLength: MAX_TEXT_LENGTH
               })}
             />
 
             {errors?.website?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Website cannot exceed 255 characters.
+                  Website cannot exceed {MAX_TEXT_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -596,7 +601,7 @@ export const SmallGrantsForm: FC = () => {
                   mt={3}
                   {...register('projectName', {
                     required: isAProject,
-                    maxLength: 255
+                    maxLength: MAX_TEXT_LENGTH
                   })}
                 />
 
@@ -637,14 +642,14 @@ export const SmallGrantsForm: FC = () => {
                   fontSize='input'
                   mt={3}
                   {...register('projectRepo', {
-                    maxLength: 255
+                    maxLength: MAX_TEXT_LENGTH
                   })}
                 />
 
                 {errors?.projectRepo?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Repo name cannot exceed 255 characters.
+                      Repo name cannot exceed {MAX_TEXT_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -674,7 +679,7 @@ export const SmallGrantsForm: FC = () => {
                   mt={3}
                   {...register('projectPreviousWork', {
                     required: isAProject,
-                    maxLength: 2000
+                    maxLength: MAX_TEXT_AREA_LENGTH
                   })}
                 />
 
@@ -688,7 +693,7 @@ export const SmallGrantsForm: FC = () => {
                 {errors?.projectPreviousWork?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Previous work cannot exceed 2000 characters.
+                      Previous work cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -717,7 +722,7 @@ export const SmallGrantsForm: FC = () => {
                   mt={3}
                   {...register('projectDescription', {
                     required: isAProject,
-                    maxLength: 2000
+                    maxLength: MAX_TEXT_AREA_LENGTH
                   })}
                 />
 
@@ -731,7 +736,7 @@ export const SmallGrantsForm: FC = () => {
                 {errors?.projectDescription?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Project description cannot exceed 2000 characters.
+                      Project description cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -761,7 +766,7 @@ export const SmallGrantsForm: FC = () => {
                   mt={3}
                   {...register('problemBeingSolved', {
                     required: isAProject,
-                    maxLength: 2000
+                    maxLength: MAX_TEXT_AREA_LENGTH
                   })}
                 />
 
@@ -775,7 +780,7 @@ export const SmallGrantsForm: FC = () => {
                 {errors?.problemBeingSolved?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Problems being addressed cannot exceed 2000 characters.
+                      Problems being addressed cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -805,7 +810,7 @@ export const SmallGrantsForm: FC = () => {
                   mt={3}
                   {...register('whyIsProjectImportant', {
                     required: isAProject,
-                    maxLength: 2000
+                    maxLength: MAX_TEXT_AREA_LENGTH
                   })}
                 />
 
@@ -819,7 +824,7 @@ export const SmallGrantsForm: FC = () => {
                 {errors?.whyIsProjectImportant?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Project impact cannot exceed 2000 characters.
+                      Project impact cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -849,7 +854,7 @@ export const SmallGrantsForm: FC = () => {
                   mt={3}
                   {...register('howDoesYourProjectDiffer', {
                     required: isAProject,
-                    maxLength: 2000
+                    maxLength: MAX_TEXT_AREA_LENGTH
                   })}
                 />
 
@@ -863,7 +868,7 @@ export const SmallGrantsForm: FC = () => {
                 {errors?.howDoesYourProjectDiffer?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      How is your project different cannot exceed 2000 characters.
+                      How is your project different cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -998,7 +1003,7 @@ export const SmallGrantsForm: FC = () => {
                   mt={3}
                   {...register('proposedTimeline', {
                     required: isAProject,
-                    maxLength: 2000
+                    maxLength: MAX_TEXT_AREA_LENGTH
                   })}
                 />
 
@@ -1012,7 +1017,7 @@ export const SmallGrantsForm: FC = () => {
                 {errors?.proposedTimeline?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Proposed timeline cannot exceed 2000 characters.
+                      Proposed timeline cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -1041,7 +1046,7 @@ export const SmallGrantsForm: FC = () => {
                   mt={3}
                   {...register('isYourProjectPublicGood', {
                     required: isAProject,
-                    maxLength: 2000
+                    maxLength: MAX_TEXT_AREA_LENGTH
                   })}
                 />
 
@@ -1055,7 +1060,7 @@ export const SmallGrantsForm: FC = () => {
                 {errors?.isYourProjectPublicGood?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Is your project public good cannot exceed 2000 characters.
+                      Is your project public good cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -1084,7 +1089,7 @@ export const SmallGrantsForm: FC = () => {
                   mt={3}
                   {...register('isOpenSource', {
                     required: isAProject,
-                    maxLength: 2000
+                    maxLength: MAX_TEXT_AREA_LENGTH
                   })}
                 />
 
@@ -1098,7 +1103,7 @@ export const SmallGrantsForm: FC = () => {
                 {errors?.isOpenSource?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Is your project open source cannot exceed 2000 characters.
+                      Is your project open source cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -1128,7 +1133,7 @@ export const SmallGrantsForm: FC = () => {
                   mt={3}
                   {...register('sustainabilityPlan', {
                     required: isAProject,
-                    maxLength: 2000
+                    maxLength: MAX_TEXT_AREA_LENGTH
                   })}
                 />
 
@@ -1142,7 +1147,7 @@ export const SmallGrantsForm: FC = () => {
                 {errors?.sustainabilityPlan?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Sustainability plan cannot exceed 2000 characters.
+                      Sustainability plan cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -1165,7 +1170,7 @@ export const SmallGrantsForm: FC = () => {
                   h='150px'
                   {...register('otherProjects', {
                     required: isAProject,
-                    maxLength: 2000
+                    maxLength: MAX_TEXT_AREA_LENGTH
                   })}
                 />
 
@@ -1179,7 +1184,7 @@ export const SmallGrantsForm: FC = () => {
                 {errors?.otherProjects?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Other projects cannot exceed 2000 characters.
+                      Other projects cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -1264,7 +1269,7 @@ export const SmallGrantsForm: FC = () => {
                       h='150px'
                       {...register('progress', {
                         required: isAProject && repeatApplicant === 'Yes',
-                        maxLength: 2000
+                        maxLength: MAX_TEXT_AREA_LENGTH
                       })}
                     />
 
@@ -1278,7 +1283,7 @@ export const SmallGrantsForm: FC = () => {
                     {errors?.progress?.type === 'maxLength' && (
                       <Box mt={1}>
                         <PageText as='small' fontSize='helpText' color='red.500'>
-                          Progress cannot exceed 2000 characters.
+                          Progress cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                         </PageText>
                       </Box>
                     )}
@@ -1309,7 +1314,7 @@ export const SmallGrantsForm: FC = () => {
                   mt={3}
                   {...register('otherFunding', {
                     required: isAProject,
-                    maxLength: 2000
+                    maxLength: MAX_TEXT_AREA_LENGTH
                   })}
                 />
 
@@ -1323,7 +1328,7 @@ export const SmallGrantsForm: FC = () => {
                 {errors?.otherFunding?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Other funding data cannot exceed 2000 characters.
+                      Other funding data cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -1357,7 +1362,7 @@ export const SmallGrantsForm: FC = () => {
                   mt={3}
                   {...register('eventName', {
                     required: isAnEvent,
-                    maxLength: 255
+                    maxLength: MAX_TEXT_LENGTH
                   })}
                 />
 
@@ -1371,7 +1376,7 @@ export const SmallGrantsForm: FC = () => {
                 {errors?.eventName?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Event name cannot exceed 255 characters.
+                      Event name cannot exceed {MAX_TEXT_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -1436,7 +1441,7 @@ export const SmallGrantsForm: FC = () => {
                   mt={3}
                   {...register('eventPreviousWork', {
                     required: isAnEvent,
-                    maxLength: 2000
+                    maxLength: MAX_TEXT_AREA_LENGTH
                   })}
                 />
 
@@ -1450,7 +1455,7 @@ export const SmallGrantsForm: FC = () => {
                 {errors?.eventPreviousWork?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Previous work cannot exceed 2000 characters.
+                      Previous work cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -1479,14 +1484,14 @@ export const SmallGrantsForm: FC = () => {
                   fontSize='input'
                   mt={3}
                   {...register('sponsorshipLink', {
-                    maxLength: 255
+                    maxLength: MAX_TEXT_LENGTH
                   })}
                 />
 
                 {errors?.sponsorshipLink?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      URL cannot exceed 255 characters.
+                      URL cannot exceed {MAX_TEXT_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -1517,7 +1522,7 @@ export const SmallGrantsForm: FC = () => {
                   mt={3}
                   {...register('sponsorshipDetails', {
                     required: isAnEvent,
-                    maxLength: 2000
+                    maxLength: MAX_TEXT_AREA_LENGTH
                   })}
                 />
 
@@ -1531,7 +1536,7 @@ export const SmallGrantsForm: FC = () => {
                 {errors?.sponsorshipDetails?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Event details cannot exceed 2000 characters.
+                      Event details cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -1561,7 +1566,7 @@ export const SmallGrantsForm: FC = () => {
                   mt={3}
                   {...register('sponsorshipTopics', {
                     required: isAnEvent,
-                    maxLength: 2000
+                    maxLength: MAX_TEXT_AREA_LENGTH
                   })}
                 />
 
@@ -1575,7 +1580,7 @@ export const SmallGrantsForm: FC = () => {
                 {errors?.sponsorshipTopics?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Event topics cannot exceed 2000 characters.
+                      Event topics cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -1746,7 +1751,7 @@ export const SmallGrantsForm: FC = () => {
                     mt={3}
                     {...register('eventLocation', {
                       required: isAnEvent && isInPersonOrHybrid,
-                      maxLength: 255
+                      maxLength: MAX_TEXT_LENGTH
                     })}
                   />
 
@@ -1760,7 +1765,7 @@ export const SmallGrantsForm: FC = () => {
                   {errors?.eventLocation?.type === 'maxLength' && (
                     <Box mt={1}>
                       <PageText as='small' fontSize='helpText' color='red.500'>
-                        Event location cannot exceed 255 characters.
+                        Event location cannot exceed {MAX_TEXT_LENGTH} characters.
                       </PageText>
                     </Box>
                   )}
@@ -1790,7 +1795,7 @@ export const SmallGrantsForm: FC = () => {
                   mt={3}
                   {...register('targetAudience', {
                     required: isAnEvent,
-                    maxLength: 2000
+                    maxLength: MAX_TEXT_AREA_LENGTH
                   })}
                 />
 
@@ -1804,7 +1809,7 @@ export const SmallGrantsForm: FC = () => {
                 {errors?.targetAudience?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Target audience cannot exceed 2000 characters.
+                      Target audience cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -1834,7 +1839,7 @@ export const SmallGrantsForm: FC = () => {
                   mt={3}
                   {...register('confirmedSpeakers', {
                     required: isAnEvent,
-                    maxLength: 2000
+                    maxLength: MAX_TEXT_AREA_LENGTH
                   })}
                 />
 
@@ -1848,7 +1853,7 @@ export const SmallGrantsForm: FC = () => {
                 {errors?.confirmedSpeakers?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Confirmed speakers list cannot exceed 2000 characters.
+                      Confirmed speakers list cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -1871,7 +1876,7 @@ export const SmallGrantsForm: FC = () => {
                   h='150px'
                   {...register('confirmedSponsors', {
                     required: isAnEvent,
-                    maxLength: 2000
+                    maxLength: MAX_TEXT_AREA_LENGTH
                   })}
                 />
 
@@ -1885,7 +1890,7 @@ export const SmallGrantsForm: FC = () => {
                 {errors?.confirmedSponsors?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Confirmed sponsors list cannot exceed 2000 characters.
+                      Confirmed sponsors list cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -1915,7 +1920,7 @@ export const SmallGrantsForm: FC = () => {
                   mt={3}
                   {...register('eventBudgetBreakdown', {
                     required: isAnEvent,
-                    maxLength: 2000
+                    maxLength: MAX_TEXT_AREA_LENGTH
                   })}
                 />
 
@@ -1929,7 +1934,7 @@ export const SmallGrantsForm: FC = () => {
                 {errors?.eventBudgetBreakdown?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Budget breakdown cannot exceed 2000 characters.
+                      Budget breakdown cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -2099,14 +2104,14 @@ export const SmallGrantsForm: FC = () => {
               h='150px'
               mt={3}
               {...register('referrals', {
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
             {errors?.referrals?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Referrals info cannot exceed 2000 characters.
+                  Referrals info cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -2134,14 +2139,14 @@ export const SmallGrantsForm: FC = () => {
               h='150px'
               mt={3}
               {...register('additionalInfo', {
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
             {errors?.additionalInfo?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Additional info cannot exceed 2000 characters.
+                  Additional info cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
