@@ -24,7 +24,7 @@ import { useRouter } from 'next/router';
 
 import { DropdownIndicator, PageText } from '../UI';
 import { SubmitButton } from '../SubmitButton';
-import { Captcha } from '.';
+import { Captcha, Field } from '.';
 
 import { api } from './api';
 
@@ -82,11 +82,11 @@ export const ProjectGrantsForm: FC = () => {
 
       setSelectedFile(file);
 
-      setValue('uploadProposal', file, { shouldValidate: true });
+      setValue('uploadDocuments', file, { shouldValidate: true });
 
       toast({
         ...TOAST_OPTIONS,
-        title: 'Proposal uploaded!',
+        title: 'Document uploaded!',
         status: 'success'
       });
     },
@@ -1486,7 +1486,7 @@ export const ProjectGrantsForm: FC = () => {
             </Fade>
           </Box>
 
-          <FormControl id='referrals' mb={12}>
+          <FormControl id='referrals' mb={8}>
             <FormLabel htmlFor='referrals' mb={1}>
               <PageText fontSize='input'>
                 Did anyone recommend that you submit an application to the Ecosystem Support
@@ -1523,14 +1523,19 @@ export const ProjectGrantsForm: FC = () => {
           </FormControl>
 
           <Controller
-            name='uploadProposal'
+            name='uploadDocuments'
             control={control}
             rules={{ validate: file => (file ? file.size < MAX_PROPOSAL_FILE_SIZE : true) }}
             render={({ field: { onChange } }) => (
-              <FormControl id='upload-proposal' {...getRootProps()}>
+              <Field
+                id='upload-documents'
+                label='Upload Additional Documents'
+                helpText='Add any additional documents related to your proposal.'
+                {...getRootProps()}
+              >
                 <InputGroup>
                   <Input
-                    id='uploadProposal'
+                    id='uploadDocuments'
                     type='file'
                     role='button'
                     aria-label='File Upload'
@@ -1545,10 +1550,10 @@ export const ProjectGrantsForm: FC = () => {
                     justifyContent='space-evenly'
                     py={9}
                     px={{ base: 6, md: 16 }}
-                    mt={12}
+                    mt={4}
                     mb={12}
                   >
-                    <Grid>
+                    <Grid templateColumns='150px 1fr'>
                       <GridItem alignSelf='center'>
                         <Box mr={6} flexShrink={0}>
                           <Image src={uploadSVG} alt='Upload file' height={42} width={44} />
@@ -1556,9 +1561,9 @@ export const ProjectGrantsForm: FC = () => {
                       </GridItem>
                       <GridItem mb={selectedFile ? 4 : 0}>
                         <Stack>
-                          <FormLabel htmlFor='uploadProposal'>
+                          <FormLabel htmlFor='uploadDocuments'>
                             <PageText fontSize='input' fontWeight={700} mb={2}>
-                              Upload additional documents
+                              Upload documents
                             </PageText>
                           </FormLabel>
 
@@ -1570,13 +1575,11 @@ export const ProjectGrantsForm: FC = () => {
                             display='inline-block'
                             mb={2}
                           >
-                            Click here or drag file to this box. Use this space to upload any
-                            additional documents you&apos;d like to share. This is optional, but
-                            highly recommended.
+                            Click here or drag file to this box.
                           </PageText>
                         </Stack>
 
-                        {selectedFile && errors?.uploadProposal && (
+                        {selectedFile && errors?.uploadDocuments && (
                           <Box mt={1}>
                             <PageText as='small' fontSize='helpText' color='red.500'>
                               File size cannot exceed 4mb.
@@ -1606,7 +1609,7 @@ export const ProjectGrantsForm: FC = () => {
                     </Grid>
                   </Box>
                 </InputGroup>
-              </FormControl>
+              </Field>
             )}
           />
 

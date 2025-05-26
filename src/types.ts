@@ -63,7 +63,7 @@ export interface ProjectGrantsFormData extends CaptchaForm {
   howDidYouHearAboutESP: ReferralSource; // SF API: Referral_Source__c
   referralSourceIfOther: string; // SF API: Referral_Source_if_Other__c
   referrals: string; // SF API: Referrals__c
-  uploadProposal: File;
+  uploadDocuments: File;
 }
 
 export interface SmallGrantsFormData extends CaptchaForm {
@@ -116,6 +116,7 @@ export interface SmallGrantsFormData extends CaptchaForm {
   eventBudgetBreakdown: string; // SF API: Proposed_Timeline__c
   eventRequestedAmount: number; // SF API: Sponsorship_Monetary_Request__c
   eventLocation: string; // SF API: Event_Location__c
+  uploadDocuments: File;
 }
 
 export interface GranteeFinanceFormData extends CaptchaForm {
