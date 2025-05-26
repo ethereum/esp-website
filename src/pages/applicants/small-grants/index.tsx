@@ -55,13 +55,13 @@ const SmallGrants: NextPage = () => {
                 <PageSubheading mb={8}>Small Grants</PageSubheading>
 
                 <PageText mb={6}>
-                  Small grants, <strong>capped at $30,000</strong>, have a streamlined application
-                  and evaluation process to deliver a decision around two weeks after submission.
+                  Small grants, <strong>capped at $30,000</strong>, are designed as seed grants for
+                  projects with smaller scopes and timelines.
                 </PageText>
 
-                <PageText>
-                  A small grants application might be a good fit if <strong>any</strong> of the
-                  following apply to your project:
+                <PageText mb={6}>
+                  A small grants application might be a good fit if any of the following apply to
+                  your project:
                 </PageText>
 
                 <Stack mb={6}>
@@ -71,11 +71,10 @@ const SmallGrants: NextPage = () => {
                       working toward a proof of concept.
                     </ListItem>
                     <ListItem>
-                      Experimental: you have an idea that&apos;s a little “out there” but
+                      Experimental: you have an idea that&apos;s a little &quot;out there&quot; but
                       potentially impactful - and the only way to find out is to try it.
                     </ListItem>
-                    <ListItem>Time sensitive: you need a decision within a few weeks.</ListItem>
-                    <ListItem>Smaller in scope: funding request comes in under $30,000.</ListItem>
+                    <ListItem>Smaller in scope: funding request comes in under $30,000. </ListItem>
                     <ListItem>
                       Community event related: sponsorship requests for events focused on
                       Ethereum&apos;s technology and community can also be submitted via the small
