@@ -101,22 +101,17 @@ export const SmallGrantsForm: FC = () => {
 
       setSelectedFile(file);
 
-      setValue('uploadDocuments', file, { shouldValidate: true });
+      setValue('uploadProposal', file, { shouldValidate: true });
 
       toast({
         ...TOAST_OPTIONS,
-        title: 'Document uploaded!',
+        title: 'Proposal uploaded!',
         status: 'success'
       });
     },
     [setValue, toast]
   );
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
-
-  const handleRemoveFile = (e: MouseEvent<HTMLInputElement>) => {
-    e.stopPropagation();
-    setSelectedFile(null);
-  };
 
   const onSubmit = async (data: SmallGrantsFormData) => {
     return api.smallGrants
@@ -136,6 +131,11 @@ export const SmallGrantsForm: FC = () => {
         }
       })
       .catch(err => console.error('There has been a problem with your operation: ', err.message));
+  };
+
+  const handleRemoveFile = (e: MouseEvent<HTMLInputElement>) => {
+    e.stopPropagation();
+    setSelectedFile(null);
   };
 
   return (
@@ -2186,19 +2186,19 @@ export const SmallGrantsForm: FC = () => {
           </FormControl>
 
           <Controller
-            name='uploadDocuments'
+            name='uploadProposal'
             control={control}
             rules={{ validate: file => (file ? file.size < MAX_PROPOSAL_FILE_SIZE : true) }}
             render={({ field: { onChange } }) => (
               <Field
-                id='upload-documents'
-                label='Upload Additional Documents'
-                helpText='Add any additional documents related to your proposal.'
+                id='upload-proposal'
+                label='Upload an additional document'
+                helpText='Add any additional document related to your proposal.'
                 {...getRootProps()}
               >
                 <InputGroup>
                   <Input
-                    id='uploadDocuments'
+                    id='uploadProposal'
                     type='file'
                     role='button'
                     aria-label='File Upload'
@@ -2216,33 +2216,24 @@ export const SmallGrantsForm: FC = () => {
                     mt={4}
                     mb={12}
                   >
-                    <Grid templateColumns='150px 1fr'>
+                    <Grid gridTemplateColumns='150px 1fr'>
                       <GridItem alignSelf='center'>
                         <Box mr={6} flexShrink={0}>
                           <Image src={uploadSVG} alt='Upload file' height={42} width={44} />
                         </Box>
                       </GridItem>
-                      <GridItem mb={selectedFile ? 4 : 0}>
-                        <Stack>
-                          <FormLabel htmlFor='uploadDocuments'>
-                            <PageText fontSize='input' fontWeight={700} mb={2}>
-                              Upload documents
-                            </PageText>
-                          </FormLabel>
+                      <GridItem mb={selectedFile ? 4 : 0} display='flex' alignItems='center'>
+                        <PageText
+                          as='small'
+                          fontSize='helpText'
+                          color='brand.helpText'
+                          lineHeight='17px'
+                          display='inline-block'
+                        >
+                          Click here or drag file to this box.
+                        </PageText>
 
-                          <PageText
-                            as='small'
-                            fontSize='helpText'
-                            color='brand.helpText'
-                            lineHeight='17px'
-                            display='inline-block'
-                            mb={2}
-                          >
-                            Click here or drag file to this box.
-                          </PageText>
-                        </Stack>
-
-                        {selectedFile && errors?.uploadDocuments && (
+                        {selectedFile && errors?.uploadProposal && (
                           <Box mt={1}>
                             <PageText as='small' fontSize='helpText' color='red.500'>
                               File size cannot exceed 4mb.
