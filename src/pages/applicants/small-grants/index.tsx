@@ -98,32 +98,35 @@ const SmallGrants: NextPage = () => {
 
                 <Stack spacing={3}>
                   <ProcessStep title='Application'>
-                    Just fill out the online form! Make sure you have read and understood our scope
-                    and criteria below. After submitting, you&apos;ll receive a confirmation email
-                    within two business days.
+                    Complete the online form in full. Make sure you have read and understand the
+                    scope and eligibility criteria of the Ecosystem Support Program before
+                    submitting. Upon submission, you will receive a confirmation email.
                   </ProcessStep>
 
                   <ProcessStep title='Evaluation'>
-                    Every submission is read and considered by the ESP team. You most likely
-                    won&apos;t hear from us during the evaluation process for a small grant
-                    application, but you&apos;re always welcome to get in touch - just reply to the
-                    confirmation email if you have questions or think of anything else we should
-                    know.
+                    Every submission is read and considered by the Ecosystem Support Program team.
+                    Evaluation steps often include: consulting with internal advisors, an
+                    application interview to discuss the project proposal in detail, and potential
+                    budget negotiation or project rescoping.
                   </ProcessStep>
 
                   <ProcessStep title='Decision'>
-                    Unless we reach out to clarify anything on your application, you can expect to
-                    hear back from us with a final decision around two weeks after you submit it.
+                    You will be notified by email of funding decisions. If selected for funding, you
+                    will work with the Ecosystem Support Program team to set up a clear grant
+                    structure with milestone-based payments.
                   </ProcessStep>
 
                   <ProcessStep title='Activation'>
-                    We sign a grant agreement, complete KYC and send funds in fiat, ETH or DAI - and
-                    you get to work!
+                    All grant recipients of the Ethereum Foundation undergo an onboarding process
+                    that includes Know Your Customer (KYC) and signing a legal grant agreement. Once
+                    completed, the grant is considered Active and you can get to work. You will have
+                    a Grant Evaluator at the Ethereum Foundation who will check in with you
+                    regularly as you progress with your work.
                   </ProcessStep>
 
                   <ProcessStep title='Completion' isLastStep>
-                    Once you&apos;ve completed work on your grant, you&apos;ll share the results in
-                    a report, blog post or video.
+                    Once the scope of work is completed, you will share the results publicly in a
+                    report, post, or video.
                   </ProcessStep>
                 </Stack>
               </section>

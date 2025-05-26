@@ -92,33 +92,34 @@ const ProjectGrants: NextPage = () => {
                 <PageSection mb={6}>Process</PageSection>
 
                 <Stack spacing={3}>
-                  <ProcessStep title='Apply'>
-                    You&apos;ll need to fill out the form on the next page as well as a long-form
-                    application where you&apos;ll go into depth about your goals, motivations, plans
-                    and intended impact. Make sure you have read and understood our scope and
-                    criteria, and see below for advice on crafting a great application. After
-                    submitting, you&apos;ll receive a confirmation email within two business days.
+                  <ProcessStep title='Application'>
+                    Complete the online form in full. Make sure you have read and understand the
+                    scope and eligibility criteria of the Ecosystem Support Program before
+                    submitting. Upon submission, you will receive a confirmation email.
                   </ProcessStep>
 
-                  <ProcessStep title='Evaluate and refine'>
-                    If we determine that a project is in scope for ESP support, we&apos;ll begin a
-                    deeper evaluation of the project&apos;s technical approach, potential impact,
-                    risks, and other factors. Our next steps might include gathering more
-                    information, getting input from advisors, and working with you to refine or
-                    rescope the project proposal.
+                  <ProcessStep title='Evaluation'>
+                    Every submission is read and considered by the Ecosystem Support Program team.
+                    If we determine that a project is in scope for support, we&apos;ll begin a
+                    deeper evaluation of the project&apos;s technical approach. Evaluation steps
+                    often include: consulting with internal advisors, an application interview to
+                    discuss the project proposal in detail, and potential budget negotiation or
+                    project rescoping.
                   </ProcessStep>
 
                   <ProcessStep title='Decision'>
-                    Once the proposal is finalized, we&apos;ll make an allocation decision based on
-                    our assessment as well as input received from advisors. Decision time for a
-                    project grant application varies depending on scope and complexity, and may take
-                    a few months from when the application was first submitted.
+                    Once the proposal is finalized, we&apos;ll make a funding decision based on our
+                    assessment as well as input received from advisors. Decision time for a Project
+                    Grant application varies depending on scope and complexity, and may take a few
+                    months from when the application was first submitted.
                   </ProcessStep>
 
                   <ProcessStep title='Activation' isLastStep>
-                    We sign a grant agreement, complete KYC and send funds in fiat, ETH or DAI - and
-                    you get to work! You&apos;ll have a point of contact at the EF who will check in
-                    with you regularly as you progress with your work.
+                    All grant recipients of the Ethereum Foundation undergo an onboarding process
+                    that includes Know Your Customer (KYC) and signing a legal grant agreement. Once
+                    completed, the grant is considered Active and you can get to work. You will have
+                    a Grant Evaluator at the Ethereum Foundation who will check in with you
+                    regularly as you progress with your work.
                   </ProcessStep>
                 </Stack>
               </section>
