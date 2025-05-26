@@ -384,6 +384,7 @@ export const MIN_TEXT_AREA_LENGTH = 500;
 
 // proposal upload file size limit (4mb)
 export const MAX_PROPOSAL_FILE_SIZE = 4194304;
+export const MAX_PROPOSAL_FILE_COUNT = 5;
 
 // toast options
 export const TOAST_OPTIONS: UseToastOptions = {
