@@ -1,7 +1,7 @@
 import { FC, useCallback } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { FileRejection, useDropzone, DropzoneProps, ErrorCode } from 'react-dropzone';
-import { Box, Flex, Grid, GridItem, Input, InputGroup, Stack } from '@chakra-ui/react';
+import { Box, Flex, Grid, GridItem, Input, InputGroup } from '@chakra-ui/react';
 import Image from 'next/image';
 import prettyBytes from 'pretty-bytes';
 
@@ -29,13 +29,7 @@ export const UploadFile: FC<UploadFileProps> = ({
   },
   ...rest
 }) => {
-  const {
-    control,
-    setValue,
-    setError,
-    watch,
-    formState: { errors }
-  } = useFormContext();
+  const { control, setValue, setError, watch } = useFormContext();
 
   const files = watch(id) as File | File[] | null;
   const acceptedFiles = multiple ? (files as File[]) : [files as File].filter(Boolean);
@@ -87,7 +81,7 @@ export const UploadFile: FC<UploadFileProps> = ({
   };
 
   const { getRootProps, getInputProps } = useDropzone({
-    onDrop: handleDrop,
+    onDropAccepted: handleDrop,
     onDropRejected,
     multiple,
     ...dropzoneProps
@@ -129,7 +123,7 @@ export const UploadFile: FC<UploadFileProps> = ({
                 </GridItem>
                 <GridItem colStart={2}>
                   <Flex flexWrap='wrap' gap={2}>
-                    {acceptedFiles.map(file => (
+                    {acceptedFiles?.map(file => (
                       <Flex
                         key={file.name}
                         display='inline-flex'
