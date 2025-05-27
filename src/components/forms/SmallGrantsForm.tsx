@@ -2154,7 +2154,6 @@ export const SmallGrantsForm: FC = () => {
 
           <UploadFile
             id='uploadProposal'
-            title=''
             label='Upload an additional document'
             helpText='Add any additional document related to your proposal.'
             mb={8}

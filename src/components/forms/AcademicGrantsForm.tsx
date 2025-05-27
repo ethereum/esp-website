@@ -312,7 +312,6 @@ export const AcademicGrantsForm: FC = () => {
           <UploadFile
             id='proposalAttachment'
             label='Proposal'
-            title='Upload proposal'
             helpText={
               <>
                 Attach a PDF proposal for this scope of work. A proposal template is available{' '}

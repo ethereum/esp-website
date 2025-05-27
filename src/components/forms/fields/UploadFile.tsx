@@ -14,7 +14,6 @@ import { MAX_PROPOSAL_FILE_SIZE } from '../../../constants';
 import { MAX_PROPOSAL_FILE_COUNT } from '../../../constants';
 
 interface UploadFileProps extends Omit<FieldProps, 'children' | 'error' | 'onDrop'> {
-  title: string;
   multiple?: boolean;
   onDrop?: (acceptedFiles: File[]) => void;
   dropzoneProps?: DropzoneProps;
@@ -22,7 +21,6 @@ interface UploadFileProps extends Omit<FieldProps, 'children' | 'error' | 'onDro
 
 export const UploadFile: FC<UploadFileProps> = ({
   id = 'upload',
-  title,
   onDrop,
   multiple = false,
   dropzoneProps = {
@@ -31,16 +29,23 @@ export const UploadFile: FC<UploadFileProps> = ({
   },
   ...rest
 }) => {
-  const { control, setValue, setError, watch } = useFormContext();
+  const {
+    control,
+    setValue,
+    setError,
+    watch,
+    formState: { errors }
+  } = useFormContext();
 
-  const files = watch(id) as File[] | null;
+  const files = watch(id) as File | File[] | null;
+  const acceptedFiles = multiple ? (files as File[]) : [files as File].filter(Boolean);
 
   const handleDrop = useCallback(
     (files: File[]) => {
-      setValue(id, files, { shouldValidate: true });
+      setValue(id, multiple ? files : files[0], { shouldValidate: true });
       onDrop?.(files);
     },
-    [id, onDrop, setValue]
+    [id, multiple, onDrop, setValue]
   );
 
   const onDropRejected = useCallback(
@@ -77,12 +82,12 @@ export const UploadFile: FC<UploadFileProps> = ({
   );
 
   const removeFile = (file: File) => {
-    const newFiles = files?.filter(f => f.name !== file.name);
+    const newFiles = multiple ? (files as File[]).filter(f => f.name !== file.name) : null;
     setValue(id, newFiles, { shouldValidate: true });
   };
 
   const { getRootProps, getInputProps } = useDropzone({
-    onDropAccepted: handleDrop,
+    onDrop: handleDrop,
     onDropRejected,
     multiple,
     ...dropzoneProps
@@ -92,18 +97,10 @@ export const UploadFile: FC<UploadFileProps> = ({
     <Controller
       name={id}
       control={control}
-      render={({ field: { onChange }, fieldState: { error } }) => (
-        <Field id={id} error={error} {...rest} {...getRootProps()}>
-          <InputGroup>
-            <Input
-              id={id}
-              type='file'
-              role='button'
-              aria-label='File Upload'
-              hidden
-              onChange={e => onChange(multiple ? e.target.files : e.target.files?.[0] ?? null)}
-              {...getInputProps({ name: 'base64' })}
-            />
+      render={({ fieldState: { error } }) => (
+        <Field id={id} error={error} {...rest}>
+          <InputGroup {...getRootProps()}>
+            <Input id={id} aria-label='File Upload' {...getInputProps({ name: 'base64' })} />
             <Box
               w='100%'
               cursor='pointer'
@@ -119,7 +116,7 @@ export const UploadFile: FC<UploadFileProps> = ({
                     <Image src={uploadSVG} alt='Upload file' height={42} width={44} />
                   </Box>
                 </GridItem>
-                <GridItem mb={files?.length ? 4 : 0} display='flex' alignItems='center'>
+                <GridItem mb={files ? 4 : 0} display='flex' alignItems='center'>
                   <PageText
                     as='small'
                     fontSize='helpText'
@@ -132,7 +129,7 @@ export const UploadFile: FC<UploadFileProps> = ({
                 </GridItem>
                 <GridItem colStart={2}>
                   <Flex flexWrap='wrap' gap={2}>
-                    {files?.map(file => (
+                    {acceptedFiles.map(file => (
                       <Flex
                         key={file.name}
                         display='inline-flex'
