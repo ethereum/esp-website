@@ -5,10 +5,7 @@ import {
   Flex,
   FormControl,
   FormLabel,
-  Grid,
-  GridItem,
   Input,
-  InputGroup,
   Radio,
   RadioGroup,
   Stack,
@@ -16,15 +13,13 @@ import {
   useToast
 } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
-import { FC, MouseEvent, useCallback, useState } from 'react';
+import { FC, useState } from 'react';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 
-import uploadSVG from '../../../public/images/upload.svg';
 import { DropdownIndicator, PageText } from '../UI';
 import { SubmitButton } from '../SubmitButton';
-import { Captcha, Field } from '.';
+import { Captcha, UploadFile } from '.';
 
 import { api } from './api';
 
@@ -42,14 +37,12 @@ import {
   FIAT_CURRENCY_OPTIONS
 } from './constants';
 import {
-  MAX_PROPOSAL_FILE_SIZE,
   MAX_TEXT_AREA_LENGTH,
   MAX_TEXT_LENGTH,
   SMALL_GRANTS_THANK_YOU_PAGE_URL,
   TOAST_OPTIONS
 } from '../../constants';
 
-import { RemoveIcon } from '../UI/icons';
 import {
   IndividualOrTeam,
   ProjectCategory,
@@ -57,12 +50,10 @@ import {
   SmallGrantsFormData
 } from '../../types';
 import { containURL } from '../../utils';
-import { useDropzone } from 'react-dropzone';
 
 export const SmallGrantsForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
-  const [selectedFile, setSelectedFile] = useState<null | File>(null);
   const [individualOrTeam, setIndividualOrTeam] = useState<IndividualOrTeam>(INDIVIDUAL);
   const [repeatApplicant, setRepeatApplicant] = useState<RepeatApplicant>('No');
   // `unknown` comes from react-select required typings (https://stackoverflow.com/a/54370057)
@@ -78,7 +69,6 @@ export const SmallGrantsForm: FC = () => {
     handleSubmit,
     register,
     control,
-    setValue,
     formState: { errors, isValid, isSubmitting },
     reset,
     watch
@@ -94,24 +84,6 @@ export const SmallGrantsForm: FC = () => {
   const eventFormat = watch('eventFormat');
   const isInPersonOrHybrid =
     eventFormat?.value === 'In-person' || eventFormat?.value === 'Hybrid (both)';
-
-  const onDrop = useCallback(
-    (files: File[]) => {
-      const file = files[0];
-
-      setSelectedFile(file);
-
-      setValue('uploadProposal', file, { shouldValidate: true });
-
-      toast({
-        ...TOAST_OPTIONS,
-        title: 'Proposal uploaded!',
-        status: 'success'
-      });
-    },
-    [setValue, toast]
-  );
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   const onSubmit = async (data: SmallGrantsFormData) => {
     return api.smallGrants
@@ -131,11 +103,6 @@ export const SmallGrantsForm: FC = () => {
         }
       })
       .catch(err => console.error('There has been a problem with your operation: ', err.message));
-  };
-
-  const handleRemoveFile = (e: MouseEvent<HTMLInputElement>) => {
-    e.stopPropagation();
-    setSelectedFile(null);
   };
 
   return (
@@ -2185,86 +2152,12 @@ export const SmallGrantsForm: FC = () => {
             )}
           </FormControl>
 
-          <Controller
-            name='uploadProposal'
-            control={control}
-            rules={{ validate: file => (file ? file.size < MAX_PROPOSAL_FILE_SIZE : true) }}
-            render={({ field: { onChange } }) => (
-              <Field
-                id='upload-proposal'
-                label='Upload an additional document'
-                helpText='Add any additional document related to your proposal.'
-                {...getRootProps()}
-              >
-                <InputGroup>
-                  <Input
-                    id='uploadProposal'
-                    type='file'
-                    role='button'
-                    aria-label='File Upload'
-                    hidden
-                    onChange={onChange}
-                    {...getInputProps({ name: 'base64' })}
-                  />
-                  <Box
-                    w='100%'
-                    cursor='pointer'
-                    bgColor='brand.upload.bg'
-                    justifyContent='space-evenly'
-                    py={9}
-                    px={{ base: 6, md: 16 }}
-                    mt={4}
-                    mb={12}
-                  >
-                    <Grid gridTemplateColumns='150px 1fr'>
-                      <GridItem alignSelf='center'>
-                        <Box mr={6} flexShrink={0}>
-                          <Image src={uploadSVG} alt='Upload file' height={42} width={44} />
-                        </Box>
-                      </GridItem>
-                      <GridItem mb={selectedFile ? 4 : 0} display='flex' alignItems='center'>
-                        <PageText
-                          as='small'
-                          fontSize='helpText'
-                          color='brand.helpText'
-                          lineHeight='17px'
-                          display='inline-block'
-                        >
-                          Click here or drag file to this box.
-                        </PageText>
-
-                        {selectedFile && errors?.uploadProposal && (
-                          <Box mt={1}>
-                            <PageText as='small' fontSize='helpText' color='red.500'>
-                              File size cannot exceed 4mb.
-                            </PageText>
-                          </Box>
-                        )}
-                      </GridItem>
-                      <GridItem colStart={2}>
-                        {selectedFile && (
-                          <Flex
-                            display='inline-flex'
-                            alignItems='center'
-                            justifyContent='space-between'
-                            bg='brand.upload.filename'
-                            minW='175px'
-                            pl={4}
-                            py={2}
-                            borderRadius='5px'
-                          >
-                            <PageText mr={2}>{selectedFile.name}</PageText>
-                            <Flex role='button' onClick={handleRemoveFile} px={3}>
-                              <RemoveIcon />
-                            </Flex>
-                          </Flex>
-                        )}
-                      </GridItem>
-                    </Grid>
-                  </Box>
-                </InputGroup>
-              </Field>
-            )}
+          <UploadFile
+            id='uploadProposal'
+            title=''
+            label='Upload an additional document'
+            helpText='Add any additional document related to your proposal.'
+            mb={8}
           />
 
           <Stack display={isAnEvent ? 'block' : 'none'} mb={10}>
