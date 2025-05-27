@@ -2,11 +2,12 @@ import * as z from 'zod';
 
 import { stringFieldSchema } from './utils';
 import { containURL } from '../../../utils';
-import { MAX_PROPOSAL_FILE_SIZE } from '../../../constants';
-
-const MAX_TEXT_LENGTH = 255;
-const MAX_TEXT_AREA_LENGTH = 2000;
-const MIN_TEXT_AREA_LENGTH = 500;
+import {
+  MAX_PROPOSAL_FILE_SIZE,
+  MAX_TEXT_LENGTH,
+  MAX_TEXT_AREA_LENGTH,
+  MIN_TEXT_AREA_LENGTH
+} from '../../../constants';
 
 const ACCEPTED_FILE_TYPES = ['application/pdf'];
 

@@ -30,7 +30,12 @@ import {
   HYBRID_EVENT,
   IN_PERSON_EVENT
 } from './constants';
-import { DEVCON_GRANTS_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
+import {
+  DEVCON_GRANTS_THANK_YOU_PAGE_URL,
+  TOAST_OPTIONS,
+  MAX_TEXT_LENGTH,
+  MAX_TEXT_AREA_LENGTH
+} from '../../constants';
 
 import { DevconGrantsFormData, EventFormat } from '../../types';
 import { containURL } from '../../utils';
@@ -250,7 +255,7 @@ export const DevconGrantsForm: FC = () => {
               mt={3}
               {...register('company', {
                 required: true,
-                maxLength: 255,
+                maxLength: MAX_TEXT_LENGTH,
                 validate: value => !containURL(value)
               })}
             />
@@ -300,14 +305,14 @@ export const DevconGrantsForm: FC = () => {
               h='150px'
               mt={3}
               {...register('eventPreviousWork', {
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
             {errors?.eventPreviousWork?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Previous work cannot exceed 2000 characters.
+                  Previous work cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -340,7 +345,7 @@ export const DevconGrantsForm: FC = () => {
               mt={3}
               {...register('teamProfile', {
                 required: true,
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
@@ -354,7 +359,7 @@ export const DevconGrantsForm: FC = () => {
             {errors?.teamProfile?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Team profile cannot exceed 2000 characters.
+                  Team profile cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -384,7 +389,7 @@ export const DevconGrantsForm: FC = () => {
               mt={3}
               {...register('eventName', {
                 required: true,
-                maxLength: 255
+                maxLength: MAX_TEXT_LENGTH
               })}
             />
 
@@ -398,7 +403,7 @@ export const DevconGrantsForm: FC = () => {
             {errors?.eventName?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Event name cannot exceed 255 characters.
+                  Event name cannot exceed {MAX_TEXT_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -501,7 +506,7 @@ export const DevconGrantsForm: FC = () => {
               mt={3}
               {...register('sponsorshipDetails', {
                 required: true,
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
@@ -515,7 +520,7 @@ export const DevconGrantsForm: FC = () => {
             {errors?.sponsorshipDetails?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Event details cannot exceed 2000 characters.
+                  Event details cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -541,14 +546,14 @@ export const DevconGrantsForm: FC = () => {
               h='150px'
               mt={3}
               {...register('projectDescription', {
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
             {errors?.projectDescription?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Project description cannot exceed 2000 characters.
+                  Project description cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -641,14 +646,14 @@ export const DevconGrantsForm: FC = () => {
                   color='brand.paragraph'
                   fontSize='input'
                   {...register('city', {
-                    maxLength: 255
+                    maxLength: MAX_TEXT_LENGTH
                   })}
                 />
 
                 {errors?.city?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      City name cannot exceed 255 characters.
+                      City name cannot exceed {MAX_TEXT_LENGTH} characters.
                     </PageText>
                   </Box>
                 )}
@@ -759,7 +764,7 @@ export const DevconGrantsForm: FC = () => {
               mt={3}
               {...register('targetAudience', {
                 required: true,
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
@@ -773,7 +778,7 @@ export const DevconGrantsForm: FC = () => {
             {errors?.targetAudience?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Target audience cannot exceed 2000 characters.
+                  Target audience cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -802,14 +807,14 @@ export const DevconGrantsForm: FC = () => {
               h='150px'
               mt={3}
               {...register('confirmedSpeakers', {
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
             {errors?.confirmedSpeakers?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Confirmed speakers list cannot exceed 2000 characters.
+                  Confirmed speakers list cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -831,14 +836,14 @@ export const DevconGrantsForm: FC = () => {
               fontSize='input'
               h='150px'
               {...register('confirmedSponsors', {
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
             {errors?.confirmedSponsors?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Confirmed sponsors list cannot exceed 2000 characters.
+                  Confirmed sponsors list cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -870,7 +875,7 @@ export const DevconGrantsForm: FC = () => {
               mt={3}
               {...register('proposedTimeline', {
                 required: true,
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
@@ -884,7 +889,7 @@ export const DevconGrantsForm: FC = () => {
             {errors?.proposedTimeline?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Proposed timeline cannot exceed 2000 characters.
+                  Proposed timeline cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}
@@ -956,14 +961,14 @@ export const DevconGrantsForm: FC = () => {
               h='150px'
               mt={3}
               {...register('additionalInfo', {
-                maxLength: 2000
+                maxLength: MAX_TEXT_AREA_LENGTH
               })}
             />
 
             {errors?.additionalInfo?.type === 'maxLength' && (
               <Box mt={1}>
                 <PageText as='small' fontSize='helpText' color='red.500'>
-                  Additional info cannot exceed 2000 characters.
+                  Additional info cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
                 </PageText>
               </Box>
             )}

@@ -3,10 +3,7 @@ import * as z from 'zod';
 import { CUSTOM_BUILD, DAPPNODE } from '../constants';
 import { stringFieldSchema } from './utils';
 import { containURL } from '../../../utils';
-
-const MAX_TEXT_LENGTH = 255;
-const MAX_TEXT_AREA_LENGTH = 2000;
-const MIN_TEXT_AREA_LENGTH = 500;
+import { MAX_TEXT_LENGTH, MAX_TEXT_AREA_LENGTH, MIN_TEXT_AREA_LENGTH } from '../../../constants';
 
 export const RunANodeSchema = z
   .object({
