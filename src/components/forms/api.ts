@@ -6,7 +6,7 @@ import {
   OfficeHoursFormData,
   PSESponsorshipsFormData,
   ProjectGrantsFormData,
-  SmallGrantsFormData,
+  SmallGrantsFormData
 } from './../../types';
 
 import { createFormData, getWebsite } from '../../utils';
@@ -25,7 +25,7 @@ import {
   API_EPF_APPLICATION,
   API_PSE_APPLICATION,
   API_ACADEMIC_GRANTS,
-  API_TEN_YEAR_ANNIVERSARY,
+  API_TEN_YEAR_ANNIVERSARY
 } from './constants';
 
 import type { EPFData } from './schemas/EPFApplication';
@@ -86,21 +86,25 @@ export const api = {
   },
   smallGrants: {
     submit: (data: SmallGrantsFormData, isAProject: boolean) => {
+      const curatedData: { [key: string]: any } = {
+        ...data,
+        // Company is a required field in SF, we're using the Name as default value if no company provided
+        company: data.company === '' ? `${data.firstName} ${data.lastName}` : data.company,
+        country: data.country.value,
+        fiatCurrency: data.fiatCurrency.value,
+        website: getWebsite(data.website),
+        projectCategory: data.projectCategory.value,
+        repeatApplicant: data.repeatApplicant === 'Yes',
+        eventType: data.eventType.value,
+        eventFormat: data.eventFormat.value,
+        howDidYouHearAboutESP: data.howDidYouHearAboutESP.value
+      };
+
+      const formData = createFormData(curatedData);
+
       const smallGrantsRequestOptions: RequestInit = {
-        ...methodOptions,
-        body: JSON.stringify({
-          ...data,
-          // Company is a required field in SF, we're using the Name as default value if no company provided
-          company: data.company === '' ? `${data.firstName} ${data.lastName}` : data.company,
-          country: data.country.value,
-          fiatCurrency: data.fiatCurrency.value,
-          website: getWebsite(data.website),
-          projectCategory: data.projectCategory.value,
-          repeatApplicant: data.repeatApplicant === 'Yes',
-          eventType: data.eventType.value,
-          eventFormat: data.eventFormat.value,
-          howDidYouHearAboutESP: data.howDidYouHearAboutESP.value
-        })
+        method: 'POST',
+        body: formData
       };
 
       return fetch(

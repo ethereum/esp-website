@@ -5,10 +5,7 @@ import {
   Flex,
   FormControl,
   FormLabel,
-  Grid,
-  GridItem,
   Input,
-  InputGroup,
   Stack,
   Textarea,
   RadioGroup,
@@ -16,21 +13,17 @@ import {
   useToast
 } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
-import { FC, MouseEvent, useState, useCallback } from 'react';
-import { useDropzone } from 'react-dropzone';
+import { FC, useState } from 'react';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import { DropdownIndicator, PageText } from '../UI';
 import { SubmitButton } from '../SubmitButton';
-import { Captcha } from '.';
+import { Captcha, UploadFile } from '.';
 
 import { api } from './api';
 
 import { chakraStyles } from './selectStyles';
-
-import uploadSVG from '../../../public/images/upload.svg';
 
 import {
   COUNTRY_OPTIONS,
@@ -41,7 +34,6 @@ import {
   TIMEZONE_OPTIONS
 } from './constants';
 import {
-  MAX_PROPOSAL_FILE_SIZE,
   MAX_TEXT_AREA_LENGTH,
   MAX_TEXT_LENGTH,
   PROJECT_GRANTS_THANK_YOU_PAGE_URL,
@@ -49,13 +41,11 @@ import {
 } from '../../constants';
 
 import { ProjectGrantsFormData, ReferralSource } from '../../types';
-import { RemoveIcon } from '../UI/icons';
 import { containURL } from '../../utils';
 
 export const ProjectGrantsForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
-  const [selectedFile, setSelectedFile] = useState<null | File>(null);
 
   const [referralSource, setReferralSource] = useState<ReferralSource | unknown>({
     value: '',
@@ -71,28 +61,9 @@ export const ProjectGrantsForm: FC = () => {
     register,
     trigger,
     control,
-    setValue,
     formState: { errors, isValid, isSubmitting },
     reset
   } = methods;
-
-  const onDrop = useCallback(
-    (files: File[]) => {
-      const file = files[0];
-
-      setSelectedFile(file);
-
-      setValue('uploadProposal', file, { shouldValidate: true });
-
-      toast({
-        ...TOAST_OPTIONS,
-        title: 'Proposal uploaded!',
-        status: 'success'
-      });
-    },
-    [setValue, toast]
-  );
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   const onSubmit = async (data: ProjectGrantsFormData) => {
     return api.projectGrants
@@ -116,11 +87,6 @@ export const ProjectGrantsForm: FC = () => {
 
   const handleReferralSource = (source: ReferralSource) => {
     setReferralSource(source);
-  };
-
-  const handleRemoveFile = (e: MouseEvent<HTMLInputElement>) => {
-    e.stopPropagation();
-    setSelectedFile(null);
   };
 
   return (
@@ -1486,7 +1452,7 @@ export const ProjectGrantsForm: FC = () => {
             </Fade>
           </Box>
 
-          <FormControl id='referrals' mb={12}>
+          <FormControl id='referrals' mb={8}>
             <FormLabel htmlFor='referrals' mb={1}>
               <PageText fontSize='input'>
                 Did anyone recommend that you submit an application to the Ecosystem Support
@@ -1522,92 +1488,11 @@ export const ProjectGrantsForm: FC = () => {
             )}
           </FormControl>
 
-          <Controller
-            name='uploadProposal'
-            control={control}
-            rules={{ validate: file => (file ? file.size < MAX_PROPOSAL_FILE_SIZE : true) }}
-            render={({ field: { onChange } }) => (
-              <FormControl id='upload-proposal' {...getRootProps()}>
-                <InputGroup>
-                  <Input
-                    id='uploadProposal'
-                    type='file'
-                    role='button'
-                    aria-label='File Upload'
-                    hidden
-                    onChange={onChange}
-                    {...getInputProps({ name: 'base64' })}
-                  />
-                  <Box
-                    w='100%'
-                    cursor='pointer'
-                    bgColor='brand.upload.bg'
-                    justifyContent='space-evenly'
-                    py={9}
-                    px={{ base: 6, md: 16 }}
-                    mt={12}
-                    mb={12}
-                  >
-                    <Grid>
-                      <GridItem alignSelf='center'>
-                        <Box mr={6} flexShrink={0}>
-                          <Image src={uploadSVG} alt='Upload file' height={42} width={44} />
-                        </Box>
-                      </GridItem>
-                      <GridItem mb={selectedFile ? 4 : 0}>
-                        <Stack>
-                          <FormLabel htmlFor='uploadProposal'>
-                            <PageText fontSize='input' fontWeight={700} mb={2}>
-                              Upload additional documents
-                            </PageText>
-                          </FormLabel>
-
-                          <PageText
-                            as='small'
-                            fontSize='helpText'
-                            color='brand.helpText'
-                            lineHeight='17px'
-                            display='inline-block'
-                            mb={2}
-                          >
-                            Click here or drag file to this box. Use this space to upload any
-                            additional documents you&apos;d like to share. This is optional, but
-                            highly recommended.
-                          </PageText>
-                        </Stack>
-
-                        {selectedFile && errors?.uploadProposal && (
-                          <Box mt={1}>
-                            <PageText as='small' fontSize='helpText' color='red.500'>
-                              File size cannot exceed 4mb.
-                            </PageText>
-                          </Box>
-                        )}
-                      </GridItem>
-                      <GridItem colStart={2}>
-                        {selectedFile && (
-                          <Flex
-                            display='inline-flex'
-                            alignItems='center'
-                            justifyContent='space-between'
-                            bg='brand.upload.filename'
-                            minW='175px'
-                            pl={4}
-                            py={2}
-                            borderRadius='5px'
-                          >
-                            <PageText mr={2}>{selectedFile.name}</PageText>
-                            <Flex role='button' onClick={handleRemoveFile} px={3}>
-                              <RemoveIcon />
-                            </Flex>
-                          </Flex>
-                        )}
-                      </GridItem>
-                    </Grid>
-                  </Box>
-                </InputGroup>
-              </FormControl>
-            )}
+          <UploadFile
+            id='proposalAttachment'
+            label='Upload an additional document'
+            helpText='Add any additional document related to your proposal.'
+            mb={8}
           />
 
           <Center mb={12}>

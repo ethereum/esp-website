@@ -116,6 +116,7 @@ export interface SmallGrantsFormData extends CaptchaForm {
   eventBudgetBreakdown: string; // SF API: Proposed_Timeline__c
   eventRequestedAmount: number; // SF API: Sponsorship_Monetary_Request__c
   eventLocation: string; // SF API: Event_Location__c
+  uploadProposal: File;
 }
 
 export interface GranteeFinanceFormData extends CaptchaForm {

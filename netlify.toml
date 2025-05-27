@@ -2,9 +2,6 @@
   command = "yarn build"
   publish = ".next"
 
-[build.environment]
-  NODE_VERSION = "18.17.0"
-
 [[headers]]
   for = "/*"
   [headers.values]

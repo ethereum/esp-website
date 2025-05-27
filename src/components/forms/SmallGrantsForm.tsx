@@ -19,7 +19,7 @@ import { useRouter } from 'next/router';
 
 import { DropdownIndicator, PageText } from '../UI';
 import { SubmitButton } from '../SubmitButton';
-import { Captcha } from '.';
+import { Captcha, UploadFile } from '.';
 
 import { api } from './api';
 
@@ -2151,6 +2151,13 @@ export const SmallGrantsForm: FC = () => {
               </Box>
             )}
           </FormControl>
+
+          <UploadFile
+            id='uploadProposal'
+            label='Upload an additional document'
+            helpText='Add any additional document related to your proposal.'
+            mb={8}
+          />
 
           <Stack display={isAnEvent ? 'block' : 'none'} mb={10}>
             <PageText fontSize='input' fontWeight={700} mb={-1}>
