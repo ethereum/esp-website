@@ -18,7 +18,6 @@ import {
   FIAT_CURRENCY_OPTIONS,
   TIMEZONE_OPTIONS,
   DESTINO_DEVCONNECT_CATEGORY_OPTIONS,
-  EVENT_TYPE_OPTIONS,
   DESTINO_DEVCONNECT_EVENT_TYPE_OPTIONS,
   DESTINO_DEVCONNECT_REFERRAL_SOURCE_OPTIONS,
   EVENT_FORMAT_OPTIONS
@@ -53,6 +52,7 @@ export const DestinoDevconnectForm: FC = () => {
   const category = watch('category');
   const isCommunityEvent = category === 'Community Event';
   const isCommunityInitiative = category === 'Community Initiative';
+  const isNonFinancial = category === 'Non-Financial Support';
   const isTeam = watch('applyingAs') === 'A team';
   const isInPerson = watch('inPerson') === 'In-person';
 
@@ -76,7 +76,7 @@ export const DestinoDevconnectForm: FC = () => {
             status: 'error'
           });
           res.text().then(text => {
-             console.error('API Error Response:', text);
+            console.error('API Error Response:', text);
           });
           throw new Error('Network response was not OK');
         }
@@ -254,7 +254,7 @@ export const DestinoDevconnectForm: FC = () => {
               </>
             )}
 
-            {isCommunityEvent && (
+            {(isCommunityEvent || isNonFinancial) && (
               <>
                 <PageSection>Event Details</PageSection>
 
@@ -340,33 +340,37 @@ export const DestinoDevconnectForm: FC = () => {
               </>
             )}
 
-            <PageSection>Requested Amount</PageSection>
+            {!isNonFinancial && (
+              <>
+                <PageSection>Requested Amount</PageSection>
 
-            <Flex direction={{ base: 'column', md: 'row' }} gap={8}>
-              <Controller
-                name='fiatCurrency'
-                control={control}
-                render={({ field: { value, onChange }, fieldState: { error } }) => (
-                  <Field id='fiatCurrency' label='Fiat Currency' error={error} isRequired>
-                    <Select
-                      id='fiatCurrency'
-                      value={FIAT_CURRENCY_OPTIONS.find(option => option.value === value)}
-                      options={FIAT_CURRENCY_OPTIONS}
-                      onChange={option => {
-                        onChange((option as (typeof FIAT_CURRENCY_OPTIONS)[number]).value);
-                      }}
-                      components={{ DropdownIndicator }}
-                      placeholder='Select'
-                      closeMenuOnSelect={true}
-                      selectedOptionColor='brand.option'
-                      chakraStyles={chakraStyles}
-                    />
-                  </Field>
-                )}
-              />
+                <Flex direction={{ base: 'column', md: 'row' }} gap={8}>
+                  <Controller
+                    name='fiatCurrency'
+                    control={control}
+                    render={({ field: { value, onChange }, fieldState: { error } }) => (
+                      <Field id='fiatCurrency' label='Fiat Currency' error={error} isRequired>
+                        <Select
+                          id='fiatCurrency'
+                          value={FIAT_CURRENCY_OPTIONS.find(option => option.value === value)}
+                          options={FIAT_CURRENCY_OPTIONS}
+                          onChange={option => {
+                            onChange((option as (typeof FIAT_CURRENCY_OPTIONS)[number]).value);
+                          }}
+                          components={{ DropdownIndicator }}
+                          placeholder='Select'
+                          closeMenuOnSelect={true}
+                          selectedOptionColor='brand.option'
+                          chakraStyles={chakraStyles}
+                        />
+                      </Field>
+                    )}
+                  />
 
-              <TextField id='requestedAmount' label='Amount' isRequired />
-            </Flex>
+                  <TextField id='requestedAmount' label='Amount' isRequired />
+                </Flex>
+              </>
+            )}
 
             <PageSection>Additional Details</PageSection>
 
@@ -397,6 +401,11 @@ export const DestinoDevconnectForm: FC = () => {
                   />
                 </Field>
               )}
+            />
+
+            <TextAreaField
+              id='futureEvents'
+              label='Do you plan on organizing more Destino Devconnect events or initiatives in the future? If yes, please share more details about them'
             />
 
             <TextAreaField
@@ -441,7 +450,10 @@ export const DestinoDevconnectForm: FC = () => {
                   id='canTheEFReachOut'
                   label='Have you applied for or received other funding?'
                 >
-                  <RadioGroup onChange={value => onChange(value === 'true')} value={value ? 'true' : 'false'}>
+                  <RadioGroup
+                    onChange={value => onChange(value === 'true')}
+                    value={value ? 'true' : 'false'}
+                  >
                     <Stack direction='row' spacing={4}>
                       <Radio value='true'>
                         <PageText fontSize='input'>Yes</PageText>
