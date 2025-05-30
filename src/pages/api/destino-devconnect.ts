@@ -49,8 +49,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         Time_Zone__c: result.data.timezone,
         Category__c: result.data.category,
         Proposed_Timeline__c: result.data.proposedTimeline,
-        CurrencyIsoCode: result.data.fiatCurrency,
-        Requested_Amount__c: result.data.requestedAmount,
         Referral_Source__c: result.data.referralSource,
         Referrals__c: result.data.referrals,
         Additional_Information__c: result.data.additionalInfo,
@@ -77,7 +75,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
           Is_it_a_Public_Good__c: result.data.isItPublicGood,
           Is_it_Open_Source__c: result.data.isItOpenSource,
           Sustainability_Plan__c: result.data.sustainabilityPlan,
-          Other_Projects__c: result.data.otherProjects
+          Other_Projects__c: result.data.otherProjects,
+          CurrencyIsoCode: result.data.fiatCurrency,
+          Requested_Amount__c: result.data.requestedAmount
         };
       }
 
@@ -97,7 +97,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
           Estimated_Number_of_Attendees__c: result.data.estimatedAttendees,
           Target_Audience__c: result.data.targetAudience,
           Confirmed_Speakers__c: result.data.confirmedSpeakers,
-          Confirmed_Sponsors__c: result.data.confirmedSponsors
+          Confirmed_Sponsors__c: result.data.confirmedSponsors,
+          CurrencyIsoCode: result.data.fiatCurrency,
+          Requested_Amount__c: result.data.requestedAmount
         };
       }
 

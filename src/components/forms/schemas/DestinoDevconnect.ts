@@ -31,12 +31,6 @@ const baseSchema = z.object({
     max: MAX_TEXT_AREA_LENGTH
   }),
 
-  // Requested Amount
-  fiatCurrency: stringFieldSchema('Fiat Currency', { min: 1 }),
-  requestedAmount: z.coerce
-    .number({ invalid_type_error: 'Amount must be a number' })
-    .min(1, 'Amount must be at least 1'),
-
   // Additional Details
   referralSource: stringFieldSchema('How did you hear about this grant round?', { min: 1 }),
   referrals: stringFieldSchema(
@@ -55,6 +49,12 @@ const baseSchema = z.object({
 
 const communityInitiativeSchema = baseSchema.extend({
   category: z.literal('Community Initiative'),
+
+  // Requested Amount
+  fiatCurrency: stringFieldSchema('Fiat Currency', { min: 1 }),
+  requestedAmount: z.coerce
+    .number({ invalid_type_error: 'Amount must be a number' })
+    .min(1, 'Amount must be at least 1'),
 
   // Project Details (if Community Initiative)
   projectName: stringFieldSchema('Project name', { min: 1, max: MAX_TEXT_LENGTH }),
@@ -102,7 +102,42 @@ const communityInitiativeSchema = baseSchema.extend({
 const communityEventSchema = baseSchema.extend({
   category: z.literal('Community Event'),
 
+  // Requested Amount
+  fiatCurrency: stringFieldSchema('Fiat Currency', { min: 1 }),
+  requestedAmount: z.coerce
+    .number({ invalid_type_error: 'Amount must be a number' })
+    .min(1, 'Amount must be at least 1'),
+
   // Event Details (if Community Event)
+  eventName: stringFieldSchema('Event Name', { min: 1, max: MAX_TEXT_LENGTH }),
+  eventDate: z.string(),
+  eventLink: z.string(),
+  eventDescription: stringFieldSchema('Event Summary', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
+  eventTopics: stringFieldSchema('Event topics', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
+  typeOfEvent: stringFieldSchema('What type of event is this?', {
+    min: 1,
+    max: MAX_TEXT_LENGTH
+  }),
+  inPerson: stringFieldSchema('Is your event in-person or online?', { min: 1 }),
+  eventLocation: z.string().optional(),
+  estimatedAttendees: z.coerce
+    .number({
+      invalid_type_error: 'Estimated attendees must be a number'
+    })
+    .min(1, 'Estimated attendees must be at least 1'),
+  targetAudience: stringFieldSchema('Target audience', { min: 1, max: MAX_TEXT_LENGTH }),
+  confirmedSpeakers: stringFieldSchema('Confirmed speakers', {
+    max: MAX_TEXT_AREA_LENGTH
+  }).optional(),
+  confirmedSponsors: stringFieldSchema('Confirmed sponsors', {
+    max: MAX_TEXT_AREA_LENGTH
+  }).optional()
+});
+
+const nonFinancialSchema = baseSchema.extend({
+  category: z.literal('Non-Financial Support'),
+
+  // Non-Financial Support Details
   eventName: stringFieldSchema('Event Name', { min: 1, max: MAX_TEXT_LENGTH }),
   eventDate: z.string(),
   eventLink: z.string(),
@@ -131,7 +166,7 @@ const communityEventSchema = baseSchema.extend({
 // Define the union with explicit discriminator and add team validation
 const rawSchema = z.discriminatedUnion(
   'category',
-  [communityEventSchema, communityInitiativeSchema],
+  [communityEventSchema, communityInitiativeSchema, nonFinancialSchema],
   {
     errorMap: () => ({
       message: 'Category is required'
