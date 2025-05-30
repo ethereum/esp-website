@@ -404,6 +404,11 @@ export const DestinoDevconnectForm: FC = () => {
             />
 
             <TextAreaField
+              id='futureEvents'
+              label='Do you plan on organizing more Destino Devconnect events or initiatives in the future? If yes, please share more details about them'
+            />
+
+            <TextAreaField
               id='referrals'
               label='Did anyone recommend that you submit an application to the Destino Devconnect grants?'
             />

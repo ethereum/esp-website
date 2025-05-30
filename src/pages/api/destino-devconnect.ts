@@ -51,6 +51,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
         Proposed_Timeline__c: result.data.proposedTimeline,
         Referral_Source__c: result.data.referralSource,
         Referrals__c: result.data.referrals,
+        Other_Projects__c: result.data.futureEvents,
         Additional_Information__c: result.data.additionalInfo,
         Repeat_Applicant__c: result.data.repeatApplicant,
         Can_the_EF_reach_out__c: result.data.canTheEFReachOut,
@@ -100,6 +101,26 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
           Confirmed_Sponsors__c: result.data.confirmedSponsors,
           CurrencyIsoCode: result.data.fiatCurrency,
           Requested_Amount__c: result.data.requestedAmount
+        };
+      }
+
+      if (result.data.category === 'Non-Financial Support') {
+        const eventDate = result.data.eventDate === '' ? undefined : result.data.eventDate;
+
+        application = {
+          ...baseApplication,
+          Project_Name__c: result.data.eventName,
+          Sponsorship_Date__c: eventDate,
+          Sponsorship_Link__c: result.data.eventLink,
+          Sponsorship_Details__c: result.data.eventDescription,
+          Sponsorship_Topics__c: result.data.eventTopics,
+          Type_of_Event__c: result.data.typeOfEvent,
+          In_Person__c: result.data.inPerson,
+          Event_Location__c: result.data.eventLocation,
+          Estimated_Number_of_Attendees__c: result.data.estimatedAttendees,
+          Target_Audience__c: result.data.targetAudience,
+          Confirmed_Speakers__c: result.data.confirmedSpeakers,
+          Confirmed_Sponsors__c: result.data.confirmedSponsors
         };
       }
 

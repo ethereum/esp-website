@@ -39,6 +39,9 @@ const baseSchema = z.object({
       max: MAX_TEXT_AREA_LENGTH
     }
   ).optional(),
+  futureEvents: stringFieldSchema('Field', {
+    max: MAX_TEXT_AREA_LENGTH
+  }).optional(),
   additionalInfo: stringFieldSchema('Do you have any questions about this grant round?', {
     max: MAX_TEXT_AREA_LENGTH
   }).optional(),
