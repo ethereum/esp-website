@@ -88,12 +88,13 @@ export const EPFApplicationForm: FC = () => {
               <TextField
                 id='firstName'
                 label='First name'
+                maxLength={40}
                 isRequired
                 mr={{ md: 12 }}
                 mb={{ base: 8, md: 0 }}
               />
 
-              <TextField id='lastName' label='Last name' isRequired />
+              <TextField id='lastName' label='Last name' maxLength={80} isRequired />
             </Flex>
 
             {!errors?.firstName && !errors?.lastName && (
@@ -247,7 +248,7 @@ export const EPFApplicationForm: FC = () => {
             )}
           />
 
-          <TextField id='requestedAmount' label='Budget request' isRequired />
+          <TextField id='requestedAmount' label='Budget request' hideCharCounter isRequired />
 
           <TextAreaField
             id='proposedTimeline'
@@ -286,6 +287,7 @@ export const EPFApplicationForm: FC = () => {
             id='alternativeContact'
             label='Telegram username or alternative contact info'
             helpText="In regards to your submission, we'll get in touch with you via email by default. As backup, if you'd like to provide alternative contact info, you may do so. Not required"
+            maxLength={150}
           />
 
           <Controller
