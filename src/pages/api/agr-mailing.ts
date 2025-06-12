@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { AGRMailingSchema } from '../../components/AGRMailingForm';
 
 const LISTMONK_API_URL = 'https://listmonk.ethereum.org';
-const LISTMONK_LIST_ID = 8;
+const LISTMONK_LIST_ID = 5;
 
 const apiUsername = process.env.LISTMONK_API_USERNAME;
 const accessToken = process.env.LISTMONK_API_ACCESS_TOKEN;
@@ -39,7 +39,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (!response.ok && data?.message?.toLowerCase().includes('already exists')) {
       // If already exists, continue to fetch the subscriber ID
     } else if (!response.ok) {
-      return res.status(500).json({ message: data.message || 'Error adding contact' });
+      console.error(data.message);
+      return res.status(500).json({ message: 'Error adding contact' });
     }
 
     // 2. Get the subscriber's ID by email
@@ -54,6 +55,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const getData = await getRes.json();
     const subscriber = getData.data?.results?.[0];
     if (!subscriber || !subscriber.id) {
+      console.error(getData.message);
       return res.status(500).json({ message: 'Could not find subscriber after creation.' });
     }
 
@@ -74,9 +76,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const putData = await putRes.json();
 
     if (!putRes.ok || putData.data !== true) {
-      return res
-        .status(500)
-        .json({ message: putData.message || 'Failed to add subscriber to the list.' });
+      console.error(putData.message);
+      return res.status(500).json({ message: 'Failed to add subscriber to the list.' });
     }
 
     res.status(200).json({ message: 'Contact added successfully' });
