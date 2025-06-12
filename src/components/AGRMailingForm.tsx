@@ -14,7 +14,6 @@ import {
   VStack,
   useToast
 } from '@chakra-ui/react';
-import { PageText } from './UI';
 
 export const AGRMailingSchema = z.object({
   email: z.string().email({ message: 'Invalid email address' }),
