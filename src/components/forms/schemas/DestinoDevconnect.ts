@@ -163,7 +163,11 @@ const nonFinancialSchema = baseSchema.extend({
   }).optional(),
   confirmedSponsors: stringFieldSchema('Confirmed sponsors', {
     max: MAX_TEXT_AREA_LENGTH
-  }).optional()
+  }).optional(),
+  nonFinancialSupportRequest: stringFieldSchema('Non-financial support request', {
+    min: 1,
+    max: MAX_TEXT_AREA_LENGTH
+  })
 });
 
 // Define the union with explicit discriminator and add team validation

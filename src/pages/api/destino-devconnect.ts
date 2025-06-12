@@ -120,7 +120,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
           Estimated_Number_of_Attendees__c: result.data.estimatedAttendees,
           Target_Audience__c: result.data.targetAudience,
           Confirmed_Speakers__c: result.data.confirmedSpeakers,
-          Confirmed_Sponsors__c: result.data.confirmedSponsors
+          Confirmed_Sponsors__c: result.data.confirmedSponsors,
+          Additional_support_requests__c: result.data.nonFinancialSupportRequest
         };
       }
 

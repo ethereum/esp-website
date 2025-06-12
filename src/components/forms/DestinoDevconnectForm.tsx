@@ -206,6 +206,15 @@ export const DestinoDevconnectForm: FC = () => {
               )}
             />
 
+            {isNonFinancial && (
+              <TextAreaField
+                id='nonFinancialSupportRequest'
+                label='Non-financial support request'
+                helpText='How are you hoping we can help? Please provide details of your non-financial support request.'
+                isRequired
+              />
+            )}
+
             {isCommunityInitiative && (
               <>
                 <PageSection>Project Details</PageSection>
@@ -268,7 +277,7 @@ export const DestinoDevconnectForm: FC = () => {
                 <TextAreaField
                   id='eventTopics'
                   label='Event topics'
-                  helpText='Please briefly describe the topics you plan to cover at this event (e.g. stablecoins, local governance, institutional adoption, identity, community building, etc.) and how you’ll explore how Ethereum can create real-world impact in Argentina and Latin America. '
+                  helpText="Please briefly describe the topics you plan to cover at this event (e.g. stablecoins, local governance, institutional adoption, identity, community building, etc.) and how you'll explore how Ethereum can create real-world impact in Argentina and Latin America."
                   isRequired
                 />
 
