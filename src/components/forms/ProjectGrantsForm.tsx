@@ -5,7 +5,6 @@ import {
   Flex,
   FormControl,
   FormLabel,
-  Input,
   Stack,
   RadioGroup,
   Radio,
@@ -431,50 +430,25 @@ export const ProjectGrantsForm: FC = () => {
                 />
               </FormControl>
 
-              <FormControl
-                id='requested-amount-control'
-                isRequired
-                mb={8}
-                w={{ md: '50%' }}
-                pr={{ lg: 6 }}
-              >
-                <FormLabel htmlFor='projectRequestedAmount'>
-                  <PageText display='inline' fontSize='input'>
-                    Amount
-                  </PageText>
-                </FormLabel>
-
-                <Input
-                  id='projectRequestedAmount'
+              <Box w={{ md: '50%' }} pr={{ lg: 6 }} mb={8}>
+                <TextField
+                  id='requestedAmount'
+                  label='Amount'
                   type='number'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  {...register('requestedAmount', {
-                    required: true,
-                    maxLength: 30
-                  })}
+                  hideCharCounter
+                  isRequired
+                  registerOptions={{
+                    required: {
+                      value: true,
+                      message: 'Requested amount is required.'
+                    },
+                    maxLength: {
+                      value: 30,
+                      message: 'Requested amount cannot exceed 30 characters.'
+                    }
+                  }}
                 />
-
-                {errors?.requestedAmount?.type === 'required' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Requested amount is required.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.requestedAmount?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Requested amount cannot exceed 30 characters.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
+              </Box>
             </Flex>
           </Stack>
 
