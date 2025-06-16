@@ -18,10 +18,6 @@ export const Banners: FC = () => {
       <Banner>
         <Box fontSize='paragraph' textAlign='center'>
           Applications for the{' '}
-          <Link href={TEN_YEAR_ANNIVERSARY_URL} fontWeight={700}>
-            10 Years of Ethereum meetups
-          </Link>{' '}
-          and{' '}
           <Link href={DEVCON_GRANTS_URL} fontWeight={700}>
             Destino Devconnect Grants
           </Link>{' '}
