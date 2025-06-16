@@ -105,11 +105,9 @@ export const SIDEBAR_TEN_YEAR_ANNIVERSARY_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${TEN_YEAR_ANNIVERSARY_URL}/#description` },
   { text: 'Who should apply', href: `${TEN_YEAR_ANNIVERSARY_URL}/#who-should-apply` },
   { text: 'Eligibility', href: `${TEN_YEAR_ANNIVERSARY_URL}/#eligibility` },
-  { text: 'How to apply', href: `${TEN_YEAR_ANNIVERSARY_URL}/#how-to-apply` },
   { text: 'Selection criteria', href: `${TEN_YEAR_ANNIVERSARY_URL}/#selection-criteria` },
   { text: 'Next steps', href: `${TEN_YEAR_ANNIVERSARY_URL}/#next-steps` },
-  { text: 'FAQ', href: `${TEN_YEAR_ANNIVERSARY_URL}/#faq` },
-  { text: 'Apply', href: `${TEN_YEAR_ANNIVERSARY_URL}/#apply` }
+  { text: 'FAQ', href: `${TEN_YEAR_ANNIVERSARY_URL}/#faq` }
 ];
 
 export const MERGE_DATA_CHALLENGE_URL = '/merge-data-challenge';
@@ -287,7 +285,7 @@ export const PSE_SPONSORSHIPS_APPLY_URL = '/pse-sponsorships/apply';
 export const PSE_APPLICATION_APPLY_URL = '/pse-grants/apply';
 export const EPF_APPLICATION_APPLY_URL = '/epf-application/apply';
 export const PECTRA_PGR_APPLY_URL = '/pectra-pgr/apply';
-export const TEN_YEAR_ANNIVERSARY_APPLY_URL = '/10-year-anniversary/apply';
+export const TEN_YEAR_ANNIVERSARY_APPLY_URL = '/form-10yoe/apply';
 
 // grantee finance form
 export const GRANTEE_FINANCE_URL = '/applicants/grantee-finance';
@@ -306,7 +304,7 @@ export const PSE_SPONSORSHIPS_THANK_YOU_PAGE_URL = '/pse-sponsorships/thank-you'
 export const EPF_APPLICATION_THANK_YOU_PAGE_URL = '/epf-application/thank-you';
 export const PSE_APPLICATION_THANK_YOU_PAGE_URL = '/pse-grants/thank-you';
 export const PECTRA_PGR_THANK_YOU_PAGE_URL = '/pectra-pgr/thank-you';
-export const TEN_YEAR_ANNIVERSARY_THANK_YOU_PAGE_URL = '/10-year-anniversary/thank-you';
+export const TEN_YEAR_ANNIVERSARY_THANK_YOU_PAGE_URL = '/form-10yoe/thank-you';
 
 // ethereum ecosystem
 export const ETHEREUM_ORG_URL = 'https://ethereum.org/';
