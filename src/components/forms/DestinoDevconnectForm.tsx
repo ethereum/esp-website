@@ -99,8 +99,8 @@ export const DestinoDevconnectForm: FC = () => {
             <PageSection>Contact Information</PageSection>
 
             <Flex direction={{ base: 'column', md: 'row' }} gap={8}>
-              <TextField id='firstName' label='First Name' isRequired />
-              <TextField id='lastName' label='Last Name' isRequired />
+              <TextField id='firstName' label='First Name' maxLength={40} isRequired />
+              <TextField id='lastName' label='Last Name' maxLength={80} isRequired />
             </Flex>
 
             <TextField id='email' label='Email' isRequired />
@@ -137,6 +137,7 @@ export const DestinoDevconnectForm: FC = () => {
             <TextField
               id='alternativeContact'
               label='Telegram Username or Alternative Contact Info'
+              maxLength={150}
             />
 
             <Flex direction={{ base: 'column', md: 'row' }} gap={8}>
@@ -376,7 +377,7 @@ export const DestinoDevconnectForm: FC = () => {
                     )}
                   />
 
-                  <TextField id='requestedAmount' label='Amount' isRequired />
+                  <TextField id='requestedAmount' label='Amount' hideCharCounter isRequired />
                 </Flex>
               </>
             )}

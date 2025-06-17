@@ -5,9 +5,7 @@ import {
   Flex,
   FormControl,
   FormLabel,
-  Input,
   Stack,
-  Textarea,
   RadioGroup,
   Radio,
   useToast
@@ -19,7 +17,7 @@ import { useRouter } from 'next/router';
 
 import { DropdownIndicator, PageText } from '../UI';
 import { SubmitButton } from '../SubmitButton';
-import { Captcha, UploadFile } from '.';
+import { Captcha, TextField, UploadFile, TextAreaField } from '.';
 
 import { api } from './api';
 
@@ -102,103 +100,42 @@ export const ProjectGrantsForm: FC = () => {
         <form id='project-grants-form' onSubmit={handleSubmit(onSubmit)}>
           <Flex direction='column' mb={8}>
             <Flex direction={{ base: 'column', md: 'row' }} mb={3}>
-              <FormControl
-                id='first-name-control'
+              <TextField
+                id='firstName'
+                label='First name'
+                maxLength={40}
                 isRequired
+                registerOptions={{
+                  required: {
+                    value: true,
+                    message: 'First name is required.'
+                  },
+                  maxLength: {
+                    value: 40,
+                    message: 'First name cannot exceed 40 characters.'
+                  },
+                  validate: value => !containURL(value) || 'First name cannot contain a URL.'
+                }}
                 mr={{ md: 12 }}
-                mb={{ base: 8, md: 0 }}
-              >
-                <FormLabel htmlFor='firstName'>
-                  <PageText display='inline' fontSize='input'>
-                    First name
-                  </PageText>
-                </FormLabel>
+              />
 
-                <Input
-                  id='firstName'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  {...register('firstName', {
-                    required: true,
-                    maxLength: 40,
-                    validate: value => !containURL(value)
-                  })}
-                />
-
-                {errors?.firstName?.type === 'required' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      First name is required.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.firstName?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      First name cannot exceed 40 characters.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.firstName?.type === 'validate' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      First name cannot contain a URL.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
-
-              <FormControl id='last-name-control' isRequired>
-                <FormLabel htmlFor='lastName'>
-                  <PageText display='inline' fontSize='input'>
-                    Last name
-                  </PageText>
-                </FormLabel>
-                <Input
-                  id='lastName'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  {...register('lastName', {
-                    required: true,
-                    maxLength: 80,
-                    validate: value => !containURL(value)
-                  })}
-                />
-
-                {errors?.lastName?.type === 'required' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Last name is required.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.lastName?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Last name cannot exceed 80 characters.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.lastName?.type === 'validate' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Last name cannot contain a URL.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
+              <TextField
+                id='lastName'
+                label='Last name'
+                maxLength={80}
+                isRequired
+                registerOptions={{
+                  required: {
+                    value: true,
+                    message: 'Last name is required.'
+                  },
+                  maxLength: {
+                    value: 80,
+                    message: 'Last name cannot exceed 80 characters.'
+                  },
+                  validate: value => !containURL(value) || 'Last name cannot contain a URL.'
+                }}
+              />
             </Flex>
 
             {!errors?.firstName && !errors?.lastName && (
@@ -208,289 +145,121 @@ export const ProjectGrantsForm: FC = () => {
             )}
           </Flex>
 
-          <FormControl id='email-control' isRequired mb={8}>
-            <FormLabel htmlFor='email'>
-              <PageText display='inline' fontSize='input'>
-                Email
-              </PageText>
-            </FormLabel>
-            <Input
-              id='email'
-              type='email'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              {...register('email', { required: true })}
-            />
+          <TextField
+            id='email'
+            label='Email'
+            type='email'
+            isRequired
+            registerOptions={{
+              required: {
+                value: true,
+                message: 'Email is required.'
+              },
+              maxLength: {
+                value: MAX_TEXT_LENGTH,
+                message: `Email cannot exceed ${MAX_TEXT_LENGTH} characters.`
+              }
+            }}
+            mb={8}
+          />
 
-            {errors?.email?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Email is required.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+          <TextField
+            id='company'
+            label='Organization name'
+            helpText='Name of your team or organization. If you do not have an organization name, write "N/A".'
+            maxLength={MAX_TEXT_LENGTH}
+            isRequired
+            registerOptions={{
+              required: {
+                value: true,
+                message: 'Organization name is required.'
+              },
+              maxLength: {
+                value: MAX_TEXT_LENGTH,
+                message: `Organization name cannot exceed ${MAX_TEXT_LENGTH} characters.`
+              },
+              validate: value => !containURL(value) || 'Organization name cannot contain a URL.'
+            }}
+            mb={8}
+          />
 
-          <FormControl id='company-control' isRequired mb={8}>
-            <FormLabel htmlFor='company' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Organization name
-              </PageText>
-            </FormLabel>
+          <TextAreaField
+            id='teamProfile'
+            label='Team profile'
+            helpText="Briefly describe your organization. Provide links to previous work. How is your organization suited to the project's objectives, and how does it provide the necessary expertise?"
+            isRequired
+            registerOptions={{
+              required: {
+                value: true,
+                message: 'Team profile is required.'
+              },
+              maxLength: {
+                value: MAX_TEXT_AREA_LENGTH,
+                message: `Team profile cannot exceed ${MAX_TEXT_AREA_LENGTH} characters.`
+              }
+            }}
+            mb={8}
+          />
 
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Name of your team or organization. If you do not have an organization name, write
-              &quot;N/A&quot;.
-            </PageText>
+          <TextField
+            id='twitter'
+            label='Twitter'
+            helpText='Twitter handle for your team or project.'
+            maxLength={16}
+            registerOptions={{
+              maxLength: {
+                value: 16,
+                message: 'Twitter handle cannot exceed 16 characters.'
+              }
+            }}
+            mb={8}
+          />
 
-            <Input
-              id='company'
-              type='text'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-              {...register('company', {
-                required: true,
-                maxLength: MAX_TEXT_LENGTH,
-                validate: value => !containURL(value)
-              })}
-            />
+          <TextField
+            id='website'
+            label='Website'
+            helpText='Link to your team or project website.'
+            maxLength={MAX_TEXT_LENGTH}
+            registerOptions={{
+              maxLength: {
+                value: MAX_TEXT_LENGTH,
+                message: `Website cannot exceed ${MAX_TEXT_LENGTH} characters.`
+              }
+            }}
+            mb={8}
+          />
 
-            {errors?.company?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Organization name is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.company?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Organization name cannot exceed {MAX_TEXT_LENGTH} characters.
-                </PageText>
-              </Box>
-            )}
-            {errors?.company?.type === 'validate' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Organization name cannot contain a URL.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+          <TextField
+            id='projectName'
+            label='Project name'
+            helpText='This should be a concise description of the title of your project.'
+            isRequired
+            registerOptions={{
+              required: {
+                value: true,
+                message: 'Project name is required.'
+              },
+              maxLength: {
+                value: MAX_TEXT_LENGTH,
+                message: `Project name cannot exceed ${MAX_TEXT_LENGTH} characters.`
+              }
+            }}
+            mb={8}
+          />
 
-          <FormControl id='team-profile-control' isRequired mb={8}>
-            <FormLabel htmlFor='teamProfile' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Team profile
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Briefly describe your organization. Provide links to previous work. How is your
-              organization suited to the project&apos;s objectives, and how does it provide the
-              necessary expertise?
-            </PageText>
-
-            <Textarea
-              id='teamProfile'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('teamProfile', {
-                required: true,
-                maxLength: MAX_TEXT_AREA_LENGTH
-              })}
-            />
-
-            {errors?.teamProfile?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Team profile is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.teamProfile?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Team profile cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='twitter-control' mb={8}>
-            <FormLabel htmlFor='twitter' mb={1}>
-              <PageText fontSize='input'>Twitter</PageText>
-            </FormLabel>
-            <PageText fontSize='input' position='absolute' bottom='15.5px' left={4} zIndex={9}>
-              @
-            </PageText>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Twitter handle for your team or project.
-            </PageText>
-
-            <Input
-              id='twitter'
-              type='text'
-              placeholder='yourtwitterhandle'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              position='relative'
-              color='brand.paragraph'
-              fontSize='input'
-              pl={8}
-              mt={3}
-              {...register('twitter', {
-                maxLength: 16
-              })}
-            />
-
-            {errors?.twitter?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Twitter handle cannot exceed 16 characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='website-control' mb={8}>
-            <FormLabel htmlFor='website' mb={1}>
-              <PageText fontSize='input'>Website</PageText>
-            </FormLabel>
-            <PageText fontSize='input' position='absolute' bottom='15.5px' left={4} zIndex={9}>
-              https://
-            </PageText>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Link to your team or project website.
-            </PageText>
-
-            <Input
-              id='website'
-              type='text'
-              placeholder='yourwebsiteaddress.com'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              position='relative'
-              color='brand.paragraph'
-              fontSize='input'
-              pl={16}
-              mt={3}
-              {...register('website', {
-                maxLength: MAX_TEXT_LENGTH
-              })}
-            />
-
-            {errors?.website?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Website cannot exceed {MAX_TEXT_LENGTH} characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='project-name-control' isRequired mb={8}>
-            <FormLabel htmlFor='projectName' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Project name
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              This should be a concise description of the title of your project.
-            </PageText>
-
-            <Input
-              id='projectName'
-              type='text'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-              {...register('projectName', {
-                required: true,
-                maxLength: MAX_TEXT_LENGTH
-              })}
-            />
-
-            {errors?.projectName?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Project name is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.projectName?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Project name cannot exceed {MAX_TEXT_LENGTH} characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='project-repo-control' mb={8}>
-            <FormLabel htmlFor='projectRepo' mb={1}>
-              <PageText fontSize='input'>Project repo</PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              GitHub or other public repository of the project or related work.
-            </PageText>
-
-            <Input
-              id='projectRepo'
-              type='text'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-              {...register('projectRepo', {
-                maxLength: MAX_TEXT_LENGTH
-              })}
-            />
-
-            {errors?.projectRepo?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Repo name cannot exceed {MAX_TEXT_LENGTH} characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+          <TextField
+            id='projectRepo'
+            label='Project repo'
+            helpText='GitHub or other public repository of the project or related work.'
+            maxLength={MAX_TEXT_LENGTH}
+            registerOptions={{
+              maxLength: {
+                value: MAX_TEXT_LENGTH,
+                message: `Repo name cannot exceed ${MAX_TEXT_LENGTH} characters.`
+              }
+            }}
+            mb={8}
+          />
 
           <Controller
             name='projectCategory'
@@ -534,181 +303,77 @@ export const ProjectGrantsForm: FC = () => {
             )}
           />
 
-          <FormControl id='project-description-control' isRequired mb={8}>
-            <FormLabel htmlFor='projectDescription' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Brief project summary
-              </PageText>
-            </FormLabel>
+          <TextAreaField
+            id='projectDescription'
+            label='Brief project summary'
+            helpText="Describe your project in a few sentences (you'll have the chance to go into more detail in the long form). If it's already underway, provide links to any existing published work."
+            isRequired
+            registerOptions={{
+              required: {
+                value: true,
+                message: 'Project description is required.'
+              },
+              maxLength: {
+                value: MAX_TEXT_AREA_LENGTH,
+                message: `Project description cannot exceed ${MAX_TEXT_AREA_LENGTH} characters.`
+              }
+            }}
+            mb={8}
+          />
 
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Describe your project in a few sentences (you&apos;ll have the chance to go into more
-              detail in the long form). If it&apos;s already underway, provide links to any existing
-              published work.
-            </PageText>
+          <TextAreaField
+            id='progress'
+            label='Describe the current status of the project and progress achieved so far'
+            helpText='For example, do you have an MVP? Please describe its functionality and limitations and provide a link to it here.'
+            isRequired
+            registerOptions={{
+              required: {
+                value: true,
+                message: 'Field is required.'
+              },
+              maxLength: {
+                value: MAX_TEXT_AREA_LENGTH,
+                message: `Cannot exceed ${MAX_TEXT_AREA_LENGTH} characters.`
+              }
+            }}
+            mb={8}
+          />
 
-            <Textarea
-              id='projectDescription'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('projectDescription', {
-                required: true,
-                maxLength: MAX_TEXT_AREA_LENGTH
-              })}
-            />
+          <TextAreaField
+            id='problemBeingSolved'
+            label='What problem(s) are being solved by within the scope of the grant?'
+            helpText='What is the specific problems, research questions, or needs you are trying to address?'
+            isRequired
+            registerOptions={{
+              required: {
+                value: true,
+                message: 'Field is required.'
+              },
+              maxLength: {
+                value: MAX_TEXT_AREA_LENGTH,
+                message: `Cannot exceed ${MAX_TEXT_AREA_LENGTH} characters.`
+              }
+            }}
+            mb={8}
+          />
 
-            {errors?.projectDescription?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Project description is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.projectDescription?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Project description cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='progress-control' isRequired mb={8}>
-            <FormLabel htmlFor='progress' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Describe the current status of the project and progress achieved so far
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              For example, do you have an MVP? Please describe its functionality and limitations and
-              provide a link to it here.
-            </PageText>
-
-            <Textarea
-              id='progress'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('progress', {
-                required: true,
-                maxLength: MAX_TEXT_AREA_LENGTH
-              })}
-            />
-
-            {errors?.progress?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Field is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.progress?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='problem-being-solved-control' isRequired mb={8}>
-            <FormLabel htmlFor='problemBeingSolved' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                What problem(s) are being solved by within the scope of the grant?
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              What is the specific problems, research questions, or needs you are trying to address?
-            </PageText>
-
-            <Textarea
-              id='problemBeingSolved'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('problemBeingSolved', {
-                required: true,
-                maxLength: MAX_TEXT_AREA_LENGTH
-              })}
-            />
-
-            {errors?.problemBeingSolved?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Field is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.problemBeingSolved?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='proposed-timeline-control' isRequired mb={8}>
-            <FormLabel htmlFor='proposedTimeline' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Proposed tasks, roadmap and budget?
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Provide a summary that includes a timeline of the expected work and an estimated
-              budgetary breakdown.
-            </PageText>
-
-            <Textarea
-              id='proposedTimeline'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('proposedTimeline', {
-                required: true,
-                maxLength: MAX_TEXT_AREA_LENGTH
-              })}
-            />
-
-            {errors?.proposedTimeline?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Field is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.proposedTimeline?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+          <TextAreaField
+            id='proposedTimeline'
+            label='Proposed tasks, roadmap and budget?'
+            helpText='Provide a summary that includes a timeline of the expected work and an estimated budgetary breakdown.'
+            isRequired
+            registerOptions={{
+              required: {
+                value: true,
+                message: 'Field is required.'
+              },
+              maxLength: {
+                value: MAX_TEXT_AREA_LENGTH,
+                message: `Cannot exceed ${MAX_TEXT_AREA_LENGTH} characters.`
+              }
+            }}
+            mb={8}
+          />
 
           <Stack>
             <Stack>
@@ -765,394 +430,171 @@ export const ProjectGrantsForm: FC = () => {
                 />
               </FormControl>
 
-              <FormControl
-                id='requested-amount-control'
-                isRequired
-                mb={8}
-                w={{ md: '50%' }}
-                pr={{ lg: 6 }}
-              >
-                <FormLabel htmlFor='projectRequestedAmount'>
-                  <PageText display='inline' fontSize='input'>
-                    Amount
-                  </PageText>
-                </FormLabel>
-
-                <Input
-                  id='projectRequestedAmount'
+              <Box w={{ md: '50%' }} pr={{ lg: 6 }} mb={8}>
+                <TextField
+                  id='requestedAmount'
+                  label='Amount'
                   type='number'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  {...register('requestedAmount', {
-                    required: true,
-                    maxLength: 30
-                  })}
+                  hideCharCounter
+                  isRequired
+                  registerOptions={{
+                    required: {
+                      value: true,
+                      message: 'Requested amount is required.'
+                    },
+                    maxLength: {
+                      value: 30,
+                      message: 'Requested amount cannot exceed 30 characters.'
+                    }
+                  }}
                 />
-
-                {errors?.requestedAmount?.type === 'required' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Requested amount is required.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.requestedAmount?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Requested amount cannot exceed 30 characters.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
+              </Box>
             </Flex>
           </Stack>
 
-          <FormControl id='why-is-project-important-control' isRequired mb={8}>
-            <FormLabel htmlFor='whyIsProjectImportant' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Why is your project important?
-              </PageText>
-            </FormLabel>
+          <TextAreaField
+            id='whyIsProjectImportant'
+            label='Why is your project important?'
+            helpText='Why should solving these problems or addressing these needs be prioritized, what evidence do you have of importance or demand?'
+            isRequired
+            registerOptions={{
+              required: {
+                value: true,
+                message: 'Field is required.'
+              },
+              maxLength: {
+                value: MAX_TEXT_AREA_LENGTH,
+                message: `Cannot exceed ${MAX_TEXT_AREA_LENGTH} characters.`
+              }
+            }}
+            mb={8}
+          />
 
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Why should solving these problems or addressing these needs be prioritized, what
-              evidence do you have of importance or demand?
-            </PageText>
+          <TextAreaField
+            id='howDoesYourProjectDiffer'
+            label='How does your project differ from similar ones?'
+            helpText='What other solutions are being worked on, what unique contribution will you make or advance will you provide beyond the state of the art?'
+            isRequired
+            registerOptions={{
+              required: {
+                value: true,
+                message: 'Field is required.'
+              },
+              maxLength: {
+                value: MAX_TEXT_AREA_LENGTH,
+                message: `Cannot exceed ${MAX_TEXT_AREA_LENGTH} characters.`
+              }
+            }}
+            mb={8}
+          />
 
-            <Textarea
-              id='whyIsProjectImportant'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('whyIsProjectImportant', {
-                required: true,
-                maxLength: MAX_TEXT_AREA_LENGTH
-              })}
-            />
+          <TextAreaField
+            id='isYourProjectPublicGood'
+            label='Describe how your project will result in a public good.'
+            helpText='Public goods are things like open source code, shared infrastructure, openly shared research, documentation, community building or other benefits provided to the community that are typically under-provided by the free market.'
+            isRequired
+            registerOptions={{
+              required: {
+                value: true,
+                message: 'Field is required.'
+              },
+              maxLength: {
+                value: MAX_TEXT_AREA_LENGTH,
+                message: `Cannot exceed ${MAX_TEXT_AREA_LENGTH} characters.`
+              }
+            }}
+            mb={8}
+          />
 
-            {errors?.whyIsProjectImportant?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Field is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.whyIsProjectImportant?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+          <TextAreaField
+            id='isOpenSource'
+            label='Will your results be open source?'
+            helpText='If not, please explain why.'
+            isRequired
+            registerOptions={{
+              required: {
+                value: true,
+                message: 'Field is required.'
+              },
+              maxLength: {
+                value: MAX_TEXT_AREA_LENGTH,
+                message: `Cannot exceed ${MAX_TEXT_AREA_LENGTH} characters.`
+              }
+            }}
+            mb={8}
+          />
 
-          <FormControl id='how-does-your-project-differ-control' isRequired mb={8}>
-            <FormLabel htmlFor='howDoesYourProjectDiffer' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                How does your project differ from similar ones?
-              </PageText>
-            </FormLabel>
+          <TextAreaField
+            id='whyEthereum'
+            label='Describe the expected effects of your project proposal on the Ethereum ecosystem.'
+            helpText='Please list the expected results of the project and explain how they will have a positive effect on the Ethereum ecosystem at large.'
+            isRequired
+            registerOptions={{
+              required: {
+                value: true,
+                message: 'Field is required.'
+              },
+              maxLength: {
+                value: MAX_TEXT_AREA_LENGTH,
+                message: `Cannot exceed ${MAX_TEXT_AREA_LENGTH} characters.`
+              }
+            }}
+            mb={8}
+          />
 
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              What other solutions are being worked on, what unique contribution will you make or
-              advance will you provide beyond the state of the art?
-            </PageText>
+          <TextAreaField
+            id='challenges'
+            label='Describe key risks and challenges to your project.'
+            helpText='What are the critical risks, relating to both project implementation and achieving expected impacts?'
+            isRequired
+            registerOptions={{
+              required: {
+                value: true,
+                message: 'Field is required.'
+              },
+              maxLength: {
+                value: MAX_TEXT_AREA_LENGTH,
+                message: `Cannot exceed ${MAX_TEXT_AREA_LENGTH} characters.`
+              }
+            }}
+            mb={8}
+          />
 
-            <Textarea
-              id='howDoesYourProjectDiffer'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('howDoesYourProjectDiffer', {
-                required: true,
-                maxLength: MAX_TEXT_AREA_LENGTH
-              })}
-            />
+          <TextAreaField
+            id='sustainabilityPlan'
+            label='What are your plans after the grant is completed?'
+            helpText='Please describe your plans for the project after the grant period ends.'
+            isRequired
+            registerOptions={{
+              required: {
+                value: true,
+                message: 'Field is required.'
+              },
+              maxLength: {
+                value: MAX_TEXT_AREA_LENGTH,
+                message: `Cannot exceed ${MAX_TEXT_AREA_LENGTH} characters.`
+              }
+            }}
+            mb={8}
+          />
 
-            {errors?.howDoesYourProjectDiffer?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Field is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.howDoesYourProjectDiffer?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='is-your-project-public-good-control' isRequired mb={8}>
-            <FormLabel htmlFor='isYourProjectPublicGood' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Describe how your project will result in a public good.
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Public goods are things like open source code, shared infrastructure, openly shared
-              research, documentation, community building or other benefits provided to the
-              community that are typically under-provided by the free market.
-            </PageText>
-
-            <Textarea
-              id='isYourProjectPublicGood'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('isYourProjectPublicGood', {
-                required: true,
-                maxLength: MAX_TEXT_AREA_LENGTH
-              })}
-            />
-
-            {errors?.isYourProjectPublicGood?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Field is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.isYourProjectPublicGood?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='is-open-source-control' isRequired mb={8}>
-            <FormLabel htmlFor='isOpenSource' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Will your results be open source?
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              If not, please explain why.
-            </PageText>
-
-            <Textarea
-              id='isOpenSource'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('isOpenSource', {
-                required: true,
-                maxLength: MAX_TEXT_AREA_LENGTH
-              })}
-            />
-
-            {errors?.isOpenSource?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Field is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.isOpenSource?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='why-ethereum-control' isRequired mb={8}>
-            <FormLabel htmlFor='whyEthereum' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Describe the expected effects of your project proposal on the Ethereum ecosystem.
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Please list the expected results of the project and explain how they will have a
-              positive effect on the Ethereum ecosystem at large.
-            </PageText>
-
-            <Textarea
-              id='whyEthereum'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('whyEthereum', {
-                required: true,
-                maxLength: MAX_TEXT_AREA_LENGTH
-              })}
-            />
-
-            {errors?.whyEthereum?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Field is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.whyEthereum?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='challenges-control' isRequired mb={8}>
-            <FormLabel htmlFor='challenges' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Describe key risks and challenges to your project.
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              What are the critical risks, relating to both project implementation and achieving
-              expected impacts?
-            </PageText>
-
-            <Textarea
-              id='challenges'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('challenges', {
-                required: true,
-                maxLength: MAX_TEXT_AREA_LENGTH
-              })}
-            />
-
-            {errors?.challenges?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Field is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.challenges?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='sustainability-plan-control' isRequired mb={8}>
-            <FormLabel htmlFor='sustainabilityPlan' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                What are your plans after the grant is completed?
-              </PageText>
-            </FormLabel>
-
-            <Textarea
-              id='sustainabilityPlan'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('sustainabilityPlan', {
-                required: true,
-                maxLength: MAX_TEXT_AREA_LENGTH
-              })}
-            />
-
-            {errors?.sustainabilityPlan?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Field is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.sustainabilityPlan?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='other-projects-control' isRequired mb={8}>
-            <FormLabel htmlFor='otherProjects' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                If you didn&apos;t work on this project, what would you work on instead?
-              </PageText>
-            </FormLabel>
-
-            <Textarea
-              id='otherProjects'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('otherProjects', {
-                required: true,
-                maxLength: MAX_TEXT_AREA_LENGTH
-              })}
-            />
-
-            {errors?.otherProjects?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Field is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.otherProjects?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+          <TextAreaField
+            id='otherProjects'
+            label="If you didn't work on this project, what would you work on instead?"
+            helpText='Please describe any other projects you are considering or planning to work on.'
+            isRequired
+            registerOptions={{
+              required: {
+                value: true,
+                message: 'Field is required.'
+              },
+              maxLength: {
+                value: MAX_TEXT_AREA_LENGTH,
+                message: `Cannot exceed ${MAX_TEXT_AREA_LENGTH} characters.`
+              }
+            }}
+            mb={8}
+          />
 
           <Controller
             name='repeatApplicant'
@@ -1201,110 +643,54 @@ export const ProjectGrantsForm: FC = () => {
             )}
           />
 
-          <FormControl id='other-funding-control' isRequired mb={8}>
-            <FormLabel htmlFor='otherFunding' mb={1}>
-              <PageText display='inline' fontSize='input'>
-                Have you applied for or received other funding?
-              </PageText>
-            </FormLabel>
+          <TextAreaField
+            id='otherFunding'
+            label='Have you applied for or received other funding?'
+            helpText='Please describe any other funding sources you have applied for or received.'
+            isRequired
+            registerOptions={{
+              required: {
+                value: true,
+                message: 'Field is required.'
+              },
+              maxLength: {
+                value: MAX_TEXT_AREA_LENGTH,
+                message: `Cannot exceed ${MAX_TEXT_AREA_LENGTH} characters.`
+              }
+            }}
+            mb={8}
+          />
 
-            <Textarea
-              id='otherFunding'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('otherFunding', {
-                required: true,
-                maxLength: MAX_TEXT_AREA_LENGTH
-              })}
-            />
-
-            {errors?.otherFunding?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Field is required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.otherFunding?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
-
-          <FormControl id='additional-info-control' mb={8}>
-            <FormLabel htmlFor='additionalInfo' mb={1}>
-              <PageText fontSize='input'>Anything else you&apos;d like to share?</PageText>
-            </FormLabel>
-
-            <Textarea
-              id='additionalInfo'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('additionalInfo', {
-                maxLength: MAX_TEXT_AREA_LENGTH
-              })}
-            />
-
-            {errors?.additionalInfo?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Additional info cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+          <TextAreaField
+            id='additionalInfo'
+            label="Anything else you'd like to share?"
+            helpText='Please provide any additional information that you think would be helpful for the evaluation of your application.'
+            maxLength={MAX_TEXT_AREA_LENGTH}
+            registerOptions={{
+              maxLength: {
+                value: MAX_TEXT_AREA_LENGTH,
+                message: `Additional info cannot exceed ${MAX_TEXT_AREA_LENGTH} characters.`
+              }
+            }}
+            mb={8}
+          />
 
           <Flex direction='column' mb={8}>
             <Flex direction={{ base: 'column', md: 'row' }} mb={3}>
-              <FormControl id='city-control' mr={{ md: 12 }} mb={{ base: 8, md: 0 }}>
-                <FormLabel htmlFor='city'>
-                  <PageText fontSize='input'>City</PageText>
-                </FormLabel>
-
-                <Input
-                  id='city'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  {...register('city', {
-                    maxLength: MAX_TEXT_LENGTH
-                  })}
-                />
-
-                {errors?.city?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      City name cannot exceed {MAX_TEXT_LENGTH} characters.
-                    </PageText>
-                  </Box>
-                )}
-
-                <Box mt={1}>
-                  <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                    Where are you located, or where is your team located?
-                  </PageText>
-                </Box>
-              </FormControl>
+              <TextField
+                id='city'
+                label='City'
+                helpText='Where are you located, or where is your team located?'
+                maxLength={MAX_TEXT_LENGTH}
+                registerOptions={{
+                  maxLength: {
+                    value: MAX_TEXT_LENGTH,
+                    message: `City name cannot exceed ${MAX_TEXT_LENGTH} characters.`
+                  }
+                }}
+                mr={{ md: 12 }}
+                mb={{ base: 8, md: 0 }}
+              />
 
               <Controller
                 name='country'
@@ -1318,6 +704,10 @@ export const ProjectGrantsForm: FC = () => {
                         Country
                       </PageText>
                     </FormLabel>
+
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      &nbsp;
+                    </PageText>
 
                     <Select
                       id='country'
@@ -1421,72 +811,34 @@ export const ProjectGrantsForm: FC = () => {
 
           <Box display={(referralSource as ReferralSource).value === OTHER ? 'block' : 'none'}>
             <Fade in={(referralSource as ReferralSource).value === OTHER} delay={0.25}>
-              <FormControl id='referral-source-if-other-control' mb={8}>
-                <FormLabel htmlFor='referralSourceIfOther'>
-                  <PageText fontSize='input'>If other, explain how</PageText>
-                </FormLabel>
-                <Input
-                  id='referralSourceIfOther'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  mt={3}
-                  {...register('referralSourceIfOther', {
-                    maxLength: MAX_TEXT_LENGTH
-                  })}
-                />
-
-                {errors?.referralSourceIfOther?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Referral source cannot exceed {MAX_TEXT_LENGTH} characters.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
+              <TextField
+                id='referralSourceIfOther'
+                label='If other, explain how'
+                maxLength={MAX_TEXT_LENGTH}
+                registerOptions={{
+                  maxLength: {
+                    value: MAX_TEXT_LENGTH,
+                    message: `Referral source cannot exceed ${MAX_TEXT_LENGTH} characters.`
+                  }
+                }}
+                mb={8}
+              />
             </Fade>
           </Box>
 
-          <FormControl id='referrals' mb={8}>
-            <FormLabel htmlFor='referrals' mb={1}>
-              <PageText fontSize='input'>
-                Did anyone recommend that you submit an application to the Ecosystem Support
-                Program?
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Please include the person&apos;s name and details of their referral.
-            </PageText>
-
-            <Textarea
-              id='referrals'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              _placeholder={{ fontSize: 'input' }}
-              color='brand.paragraph'
-              fontSize='input'
-              h='150px'
-              mt={3}
-              {...register('referrals', {
-                maxLength: MAX_TEXT_AREA_LENGTH
-              })}
-            />
-
-            {errors?.referrals?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Referral name cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+          <TextAreaField
+            id='referrals'
+            label='Did anyone recommend that you submit an application to the Ecosystem Support Program?'
+            helpText="Please include the person's name and details of their referral."
+            maxLength={MAX_TEXT_AREA_LENGTH}
+            registerOptions={{
+              maxLength: {
+                value: MAX_TEXT_AREA_LENGTH,
+                message: `Referral name cannot exceed ${MAX_TEXT_AREA_LENGTH} characters.`
+              }
+            }}
+            mb={8}
+          />
 
           <UploadFile
             id='proposalAttachment'

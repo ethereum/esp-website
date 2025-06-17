@@ -121,12 +121,13 @@ export const AcademicGrantsForm: FC = () => {
               <TextField
                 id='firstName'
                 label='First name'
+                maxLength={40}
                 isRequired
                 mr={{ md: 12 }}
                 mb={{ base: 8, md: 0 }}
               />
 
-              <TextField id='lastName' label='Last name' isRequired />
+              <TextField id='lastName' label='Last name' maxLength={80} isRequired />
             </Flex>
 
             {!errors?.firstName && !errors?.lastName && (
@@ -400,7 +401,7 @@ export const AcademicGrantsForm: FC = () => {
                 )}
               />
 
-              <TextField id='requestAmount' label='Amount' isRequired />
+              <TextField id='requestAmount' label='Amount' hideCharCounter isRequired />
             </Flex>
           </Stack>
 
@@ -487,6 +488,7 @@ export const AcademicGrantsForm: FC = () => {
             id='alternativeContact'
             label='Telegram username or alternative contact info'
             helpText="In regards to your submission, we'll get in touch with you via email by default. As backup, if you'd like to provide alternative contact info, you may do so"
+            maxLength={150}
           />
 
           <Controller

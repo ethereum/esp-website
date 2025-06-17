@@ -196,15 +196,20 @@ export const PSEApplicationForm: FC = () => {
                 )}
               />
 
-              <TextField id='requestedAmount' label='Total Budget Request' isRequired />
+              <TextField
+                id='requestedAmount'
+                label='Total Budget Request'
+                hideCharCounter
+                isRequired
+              />
             </Flex>
           </Stack>
 
           <PageSection mt={12}>Applicant Details</PageSection>
 
           <Flex direction={{ base: 'column', md: 'row' }} gap={8}>
-            <TextField id='firstName' label='First Name' isRequired />
-            <TextField id='lastName' label='Last Name' isRequired />
+            <TextField id='firstName' label='First Name' maxLength={40} isRequired />
+            <TextField id='lastName' label='Last Name' maxLength={80} isRequired />
           </Flex>
 
           <TextField id='email' label='Email' isRequired />
@@ -216,6 +221,7 @@ export const PSEApplicationForm: FC = () => {
             id='alternativeContact'
             label='Notion Account'
             helpText='Insert Notion account email if different from the above email'
+            maxLength={150}
           />
           <TextField
             id='city'

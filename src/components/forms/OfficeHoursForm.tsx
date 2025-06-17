@@ -5,11 +5,9 @@ import {
   Flex,
   FormControl,
   FormLabel,
-  Input,
   Radio,
   RadioGroup,
   Stack,
-  Textarea,
   useToast
 } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
@@ -19,7 +17,8 @@ import { useRouter } from 'next/router';
 
 import { DropdownIndicator, PageText } from '../UI';
 import { SubmitButton } from '../SubmitButton';
-import { Captcha } from '.';
+import { Captcha, TextField } from '.';
+import { TextAreaField } from './fields/TextAreaField';
 
 import { api } from './api';
 
@@ -97,124 +96,63 @@ export const OfficeHoursForm: FC = () => {
     >
       <FormProvider {...methods}>
         <form id='office-hours-form' onSubmit={handleSubmit(onSubmit)}>
-          <Flex direction={{ base: 'column', md: 'row' }}>
-            <FormControl id='first-name-control' isRequired mb={8} mr={{ md: 12 }}>
-              <FormLabel htmlFor='firstName'>
-                <PageText display='inline' fontSize='input'>
-                  First name
-                </PageText>
-              </FormLabel>
-              <Input
-                id='firstName'
-                type='text'
-                bg='white'
-                borderRadius={0}
-                borderColor='brand.border'
-                h='56px'
-                color='brand.paragraph'
-                fontSize='input'
-                {...register('firstName', {
-                  required: true,
-                  maxLength: 40,
-                  validate: value => !containURL(value)
-                })}
-              />
-
-              {errors?.firstName?.type === 'required' && (
-                <Box mt={1}>
-                  <PageText as='small' fontSize='helpText' color='red.500'>
-                    First name is required.
-                  </PageText>
-                </Box>
-              )}
-              {errors?.firstName?.type === 'maxLength' && (
-                <Box mt={1}>
-                  <PageText as='small' fontSize='helpText' color='red.500'>
-                    First name cannot exceed 40 characters.
-                  </PageText>
-                </Box>
-              )}
-              {errors?.firstName?.type === 'validate' && (
-                <Box mt={1}>
-                  <PageText as='small' fontSize='helpText' color='red.500'>
-                    First name cannot contain a URL.
-                  </PageText>
-                </Box>
-              )}
-            </FormControl>
-
-            <FormControl id='last-name-control' isRequired mb={8}>
-              <FormLabel htmlFor='lastName'>
-                <PageText display='inline' fontSize='input'>
-                  Last name
-                </PageText>
-              </FormLabel>
-              <Input
-                id='lastName'
-                type='text'
-                bg='white'
-                borderRadius={0}
-                borderColor='brand.border'
-                h='56px'
-                color='brand.paragraph'
-                fontSize='input'
-                {...register('lastName', {
-                  required: true,
-                  maxLength: 80,
-                  validate: value => !containURL(value)
-                })}
-              />
-
-              {errors?.lastName?.type === 'required' && (
-                <Box mt={1}>
-                  <PageText as='small' fontSize='helpText' color='red.500'>
-                    Last name is required.
-                  </PageText>
-                </Box>
-              )}
-              {errors?.lastName?.type === 'maxLength' && (
-                <Box mt={1}>
-                  <PageText as='small' fontSize='helpText' color='red.500'>
-                    Last name cannot exceed 80 characters.
-                  </PageText>
-                </Box>
-              )}
-              {errors?.lastName?.type === 'validate' && (
-                <Box mt={1}>
-                  <PageText as='small' fontSize='helpText' color='red.500'>
-                    Last name cannot contain a URL.
-                  </PageText>
-                </Box>
-              )}
-            </FormControl>
-          </Flex>
-
-          <FormControl id='email-control' isRequired mb={8}>
-            <FormLabel htmlFor='email'>
-              <PageText display='inline' fontSize='input'>
-                Email
-              </PageText>
-            </FormLabel>
-            <Input
-              id='email'
-              type='email'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              h='56px'
-              color='brand.paragraph'
-              fontSize='input'
-              {...register('email', { required: true })}
+          <Flex direction={{ base: 'column', md: 'row' }} mb={8}>
+            <TextField
+              id='firstName'
+              label='First name'
+              maxLength={40}
+              isRequired
+              registerOptions={{
+                required: {
+                  value: true,
+                  message: 'First name is required.'
+                },
+                maxLength: {
+                  value: 40,
+                  message: 'First name cannot exceed 40 characters.'
+                },
+                validate: {
+                  containURL: value => !containURL(value) || 'First name cannot contain a URL.'
+                }
+              }}
+              mr={{ md: 12 }}
             />
 
-            {errors?.email?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Email is required.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+            <TextField
+              id='lastName'
+              label='Last name'
+              maxLength={80}
+              isRequired
+              registerOptions={{
+                required: {
+                  value: true,
+                  message: 'Last name is required.'
+                },
+                maxLength: {
+                  value: 80,
+                  message: 'Last name cannot exceed 80 characters.'
+                },
+                validate: {
+                  containURL: value => !containURL(value) || 'Last name cannot contain a URL.'
+                }
+              }}
+            />
+          </Flex>
+
+          <TextField
+            id='email'
+            label='Email'
+            type='email'
+            hideCharCounter
+            isRequired
+            registerOptions={{
+              required: {
+                value: true,
+                message: 'Email is required.'
+              }
+            }}
+            mb={8}
+          />
 
           {/* If the component doesn't expose input's ref, we should use the Controller component, */}
           {/* which will take care of the registration process (https://react-hook-form.com/get-started#IntegratingwithUIlibraries) */}
@@ -264,57 +202,28 @@ export const OfficeHoursForm: FC = () => {
 
           <Box display={isTeam ? 'block' : 'none'}>
             <Fade in={isTeam} delay={0.25}>
-              <FormControl id='company-control' isRequired={isTeam} mb={8}>
-                <FormLabel htmlFor='company' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Name of organization or entity
-                  </PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Name of your team or entity you&apos;re submitting for. If your organization
-                  doesn&apos;t have a formal name, just try to describe it in a few words!
-                </PageText>
-
-                <Input
-                  id='company'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  color='brand.paragraph'
-                  fontSize='input'
-                  mt={3}
-                  {...register('company', {
-                    required: isTeam,
-                    maxLength: MAX_TEXT_LENGTH,
-                    validate: value => !containURL(value)
-                  })}
-                />
-
-                {errors?.company?.type === 'required' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Organization name is required.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.company?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Organization name cannot exceed {MAX_TEXT_LENGTH} characters.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.company?.type === 'validate' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Organization name cannot contain a URL.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
+              <TextField
+                id='company'
+                label='Name of organization or entity'
+                helpText="Name of your team or entity you're submitting for. If your organization doesn't have a formal name, just try to describe it in a few words!"
+                isRequired={isTeam}
+                maxLength={MAX_TEXT_LENGTH}
+                registerOptions={{
+                  required: {
+                    value: isTeam,
+                    message: 'Organization name is required.'
+                  },
+                  maxLength: {
+                    value: MAX_TEXT_LENGTH,
+                    message: `Organization name cannot exceed ${MAX_TEXT_LENGTH} characters.`
+                  },
+                  validate: {
+                    containURL: value =>
+                      !containURL(value) || 'Organization name cannot contain a URL.'
+                  }
+                }}
+                mb={8}
+              />
             </Fade>
           </Box>
 
@@ -373,142 +282,61 @@ export const OfficeHoursForm: FC = () => {
 
           <Box display={isRequestingProjectFeedback ? 'block' : 'none'}>
             <Fade in={isRequestingProjectFeedback} delay={0.25}>
-              <FormControl
-                id='project-name-control'
+              <TextField
+                id='projectName'
+                label='Project name'
                 isRequired={isRequestingProjectFeedback}
+                maxLength={MAX_TEXT_LENGTH}
+                registerOptions={{
+                  required: {
+                    value: isRequestingProjectFeedback,
+                    message: 'Project name is required.'
+                  },
+                  maxLength: {
+                    value: MAX_TEXT_LENGTH,
+                    message: `Project name cannot exceed ${MAX_TEXT_LENGTH} characters.`
+                  }
+                }}
                 mb={8}
-              >
-                <FormLabel htmlFor='projectName' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Project name
-                  </PageText>
-                </FormLabel>
+              />
 
-                <Input
-                  id='projectName'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  color='brand.paragraph'
-                  fontSize='input'
-                  mt={3}
-                  {...register('projectName', {
-                    required: isRequestingProjectFeedback,
-                    maxLength: MAX_TEXT_LENGTH
-                  })}
-                />
-
-                {errors?.projectName?.type === 'required' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Project name is required.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.projectName?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Project name cannot exceed {MAX_TEXT_LENGTH} characters.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
-
-              <FormControl
-                id='project-description-control'
+              <TextAreaField
+                id='projectDescription'
+                label='What is your project about?'
+                helpText='Give us a short summary of what you are hoping to accomplish. Just a paragraph will do.'
                 isRequired={isRequestingProjectFeedback}
+                maxLength={MAX_TEXT_AREA_LENGTH}
+                registerOptions={{
+                  required: {
+                    value: isRequestingProjectFeedback,
+                    message: 'Project description is required.'
+                  },
+                  maxLength: {
+                    value: MAX_TEXT_AREA_LENGTH,
+                    message: `Project description cannot exceed ${MAX_TEXT_AREA_LENGTH} characters.`
+                  }
+                }}
                 mb={8}
-              >
-                <FormLabel htmlFor='projectDescription' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    What is your project about?
-                  </PageText>
-                </FormLabel>
+              />
 
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Give us a short summary of what you are hoping to accomplish. Just a paragraph
-                  will do.
-                </PageText>
-
-                <Textarea
-                  id='projectDescription'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  color='brand.paragraph'
-                  fontSize='input'
-                  h='150px'
-                  mt={3}
-                  {...register('projectDescription', {
-                    required: isRequestingProjectFeedback,
-                    maxLength: MAX_TEXT_AREA_LENGTH
-                  })}
-                />
-
-                {errors?.projectDescription?.type === 'required' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Project description is required..
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.projectDescription?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Project description cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
-
-              <FormControl
-                id='additional-info-control'
+              <TextAreaField
+                id='additionalInfo'
+                label='Where can we learn more?'
+                helpText='Please share links to any relevant Github repos, social media, websites, published work or professional profiles.'
                 isRequired={isRequestingProjectFeedback}
+                maxLength={MAX_TEXT_AREA_LENGTH}
+                registerOptions={{
+                  required: {
+                    value: isRequestingProjectFeedback,
+                    message: 'Some additional resources are required.'
+                  },
+                  maxLength: {
+                    value: MAX_TEXT_AREA_LENGTH,
+                    message: `Additional info cannot exceed ${MAX_TEXT_AREA_LENGTH} characters.`
+                  }
+                }}
                 mb={8}
-              >
-                <FormLabel htmlFor='additionalInfo' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    Where can we learn more?
-                  </PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Please share links to any relevant Github repos, social media, websites, published
-                  work or professional profiles.
-                </PageText>
-
-                <Textarea
-                  id='additionalInfo'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  color='brand.paragraph'
-                  fontSize='input'
-                  h='150px'
-                  mt={3}
-                  {...register('additionalInfo', {
-                    required: isRequestingProjectFeedback,
-                    maxLength: MAX_TEXT_AREA_LENGTH
-                  })}
-                />
-
-                {errors?.additionalInfo?.type === 'required' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Some additional resources are required.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.additionalInfo?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      Additional info cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
+              />
 
               <Controller
                 name='projectCategory'
@@ -595,47 +423,24 @@ export const OfficeHoursForm: FC = () => {
             )}
           />
 
-          <FormControl id='other-reason-for-meeting-control' mb={8} isRequired>
-            <FormLabel htmlFor='otherReasonForMeeting'>
-              <PageText display='inline' fontSize='input'>
-                How are you hoping ESP can help?
-              </PageText>
-            </FormLabel>
-
-            <PageText as='small' fontSize='helpText' color='brand.helpText'>
-              Please list any specific questions or details that would expedite the call.
-            </PageText>
-
-            <Textarea
-              id='otherReasonForMeeting'
-              bg='white'
-              borderRadius={0}
-              borderColor='brand.border'
-              color='brand.paragraph'
-              fontSize='input'
-              mt={3}
-              h='150px'
-              {...register('otherReasonForMeeting', {
-                required: true,
-                maxLength: MAX_TEXT_AREA_LENGTH
-              })}
-            />
-
-            {errors?.otherReasonForMeeting?.type === 'required' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Questions or details are required.
-                </PageText>
-              </Box>
-            )}
-            {errors?.otherReasonForMeeting?.type === 'maxLength' && (
-              <Box mt={1}>
-                <PageText as='small' fontSize='helpText' color='red.500'>
-                  Reason for meeting cannot exceed {MAX_TEXT_AREA_LENGTH} characters.
-                </PageText>
-              </Box>
-            )}
-          </FormControl>
+          <TextAreaField
+            id='otherReasonForMeeting'
+            label='How are you hoping ESP can help?'
+            helpText='Please list any specific questions or details that would expedite the call.'
+            isRequired
+            maxLength={MAX_TEXT_AREA_LENGTH}
+            registerOptions={{
+              required: {
+                value: true,
+                message: 'Questions or details are required.'
+              },
+              maxLength: {
+                value: MAX_TEXT_AREA_LENGTH,
+                message: `Reason for meeting cannot exceed ${MAX_TEXT_AREA_LENGTH} characters.`
+              }
+            }}
+            mb={8}
+          />
 
           <Controller
             name='country'
