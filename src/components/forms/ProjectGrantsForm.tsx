@@ -705,6 +705,10 @@ export const ProjectGrantsForm: FC = () => {
                       </PageText>
                     </FormLabel>
 
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      &nbsp;
+                    </PageText>
+
                     <Select
                       id='country'
                       options={COUNTRY_OPTIONS}

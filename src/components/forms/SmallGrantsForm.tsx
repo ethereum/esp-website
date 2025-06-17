@@ -523,24 +523,6 @@ export const SmallGrantsForm: FC = () => {
                 mb={8}
               />
 
-              <TextAreaField
-                id='isYourProjectPublicGood'
-                label='Is your project a public good?'
-                helpText='If so, how?'
-                isRequired={isAProject}
-                registerOptions={{
-                  required: {
-                    value: isAProject,
-                    message: 'Is your project public good is required.'
-                  },
-                  maxLength: {
-                    value: MAX_TEXT_AREA_LENGTH,
-                    message: `Is your project public good cannot exceed ${MAX_TEXT_AREA_LENGTH} characters.`
-                  }
-                }}
-                mb={8}
-              />
-
               <Stack>
                 <Stack>
                   <PageText display='inline' fontSize='input'>
@@ -997,7 +979,7 @@ export const SmallGrantsForm: FC = () => {
               </Flex>
 
               <Flex direction={{ base: 'column', lg: 'row' }}>
-                <Box mr={{ md: 12 }} mb={8}>
+                <Box mr={{ md: 12 }} mb={8} w='full'>
                   <TextField
                     id='expectedAttendees'
                     label='Expected number of attendees/registrants'
@@ -1018,13 +1000,14 @@ export const SmallGrantsForm: FC = () => {
                   />
                 </Box>
 
-                <Box visibility={isAnEvent && isInPersonOrHybrid ? 'visible' : 'hidden'}>
+                <Box w='full'>
                   <TextField
                     id='eventLocation'
                     label='Event Location'
                     helpText='Please list the City and Country of where your event will be located'
                     maxLength={MAX_TEXT_LENGTH}
                     isRequired={isAnEvent && isInPersonOrHybrid}
+                    visibility={isAnEvent && isInPersonOrHybrid ? 'visible' : 'hidden'}
                     registerOptions={{
                       required: {
                         value: isAnEvent && isInPersonOrHybrid,

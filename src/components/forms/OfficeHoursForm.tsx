@@ -218,7 +218,8 @@ export const OfficeHoursForm: FC = () => {
                     message: `Organization name cannot exceed ${MAX_TEXT_LENGTH} characters.`
                   },
                   validate: {
-                    containURL: value => !containURL(value) || 'Organization name cannot contain a URL.'
+                    containURL: value =>
+                      !containURL(value) || 'Organization name cannot contain a URL.'
                   }
                 }}
                 mb={8}
