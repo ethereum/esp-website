@@ -52,7 +52,7 @@ async function handler(req: GranteeFinanceNextApiRequest, res: NextApiResponse):
           // validate security ID
           if (Security_ID__c.trim() !== account.Security_ID__c) {
             console.error('Security ID does not match.');
-            res.status(400).json({ status: 'Security ID does not match.' });
+            res.status(404).json({ status: 'Contract ID not found.' });
             return resolve();
           }
 

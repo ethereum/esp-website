@@ -86,7 +86,7 @@ export const GranteeFinanceForm: FC = () => {
           if (res.status === 404) {
             toast({
               ...TOAST_OPTIONS,
-              title: 'Please make sure the Security Grantee ID is correct.',
+              title: 'Please make sure the Contract or Security ID is correct.',
               status: 'error'
             });
           } else {
