@@ -895,7 +895,7 @@ export const GranteeFinanceForm: FC = () => {
                 </FormLabel>
 
                 <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  The key phrase provided to you by ESP.
+                  The contract ID provided to you by ESP.
                 </PageText>
 
                 <Input
@@ -935,7 +935,7 @@ export const GranteeFinanceForm: FC = () => {
                 </FormLabel>
 
                 <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  The Security Grantee ID provided to you by ESP.
+                  The security key phrase provided to you by ESP.
                 </PageText>
 
                 <Input
