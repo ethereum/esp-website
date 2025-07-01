@@ -125,7 +125,8 @@ export interface GranteeFinanceFormData extends CaptchaForm {
   beneficiaryName: string; // SF API: Beneficiary_Name__c
   contactEmail: string; // SF API: User_Email__c
   notes: string; // SF API: Transfer_Notes__c
-  granteeSecurityID: string; // SF API: Contract_ID__c
+  contractID: string; // SF API: Contract_ID__c
+  securityID: string; // SF API: Security_ID__c
 
   // ETH/DAI
   tokenPreference: TokenPreference;
@@ -354,7 +355,8 @@ export interface GranteeFinanceNextApiRequest extends NextApiRequest {
     bankAddress: string;
     IBAN: string;
     SWIFTCode: string;
-    granteeSecurityID: string;
+    contractID: string;
+    securityID: string;
     l2Payment: boolean;
     l2Network: string;
     isCentralizedExchange: boolean;
