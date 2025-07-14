@@ -315,8 +315,7 @@ export const GranteeFinanceForm: FC = () => {
 
                     <PageText as='small' fontSize='helpText' color='brand.helpText'>
                       Select &lsquo;Yes&rsquo; if you would like your payment to be processed on a
-                      Layer 2 network, versus the Ethereum Mainnet. The ESP team will be in touch to
-                      confirm which Layer 2 network.
+                      Layer 2 network, versus the Ethereum Mainnet.
                     </PageText>
 
                     <RadioGroup
