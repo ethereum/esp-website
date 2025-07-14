@@ -86,7 +86,7 @@ export const GranteeFinanceForm: FC = () => {
           if (res.status === 404) {
             toast({
               ...TOAST_OPTIONS,
-              title: 'Please make sure the Security Grantee ID is correct.',
+              title: 'Please make sure the Contract or Security ID is correct.',
               status: 'error'
             });
           } else {
@@ -139,7 +139,7 @@ export const GranteeFinanceForm: FC = () => {
                     onChange(value);
                     setPaymentPreference(value);
                     reset({
-                      // keep paymentPreference, beneficiaryName, contactEmail, notes and granteeSecurityID
+                      // keep paymentPreference, beneficiaryName, contactEmail, notes and contractID
                       // reset the other fields
                       ...getValues(),
                       beneficiaryAddress: '',
@@ -275,7 +275,7 @@ export const GranteeFinanceForm: FC = () => {
                         onChange(value);
                         setTokenPreference(value);
                         reset({
-                          // keep paymentPreference, beneficiaryName, contactEmail, notes and granteeSecurityID
+                          // keep paymentPreference, beneficiaryName, contactEmail, notes and contractID
                           // reset the other fields
                           ...getValues(),
                           ethAddress: '',
@@ -315,8 +315,7 @@ export const GranteeFinanceForm: FC = () => {
 
                     <PageText as='small' fontSize='helpText' color='brand.helpText'>
                       Select &lsquo;Yes&rsquo; if you would like your payment to be processed on a
-                      Layer 2 network, versus the Ethereum Mainnet. The ESP team will be in touch to
-                      confirm which Layer 2 network.
+                      Layer 2 network, versus the Ethereum Mainnet.
                     </PageText>
 
                     <RadioGroup
@@ -887,23 +886,19 @@ export const GranteeFinanceForm: FC = () => {
                 )}
               </FormControl>
 
-              <FormControl
-                id='grantee-security-id-control'
-                isRequired={hasPaymentPreferenceSet}
-                mb={8}
-              >
-                <FormLabel htmlFor='granteeSecurityID' mb={1}>
+              <FormControl id='contract-id-control' isRequired={hasPaymentPreferenceSet} mb={8}>
+                <FormLabel htmlFor='contractID' mb={1}>
                   <PageText display='inline' fontSize='input'>
-                    Grantee Security ID
+                    Contract ID
                   </PageText>
                 </FormLabel>
 
                 <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  The key phrase provided to you by ESP.
+                  The contract ID provided to you by ESP.
                 </PageText>
 
                 <Input
-                  id='granteeSecurityID'
+                  id='contractID'
                   type='text'
                   bg='white'
                   borderRadius={0}
@@ -912,20 +907,60 @@ export const GranteeFinanceForm: FC = () => {
                   color='brand.paragraph'
                   fontSize='input'
                   mt={3}
-                  {...register('granteeSecurityID', { required: true, maxLength: 18 })}
+                  {...register('contractID', { required: true, maxLength: 18 })}
                 />
 
-                {errors?.granteeSecurityID?.type === 'required' && (
+                {errors?.contractID?.type === 'required' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Grantee Security ID is required.
+                      Contract ID is required.
                     </PageText>
                   </Box>
                 )}
-                {errors?.granteeSecurityID?.type === 'maxLength' && (
+                {errors?.contractID?.type === 'maxLength' && (
                   <Box mt={1}>
                     <PageText as='small' fontSize='helpText' color='red.500'>
-                      Grantee Security ID cannot exceed 18 characters.
+                      Contract ID cannot exceed 18 characters.
+                    </PageText>
+                  </Box>
+                )}
+              </FormControl>
+
+              <FormControl id='security-id-control' isRequired={hasPaymentPreferenceSet} mb={8}>
+                <FormLabel htmlFor='securityID' mb={1}>
+                  <PageText display='inline' fontSize='input'>
+                    Security ID
+                  </PageText>
+                </FormLabel>
+
+                <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                  The security key phrase provided to you by ESP.
+                </PageText>
+
+                <Input
+                  id='securityID'
+                  type='text'
+                  bg='white'
+                  borderRadius={0}
+                  borderColor='brand.border'
+                  h='56px'
+                  color='brand.paragraph'
+                  fontSize='input'
+                  mt={3}
+                  {...register('securityID', { required: true, maxLength: 255 })}
+                />
+
+                {errors?.securityID?.type === 'required' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Security ID is required.
+                    </PageText>
+                  </Box>
+                )}
+                {errors?.securityID?.type === 'maxLength' && (
+                  <Box mt={1}>
+                    <PageText as='small' fontSize='helpText' color='red.500'>
+                      Security ID cannot exceed 255 characters.
                     </PageText>
                   </Box>
                 )}
