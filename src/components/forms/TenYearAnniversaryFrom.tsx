@@ -74,16 +74,28 @@ export const TenYearAnniversaryFrom: FC = () => {
             <PageSection>Contact Information</PageSection>
 
             <Flex direction={{ base: 'column', md: 'row' }} gap={8}>
-              <TextField id='firstName' label='First Name' isRequired />
-              <TextField id='lastName' label='Last Name' isRequired />
+              <TextField id='firstName' label='First Name' maxLength={40} isRequired />
+              <TextField id='lastName' label='Last Name' maxLength={80} isRequired />
             </Flex>
 
             <TextField id='email' label='Email' isRequired />
 
-            <TextField id='company' label='Name of company, team, or organization. If you do not have an organization name, write "N/A"' isRequired />
-            <TextAreaField id='teamProfile' label='Tell us about yourself, your experience, and your motivations. Feel free to link to any biography pages, LinkedIn pages, etc.' isRequired />
-            <TextAreaField id='previousWork' label='List of any previous events you’ve organized.' isRequired />
-            <TextField id='twitter' label='Twitter Handle(s)' />
+            <TextField
+              id='company'
+              label='Name of company, team, or organization. If you do not have an organization name, write "N/A"'
+              isRequired
+            />
+            <TextAreaField
+              id='teamProfile'
+              label='Tell us about yourself, your experience, and your motivations. Feel free to link to any biography pages, LinkedIn pages, etc.'
+              isRequired
+            />
+            <TextAreaField
+              id='previousWork'
+              label='List of any previous events you’ve organized.'
+              isRequired
+            />
+            <TextField id='twitter' label='Twitter Handle(s)' maxLength={16} />
             <TextField
               id='alternativeContact'
               label="We will contact you via email by default. As backup, if you'd like to provide alternative contact info, you may do so."
@@ -140,13 +152,27 @@ export const TenYearAnniversaryFrom: FC = () => {
               <DateField id='eventDate' label='Event Date' isRequired />
             </Flex>
 
-            <TextField id='eventLink' label='Is there a website for this event? Paste the link here.' isRequired />
-            <TextAreaField id='eventDescription' label='Describe your event, including planned format and goals for the event.' isRequired />
+            <TextField
+              id='eventLink'
+              label='Is there a website for this event? Paste the link here.'
+              isRequired
+            />
+            <TextAreaField
+              id='eventDescription'
+              label='Describe your event, including planned format and goals for the event.'
+              isRequired
+            />
 
             <TextField id='eventLocation' label='Event Location' isRequired />
-            <TextAreaField id='proposedTimeline' label='The maximum sponsorship amount for this round is 500 USD. In this space, itemize your anticipated costs. Best estimates are ok if things are not yet confirmed or dependent on final attendee count.' isRequired />
+            <TextAreaField
+              id='proposedTimeline'
+              label='The maximum sponsorship amount for this round is 500 USD. In this space, itemize your anticipated costs. Best estimates are ok if things are not yet confirmed or dependent on final attendee count.'
+              isRequired
+            />
 
-            <PageSection>Choose denominated currency and enter a whole number in the Amount field</PageSection>
+            <PageSection>
+              Choose denominated currency and enter a whole number in the Amount field
+            </PageSection>
 
             <Flex direction={{ base: 'column', md: 'row' }} gap={8}>
               <Controller
@@ -171,7 +197,7 @@ export const TenYearAnniversaryFrom: FC = () => {
                 )}
               />
 
-              <TextField id='requestedAmount' label='Amount' isRequired />
+              <TextField id='requestedAmount' label='Amount' hideCharCounter isRequired />
             </Flex>
 
             <PageSection>Additional Details</PageSection>
@@ -206,8 +232,10 @@ export const TenYearAnniversaryFrom: FC = () => {
               label='Did anyone recommend that you submit an application to the Ecosystem Support Program?'
             />
 
-            <TextAreaField id='additionalInfo' label="Is there anything we didn't cover in the above questions? Feel free to add any relevant links here. This is optional." />
-            
+            <TextAreaField
+              id='additionalInfo'
+              label="Is there anything we didn't cover in the above questions? Feel free to add any relevant links here. This is optional."
+            />
 
             <Center mb={12}>
               <Captcha />

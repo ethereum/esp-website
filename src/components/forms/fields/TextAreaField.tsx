@@ -1,19 +1,39 @@
 import React, { FC } from 'react';
 import { Textarea } from '@chakra-ui/react';
-import { useFormContext } from 'react-hook-form';
+import { useFormContext, RegisterOptions } from 'react-hook-form';
 
 import { Field, type Props as FieldProps } from './Field';
+import { CharCounter } from './CharCounter';
+import { MAX_TEXT_AREA_LENGTH } from '../../../constants';
 
-interface Props extends Omit<FieldProps, 'children' | 'error'> {}
+interface Props extends Omit<FieldProps, 'children' | 'error'> {
+  registerOptions?: RegisterOptions;
+  maxLength?: number;
+}
 
-export const TextAreaField: FC<Props> = ({ id, isDisabled, ...rest }) => {
+export const TextAreaField: FC<Props> = ({
+  id,
+  registerOptions,
+  isDisabled,
+  maxLength = MAX_TEXT_AREA_LENGTH,
+  ...rest
+}) => {
   const {
     register,
-    formState: { errors }
+    formState: { errors },
+    watch
   } = useFormContext();
 
+  const currentValue = watch(id) || '';
+  const currentLength = currentValue.length;
+
   return (
-    <Field id={id} error={errors[id]} {...rest}>
+    <Field
+      id={id}
+      error={errors[id]}
+      helpIndicator={maxLength && <CharCounter current={currentLength} max={maxLength} />}
+      {...rest}
+    >
       <Textarea
         id={id}
         isDisabled={isDisabled}
@@ -25,7 +45,7 @@ export const TextAreaField: FC<Props> = ({ id, isDisabled, ...rest }) => {
         fontSize='input'
         h='150px'
         mt={3}
-        {...register(id)}
+        {...register(id, registerOptions)}
       />
     </Field>
   );
