@@ -1,5 +1,5 @@
 import { Stack } from '@chakra-ui/react';
-import { FC, ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 import { Description } from '../UI';
 
@@ -9,7 +9,7 @@ type Props = {
   children: ReactNode;
 };
 
-export const AboutLayout: FC<Props> = ({ children }) => {
+export const AboutLayout = ({ children }: Props) => {
   return (
     <>
       <Stack mb={5} px={{ base: 5, md: 12 }} py={3}>

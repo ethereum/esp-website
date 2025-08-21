@@ -5,7 +5,6 @@ import Image from 'next/image';
 
 import {
   ApplicantsSidebar,
-  ApplicationTypeCard,
   PageMetadata,
   PageSection,
   PageSubheading,
@@ -16,15 +15,8 @@ import softwareDevelopersSVG from '../../../public/images/software-developers-ve
 import researchersSVG from '../../../public/images/researchers-vector.svg';
 import academicsSVG from '../../../public/images/academics-vector.svg';
 import communityOrganizersSVG from '../../../public/images/community-organizers-vector.svg';
-import designersSVG from '../../../public/images/designers-vector.svg';
-import otherGrantsProgramsSVG from '../../../public/images/other-grant-programs-vector.svg';
 
-import {
-  OFFICE_HOURS_URL,
-  PROJECT_GRANTS_URL,
-  SIDEBAR_APPLICANTS_LINKS,
-  SMALL_GRANTS_URL
-} from '../../constants';
+import { SIDEBAR_APPLICANTS_LINKS } from '../../constants';
 
 const Applicants: NextPage = () => {
   // `threshold` option allows us to control the % of visibility required before triggering the Intersection Observer

@@ -1,5 +1,5 @@
 import { Box, Container, ContainerProps } from '@chakra-ui/react';
-import { FC, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { useRouter } from 'next/router';
 
 import { Footer, FooterBackgroundImage, HomepageHero } from '../UI';
@@ -22,7 +22,7 @@ import {
   ZKGrantsLayout,
   DataChallengeLayout,
   PectraPGRLayout,
-  TenYearAnniversaryLayout,
+  TenYearAnniversaryLayout
 } from '../layout';
 import { Nav } from '../../components';
 
@@ -44,10 +44,10 @@ import {
   ZK_GRANTS_URL,
   DATA_CHALLENGE_ROUND_URL,
   PECTRA_PGR_URL,
-  TEN_YEAR_ANNIVERSARY_URL,
+  TEN_YEAR_ANNIVERSARY_URL
 } from '../../constants';
 
-export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
+export const Layout = ({ children, ...props }: ContainerProps) => {
   const router = useRouter();
 
   const renderContent = (): ReactNode => {
@@ -98,9 +98,8 @@ export const Layout: FC<ContainerProps> = ({ children, ...props }) => {
             <TenYearAnniversaryLayout>{children}</TenYearAnniversaryLayout>
           </main>
         </Box>
-      )
+      );
     }
-    
 
     if (router.pathname === ACADEMIC_GRANTS_2022_URL) {
       return (

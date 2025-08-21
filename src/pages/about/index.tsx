@@ -1,6 +1,6 @@
 import axios from 'redaxios';
 import { Box, Link, Stack } from '@chakra-ui/react';
-import type { NextPage, GetStaticProps } from 'next';
+import type { GetStaticProps } from 'next';
 import Papa from 'papaparse';
 
 import { PageSection, PageText, PageMetadata, PriorityProjectsChart } from '../../components/UI';
@@ -44,7 +44,7 @@ interface Props {
   grants: Grant[];
 }
 
-const About: NextPage<Props> = ({ grants }) => {
+const About = ({ grants }: Props) => {
   return (
     <>
       <PageMetadata
