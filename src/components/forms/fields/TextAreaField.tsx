@@ -13,7 +13,7 @@ export const TextAreaField: FC<Props> = ({ id, isDisabled, ...rest }) => {
   } = useFormContext();
 
   return (
-    <Field id={id} error={errors[id]} {...rest}>
+    <Field id={id} error={errors[id] as any} {...rest}>
       <Textarea
         id={id}
         isDisabled={isDisabled}

@@ -15,7 +15,7 @@ export const DateField: FC<Props> = ({ id, ...rest }) => {
   } = useFormContext();
 
   return (
-    <Field id={id} error={errors[id]} {...rest}>
+    <Field id={id} error={errors[id] as any} {...rest}>
       <Input
         type='date'
         id={id}

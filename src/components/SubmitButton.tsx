@@ -1,5 +1,4 @@
-import { FC } from 'react';
-import { Box, BoxProps, Button, ButtonProps, Flex, Spinner } from '@chakra-ui/react';
+import { Box, Button, Flex, Spinner } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { ImportantText } from './UI/headings';
@@ -18,10 +17,10 @@ interface Props {
   text: string;
 }
 
-const MotionBox = motion<BoxProps>(Box);
-const MotionButton = motion<ButtonProps>(Button);
+const MotionBox = motion(Box);
+const MotionButton = motion(Button);
 
-export const SubmitButton: FC<Props> = ({
+export const SubmitButton = ({
   id = 'submit-application',
   isValid,
   isSubmitting,
@@ -29,13 +28,13 @@ export const SubmitButton: FC<Props> = ({
   height,
   width,
   text
-}) => {
+}: Props) => {
   const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
 
   return (
     <Box id={id} position='relative'>
       <MotionBox
-        backgroundColor='brand.button.shadow'
+        bg='brand.button.shadow'
         h={height}
         w={width}
         position='absolute'
@@ -44,7 +43,7 @@ export const SubmitButton: FC<Props> = ({
       />
 
       <MotionButton
-        backgroundColor='brand.accent'
+        bg='brand.accent'
         w={width}
         py={7}
         borderRadius={0}
