@@ -1,5 +1,4 @@
 import { Flex, Tab, TabList, Tabs } from '@chakra-ui/react';
-import { FC } from 'react';
 
 import { ImportantText } from '../headings';
 
@@ -9,7 +8,7 @@ interface Props {
   tabsList: string[];
 }
 
-export const NavigationTabs: FC<Props> = ({ tabIndex, handleChange, tabsList }) => {
+export const NavigationTabs = ({ tabIndex, handleChange, tabsList }: Props) => {
   return (
     <Flex
       mt={-12}
