@@ -1,10 +1,50 @@
-import { AspectRatio, Box, Center, Link, Stack } from '@chakra-ui/react';
-import type { NextPage } from 'next';
+import axios from 'redaxios';
+import { Box, Link, Stack } from '@chakra-ui/react';
+import type { NextPage, GetStaticProps } from 'next';
+import Papa from 'papaparse';
 
 import { PageSection, PageText, PageMetadata, PriorityProjectsChart } from '../../components/UI';
-import { ESP_WISHLIST_URL, OFFICE_HOURS_URL } from '../../constants';
 
-const About: NextPage = () => {
+import { LatestGranteesList } from '../../components/forms';
+
+import { Grant } from '../../types';
+
+// clean up empty grants
+const cleanUpGrants = (grants: Grant[]): Grant[] => {
+  return grants.filter(grant => grant.Project);
+};
+
+// getStaticProps runs server-side only (on build-time)
+// https://nextjs.org/docs/basic-features/data-fetching/get-static-props#write-server-side-code-directly
+export const getStaticProps: GetStaticProps = async context => {
+  const grants = await axios
+    .get(process.env.GOOGLE_GRANTS_SHEET_API_URL!)
+    .then(res => {
+      return new Promise<Grant[]>((resolve, reject) => {
+        Papa.parse(res.data, {
+          header: true,
+          complete: results => {
+            const grants = results.data as Grant[];
+            return resolve(cleanUpGrants(grants));
+          },
+          error: err => reject(err.message)
+        });
+      });
+    })
+    .catch(err => console.error(err.toJSON()));
+
+  return {
+    props: {
+      grants
+    }
+  };
+};
+
+interface Props {
+  grants: Grant[];
+}
+
+const About: NextPage<Props> = ({ grants }) => {
   return (
     <>
       <PageMetadata
@@ -13,7 +53,7 @@ const About: NextPage = () => {
       />
 
       <Box bg='white' position='relative' px={{ md: 20, lg: 60 }} py={{ md: 12 }}>
-        <Stack mb={12}>
+        <Stack mb={12} spacing={10}>
           <section id='our-scope'>
             <PageSection mb={6} textAlign='center'>
               Our scope
@@ -28,56 +68,55 @@ const About: NextPage = () => {
             </PageText>
 
             <PageText mb={6}>
-              Below is a scale indicating ESP&apos;s areas of interest. Projects on the Not A
-              Priority end are valuable but not eligible for funding, while projects on the High
-              Priority end are more likely to receive financial support. This is by no means a
-              comprehensive list, as we continue to accept applications and support projects that
-              fall outside this list when suitable. We’re always open to new ideas!
-            </PageText>
-
-            <PriorityProjectsChart my={12} color='brand.paragraph' />
-
-            <PageText mb={6}>
-              If you&apos;re looking for inspiration for your next project, check out the
-              suggestions on our{' '}
+              ESP is in the process of refining our priorities and approach, aligning with the
+              Ethereum Foundation&apos;s updated{' '}
               <Link
                 fontWeight={700}
                 color='brand.orange.100'
-                href={ESP_WISHLIST_URL}
+                href='https://blog.ethereum.org/2025/07/10/future-of-ecodev'
                 isExternal
                 _hover={{ textDecoration: 'none' }}
               >
-                Wishlist
-              </Link>{' '}
-              for areas crucial to the Ethereum ecosystem&apos;s development. If you are unsure if
-              your project is within scope, feel free to submit an{' '}
-              <Link
-                fontWeight={700}
-                color='brand.orange.100'
-                href={OFFICE_HOURS_URL}
-                _hover={{ textDecoration: 'none' }}
-              >
-                Office Hours request
-              </Link>{' '}
-              with the Project Feedback fields filled out.
+                ecosystem development strategy
+              </Link>
+              . Learn more in our blog post and stay tuned for news on ESP&apos;s revised strategy,
+              coming Q4 2025!
+            </PageText>
+
+            <PriorityProjectsChart my={12} color='brand.paragraph' />
+          </section>
+
+          <section id='supporting-builders'>
+            <PageSection mb={6} textAlign='center'>
+              Supporting Builders
+            </PageSection>
+
+            <PageText mb={6}>
+              ESP support is generally directed towards builders rather than directly impacting end
+              users. We don&apos;t often support dapps or front-end platforms, although this is not
+              a hard rule and there are exceptions—for example, where an application serves as a
+              research or educational tool, or a reference implementation of a new standard.
             </PageText>
 
             <PageText mb={6}>
-              To learn more about ESP support and what we&apos;re looking out for, watch our talk at
-              Devcon VI below:
+              We have supported individuals and teams from all over the world representing different
+              backgrounds, disciplines, and levels of experience. This includes companies, DAOs,
+              non-profits, institutions, academics, developers, educators, community organizers, and
+              more.
+            </PageText>
+          </section>
+
+          <section id='recent-grantees'>
+            <PageSection mb={6} textAlign='center'>
+              Recent Grantees
+            </PageSection>
+
+            <PageText mb={16}>
+              This is only a small sample – we&apos;ll highlight a few at a time and rotate
+              periodically, so make sure to check back once in a while for updates!
             </PageText>
 
-            <Center mb={6}>
-              <AspectRatio flex='1' ratio={16 / 9}>
-                <iframe
-                  src='https://www.youtube.com/embed/EVrQy03WekI'
-                  title='Ecosystem Support Program'
-                  frameBorder='0'
-                  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                  allowFullScreen
-                ></iframe>
-              </AspectRatio>
-            </Center>
+            <LatestGranteesList grantsList={grants} />
           </section>
         </Stack>
       </Box>

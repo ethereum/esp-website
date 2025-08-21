@@ -348,11 +348,9 @@ export const APPLICANTS_TABS_MAP: TabsMap = {
 };
 
 // about tabs
-export const ABOUT_TABS = ['What We Support', 'Who We Support', 'How We Support'];
+export const ABOUT_TABS = ['What We Support'];
 export const ABOUT_TABS_MAP: TabsMap = {
-  [ABOUT_URL]: 0,
-  [WHO_WE_SUPPORT_URL]: 1,
-  [HOW_WE_SUPPORT_URL]: 2
+  [ABOUT_URL]: 0
 };
 
 // nav

@@ -11,7 +11,6 @@ import {
 } from '@chakra-ui/react';
 
 import { StepArrowIcon } from '../icons';
-import { ESP_WISHLIST_URL } from '../../../constants';
 
 function Arrow(props: FlexProps) {
   return (
@@ -89,17 +88,6 @@ export const PriorityProjectsChart: FC<Props> = props => {
           <ListItem>Developer tooling</ListItem>
           <ListItem>Research on cryptographic primitives</ListItem>
           <ListItem>Growing the builder ecosystem</ListItem>
-          <ListItem>
-            <Link
-              isExternal
-              fontWeight={700}
-              color='brand.orange.100'
-              href={ESP_WISHLIST_URL}
-              _hover={{ textDecoration: 'none' }}
-            >
-              See more items or areas of interest on our wishlist
-            </Link>
-          </ListItem>
         </UnorderedList>
       </Flex>
     </Flex>
