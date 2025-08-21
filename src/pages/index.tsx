@@ -11,7 +11,7 @@ import whatWeSupportTree from '../../public/images/what-we-support-tree.png';
 import whoWeSupportRoots from '../../public/images/who-we-support-roots.png';
 import howWeSupportRoots from '../../public/images/how-we-support-roots.png';
 
-import { ABOUT_URL, HOW_WE_SUPPORT_URL, WHO_WE_SUPPORT_URL } from '../constants';
+import { ABOUT_URL, APPLICANTS_URL } from '../constants';
 
 const Home: NextPage = () => {
   return (
@@ -42,11 +42,10 @@ const Home: NextPage = () => {
                 <PageSection mb={6}>Ecosystem Support Program&apos;s Role</PageSection>
 
                 <PageText mb={1}>
-                  As the public facing allocation arm of the Ethereum Foundation, ESP provides
-                  funding and other forms of support to eligible projects working to improve
-                  Ethereum. We focus on work that strengthens Ethereum&apos;s foundations and
-                  enables future builders, such as developer tools, research, community building,
-                  infrastructure and open standards.
+                  ESP provides support to eligible projects working to improve Ethereum. We focus on
+                  work that strengthens Ethereum&apos;s foundations and enables future builders,
+                  such as developer tools, research, community building, infrastructure, and open
+                  standards.
                 </PageText>
               </section>
             </Stack>
@@ -63,13 +62,13 @@ const Home: NextPage = () => {
               borderBottom='5px solid'
               borderBottomColor='brand.heading'
               px={{ base: 2, lg: 20, xl: 10 }}
-              pt={7}
+              py={7}
             >
               <Grid
                 templateColumns={{
                   base: 'repeat(2, auto)',
-                  lg: 'repeat(6, auto)',
-                  xl: 'repeat(6, 1fr)'
+                  lg: 'repeat(8, auto)',
+                  xl: 'repeat(8, 1fr)'
                 }}
                 rowGap={10}
                 justifyContent='space-evenly'
@@ -138,16 +137,11 @@ const Home: NextPage = () => {
                     </PageText>
                   </Stack>
                 </GridItem>
-                <GridItem
-                  alignSelf='center'
-                  justifySelf='center'
-                  mr={{ lg: 6, xl: 0, xl2: -12 }}
-                  mb={{ base: 8, lg: 0 }}
-                >
+                <GridItem alignSelf='center' justifySelf='center' mr={{ lg: 6, xl: 0, xl2: -16 }}>
                   <Box>
                     <Image
-                      src={bigSucculentSVG}
-                      alt='big opened succulent plant representing allocation in 2021'
+                      src={mediumSucculentSVG}
+                      alt='medium succulent plant representing allocation in 2020'
                     />
                   </Box>
                 </GridItem>
@@ -175,13 +169,44 @@ const Home: NextPage = () => {
                     </PageText>
                   </Stack>
                 </GridItem>
-              </Grid>
+                <GridItem
+                  alignSelf='center'
+                  justifySelf='center'
+                  mr={{ lg: 6, xl: 0, xl2: -12 }}
+                  mb={{ base: 8, lg: 0 }}
+                >
+                  <Box>
+                    <Image
+                      src={bigSucculentSVG}
+                      alt='big opened succulent plant representing allocation in 2021'
+                    />
+                  </Box>
+                </GridItem>
+                <GridItem alignSelf='center' mb={{ base: 8, lg: 0 }}>
+                  <Stack>
+                    <PageSection as='h4' textAlign='left' mb={2}>
+                      2024
+                    </PageSection>
 
-              <Stack mt={{ lg: 7 }}>
-                <PageText fontSize='input' textAlign='center' p={4}>
-                  * ESP grants and support are not inclusive of all EF allocations
-                </PageText>
-              </Stack>
+                    <Box>
+                      <PageText
+                        fontSize={{ base: 'allocations', md: 'h1' }}
+                        fontWeight={200}
+                        mb={1}
+                      >
+                        677{' '}
+                        <PageText as='span' fontSize='stats'>
+                          projects
+                        </PageText>
+                      </PageText>
+                    </Box>
+
+                    <PageText fontSize='faq.question' fontWeight={400} mb={1}>
+                      $44.4 million
+                    </PageText>
+                  </Stack>
+                </GridItem>
+              </Grid>
             </Box>
           </section>
 
@@ -198,11 +223,10 @@ const Home: NextPage = () => {
               link={ABOUT_URL}
             >
               <PageText mb={6}>
-                We award dozens of grants each quarter, across a variety of categories. We support{' '}
-                <strong>free and open source projects</strong> that strengthen Ethereum&apos;s
+                We support free and open-source projects that strengthen Ethereum&apos;s
                 foundations, with a particular focus on builder tools, infrastructure, research,
-                community resources and other public goods. Funding is generally directed toward
-                supporting builders rather than end users.
+                community resources, and other public goods. Our support is generally directed
+                towards builders, rather than end users.
               </PageText>
             </HomeAboutCard>
           </section>
@@ -217,13 +241,13 @@ const Home: NextPage = () => {
                 height: 298.968
               }}
               title='Who We Support'
-              link={WHO_WE_SUPPORT_URL}
+              link={ABOUT_URL}
             >
               <PageText mb={6}>
-                Our grantees come from all over the world and represent many different backgrounds,
-                disciplines and levels of experience. We have supported individuals and teams of all
-                kinds - companies, DAOs, nonprofits, institutions, academics, developers, educators,
-                community organizers and more. Learn more and see a list of recent grantees.
+                We have supported individuals and teams from all over the world representing
+                different backgrounds, disciplines, and levels of experience. This includes
+                companies, DAOs, non-profits, institutions, academics, developers, educators,
+                community organizers, and more.
               </PageText>
             </HomeAboutCard>
           </section>
@@ -238,19 +262,14 @@ const Home: NextPage = () => {
                 height: 280.666
               }}
               title='How We Support'
-              link={HOW_WE_SUPPORT_URL}
+              link={APPLICANTS_URL}
             >
-              <PageText mb={6}>
-                We aim to deploy resources, both financial and non-financial, where they will have
-                the biggest impact. We try to keep our processes flexible and evolving in order to
-                be open to new ideas and support builders of all kinds.
-              </PageText>
-
               <PageText>
-                Grants are awarded through a formal application and evaluation process, while our
-                office hours are an opportunity to explore a broad range of support through an
-                informal conversation with a member of the ESP team, such as project feedback,
-                advice, help navigating the ecosystem or guidance on submitting a grant application.
+                We aim to deploy resources where they will have the biggest impact. We try to keep
+                our processes flexible and evolving in order to be open to new ideas and support
+                builders of all kinds. Our Office Hours are an opportunity to explore a broad range
+                of support through an informal conversation with a member of the ESP team, such as
+                project feedback, advice, or help navigating the ecosystem.
               </PageText>
             </HomeAboutCard>
           </section>
