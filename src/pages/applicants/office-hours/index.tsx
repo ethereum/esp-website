@@ -57,74 +57,62 @@ const OfficeHours: NextPage = () => {
               <section id='description' ref={ref}>
                 <PageSubheading mb={8}>Office Hours</PageSubheading>
 
-                <PageText mb={6}>
-                  Office Hours are a chance to connect directly with a member of the EF&apos;s
-                  Ecosystem Support team for support other than funding, including support with the
-                  process of submitting a grant application.
-                </PageText>
-
-                <PageText>Office Hours might be a good fit if you:</PageText>
-
-                <Stack mb={6}>
-                  <List>
-                    <ListItem>
-                      Need non-financial support such as guidance or help identifying resources.
-                    </ListItem>
-                    <ListItem>
-                      Are considering applying for a grant and have questions or want to get
-                      feedback before submitting.
-                    </ListItem>
-                    <ListItem>
-                      Aren&apos;t sure whether your project fits within our scope and want to find
-                      out what kind of support might be available to you.
-                    </ListItem>
-                  </List>
-                </Stack>
-
                 <PageText>
-                  An office hours session is <strong>not</strong> an application for a grant or
-                  other formal support, or a chance to pitch your project. The purpose of these
-                  sessions is for us to provide answers or guidance so you can take your next steps
-                  with greater confidence - so focus on letting us know what you need, and giving us
-                  whatever context will help us understand your goals and challenges.
+                  Office Hours are a chance to connect directly with a member of the ESP team for
+                  non-financial support. It is not an application for financial support, or a chance
+                  to pitch your project. The purpose of these sessions is for us to provide answers
+                  or guidance so you can take your next steps with greater confidence—so focus on
+                  letting us know what you need, and giving us whatever context will help us
+                  understand your goals and challenges.
                 </PageText>
               </section>
             </Stack>
 
             <Stack spacing={10}>
-              <section id='process' ref={ref2}>
-                <PageSection mb={6}>Process</PageSection>
+              <section id='what-we-offer' ref={ref2}>
+                <PageSection mb={6}>What we offer</PageSection>
 
-                <Stack spacing={3}>
-                  <ProcessStep title='Request'>
-                    Submit the form on the next page to request an office hours appointment. We may
-                    contact you for clarification if your request appears to be out of scope.
-                  </ProcessStep>
+                <PageText mb={6}>
+                  Office hours sessions are short informal calls with a member of the ESP team. Some
+                  common call topics include:
+                </PageText>
 
-                  <ProcessStep title='Schedule'>
-                    If it seems like a fit, we&apos;ll get in touch to set up a time, then send you
-                    a calendar invite with a call link.
-                  </ProcessStep>
+                <PageText fontWeight={700}>Project feedback or guidance</PageText>
+                <PageText mb={6}>
+                  If you&apos;re looking to maximize the impact of your project, we may be able to
+                  offer guidance such as idea validation, help thinking through a roadmap, or
+                  suggestions for how to refine your approach.
+                </PageText>
 
-                  <ProcessStep title='Prepare'>
-                    The more specific you are about what you need, the better we&apos;ll be able to
-                    help you! Read through the section below to make sure you understand what we can
-                    and can&apos;t do in these sessions.
-                  </ProcessStep>
-
-                  <ProcessStep title='Meet' isLastStep>
-                    You&apos;ll have an informal 20-minute video call with a member of the ESP team.
-                  </ProcessStep>
-                </Stack>
+                <PageText fontWeight={700}>Help navigating the Ethereum ecosystem</PageText>
+                <PageText>
+                  We like to think we know the Ethereum ecosystem pretty well. If you&apos;re
+                  feeling lost, we may be able to help point you in the right direction by
+                  identifying resources you might not be aware of, other projects tackling similar
+                  problems, communities and events to consider participating in, or even other
+                  potential sources of funding.
+                </PageText>
               </section>
 
-              <section id='eligibility' ref={ref3}>
+              <section id='what-we-dont-offer' ref={ref3}>
+                <PageSection mb={6}>What we DON&apos;T offer</PageSection>
+
+                <List>
+                  <ListItem>Financial support.</ListItem>
+                  <ListItem>Financial or legal advice.</ListItem>
+                  <ListItem>
+                    Advice on creating, structuring, launching, selling, or doing pretty much
+                    anything else with a token.
+                  </ListItem>
+                  <ListItem>Help with transactions, wallets or exchanges.</ListItem>
+                </List>
+              </section>
+
+              <section id='eligibility' ref={ref4}>
                 <PageSection mb={6}>Eligibility</PageSection>
 
                 <PageText mb={6}>
-                  Our criteria for office hours are a bit more flexible than our requirements for
-                  grant funding. However, the projects we engage with during office hours should
-                  still fit within our general{' '}
+                  The projects we engage with should fit within our general{' '}
                   <Link
                     fontWeight={700}
                     color='brand.orange.100'
@@ -161,51 +149,30 @@ const OfficeHours: NextPage = () => {
                 </List>
               </section>
 
-              <section id='what-we-offer' ref={ref4}>
-                <PageSection mb={6}>What we offer</PageSection>
+              <section id='process' ref={ref5}>
+                <PageSection mb={6}>Process</PageSection>
 
-                <PageText mb={6}>
-                  Office hours sessions are short informal calls with a member of the ESP team. Some
-                  common call topics include:
-                </PageText>
+                <Stack spacing={3}>
+                  <ProcessStep title='Request'>
+                    Submit the form on the next page to request an office hours appointment. We may
+                    contact you for clarification if your request appears to be out of scope.
+                  </ProcessStep>
 
-                <PageText fontWeight={700}>Guidance on submitting a grant application</PageText>
-                <PageText mb={6}>
-                  If you&apos;re thinking about submitting a grant application, but feeling
-                  uncertain - whether about your eligibility, our evaluation criteria or anything
-                  else - reach out to us before submitting! The application process takes time
-                  (yours and ours) and we would rather get your questions answered before you start
-                  so the process goes as smoothly as possible.
-                </PageText>
+                  <ProcessStep title='Schedule'>
+                    If it seems like a fit, we&apos;ll get in touch to set up a time, then send you
+                    a calendar invite with a call link.
+                  </ProcessStep>
 
-                <PageText fontWeight={700}>Project feedback or guidance</PageText>
-                <PageText mb={6}>
-                  Whether you have a long-term goal of applying for a grant or just want to maximize
-                  your impact, we may be able to offer guidance such as idea validation, help
-                  thinking through a roadmap, or suggestions for how to refine your approach.
-                </PageText>
+                  <ProcessStep title='Prepare'>
+                    The more specific you are about what you need, the better we&apos;ll be able to
+                    help you! Read through the section below to make sure you understand what we can
+                    and can&apos;t do in these sessions.
+                  </ProcessStep>
 
-                <PageText fontWeight={700}>Help navigating the Ethereum ecosystem</PageText>
-                <PageText>
-                  We like to think we know the Ethereum ecosystem pretty well. If you&apos;re
-                  feeling lost, we may be able to help point you in the right direction by
-                  identifying resources you might not be aware of, other projects tackling similar
-                  problems, communities and events to consider participating in, or even other
-                  potential sources of funding.
-                </PageText>
-              </section>
-
-              <section id='what-we-dont-offer' ref={ref5}>
-                <PageSection mb={6}>What we DON&apos;T offer</PageSection>
-
-                <List>
-                  <ListItem>Financial or legal advice.</ListItem>
-                  <ListItem>
-                    Advice on creating, structuring, launching, selling, or doing pretty much
-                    anything else with a token.
-                  </ListItem>
-                  <ListItem>Help with transactions, wallets or exchanges.</ListItem>
-                </List>
+                  <ProcessStep title='Meet' isLastStep>
+                    You&apos;ll have an informal 20-minute video call with a member of the ESP team.
+                  </ProcessStep>
+                </Stack>
               </section>
 
               <section id='before-submitting' ref={ref6}>

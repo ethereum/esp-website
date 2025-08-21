@@ -24,10 +24,10 @@ export const SIDEBAR_APPLICANTS_LINKS: SidebarLink[] = [
 export const OFFICE_HOURS_URL = '/applicants/office-hours';
 export const SIDEBAR_OFFICE_HOURS_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${OFFICE_HOURS_URL}/#description` },
-  { text: 'Process', href: `${OFFICE_HOURS_URL}/#process` },
-  { text: 'Eligibility', href: `${OFFICE_HOURS_URL}/#eligibility` },
   { text: 'What we offer', href: `${OFFICE_HOURS_URL}/#what-we-offer` },
   { text: "What we DON'T offer", href: `${OFFICE_HOURS_URL}/#what-we-dont-offer` },
+  { text: 'Eligibility', href: `${OFFICE_HOURS_URL}/#eligibility` },
+  { text: 'Process', href: `${OFFICE_HOURS_URL}/#process` },
   { text: 'Before submitting', href: `${OFFICE_HOURS_URL}/#before-submitting` },
   { text: 'FAQ', href: `${OFFICE_HOURS_URL}/#faq` },
   { text: 'Apply', href: `${OFFICE_HOURS_URL}/#apply` }
@@ -312,7 +312,7 @@ export const ETHEREUM_COOKIE_POLICY_URL = 'https://ethereum.org/en/cookie-policy
 export const ETHEREUM_PRIVACY_POLICY_URL = 'https://ethereum.org/en/privacy-policy/';
 export const ETHEREUM_TERMS_OF_USE_URL = 'https://ethereum.org/en/terms-of-use/';
 export const ETHEREUM_GITHUB_URL = 'https://github.com/ethereum';
-export const ETHEREUM_JOBS_URL = 'https://ethereum.org/en/community/#ethereum-jobs';
+export const ETHEREUM_JOBS_URL = 'https://ethereum.org/en/community/get-involved/#ethereum-jobs/';
 export const ETHEREUM_COMMUNITY_URL = 'https://ethereum.org/en/community/';
 export const ETHEREUM_BROAD_ECOSYSTEM_URL =
   'https://ethereum.org/en/community/grants/#broad-ethereum-ecosystem';
