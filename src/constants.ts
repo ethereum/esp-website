@@ -339,18 +339,12 @@ export const ACCOUNT_ABSTRACTION_GRANTS_EMAIL_ADDRESS = 'account-abstraction@eth
 export const GRANTS_EMAIL_ADDRESS = 'grant-rounds@ethereum.org';
 export const PECTRA_PGR_EMAIL_ADDRESS = 'grant-rounds@ethereum.org';
 // applicants tabs
-export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Small Grants', 'Project Grants'];
+export const APPLICANTS_TABS = ['Overview', 'Office Hours'];
 export const APPLICANTS_TABS_MAP: TabsMap = {
   [APPLICANTS_URL]: 0,
   [OFFICE_HOURS_URL]: 1,
-  [SMALL_GRANTS_URL]: 2,
-  [PROJECT_GRANTS_URL]: 3,
   [OFFICE_HOURS_APPLY_URL]: 1,
-  [OFFICE_HOURS_THANK_YOU_PAGE_URL]: 1,
-  [SMALL_GRANTS_APPLY_URL]: 2,
-  [SMALL_GRANTS_THANK_YOU_PAGE_URL]: 2,
-  [PROJECT_GRANTS_APPLY_URL]: 3,
-  [PROJECT_GRANTS_THANK_YOU_PAGE_URL]: 3
+  [OFFICE_HOURS_THANK_YOU_PAGE_URL]: 1
 };
 
 // about tabs

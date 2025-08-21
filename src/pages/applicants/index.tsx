@@ -1,4 +1,4 @@
-import { Box, Center, Flex, Stack } from '@chakra-ui/react';
+import { Box, Center, Flex, Link, Stack } from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import type { NextPage } from 'next';
 import Image from 'next/image';
@@ -49,18 +49,33 @@ const Applicants: NextPage = () => {
 
           <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
             <Stack mb={8}>
-              <PageSubheading mb={6}>ESP Grants and Support Overview</PageSubheading>
+              <PageSubheading mb={6}>ESP Support Overview</PageSubheading>
 
               <section id='mission-and-scope' ref={ref}>
                 <PageSection mb={6}>Mission and Scope</PageSection>
 
                 <PageText mb={6}>
-                  As the public facing allocation arm of the Ethereum Foundation, ESP provides
-                  funding and other forms of support to eligible projects working to improve
-                  Ethereum. We focus on work that strengthens Ethereum&apos;s foundations and
-                  enables future builders, such as open source tooling, building blocks and
-                  libraries, research, community building, educational resources, open standards,
-                  infrastructure and protocol improvements.
+                  ESP is in the process of refining our priorities and approach, aligning with the
+                  Ethereum Foundation&apos;s updated{' '}
+                  <Link
+                    fontWeight={700}
+                    color='brand.orange.100'
+                    href='https://blog.ethereum.org/2025/07/10/future-of-ecodev'
+                    isExternal
+                    _hover={{ textDecoration: 'none' }}
+                  >
+                    ecosystem development strategy
+                  </Link>
+                  . Learn more in our blog post and stay tuned for news on ESP&apos;s revised
+                  strategy, coming Q4 2025!
+                </PageText>
+
+                <PageText mb={8}>
+                  ESP provides support to eligible projects working to improve Ethereum. We focus on
+                  work that strengthens Ethereum&apos;s foundations and enables future builders,
+                  such as open-source tooling, building blocks and libraries, research, community
+                  building, educational resources, open standards, infrastructure, and protocol
+                  improvements.
                 </PageText>
 
                 <PageText mb={8}>
@@ -102,7 +117,9 @@ const Applicants: NextPage = () => {
                           <PageText fontWeight={600}>Researchers</PageText>
                         </Flex>
                       </Flex>
+                    </Stack>
 
+                    <Stack>
                       <Flex>
                         <Box mr={4} flexShrink={0}>
                           <Image src={academicsSVG} alt='Academics vector' height={36} width={40} />
@@ -111,9 +128,7 @@ const Applicants: NextPage = () => {
                           <PageText fontWeight={600}>Academics</PageText>
                         </Flex>
                       </Flex>
-                    </Stack>
 
-                    <Stack>
                       <Flex>
                         <Box mr={4} flexShrink={0}>
                           <Image
@@ -127,38 +142,13 @@ const Applicants: NextPage = () => {
                           <PageText fontWeight={600}>Community organizers</PageText>
                         </Flex>
                       </Flex>
-
-                      <Flex>
-                        <Box mr={4} flexShrink={0}>
-                          <Image src={designersSVG} alt='Designers vector' height={38} width={40} />
-                        </Box>
-                        <Flex h='38px' alignItems='center'>
-                          <PageText fontWeight={600}>Designers</PageText>
-                        </Flex>
-                      </Flex>
-
-                      <Flex>
-                        <Box mr={4} flexShrink={0}>
-                          <Image
-                            src={otherGrantsProgramsSVG}
-                            alt='Other grant programs and public goods funding platforms vector'
-                            height={40}
-                            width={40}
-                          />
-                        </Box>
-                        <Flex h='40px' alignItems='center' maxW={{ base: '235px', md: '275px' }}>
-                          <PageText fontWeight={600}>
-                            Other grant programs and public goods funding platforms
-                          </PageText>
-                        </Flex>
-                      </Flex>
                     </Stack>
                   </Flex>
                 </Center>
 
                 <PageText mb={6}>
-                  We don&apos;t often fund dapps or front-end platforms, although this is not a hard
-                  rule and there are exceptions - for example, where an application serves as a
+                  We don&apos;t often support dapps or front-end platforms, although this is not a
+                  hard rule and there are exceptions—for example, where an application serves as a
                   research or educational tool, or a reference implementation of a new standard.
                 </PageText>
               </section>
@@ -169,61 +159,13 @@ const Applicants: NextPage = () => {
                 <PageSection mb={6}>How we support</PageSection>
 
                 <PageText mb={6}>
-                  Grants are direct funding, awarded following a formal application, evaluation, and
-                  input from technical advisors. Grants are not donations or equity investments. We
-                  give grants to support recipients in building things that are vital to
-                  Ethereum&apos;s success, without the need to commercialize their work, so that
-                  these resources remain free and open to all. ESP grants are separated into two
-                  categories, small grants and project grants, each with a different process and
-                  criteria.
+                  The Ethereum Foundation has many valuable resources: visibility, access to a
+                  massive collective knowledge base, a creative and dedicated team, along with
+                  connections to leading developers, researchers, and community members. Our goal is
+                  to make the most meaningful use of these resources. Builders can book an Office
+                  Hours session for non-financial support such as project feedback, advice, or help
+                  navigating the ecosystem.
                 </PageText>
-
-                <PageText mb={6}>
-                  ESP also provides non-financial support. The Ethereum Foundation has many valuable
-                  resources in addition to funding: visibility; access to a massive collective
-                  knowledge base; a creative and dedicated team; connections to leading developers,
-                  researchers and community members. Our goal is to deploy these resources as
-                  impactfully as we can. If funding isn&apos;t what&apos;s needed, builders can also
-                  book an office hours session for non-financial support such as project feedback or
-                  help navigating the Ethereum ecosystem.
-                </PageText>
-              </section>
-
-              <section id='application-types' ref={ref3}>
-                <PageSection mb={6}>Application types</PageSection>
-
-                <PageText mb={6}>
-                  There are several ways to request support from ESP. Choose an application type to
-                  see which one might be a fit for you and learn more about the process.
-                </PageText>
-
-                <PageText mb={6}>
-                  Before submitting, please take time to understand the criteria and expectations
-                  for each type of application, as well as ESP&apos;s mission and scope in order to
-                  make sure you provide the appropriate information and context for us to make an
-                  informed decision on how to proceed with your application.
-                </PageText>
-
-                <Center>
-                  <Stack spacing={4}>
-                    <ApplicationTypeCard title='Office Hours' link={OFFICE_HOURS_URL}>
-                      Office Hours are a chance to connect directly with a member of the EF&apos;s
-                      Ecosystem Support team for support other than funding, including support with
-                      the process of submitting a grant application.
-                    </ApplicationTypeCard>
-
-                    <ApplicationTypeCard title='Small Grants' link={SMALL_GRANTS_URL}>
-                      Small grants, capped at $30,000, have a streamlined application and evaluation
-                      process to deliver a decision around two weeks after submission.
-                    </ApplicationTypeCard>
-
-                    <ApplicationTypeCard title='Project Grants' link={PROJECT_GRANTS_URL}>
-                      Project grants have no specific funding cap, and undergo a more intensive
-                      process of review and potentially rescoping. Timelines vary widely depending
-                      on scope and complexity.
-                    </ApplicationTypeCard>
-                  </Stack>
-                </Center>
               </section>
             </Stack>
           </Box>

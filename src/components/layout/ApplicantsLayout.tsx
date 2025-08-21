@@ -12,8 +12,6 @@ import {
   APPLICANTS_URL,
   GRANTEE_FINANCE_URL,
   OFFICE_HOURS_URL,
-  PROJECT_GRANTS_URL,
-  SMALL_GRANTS_URL
 } from '../../constants';
 
 type Props = {
@@ -42,26 +40,6 @@ export const ApplicantsLayout: FC<Props> = ({ children }) => {
         router.push(
           {
             pathname: OFFICE_HOURS_URL
-          },
-          undefined,
-          { scroll: false }
-        );
-        break;
-
-      case 2:
-        router.push(
-          {
-            pathname: SMALL_GRANTS_URL
-          },
-          undefined,
-          { scroll: false }
-        );
-        break;
-
-      case 3:
-        router.push(
-          {
-            pathname: PROJECT_GRANTS_URL
           },
           undefined,
           { scroll: false }
