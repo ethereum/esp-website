@@ -3,9 +3,7 @@ import { Box, Link, Stack } from '@chakra-ui/react';
 import type { GetStaticProps } from 'next';
 import Papa from 'papaparse';
 
-import { PageSection, PageText, PageMetadata, PriorityProjectsChart } from '../../components/UI';
-
-import { LatestGranteesList } from '../../components/forms';
+import { PageSection, PageText, PageMetadata } from '../../components/UI';
 
 import { Grant } from '../../types';
 
@@ -82,8 +80,6 @@ const About = ({ grants }: Props) => {
               . Learn more in our blog post and stay tuned for news on ESP&apos;s revised strategy,
               coming Q4 2025!
             </PageText>
-
-            <PriorityProjectsChart my={12} color='brand.paragraph' />
           </section>
 
           <section id='supporting-builders'>
@@ -104,19 +100,6 @@ const About = ({ grants }: Props) => {
               non-profits, institutions, academics, developers, educators, community organizers, and
               more.
             </PageText>
-          </section>
-
-          <section id='recent-grantees'>
-            <PageSection mb={6} textAlign='center'>
-              Recent Grantees
-            </PageSection>
-
-            <PageText mb={16}>
-              This is only a small sample – we&apos;ll highlight a few at a time and rotate
-              periodically, so make sure to check back once in a while for updates!
-            </PageText>
-
-            <LatestGranteesList grantsList={grants} />
           </section>
         </Stack>
       </Box>

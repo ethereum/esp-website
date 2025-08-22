@@ -22,8 +22,7 @@ const Applicants: NextPage = () => {
   // `threshold` option allows us to control the % of visibility required before triggering the Intersection Observer
   // https://react-intersection-observer.vercel.app/?path=/story/introduction--page#options
   const [ref, inView] = useInView({ threshold: 0.3 });
-  const [ref2, inView2] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref3, inView3] = useInView({ threshold: 0, initialInView: false });
+  const [ref2, inView2] = useInView({ threshold: 0, initialInView: false });
 
   return (
     <>
@@ -36,7 +35,7 @@ const Applicants: NextPage = () => {
         <Flex>
           <ApplicantsSidebar
             sidebarLinks={SIDEBAR_APPLICANTS_LINKS}
-            sectionsInView={[inView, inView2, inView3]}
+            sectionsInView={[inView, inView2]}
           />
 
           <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>

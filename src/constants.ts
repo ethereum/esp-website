@@ -17,8 +17,7 @@ export const HOW_WE_SUPPORT_URL = '/about/how-we-support';
 export const APPLICANTS_URL = '/applicants';
 export const SIDEBAR_APPLICANTS_LINKS: SidebarLink[] = [
   { text: 'Mission and Scope', href: `${APPLICANTS_URL}/#mission-and-scope` },
-  { text: 'How we support', href: `${APPLICANTS_URL}/#how-we-support` },
-  { text: 'Application types', href: `${APPLICANTS_URL}/#application-types` }
+  { text: 'How we support', href: `${APPLICANTS_URL}/#how-we-support` }
 ];
 
 export const OFFICE_HOURS_URL = '/applicants/office-hours';
