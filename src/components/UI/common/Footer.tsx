@@ -117,7 +117,7 @@ export const Footer: FC = () => {
 
           <Box>
             <Link href={ESP_LENS_URL} isExternal>
-              <Image src={lensLogoSVG} alt='Lens logo' height={51} width={50} />
+              <Image src={lensLogoSVG} alt='Lens logo' height={52} width={52} />
             </Link>
           </Box>
 
