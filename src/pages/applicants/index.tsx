@@ -44,7 +44,6 @@ const Applicants: NextPage = () => {
 
               <section id='mission-and-scope' ref={ref}>
                 <PageSection mb={6}>Mission and Scope</PageSection>
-
                 <PageText mb={6}>
                   ESP is in the process of refining our priorities and approach, aligning with the
                   Ethereum Foundation&apos;s updated{' '}
@@ -57,8 +56,17 @@ const Applicants: NextPage = () => {
                   >
                     ecosystem development strategy
                   </Link>
-                  . Learn more in our blog post and stay tuned for news on ESP&apos;s revised
-                  strategy, coming Q4 2025!
+                  . Learn more in our{' '}
+                  <Link
+                    fontWeight={700}
+                    color='brand.orange.100'
+                    href='https://blog.ethereum.org/2025/08/29/esp-next-chapter'
+                    isExternal
+                    _hover={{ textDecoration: 'none' }}
+                  >
+                    blog post
+                  </Link>{' '}
+                  and stay tuned for news on ESP&apos;s revised strategy, coming Q4 2025!
                 </PageText>
 
                 <PageText mb={8}>
@@ -68,7 +76,6 @@ const Applicants: NextPage = () => {
                   building, educational resources, open standards, infrastructure, and protocol
                   improvements.
                 </PageText>
-
                 <PageText mb={8}>
                   ESP support is generally directed toward enabling builders rather than end-users:
                   strengthening Ethereum&apos;s infrastructure, expanding the range of tools
@@ -77,7 +84,6 @@ const Applicants: NextPage = () => {
                   community development. We&apos;re open to supporting work from people and teams of
                   all kinds.
                 </PageText>
-
                 <Center mb={12}>
                   <Flex direction={{ base: 'column', md: 'row' }}>
                     <Stack mr={{ base: 0, md: 10 }} mb={{ base: 2, md: 0 }}>
@@ -136,7 +142,6 @@ const Applicants: NextPage = () => {
                     </Stack>
                   </Flex>
                 </Center>
-
                 <PageText mb={6}>
                   We don&apos;t often support dapps or front-end platforms, although this is not a
                   hard rule and there are exceptions—for example, where an application serves as a

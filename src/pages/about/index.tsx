@@ -77,8 +77,17 @@ const About = ({ grants }: Props) => {
               >
                 ecosystem development strategy
               </Link>
-              . Learn more in our blog post and stay tuned for news on ESP&apos;s revised strategy,
-              coming Q4 2025!
+              . Learn more in our{' '}
+              <Link
+                fontWeight={700}
+                color='brand.orange.100'
+                href='https://blog.ethereum.org/2025/08/29/esp-next-chapter'
+                isExternal
+                _hover={{ textDecoration: 'none' }}
+              >
+                blog post
+              </Link>{' '}
+              and stay tuned for news on ESP&apos;s revised strategy, coming Q4 2025!
             </PageText>
           </section>
 
