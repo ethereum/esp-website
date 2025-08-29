@@ -1,4 +1,4 @@
-import { Box, BoxProps, Flex, FlexProps, Link } from '@chakra-ui/react';
+import { Box, Flex, Link } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FC } from 'react';
@@ -9,8 +9,8 @@ import { useShadowAnimation } from '../hooks';
 
 import planeVectorSVG from '../../public/images/plane-vector.svg';
 
-const MotionBox = motion<BoxProps>(Box);
-const MotionFlex = motion<FlexProps>(Flex);
+const MotionBox = motion(Box);
+const MotionFlex = motion(Flex);
 
 interface Props {
   label: string;
@@ -19,14 +19,14 @@ interface Props {
   isApplyButton?: boolean;
 }
 
-export const ButtonLink: FC<Props> = ({ label, link, width, isApplyButton }) => {
+export const ButtonLink = ({ label, link, width, isApplyButton }: Props) => {
   const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
 
   return (
     <Link href={link} _hover={{ textDecoration: 'none' }}>
       <Box position='relative'>
         <MotionBox
-          backgroundColor='brand.button.shadow'
+          bg='brand.button.shadow'
           h='56px'
           w={width}
           position='absolute'
@@ -34,7 +34,7 @@ export const ButtonLink: FC<Props> = ({ label, link, width, isApplyButton }) => 
         />
 
         <MotionFlex
-          backgroundColor='brand.accent'
+          bg='brand.accent'
           w={width}
           py={4}
           justifyContent='center'

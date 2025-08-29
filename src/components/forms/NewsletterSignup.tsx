@@ -1,15 +1,4 @@
-import {
-  Box,
-  BoxProps,
-  Button,
-  ButtonProps,
-  Center,
-  Flex,
-  FormControl,
-  Input,
-  Stack,
-  useToast
-} from '@chakra-ui/react';
+import { Box, Button, Center, Flex, FormControl, Input, Stack, useToast } from '@chakra-ui/react';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
@@ -23,8 +12,8 @@ import { NewsletterFormData } from '../../types';
 
 import { TOAST_OPTIONS } from '../../constants';
 
-const MotionBox = motion<BoxProps>(Box);
-const MotionButton = motion<ButtonProps>(Button);
+const MotionBox = motion(Box);
+const MotionButton = motion(Button);
 
 export const NewsletterSignup: FC = () => {
   const {
@@ -138,7 +127,7 @@ export const NewsletterSignup: FC = () => {
             <Center>
               <Box position='relative'>
                 <MotionBox
-                  backgroundColor='brand.button.shadow'
+                  bg='brand.button.shadow'
                   h='56px'
                   w='148px'
                   position='absolute'
@@ -147,7 +136,7 @@ export const NewsletterSignup: FC = () => {
                 />
 
                 <MotionButton
-                  backgroundColor='brand.accent'
+                  bg='brand.accent'
                   w='148px'
                   py={7}
                   borderRadius={0}

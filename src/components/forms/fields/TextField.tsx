@@ -15,7 +15,7 @@ export const TextField: FC<Props> = ({ id, value, isDisabled, ...rest }) => {
   } = useFormContext();
 
   return (
-    <Field id={id} error={errors[id]} {...rest}>
+    <Field id={id} error={errors[id] as any} {...rest}>
       <Input
         id={id}
         value={value}

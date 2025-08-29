@@ -13,8 +13,11 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@chakra-ui/checkbox": "^1.7.1",
     "@chakra-ui/icons": "^1.1.1",
+    "@chakra-ui/image": "^1.1.10",
     "@chakra-ui/react": "^2.8.2",
+    "@chakra-ui/table": "~1.3.6",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@fontsource/libre-franklin": "^4.5.0",
@@ -51,6 +54,8 @@
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "@types/validator": "^13.7.12",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
     "eslint": "^8.56.0",
     "eslint-config-next": "^14.1.0",
     "eslint-config-prettier": "^9.1.0",
@@ -72,6 +77,5 @@
   },
   "bugs": {
     "url": "https://github.com/ethereum/esp-website/issues"
-  },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  }
 }
