@@ -1,48 +1,8 @@
-import axios from 'redaxios';
 import { Box, Link, Stack } from '@chakra-ui/react';
-import type { GetStaticProps } from 'next';
-import Papa from 'papaparse';
 
 import { PageSection, PageText, PageMetadata } from '../../components/UI';
 
-import { Grant } from '../../types';
-
-// clean up empty grants
-const cleanUpGrants = (grants: Grant[]): Grant[] => {
-  return grants.filter(grant => grant.Project);
-};
-
-// getStaticProps runs server-side only (on build-time)
-// https://nextjs.org/docs/basic-features/data-fetching/get-static-props#write-server-side-code-directly
-export const getStaticProps: GetStaticProps = async context => {
-  const grants = await axios
-    .get(process.env.GOOGLE_GRANTS_SHEET_API_URL!)
-    .then(res => {
-      return new Promise<Grant[]>((resolve, reject) => {
-        Papa.parse(res.data, {
-          header: true,
-          complete: results => {
-            const grants = results.data as Grant[];
-            return resolve(cleanUpGrants(grants));
-          },
-          error: err => reject(err.message)
-        });
-      });
-    })
-    .catch(err => console.error(err.toJSON()));
-
-  return {
-    props: {
-      grants
-    }
-  };
-};
-
-interface Props {
-  grants: Grant[];
-}
-
-const About = ({ grants }: Props) => {
+const About = () => {
   return (
     <>
       <PageMetadata
