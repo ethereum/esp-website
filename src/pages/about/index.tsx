@@ -1,10 +1,8 @@
-import { AspectRatio, Box, Center, Link, Stack } from '@chakra-ui/react';
-import type { NextPage } from 'next';
+import { Box, Link, Stack } from '@chakra-ui/react';
 
-import { PageSection, PageText, PageMetadata, PriorityProjectsChart } from '../../components/UI';
-import { ESP_WISHLIST_URL, OFFICE_HOURS_URL } from '../../constants';
+import { PageSection, PageText, PageMetadata } from '../../components/UI';
 
-const About: NextPage = () => {
+const About = () => {
   return (
     <>
       <PageMetadata
@@ -13,7 +11,7 @@ const About: NextPage = () => {
       />
 
       <Box bg='white' position='relative' px={{ md: 20, lg: 60 }} py={{ md: 12 }}>
-        <Stack mb={12}>
+        <Stack mb={12} spacing={10}>
           <section id='our-scope'>
             <PageSection mb={6} textAlign='center'>
               Our scope
@@ -28,56 +26,49 @@ const About: NextPage = () => {
             </PageText>
 
             <PageText mb={6}>
-              Below is a scale indicating ESP&apos;s areas of interest. Projects on the Not A
-              Priority end are valuable but not eligible for funding, while projects on the High
-              Priority end are more likely to receive financial support. This is by no means a
-              comprehensive list, as we continue to accept applications and support projects that
-              fall outside this list when suitable. We’re always open to new ideas!
-            </PageText>
-
-            <PriorityProjectsChart my={12} color='brand.paragraph' />
-
-            <PageText mb={6}>
-              If you&apos;re looking for inspiration for your next project, check out the
-              suggestions on our{' '}
+              ESP is in the process of refining our priorities and approach, aligning with the
+              Ethereum Foundation&apos;s updated{' '}
               <Link
                 fontWeight={700}
                 color='brand.orange.100'
-                href={ESP_WISHLIST_URL}
+                href='https://blog.ethereum.org/2025/07/10/future-of-ecodev'
                 isExternal
                 _hover={{ textDecoration: 'none' }}
               >
-                Wishlist
-              </Link>{' '}
-              for areas crucial to the Ethereum ecosystem&apos;s development. If you are unsure if
-              your project is within scope, feel free to submit an{' '}
+                ecosystem development strategy
+              </Link>
+              . Learn more in our{' '}
               <Link
                 fontWeight={700}
                 color='brand.orange.100'
-                href={OFFICE_HOURS_URL}
+                href='https://blog.ethereum.org/2025/08/29/esp-next-chapter'
+                isExternal
                 _hover={{ textDecoration: 'none' }}
               >
-                Office Hours request
+                blog post
               </Link>{' '}
-              with the Project Feedback fields filled out.
+              and stay tuned for news on ESP&apos;s revised strategy, coming Q4 2025!
+            </PageText>
+          </section>
+
+          <section id='supporting-builders'>
+            <PageSection mb={6} textAlign='center'>
+              Supporting Builders
+            </PageSection>
+
+            <PageText mb={6}>
+              ESP support is generally directed towards builders rather than directly impacting end
+              users. We don&apos;t often support dapps or front-end platforms, although this is not
+              a hard rule and there are exceptions—for example, where an application serves as a
+              research or educational tool, or a reference implementation of a new standard.
             </PageText>
 
             <PageText mb={6}>
-              To learn more about ESP support and what we&apos;re looking out for, watch our talk at
-              Devcon VI below:
+              We have supported individuals and teams from all over the world representing different
+              backgrounds, disciplines, and levels of experience. This includes companies, DAOs,
+              non-profits, institutions, academics, developers, educators, community organizers, and
+              more.
             </PageText>
-
-            <Center mb={6}>
-              <AspectRatio flex='1' ratio={16 / 9}>
-                <iframe
-                  src='https://www.youtube.com/embed/EVrQy03WekI'
-                  title='Ecosystem Support Program'
-                  frameBorder='0'
-                  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                  allowFullScreen
-                ></iframe>
-              </AspectRatio>
-            </Center>
           </section>
         </Stack>
       </Box>

@@ -1,16 +1,7 @@
 import { Stack } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
-import { FC, ReactNode, useState } from 'react';
+import { ReactNode } from 'react';
 
-import { Description, NavigationTabs } from '../UI';
-
-import {
-  ABOUT_URL,
-  ABOUT_TABS,
-  ABOUT_TABS_MAP,
-  HOW_WE_SUPPORT_URL,
-  WHO_WE_SUPPORT_URL
-} from '../../constants';
+import { Description } from '../UI';
 
 import aboutHero from '../../../public/images/about-hero.png';
 
@@ -18,49 +9,7 @@ type Props = {
   children: ReactNode;
 };
 
-export const AboutLayout: FC<Props> = ({ children }) => {
-  const router = useRouter();
-  const [tabIndex, setTabIndex] = useState(ABOUT_TABS_MAP[router.pathname]);
-
-  const handleChange = (index: number) => {
-    setTabIndex(index);
-
-    switch (index) {
-      case 0:
-        router.push(
-          {
-            pathname: ABOUT_URL
-          },
-          undefined,
-          { scroll: false }
-        );
-        break;
-
-      case 1:
-        router.push(
-          {
-            pathname: WHO_WE_SUPPORT_URL
-          },
-          undefined,
-          { scroll: false }
-        );
-        break;
-
-      case 2:
-        router.push(
-          {
-            pathname: HOW_WE_SUPPORT_URL
-          },
-          undefined,
-          { scroll: false }
-        );
-        break;
-
-      default:
-        break;
-    }
-  };
-
+export const AboutLayout = ({ children }: Props) => {
   return (
     <>
       <Stack mb={5} px={{ base: 5, md: 12 }} py={3}>
@@ -69,14 +18,12 @@ export const AboutLayout: FC<Props> = ({ children }) => {
             title='About ESP'
             img={{ src: aboutHero, alt: 'People reading about the ESP', width: 498, height: 296 }}
           >
-            We provide grants and other support for free and open-source projects that strengthen
-            Ethereum&apos;s foundations, with a particular focus on builder tools, infrastructure,
-            research and public goods.
+            We provide support to free and open-source projects that strengthen Ethereum&apos;s
+            foundations, with a particular focus on builder tools, infrastructure, research, and
+            public goods.
           </Description>
         </section>
       </Stack>
-
-      <NavigationTabs tabIndex={tabIndex} handleChange={handleChange} tabsList={ABOUT_TABS} />
 
       <Stack px={{ base: 5, md: 12 }}>
         <Stack mb={8}>{children}</Stack>

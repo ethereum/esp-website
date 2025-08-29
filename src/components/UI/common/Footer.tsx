@@ -8,11 +8,17 @@ import { PageText } from '../text';
 import efLogoSVG from '../../../../public/images/ef-logo.svg';
 import githubLogoSVG from '../../../../public/images/github-logo.svg';
 import twitterLogoSVG from '../../../../public/images/twitter-logo.svg';
+import farcasterLogoSVG from '../../../../public/images/farcaster-logo.svg';
+import lensLogoSVG from '../../../../public/images/lens-logo.svg';
+import blueskyLogoSVG from '../../../../public/images/bluesky-logo.svg';
 
 import {
   ABOUT_URL,
   APPLICANTS_URL,
   ESP_BLOG_URL,
+  ESP_BLUESKY_URL,
+  ESP_FARCASTER_URL,
+  ESP_LENS_URL,
   ESP_TWITTER_URL,
   ETHEREUM_COOKIE_POLICY_URL,
   ETHEREUM_GITHUB_URL,
@@ -95,16 +101,41 @@ export const Footer: FC = () => {
           </Stack>
         </Flex>
 
-        <Flex justifyContent='center' alignItems='center' pt={3} pb={6} mt={{ lg: 7 }}>
-          <Box mr={8}>
-            <Link href={ESP_TWITTER_URL} isExternal>
-              <Image src={twitterLogoSVG} alt='Twitter logo' height={42} width={52} />
+        <Flex
+          justifyContent='center'
+          alignItems='center'
+          pt={3}
+          pb={6}
+          mt={{ lg: 7 }}
+          gap={{ base: 2, xl: 8 }}
+        >
+          <Box>
+            <Link href={ESP_FARCASTER_URL} isExternal>
+              <Image src={farcasterLogoSVG} alt='Farcaster logo' height={42} width={52} />
+            </Link>
+          </Box>
+
+          <Box>
+            <Link href={ESP_LENS_URL} isExternal>
+              <Image src={lensLogoSVG} alt='Lens logo' height={52} width={52} />
+            </Link>
+          </Box>
+
+          <Box>
+            <Link href={ESP_BLUESKY_URL} isExternal>
+              <Image src={blueskyLogoSVG} alt='Bluesky logo' height={42} width={52} />
             </Link>
           </Box>
 
           <Box>
             <Link href={ETHEREUM_GITHUB_URL} isExternal>
               <Image src={githubLogoSVG} alt='GitHub logo' height={51} width={50} />
+            </Link>
+          </Box>
+
+          <Box>
+            <Link href={ESP_TWITTER_URL} isExternal>
+              <Image src={twitterLogoSVG} alt='Twitter logo' height={42} width={52} />
             </Link>
           </Box>
         </Flex>

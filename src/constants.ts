@@ -17,17 +17,16 @@ export const HOW_WE_SUPPORT_URL = '/about/how-we-support';
 export const APPLICANTS_URL = '/applicants';
 export const SIDEBAR_APPLICANTS_LINKS: SidebarLink[] = [
   { text: 'Mission and Scope', href: `${APPLICANTS_URL}/#mission-and-scope` },
-  { text: 'How we support', href: `${APPLICANTS_URL}/#how-we-support` },
-  { text: 'Application types', href: `${APPLICANTS_URL}/#application-types` }
+  { text: 'How we support', href: `${APPLICANTS_URL}/#how-we-support` }
 ];
 
 export const OFFICE_HOURS_URL = '/applicants/office-hours';
 export const SIDEBAR_OFFICE_HOURS_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${OFFICE_HOURS_URL}/#description` },
-  { text: 'Process', href: `${OFFICE_HOURS_URL}/#process` },
-  { text: 'Eligibility', href: `${OFFICE_HOURS_URL}/#eligibility` },
   { text: 'What we offer', href: `${OFFICE_HOURS_URL}/#what-we-offer` },
   { text: "What we DON'T offer", href: `${OFFICE_HOURS_URL}/#what-we-dont-offer` },
+  { text: 'Eligibility', href: `${OFFICE_HOURS_URL}/#eligibility` },
+  { text: 'Process', href: `${OFFICE_HOURS_URL}/#process` },
   { text: 'Before submitting', href: `${OFFICE_HOURS_URL}/#before-submitting` },
   { text: 'FAQ', href: `${OFFICE_HOURS_URL}/#faq` },
   { text: 'Apply', href: `${OFFICE_HOURS_URL}/#apply` }
@@ -312,7 +311,7 @@ export const ETHEREUM_COOKIE_POLICY_URL = 'https://ethereum.org/en/cookie-policy
 export const ETHEREUM_PRIVACY_POLICY_URL = 'https://ethereum.org/en/privacy-policy/';
 export const ETHEREUM_TERMS_OF_USE_URL = 'https://ethereum.org/en/terms-of-use/';
 export const ETHEREUM_GITHUB_URL = 'https://github.com/ethereum';
-export const ETHEREUM_JOBS_URL = 'https://ethereum.org/en/community/#ethereum-jobs';
+export const ETHEREUM_JOBS_URL = 'https://ethereum.org/en/community/get-involved/#ethereum-jobs/';
 export const ETHEREUM_COMMUNITY_URL = 'https://ethereum.org/en/community/';
 export const ETHEREUM_BROAD_ECOSYSTEM_URL =
   'https://ethereum.org/en/community/grants/#broad-ethereum-ecosystem';
@@ -325,8 +324,9 @@ export const EF_JOBS_URL = 'https://jobs.lever.co/ethereumfoundation';
 // ESP external links
 export const ESP_BLOG_URL = 'https://blog.ethereum.org/category/ecosystem-support-program/';
 export const ESP_TWITTER_URL = 'https://twitter.com/EF_ESP';
-export const ESP_WISHLIST_URL =
-  'https://efdn.notion.site/Ecosystem-Support-Program-Wishlist-ae88ec8d8fc34d01be96d35ddaff7d23';
+export const ESP_FARCASTER_URL = 'https://farcaster.xyz/ef-esp';
+export const ESP_LENS_URL = 'https://hey.xyz/u/ef_esp';
+export const ESP_BLUESKY_URL = 'https://bsky.app/profile/ef-esp.bsky.social';
 export const ESP_EMAIL_ADDRESS = 'esp@ethereum.org';
 export const ACADEMIC_GRANTS_EMAIL_ADDRESS = 'academic-grants@ethereum.org';
 export const DEVCON_GRANTS_EMAIL_ADDRESS = 'support@devconnect.org';
@@ -337,26 +337,18 @@ export const ACCOUNT_ABSTRACTION_GRANTS_EMAIL_ADDRESS = 'account-abstraction@eth
 export const GRANTS_EMAIL_ADDRESS = 'grant-rounds@ethereum.org';
 export const PECTRA_PGR_EMAIL_ADDRESS = 'grant-rounds@ethereum.org';
 // applicants tabs
-export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Small Grants', 'Project Grants'];
+export const APPLICANTS_TABS = ['Overview', 'Office Hours'];
 export const APPLICANTS_TABS_MAP: TabsMap = {
   [APPLICANTS_URL]: 0,
   [OFFICE_HOURS_URL]: 1,
-  [SMALL_GRANTS_URL]: 2,
-  [PROJECT_GRANTS_URL]: 3,
   [OFFICE_HOURS_APPLY_URL]: 1,
-  [OFFICE_HOURS_THANK_YOU_PAGE_URL]: 1,
-  [SMALL_GRANTS_APPLY_URL]: 2,
-  [SMALL_GRANTS_THANK_YOU_PAGE_URL]: 2,
-  [PROJECT_GRANTS_APPLY_URL]: 3,
-  [PROJECT_GRANTS_THANK_YOU_PAGE_URL]: 3
+  [OFFICE_HOURS_THANK_YOU_PAGE_URL]: 1
 };
 
 // about tabs
-export const ABOUT_TABS = ['What We Support', 'Who We Support', 'How We Support'];
+export const ABOUT_TABS = ['What We Support'];
 export const ABOUT_TABS_MAP: TabsMap = {
-  [ABOUT_URL]: 0,
-  [WHO_WE_SUPPORT_URL]: 1,
-  [HOW_WE_SUPPORT_URL]: 2
+  [ABOUT_URL]: 0
 };
 
 // nav
