@@ -6,8 +6,8 @@ const About = () => {
   return (
     <>
       <PageMetadata
-        title='What We Support'
-        description="We provide grants and other support for open source projects that strengthen Ethereum's foundations, with a particular focus on builder tools, infrastructure, research and public goods."
+        title='About'
+        description="We provide support for open source projects that strengthen Ethereum's foundations, with a particular focus on builder tools, infrastructure, research and public goods."
       />
 
       <Box bg='white' position='relative' px={{ md: 20, lg: 60 }} py={{ md: 12 }}>
