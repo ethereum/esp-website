@@ -327,7 +327,6 @@ export const ESP_TWITTER_URL = 'https://twitter.com/EF_ESP';
 export const ESP_FARCASTER_URL = 'https://farcaster.xyz/ef-esp';
 export const ESP_LENS_URL = 'https://hey.xyz/u/ef_esp';
 export const ESP_BLUESKY_URL = 'https://bsky.app/profile/ef-esp.bsky.social';
-('https://efdn.notion.site/Ecosystem-Support-Program-Wishlist-ae88ec8d8fc34d01be96d35ddaff7d23');
 export const ESP_EMAIL_ADDRESS = 'esp@ethereum.org';
 export const ACADEMIC_GRANTS_EMAIL_ADDRESS = 'academic-grants@ethereum.org';
 export const DEVCON_GRANTS_EMAIL_ADDRESS = 'support@devconnect.org';
