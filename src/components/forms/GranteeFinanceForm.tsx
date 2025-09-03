@@ -159,11 +159,11 @@ export const GranteeFinanceForm: FC = () => {
                   colorScheme='white'
                 >
                   <Stack direction='row'>
-                    <Radio id='ETH/DAI' size='lg' name='ethDaiOrFiat' value='ETH/DAI' mr={8}>
+                    <Radio size='lg' name='ethDaiOrFiat' value='ETH/DAI' mr={8}>
                       <PageText fontSize='input'>Receive ETH/DAI</PageText>
                     </Radio>
 
-                    <Radio id='team' size='lg' name='ethDaiOrFiat' value='Fiat'>
+                    <Radio size='lg' name='ethDaiOrFiat' value='Fiat'>
                       <PageText fontSize='input'>Receive Fiat</PageText>
                     </Radio>
                   </Stack>
@@ -287,11 +287,11 @@ export const GranteeFinanceForm: FC = () => {
                       colorScheme='white'
                     >
                       <Stack direction='row'>
-                        <Radio id='ETH' size='lg' name='tokenPreference' value='ETH' mr={8}>
+                        <Radio size='lg' name='tokenPreference' value='ETH' mr={8}>
                           <PageText fontSize='input'>Receive ETH</PageText>
                         </Radio>
 
-                        <Radio id='team' size='lg' name='tokenPreference' value='DAI'>
+                        <Radio size='lg' name='tokenPreference' value='DAI'>
                           <PageText fontSize='input'>Receive DAI</PageText>
                         </Radio>
                       </Stack>
@@ -327,11 +327,11 @@ export const GranteeFinanceForm: FC = () => {
                       mt={3}
                     >
                       <Stack direction='row'>
-                        <Radio id='ETH' size='lg' name='l2Payment' value='Yes' mr={8}>
+                        <Radio size='lg' name='l2Payment' value='Yes' mr={8}>
                           <PageText fontSize='input'>Yes</PageText>
                         </Radio>
 
-                        <Radio id='team' size='lg' name='l2Payment' value='No'>
+                        <Radio size='lg' name='l2Payment' value='No'>
                           <PageText fontSize='input'>No</PageText>
                         </Radio>
                       </Stack>
