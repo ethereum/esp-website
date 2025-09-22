@@ -1,44 +1,19 @@
-import { Box, Button, Grid, GridItem, Heading, Stack, Text, useToast } from '@chakra-ui/react';
-import { FC, useEffect, useState } from 'react';
+import { Box, Button, Grid, GridItem, Heading, Stack, Text } from '@chakra-ui/react';
+import { FC, useState } from 'react';
+import { useRouter } from 'next/router';
 
 import { PageText } from '../UI';
 import { WishlistItem } from './schemas/Wishlist';
 
 interface WishlistSelectionProps {
-  onSelectWishlist: (wishlistItem: WishlistItem) => void;
+  wishlistItems: WishlistItem[];
+  onSelectWishlist?: (wishlistItem: WishlistItem) => void;
 }
 
-export const WishlistSelection: FC<WishlistSelectionProps> = ({ onSelectWishlist }) => {
-  const [wishlistItems, setWishlistItems] = useState<WishlistItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems, onSelectWishlist }) => {
   const [selectedItem, setSelectedItem] = useState<WishlistItem | null>(null);
-  const toast = useToast();
+  const router = useRouter();
 
-  useEffect(() => {
-    const fetchWishlistItems = async () => {
-      try {
-        const response = await fetch('/api/wishlist-items');
-        if (!response.ok) {
-          throw new Error('Failed to fetch wishlist items');
-        }
-        const items = await response.json();
-        setWishlistItems(items);
-      } catch (error) {
-        console.error('Error fetching wishlist items:', error);
-        toast({
-          title: 'Error loading wishlist items',
-          description: 'Please refresh the page and try again.',
-          status: 'error',
-          duration: 5000,
-          isClosable: true
-        });
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchWishlistItems();
-  }, [toast]);
 
   const handleSelectItem = (item: WishlistItem) => {
     setSelectedItem(item);
@@ -46,20 +21,14 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({ onSelectWishlist
 
   const handleContinue = () => {
     if (selectedItem) {
-      onSelectWishlist(selectedItem);
+      // Use callback if provided, otherwise navigate to the new URL structure
+      if (onSelectWishlist) {
+        onSelectWishlist(selectedItem);
+      } else {
+        router.push(`/applicants/wishlist/${selectedItem.Id}/apply`);
+      }
     }
   };
-
-  if (isLoading) {
-    return (
-      <Stack spacing={8} align="center" py={16}>
-        <Heading size="lg" color="brand.heading">
-          Loading Wishlist Items...
-        </Heading>
-        <Text>Please wait while we fetch the available opportunities.</Text>
-      </Stack>
-    );
-  }
 
   if (wishlistItems.length === 0) {
     return (

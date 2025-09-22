@@ -1,7 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { WishlistItem } from '../components/forms/schemas/Wishlist';
 
-// Mock data for now - in production this would fetch from Salesforce
-const mockWishlistItems = [
+export const wishlistItems: WishlistItem[] = [
   {
     Id: 'WL001',
     Name: 'Zero-Knowledge Proof Educational Content',
@@ -59,21 +58,10 @@ const mockWishlistItems = [
   }
 ];
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== 'GET') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
+export const getActiveWishlistItems = (): WishlistItem[] => {
+  return wishlistItems.filter(item => item.Status__c === 'Active');
+};
 
-  try {
-    // In production, this would be:
-    // const items = await fetchFromSalesforce('SELECT Id, Name, Description__c, Category__c, Status__c FROM Grants_Initiative__c WHERE Status__c = "Active"');
-
-    // Filter only active items
-    const activeItems = mockWishlistItems.filter(item => item.Status__c === 'Active');
-
-    res.status(200).json(activeItems);
-  } catch (error) {
-    console.error('Error fetching wishlist items:', error);
-    res.status(500).json({ error: 'Failed to fetch wishlist items' });
-  }
-}
+export const getWishlistItemById = (id: string): WishlistItem | undefined => {
+  return wishlistItems.find(item => item.Id === id && item.Status__c === 'Active');
+};

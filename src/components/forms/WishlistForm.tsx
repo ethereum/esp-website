@@ -1,6 +1,6 @@
 import { Box, Center, Flex, Stack, useToast, Radio, RadioGroup } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { FormProvider, useForm, Controller } from 'react-hook-form';
 import { useRouter } from 'next/router';
 
@@ -11,7 +11,6 @@ import { TextField, TextAreaField, Field } from './fields';
 import { Select } from 'chakra-react-select';
 import { DropdownIndicator } from '../UI';
 import { chakraStyles } from './selectStyles';
-import { WishlistSelection } from './WishlistSelection';
 
 import { api } from './api';
 import { WishlistSchema, WishlistData, WishlistItem } from './schemas/Wishlist';
@@ -25,21 +24,26 @@ import {
   OUTPUT_OPTIONS
 } from './constants';
 
-export const WishlistForm: FC = () => {
-  const [selectedWishlistItem, setSelectedWishlistItem] = useState<WishlistItem | null>(null);
+interface WishlistFormProps {
+  wishlistItem: WishlistItem;
+}
+
+export const WishlistForm: FC<WishlistFormProps> = ({ wishlistItem }) => {
   const router = useRouter();
   const toast = useToast();
 
   const methods = useForm<WishlistData>({
     resolver: zodResolver(WishlistSchema),
     mode: 'onBlur',
-    shouldFocusError: true
+    shouldFocusError: true,
+    defaultValues: {
+      selectedWishlistId: wishlistItem.Id
+    }
   });
 
   const {
     handleSubmit,
     control,
-    setValue,
     watch,
     formState: { isValid, isSubmitting },
     reset
@@ -67,15 +71,6 @@ export const WishlistForm: FC = () => {
       .catch(err => console.error('There has been a problem with your operation: ', err.message));
   };
 
-  const handleWishlistSelection = (wishlistItem: WishlistItem) => {
-    setSelectedWishlistItem(wishlistItem);
-    setValue('selectedWishlistId', wishlistItem.Id);
-  };
-
-  if (!selectedWishlistItem) {
-    return <WishlistSelection onSelectWishlist={handleWishlistSelection} />;
-  }
-
   return (
     <Stack
       w='100%'
@@ -101,10 +96,10 @@ export const WishlistForm: FC = () => {
                   Selected Wishlist Item:
                 </PageText>
                 <PageText fontSize='lg' fontWeight='700' color='brand.heading'>
-                  {selectedWishlistItem.Name}
+                  {wishlistItem.Name}
                 </PageText>
                 <PageText fontSize='sm' color='brand.paragraph'>
-                  {selectedWishlistItem.Description__c}
+                  {wishlistItem.Description__c}
                 </PageText>
               </Stack>
             </Box>

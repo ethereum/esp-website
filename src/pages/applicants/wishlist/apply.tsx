@@ -1,5 +1,6 @@
 import { Box, Stack } from '@chakra-ui/react';
-import type { NextPage } from 'next';
+import type { GetStaticProps, NextPage } from 'next';
+import { useRouter } from 'next/router';
 
 import {
   PageMetadata,
@@ -7,9 +8,21 @@ import {
   PageText,
   PrivacyPolicyAgreement
 } from '../../../components/UI';
-import { WishlistForm } from '../../../components/forms/WishlistForm';
+import { WishlistItem } from '../../../components/forms/schemas/Wishlist';
+import { getActiveWishlistItems } from '../../../data/wishlistItems';
+import { WishlistSelection } from '../../../components/forms/WishlistSelection';
 
-const WishlistApply: NextPage = () => {
+interface WishlistApplyProps {
+  wishlistItems: WishlistItem[];
+}
+
+const WishlistApply: NextPage<WishlistApplyProps> = ({ wishlistItems }) => {
+  const router = useRouter();
+
+  const handleWishlistSelection = (wishlistItem: WishlistItem) => {
+    router.push(`/applicants/wishlist/${wishlistItem.Id}/apply`);
+  };
+
   return (
     <>
       <PageMetadata
@@ -40,12 +53,25 @@ const WishlistApply: NextPage = () => {
           </section>
 
           <Box mt={8}>
-            <WishlistForm />
+            <WishlistSelection
+              wishlistItems={wishlistItems}
+              onSelectWishlist={handleWishlistSelection}
+            />
           </Box>
         </Stack>
       </Box>
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps<WishlistApplyProps> = async () => {
+  const wishlistItems = getActiveWishlistItems();
+
+  return {
+    props: {
+      wishlistItems
+    }
+  };
 };
 
 export default WishlistApply;
