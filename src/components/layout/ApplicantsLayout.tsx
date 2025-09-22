@@ -11,7 +11,8 @@ import {
   APPLICANTS_TABS_MAP,
   APPLICANTS_URL,
   GRANTEE_FINANCE_URL,
-  OFFICE_HOURS_URL
+  OFFICE_HOURS_URL,
+  WISHLIST_URL
 } from '../../constants';
 
 type Props = {
@@ -40,6 +41,16 @@ export const ApplicantsLayout = ({ children }: Props) => {
         router.push(
           {
             pathname: OFFICE_HOURS_URL
+          },
+          undefined,
+          { scroll: false }
+        );
+        break;
+
+      case 2:
+        router.push(
+          {
+            pathname: WISHLIST_URL
           },
           undefined,
           { scroll: false }

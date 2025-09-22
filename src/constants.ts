@@ -32,6 +32,17 @@ export const SIDEBAR_OFFICE_HOURS_LINKS: SidebarLink[] = [
   { text: 'Apply', href: `${OFFICE_HOURS_URL}/#apply` }
 ];
 
+export const WISHLIST_URL = '/applicants/wishlist';
+export const SIDEBAR_WISHLIST_LINKS: SidebarLink[] = [
+  { text: 'Summary', href: `${WISHLIST_URL}/#description` },
+  { text: 'What are wishlist items', href: `${WISHLIST_URL}/#what-are-wishlist-items` },
+  { text: 'How it works', href: `${WISHLIST_URL}/#how-it-works` },
+  { text: 'Eligibility', href: `${WISHLIST_URL}/#eligibility` },
+  { text: 'Selection criteria', href: `${WISHLIST_URL}/#selection-criteria` },
+  { text: 'FAQ', href: `${WISHLIST_URL}/#faq` },
+  { text: 'Apply', href: `${WISHLIST_URL}/#apply` }
+];
+
 export const PROJECT_GRANTS_URL = '/applicants/project-grants';
 export const SIDEBAR_PROJECT_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${PROJECT_GRANTS_URL}/#description` },
@@ -274,6 +285,7 @@ export const ZK_GRANTS_LINKS: SidebarLink[] = [
 // apply forms
 export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
 export const OFFICE_HOURS_APPLY_URL = '/applicants/office-hours/apply';
+export const WISHLIST_APPLY_URL = '/applicants/wishlist/apply';
 export const SMALL_GRANTS_APPLY_URL = '/applicants/small-grants/apply';
 export const ACADEMIC_GRANTS_APPLY_URL = '/academic-grants/apply';
 export const DEVCON_GRANTS_APPLY_URL = '/devcon-grants/apply';
@@ -292,6 +304,7 @@ export const GRANTEE_FINANCE_URL = '/applicants/grantee-finance';
 // thank you pages
 export const PROJECT_GRANTS_THANK_YOU_PAGE_URL = '/applicants/project-grants/thank-you';
 export const OFFICE_HOURS_THANK_YOU_PAGE_URL = '/applicants/office-hours/thank-you';
+export const WISHLIST_THANK_YOU_PAGE_URL = '/applicants/wishlist/thank-you';
 export const SMALL_GRANTS_THANK_YOU_PAGE_URL = '/applicants/small-grants/thank-you';
 export const GRANTEE_FINANCE_THANK_YOU_PAGE_URL = '/applicants/grantee-finance/thank-you';
 export const ACADEMIC_GRANTS_THANK_YOU_PAGE_URL = '/academic-grants/thank-you';
@@ -337,12 +350,15 @@ export const ACCOUNT_ABSTRACTION_GRANTS_EMAIL_ADDRESS = 'account-abstraction@eth
 export const GRANTS_EMAIL_ADDRESS = 'grant-rounds@ethereum.org';
 export const PECTRA_PGR_EMAIL_ADDRESS = 'grant-rounds@ethereum.org';
 // applicants tabs
-export const APPLICANTS_TABS = ['Overview', 'Office Hours'];
+export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Wishlist'];
 export const APPLICANTS_TABS_MAP: TabsMap = {
   [APPLICANTS_URL]: 0,
   [OFFICE_HOURS_URL]: 1,
   [OFFICE_HOURS_APPLY_URL]: 1,
-  [OFFICE_HOURS_THANK_YOU_PAGE_URL]: 1
+  [OFFICE_HOURS_THANK_YOU_PAGE_URL]: 1,
+  [WISHLIST_URL]: 2,
+  [WISHLIST_APPLY_URL]: 2,
+  [WISHLIST_THANK_YOU_PAGE_URL]: 2
 };
 
 // about tabs
@@ -375,6 +391,9 @@ export const MIN_TEXT_AREA_LENGTH = 500;
 // proposal upload file size limit (4mb)
 export const MAX_PROPOSAL_FILE_SIZE = 4194304;
 export const MAX_PROPOSAL_FILE_COUNT = 5;
+
+// wishlist upload file size limit (4mb)
+export const MAX_WISHLIST_FILE_SIZE = 4194304;
 
 // toast options
 export const TOAST_OPTIONS: UseToastOptions = {

@@ -25,7 +25,8 @@ import {
   API_EPF_APPLICATION,
   API_PSE_APPLICATION,
   API_ACADEMIC_GRANTS,
-  API_TEN_YEAR_ANNIVERSARY
+  API_TEN_YEAR_ANNIVERSARY,
+  API_WISHLIST
 } from './constants';
 
 import type { EPFData } from './schemas/EPFApplication';
@@ -34,6 +35,7 @@ import type { AcademicGrantsData } from './schemas/AcademicGrants';
 import type { PectraPGRData } from './schemas/PectraPGR';
 import type { DestinoDevconnectData } from './schemas/DestinoDevconnect';
 import type { TenYearAnniversaryData } from './schemas/TenYearAnniversary';
+import type { WishlistData } from './schemas/Wishlist';
 
 const methodOptions = {
   method: 'POST',
@@ -269,6 +271,20 @@ export const api = {
         },
         body: JSON.stringify(data)
       });
+    }
+  },
+  wishlist: {
+    submit: (data: WishlistData) => {
+      const wishlistRequestOptions: RequestInit = {
+        ...methodOptions,
+        body: JSON.stringify({
+          ...data,
+          company: data.company || `${data.firstName} ${data.lastName}`,
+          repeatApplicant: data.repeatApplicant
+        })
+      };
+
+      return fetch(API_WISHLIST, wishlistRequestOptions);
     }
   }
 };
