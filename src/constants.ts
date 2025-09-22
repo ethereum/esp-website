@@ -43,6 +43,17 @@ export const SIDEBAR_WISHLIST_LINKS: SidebarLink[] = [
   { text: 'Apply', href: `${WISHLIST_URL}/#apply` }
 ];
 
+export const RFP_URL = '/applicants/rfp';
+export const SIDEBAR_RFP_LINKS: SidebarLink[] = [
+  { text: 'Summary', href: `${RFP_URL}/#description` },
+  { text: 'What are RFPs', href: `${RFP_URL}/#what-are-rfps` },
+  { text: 'How it works', href: `${RFP_URL}/#how-it-works` },
+  { text: 'Eligibility', href: `${RFP_URL}/#eligibility` },
+  { text: 'Selection criteria', href: `${RFP_URL}/#selection-criteria` },
+  { text: 'FAQ', href: `${RFP_URL}/#faq` },
+  { text: 'Apply', href: `${RFP_URL}/#apply` }
+];
+
 export const PROJECT_GRANTS_URL = '/applicants/project-grants';
 export const SIDEBAR_PROJECT_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${PROJECT_GRANTS_URL}/#description` },
@@ -286,6 +297,7 @@ export const ZK_GRANTS_LINKS: SidebarLink[] = [
 export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
 export const OFFICE_HOURS_APPLY_URL = '/applicants/office-hours/apply';
 export const WISHLIST_APPLY_URL = '/applicants/wishlist/apply';
+export const RFP_APPLY_URL = '/applicants/rfp/apply';
 export const SMALL_GRANTS_APPLY_URL = '/applicants/small-grants/apply';
 export const ACADEMIC_GRANTS_APPLY_URL = '/academic-grants/apply';
 export const DEVCON_GRANTS_APPLY_URL = '/devcon-grants/apply';
@@ -305,6 +317,7 @@ export const GRANTEE_FINANCE_URL = '/applicants/grantee-finance';
 export const PROJECT_GRANTS_THANK_YOU_PAGE_URL = '/applicants/project-grants/thank-you';
 export const OFFICE_HOURS_THANK_YOU_PAGE_URL = '/applicants/office-hours/thank-you';
 export const WISHLIST_THANK_YOU_PAGE_URL = '/applicants/wishlist/thank-you';
+export const RFP_THANK_YOU_PAGE_URL = '/applicants/rfp/thank-you';
 export const SMALL_GRANTS_THANK_YOU_PAGE_URL = '/applicants/small-grants/thank-you';
 export const GRANTEE_FINANCE_THANK_YOU_PAGE_URL = '/applicants/grantee-finance/thank-you';
 export const ACADEMIC_GRANTS_THANK_YOU_PAGE_URL = '/academic-grants/thank-you';
@@ -350,7 +363,7 @@ export const ACCOUNT_ABSTRACTION_GRANTS_EMAIL_ADDRESS = 'account-abstraction@eth
 export const GRANTS_EMAIL_ADDRESS = 'grant-rounds@ethereum.org';
 export const PECTRA_PGR_EMAIL_ADDRESS = 'grant-rounds@ethereum.org';
 // applicants tabs
-export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Wishlist'];
+export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Wishlist', 'RFPs'];
 export const APPLICANTS_TABS_MAP: TabsMap = {
   [APPLICANTS_URL]: 0,
   [OFFICE_HOURS_URL]: 1,
@@ -358,7 +371,10 @@ export const APPLICANTS_TABS_MAP: TabsMap = {
   [OFFICE_HOURS_THANK_YOU_PAGE_URL]: 1,
   [WISHLIST_URL]: 2,
   [WISHLIST_APPLY_URL]: 2,
-  [WISHLIST_THANK_YOU_PAGE_URL]: 2
+  [WISHLIST_THANK_YOU_PAGE_URL]: 2,
+  [RFP_URL]: 3,
+  [RFP_APPLY_URL]: 3,
+  [RFP_THANK_YOU_PAGE_URL]: 3
 };
 
 // about tabs

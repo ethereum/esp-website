@@ -12,7 +12,8 @@ import {
   APPLICANTS_URL,
   GRANTEE_FINANCE_URL,
   OFFICE_HOURS_URL,
-  WISHLIST_URL
+  WISHLIST_URL,
+  RFP_URL
 } from '../../constants';
 
 type Props = {
@@ -31,6 +32,10 @@ const getTabIndexFromPath = (pathname: string): number => {
 
   if (pathname.startsWith('/applicants/wishlist')) {
     return 2;
+  }
+
+  if (pathname.startsWith('/applicants/rfp')) {
+    return 3;
   }
 
   if (pathname.startsWith('/applicants')) {
@@ -78,6 +83,16 @@ export const ApplicantsLayout = ({ children }: Props) => {
         router.push(
           {
             pathname: WISHLIST_URL
+          },
+          undefined,
+          { scroll: false }
+        );
+        break;
+
+      case 3:
+        router.push(
+          {
+            pathname: RFP_URL
           },
           undefined,
           { scroll: false }

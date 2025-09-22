@@ -26,7 +26,8 @@ import {
   API_PSE_APPLICATION,
   API_ACADEMIC_GRANTS,
   API_TEN_YEAR_ANNIVERSARY,
-  API_WISHLIST
+  API_WISHLIST,
+  API_RFP
 } from './constants';
 
 import type { EPFData } from './schemas/EPFApplication';
@@ -36,6 +37,7 @@ import type { PectraPGRData } from './schemas/PectraPGR';
 import type { DestinoDevconnectData } from './schemas/DestinoDevconnect';
 import type { TenYearAnniversaryData } from './schemas/TenYearAnniversary';
 import type { WishlistData } from './schemas/Wishlist';
+import type { RFPData } from './schemas/RFP';
 
 const methodOptions = {
   method: 'POST',
@@ -285,6 +287,24 @@ export const api = {
       };
 
       return fetch(API_WISHLIST, wishlistRequestOptions);
+    }
+  },
+  rfp: {
+    submit: (data: RFPData) => {
+      const curatedData: { [key: string]: any } = {
+        ...data,
+        company: data.company || `${data.firstName} ${data.lastName}`,
+        repeatApplicant: data.repeatApplicant
+      };
+
+      const formData = createFormData(curatedData);
+
+      const rfpRequestOptions: RequestInit = {
+        method: 'POST',
+        body: formData
+      };
+
+      return fetch(API_RFP, rfpRequestOptions);
     }
   }
 };

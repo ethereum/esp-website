@@ -2,36 +2,33 @@ import { Box, Button, Grid, GridItem, Heading, Stack, Text } from '@chakra-ui/re
 import { FC, useState } from 'react';
 
 import { PageText } from '../UI';
-import { WishlistItem } from './schemas/Wishlist';
+import { RFPItem } from './schemas/RFP';
 
-interface WishlistSelectionProps {
-  wishlistItems: WishlistItem[];
-  onSelectWishlist: (wishlistItem: WishlistItem) => void;
+interface RFPSelectionProps {
+  rfpItems: RFPItem[];
+  onSelectRFP: (rfpItem: RFPItem) => void;
 }
 
-export const WishlistSelection: FC<WishlistSelectionProps> = ({
-  wishlistItems,
-  onSelectWishlist
-}) => {
-  const [selectedItem, setSelectedItem] = useState<WishlistItem | null>(null);
+export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems, onSelectRFP }) => {
+  const [selectedItem, setSelectedItem] = useState<RFPItem | null>(null);
 
-  const handleSelectItem = (item: WishlistItem) => {
+  const handleSelectItem = (item: RFPItem) => {
     setSelectedItem(item);
   };
 
   const handleContinue = () => {
     if (selectedItem) {
-      onSelectWishlist(selectedItem);
+      onSelectRFP(selectedItem);
     }
   };
 
-  if (wishlistItems.length === 0) {
+  if (rfpItems.length === 0) {
     return (
       <Stack spacing={8} align='center' py={16}>
         <Heading size='lg' color='brand.heading'>
-          No Wishlist Items Available
+          No RFP Items Available
         </Heading>
-        <Text>There are currently no active wishlist items available for application.</Text>
+        <Text>There are currently no active Request for Proposals available for application.</Text>
       </Stack>
     );
   }
@@ -40,17 +37,16 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({
     <Stack spacing={8}>
       <Box textAlign='center'>
         <Heading size='lg' mb={4} color='brand.heading'>
-          Select a Wishlist Item
+          Select a Request for Proposal
         </Heading>
         <PageText mb={6}>
-          Choose from the wishlist items below that best matches your project or interests. Each
-          item represents a specific need or opportunity that the Ethereum ecosystem is looking to
-          address.
+          Choose from the RFP items below that best matches your expertise and interests. Each RFP
+          represents a specific research or development need identified by the Ethereum ecosystem.
         </PageText>
       </Box>
 
       <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }} gap={6}>
-        {wishlistItems.map(item => (
+        {rfpItems.map(item => (
           <GridItem key={item.Id}>
             <Box
               p={6}
@@ -128,6 +124,14 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({
                   Expected Deliverables:
                 </Text>
                 <Text color='brand.paragraph'>{selectedItem.Expected_Deliverables__c}</Text>
+              </Box>
+            )}
+            {selectedItem.Requirements__c && (
+              <Box>
+                <Text fontWeight='600' color='brand.heading' mb={1}>
+                  Requirements:
+                </Text>
+                <Text color='brand.paragraph'>{selectedItem.Requirements__c}</Text>
               </Box>
             )}
           </Stack>
