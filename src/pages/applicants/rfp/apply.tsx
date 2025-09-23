@@ -10,6 +10,7 @@ import {
 import { RFPItem } from '../../../components/forms/schemas/RFP';
 import { getActiveRFPItems } from '../../../data/rfpItems';
 import { RFPSelection } from '../../../components/forms/RFPSelection';
+// import { getGrantInitiativeItems } from '../../../lib/sf';
 
 interface RFPApplyProps {
   rfpItems: RFPItem[];
@@ -56,13 +57,22 @@ const RFPApply: NextPage<RFPApplyProps> = ({ rfpItems }) => {
 };
 
 export const getStaticProps: GetStaticProps<RFPApplyProps> = async () => {
-  const rfpItems = getActiveRFPItems();
+  try {
+    // TODO: Uncomment this when we have a way to get the RFP items from Salesforce
+    // const rfpItems = await getGrantInitiativeItems('RFP');
+    const rfpItems = getActiveRFPItems();
 
-  return {
-    props: {
-      rfpItems
-    }
-  };
+    return {
+      props: {
+        rfpItems
+      }
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      props: { rfpItems: [] }
+    };
+  }
 };
 
 export default RFPApply;

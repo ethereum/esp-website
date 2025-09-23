@@ -7,9 +7,10 @@ import {
   PageText,
   PrivacyPolicyAgreement
 } from '../../../components/UI';
-import { WishlistItem } from '../../../components/forms/schemas/Wishlist';
-import { getActiveWishlistItems } from '../../../data/wishlistItems';
 import { WishlistSelection } from '../../../components/forms/WishlistSelection';
+import { WishlistItem } from '../../../components/forms/schemas/Wishlist';
+// import { getGrantInitiativeItems } from '../../../lib/sf';
+import { getActiveWishlistItems } from '../../../data/wishlistItems';
 
 interface WishlistApplyProps {
   wishlistItems: WishlistItem[];
@@ -55,13 +56,20 @@ const WishlistApply: NextPage<WishlistApplyProps> = ({ wishlistItems }) => {
 };
 
 export const getStaticProps: GetStaticProps<WishlistApplyProps> = async () => {
-  const wishlistItems = getActiveWishlistItems();
+  try {
+    // TODO: Uncomment this when we have a way to get the wishlist items from Salesforce
+    // const wishlistItems = await getGrantInitiativeItems('Wishlist');
+    const wishlistItems = getActiveWishlistItems();
 
-  return {
-    props: {
-      wishlistItems
-    }
-  };
+    return {
+      props: { wishlistItems }
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      props: { wishlistItems: [] }
+    };
+  }
 };
 
 export default WishlistApply;

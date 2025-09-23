@@ -138,7 +138,6 @@ export interface WishlistItem {
   Description__c: string;
   Category__c?: string;
   Priority__c?: string;
-  Status__c: string;
   Expected_Deliverables__c?: string;
   Skills_Required__c?: string;
   Estimated_Effort__c?: string;

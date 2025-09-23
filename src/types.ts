@@ -497,3 +497,27 @@ export interface PSESponsorshipsNextApiRequest extends NextApiRequest {
     whyEthereum: string;
   };
 }
+
+export interface GrantInitiativeSalesforceRecord {
+  Id: string;
+  Name: string;
+  Description__c: string;
+  Status__c: string;
+  RecordTypeId: string;
+  Tags__c: string;
+  Ecosystem_Need__c: string;
+  RFP_Project_Duration__c: string; // Estimated Project Duration
+  RFP_HardRequirements__c: string;
+  RFP_SoftRequirements__c: string;
+  Resources__c: string;
+  RFP_Close_Date__c: string;
+  RFP_Open_Date__c: string;
+}
+
+export type GrantInitiativeType = 'Wishlist' | 'RFP' | 'Direct Grant';
+
+export interface GrantInitiative {
+  Id: string;
+  Name: string;
+  Description__c: string;
+}

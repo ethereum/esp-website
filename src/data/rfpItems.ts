@@ -8,7 +8,6 @@ export const rfpItems: RFPItem[] = [
       'Research and develop optimization techniques for Ethereum execution clients to improve sync times, reduce resource consumption, and enhance overall network performance.',
     Category__c: 'Research',
     Priority__c: 'High',
-    Status__c: 'Active',
     Expected_Deliverables__c:
       'Research report, proof-of-concept implementation, performance benchmarks, and optimization recommendations',
     Skills_Required__c:
@@ -24,7 +23,6 @@ export const rfpItems: RFPItem[] = [
       'Comprehensive analysis of current MEV-Boost relay infrastructure and proposal for decentralization mechanisms to reduce single points of failure and censorship risks.',
     Category__c: 'Research',
     Priority__c: 'High',
-    Status__c: 'Active',
     Expected_Deliverables__c:
       'Technical specification, prototype implementation, security analysis, and deployment roadmap',
     Skills_Required__c:
@@ -40,7 +38,6 @@ export const rfpItems: RFPItem[] = [
       'Design and implement a standardized framework for cross-layer communication and asset bridging between different Layer 2 solutions while maintaining security guarantees.',
     Category__c: 'Protocol Development',
     Priority__c: 'Medium',
-    Status__c: 'Active',
     Expected_Deliverables__c:
       'Protocol specification, reference implementation, security audit, integration guides for L2 projects',
     Skills_Required__c:
@@ -56,7 +53,6 @@ export const rfpItems: RFPItem[] = [
       'Develop specialized hardware acceleration solutions for zero-knowledge proof generation and verification to improve performance and reduce costs for ZK applications.',
     Category__c: 'Hardware',
     Priority__c: 'Medium',
-    Status__c: 'Active',
     Expected_Deliverables__c:
       'Hardware design specifications, FPGA/ASIC prototypes, performance benchmarks, open-source implementations',
     Skills_Required__c:
@@ -72,7 +68,6 @@ export const rfpItems: RFPItem[] = [
       'Research and develop solutions to reduce storage requirements and improve query performance for Ethereum archive nodes while maintaining full historical data access.',
     Category__c: 'Infrastructure',
     Priority__c: 'High',
-    Status__c: 'Active',
     Expected_Deliverables__c:
       'Optimized archive node implementation, compression algorithms, query optimization techniques, deployment guide',
     Skills_Required__c:
@@ -84,9 +79,9 @@ export const rfpItems: RFPItem[] = [
 ];
 
 export const getActiveRFPItems = (): RFPItem[] => {
-  return rfpItems.filter(item => item.Status__c === 'Active');
+  return rfpItems;
 };
 
 export const getRFPItemById = (id: string): RFPItem | undefined => {
-  return rfpItems.find(item => item.Id === id && item.Status__c === 'Active');
+  return rfpItems.find(item => item.Id === id);
 };
