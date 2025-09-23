@@ -1,6 +1,5 @@
 import { Box, Stack } from '@chakra-ui/react';
 import type { GetStaticProps, NextPage } from 'next';
-import { useRouter } from 'next/router';
 
 import {
   PageMetadata,
@@ -17,24 +16,18 @@ interface RFPApplyProps {
 }
 
 const RFPApply: NextPage<RFPApplyProps> = ({ rfpItems }) => {
-  const router = useRouter();
-
-  const handleRFPSelection = (rfpItem: RFPItem) => {
-    router.push(`/applicants/rfp/${rfpItem.Id}/apply`);
-  };
-
   return (
     <>
       <PageMetadata
-        title='Apply for RFP'
-        description='Submit your application for a specific Request for Proposal that matches your skills and expertise.'
+        title='Start Your RFP Application'
+        description='Choose an active RFP to begin your application.'
       />
 
       <Box bg='white' position='relative' py={{ md: 12 }} px={{ md: 24, lg: 32, xl: 72 }}>
         <Stack>
           <section id='description'>
             <PageSubheading mb={8} textAlign='center'>
-              Apply for Request for Proposal
+              Select an RFP to apply for
             </PageSubheading>
 
             <PageText mb={6}>
@@ -54,7 +47,7 @@ const RFPApply: NextPage<RFPApplyProps> = ({ rfpItems }) => {
           </section>
 
           <Box mt={8}>
-            <RFPSelection rfpItems={rfpItems} onSelectRFP={handleRFPSelection} />
+            <RFPSelection rfpItems={rfpItems} />
           </Box>
         </Stack>
       </Box>

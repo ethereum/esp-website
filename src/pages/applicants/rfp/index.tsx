@@ -12,9 +12,9 @@ import {
   ProcessStep,
   PageMetadata,
   ReadyToApply
-} from '../../components/UI';
+} from '../../../components/UI';
 
-import { SIDEBAR_RFP_LINKS, RFP_APPLY_URL } from '../../constants';
+import { SIDEBAR_RFP_LINKS, RFP_APPLY_URL } from '../../../constants';
 
 const RFP: NextPage = () => {
   const [ref, inView] = useInView({ threshold: 0.5 });

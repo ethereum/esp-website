@@ -1,25 +1,20 @@
-import { Box, Button, Grid, GridItem, Heading, Stack, Text } from '@chakra-ui/react';
+import { Box, Center, chakra, Grid, GridItem, Heading, Stack, Text } from '@chakra-ui/react';
 import { FC, useState } from 'react';
 
-import { PageText } from '../UI';
 import { RFPItem } from './schemas/RFP';
+import { ButtonLink } from '../ButtonLink';
+
+const Button = chakra('button');
 
 interface RFPSelectionProps {
   rfpItems: RFPItem[];
-  onSelectRFP: (rfpItem: RFPItem) => void;
 }
 
-export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems, onSelectRFP }) => {
+export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems }) => {
   const [selectedItem, setSelectedItem] = useState<RFPItem | null>(null);
 
   const handleSelectItem = (item: RFPItem) => {
     setSelectedItem(item);
-  };
-
-  const handleContinue = () => {
-    if (selectedItem) {
-      onSelectRFP(selectedItem);
-    }
   };
 
   if (rfpItems.length === 0) {
@@ -35,25 +30,15 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems, onSelectRFP }) =
 
   return (
     <Stack spacing={8}>
-      <Box textAlign='center'>
-        <Heading size='lg' mb={4} color='brand.heading'>
-          Select a Request for Proposal
-        </Heading>
-        <PageText mb={6}>
-          Choose from the RFP items below that best matches your expertise and interests. Each RFP
-          represents a specific research or development need identified by the Ethereum ecosystem.
-        </PageText>
-      </Box>
-
       <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }} gap={6}>
         {rfpItems.map(item => (
           <GridItem key={item.Id}>
-            <Box
+            <Button
               p={6}
               border='2px solid'
               borderColor={selectedItem?.Id === item.Id ? 'brand.orange.100' : 'brand.border'}
               borderRadius='lg'
-              cursor='pointer'
+              textAlign='left'
               transition='all 0.2s'
               bg={selectedItem?.Id === item.Id ? 'brand.orange.10' : 'white'}
               _hover={{
@@ -80,26 +65,24 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems, onSelectRFP }) =
                 </Text>
 
                 {item.Skills_Required__c && (
-                  <Box>
-                    <Text fontSize='xs' color='brand.helpText' fontWeight='600' mb={1}>
-                      Skills Required:
+                  <Box fontSize='xs' color='brand.helpText'>
+                    <Text fontWeight='600' mb={1}>
+                      Skills Required
                     </Text>
-                    <Text fontSize='xs' color='brand.helpText' noOfLines={2}>
-                      {item.Skills_Required__c}
-                    </Text>
+                    <Text noOfLines={2}>{item.Skills_Required__c}</Text>
                   </Box>
                 )}
 
                 {item.Estimated_Effort__c && (
-                  <Text fontSize='xs' color='brand.helpText'>
-                    <Text as='span' fontWeight='600'>
-                      Estimated Effort:
-                    </Text>{' '}
-                    {item.Estimated_Effort__c}
-                  </Text>
+                  <Box fontSize='xs' color='brand.helpText'>
+                    <Text fontWeight='600' mb={1}>
+                      Estimated Effort
+                    </Text>
+                    <Text>{item.Estimated_Effort__c}</Text>
+                  </Box>
                 )}
               </Stack>
-            </Box>
+            </Button>
           </GridItem>
         ))}
       </Grid>
@@ -121,7 +104,7 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems, onSelectRFP }) =
             {selectedItem.Expected_Deliverables__c && (
               <Box>
                 <Text fontWeight='600' color='brand.heading' mb={1}>
-                  Expected Deliverables:
+                  Expected Deliverables
                 </Text>
                 <Text color='brand.paragraph'>{selectedItem.Expected_Deliverables__c}</Text>
               </Box>
@@ -129,7 +112,7 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems, onSelectRFP }) =
             {selectedItem.Requirements__c && (
               <Box>
                 <Text fontWeight='600' color='brand.heading' mb={1}>
-                  Requirements:
+                  Requirements
                 </Text>
                 <Text color='brand.paragraph'>{selectedItem.Requirements__c}</Text>
               </Box>
@@ -138,26 +121,15 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems, onSelectRFP }) =
         </Box>
       )}
 
-      <Box textAlign='center' mt={8}>
-        <Button
-          isDisabled={!selectedItem}
-          onClick={handleContinue}
-          bg='brand.orange.100'
-          color='white'
-          px={8}
-          py={6}
-          fontSize='input'
-          fontWeight={700}
-          borderRadius={0}
-          _hover={{ bg: 'brand.orange.hover' }}
-          _disabled={{
-            bg: 'gray.300',
-            cursor: 'not-allowed'
-          }}
-        >
-          Continue with Application
-        </Button>
-      </Box>
+      {selectedItem && (
+        <Center mt={8}>
+          <ButtonLink
+            label='Continue'
+            link={`/applicants/rfp/${selectedItem?.Id}/apply`}
+            width='208px'
+          />
+        </Center>
+      )}
     </Stack>
   );
 };
