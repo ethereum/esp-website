@@ -1,4 +1,4 @@
-import { Accordion, Box, Flex, Link, ListItem, Stack } from '@chakra-ui/react';
+import { Accordion, Box, Flex, ListItem, Stack } from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import type { NextPage } from 'next';
 
@@ -14,7 +14,7 @@ import {
   ReadyToApply
 } from '../../../components/UI';
 
-import { SIDEBAR_WISHLIST_LINKS, WISHLIST_APPLY_URL, ESP_EMAIL_ADDRESS } from '../../../constants';
+import { SIDEBAR_WISHLIST_LINKS, WISHLIST_APPLY_URL } from '../../../constants';
 
 const Wishlist: NextPage = () => {
   const [ref, inView] = useInView({ threshold: 0.5 });

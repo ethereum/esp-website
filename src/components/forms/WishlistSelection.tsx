@@ -1,54 +1,33 @@
-import { Box, Button, Grid, GridItem, Heading, Stack, Text } from '@chakra-ui/react';
+import { Box, Center, Grid, GridItem, Heading, Stack, Text } from '@chakra-ui/react';
 import { FC, useState } from 'react';
 
-import { PageText } from '../UI';
 import { WishlistItem } from './schemas/Wishlist';
+import { ButtonLink } from '../ButtonLink';
 
 interface WishlistSelectionProps {
   wishlistItems: WishlistItem[];
-  onSelectWishlist: (wishlistItem: WishlistItem) => void;
 }
 
-export const WishlistSelection: FC<WishlistSelectionProps> = ({
-  wishlistItems,
-  onSelectWishlist
-}) => {
+export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems }) => {
   const [selectedItem, setSelectedItem] = useState<WishlistItem | null>(null);
 
   const handleSelectItem = (item: WishlistItem) => {
     setSelectedItem(item);
   };
 
-  const handleContinue = () => {
-    if (selectedItem) {
-      onSelectWishlist(selectedItem);
-    }
-  };
-
   if (wishlistItems.length === 0) {
     return (
       <Stack spacing={8} align='center' py={16}>
         <Heading size='lg' color='brand.heading'>
-          No Wishlist Items Available
+          No Wishlist Available
         </Heading>
-        <Text>There are currently no active wishlist items available for application.</Text>
+        <Text>There are currently no active wishlists available for application.</Text>
       </Stack>
     );
   }
 
   return (
     <Stack spacing={8}>
-      <Box textAlign='center'>
-        <Heading size='lg' mb={4} color='brand.heading'>
-          Select a Wishlist Item
-        </Heading>
-        <PageText mb={6}>
-          Choose from the wishlist items below that best matches your project or interests. Each
-          item represents a specific need or opportunity that the Ethereum ecosystem is looking to
-          address.
-        </PageText>
-      </Box>
-
       <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }} gap={6}>
         {wishlistItems.map(item => (
           <GridItem key={item.Id}>
@@ -134,26 +113,15 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({
         </Box>
       )}
 
-      <Box textAlign='center' mt={8}>
-        <Button
-          isDisabled={!selectedItem}
-          onClick={handleContinue}
-          bg='brand.orange.100'
-          color='white'
-          px={8}
-          py={6}
-          fontSize='input'
-          fontWeight={700}
-          borderRadius={0}
-          _hover={{ bg: 'brand.orange.hover' }}
-          _disabled={{
-            bg: 'gray.300',
-            cursor: 'not-allowed'
-          }}
-        >
-          Continue with Application
-        </Button>
-      </Box>
+      {selectedItem && (
+        <Center mt={8}>
+          <ButtonLink
+            label='Continue'
+            link={`/applicants/wishlist/${selectedItem?.Id}/apply`}
+            width='208px'
+          />
+        </Center>
+      )}
     </Stack>
   );
 };

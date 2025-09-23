@@ -1,6 +1,5 @@
 import { Box, Stack } from '@chakra-ui/react';
 import type { GetStaticProps, NextPage } from 'next';
-import { useRouter } from 'next/router';
 
 import {
   PageMetadata,
@@ -17,12 +16,6 @@ interface WishlistApplyProps {
 }
 
 const WishlistApply: NextPage<WishlistApplyProps> = ({ wishlistItems }) => {
-  const router = useRouter();
-
-  const handleWishlistSelection = (wishlistItem: WishlistItem) => {
-    router.push(`/applicants/wishlist/${wishlistItem.Id}/apply`);
-  };
-
   return (
     <>
       <PageMetadata
@@ -53,10 +46,7 @@ const WishlistApply: NextPage<WishlistApplyProps> = ({ wishlistItems }) => {
           </section>
 
           <Box mt={8}>
-            <WishlistSelection
-              wishlistItems={wishlistItems}
-              onSelectWishlist={handleWishlistSelection}
-            />
+            <WishlistSelection wishlistItems={wishlistItems} />
           </Box>
         </Stack>
       </Box>
