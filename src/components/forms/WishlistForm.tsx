@@ -15,7 +15,7 @@ const wishlistFormConfig: FormConfig = {
   submitApiEndpoint: 'wishlist',
   thankYouPageUrl: WISHLIST_THANK_YOU_PAGE_URL,
   selectedItemIdField: 'selectedWishlistId',
-  selectedItemDisplayText: 'Selected Wishlist Item'
+  selectedItemDisplayText: 'Selected Wishlist'
 };
 
 export const WishlistForm: FC<WishlistFormProps> = ({ wishlistItem }) => {

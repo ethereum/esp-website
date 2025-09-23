@@ -55,7 +55,7 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems }) => {
                 </Heading>
 
                 {item.Category__c && (
-                  <Text fontSize='sm' color='brand.orange.100' fontWeight='600'>
+                  <Text fontSize='sm' color='brand.helpText' fontWeight='600'>
                     {item.Category__c}
                   </Text>
                 )}
@@ -63,24 +63,6 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems }) => {
                 <Text fontSize='sm' color='brand.paragraph' flex='1' noOfLines={4}>
                   {item.Description__c}
                 </Text>
-
-                {item.Skills_Required__c && (
-                  <Box fontSize='xs' color='brand.helpText'>
-                    <Text fontWeight='600' mb={1}>
-                      Skills Required
-                    </Text>
-                    <Text noOfLines={2}>{item.Skills_Required__c}</Text>
-                  </Box>
-                )}
-
-                {item.Estimated_Effort__c && (
-                  <Box fontSize='xs' color='brand.helpText'>
-                    <Text fontWeight='600' mb={1}>
-                      Estimated Effort
-                    </Text>
-                    <Text>{item.Estimated_Effort__c}</Text>
-                  </Box>
-                )}
               </Stack>
             </Button>
           </GridItem>
