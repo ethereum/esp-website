@@ -19,15 +19,15 @@ const WishlistApply: NextPage<WishlistApplyProps> = ({ wishlistItems }) => {
   return (
     <>
       <PageMetadata
-        title='Apply for Wishlist Item'
-        description='Submit your application for a specific wishlist item that matches your skills and interests.'
+        title='Start Your Wishlist Application'
+        description='Choose an active wishlist item that fits your skills and interests to begin your application.'
       />
 
       <Box bg='white' position='relative' py={{ md: 12 }} px={{ md: 24, lg: 32, xl: 72 }}>
         <Stack>
           <section id='description'>
             <PageSubheading mb={8} textAlign='center'>
-              Apply for Wishlist Item
+              Select a wishlist item to apply for
             </PageSubheading>
 
             <PageText mb={6}>

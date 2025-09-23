@@ -1,8 +1,10 @@
-import { Box, Center, Grid, GridItem, Heading, Stack, Text } from '@chakra-ui/react';
+import { Box, Center, chakra, Grid, GridItem, Heading, Stack, Text } from '@chakra-ui/react';
 import { FC, useState } from 'react';
 
 import { WishlistItem } from './schemas/Wishlist';
 import { ButtonLink } from '../ButtonLink';
+
+const Button = chakra('button');
 
 interface WishlistSelectionProps {
   wishlistItems: WishlistItem[];
@@ -31,12 +33,12 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems })
       <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }} gap={6}>
         {wishlistItems.map(item => (
           <GridItem key={item.Id}>
-            <Box
+            <Button
               p={6}
               border='2px solid'
               borderColor={selectedItem?.Id === item.Id ? 'brand.orange.100' : 'brand.border'}
               borderRadius='lg'
-              cursor='pointer'
+              textAlign='left'
               transition='all 0.2s'
               bg={selectedItem?.Id === item.Id ? 'brand.orange.10' : 'white'}
               _hover={{
@@ -63,26 +65,22 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems })
                 </Text>
 
                 {item.Skills_Required__c && (
-                  <Box>
-                    <Text fontSize='xs' color='brand.helpText' fontWeight='600' mb={1}>
-                      Skills Required:
+                  <Box fontSize='xs' color='brand.helpText'>
+                    <Text fontWeight='600' mb={1}>
+                      Skills Required
                     </Text>
-                    <Text fontSize='xs' color='brand.helpText' noOfLines={2}>
-                      {item.Skills_Required__c}
-                    </Text>
+                    <Text noOfLines={2}>{item.Skills_Required__c}</Text>
                   </Box>
                 )}
 
                 {item.Estimated_Effort__c && (
-                  <Text fontSize='xs' color='brand.helpText'>
-                    <Text as='span' fontWeight='600'>
-                      Estimated Effort:
-                    </Text>{' '}
-                    {item.Estimated_Effort__c}
-                  </Text>
+                  <Box fontSize='xs' color='brand.helpText'>
+                    <Text fontWeight='600'>Estimated Effort</Text>
+                    <Text>{item.Estimated_Effort__c}</Text>
+                  </Box>
                 )}
               </Stack>
-            </Box>
+            </Button>
           </GridItem>
         ))}
       </Grid>
@@ -104,7 +102,7 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems })
             {selectedItem.Expected_Deliverables__c && (
               <Box>
                 <Text fontWeight='600' color='brand.heading' mb={1}>
-                  Expected Deliverables:
+                  Expected Deliverables
                 </Text>
                 <Text color='brand.paragraph'>{selectedItem.Expected_Deliverables__c}</Text>
               </Box>
