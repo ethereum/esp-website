@@ -22,10 +22,7 @@ export const AdditionalDetailsSection: FC = () => {
             error={error}
             isRequired
           >
-            <RadioGroup
-              onChange={val => onChange(val === 'true')}
-              value={value?.toString()}
-            >
+            <RadioGroup onChange={val => onChange(val === 'true')} value={value?.toString()}>
               <Stack direction='row' spacing={4}>
                 <Radio value='true'>
                   <PageText fontSize='input'>Yes</PageText>
@@ -39,7 +36,7 @@ export const AdditionalDetailsSection: FC = () => {
         )}
       />
 
-      <TextAreaField
+      <TextField
         id='referral'
         label='Referral(s)'
         helpText='Do you have an Ethereum Foundation referral for this project?'
@@ -57,10 +54,7 @@ export const AdditionalDetailsSection: FC = () => {
             label='Allow contact from Ethereum Foundation about other opportunities?'
             error={error}
           >
-            <RadioGroup
-              onChange={val => onChange(val === 'true')}
-              value={value?.toString()}
-            >
+            <RadioGroup onChange={val => onChange(val === 'true')} value={value?.toString()}>
               <Stack direction='row' spacing={4}>
                 <Radio value='true'>
                   <PageText fontSize='input'>Yes</PageText>

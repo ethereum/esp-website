@@ -75,7 +75,7 @@ const projectOverviewSchema = {
     'Ecosystem development',
     'Research'
   ]),
-  budgetRequest: z.number().positive(),
+  budgetRequest: z.coerce.number().positive(),
   currency: stringFieldSchema('Currency', { min: 1 })
 };
 
@@ -113,7 +113,7 @@ const projectDetailsSchema = {
     max: MAX_TEXT_AREA_LENGTH
   }),
   openSourceLicense: stringFieldSchema('Open source license', {
-    min: MIN_TEXT_AREA_LENGTH,
+    min: 1,
     max: MAX_TEXT_LENGTH
   }),
   applicantProfile: stringFieldSchema('Applicant profile', {
@@ -124,7 +124,7 @@ const projectDetailsSchema = {
 
 const additionalDetailsSchema = {
   repeatApplicant: z.boolean().default(false),
-  referral: stringFieldSchema('Referral', { min: MIN_TEXT_AREA_LENGTH, max: MAX_TEXT_AREA_LENGTH }),
+  referral: stringFieldSchema('Referral', { min: 1, max: MAX_TEXT_LENGTH }),
   additionalInfo: stringFieldSchema('Additional information', { max: MAX_TEXT_LENGTH }).optional(),
   opportunityOutreachConsent: z.boolean().default(true)
 };

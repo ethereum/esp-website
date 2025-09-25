@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { BaseGrantForm } from './BaseGrantForm';
-import { WishlistSchema, WishlistData, WishlistItem, FormConfig } from './schemas/BaseGrant';
+import { WishlistSchema, WishlistItem, FormConfig } from './schemas/BaseGrant';
 import { WISHLIST_THANK_YOU_PAGE_URL } from '../../constants';
 import { api } from './api';
 
