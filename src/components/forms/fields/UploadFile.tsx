@@ -94,7 +94,7 @@ export const UploadFile: FC<UploadFileProps> = ({
       render={({ fieldState: { error } }) => (
         <Field id={id} error={error} {...rest}>
           <InputGroup {...getRootProps()}>
-            <Input id={id} aria-label='File Upload' {...getInputProps({ name: 'base64' })} />
+            <input id={id} aria-label='File Upload' {...getInputProps({ name: 'base64' })} />
             <Box
               w='100%'
               cursor='pointer'

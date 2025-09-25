@@ -8,11 +8,7 @@ import { Select } from 'chakra-react-select';
 import { DropdownIndicator } from '../../UI';
 import { chakraStyles } from '../selectStyles';
 
-import {
-  FIAT_CURRENCY_OPTIONS,
-  DOMAIN_OPTIONS,
-  OUTPUT_OPTIONS
-} from '../constants';
+import { FIAT_CURRENCY_OPTIONS, DOMAIN_OPTIONS, OUTPUT_OPTIONS } from '../constants';
 
 interface ProjectOverviewSectionProps {
   includeFileUpload?: boolean;
@@ -122,9 +118,7 @@ export const ProjectOverviewSection: FC<ProjectOverviewSectionProps> = ({
               <Select
                 value={FIAT_CURRENCY_OPTIONS.find(option => option.value === value) || null}
                 onChange={selectedOption =>
-                  onChange(
-                    (selectedOption as (typeof FIAT_CURRENCY_OPTIONS)[number])?.value
-                  )
+                  onChange((selectedOption as (typeof FIAT_CURRENCY_OPTIONS)[number])?.value)
                 }
                 options={FIAT_CURRENCY_OPTIONS}
                 placeholder='Select currency'
