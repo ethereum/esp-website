@@ -15,7 +15,7 @@ import {
 import { SIDEBAR_RFP_LINKS } from '../../../constants';
 import { RFPSelection } from '../../../components/forms/RFPSelection';
 import { getActiveRFPItems } from '../../../data/rfpItems';
-import { RFPItem } from '../../../components/forms/schemas/RFP';
+import { RFPItem } from '../../../components/forms/schemas/BaseGrant';
 
 interface RFPProps {
   rfpItems: RFPItem[];

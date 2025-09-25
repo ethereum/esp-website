@@ -14,7 +14,7 @@ import {
 
 import { SIDEBAR_WISHLIST_LINKS } from '../../../constants';
 import { WishlistSelection } from '../../../components/forms/WishlistSelection';
-import { WishlistItem } from '../../../components/forms/schemas/Wishlist';
+import { WishlistItem } from '../../../components/forms/schemas/BaseGrant';
 import { getActiveWishlistItems } from '../../../data/wishlistItems';
 
 interface WishlistProps {
