@@ -1,7 +1,7 @@
 import { Box, Center, chakra, Grid, GridItem, Heading, Stack, Text } from '@chakra-ui/react';
 import { FC, useState } from 'react';
 
-import { RFPItem } from './schemas/RFP';
+import { RFPItem } from './schemas/BaseGrant';
 import { ButtonLink } from '../ButtonLink';
 
 const Button = chakra('button');
@@ -30,7 +30,7 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems }) => {
 
   return (
     <Stack spacing={8}>
-      <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }} gap={6}>
+      <Grid templateColumns='repeat(auto-fit, minmax(300px, 1fr))' gap={6}>
         {rfpItems.map(item => (
           <GridItem key={item.Id}>
             <Button
@@ -47,6 +47,7 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems }) => {
                 shadow: 'md'
               }}
               onClick={() => handleSelectItem(item)}
+              w='full'
               h='full'
             >
               <Stack spacing={3} h='full'>

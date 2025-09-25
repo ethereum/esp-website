@@ -1,7 +1,7 @@
 import { Box, Center, chakra, Grid, GridItem, Heading, Stack, Text } from '@chakra-ui/react';
 import { FC, useState } from 'react';
 
-import { WishlistItem } from './schemas/Wishlist';
+import { WishlistItem } from './schemas/BaseGrant';
 import { ButtonLink } from '../ButtonLink';
 
 const Button = chakra('button');
@@ -30,7 +30,7 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems })
 
   return (
     <Stack spacing={8}>
-      <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }} gap={6}>
+      <Grid templateColumns='repeat(auto-fit, minmax(300px, 1fr))' gap={6}>
         {wishlistItems.map(item => (
           <GridItem key={item.Id}>
             <Button
@@ -47,6 +47,7 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems })
                 shadow: 'md'
               }}
               onClick={() => handleSelectItem(item)}
+              w='full'
               h='full'
             >
               <Stack spacing={3} h='full'>
