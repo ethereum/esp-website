@@ -47,14 +47,14 @@ export function BaseGrantForm<T extends FieldValues>({
 
   const methods = useForm<T>({
     resolver: zodResolver(schema),
-    mode: 'onBlur',
+    mode: 'all',
     shouldFocusError: true,
     defaultValues: formDefaultValues
   });
 
   const {
     handleSubmit,
-    formState: { isValid, isSubmitting },
+    formState: { isSubmitting },
     reset
   } = methods;
 
@@ -127,7 +127,7 @@ export function BaseGrantForm<T extends FieldValues>({
 
             <Center>
               <SubmitButton
-                isValid={isValid}
+                isValid
                 isSubmitting={isSubmitting}
                 height='56px'
                 width='310px'
