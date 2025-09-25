@@ -8,8 +8,8 @@ import { useShadowAnimation } from '../hooks';
 
 import planeVectorSVG from '../../public/images/plane-vector.svg';
 
-const MotionBox = motion(Box);
-const MotionFlex = motion(Flex);
+const MotionBox = motion.create(Box);
+const MotionFlex = motion.create(Flex);
 
 interface Props {
   label: string;
