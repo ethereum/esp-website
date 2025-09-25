@@ -5,7 +5,7 @@ import { sanitizeFields } from '../../middlewares/sanitizeFields';
 import { verifyCaptcha } from '../../middlewares/verifyCaptcha';
 import { MAX_WISHLIST_FILE_SIZE } from '../../constants';
 import { WishlistSchema } from '../../components/forms/schemas/BaseGrant';
-import { createSalesforceRecord } from '../../lib/sf';
+import { createSalesforceRecord, WISHLIST_RECORD_TYPE_ID } from '../../lib/sf';
 
 interface WishlistApiRequest extends NextApiRequest {
   body: {
@@ -115,10 +115,9 @@ const handler = async (req: WishlistApiRequest, res: NextApiResponse) => {
       Application_OutreachConsent__c: result.data.opportunityOutreachConsent,
 
       // Hardwired fields
-      Grants_Initiative_Item__c: result.data.selectedWishlistId, // Maps to Grants_Initiative RecordId
-      Application_Stage__c: 'New', // ???
-      // Team {Grants_Initiative.Owning_Team__c}???
-      RecordTypeId: process.env.WISHLIST_APPLICATION_RECORD_TYPE_ID
+      Grant_Initiative__c: result.data.selectedWishlistId,
+      Application_Stage__c: 'New',
+      RecordTypeId: WISHLIST_RECORD_TYPE_ID
     };
 
     const salesforceResult = await createSalesforceRecord('Application__c', applicationData);

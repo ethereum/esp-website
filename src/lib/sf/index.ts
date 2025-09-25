@@ -5,9 +5,9 @@ import { GrantInitiative, GrantInitiativeSalesforceRecord, GrantInitiativeType }
 const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
   process.env;
 
-const WISHLIST_RECORD_TYPE_ID = '012bW000001CnfVQAS';
-const RFP_RECORD_TYPE_ID = '012bW000001Cnh7QAC';
-const DIRECT_GRANT_RECORD_TYPE_ID = '012bW000001CndtQAC';
+export const WISHLIST_RECORD_TYPE_ID = 'a1DVj000002tYntMAE';
+export const RFP_RECORD_TYPE_ID = '012Vj000008xEVOIA2';
+export const DIRECT_GRANT_RECORD_TYPE_ID = '012Vj000008xEVNIA2';
 
 const createConnection = (): jsforce.Connection => {
   return new jsforce.Connection({

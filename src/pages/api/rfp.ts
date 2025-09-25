@@ -5,7 +5,7 @@ import { sanitizeFields } from '../../middlewares/sanitizeFields';
 import { verifyCaptcha } from '../../middlewares/verifyCaptcha';
 import { MAX_WISHLIST_FILE_SIZE } from '../../constants';
 import { RFPSchema } from '../../components/forms/schemas/BaseGrant';
-import { createSalesforceRecord } from '../../lib/sf';
+import { createSalesforceRecord, RFP_RECORD_TYPE_ID } from '../../lib/sf';
 
 interface RFPApIRequest extends NextApiRequest {
   body: {
@@ -91,10 +91,9 @@ const handler = async (req: RFPApIRequest, res: NextApiResponse) => {
       Application_OutreachConsent__c: result.data.opportunityOutreachConsent,
 
       // Hardwired fields
-      Grants_Initiative_Item__c: result.data.selectedRFPId, // Maps to Grants_Initiative RecordId
-      Application_Stage__c: 'New', // ???
-      // Team {Grants_Initiative.Owning_Team__c}???
-      RecordTypeId: process.env.RFP_APPLICATION_RECORD_TYPE_ID
+      Grant_Initiative__c: result.data.selectedRFPId,
+      Application_Stage__c: 'New',
+      RecordTypeId: RFP_RECORD_TYPE_ID
     };
 
     const salesforceResult = await createSalesforceRecord('Application__c', applicationData);
