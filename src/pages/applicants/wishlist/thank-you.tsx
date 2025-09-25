@@ -14,7 +14,7 @@ const WishlistThankYou: NextPage = () => {
 
       <Box bg='white' position='relative' py={{ md: 12 }} px={{ md: 24, lg: 32, xl: 72 }}>
         <Stack spacing={8} textAlign='center' maxW='600px' mx='auto'>
-          <PageSubheading>Thank You for Your Application!</PageSubheading>
+          <PageSubheading textAlign='center'>Thank You for Your Application!</PageSubheading>
 
           <PageText fontSize='lg'>
             We have received your wishlist application and appreciate your interest in contributing
@@ -58,7 +58,14 @@ const WishlistThankYou: NextPage = () => {
           </PageText>
 
           <Box pt={4}>
-            <Link href={APPLICANTS_URL}>Return to How to Apply</Link>
+            <Link
+              href={APPLICANTS_URL}
+              fontWeight={700}
+              color='brand.orange.100'
+              _hover={{ textDecoration: 'none' }}
+            >
+              Return to How to Apply
+            </Link>
           </Box>
         </Stack>
       </Box>

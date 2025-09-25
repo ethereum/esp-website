@@ -2,6 +2,7 @@ import { Flex, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 
 import { PageMetadata, PageSubheading, PageText } from '../../../components/UI';
+import { ESP_EMAIL_ADDRESS } from '../../../constants';
 
 const RFPThankYou: NextPage = () => {
   return (
@@ -21,7 +22,9 @@ const RFPThankYou: NextPage = () => {
         justifyContent='center'
       >
         <Stack textAlign='center' spacing={8}>
-          <PageSubheading mb={8}>Thank you for your RFP application!</PageSubheading>
+          <PageSubheading mb={8} textAlign='center'>
+            Thank you for your RFP application!
+          </PageSubheading>
 
           <PageText fontSize='xl' mb={8}>
             Your Request for Proposal application has been successfully submitted to our team.
@@ -48,7 +51,7 @@ const RFPThankYou: NextPage = () => {
           <PageText>
             For any urgent questions, please contact us at{' '}
             <PageText as='span' fontWeight='bold'>
-              esp@ethereum.org
+              {ESP_EMAIL_ADDRESS}
             </PageText>
             .
           </PageText>
