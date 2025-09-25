@@ -5,6 +5,7 @@ import { sanitizeFields } from '../../middlewares/sanitizeFields';
 import { verifyCaptcha } from '../../middlewares/verifyCaptcha';
 import { MAX_WISHLIST_FILE_SIZE } from '../../constants';
 import { RFPSchema } from '../../components/forms/schemas/BaseGrant';
+import { createSalesforceRecord } from '../../lib/sf';
 
 interface RFPApIRequest extends NextApiRequest {
   body: {
@@ -61,51 +62,55 @@ const handler = async (req: RFPApIRequest, res: NextApiResponse) => {
   }
 
   try {
-    const {
-      selectedRFPId,
-      firstName,
-      lastName,
-      email,
-      company,
-      profileType,
-      otherProfileType,
-      alternativeContact,
-      website,
-      country,
-      timezone,
-      projectName,
-      projectSummary,
-      projectRepo,
-      domain,
-      output,
-      budgetRequest,
-      currency,
-      repeatApplicant,
-      referral,
-      additionalInfo,
-      opportunityOutreachConsent
-    } = result.data;
+    const applicationData = {
+      // Contact Information
+      Application_FirstName__c: result.data.firstName,
+      Application_LastName__c: result.data.lastName,
+      Application_Email__c: result.data.email,
+      Application_Company__c: result.data.company,
+      Application_ProfileType__c: result.data.profileType,
+      Application_Other_ProfileType__c: result.data.otherProfileType,
+      Application_Alternative_Contact__c: result.data.alternativeContact,
+      Application_Website__c: result.data.website,
+      Application_Country__c: result.data.country,
+      Application_Timezone__c: result.data.timezone,
 
-    // Validate required fields
-    if (!selectedRFPId || !firstName || !lastName || !email || !company || !projectName) {
-      return res.status(400).json({ error: 'Missing required fields' });
-    }
+      // Project Overview
+      Application_Name: result.data.projectName,
+      Application_ProjectDescription__c: result.data.projectSummary,
+      Application_ProjectRepo__c: result.data.projectRepo,
+      Application_Domain__c: result.data.domain,
+      Application_Output__c: result.data.output,
+      Application_RequestedAmount__c: result.data.budgetRequest,
+      CurrencyIsoCode: result.data.currency,
 
-    // In production, this would create a record in Salesforce
-    // const applicationData = { ... };
-    // const result = await salesforceConnection.sobject('Application__c').create(applicationData);
+      // Additional Details
+      Application_Repeat_Applicant__c: result.data.repeatApplicant,
+      Application_Referral__c: result.data.referral,
+      Application_AdditionalInformation__c: result.data.additionalInfo,
+      Application_OutreachConsent__c: result.data.opportunityOutreachConsent,
+
+      // Hardwired fields
+      Grants_Initiative_Item__c: result.data.selectedRFPId, // Maps to Grants_Initiative RecordId
+      Application_Stage__c: 'New', // ???
+      // Team {Grants_Initiative.Owning_Team__c}???
+      RecordTypeId: process.env.RFP_APPLICATION_RECORD_TYPE_ID
+    };
+
+    const salesforceResult = await createSalesforceRecord('Application__c', applicationData);
 
     console.log('RFP application submitted:', {
-      selectedRFPId,
-      projectName,
-      applicant: `${firstName} ${lastName}`,
-      email
+      selectedRFPId: result.data.selectedRFPId,
+      projectName: result.data.projectName,
+      applicant: `${result.data.firstName} ${result.data.lastName}`,
+      email: result.data.email,
+      salesforceId: salesforceResult.id
     });
 
     res.status(200).json({
       success: true,
       message: 'RFP application submitted successfully',
-      applicationId: `RFP_APP_${Date.now()}`
+      applicationId: salesforceResult.id
     });
   } catch (error) {
     console.error('Error submitting RFP application:', error);

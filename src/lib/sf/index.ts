@@ -67,3 +67,5 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
     });
   });
 }
+
+export { createSalesforceRecord } from './salesforce';

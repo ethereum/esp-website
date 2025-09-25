@@ -5,6 +5,7 @@ import { sanitizeFields } from '../../middlewares/sanitizeFields';
 import { verifyCaptcha } from '../../middlewares/verifyCaptcha';
 import { MAX_WISHLIST_FILE_SIZE } from '../../constants';
 import { WishlistSchema } from '../../components/forms/schemas/BaseGrant';
+import { createSalesforceRecord } from '../../lib/sf';
 
 interface WishlistApiRequest extends NextApiRequest {
   body: {
@@ -73,106 +74,67 @@ const handler = async (req: WishlistApiRequest, res: NextApiResponse) => {
   }
 
   try {
-    const {
-      selectedWishlistId,
-      firstName,
-      lastName,
-      email,
-      company,
-      profileType,
-      otherProfileType,
-      alternativeContact,
-      website,
-      country,
-      timezone,
-      projectName,
-      projectSummary,
-      projectRepo,
-      domain,
-      output,
-      budgetRequest,
-      currency,
-      projectStructure,
-      sustainabilityPlan,
-      funding,
-      problemBeingSolved,
-      measuredImpact,
-      successMetrics,
-      ecosystemFit,
-      communityFeedback,
-      openSourceLicense,
-      applicantProfile,
-      repeatApplicant,
-      referral,
-      additionalInfo,
-      opportunityOutreachConsent
-    } = result.data;
+    const applicationData = {
+      // Contact Information
+      Application_FirstName__c: result.data.firstName,
+      Application_LastName__c: result.data.lastName,
+      Application_Email__c: result.data.email,
+      Application_Company__c: result.data.company,
+      Application_ProfileType__c: result.data.profileType,
+      Application_Other_ProfileType__c: result.data.otherProfileType,
+      Application_Alternative_Contact__c: result.data.alternativeContact,
+      Application_Website__c: result.data.website,
+      Application_Country__c: result.data.country,
+      Application_Timezone__c: result.data.timezone,
 
-    // Validate required fields
-    if (!selectedWishlistId || !firstName || !lastName || !email || !company || !projectName) {
-      return res.status(400).json({ error: 'Missing required fields' });
-    }
+      // Project Overview
+      Application_Name: result.data.projectName,
+      Application_ProjectDescription__c: result.data.projectSummary,
+      Application_ProjectRepo__c: result.data.projectRepo,
+      Application_Domain__c: result.data.domain,
+      Application_Output__c: result.data.output,
+      Application_RequestedAmount__c: result.data.budgetRequest,
+      CurrencyIsoCode: result.data.currency,
 
-    // In production, this would create a record in Salesforce
-    // const applicationData = {
-    //   // Contact Information
-    //   Application_FirstName__c: firstName,
-    //   Application_LastName__c: lastName,
-    //   Application_Email__c: email,
-    //   Application_Company__c: company,
-    //   Application_ProfileType__c: profileType,
-    //   Application_Other_ProfileType__c: otherProfileType,
-    //   Application_Alternative_Contact__c: alternativeContact,
-    //   Application_Website__c: website,
-    //   Application_Country__c: country,
-    //   // Time_Zone field
-    //
-    //   // Project Overview
-    //   Application_Name: projectName, // This is the Application Name field
-    //   Application_ProjectDescription__c: projectSummary,
-    //   Application_ProjectRepo__c: projectRepo,
-    //   Application_Domain__c: domain,
-    //   Application_Output__c: output,
-    //   Application_RequestedAmount__c: budgetRequest,
-    //   CurrencyIsoCode: currency,
-    //
-    //   // Project Details
-    //   Application_ProjectStructure__c: projectStructure,
-    //   Application_SustainabilityPlan__c: sustainabilityPlan,
-    //   Application_OtherFunding__c: funding,
-    //   Application_Problem__c: problemBeingSolved,
-    //   Application_MeasuredImpact__c: measuredImpact,
-    //   Application_SuccessMetric__c: successMetrics,
-    //   Application_EcosystemFit__c: ecosystemFit,
-    //   Application_CommunityFeedback__c: communityFeedback,
-    //   Application_OSSLicense__c: openSourceLicense,
-    //   Application_Profile__c: applicantProfile,
-    //
-    //   // Additional Details
-    //   Application_Repeat_Applicant__c: repeatApplicant,
-    //   Application_Referral__c: referral,
-    //   Application_AdditionalInformation__c: additionalInfo,
-    //   Application_OutreachConsent__c: opportunityOutreachConsent,
-    //
-    //   // Hardwired fields
-    //   Grants_Initiative_Item__c: selectedWishlistId, // Maps to Grants_Initiative RecordId
-    //   Application_Stage__c: 'New',
-    //   RecordTypeId: 'WISHLIST_APPLICATION_RECORD_TYPE_ID'
-    // };
+      // Project Details
+      Application_ProjectStructure__c: result.data.projectStructure,
+      Application_SustainabilityPlan__c: result.data.sustainabilityPlan,
+      Application_OtherFunding__c: result.data.funding,
+      Application_Problem__c: result.data.problemBeingSolved,
+      Application_MeasuredImpact__c: result.data.measuredImpact,
+      Application_SuccessMetric__c: result.data.successMetrics,
+      Application_EcosystemFit__c: result.data.ecosystemFit,
+      Application_CommunityFeedback__c: result.data.communityFeedback,
+      Application_OSSLicense__c: result.data.openSourceLicense,
+      Application_Profile__c: result.data.applicantProfile,
 
-    // const result = await salesforceConnection.sobject('Application__c').create(applicationData);
+      // Additional Details
+      Application_Repeat_Applicant__c: result.data.repeatApplicant,
+      Application_Referral__c: result.data.referral,
+      Application_AdditionalInformation__c: result.data.additionalInfo,
+      Application_OutreachConsent__c: result.data.opportunityOutreachConsent,
+
+      // Hardwired fields
+      Grants_Initiative_Item__c: result.data.selectedWishlistId, // Maps to Grants_Initiative RecordId
+      Application_Stage__c: 'New', // ???
+      // Team {Grants_Initiative.Owning_Team__c}???
+      RecordTypeId: process.env.WISHLIST_APPLICATION_RECORD_TYPE_ID
+    };
+
+    const salesforceResult = await createSalesforceRecord('Application__c', applicationData);
 
     console.log('Wishlist application submitted:', {
-      selectedWishlistId,
-      projectName,
-      applicant: `${firstName} ${lastName}`,
-      email
+      selectedWishlistId: result.data.selectedWishlistId,
+      projectName: result.data.projectName,
+      applicant: `${result.data.firstName} ${result.data.lastName}`,
+      email: result.data.email,
+      salesforceId: salesforceResult.id
     });
 
     res.status(200).json({
       success: true,
       message: 'Wishlist application submitted successfully',
-      applicationId: `WL_APP_${Date.now()}`
+      applicationId: salesforceResult.id
     });
   } catch (error) {
     console.error('Error submitting wishlist application:', error);
