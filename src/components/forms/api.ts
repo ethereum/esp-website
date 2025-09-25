@@ -36,8 +36,7 @@ import type { AcademicGrantsData } from './schemas/AcademicGrants';
 import type { PectraPGRData } from './schemas/PectraPGR';
 import type { DestinoDevconnectData } from './schemas/DestinoDevconnect';
 import type { TenYearAnniversaryData } from './schemas/TenYearAnniversary';
-import type { WishlistData } from './schemas/Wishlist';
-import type { RFPData } from './schemas/RFP';
+import type { WishlistData, RFPData } from './schemas/BaseGrant';
 
 const methodOptions = {
   method: 'POST',
@@ -277,13 +276,16 @@ export const api = {
   },
   wishlist: {
     submit: (data: WishlistData) => {
+      const curatedData: { [key: string]: any } = {
+        ...data,
+        company: data.company || `${data.firstName} ${data.lastName}`
+      };
+
+      const formData = createFormData(curatedData);
+
       const wishlistRequestOptions: RequestInit = {
-        ...methodOptions,
-        body: JSON.stringify({
-          ...data,
-          company: data.company || `${data.firstName} ${data.lastName}`,
-          repeatApplicant: data.repeatApplicant
-        })
+        method: 'POST',
+        body: formData
       };
 
       return fetch(API_WISHLIST, wishlistRequestOptions);

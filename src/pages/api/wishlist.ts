@@ -4,6 +4,7 @@ import { multipartyParse } from '../../middlewares/multipartyParse';
 import { sanitizeFields } from '../../middlewares/sanitizeFields';
 import { verifyCaptcha } from '../../middlewares/verifyCaptcha';
 import { MAX_WISHLIST_FILE_SIZE } from '../../constants';
+import { WishlistSchema } from '../../components/forms/schemas/BaseGrant';
 
 interface WishlistApiRequest extends NextApiRequest {
   body: {
@@ -55,8 +56,20 @@ interface WishlistApiRequest extends NextApiRequest {
 }
 
 const handler = async (req: WishlistApiRequest, res: NextApiResponse) => {
+  const fields = { ...req.fields, ...req.files };
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  // validate fields against the schema
+  const result = WishlistSchema.safeParse(fields);
+  if (!result.success) {
+    const formatted = result.error.format();
+    console.error(formatted);
+
+    res.status(500).end();
+    return;
   }
 
   try {
@@ -93,7 +106,7 @@ const handler = async (req: WishlistApiRequest, res: NextApiResponse) => {
       referral,
       additionalInfo,
       opportunityOutreachConsent
-    } = req.body;
+    } = result.data;
 
     // Validate required fields
     if (!selectedWishlistId || !firstName || !lastName || !email || !company || !projectName) {
@@ -164,6 +177,12 @@ const handler = async (req: WishlistApiRequest, res: NextApiResponse) => {
   } catch (error) {
     console.error('Error submitting wishlist application:', error);
     res.status(500).json({ error: 'Failed to submit application' });
+  }
+};
+
+export const config = {
+  api: {
+    bodyParser: false
   }
 };
 

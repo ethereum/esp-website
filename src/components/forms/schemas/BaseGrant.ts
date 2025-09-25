@@ -2,7 +2,12 @@ import * as z from 'zod';
 
 import { stringFieldSchema } from './utils';
 import { containURL } from '../../../utils';
-import { MAX_TEXT_LENGTH, MAX_TEXT_AREA_LENGTH, MIN_TEXT_AREA_LENGTH } from '../../../constants';
+import {
+  MAX_TEXT_LENGTH,
+  MAX_TEXT_AREA_LENGTH,
+  MIN_TEXT_AREA_LENGTH,
+  MAX_WISHLIST_FILE_SIZE
+} from '../../../constants';
 
 // Shared field schemas
 const contactInformationSchema = {
@@ -43,8 +48,10 @@ const projectOverviewSchema = {
     max: MAX_TEXT_AREA_LENGTH
   }),
   fileUpload: z
-    .instanceof(File, { message: 'PDF proposal is required' })
-    .refine(file => file.type === 'application/pdf', 'File must be a PDF'),
+    .any()
+    .refine(file => !!file, 'PDF proposal is required')
+    .refine(file => (file?.size ?? 0) <= MAX_WISHLIST_FILE_SIZE, 'Max file size is 4MB.')
+    .refine(file => (file?.type || file?.mimetype) === 'application/pdf', 'File must be a PDF'),
   projectRepo: stringFieldSchema('Project repo', { max: MAX_TEXT_LENGTH })
     .url({ message: 'Invalid URL' })
     .optional()
