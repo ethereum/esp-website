@@ -36,7 +36,7 @@ export const AdditionalDetailsSection: FC = () => {
         )}
       />
 
-      <TextField
+      <TextAreaField
         id='referral'
         label='Referral(s)'
         helpText='Do you have an Ethereum Foundation referral for this project?'

@@ -131,7 +131,7 @@ const projectDetailsSchema = {
 
 const additionalDetailsSchema = {
   repeatApplicant: z.boolean().default(false),
-  referral: stringFieldSchema('Referral', { min: 1, max: MAX_TEXT_LENGTH }),
+  referral: stringFieldSchema('Referral', { min: MIN_TEXT_AREA_LENGTH, max: MAX_TEXT_AREA_LENGTH }),
   additionalInfo: stringFieldSchema('Additional information', { max: MAX_TEXT_LENGTH }).optional(),
   opportunityOutreachConsent: z.boolean().default(true)
 };
