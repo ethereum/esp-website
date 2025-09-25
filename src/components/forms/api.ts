@@ -295,8 +295,7 @@ export const api = {
     submit: (data: RFPData) => {
       const curatedData: { [key: string]: any } = {
         ...data,
-        company: data.company || `${data.firstName} ${data.lastName}`,
-        repeatApplicant: data.repeatApplicant
+        company: data.company || `${data.firstName} ${data.lastName}`
       };
 
       const formData = createFormData(curatedData);
