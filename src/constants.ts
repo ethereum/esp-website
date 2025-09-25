@@ -36,10 +36,6 @@ export const WISHLIST_URL = '/applicants/wishlist';
 export const SIDEBAR_WISHLIST_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${WISHLIST_URL}/#description` },
   { text: 'What are wishlist items', href: `${WISHLIST_URL}/#what-are-wishlist-items` },
-  { text: 'How it works', href: `${WISHLIST_URL}/#how-it-works` },
-  { text: 'Eligibility', href: `${WISHLIST_URL}/#eligibility` },
-  { text: 'Selection criteria', href: `${WISHLIST_URL}/#selection-criteria` },
-  { text: 'FAQ', href: `${WISHLIST_URL}/#faq` },
   { text: 'Apply', href: `${WISHLIST_URL}/#apply` }
 ];
 
@@ -47,10 +43,6 @@ export const RFP_URL = '/applicants/rfp';
 export const SIDEBAR_RFP_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${RFP_URL}/#description` },
   { text: 'What are RFPs', href: `${RFP_URL}/#what-are-rfps` },
-  { text: 'How it works', href: `${RFP_URL}/#how-it-works` },
-  { text: 'Eligibility', href: `${RFP_URL}/#eligibility` },
-  { text: 'Selection criteria', href: `${RFP_URL}/#selection-criteria` },
-  { text: 'FAQ', href: `${RFP_URL}/#faq` },
   { text: 'Apply', href: `${RFP_URL}/#apply` }
 ];
 
