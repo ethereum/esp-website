@@ -9,7 +9,7 @@ import {
 } from '../../../../components/UI';
 import { RFPForm } from '../../../../components/forms/RFPForm';
 import { RFPItem } from '../../../../components/forms/schemas/RFP';
-import { getActiveRFPItems, getRFPItemById } from '../../../../data/rfpItems';
+import { getGrantInitiativeItems } from '../../../../lib/sf';
 
 interface RFPItemApplyProps {
   rfpItem: RFPItem;
@@ -51,7 +51,7 @@ const RFPApply: NextPage<RFPItemApplyProps> = ({ rfpItem }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const rfpItems = getActiveRFPItems();
+  const rfpItems = await getGrantInitiativeItems('RFP');
 
   const paths = rfpItems.map(item => ({
     params: { item: item.Id }
@@ -65,7 +65,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<RFPItemApplyProps> = async ({ params }) => {
   const itemId = params?.item as string;
-  const rfpItem = getRFPItemById(itemId);
+  const rfpItems = await getGrantInitiativeItems('RFP');
+  const rfpItem = rfpItems.find(item => item.Id === itemId);
 
   if (!rfpItem) {
     return {

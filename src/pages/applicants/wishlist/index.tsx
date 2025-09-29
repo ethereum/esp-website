@@ -15,7 +15,7 @@ import {
 import { SIDEBAR_WISHLIST_LINKS } from '../../../constants';
 import { WishlistSelection } from '../../../components/forms/WishlistSelection';
 import { WishlistItem } from '../../../components/forms/schemas/Wishlist';
-import { getActiveWishlistItems } from '../../../data/wishlistItems';
+import { getGrantInitiativeItems } from '../../../lib/sf';
 
 interface WishlistProps {
   wishlistItems: WishlistItem[];
@@ -108,20 +108,15 @@ const Wishlist: NextPage<WishlistProps> = ({ wishlistItems }) => {
 };
 
 export const getStaticProps: GetStaticProps<WishlistProps> = async () => {
-  try {
-    // TODO: Uncomment this when we have a way to get the wishlist items from Salesforce
-    // const wishlistItems = await getGrantInitiativeItems('Wishlist');
-    const wishlistItems = getActiveWishlistItems();
+  const wishlistItems = await getGrantInitiativeItems('Wishlist');
 
-    return {
-      props: { wishlistItems }
-    };
-  } catch (error) {
-    console.error(error);
-    return {
-      props: { wishlistItems: [] }
-    };
+  if (!wishlistItems.length) {
+    throw new Error('No wishlist items found');
   }
+
+  return {
+    props: { wishlistItems }
+  };
 };
 
 export default Wishlist;

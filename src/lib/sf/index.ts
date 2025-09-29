@@ -5,9 +5,8 @@ import { GrantInitiative, GrantInitiativeSalesforceRecord, GrantInitiativeType }
 const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
   process.env;
 
-export const WISHLIST_RECORD_TYPE_ID = 'a1DVj000002tYntMAE';
-export const RFP_RECORD_TYPE_ID = '012Vj000008xEVOIA2';
-export const DIRECT_GRANT_RECORD_TYPE_ID = '012Vj000008xEVNIA2';
+export const WISHLIST_RECORD_TYPE_ID = '012Vj000008tfPKIAY';
+export const RFP_RECORD_TYPE_ID = '012Vj000008tfPJIAY';
 
 const createConnection = (): jsforce.Connection => {
   return new jsforce.Connection({
@@ -30,19 +29,18 @@ const loginToSalesforce = (conn: jsforce.Connection): Promise<void> => {
 const getGrantInitiativeType = (recordTypeId: string): GrantInitiativeType | null => {
   if (recordTypeId === WISHLIST_RECORD_TYPE_ID) return 'Wishlist';
   if (recordTypeId === RFP_RECORD_TYPE_ID) return 'RFP';
-  if (recordTypeId === DIRECT_GRANT_RECORD_TYPE_ID) return 'Direct Grant';
   return null;
 };
 
 const getRecordTypeIdForType = (type: GrantInitiativeType): string => {
   if (type === 'Wishlist') return WISHLIST_RECORD_TYPE_ID;
   if (type === 'RFP') return RFP_RECORD_TYPE_ID;
-  return DIRECT_GRANT_RECORD_TYPE_ID;
+  return '';
 };
 
 /**
  * Get all active grant initiative items
- * @param type - The type of grant initiative (Wishlist, RFP, Direct Grant)
+ * @param type - The type of grant initiative (Wishlist, RFP)
  * @returns Promise with the grant initiative items
  */
 export function getGrantInitiativeItems(type?: GrantInitiativeType) {
@@ -52,7 +50,8 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
     try {
       await loginToSalesforce(conn);
 
-      const baseCriteria: Partial<GrantInitiativeSalesforceRecord> = { Status__c: 'Active' };
+      // TODO: Change to `Active` before deploying to production
+      const baseCriteria: Partial<GrantInitiativeSalesforceRecord> = { Status__c: 'New' };
       const criteria =
         type != null
           ? { ...baseCriteria, RecordTypeId: getRecordTypeIdForType(type) }

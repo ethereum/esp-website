@@ -14,7 +14,7 @@ import {
 
 import { SIDEBAR_RFP_LINKS } from '../../../constants';
 import { RFPSelection } from '../../../components/forms/RFPSelection';
-import { getActiveRFPItems } from '../../../data/rfpItems';
+import { getGrantInitiativeItems } from '../../../lib/sf';
 import { RFPItem } from '../../../components/forms/schemas/RFP';
 
 interface RFPProps {
@@ -110,9 +110,7 @@ const RFP: NextPage<RFPProps> = ({ rfpItems }) => {
 };
 
 export const getStaticProps: GetStaticProps<RFPProps> = async () => {
-  // TODO: Uncomment this when we have a way to get the RFP items from Salesforce
-  // const rfpItems = await getGrantInitiativeItems('RFP');
-  const rfpItems = getActiveRFPItems();
+  const rfpItems = await getGrantInitiativeItems('RFP');
 
   if (!rfpItems.length) {
     throw new Error('No RFP items found');

@@ -10,7 +10,6 @@ import {
 import { WishlistForm } from '../../../../components/forms/WishlistForm';
 import { WishlistItem } from '../../../../components/forms/schemas/Wishlist';
 import { getGrantInitiativeItems } from '../../../../lib/sf';
-import { getActiveWishlistItems } from '../../../../data/wishlistItems';
 
 interface WishlistItemApplyProps {
   wishlistItem: WishlistItem;
@@ -52,7 +51,7 @@ const WishlistApply: NextPage<WishlistItemApplyProps> = ({ wishlistItem }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const wishlistItems = getActiveWishlistItems();
+  const wishlistItems = await getGrantInitiativeItems('Wishlist');
 
   const paths = wishlistItems.map(item => ({
     params: { item: item.Id }
@@ -66,7 +65,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<WishlistItemApplyProps> = async ({ params }) => {
   const itemId = params?.item as string;
-  const wishlistItem = getWishlistItemById(itemId);
+
+  const wishlistItems = await getGrantInitiativeItems('Wishlist');
+  const wishlistItem = wishlistItems.find(item => item.Id === itemId);
 
   if (!wishlistItem) {
     return {

@@ -514,7 +514,7 @@ export interface GrantInitiativeSalesforceRecord {
   RFP_Open_Date__c: string;
 }
 
-export type GrantInitiativeType = 'Wishlist' | 'RFP' | 'Direct Grant';
+export type GrantInitiativeType = 'Wishlist' | 'RFP';
 
 export interface GrantInitiative {
   Id: string;
