@@ -9,7 +9,6 @@ import {
   MAX_WISHLIST_FILE_SIZE
 } from '../../../constants';
 
-// Shared field schemas
 const contactInformationSchema = {
   firstName: stringFieldSchema('First name', { min: 1, max: 20 }).refine(
     value => !containURL(value),
@@ -140,7 +139,6 @@ const requiredSchema = {
   captchaToken: stringFieldSchema('Captcha', { min: 1 })
 };
 
-// Full base schema with all possible fields
 export const BaseGrantSchema = z.object({
   ...contactInformationSchema,
   ...projectOverviewSchema,
@@ -149,17 +147,22 @@ export const BaseGrantSchema = z.object({
   ...requiredSchema
 });
 
-// Schema for Wishlist forms (includes project details)
 export const WishlistSchema = z.object({
   selectedWishlistId: stringFieldSchema('Wishlist item', { min: 1 }),
   ...contactInformationSchema,
   ...projectOverviewSchema,
   ...projectDetailsSchema,
   ...additionalDetailsSchema,
-  ...requiredSchema
+  ...requiredSchema,
+  // Override the file upload field as it is not required for the Wishlist form
+  fileUpload: z
+    .any()
+    .refine(file => (file?.size ?? 0) <= MAX_WISHLIST_FILE_SIZE, 'Max file size is 4MB.')
+    .refine(file => (file?.type || file?.mimetype) === 'application/pdf', 'File must be a PDF')
+    .optional()
+    .or(z.literal(''))
 });
 
-// Schema for RFP forms (excludes project details)
 export const RFPSchema = z.object({
   selectedRFPId: stringFieldSchema('RFP item', { min: 1 }),
   ...contactInformationSchema,
@@ -168,7 +171,6 @@ export const RFPSchema = z.object({
   ...requiredSchema
 });
 
-// Export individual schema sections for form composition
 export {
   contactInformationSchema,
   projectOverviewSchema,
@@ -177,12 +179,10 @@ export {
   requiredSchema
 };
 
-// Export types
 export type BaseGrantData = z.infer<typeof BaseGrantSchema>;
 export type WishlistData = z.infer<typeof WishlistSchema>;
 export type RFPData = z.infer<typeof RFPSchema>;
 
-// Form configuration types
 export interface FormConfig {
   includeProjectDetails: boolean;
   formId: string;
@@ -192,7 +192,6 @@ export interface FormConfig {
   selectedItemDisplayText: string;
 }
 
-// Item types (keeping existing interfaces)
 export interface WishlistItem {
   Id: string;
   Name: string;

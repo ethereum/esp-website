@@ -55,7 +55,6 @@ export const WishlistForm: FC<WishlistFormProps> = ({ wishlistItem }) => {
           id='fileUpload'
           label='PDF Proposal'
           helpText='Attach a PDF proposal that fulfills the requirements. This upload field is positioned at the bottom of the form.'
-          isRequired
           dropzoneProps={{
             accept: ['application/pdf'],
             maxFiles: 1,
