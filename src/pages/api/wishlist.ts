@@ -4,7 +4,7 @@ import { multipartyParse } from '../../middlewares/multipartyParse';
 import { sanitizeFields } from '../../middlewares/sanitizeFields';
 import { verifyCaptcha } from '../../middlewares/verifyCaptcha';
 import { MAX_WISHLIST_FILE_SIZE } from '../../constants';
-import { WishlistSchema } from '../../components/forms/schemas/BaseGrant';
+import { WishlistSchema } from '../../components/forms/schemas/Wishlist';
 import { createSalesforceRecord, WISHLIST_RECORD_TYPE_ID } from '../../lib/sf';
 
 interface WishlistApiRequest extends NextApiRequest {

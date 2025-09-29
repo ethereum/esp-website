@@ -1,9 +1,10 @@
 import { FC } from 'react';
 
 import { BaseGrantForm } from './BaseGrantForm';
-import { RFPSchema, RFPData, RFPItem, FormConfig } from './schemas/BaseGrant';
 import { RFP_THANK_YOU_PAGE_URL } from '../../constants';
 import { api } from './api';
+import { FormConfig } from './schemas/BaseGrant';
+import { RFPSchema, RFPItem } from './schemas/RFP';
 
 interface RFPFormProps {
   rfpItem: RFPItem;

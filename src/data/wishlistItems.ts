@@ -1,4 +1,4 @@
-import { WishlistItem } from '../components/forms/schemas/BaseGrant';
+import { WishlistItem } from '../components/forms/schemas/Wishlist';
 
 export const wishlistItems: WishlistItem[] = [
   {

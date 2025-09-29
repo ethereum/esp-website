@@ -1,4 +1,4 @@
-import { RFPItem } from '../components/forms/schemas/BaseGrant';
+import { RFPItem } from '../components/forms/schemas/RFP';
 
 export const rfpItems: RFPItem[] = [
   {

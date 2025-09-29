@@ -1,7 +1,6 @@
 import { FC } from 'react';
 
 import { BaseGrantForm } from './BaseGrantForm';
-import { WishlistSchema, WishlistItem, WishlistData, FormConfig } from './schemas/BaseGrant';
 import {
   ContactInformationSection,
   ProjectOverviewSection,
@@ -14,6 +13,8 @@ import {
 import { WISHLIST_THANK_YOU_PAGE_URL } from '../../constants';
 import { UploadFile } from './fields';
 import { api } from './api';
+import { FormConfig } from './schemas/BaseGrant';
+import { WishlistSchema, WishlistItem, WishlistData } from './schemas/Wishlist';
 
 interface WishlistFormProps {
   wishlistItem: WishlistItem;

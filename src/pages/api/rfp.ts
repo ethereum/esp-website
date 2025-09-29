@@ -4,7 +4,7 @@ import { multipartyParse } from '../../middlewares/multipartyParse';
 import { sanitizeFields } from '../../middlewares/sanitizeFields';
 import { verifyCaptcha } from '../../middlewares/verifyCaptcha';
 import { MAX_WISHLIST_FILE_SIZE } from '../../constants';
-import { RFPSchema } from '../../components/forms/schemas/BaseGrant';
+import { RFPSchema } from '../../components/forms/schemas/RFP';
 import { createSalesforceRecord, RFP_RECORD_TYPE_ID } from '../../lib/sf';
 
 interface RFPApIRequest extends NextApiRequest {

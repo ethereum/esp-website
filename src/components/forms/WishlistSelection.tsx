@@ -1,7 +1,7 @@
 import { Box, Center, chakra, Grid, GridItem, Heading, Stack, Text } from '@chakra-ui/react';
 import { FC, useState } from 'react';
 
-import { WishlistItem } from './schemas/BaseGrant';
+import { WishlistItem } from './schemas/Wishlist';
 import { ButtonLink } from '../ButtonLink';
 
 const Button = chakra('button');

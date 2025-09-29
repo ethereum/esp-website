@@ -36,7 +36,8 @@ import type { AcademicGrantsData } from './schemas/AcademicGrants';
 import type { PectraPGRData } from './schemas/PectraPGR';
 import type { DestinoDevconnectData } from './schemas/DestinoDevconnect';
 import type { TenYearAnniversaryData } from './schemas/TenYearAnniversary';
-import type { WishlistData, RFPData } from './schemas/BaseGrant';
+import type { WishlistData } from './schemas/Wishlist';
+import type { RFPData } from './schemas/RFP';
 
 const methodOptions = {
   method: 'POST',

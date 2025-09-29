@@ -147,30 +147,6 @@ export const BaseGrantSchema = z.object({
   ...requiredSchema
 });
 
-export const WishlistSchema = z.object({
-  selectedWishlistId: stringFieldSchema('Wishlist item', { min: 1 }),
-  ...contactInformationSchema,
-  ...projectOverviewSchema,
-  ...projectDetailsSchema,
-  ...additionalDetailsSchema,
-  ...requiredSchema,
-  // Override the file upload field as it is not required for the Wishlist form
-  fileUpload: z
-    .any()
-    .refine(file => (file?.size ?? 0) <= MAX_WISHLIST_FILE_SIZE, 'Max file size is 4MB.')
-    .refine(file => (file?.type || file?.mimetype) === 'application/pdf', 'File must be a PDF')
-    .optional()
-    .or(z.literal(''))
-});
-
-export const RFPSchema = z.object({
-  selectedRFPId: stringFieldSchema('RFP item', { min: 1 }),
-  ...contactInformationSchema,
-  ...projectOverviewSchema,
-  ...additionalDetailsSchema,
-  ...requiredSchema
-});
-
 export {
   contactInformationSchema,
   projectOverviewSchema,
@@ -180,8 +156,6 @@ export {
 };
 
 export type BaseGrantData = z.infer<typeof BaseGrantSchema>;
-export type WishlistData = z.infer<typeof WishlistSchema>;
-export type RFPData = z.infer<typeof RFPSchema>;
 
 export interface FormConfig {
   includeProjectDetails: boolean;
@@ -190,27 +164,4 @@ export interface FormConfig {
   thankYouPageUrl: string;
   selectedItemIdField: 'selectedWishlistId' | 'selectedRFPId';
   selectedItemDisplayText: string;
-}
-
-export interface WishlistItem {
-  Id: string;
-  Name: string;
-  Description__c: string;
-  Category__c?: string;
-  Priority__c?: string;
-  Expected_Deliverables__c?: string;
-  Skills_Required__c?: string;
-  Estimated_Effort__c?: string;
-}
-
-export interface RFPItem {
-  Id: string;
-  Name: string;
-  Description__c: string;
-  Category__c?: string;
-  Priority__c?: string;
-  Expected_Deliverables__c?: string;
-  Skills_Required__c?: string;
-  Estimated_Effort__c?: string;
-  Requirements__c?: string;
 }

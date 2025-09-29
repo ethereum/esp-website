@@ -8,7 +8,7 @@ import {
   PrivacyPolicyAgreement
 } from '../../../../components/UI';
 import { RFPForm } from '../../../../components/forms/RFPForm';
-import { RFPItem } from '../../../../components/forms/schemas/BaseGrant';
+import { RFPItem } from '../../../../components/forms/schemas/RFP';
 import { getActiveRFPItems, getRFPItemById } from '../../../../data/rfpItems';
 
 interface RFPItemApplyProps {

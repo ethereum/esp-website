@@ -8,8 +8,9 @@ import {
   PrivacyPolicyAgreement
 } from '../../../../components/UI';
 import { WishlistForm } from '../../../../components/forms/WishlistForm';
-import { WishlistItem } from '../../../../components/forms/schemas/BaseGrant';
-import { getActiveWishlistItems, getWishlistItemById } from '../../../../data/wishlistItems';
+import { WishlistItem } from '../../../../components/forms/schemas/Wishlist';
+import { getGrantInitiativeItems } from '../../../../lib/sf';
+import { getActiveWishlistItems } from '../../../../data/wishlistItems';
 
 interface WishlistItemApplyProps {
   wishlistItem: WishlistItem;
