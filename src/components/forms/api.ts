@@ -27,7 +27,8 @@ import {
   API_ACADEMIC_GRANTS,
   API_TEN_YEAR_ANNIVERSARY,
   API_WISHLIST,
-  API_RFP
+  API_RFP,
+  API_DIRECT_GRANT
 } from './constants';
 
 import type { EPFData } from './schemas/EPFApplication';
@@ -38,6 +39,7 @@ import type { DestinoDevconnectData } from './schemas/DestinoDevconnect';
 import type { TenYearAnniversaryData } from './schemas/TenYearAnniversary';
 import type { WishlistData } from './schemas/Wishlist';
 import type { RFPData } from './schemas/RFP';
+import type { DirectGrantData } from './schemas/DirectGrant';
 
 const methodOptions = {
   method: 'POST',
@@ -307,6 +309,23 @@ export const api = {
       };
 
       return fetch(API_RFP, rfpRequestOptions);
+    }
+  },
+  directGrant: {
+    submit: (data: DirectGrantData) => {
+      const curatedData: { [key: string]: any } = {
+        ...data,
+        company: data.company || `${data.firstName} ${data.lastName}`
+      };
+
+      const formData = createFormData(curatedData);
+
+      const directGrantRequestOptions: RequestInit = {
+        method: 'POST',
+        body: formData
+      };
+
+      return fetch(API_DIRECT_GRANT, directGrantRequestOptions);
     }
   }
 };

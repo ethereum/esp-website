@@ -4,6 +4,7 @@ export * from './NewsletterSignup';
 export * from './OfficeHoursForm';
 export * from './WishlistForm';
 export * from './WishlistSelection';
+export * from './DirectGrantForm';
 export * from './ProjectGrantsForm';
 export * from './SmallGrantsForm';
 export * from './DevconGrantsForm';

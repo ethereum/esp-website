@@ -1690,6 +1690,7 @@ export const COMMITMENT_OPTIONS = [
 export const API_OFFICE_HOURS = '/api/office-hours';
 export const API_WISHLIST = '/api/wishlist';
 export const API_RFP = '/api/rfp';
+export const API_DIRECT_GRANT = '/api/direct-grant';
 export const API_PROJECT_GRANTS = '/api/project-grants';
 export const API_SMALL_GRANTS_PROJECT = '/api/small-grants/project';
 export const API_SMALL_GRANTS_EVENT = '/api/small-grants/event';
