@@ -85,10 +85,10 @@ const handler = async (req: WishlistApiRequest, res: NextApiResponse) => {
       Application_Alternative_Contact__c: result.data.alternativeContact,
       Application_Website__c: result.data.website,
       Application_Country__c: result.data.country,
-      Application_Timezone__c: result.data.timezone,
+      Application_Time_Zone__c: result.data.timezone,
 
       // Project Overview
-      Application_Name: result.data.projectName,
+      Name: result.data.projectName,
       Application_ProjectDescription__c: result.data.projectSummary,
       Application_ProjectRepo__c: result.data.projectRepo,
       Application_Domain__c: result.data.domain,
@@ -117,7 +117,8 @@ const handler = async (req: WishlistApiRequest, res: NextApiResponse) => {
       // Hardwired fields
       Grant_Initiative__c: result.data.selectedWishlistId,
       Application_Stage__c: 'New',
-      RecordTypeId: WISHLIST_RECORD_TYPE_ID
+      Application_Source__c: 'Webform',
+      RecordTypeId: '012Vj000008xEVPIA2'
     };
 
     const salesforceResult = await createSalesforceRecord('Application__c', applicationData);
