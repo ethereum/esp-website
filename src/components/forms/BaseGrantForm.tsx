@@ -1,6 +1,6 @@
 import { Box, Center, Stack, useToast } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import { FormProvider, useForm, FieldValues, SubmitHandler, DefaultValues } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import * as z from 'zod';
@@ -28,6 +28,8 @@ interface BaseGrantFormProps<T extends FieldValues> {
   };
   onSubmit: (data: T) => Promise<Response>;
   defaultValues?: Partial<T>;
+  children?: ReactNode;
+  useDefaultLayout?: boolean;
 }
 
 export function BaseGrantForm<T extends FieldValues>({
@@ -35,7 +37,9 @@ export function BaseGrantForm<T extends FieldValues>({
   schema,
   selectedItem,
   onSubmit: submitFunction,
-  defaultValues = {}
+  defaultValues = {},
+  children,
+  useDefaultLayout = true
 }: BaseGrantFormProps<T>) {
   const router = useRouter();
   const toast = useToast();
@@ -76,6 +80,53 @@ export function BaseGrantForm<T extends FieldValues>({
       .catch(err => console.error('There has been a problem with your operation: ', err.message));
   };
 
+  // Default form layout
+  const defaultFormContent = (
+    <Stack spacing={8}>
+      <Box
+        p={6}
+        bg='white'
+        borderRadius='lg'
+        borderLeft='4px solid'
+        borderLeftColor='brand.orange.100'
+      >
+        <Stack spacing={2}>
+          <PageText fontSize='sm' color='brand.helpText' fontWeight='600'>
+            {config.selectedItemDisplayText}:
+          </PageText>
+          <PageText fontSize='lg' fontWeight='700' color='brand.heading'>
+            {selectedItem.Name}
+          </PageText>
+          <PageText fontSize='sm' color='brand.paragraph'>
+            {selectedItem.Description__c}
+          </PageText>
+        </Stack>
+      </Box>
+
+      <ContactInformationSection />
+
+      <ProjectOverviewSection includeFileUpload />
+
+      {config.includeProjectDetails && <ProjectDetailsSection />}
+
+      <AdditionalDetailsSection />
+
+      <Center mb={12}>
+        <Captcha />
+      </Center>
+
+      <Center>
+        <SubmitButton
+          isValid
+          isSubmitting={isSubmitting}
+          height='56px'
+          width='310px'
+          text='Submit Application'
+        />
+      </Center>
+    </Stack>
+  );
+
   return (
     <Stack
       w='100%'
@@ -87,54 +138,7 @@ export function BaseGrantForm<T extends FieldValues>({
     >
       <FormProvider {...methods}>
         <form id={config.formId} onSubmit={handleSubmit(onSubmit)}>
-          <Stack spacing={8}>
-            {/* Selected Item Display */}
-            <Box
-              p={6}
-              bg='white'
-              borderRadius='lg'
-              borderLeft='4px solid'
-              borderLeftColor='brand.orange.100'
-            >
-              <Stack spacing={2}>
-                <PageText fontSize='sm' color='brand.helpText' fontWeight='600'>
-                  {config.selectedItemDisplayText}:
-                </PageText>
-                <PageText fontSize='lg' fontWeight='700' color='brand.heading'>
-                  {selectedItem.Name}
-                </PageText>
-                <PageText fontSize='sm' color='brand.paragraph'>
-                  {selectedItem.Description__c}
-                </PageText>
-              </Stack>
-            </Box>
-
-            {/* Contact Information Section */}
-            <ContactInformationSection />
-
-            {/* Project Overview Section */}
-            <ProjectOverviewSection includeFileUpload={true} />
-
-            {/* Project Details Section (only for forms that need it) */}
-            {config.includeProjectDetails && <ProjectDetailsSection />}
-
-            {/* Additional Details Section */}
-            <AdditionalDetailsSection />
-
-            <Center mb={12}>
-              <Captcha />
-            </Center>
-
-            <Center>
-              <SubmitButton
-                isValid
-                isSubmitting={isSubmitting}
-                height='56px'
-                width='310px'
-                text='Submit Application'
-              />
-            </Center>
-          </Stack>
+          {useDefaultLayout ? defaultFormContent : children}
         </form>
       </FormProvider>
     </Stack>
