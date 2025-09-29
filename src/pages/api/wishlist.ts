@@ -5,7 +5,8 @@ import { sanitizeFields } from '../../middlewares/sanitizeFields';
 import { verifyCaptcha } from '../../middlewares/verifyCaptcha';
 import { MAX_WISHLIST_FILE_SIZE } from '../../constants';
 import { WishlistSchema } from '../../components/forms/schemas/Wishlist';
-import { createSalesforceRecord, WISHLIST_RECORD_TYPE_ID } from '../../lib/sf';
+import { createSalesforceRecord, uploadFileToSalesforce } from '../../lib/sf';
+import type { File } from 'formidable';
 
 interface WishlistApiRequest extends NextApiRequest {
   body: {
@@ -122,6 +123,20 @@ const handler = async (req: WishlistApiRequest, res: NextApiResponse) => {
     };
 
     const salesforceResult = await createSalesforceRecord('Application__c', applicationData);
+
+    try {
+      const uploadProposal = result.data.fileUpload as File;
+      await uploadFileToSalesforce(
+        uploadProposal,
+        salesforceResult.id,
+        '[PROPOSAL]',
+        result.data.projectName
+      );
+    } catch (error) {
+      console.error('Error uploading proposal:', error);
+      res.status(500).json({ error: 'Failed to upload proposal' });
+      return;
+    }
 
     console.log('Wishlist application submitted:', {
       selectedWishlistId: result.data.selectedWishlistId,

@@ -1,6 +1,9 @@
+import fs from 'fs';
 import jsforce from 'jsforce';
+import type { File } from 'formidable';
 
 import { GrantInitiative, GrantInitiativeSalesforceRecord, GrantInitiativeType } from '../../types';
+import { truncateString } from '../../utils/truncateString';
 
 const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
   process.env;
@@ -115,6 +118,89 @@ export const createSalesforceRecord = async (
       });
     } catch (error) {
       console.error(`Error in create${objectType}:`, error);
+      reject(error);
+    }
+  });
+};
+
+/**
+ * Upload a file to Salesforce and link it to a specific object
+ * @param file - The file to upload (from formidable)
+ * @param linkedEntityId - The Salesforce object ID to link the file to
+ * @param titlePrefix - Optional prefix for the file title (default: '[DOCUMENT]')
+ * @param projectName - Optional project name to include in the title
+ * @returns Promise with upload result
+ */
+export const uploadFileToSalesforce = async (
+  file: File,
+  linkedEntityId: string,
+  titlePrefix: string = '[DOCUMENT]',
+  projectName?: string
+): Promise<{ success: boolean; contentDocumentId?: string }> => {
+  return new Promise(async (resolve, reject) => {
+    const conn = createConnection();
+
+    try {
+      await loginToSalesforce(conn);
+
+      // Read file content as base64
+      let fileContent: string;
+      try {
+        fileContent = fs.readFileSync(file.filepath, { encoding: 'base64' });
+      } catch (error) {
+        console.error('Error reading file:', error);
+        return reject(new Error('Failed to read file content'));
+      }
+
+      // Create the file title
+      const baseTitle = projectName
+        ? `${titlePrefix} ${truncateString(projectName, 200)} - ${linkedEntityId}`
+        : `${titlePrefix} ${linkedEntityId}`;
+
+      // Upload file to Salesforce
+      conn.sobject('ContentVersion').create(
+        {
+          Title: baseTitle,
+          PathOnClient: file.originalFilename,
+          VersionData: fileContent
+        },
+        async (err, uploadResult) => {
+          if (err || !uploadResult.success) {
+            console.error('Error uploading file to Salesforce:', err);
+            return reject(err || new Error('File upload failed'));
+          }
+
+          console.log('File uploaded successfully:', uploadResult);
+
+          try {
+            // Get the ContentDocumentId from the uploaded file
+            const contentDocument = await conn
+              .sobject<{
+                Id: string;
+                ContentDocumentId: string;
+              }>('ContentVersion')
+              .retrieve(uploadResult.id);
+
+            // Link the document to the specified entity
+            await conn.sobject('ContentDocumentLink').create({
+              ContentDocumentId: contentDocument.ContentDocumentId,
+              LinkedEntityId: linkedEntityId,
+              ShareType: 'V'
+            });
+
+            console.log(`File successfully linked to entity ${linkedEntityId}`);
+            resolve({
+              success: true,
+              contentDocumentId: contentDocument.ContentDocumentId
+            });
+          } catch (linkError) {
+            console.error('Error linking file to entity:', linkError);
+            reject(new Error('Failed to link file to entity'));
+          }
+        }
+      );
+    } catch (error) {
+      console.error('Error in uploadFileToSalesforce:', error);
       reject(error);
     }
   });

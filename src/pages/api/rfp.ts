@@ -5,7 +5,8 @@ import { sanitizeFields } from '../../middlewares/sanitizeFields';
 import { verifyCaptcha } from '../../middlewares/verifyCaptcha';
 import { MAX_WISHLIST_FILE_SIZE } from '../../constants';
 import { RFPSchema } from '../../components/forms/schemas/RFP';
-import { createSalesforceRecord, RFP_RECORD_TYPE_ID } from '../../lib/sf';
+import { createSalesforceRecord, uploadFileToSalesforce } from '../../lib/sf';
+import type { File } from 'formidable';
 
 interface RFPApIRequest extends NextApiRequest {
   body: {
@@ -98,6 +99,20 @@ const handler = async (req: RFPApIRequest, res: NextApiResponse) => {
     };
 
     const salesforceResult = await createSalesforceRecord('Application__c', applicationData);
+
+    try {
+      const uploadProposal = result.data.fileUpload as File;
+      await uploadFileToSalesforce(
+        uploadProposal,
+        salesforceResult.id,
+        '[PROPOSAL]',
+        result.data.projectName
+      );
+    } catch (error) {
+      console.error('Error uploading proposal:', error);
+      res.status(500).json({ error: 'Failed to upload proposal' });
+      return;
+    }
 
     console.log('RFP application submitted:', {
       selectedRFPId: result.data.selectedRFPId,
