@@ -21,7 +21,6 @@ interface WishlistFormProps {
 }
 
 const wishlistFormConfig: FormConfig = {
-  includeProjectDetails: true,
   formId: 'wishlist-form',
   submitApiEndpoint: 'wishlist',
   thankYouPageUrl: WISHLIST_THANK_YOU_PAGE_URL,
@@ -36,7 +35,6 @@ export const WishlistForm: FC<WishlistFormProps> = ({ wishlistItem }) => {
       schema={WishlistSchema}
       selectedItem={wishlistItem}
       onSubmit={api.wishlist.submit}
-      useDefaultLayout={false}
     >
       <FormContainer>
         <SelectedItemDisplay
@@ -46,7 +44,8 @@ export const WishlistForm: FC<WishlistFormProps> = ({ wishlistItem }) => {
 
         <ContactInformationSection />
 
-        <ProjectOverviewSection includeFileUpload={false} />
+        {/* Disable file upload since we need it to be at the bottom of the form and not required */}
+        <ProjectOverviewSection fields={{ fileUpload: false }} />
 
         <ProjectDetailsSection />
 

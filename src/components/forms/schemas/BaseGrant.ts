@@ -158,7 +158,6 @@ export {
 export type BaseGrantData = z.infer<typeof BaseGrantSchema>;
 
 export interface FormConfig {
-  includeProjectDetails: boolean;
   formId: string;
   submitApiEndpoint: 'wishlist' | 'rfp' | 'direct-grant';
   thankYouPageUrl: string;

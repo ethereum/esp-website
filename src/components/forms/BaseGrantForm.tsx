@@ -29,7 +29,6 @@ interface BaseGrantFormProps<T extends FieldValues> {
   onSubmit: (data: T) => Promise<Response>;
   defaultValues?: Partial<T>;
   children?: ReactNode;
-  useDefaultLayout?: boolean;
 }
 
 export function BaseGrantForm<T extends FieldValues>({
@@ -38,8 +37,7 @@ export function BaseGrantForm<T extends FieldValues>({
   selectedItem,
   onSubmit: submitFunction,
   defaultValues = {},
-  children,
-  useDefaultLayout = true
+  children
 }: BaseGrantFormProps<T>) {
   const router = useRouter();
   const toast = useToast();
@@ -80,53 +78,6 @@ export function BaseGrantForm<T extends FieldValues>({
       .catch(err => console.error('There has been a problem with your operation: ', err.message));
   };
 
-  // Default form layout
-  const defaultFormContent = (
-    <Stack spacing={8}>
-      <Box
-        p={6}
-        bg='white'
-        borderRadius='lg'
-        borderLeft='4px solid'
-        borderLeftColor='brand.orange.100'
-      >
-        <Stack spacing={2}>
-          <PageText fontSize='sm' color='brand.helpText' fontWeight='600'>
-            {config.selectedItemDisplayText}:
-          </PageText>
-          <PageText fontSize='lg' fontWeight='700' color='brand.heading'>
-            {selectedItem.Name}
-          </PageText>
-          <PageText fontSize='sm' color='brand.paragraph'>
-            {selectedItem.Description__c}
-          </PageText>
-        </Stack>
-      </Box>
-
-      <ContactInformationSection />
-
-      <ProjectOverviewSection includeFileUpload />
-
-      {config.includeProjectDetails && <ProjectDetailsSection />}
-
-      <AdditionalDetailsSection />
-
-      <Center mb={12}>
-        <Captcha />
-      </Center>
-
-      <Center>
-        <SubmitButton
-          isValid
-          isSubmitting={isSubmitting}
-          height='56px'
-          width='310px'
-          text='Submit Application'
-        />
-      </Center>
-    </Stack>
-  );
-
   return (
     <Stack
       w='100%'
@@ -138,7 +89,7 @@ export function BaseGrantForm<T extends FieldValues>({
     >
       <FormProvider {...methods}>
         <form id={config.formId} onSubmit={handleSubmit(onSubmit)}>
-          {useDefaultLayout ? defaultFormContent : children}
+          {children}
         </form>
       </FormProvider>
     </Stack>

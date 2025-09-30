@@ -17,7 +17,6 @@ import { DirectGrantSchema, DirectGrantData } from './schemas/DirectGrant';
 
 export const DirectGrantForm: FC = () => {
   const directGrantFormConfig: FormConfig = {
-    includeProjectDetails: true,
     formId: 'direct-grant-form',
     submitApiEndpoint: 'direct-grant',
     thankYouPageUrl: DIRECT_GRANT_THANK_YOU_PAGE_URL,
@@ -37,17 +36,17 @@ export const DirectGrantForm: FC = () => {
       schema={DirectGrantSchema}
       selectedItem={mockSelectedItem}
       onSubmit={api.directGrant.submit}
-      useDefaultLayout={false}
     >
       <FormContainer>
         <ContactInformationSection />
 
-        <ProjectOverviewSection includeFileUpload={false} />
+        {/* Disable file upload since we need it to be at the bottom of the form and not required */}
+        <ProjectOverviewSection fields={{ fileUpload: false }} />
 
         <ProjectDetailsSection />
 
         <AdditionalDetailsSection
-          customText={{
+          fields={{
             referral: {
               label: 'Internal EF Contact',
               helpText:
