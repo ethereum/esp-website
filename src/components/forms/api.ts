@@ -40,6 +40,7 @@ import type { TenYearAnniversaryData } from './schemas/TenYearAnniversary';
 import type { WishlistData } from './schemas/Wishlist';
 import type { RFPData } from './schemas/RFP';
 import type { DirectGrantData } from './schemas/DirectGrant';
+import type { OfficeHoursData } from './schemas/OfficeHours';
 
 const methodOptions = {
   method: 'POST',
@@ -48,17 +49,13 @@ const methodOptions = {
 
 export const api = {
   officeHours: {
-    submit: (data: OfficeHoursFormData) => {
+    submit: (data: OfficeHoursData) => {
       const officeHoursRequestOptions: RequestInit = {
         ...methodOptions,
         body: JSON.stringify({
           ...data,
           // Company is a required field in SF, we're using the Name as default value if no company provided
-          company: data.company === '' ? `${data.firstName} ${data.lastName}` : data.company,
-          projectCategory: data.projectCategory.value,
-          howDidYouHearAboutESP: data.howDidYouHearAboutESP.value,
-          country: data.country.value,
-          timezone: data.timezone.value
+          company: data.company || `${data.firstName} ${data.lastName}`
         })
       };
 
