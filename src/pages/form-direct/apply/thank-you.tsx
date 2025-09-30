@@ -1,17 +1,15 @@
 import { NextPage } from 'next';
-import { Box, Heading, Text, VStack, Button, Link } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
+import { Box, Text, VStack, Link } from '@chakra-ui/react';
 
-import { PageMetadata, PageSubheading } from '../../components/UI';
+import { PageMetadata, PageSubheading } from '../../../components/UI';
 
 const DirectGrantThankYouPage: NextPage = () => {
-  const router = useRouter();
-
   return (
     <>
       <PageMetadata
         title='Thank You - Direct Grant Application - ESP'
         description='Thank you for submitting your direct grant application to the Ethereum Foundation Ecosystem Support Program'
+        noindex
       />
 
       <Box maxW='container.md' mx='auto' px={6} py={16}>

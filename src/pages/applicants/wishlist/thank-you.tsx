@@ -10,6 +10,7 @@ const WishlistThankYou: NextPage = () => {
       <PageMetadata
         title='Application Submitted - Wishlist'
         description='Thank you for your wishlist application submission.'
+        noindex
       />
 
       <Box bg='white' position='relative' py={{ md: 12 }} px={{ md: 24, lg: 32, xl: 72 }}>

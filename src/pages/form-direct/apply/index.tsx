@@ -1,13 +1,13 @@
 import { NextPage } from 'next';
 import { Box, VStack } from '@chakra-ui/react';
 
-import { DirectGrantForm } from '../../components/forms/DirectGrantForm';
+import { DirectGrantForm } from '../../../components/forms/DirectGrantForm';
 import {
   PageMetadata,
   PageSubheading,
   PageText,
   PrivacyPolicyAgreement
-} from '../../components/UI';
+} from '../../../components/UI';
 
 const DirectGrantPage: NextPage = () => {
   return (
@@ -15,6 +15,7 @@ const DirectGrantPage: NextPage = () => {
       <PageMetadata
         title='Direct Grant Application - ESP'
         description='Apply for a direct grant from the Ethereum Foundation Ecosystem Support Program'
+        noindex
       />
 
       <Box maxW='container.xl' mx='auto' px={6} py={8}>

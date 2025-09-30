@@ -10,6 +10,7 @@ const RFPThankYou: NextPage = () => {
       <PageMetadata
         title='Thank you for your RFP application'
         description='Your RFP application has been successfully submitted to the Ethereum Foundation ESP team.'
+        noindex
       />
 
       <Flex
