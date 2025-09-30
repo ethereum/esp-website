@@ -3,9 +3,23 @@ import { FC } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
 import { PageSection, PageText } from '../../UI';
-import { TextField, TextAreaField, Field } from '../fields';
+import { TextField, Field } from '../fields';
 
-export const AdditionalDetailsSection: FC = () => {
+interface FieldCustomization {
+  label?: string;
+  helpText?: string;
+}
+
+interface AdditionalDetailsSectionProps {
+  customText?: {
+    repeatApplicant?: FieldCustomization;
+    referral?: FieldCustomization;
+    additionalInfo?: FieldCustomization;
+    opportunityOutreachConsent?: FieldCustomization;
+  };
+}
+
+export const AdditionalDetailsSection: FC<AdditionalDetailsSectionProps> = ({ customText }) => {
   const { control } = useFormContext();
 
   return (
@@ -18,7 +32,10 @@ export const AdditionalDetailsSection: FC = () => {
         render={({ field: { onChange, value }, fieldState: { error } }) => (
           <Field
             id='repeatApplicant'
-            label='Have you applied before to any grants at the Ethereum Foundation?'
+            label={
+              customText?.repeatApplicant?.label ||
+              'Have you applied before to any grants at the Ethereum Foundation?'
+            }
             error={error}
             isRequired
           >
@@ -38,12 +55,19 @@ export const AdditionalDetailsSection: FC = () => {
 
       <TextField
         id='referral'
-        label='Referral(s)'
-        helpText='Do you have an Ethereum Foundation referral for this project?'
+        label={customText?.referral?.label || 'Referral(s)'}
+        helpText={
+          customText?.referral?.helpText ||
+          'Do you have an Ethereum Foundation referral for this project?'
+        }
         isRequired
       />
 
-      <TextField id='additionalInfo' label='Additional questions or comments?' />
+      <TextField
+        id='additionalInfo'
+        label={customText?.additionalInfo?.label || 'Additional questions or comments?'}
+        helpText={customText?.additionalInfo?.helpText}
+      />
 
       <Controller
         name='opportunityOutreachConsent'
@@ -51,7 +75,10 @@ export const AdditionalDetailsSection: FC = () => {
         render={({ field: { onChange, value }, fieldState: { error } }) => (
           <Field
             id='opportunityOutreachConsent'
-            label='Allow contact from Ethereum Foundation about other opportunities?'
+            label={
+              customText?.opportunityOutreachConsent?.label ||
+              'Allow contact from Ethereum Foundation about other opportunities?'
+            }
             error={error}
           >
             <RadioGroup onChange={val => onChange(val === 'true')} value={value?.toString()}>

@@ -46,7 +46,15 @@ export const DirectGrantForm: FC = () => {
 
         <ProjectDetailsSection />
 
-        <AdditionalDetailsSection />
+        <AdditionalDetailsSection
+          customText={{
+            referral: {
+              label: 'Internal EF Contact',
+              helpText:
+                'Provide the name of the Ethereum Foundation team member or team who directed you to complete this application.'
+            }
+          }}
+        />
 
         <UploadFile
           id='fileUpload'
