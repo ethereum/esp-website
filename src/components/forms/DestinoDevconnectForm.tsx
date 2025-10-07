@@ -231,7 +231,6 @@ export const DestinoDevconnectForm: FC = () => {
                       id='requestedSupport'
                       label='Do you need free tickets, voucher codes for discounted tickets, and/or scholarships?'
                       error={error}
-                      isRequired
                     >
                       <Stack direction='row' spacing={4}>
                         <Checkbox
