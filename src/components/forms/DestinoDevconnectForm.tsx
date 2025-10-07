@@ -274,13 +274,13 @@ export const DestinoDevconnectForm: FC = () => {
 
                 {
                   isFreeTickets && (
-                    <TextField id='ticketRequest' label='Number of tickets requested' isRequired />
+                    <TextField id='ticketRequest' label='Number of tickets requested' isRequired={isFreeTickets} />
                   )
                 }
 
                 {
                   isVoucherCodes && (
-                    <TextField id='voucherRequest' label='Number of voucher codes requested' isRequired />
+                    <TextField id='voucherRequest' label='Number of voucher codes requested' isRequired={isVoucherCodes} />
                   )
                 }
 
@@ -289,7 +289,7 @@ export const DestinoDevconnectForm: FC = () => {
                     name='fiatCurrency'
                     control={control}
                     render={({ field: { value, onChange }, fieldState: { error } }) => (
-                      <Field id='fiatCurrency' label='Fiat Currency' error={error} isRequired>
+                      <Field id='fiatCurrency' label='Fiat Currency' error={error} isRequired={isScholarships}>
                         <Select
                           id='fiatCurrency'
                           value={FIAT_CURRENCY_OPTIONS.find(option => option.value === value)}
@@ -307,7 +307,7 @@ export const DestinoDevconnectForm: FC = () => {
                     )}
                   />
 
-                  <TextField id='requestedAmount' label='Scholarship amount' isRequired />
+                  <TextField id='requestedAmount' label='Scholarship amount' isRequired={isScholarships} />
                 </Flex>}
               </>
             )}
@@ -333,7 +333,7 @@ export const DestinoDevconnectForm: FC = () => {
 
                 {
                   (isFreeTickets || isVoucherCodes) && (
-                    <TextField id='additionalSupportRequests' label='How will the tickets be distributed, and who will be receiving these tickets?' isRequired />
+                    <TextField id='additionalSupportRequests' label='How will the tickets be distributed, and who will be receiving these tickets?' isRequired={isFreeTickets || isVoucherCodes} />
                   )
                 }
 

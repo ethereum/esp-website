@@ -55,14 +55,17 @@ const communityInitiativeSchema = baseSchema.extend({
   requestedSupport: z.array(z.enum(['Free tickets', 'Voucher codes for discounted tickets', 'Scholarships'])).min(1, 'Please select at least one option'),
   ticketRequest: z.coerce
     .number({ invalid_type_error: 'Amount must be a number' })
-    .min(1, 'Amount must be at least 1'),
+    .min(1, 'Amount must be at least 1')
+    .optional(),
   voucherRequest: z.coerce
     .number({ invalid_type_error: 'Amount must be a number' })
-    .min(1, 'Amount must be at least 1'),
-  fiatCurrency: stringFieldSchema('Fiat Currency', { min: 1 }),
+    .min(1, 'Amount must be at least 1')
+    .optional(),
+  fiatCurrency: stringFieldSchema('Fiat Currency', { min: 1 }).optional(),
   requestedAmount: z.coerce
     .number({ invalid_type_error: 'Amount must be a number' })
-    .min(1, 'Amount must be at least 1'),
+    .min(1, 'Amount must be at least 1')
+    .optional(),
 
   // Project Details (if Community Initiative)
   projectName: stringFieldSchema('Project name', { min: 1, max: MAX_TEXT_LENGTH }),
@@ -85,7 +88,7 @@ const communityInitiativeSchema = baseSchema.extend({
   additionalSupportRequests: stringFieldSchema('How will the tickets be distributed, and who will be receiving these tickets?', {
     min: 1,
     max: MAX_TEXT_AREA_LENGTH
-  }),
+  }).optional(),
 });
 
 const nonFinancialSchema = baseSchema.extend({
@@ -140,6 +143,60 @@ export const DestinoDevconnectSchema = rawSchema
     {
       message: 'Company name is required when applying as a team',
       path: ['company']
+    }
+  )
+  // Conditional validation for ticketRequest when Free tickets is selected
+  .refine(
+    data => {
+      if (data.category === 'Community Initiative' && data.requestedSupport?.includes('Free tickets')) {
+        return data.ticketRequest !== undefined && data.ticketRequest >= 1;
+      }
+      return true;
+    },
+    {
+      message: 'Number of tickets requested is required when Free tickets is selected',
+      path: ['ticketRequest']
+    }
+  )
+  // Conditional validation for voucherRequest when Voucher codes is selected
+  .refine(
+    data => {
+      if (data.category === 'Community Initiative' && data.requestedSupport?.includes('Voucher codes for discounted tickets')) {
+        return data.voucherRequest !== undefined && data.voucherRequest >= 1;
+      }
+      return true;
+    },
+    {
+      message: 'Number of voucher codes requested is required when Voucher codes for discounted tickets is selected',
+      path: ['voucherRequest']
+    }
+  )
+  // Conditional validation for scholarship fields when Scholarships is selected
+  .refine(
+    data => {
+      if (data.category === 'Community Initiative' && data.requestedSupport?.includes('Scholarships')) {
+        return data.fiatCurrency !== undefined && data.fiatCurrency.trim() !== '' && 
+               data.requestedAmount !== undefined && data.requestedAmount >= 1;
+      }
+      return true;
+    },
+    {
+      message: 'Fiat currency and scholarship amount are required when Scholarships is selected',
+      path: ['fiatCurrency']
+    }
+  )
+  // Conditional validation for additionalSupportRequests when tickets or vouchers are selected
+  .refine(
+    data => {
+      if (data.category === 'Community Initiative' && 
+          (data.requestedSupport?.includes('Free tickets') || data.requestedSupport?.includes('Voucher codes for discounted tickets'))) {
+        return data.additionalSupportRequests !== undefined && data.additionalSupportRequests.trim() !== '';
+      }
+      return true;
+    },
+    {
+      message: 'Additional support requests details are required when requesting tickets or vouchers',
+      path: ['additionalSupportRequests']
     }
   );
 
