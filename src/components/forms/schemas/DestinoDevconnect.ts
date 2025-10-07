@@ -52,7 +52,7 @@ const baseSchema = z.object({
 
 const communityInitiativeSchema = baseSchema.extend({
   category: z.literal('Community Initiative'),
-  requestedSupport: z.array(z.enum(['Free tickets', 'Voucher codes for discounted tickets', 'Scholarships'])).min(1, 'Please select at least one option'),
+  requestedSupport: z.array(z.enum(['Tickets', 'Vouchers', 'Scholarship'])).min(1, 'Please select at least one option'),
   ticketRequest: z.coerce
     .number({ invalid_type_error: 'Amount must be a number' })
     .min(1, 'Amount must be at least 1')
@@ -148,7 +148,7 @@ export const DestinoDevconnectSchema = rawSchema
   // Conditional validation for ticketRequest when Free tickets is selected
   .refine(
     data => {
-      if (data.category === 'Community Initiative' && data.requestedSupport?.includes('Free tickets')) {
+      if (data.category === 'Community Initiative' && data.requestedSupport?.includes('Tickets')) {
         return data.ticketRequest !== undefined && data.ticketRequest >= 1;
       }
       return true;
@@ -161,7 +161,7 @@ export const DestinoDevconnectSchema = rawSchema
   // Conditional validation for voucherRequest when Voucher codes is selected
   .refine(
     data => {
-      if (data.category === 'Community Initiative' && data.requestedSupport?.includes('Voucher codes for discounted tickets')) {
+      if (data.category === 'Community Initiative' && data.requestedSupport?.includes('Vouchers')) {
         return data.voucherRequest !== undefined && data.voucherRequest >= 1;
       }
       return true;
@@ -174,7 +174,7 @@ export const DestinoDevconnectSchema = rawSchema
   // Conditional validation for scholarship fields when Scholarships is selected
   .refine(
     data => {
-      if (data.category === 'Community Initiative' && data.requestedSupport?.includes('Scholarships')) {
+      if (data.category === 'Community Initiative' && data.requestedSupport?.includes('Scholarship')) {
         return data.fiatCurrency !== undefined && data.fiatCurrency.trim() !== '' && 
                data.requestedAmount !== undefined && data.requestedAmount >= 1;
       }
@@ -189,7 +189,7 @@ export const DestinoDevconnectSchema = rawSchema
   .refine(
     data => {
       if (data.category === 'Community Initiative' && 
-          (data.requestedSupport?.includes('Free tickets') || data.requestedSupport?.includes('Voucher codes for discounted tickets'))) {
+          (data.requestedSupport?.includes('Tickets') || data.requestedSupport?.includes('Vouchers'))) {
         return data.additionalSupportRequests !== undefined && data.additionalSupportRequests.trim() !== '';
       }
       return true;

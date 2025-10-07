@@ -74,7 +74,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
           Impact__c: result.data.impact,
           CurrencyIsoCode: result.data.fiatCurrency,
           Requested_Amount__c: result.data.requestedAmount,
-          Support_Request_Type__c: result.data.requestedSupport,
+          Support_Request_Type__c: result.data.requestedSupport.join(';'),
           Nonfinancial_Ticket_Request__c: result.data.ticketRequest,
           Nonfinancial_Voucher_Request__c: result.data.voucherRequest,
           Additional_support_requests__c: result.data.additionalSupportRequests

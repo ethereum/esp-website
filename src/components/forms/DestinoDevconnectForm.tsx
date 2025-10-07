@@ -56,9 +56,9 @@ export const DestinoDevconnectForm: FC = () => {
   const isNonFinancial = category === 'Non-Financial Support';
   const isTeam = watch('applyingAs') === 'A team';
   const isInPerson = watch('inPerson') === 'In-person';
-  const isFreeTickets = requestedSupport?.includes('Free tickets') || false;
-  const isVoucherCodes = requestedSupport?.includes('Voucher codes for discounted tickets') || false;
-  const isScholarships = requestedSupport?.includes('Scholarships') || false;
+  const isFreeTickets = requestedSupport?.includes('Tickets') || false;
+  const isVoucherCodes = requestedSupport?.includes('Vouchers') || false;
+  const isScholarships = requestedSupport?.includes('Scholarship') || false;
 
   const onSubmit = async (data: DestinoDevconnectData) => {
     const payload: DestinoDevconnectData = { ...data };
@@ -234,33 +234,33 @@ export const DestinoDevconnectForm: FC = () => {
                     >
                       <Stack direction='row' spacing={4}>
                         <Checkbox
-                          isChecked={value.includes('Free tickets')}
+                          isChecked={value.includes('Tickets')}
                           onChange={e => {
                             const newValue = e.target.checked
-                              ? [...value, 'Free tickets']
-                              : value.filter(v => v !== 'Free tickets');
+                              ? [...value, 'Tickets']
+                              : value.filter(v => v !== 'Tickets');
                             onChange(newValue);
                           }}
                         >
                           <PageText fontSize='input'>Free tickets</PageText>
                         </Checkbox>
                         <Checkbox
-                          isChecked={value.includes('Voucher codes for discounted tickets')}
+                          isChecked={value.includes('Vouchers')}
                           onChange={e => {
                             const newValue = e.target.checked
-                              ? [...value, 'Voucher codes for discounted tickets']
-                              : value.filter(v => v !== 'Voucher codes for discounted tickets');
+                              ? [...value, 'Vouchers']
+                              : value.filter(v => v !== 'Vouchers');
                             onChange(newValue);
                           }}
                         >
                           <PageText fontSize='input'>Voucher codes for discounted tickets</PageText>
                         </Checkbox>
                         <Checkbox
-                          isChecked={value.includes('Scholarships')}
+                          isChecked={value.includes('Scholarship')}
                           onChange={e => {
                             const newValue = e.target.checked
-                              ? [...value, 'Scholarships']
-                              : value.filter(v => v !== 'Scholarships');
+                              ? [...value, 'Scholarship']
+                              : value.filter(v => v !== 'Scholarship');
                             onChange(newValue);
                           }}
                         >
