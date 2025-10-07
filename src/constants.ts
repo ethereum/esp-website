@@ -90,12 +90,10 @@ export const DEVCON_GRANTS_URL = '/devcon-grants';
 export const SIDEBAR_DEVCON_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${DEVCON_GRANTS_URL}/#description` },
   { text: 'Who', href: `${DEVCON_GRANTS_URL}/#who` },
-  { text: 'Eligibility', href: `${DEVCON_GRANTS_URL}/#eligibility` },
-  { text: 'Ideas', href: `${DEVCON_GRANTS_URL}/#ideas` },
+  { text: "Support available", href: `${DEVCON_GRANTS_URL}/#support-available` },
   { text: 'How to apply', href: `${DEVCON_GRANTS_URL}/#how-to-apply` },
   { text: 'Selection criteria', href: `${DEVCON_GRANTS_URL}/#selection-criteria` },
   { text: 'Next steps and support', href: `${DEVCON_GRANTS_URL}/#next-steps-and-support` },
-  { text: 'FAQ', href: `${DEVCON_GRANTS_URL}/#faq` },
   { text: 'Apply', href: `${DEVCON_GRANTS_URL}/#apply` }
 ];
 

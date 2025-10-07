@@ -20,8 +20,7 @@ export const DevconGrantsLayout: FC<Props> = ({ children }) => {
           alt: 'Academics doing research about Ethereum',
           src: academicGrantsHeroMobile
         }}
-        title='Destino Devconnect Grants'
-        subheading='A local grant round to bring Argentina onchain'
+        title='Destino Devconnect Support'
       >
         <Text as='span' fontWeight={700}>
           Devconnect ARG

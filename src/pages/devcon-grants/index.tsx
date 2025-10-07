@@ -1,10 +1,9 @@
-import { Accordion, Box, Flex, Link, ListItem, Stack, UnorderedList } from '@chakra-ui/react';
+import { Box, Flex, Link, ListItem, Stack, UnorderedList } from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import type { NextPage } from 'next';
 
 import {
   ApplicantsSidebar,
-  FAQItem,
   List,
   PageSection,
   PageSubheading,
@@ -17,7 +16,6 @@ import {
 import {
   SIDEBAR_DEVCON_GRANTS_LINKS,
   DEVCON_GRANTS_EMAIL_ADDRESS,
-  APPLICANTS_URL,
   DEVCON_GRANTS_APPLY_URL,
   ACADEMIC_GRANTS_PREVIEW_URL
 } from '../../constants';
@@ -32,13 +30,11 @@ const DevconGrants: NextPage = () => {
   const [ref5, inView5] = useInView({ threshold: 0.3, initialInView: false });
   const [ref6, inView6] = useInView({ threshold: 0.5, initialInView: false });
   const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref8, inView8] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref9, inView9] = useInView({ threshold: 0, initialInView: false });
   return (
     <>
       <PageMetadata
-        title='Destino Devconnect Grants'
-        description='A local grant round to bring Argentina onchain.'
+        title='Destino Devconnect Support'
+        description=''
         image={ACADEMIC_GRANTS_PREVIEW_URL}
       />
 
@@ -55,96 +51,66 @@ const DevconGrants: NextPage = () => {
                 inView5,
                 inView6,
                 inView7,
-                inView8,
-                inView9
               ]}
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
               <Stack mb={8} mt={{ base: 10, md: 0 }}>
                 <section id='description' ref={ref}>
-                  <PageSubheading mb={8}>What are Destino Devconnect grants?</PageSubheading>
+                  <PageSubheading mb={8}>What is Destino Devconnect Support?</PageSubheading>
 
                   <PageText mb={6}>
-                    Destino Devconnect is a local grants round focused on supporting events and
-                    initiatives that help bring Argentina and the broader Latam region onchain.
-                    Grants of up to $1,000 USD are available for impactful efforts that align with
-                    this mission.
+                    Thanks to the incredible LatAm Ethereum communities, we&apos;ve achieved huge regional outreach with a <Link href="https://devconnect.org/destino#events" fontWeight={700} color='brand.orange.100' isExternal>stacked calendar of events</Link> on the road to Devconnect. Now, we&apos;re supporting local builders, organizers, and communities to be part of the first Ethereum World&apos;s Fair in Buenos Aires.
                   </PageText>
                 </section>
+                
+                <PageSection mb={6}>Bring Your Community to the Ethereum World Fair</PageSection>
+
+                <PageText mb={6}>
+                  You can apply for free tickets, discounts and scholarships to join this special edition! Whether you&apos;re part of a community, representing a university or startup, organizing a side event or hacker house, or bringing your company or study group to the co-work, there&apos;s a way to join the experience
+                </PageText>
+
+                <PageSection mb={6}>Become a Devconnect Fren</PageSection>
+
+                <PageText mb={6}>
+                  Join the Devconnect Frens Program and support the Ethereum World Fair by spreading the word, collaborating with your community, gaining visibility, and connecting with the Ethereum ecosystem!
+                </PageText>
               </Stack>
 
               <Stack spacing={10}>
                 <section id='who' ref={ref2}>
                   <PageSection mb={6}>Who we&apos;re looking for</PageSection>
 
-                  <PageText mb={6}>We want to hear from:</PageText>
-
                   <List>
-                    <ListItem>Community organizers</ListItem>
-                    <ListItem>Educators and workshop hosts</ListItem>
-                    <ListItem>University groups or clubs</ListItem>
-                    <ListItem>Hackathon or meetup organizers</ListItem>
-                    <ListItem>Builders and teams running local initiatives</ListItem>
-                    <ListItem>
-                      Anyone passionate about Ethereum&apos;s potential in the region
-                    </ListItem>
+                    <ListItem>Universities: Invite your university - you can even organize a class or workshop inside La Rural!</ListItem>
+                    <ListItem>Startups: Apply with your startup group - we offer large, innovative coworking spaces, including quiet areas and meeting rooms.</ListItem>
+                    <ListItem>Communities: Apply with your community to be part of the experience and connect with the Ethereum ecosystem.</ListItem>
                   </List>
                 </section>
 
-                <section id='eligibility' ref={ref3}>
-                  <PageSection mb={6}>Eligibility</PageSection>
+                <section id='support-available' ref={ref3}>
+                  <PageSection mb={6}>Support available</PageSection>
 
                   <PageText mb={6}>
-                    To be eligible for a Destino Devconnect grant, your event or initiative should:
+                    You also get: free tickets and discounts for your community or team, visibility across official Devconnect channels, and an on-chain certificate as an official Devconnect Fren.
+                  </PageText>
+
+                  <PageText mb={6}>
+                    Support can include transportation from distant locations, assistance with travel costs, or partial scholarships for builders attending their first Devconnect.
+                  </PageText>
+
+                  <PageText mb={6}>
+                    Note: The budget is limited. We will not provide $1,000 to support a single builder. This funding is intended for communities or initiatives that can collectively support multiple participants attending the Ethereum World Fair. We prioritize initiatives that have the greatest impact across communities.
                   </PageText>
 
                   <List>
-                    <ListItem>Be focused on Ethereum adoption, education, or application</ListItem>
-                    <ListItem>Free to attend and open to anyone</ListItem>
-                    <ListItem>Not focused on investment, price or token sales</ListItem>
-                    <ListItem>Be based in Argentina or the wider Latin American region</ListItem>
-                    <ListItem>Events that have already taken place are not eligible</ListItem>
+                    <ListItem><strong>Request Tickets & Discounts</strong>: Until tickets are sold out</ListItem>
+                    <ListItem><strong>Scholarship applications open</strong>: October 15</ListItem>
+                    <ListItem><strong>Scholarship announcements</strong>: October 30</ListItem>
                   </List>
                 </section>
 
-                <section id='ideas' ref={ref4}>
-                  <PageSection mb={6}>
-                    Some ideas for Destino Devconnect events or initiatives
-                  </PageSection>
-
-                  <List>
-                    <ListItem>
-                      Beginner-friendly meetups to onboard newcomers to Ethereum wallets and apps
-                    </ListItem>
-                    <ListItem>
-                      Workshops or study groups on Ethereum development, privacy, or public goods
-                    </ListItem>
-                    <ListItem>
-                      Local governance experiments or hackathons exploring decentralized
-                      decision-making
-                    </ListItem>
-                    <ListItem>
-                      Mentorship sessions connecting experienced devs with newer builders
-                    </ListItem>
-                    <ListItem>
-                      Showcases of local Ethereum projects, use cases, or community tools
-                    </ListItem>
-                    <ListItem>
-                      Collaborations with universities to introduce students to Ethereum
-                    </ListItem>
-                    <ListItem>
-                      Community strategy sessions on how Ethereum can support real needs in your
-                      area
-                    </ListItem>
-                    <ListItem>
-                      Creative formats from activations to street pop-ups that help bring Ethereum
-                      into the public
-                    </ListItem>
-                  </List>
-                </section>
-
-                <section id='how-to-apply' ref={ref5}>
+                <section id='how-to-apply' ref={ref4}>
                   <PageSection mb={6}>How to apply</PageSection>
 
                   <OrderedList>
@@ -158,28 +124,28 @@ const DevconGrants: NextPage = () => {
                       >
                         this form
                       </Link>{' '}
-                      with your event idea and detailed budget request
+                      with your community initiative idea and detailed support request
                     </ListItem>
 
-                    <ListItem>Wait to hear back from the Devconnect team about approval</ListItem>
-
                     <ListItem>
-                      If approved, we will notify your team and send an invoice request for the
-                      approved budget
+                      Once you&apos;ve submitted your application, the Destino Devconnect team will follow up with you via email. Wait to hear back from us regarding your application approval.
                     </ListItem>
 
-                    <ListItem>Host your event or initiative and document it!</ListItem>
-
-                    <UnorderedList>
-                      <ListItem>Take photos of the event showing the number present</ListItem>
-                      <ListItem>
-                        Get a copy of presentation materials and slides to show the themes discussed
-                      </ListItem>
-                    </UnorderedList>
+                    <ListItem>
+                      If approved, we will notify your team via email and provide instructions for the next steps.
+                    </ListItem>
 
                     <ListItem>
-                      Follow up with the Devconnect team with a review of the event and the
-                      documentation material from #4
+                    Once your Devconnect ARG tickets are claimed, please spread the word! Share your{' '}
+                      <Link
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        href={"https://devconnect.org/argentina/ticket/anon/blue/v2u5ta"}
+                        _hover={{ textDecoration: 'none' }}
+                      >
+                        social card
+                      </Link>{' '}
+                      by replacing “Anon” with your name and tagging @EFDevcon on X and Instagram. 
                     </ListItem>
                   </OrderedList>
                   <PageText mt={6}>
@@ -187,7 +153,7 @@ const DevconGrants: NextPage = () => {
                   </PageText>
                 </section>
 
-                <section id='selection-criteria' ref={ref6}>
+                <section id='selection-criteria' ref={ref5}>
                   <PageSection mb={6}>Selection criteria</PageSection>
 
                   <List>
@@ -203,7 +169,7 @@ const DevconGrants: NextPage = () => {
                   </List>
                 </section>
 
-                <section id='next-steps-and-support' ref={ref7}>
+                <section id='next-steps-and-support' ref={ref6}>
                   <PageSection mb={6}>Next steps and support</PageSection>
 
                   <PageText mb={6}>
@@ -221,74 +187,7 @@ const DevconGrants: NextPage = () => {
                   </PageText>
                 </section>
 
-                <section id='faq' ref={ref8}>
-                  <PageSection mb={6}>Frequently asked questions</PageSection>
-
-                  <Accordion allowToggle>
-                    <FAQItem question='Who can submit proposals for Destino Devconnect?'>
-                      <PageText>
-                        Events or initiatives of any size, location, demographic or
-                        (Ethereum-related) topic are welcome to apply as long as they meet the{' '}
-                        <Link
-                          fontWeight={700}
-                          color='brand.orange.100'
-                          href='#eligibility'
-                          _hover={{ textDecoration: 'none' }}
-                        >
-                          application criteria
-                        </Link>
-                        .
-                      </PageText>
-                    </FAQItem>
-
-                    <FAQItem question='What are the requirements for the application?'>
-                      <List>
-                        <ListItem>
-                          Please read{' '}
-                          <Link
-                            fontWeight={700}
-                            color='brand.orange.100'
-                            href='#eligibility'
-                            _hover={{ textDecoration: 'none' }}
-                          >
-                            eligibility
-                          </Link>{' '}
-                          criteria above to make sure your event is eligible
-                        </ListItem>
-                        <ListItem>
-                          Events may be held in any language, but we&apos;re currently only able to
-                          accept proposals in English.
-                        </ListItem>
-                        <ListItem>Events must be publicly posted</ListItem>
-                      </List>
-                    </FAQItem>
-
-                    <FAQItem question='What stage of planning should I be in?'>
-                      <PageText>
-                        Your event should have a confirmed date. Other than that, any stage of
-                        planning is fine!
-                      </PageText>
-                    </FAQItem>
-
-                    <FAQItem question='What if I miss the deadline, my event is not eligible or I want to request an amount above the limit for this round?'>
-                      <PageText>
-                        You can always submit an inquiry for sponsorship or other support through
-                        the{' '}
-                        <Link
-                          fontWeight={700}
-                          color='brand.orange.100'
-                          href={APPLICANTS_URL}
-                          _hover={{ textDecoration: 'none' }}
-                        >
-                          Ecosystem Support Program (ESP)
-                        </Link>
-                        , the EF&apos;s general support initiative.
-                      </PageText>
-                    </FAQItem>
-                  </Accordion>
-                </section>
-
-                <section id='apply' ref={ref9}>
+                <section id='apply' ref={ref7}>
                   <Stack mt={6}>
                     <ReadyToApply link={`${DEVCON_GRANTS_APPLY_URL}`} />
                   </Stack>
