@@ -52,8 +52,13 @@ const baseSchema = z.object({
 
 const communityInitiativeSchema = baseSchema.extend({
   category: z.literal('Community Initiative'),
-
-  // Requested Amount
+  requestedSupport: z.array(z.enum(['Free tickets', 'Voucher codes for discounted tickets', 'Scholarships'])).min(1, 'Please select at least one option'),
+  ticketRequest: z.coerce
+    .number({ invalid_type_error: 'Amount must be a number' })
+    .min(1, 'Amount must be at least 1'),
+  voucherRequest: z.coerce
+    .number({ invalid_type_error: 'Amount must be a number' })
+    .min(1, 'Amount must be at least 1'),
   fiatCurrency: stringFieldSchema('Fiat Currency', { min: 1 }),
   requestedAmount: z.coerce
     .number({ invalid_type_error: 'Amount must be a number' })
@@ -77,64 +82,10 @@ const communityInitiativeSchema = baseSchema.extend({
     min: 1,
     max: MAX_TEXT_AREA_LENGTH
   }),
-  howIsItDifferent: stringFieldSchema('How does your project differ from similar ones?', {
+  additionalSupportRequests: stringFieldSchema('How will the tickets be distributed, and who will be receiving these tickets?', {
     min: 1,
     max: MAX_TEXT_AREA_LENGTH
   }),
-  isItPublicGood: stringFieldSchema('Is your project a public good?', {
-    min: 1,
-    max: MAX_TEXT_AREA_LENGTH
-  }),
-  isItOpenSource: stringFieldSchema('Is your project open source?', {
-    min: 1,
-    max: MAX_TEXT_AREA_LENGTH
-  }),
-  sustainabilityPlan: stringFieldSchema('What are your plans after the grant is completed?', {
-    min: 1,
-    max: MAX_TEXT_AREA_LENGTH
-  }),
-  otherProjects: stringFieldSchema(
-    "If you didn't work on this project, what would you work on instead?",
-    {
-      min: 1,
-      max: MAX_TEXT_AREA_LENGTH
-    }
-  )
-});
-
-const communityEventSchema = baseSchema.extend({
-  category: z.literal('Community Event'),
-
-  // Requested Amount
-  fiatCurrency: stringFieldSchema('Fiat Currency', { min: 1 }),
-  requestedAmount: z.coerce
-    .number({ invalid_type_error: 'Amount must be a number' })
-    .min(1, 'Amount must be at least 1'),
-
-  // Event Details (if Community Event)
-  eventName: stringFieldSchema('Event Name', { min: 1, max: MAX_TEXT_LENGTH }),
-  eventDate: z.string(),
-  eventLink: z.string(),
-  eventDescription: stringFieldSchema('Event Summary', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
-  eventTopics: stringFieldSchema('Event topics', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
-  typeOfEvent: stringFieldSchema('What type of event is this?', {
-    min: 1,
-    max: MAX_TEXT_LENGTH
-  }),
-  inPerson: stringFieldSchema('Is your event in-person or online?', { min: 1 }),
-  eventLocation: z.string().optional(),
-  estimatedAttendees: z.coerce
-    .number({
-      invalid_type_error: 'Estimated attendees must be a number'
-    })
-    .min(1, 'Estimated attendees must be at least 1'),
-  targetAudience: stringFieldSchema('Target audience', { min: 1, max: MAX_TEXT_LENGTH }),
-  confirmedSpeakers: stringFieldSchema('Confirmed speakers', {
-    max: MAX_TEXT_AREA_LENGTH
-  }).optional(),
-  confirmedSponsors: stringFieldSchema('Confirmed sponsors', {
-    max: MAX_TEXT_AREA_LENGTH
-  }).optional()
 });
 
 const nonFinancialSchema = baseSchema.extend({
@@ -173,7 +124,7 @@ const nonFinancialSchema = baseSchema.extend({
 // Define the union with explicit discriminator and add team validation
 const rawSchema = z.discriminatedUnion(
   'category',
-  [communityEventSchema, communityInitiativeSchema, nonFinancialSchema],
+  [communityInitiativeSchema, nonFinancialSchema],
   {
     errorMap: () => ({
       message: 'Category is required'
@@ -189,20 +140,6 @@ export const DestinoDevconnectSchema = rawSchema
     {
       message: 'Company name is required when applying as a team',
       path: ['company']
-    }
-  )
-  // Event location validation for in-person events
-  .refine(
-    data => {
-      return (
-        data.category !== 'Community Event' ||
-        data.inPerson !== 'In-person' ||
-        (data.eventLocation && data.eventLocation.trim() !== '')
-      );
-    },
-    {
-      message: 'Event location is required for in-person events',
-      path: ['eventLocation']
     }
   );
 
