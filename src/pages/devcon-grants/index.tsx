@@ -92,6 +92,10 @@ const DevconGrants: NextPage = () => {
                   <PageSection mb={6}>Support available</PageSection>
 
                   <PageText mb={6}>
+                    Scholarships Available  — Up to $1,000 USD in funding support is available for initiatives that help groups attend the Ethereum World Fair.
+                  </PageText>
+
+                  <PageText mb={6}>
                     You also get: free tickets and discounts for your community or team, visibility across official Devconnect channels, and an on-chain certificate as an official Devconnect Fren.
                   </PageText>
 
@@ -148,9 +152,6 @@ const DevconGrants: NextPage = () => {
                       by replacing “Anon” with your name and tagging @EFDevcon on X and Instagram. 
                     </ListItem>
                   </OrderedList>
-                  <PageText mt={6}>
-                    Once you&apos;ve submitted your application, we&apos;ll follow up by email.
-                  </PageText>
                 </section>
 
                 <section id='selection-criteria' ref={ref5}>
