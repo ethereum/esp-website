@@ -56,9 +56,9 @@ export const DestinoDevconnectForm: FC = () => {
   const isNonFinancial = category === 'Non-Financial Support';
   const isTeam = watch('applyingAs') === 'A team';
   const isInPerson = watch('inPerson') === 'In-person';
-  const isFreeTickets = requestedSupport?.includes('Tickets') || false;
-  const isVoucherCodes = requestedSupport?.includes('Vouchers') || false;
-  const isScholarships = requestedSupport?.includes('Scholarship') || false;
+  const isFreeTickets = requestedSupport?.includes('Tickets');
+  const isVoucherCodes = requestedSupport?.includes('Vouchers');
+  const isScholarships = requestedSupport?.includes('Scholarship');
 
   const onSubmit = async (data: DestinoDevconnectData) => {
     const payload: DestinoDevconnectData = { ...data };
@@ -468,7 +468,7 @@ export const DestinoDevconnectForm: FC = () => {
             />
             <TextAreaField
               id='additionalInfo'
-              label='Do you have any questions about the Devconnect Frens Program”?'
+              label='Do you have any questions about the Devconnect Frens Program?'
             />
 
             <Controller
