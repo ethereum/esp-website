@@ -19,7 +19,7 @@ export const Banners: FC = () => {
         <Box fontSize='paragraph' textAlign='center'>
           Applications for the{' '}
           <Link href={DEVCON_GRANTS_URL} fontWeight={700}>
-            Destino Devconnect Grants
+            Destino Devconnect Support
           </Link>{' '}
           are now open!
         </Box>

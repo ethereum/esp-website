@@ -10,7 +10,7 @@ const DevconGrantsThankYou: NextPage = () => {
     <>
       <PageMetadata
         title='Thank you'
-        description='Thank you for applying to Destino Devconnect Grants.'
+        description='Thank you for applying to Destino Devconnect Support.'
       />
       <Head>
         <meta name='robots' content='noindex' />
@@ -32,7 +32,7 @@ const DevconGrantsThankYou: NextPage = () => {
             </Heading>
 
             <PageSubheading mb={16} textAlign='center'>
-              for applying to Destino Devconnect Grants
+              for applying to Destino Devconnect Support
             </PageSubheading>
 
             <PageText mb={6} textAlign='center'>
