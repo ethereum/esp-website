@@ -313,6 +313,14 @@ export const DestinoDevconnectForm: FC = () => {
               </Flex>
             )}
 
+            {(isFreeTickets || isVoucherCodes) && (
+                <TextField
+                  id='additionalSupportRequests'
+                  label='How will the tickets be distributed, and who will be receiving these tickets?'
+                  isRequired={isFreeTickets || isVoucherCodes}
+                />
+              )}
+
             {isCommunityInitiative && (
               <>
                 <PageSection>Project Details</PageSection>
@@ -331,14 +339,6 @@ export const DestinoDevconnectForm: FC = () => {
                   label='Why do you believe your community should receive this support, and who do you plan to select to receive this support?'
                   isRequired
                 />
-
-                {(isFreeTickets || isVoucherCodes) && (
-                  <TextField
-                    id='additionalSupportRequests'
-                    label='How will the tickets be distributed, and who will be receiving these tickets?'
-                    isRequired={isFreeTickets || isVoucherCodes}
-                  />
-                )}
 
                 <TextAreaField id='proposedTimeline' label='Budget breakdown' isRequired />
               </>
