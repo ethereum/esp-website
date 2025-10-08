@@ -31,6 +31,10 @@ const baseSchema = z.object({
     max: MAX_TEXT_AREA_LENGTH
   }),
 
+  requestedSupport: z
+    .array(z.enum(['Tickets', 'Vouchers', 'Scholarship']))
+    .min(1, 'Please select at least one option'),
+
   // Additional Details
   referralSource: stringFieldSchema('How did you hear about this grant round?', { min: 1 }),
   referrals: stringFieldSchema(
@@ -52,7 +56,6 @@ const baseSchema = z.object({
 
 const communityInitiativeSchema = baseSchema.extend({
   category: z.literal('Community Initiative'),
-  requestedSupport: z.array(z.enum(['Tickets', 'Vouchers', 'Scholarship'])).min(1, 'Please select at least one option'),
   ticketRequest: z.coerce
     .number({ invalid_type_error: 'Amount must be a number' })
     .min(1, 'Amount must be at least 1')
