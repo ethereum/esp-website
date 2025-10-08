@@ -35,6 +35,28 @@ const baseSchema = z.object({
     .array(z.enum(['Tickets', 'Vouchers', 'Scholarship']))
     .min(1, 'Please select at least one option'),
 
+  // Ticket / Voucher / Scholarship fields (optional at base level so refinements can access them)
+  ticketRequest: z.coerce
+    .number({ invalid_type_error: 'Amount must be a number' })
+    .min(1, 'Amount must be at least 1')
+    .optional(),
+  voucherRequest: z.coerce
+    .number({ invalid_type_error: 'Amount must be a number' })
+    .min(1, 'Amount must be at least 1')
+    .optional(),
+  fiatCurrency: stringFieldSchema('Fiat Currency', { min: 1 }).optional(),
+  requestedAmount: z.coerce
+    .number({ invalid_type_error: 'Amount must be a number' })
+    .min(1, 'Amount must be at least 1')
+    .optional(),
+  additionalSupportRequests: stringFieldSchema(
+    'How will the tickets be distributed, and who will be receiving these tickets?',
+    {
+      min: 1,
+      max: MAX_TEXT_AREA_LENGTH
+    }
+  ).optional(),
+
   // Additional Details
   referralSource: stringFieldSchema('How did you hear about this grant round?', { min: 1 }),
   referrals: stringFieldSchema(
@@ -56,20 +78,6 @@ const baseSchema = z.object({
 
 const communityInitiativeSchema = baseSchema.extend({
   category: z.literal('Community Initiative'),
-  ticketRequest: z.coerce
-    .number({ invalid_type_error: 'Amount must be a number' })
-    .min(1, 'Amount must be at least 1')
-    .optional(),
-  voucherRequest: z.coerce
-    .number({ invalid_type_error: 'Amount must be a number' })
-    .min(1, 'Amount must be at least 1')
-    .optional(),
-  fiatCurrency: stringFieldSchema('Fiat Currency', { min: 1 }).optional(),
-  requestedAmount: z.coerce
-    .number({ invalid_type_error: 'Amount must be a number' })
-    .min(1, 'Amount must be at least 1')
-    .optional(),
-
   // Project Details (if Community Initiative)
   projectName: stringFieldSchema('Project name', { min: 1, max: MAX_TEXT_LENGTH }),
   projectDescription: stringFieldSchema('Project Summary', {
@@ -87,11 +95,7 @@ const communityInitiativeSchema = baseSchema.extend({
   impact: stringFieldSchema('Why is your project important?', {
     min: 1,
     max: MAX_TEXT_AREA_LENGTH
-  }),
-  additionalSupportRequests: stringFieldSchema('How will the tickets be distributed, and who will be receiving these tickets?', {
-    min: 1,
-    max: MAX_TEXT_AREA_LENGTH
-  }).optional(),
+  })
 });
 
 const nonFinancialSchema = baseSchema.extend({
@@ -151,7 +155,7 @@ export const DestinoDevconnectSchema = rawSchema
   // Conditional validation for ticketRequest when Free tickets is selected
   .refine(
     data => {
-      if (data.category === 'Community Initiative' && data.requestedSupport?.includes('Tickets')) {
+      if (data.requestedSupport?.includes('Tickets')) {
         return data.ticketRequest !== undefined && data.ticketRequest >= 1;
       }
       return true;
@@ -164,22 +168,27 @@ export const DestinoDevconnectSchema = rawSchema
   // Conditional validation for voucherRequest when Voucher codes is selected
   .refine(
     data => {
-      if (data.category === 'Community Initiative' && data.requestedSupport?.includes('Vouchers')) {
+      if (data.requestedSupport?.includes('Vouchers')) {
         return data.voucherRequest !== undefined && data.voucherRequest >= 1;
       }
       return true;
     },
     {
-      message: 'Number of voucher codes requested is required when Voucher codes for discounted tickets is selected',
+      message:
+        'Number of voucher codes requested is required when Voucher codes for discounted tickets is selected',
       path: ['voucherRequest']
     }
   )
   // Conditional validation for scholarship fields when Scholarships is selected
   .refine(
     data => {
-      if (data.category === 'Community Initiative' && data.requestedSupport?.includes('Scholarship')) {
-        return data.fiatCurrency !== undefined && data.fiatCurrency.trim() !== '' && 
-               data.requestedAmount !== undefined && data.requestedAmount >= 1;
+      if (data.requestedSupport?.includes('Scholarship')) {
+        return (
+          data.fiatCurrency !== undefined &&
+          data.fiatCurrency.trim() !== '' &&
+          data.requestedAmount !== undefined &&
+          data.requestedAmount >= 1
+        );
       }
       return true;
     },
@@ -191,15 +200,31 @@ export const DestinoDevconnectSchema = rawSchema
   // Conditional validation for additionalSupportRequests when tickets or vouchers are selected
   .refine(
     data => {
-      if (data.category === 'Community Initiative' && 
-          (data.requestedSupport?.includes('Tickets') || data.requestedSupport?.includes('Vouchers'))) {
-        return data.additionalSupportRequests !== undefined && data.additionalSupportRequests.trim() !== '';
+      if (
+        data.requestedSupport?.includes('Tickets') ||
+        data.requestedSupport?.includes('Vouchers')
+      ) {
+        return (
+          data.additionalSupportRequests !== undefined &&
+          data.additionalSupportRequests.trim() !== ''
+        );
       }
       return true;
     },
     {
-      message: 'Additional support requests details are required when requesting tickets or vouchers',
+      message:
+        'Additional support requests details are required when requesting tickets or vouchers',
       path: ['additionalSupportRequests']
+    }
+  )
+  // Require at least one requestedSupport option on submit
+  .refine(
+    data => {
+      return Array.isArray(data.requestedSupport) && data.requestedSupport.length > 0;
+    },
+    {
+      message: 'Please select at least one option',
+      path: ['requestedSupport']
     }
   );
 
