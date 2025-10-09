@@ -16,9 +16,10 @@ interface Props {
   title: string;
   link: string;
   children: ReactNode;
+  hideLink?: boolean;
 }
 
-export const HomeAboutCard: FC<Props> = ({ bgGradient, img, title, link, children }) => {
+export const HomeAboutCard: FC<Props> = ({ bgGradient, img, title, link, children, hideLink }) => {
   const { src, alt, width, height } = img;
 
   return (
@@ -55,7 +56,7 @@ export const HomeAboutCard: FC<Props> = ({ bgGradient, img, title, link, childre
         <Stack w={{ md: '50%' }}>
           <Box mb={6}>{children}</Box>
 
-          <Flex justifyContent={{ base: 'center', md: 'flex-start' }}>
+          <Flex justifyContent={{ base: 'center', md: 'flex-start' }} hidden={hideLink}>
             <ButtonLink label='Read more' link={link} width='247px' />
           </Flex>
         </Stack>

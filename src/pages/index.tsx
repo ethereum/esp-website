@@ -1,14 +1,14 @@
-import { Box, Flex, Grid, GridItem, Stack } from '@chakra-ui/react';
+import { Box, Flex, Grid, GridItem, ListItem, Stack, UnorderedList } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 
 import { HomeAboutCard, PageMetadata, PageSection, PageText } from '../components/UI';
 
+import applicantsHero from '../../public/images/applicants-hero.png';
 import smallSucculentSVG from '../../public/images/small-succulent.svg';
 import mediumSucculentSVG from '../../public/images/medium-succulent.svg';
 import bigSucculentSVG from '../../public/images/big-succulent.svg';
 import whatWeSupportTree from '../../public/images/what-we-support-tree.png';
-import whoWeSupportRoots from '../../public/images/who-we-support-roots.png';
 import howWeSupportRoots from '../../public/images/how-we-support-roots.png';
 
 import { ABOUT_URL, APPLICANTS_URL } from '../constants';
@@ -26,13 +26,10 @@ const Home: NextPage = () => {
           <Flex direction={{ base: 'column', md: 'row' }}>
             <Stack mb={{ base: 10, md: 0 }} w={{ md: '100%' }} mr={{ base: 0, md: 12 }}>
               <section id='mission'>
-                <PageSection mb={6}>The Ethereum Foundation&apos;s Mission</PageSection>
+                <PageSection mb={6}>Our Mission</PageSection>
 
                 <PageText fontSize='stats' fontWeight={100} lineHeight='32px'>
-                  Our mission is to do what is best for Ethereum&apos;s long-term success. Our role
-                  is to <strong>allocate resources to critical projects</strong>, to be a valued
-                  voice within the Ethereum ecosystem, and to advocate for Ethereum to the outside
-                  world.
+                  The Ecosystem Support Program is an ecosystem development cluster within the Ethereum Foundation comprising three teams: Grants Management, Funding Coordination, and Launchpad. Together, we focus on strengthening Ethereum&apos;s foundations, supporting teams across the ecosystem, and enabling future builders.
                 </PageText>
               </section>
             </Stack>
@@ -209,8 +206,38 @@ const Home: NextPage = () => {
               </Grid>
             </Box>
           </section>
+          
+          <section id='our-role'>
+            <HomeAboutCard
+              bgGradient='linear(to-br, brand.whoWeSupport.bgGradient.start 0%, brand.whoWeSupport.bgGradient.end 100%)'
+              img={{
+                src: applicantsHero,
+                alt: 'supported categories tree',
+                width: 540,
+                height: 298.968
+              }}
+              title='Our Role'
+              link={""}
+              hideLink
+            >
+              <PageText mb={6}>
+              The Ecosystem Support Program (ESP) comprises three teams: 
+              </PageText>
+              <UnorderedList>
+                <ListItem mb={2}>
+                  <PageText>Grants Management - Supporting the strategic allocation of resources to projects and initiatives that are most critical to Ethereum&apos;s resilience and usability</PageText>
+                </ListItem>
+                <ListItem mb={2}>
+                  <PageText>Funding Coordination - Streamlining access to funding and resources across multiple channels to support projects that drive meaningful impact</PageText>
+                </ListItem>
+                <ListItem>
+                  <PageText>Launchpad - Guiding early-stage organizations in navigating key challenges such as organizational design, identifying paths to financial sustainability, and establishing robust governance</PageText>
+                </ListItem>
+              </UnorderedList>
+            </HomeAboutCard>
+          </section>
 
-          <section id='what-we-support'>
+          <section id='our-focus'>
             <HomeAboutCard
               bgGradient='linear(to-br, brand.ready.bgGradient.start 10%, brand.ready.bgGradient.end 100%)'
               img={{
@@ -219,7 +246,7 @@ const Home: NextPage = () => {
                 width: 540,
                 height: 311.098
               }}
-              title='What we support'
+              title='Our Focus'
               link={ABOUT_URL}
             >
               <PageText mb={6}>
@@ -231,28 +258,7 @@ const Home: NextPage = () => {
             </HomeAboutCard>
           </section>
 
-          <section id='who-we-support'>
-            <HomeAboutCard
-              bgGradient='linear(to-br, brand.whoWeSupport.bgGradient.start 0%, brand.whoWeSupport.bgGradient.end 100%)'
-              img={{
-                src: whoWeSupportRoots,
-                alt: 'supported categories tree',
-                width: 540,
-                height: 298.968
-              }}
-              title='Who We Support'
-              link={ABOUT_URL}
-            >
-              <PageText mb={6}>
-                We have supported individuals and teams from all over the world representing
-                different backgrounds, disciplines, and levels of experience. This includes
-                companies, DAOs, non-profits, institutions, academics, developers, educators,
-                community organizers, and more.
-              </PageText>
-            </HomeAboutCard>
-          </section>
-
-          <section id='how-we-support'>
+          <section id='our-approach'>
             <HomeAboutCard
               bgGradient='linear(to-br, brand.howWeSupport.bgGradient.start 2.29%, brand.howWeSupport.bgGradient.end 101.37%)'
               img={{
@@ -261,15 +267,11 @@ const Home: NextPage = () => {
                 width: 540,
                 height: 280.666
               }}
-              title='How We Support'
+              title='Our Approach'
               link={APPLICANTS_URL}
             >
               <PageText>
-                We aim to deploy resources where they will have the biggest impact. We try to keep
-                our processes flexible and evolving in order to be open to new ideas and support
-                builders of all kinds. Our Office Hours are an opportunity to explore a broad range
-                of support through an informal conversation with a member of the ESP team, such as
-                project feedback, advice, or help navigating the ecosystem.
+                Financial support is offered through our Wishlist and RFPs, which highlight funding opportunities curated by EF teams. Non-financial support is available through Office Hours, where builders can receive project feedback, guidance on navigating the ecosystem, or advice on aligning their project with a Wishlist or RFP item.
               </PageText>
             </HomeAboutCard>
           </section>
