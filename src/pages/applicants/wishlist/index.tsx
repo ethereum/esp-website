@@ -46,10 +46,7 @@ const Wishlist: NextPage<WishlistProps> = ({ wishlistItems }) => {
                 <PageSubheading mb={8}>Wishlist Applications</PageSubheading>
 
                 <PageText>
-                  The Wishlist is a curated collection of specific projects and initiatives that the
-                  Ethereum ecosystem needs most. These are concrete opportunities where your skills
-                  and expertise can make a significant impact on Ethereum&apos;s development and
-                  growth.
+                  The Wishlist identifies key gaps and opportunities within the ecosystem. Instead of prescribing specific approaches, it invites builders to propose ideas and initiatives that address these priorities.
                 </PageText>
               </section>
             </Stack>
@@ -82,15 +79,7 @@ const Wishlist: NextPage<WishlistProps> = ({ wishlistItems }) => {
                 <PageSection mb={6}>Apply</PageSection>
 
                 <PageText mb={6}>
-                  Select from the available wishlist items below and submit your application. Each
-                  wishlist item represents a specific need in the Ethereum ecosystem where your
-                  expertise can make a meaningful impact.
-                </PageText>
-
-                <PageText mb={6}>
-                  Please review the item details carefully and explain how your background and
-                  approach align with the requirements. Be specific about your methodology,
-                  timeline, and expected deliverables.
+                  Select from the available Wishlist items below and submit your application. Please review the item details carefully and explain how your background and approach align with the project requirements. Provide clear information on your methodology, timeline, and deliverables.
                 </PageText>
 
                 <PrivacyPolicyAgreement />

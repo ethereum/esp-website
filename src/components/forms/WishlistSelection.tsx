@@ -99,7 +99,7 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems })
       {selectedItem && (
         <Center mt={8}>
           <ButtonLink
-            label='Continue'
+            label='Apply'
             link={`/applicants/wishlist/${selectedItem?.Id}/apply`}
             width='208px'
           />
