@@ -46,10 +46,7 @@ const RFP: NextPage<RFPProps> = ({ rfpItems }) => {
                 <PageSubheading mb={8}>Request for Proposals (RFPs)</PageSubheading>
 
                 <PageText>
-                  Request for Proposals (RFPs) are targeted solicitations for specific research,
-                  development, or implementation work that addresses identified needs within the
-                  Ethereum ecosystem. Unlike open-ended grant applications, RFPs define specific
-                  objectives, requirements, and expected deliverables.
+                  RFPs define focused problems and outline clear target outcomes. They are more prescriptive and time-bound, providing opportunities for specific research, development, or implementation efforts that address identified needs within the Ethereum ecosystem.
                 </PageText>
               </section>
             </Stack>
@@ -82,17 +79,7 @@ const RFP: NextPage<RFPProps> = ({ rfpItems }) => {
                 <PageSection mb={6}>Apply</PageSection>
 
                 <PageText mb={6}>
-                  Select from the available Request for Proposals (RFPs) below and submit your
-                  application. Each RFP represents a specific research or development need
-                  identified by the Ethereum ecosystem where your expertise can make a significant
-                  impact.
-                </PageText>
-
-                <PageText mb={6}>
-                  Please review the RFP details carefully, including requirements and expected
-                  deliverables. Your proposal should demonstrate how your background, methodology,
-                  and approach align with the specific requirements. Include a detailed timeline and
-                  clear deliverables.
+                  Select from the available RFP items below and submit your application. Please review the item details carefully and explain how your background and approach align with the project requirements. Provide clear information on your methodology, timeline, and deliverables.
                 </PageText>
 
                 <PrivacyPolicyAgreement />

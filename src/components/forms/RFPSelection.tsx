@@ -107,7 +107,7 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems }) => {
       {selectedItem && (
         <Center mt={8}>
           <ButtonLink
-            label='Continue'
+            label='Apply'
             link={`/applicants/rfp/${selectedItem?.Id}/apply`}
             width='208px'
           />
