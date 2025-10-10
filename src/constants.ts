@@ -355,6 +355,10 @@ export const LAYER_2_GRANTS_EMAIL_ADDRESS = 'layer2grants@ethereum.org';
 export const ACCOUNT_ABSTRACTION_GRANTS_EMAIL_ADDRESS = 'account-abstraction@ethereum.org';
 export const GRANTS_EMAIL_ADDRESS = 'grant-rounds@ethereum.org';
 export const PECTRA_PGR_EMAIL_ADDRESS = 'grant-rounds@ethereum.org';
+export const FOUNDER_SUCCESS_URL = 'https://ethereum.org/founders/';
+export const ENTERPRISE_ACCELERATION_URL = 'https://ethereum.org/enterprise/';
+export const ETHEREUM_EVERYWHERE_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeA-W8iy2PJxrY3TD4lMYXyky_wLd4QB_7NRwqSxCd0e19MUg/viewform';
+
 // applicants tabs
 export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Wishlist', 'RFPs'];
 export const APPLICANTS_TABS_MAP: TabsMap = {
