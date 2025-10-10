@@ -35,6 +35,8 @@ const Applicants: NextPage = () => {
   // https://react-intersection-observer.vercel.app/?path=/story/introduction--page#options
   const [ref, inView] = useInView({ threshold: 0.3 });
   const [ref2, inView2] = useInView({ threshold: 0, initialInView: false });
+  const [ref3, inView3] = useInView({ threshold: 0, initialInView: false });
+  const [ref4, inView4] = useInView({ threshold: 0, initialInView: false });
 
   return (
     <>
@@ -47,7 +49,7 @@ const Applicants: NextPage = () => {
         <Flex>
           <ApplicantsSidebar
             sidebarLinks={SIDEBAR_APPLICANTS_LINKS}
-            sectionsInView={[inView, inView2]}
+            sectionsInView={[inView, inView2, inView3, inView4]}
           />
 
           <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
@@ -136,7 +138,7 @@ const Applicants: NextPage = () => {
                 </Stack>
               </section>
 
-              <section id="process">
+              <section id="process" ref={ref2}>
                 <PageSection mb={6}>Process</PageSection>
 
                 <Stack spacing={3}>
@@ -161,7 +163,7 @@ const Applicants: NextPage = () => {
                 </Stack>
               </section>
 
-              <section id="selection-criteria">
+              <section id="selection-criteria" ref={ref3}>
                 <PageSection mb={6}>Selection criteria</PageSection>
 
                 <PageText mb={6}>
@@ -190,7 +192,7 @@ const Applicants: NextPage = () => {
                 </List>
               </section>
 
-              <section id="faq">
+              <section id="faq" ref={ref4}>
                 <PageSection mb={6}>FAQ</PageSection>
 
                 <Accordion allowToggle>
