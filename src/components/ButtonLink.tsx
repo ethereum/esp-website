@@ -15,10 +15,11 @@ interface Props {
   label: string;
   link: string;
   width: string;
+  display?: string;
   isApplyButton?: boolean;
 }
 
-export const ButtonLink = ({ label, link, width, isApplyButton }: Props) => {
+export const ButtonLink = ({ label, link, width, display, isApplyButton }: Props) => {
   const { shadowBoxControl, setButtonHovered } = useShadowAnimation();
 
   return (
@@ -29,6 +30,7 @@ export const ButtonLink = ({ label, link, width, isApplyButton }: Props) => {
           h='56px'
           w={width}
           position='absolute'
+          display={display || "block"}
           animate={shadowBoxControl}
         />
 
@@ -36,9 +38,11 @@ export const ButtonLink = ({ label, link, width, isApplyButton }: Props) => {
           bg='brand.accent'
           w={width}
           py={4}
+          px={6}
           justifyContent='center'
           alignItems='center'
           position='relative'
+          display={display || "block"}
           _hover={{ bg: 'brand.hover' }}
           whileHover={{ x: -1.5, y: -1.5 }}
           onMouseEnter={() => setButtonHovered(true)}
