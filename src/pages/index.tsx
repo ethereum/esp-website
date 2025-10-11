@@ -1,4 +1,4 @@
-import { Box, Flex, Grid, GridItem, ListItem, Stack, UnorderedList } from '@chakra-ui/react';
+import { Box, Flex, Grid, GridItem, Link, ListItem, Stack, UnorderedList } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 
@@ -11,7 +11,7 @@ import bigSucculentSVG from '../../public/images/big-succulent.svg';
 import whatWeSupportTree from '../../public/images/what-we-support-tree.png';
 import howWeSupportRoots from '../../public/images/how-we-support-roots.png';
 
-import { ABOUT_URL, APPLICANTS_URL } from '../constants';
+import { ABOUT_URL, APPLICANTS_URL, FOUNDER_SUCCESS_URL, ENTERPRISE_ACCELERATION_URL, ETHEREUM_EVERYWHERE_URL } from '../constants';
 
 const Home: NextPage = () => {
   return (
@@ -206,6 +206,26 @@ const Home: NextPage = () => {
               </Grid>
             </Box>
           </section>
+
+          <section id='support'>
+            <Stack
+              bg='brand.warning'
+              borderRadius='10px'
+              p={6}
+              spacing={6}
+            >
+              <PageText>
+                Are you a founder seeking access to programs, mentorship, and visibility across the Ethereum ecosystem? Connect with the <Link href={FOUNDER_SUCCESS_URL} fontWeight={700} color='brand.orange.100' isExternal _hover={{ textDecoration: 'none' }}>Founder Success team</Link> to level up your journey. 
+              </PageText>
+              <PageText>
+                Are you leading a business or enterprise looking to leverage Ethereum? Get in touch with the <Link href={ENTERPRISE_ACCELERATION_URL} fontWeight={700} color='brand.orange.100' isExternal _hover={{ textDecoration: 'none' }}>Enterprise Acceleration team</Link> to explore potential pathways and opportunities. 
+              </PageText>
+              <PageText>
+                Are you organizing an event or launching a community initiative? Reach out to the <Link href={ETHEREUM_EVERYWHERE_URL} fontWeight={700} color='brand.orange.100' isExternal _hover={{ textDecoration: 'none' }}>Ethereum Everywhere team</Link> for support.
+              </PageText>
+            </Stack>
+          </section>
+          
           
           <section id='our-role'>
             <HomeAboutCard
