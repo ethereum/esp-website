@@ -124,18 +124,30 @@ const handler = async (req: WishlistApiRequest, res: NextApiResponse) => {
 
     const salesforceResult = await createSalesforceRecord('Application__c', applicationData);
 
-    try {
+    // Handle file upload if present
+    if (result.data.fileUpload) {
       const uploadProposal = result.data.fileUpload as File;
-      await uploadFileToSalesforce(
-        uploadProposal,
-        salesforceResult.id,
-        '[PROPOSAL]',
-        result.data.projectName
-      );
-    } catch (error) {
-      console.error('Error uploading proposal:', error);
-      res.status(500).json({ error: 'Failed to upload proposal' });
-      return;
+      
+      // Validate file object has required properties
+      if (!uploadProposal.filepath || !uploadProposal.originalFilename) {
+        console.error('Invalid file object:', uploadProposal);
+        res.status(400).json({ error: 'Invalid file upload' });
+        return;
+      }
+
+      try {
+        await uploadFileToSalesforce(
+          uploadProposal,
+          salesforceResult.id,
+          '[PROPOSAL]',
+          result.data.projectName
+        );
+        console.log('File uploaded successfully');
+      } catch (error) {
+        console.error('Error uploading proposal:', error);
+        res.status(500).json({ error: 'Failed to upload proposal' });
+        return;
+      }
     }
 
     console.log('Wishlist application submitted:', {
