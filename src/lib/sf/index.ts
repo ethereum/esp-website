@@ -54,7 +54,7 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
       await loginToSalesforce(conn);
 
       // TODO: Change to `Active` before deploying to production
-      const baseCriteria: Partial<GrantInitiativeSalesforceRecord> = { Status__c: 'New' };
+      const baseCriteria: Partial<GrantInitiativeSalesforceRecord> = { Status__c: 'Active' };
       const criteria =
         type != null
           ? { ...baseCriteria, RecordTypeId: getRecordTypeIdForType(type) }
