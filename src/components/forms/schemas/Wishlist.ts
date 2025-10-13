@@ -21,7 +21,6 @@ export const WishlistSchema = z.object({
     .any()
     .refine(file => (file?.size ?? 0) <= MAX_WISHLIST_FILE_SIZE, 'Max file size is 4MB.')
     .refine(file => (file?.type || file?.mimetype) === 'application/pdf', 'File must be a PDF')
-    .optional()
     .or(z.literal(''))
 });
 

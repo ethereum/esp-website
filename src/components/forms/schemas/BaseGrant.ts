@@ -53,7 +53,6 @@ const projectOverviewSchema = {
     .refine(file => (file?.type || file?.mimetype) === 'application/pdf', 'File must be a PDF'),
   projectRepo: stringFieldSchema('Project repo', { max: MAX_TEXT_LENGTH })
     .url({ message: 'Invalid URL' })
-    .optional()
     .or(z.literal('')),
   domain: z.enum([
     'Application layer',
