@@ -136,8 +136,7 @@ export const EPF_APPLICATION_PROJECT_CATEGORY_OPTIONS = [
 ];
 
 export const DESTINO_DEVCONNECT_CATEGORY_OPTIONS = [
-  { value: 'Community Event', label: 'Community Event' },
-  { value: 'Community Initiative', label: 'Community Initiative' },
+  { value: 'Community Initiative', label: 'Devconnect Frens' },
   { value: 'Non-Financial Support', label: 'Non-Financial Support' }
 ];
 
