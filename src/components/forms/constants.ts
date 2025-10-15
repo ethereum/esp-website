@@ -1217,7 +1217,7 @@ export const TIMEZONE_OPTIONS = [
     label: 'GMT+11:00 Solomon Is. Time (Pacific/Guadalcanal)'
   },
   {
-    value: 'GMT+10:30 Australian Central Standard Time (South Australia) Australia/Adelaide)',
+    value: 'GMT+10:30 Australian Central Standard Time (South Australia) Australia/Adelaide',
     label: 'GMT+10:30 Australian Central Standard Time (South Australia) Australia/Adelaide)'
   },
   {
