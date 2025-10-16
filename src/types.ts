@@ -504,7 +504,6 @@ export interface GrantInitiativeSalesforceRecord {
   Description__c: string;
   Status__c: string;
   RecordTypeId: string;
-  Expected_Deliverables__c?: string;
   Tags__c?: string;
   Out_of_Scope__c?: string;
   Resources__c?: string;
