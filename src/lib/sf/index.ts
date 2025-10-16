@@ -46,7 +46,7 @@ const getFieldsForType = (type?: GrantInitiativeType): string => {
     'Id,Name,Description__c,RecordTypeId,Tags__c,Resources__c,Ecosystem_Need__c';
   const wishlistFields = ',Out_of_Scope__c';
   const rfpFields =
-    'RFP_HardRequirements__c,RFP_Project_Duration__c,RFP_Close_Date__c,RFP_Open_Date__c';
+    ',RFP_HardRequirements__c,RFP_Project_Duration__c,RFP_Close_Date__c,RFP_Open_Date__c';
 
   if (type === 'Wishlist') {
     return baseFields + wishlistFields;
