@@ -58,10 +58,10 @@ const Applicants: NextPage = () => {
                 <PageSubheading mb={6}>Mission and Scope</PageSubheading>
               
                 <PageText mb={8}>
-                  ESP provides financial and/or non-financial support to eligible projects working to improve Ethereum. We focus on work that strengthens Ethereum&apos;s foundations and enables future builders. The work we support is free, open-source, non-commercial, and designed to create positive sum outcomes for the community.
+                ESP provides financial and/or non-financial support to eligible projects working to improve Ethereum. We focus on work that strengthens Ethereum&apos;s foundations and enables future builders. The work we support is free, open-source, non-commercial, and designed to create positive sum outcomes for the community.
                 </PageText>
                 <PageText mb={8}>
-                  ESP support is generally directed toward enabling builders rather than end-users: strengthening Ethereum&apos;s infrastructure, expanding the range of tools available to those building on Ethereum, gaining a deeper understanding of cryptographic primitives, growing the builder ecosystem through education and community development, etc. We&apos;re open to supporting work from people and teams of all kinds.
+                Our support is generally directed toward enabling builders rather than end-users: strengthening Ethereum&apos;s infrastructure, expanding the range of tools available to those building on Ethereum, gaining a deeper understanding of cryptographic primitives, growing the builder ecosystem through education and community development, etc. 
                 </PageText>
                 <Center mb={12}>
                   <Flex direction={{ base: 'column', md: 'row' }}>
@@ -149,7 +149,7 @@ const Applicants: NextPage = () => {
                     Submit your application detailing how you plan to address the Wishlist or RFP item. Describe how your background and approach align with the project requirements by providing clear information on your methodology, timeline, and deliverables. Once submitted, you will receive a confirmation email.
                   </ProcessStep>
                   <ProcessStep title="Review">
-                    The Grants Management (GM) team reviews applications in collaboration with the EF team responsible for the corresponding Wishlist or RFP item. We consider your fit for the project, proposed approach, and potential impact. The evaluation process may include: an interview to discuss your proposal in detail, project rescoping, or budget negotiations.
+                    The Grants Management (GM) team reviews applications in collaboration with the EF team responsible for the corresponding Wishlist or RFP item. The evaluation process may include an interview to discuss your proposal in detail, project rescoping, or budget negotiations.
                   </ProcessStep>
                   <ProcessStep title="Decision">
                     You will be notified of funding decisions via email. If your project is selected, we will work closely with you to establish a clear grant structure with milestone-based payments. All grant recipients also complete an onboarding process, involving KYC verification and signing a legal grant agreement. 
