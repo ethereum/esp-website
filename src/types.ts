@@ -527,6 +527,9 @@ export interface GrantInitiative {
   Id: string;
   Name: string;
   Description__c: string;
+}
+
+export interface RFPGrantInitiative extends GrantInitiative {
   Category__c?: string;
   Priority__c?: string;
   Expected_Deliverables__c?: string;
@@ -541,5 +544,17 @@ export interface GrantInitiative {
   RFP_Open_Date__c?: string;
   RFP_Close_Date__c?: string;
   RFP_Project_Duration__c?: string;
-  Out_of_Scope__c?: string;
 }
+
+export interface WishlistGrantInitiative extends GrantInitiative {
+  Category__c?: string;
+  Priority__c?: string;
+  Expected_Deliverables__c?: string;
+  Skills_Required__c?: string;
+  Estimated_Effort__c?: string;
+  Tags__c?: string;
+  Out_of_Scope__c?: string;
+  Resources__c?: string;
+}
+
+export type GrantInitiativeResult = RFPGrantInitiative | WishlistGrantInitiative;

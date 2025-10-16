@@ -10,6 +10,7 @@ import {
   FormContainer,
   ProjectOverviewSection,
   SelectedItemDisplay,
+  RFPItemDetails,
   AdditionalDetailsSection,
   FormActions
 } from './sections';
@@ -39,6 +40,7 @@ export const RFPForm: FC<RFPFormProps> = ({ rfpItem }) => {
           selectedItem={rfpItem}
           displayText={rfpFormConfig.selectedItemDisplayText}
         />
+        <RFPItemDetails item={rfpItem} />
 
         <ContactInformationSection />
 

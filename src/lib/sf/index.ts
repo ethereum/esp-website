@@ -2,7 +2,13 @@ import fs from 'fs';
 import jsforce from 'jsforce';
 import type { File } from 'formidable';
 
-import { GrantInitiative, GrantInitiativeSalesforceRecord, GrantInitiativeType } from '../../types';
+import {
+  GrantInitiativeResult,
+  GrantInitiativeSalesforceRecord,
+  GrantInitiativeType,
+  RFPGrantInitiative,
+  WishlistGrantInitiative
+} from '../../types';
 import { truncateString } from '../../utils/truncateString';
 
 const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
@@ -41,13 +47,11 @@ const getRecordTypeIdForType = (type: GrantInitiativeType): string => {
   return '';
 };
 
-/**
- * Get all active grant initiative items
- * @param type - The type of grant initiative (Wishlist, RFP)
- * @returns Promise with the grant initiative items
- */
+export function getGrantInitiativeItems(type: 'RFP'): Promise<RFPGrantInitiative[]>;
+export function getGrantInitiativeItems(type: 'Wishlist'): Promise<WishlistGrantInitiative[]>;
+export function getGrantInitiativeItems(type?: GrantInitiativeType): Promise<GrantInitiativeResult[]>;
 export function getGrantInitiativeItems(type?: GrantInitiativeType) {
-  return new Promise<GrantInitiative[]>(async (resolve, reject) => {
+  return new Promise<GrantInitiativeResult[]>(async (resolve, reject) => {
     const conn = createConnection();
 
     try {
@@ -74,31 +78,55 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
               return reject(err);
             }
 
-            const grantInitiativeItems = ret.reduce<GrantInitiative[]>((acc, record) => {
+            const grantInitiativeItems = ret.reduce<GrantInitiativeResult[]>((acc, record) => {
               const grantInitiativeType = getGrantInitiativeType(record.RecordTypeId);
-              if (!grantInitiativeType) return acc;
-              acc.push({
-                Id: record.Id,
-                Name: record.Name,
-                Description__c: record.Description__c,
-                Category__c: record.Category__c,
-                Priority__c: record.Priority__c,
-                Expected_Deliverables__c: record.Expected_Deliverables__c,
-                Skills_Required__c: record.Skills_Required__c,
-                Estimated_Effort__c: record.Estimated_Effort__c,
-                Requirements__c: record.Requirements__c,
-                Tags__c: record.Tags__c,
-                Ecosystem_Need__c: record.Ecosystem_Need__c,
-                Hard_Requirements__c: record.Hard_Requirements__c,
-                Soft_Requirements__c: record.Soft_Requirements__c,
-                Resources__c: record.Resources__c,
-                RFP_Open_Date__c: record.RFP_Open_Date__c,
-                RFP_Close_Date__c: record.RFP_Close_Date__c,
-                RFP_Project_Duration__c: record.RFP_Project_Duration__c,
-                Out_of_Scope__c: record.Out_of_Scope__c
-              });
+              if (grantInitiativeType === 'RFP') {
+                const rfpItem: RFPGrantInitiative = {
+                  Id: record.Id,
+                  Name: record.Name,
+                  Description__c: record.Description__c,
+                  Category__c: record.Category__c,
+                  Priority__c: record.Priority__c,
+                  Expected_Deliverables__c: record.Expected_Deliverables__c,
+                  Skills_Required__c: record.Skills_Required__c,
+                  Estimated_Effort__c: record.Estimated_Effort__c,
+                  Requirements__c: record.Requirements__c,
+                  Tags__c: record.Tags__c,
+                  Ecosystem_Need__c: record.Ecosystem_Need__c,
+                  Hard_Requirements__c: record.Hard_Requirements__c,
+                  Soft_Requirements__c: record.Soft_Requirements__c,
+                  Resources__c: record.Resources__c,
+                  RFP_Open_Date__c: record.RFP_Open_Date__c,
+                  RFP_Close_Date__c: record.RFP_Close_Date__c,
+                  RFP_Project_Duration__c: record.RFP_Project_Duration__c
+                };
+                acc.push(rfpItem);
+              } else if (grantInitiativeType === 'Wishlist') {
+                const wishlistItem: WishlistGrantInitiative = {
+                  Id: record.Id,
+                  Name: record.Name,
+                  Description__c: record.Description__c,
+                  Category__c: record.Category__c,
+                  Priority__c: record.Priority__c,
+                  Expected_Deliverables__c: record.Expected_Deliverables__c,
+                  Skills_Required__c: record.Skills_Required__c,
+                  Estimated_Effort__c: record.Estimated_Effort__c,
+                  Tags__c: record.Tags__c,
+                  Out_of_Scope__c: record.Out_of_Scope__c,
+                  Resources__c: record.Resources__c
+                };
+                acc.push(wishlistItem);
+              }
               return acc;
             }, []);
+
+            if (type === 'RFP') {
+              return resolve(grantInitiativeItems as RFPGrantInitiative[]);
+            }
+
+            if (type === 'Wishlist') {
+              return resolve(grantInitiativeItems as WishlistGrantInitiative[]);
+            }
 
             return resolve(grantInitiativeItems);
           }

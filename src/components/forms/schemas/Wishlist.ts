@@ -5,9 +5,10 @@ import {
   additionalDetailsSchema,
   requiredSchema
 } from './BaseGrant';
-import { z } from 'zod';
 import { MAX_WISHLIST_FILE_SIZE } from '../../../constants';
+import type { WishlistGrantInitiative } from '../../../types';
 import { stringFieldSchema } from './utils';
+import { z } from 'zod';
 
 export const WishlistSchema = z.object({
   selectedWishlistId: stringFieldSchema('Wishlist item', { min: 1 }),
@@ -26,16 +27,4 @@ export const WishlistSchema = z.object({
 
 export type WishlistData = z.infer<typeof WishlistSchema>;
 
-export interface WishlistItem {
-  Id: string;
-  Name: string;
-  Description__c: string;
-  Category__c?: string;
-  Priority__c?: string;
-  Expected_Deliverables__c?: string;
-  Skills_Required__c?: string;
-  Estimated_Effort__c?: string;
-  Tags__c?: string;
-  Out_of_Scope__c?: string;
-  Resources__c?: string;
-}
+export type WishlistItem = WishlistGrantInitiative;

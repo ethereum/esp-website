@@ -7,6 +7,7 @@ import {
   ProjectDetailsSection,
   AdditionalDetailsSection,
   SelectedItemDisplay,
+  WishlistItemDetails,
   FormActions,
   FormContainer
 } from './sections';
@@ -41,6 +42,7 @@ export const WishlistForm: FC<WishlistFormProps> = ({ wishlistItem }) => {
           selectedItem={wishlistItem}
           displayText={wishlistFormConfig.selectedItemDisplayText}
         />
+        <WishlistItemDetails item={wishlistItem} />
 
         <ContactInformationSection />
 
