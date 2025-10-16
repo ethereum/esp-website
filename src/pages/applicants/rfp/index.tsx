@@ -9,7 +9,8 @@ import {
   PageSubheading,
   PageText,
   PageMetadata,
-  PrivacyPolicyAgreement
+  PrivacyPolicyAgreement,
+  ApplicationAttentionMsg
 } from '../../../components/UI';
 
 import { SIDEBAR_RFP_LINKS } from '../../../constants';
@@ -52,7 +53,8 @@ const RFP: NextPage<RFPProps> = ({ rfpItems }) => {
             </Stack>
 
             <Stack spacing={10}>
-              <section id='what-are-rfps' ref={ref2}>
+              <ApplicationAttentionMsg />
+              {/* <section id='what-are-rfps' ref={ref2}>
                 <PageSection mb={6}>What are RFPs?</PageSection>
 
                 <PageText mb={6}>
@@ -73,7 +75,7 @@ const RFP: NextPage<RFPProps> = ({ rfpItems }) => {
                   Each RFP represents a strategic priority area where the Ethereum Foundation seeks
                   specialized expertise to advance the ecosystem.
                 </PageText>
-              </section>
+              </section> */}
 
               <section id='apply' ref={ref3}>
                 <PageSection mb={6}>Apply</PageSection>

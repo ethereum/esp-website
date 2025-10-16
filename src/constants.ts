@@ -43,14 +43,14 @@ export const SIDEBAR_OFFICE_HOURS_LINKS: SidebarLink[] = [
 export const WISHLIST_URL = '/applicants/wishlist';
 export const SIDEBAR_WISHLIST_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${WISHLIST_URL}/#description` },
-  { text: 'What are wishlist items', href: `${WISHLIST_URL}/#what-are-wishlist-items` },
+  // { text: 'What are wishlist items', href: `${WISHLIST_URL}/#what-are-wishlist-items` },
   { text: 'Apply', href: `${WISHLIST_URL}/#apply` }
 ];
 
 export const RFP_URL = '/applicants/rfp';
 export const SIDEBAR_RFP_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${RFP_URL}/#description` },
-  { text: 'What are RFPs', href: `${RFP_URL}/#what-are-rfps` },
+  // { text: 'What are RFPs', href: `${RFP_URL}/#what-are-rfps` },
   { text: 'Apply', href: `${RFP_URL}/#apply` }
 ];
 
