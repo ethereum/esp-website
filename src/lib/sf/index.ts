@@ -64,7 +64,7 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
         .sobject('Grant_Initiative__c')
         .find<GrantInitiativeSalesforceRecord>(
           criteria,
-          'Id,Name,Description__c,RecordTypeId,Category__c,Priority__c,Expected_Deliverables__c,Skills_Required__c,Estimated_Effort__c,RFP_HardRequirements__c,RFP_SoftRequirements__c,Tags__c,Out_of_Scope__c,Resources__c',
+          'Id,Name,Description__c,RecordTypeId,Expected_Deliverables__c,RFP_HardRequirements__c,RFP_SoftRequirements__c,Tags__c,Out_of_Scope__c,Resources__c,Ecosystem_Need__c,RFP_Project_Duration__c,RFP_Close_Date__c,RFP_Open_Date__c',
           (err, ret) => {
             if (err) {
               console.error(err);
@@ -81,15 +81,15 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
                 Id: record.Id,
                 Name: record.Name,
                 Description__c: record.Description__c,
-                Category__c: record.Category__c,
-                Priority__c: record.Priority__c,
                 Expected_Deliverables__c: record.Expected_Deliverables__c,
-                Skills_Required__c: record.Skills_Required__c,
-                Estimated_Effort__c: record.Estimated_Effort__c,
                 Requirements__c: requirements || undefined,
                 Tags__c: record.Tags__c,
                 Out_of_Scope__c: record.Out_of_Scope__c,
-                Resources__c: record.Resources__c
+                Resources__c: record.Resources__c,
+                Ecosystem_Need__c: record.Ecosystem_Need__c,
+                RFP_Project_Duration__c: record.RFP_Project_Duration__c,
+                RFP_Close_Date__c: record.RFP_Close_Date__c,
+                RFP_Open_Date__c: record.RFP_Open_Date__c
               });
               return acc;
             }, []);
