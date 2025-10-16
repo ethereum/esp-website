@@ -56,7 +56,9 @@ const getFieldsForType = (type?: GrantInitiativeType): string => {
     return baseFields + rfpFields;
   }
 
-  return `${baseFields}${wishlistFields}${rfpFields}`;
+  console.log('Type is,', type)
+
+  return baseFields;
 };
 
 /**
