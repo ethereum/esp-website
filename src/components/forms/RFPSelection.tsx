@@ -1,4 +1,16 @@
-import { Box, Center, chakra, Grid, GridItem, Heading, Stack, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Center,
+  chakra,
+  Grid,
+  GridItem,
+  Heading,
+  Stack,
+  Tag,
+  Text,
+  Wrap,
+  WrapItem
+} from '@chakra-ui/react';
 import { FC, useState } from 'react';
 
 import { RFPItem } from './schemas/RFP';
@@ -15,6 +27,32 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems }) => {
 
   const handleSelectItem = (item: RFPItem) => {
     setSelectedItem(item);
+  };
+
+  const renderDetailSection = (label: string, value?: string | null) => {
+    if (!value) return null;
+
+    return (
+      <Box>
+        <Text fontWeight='600' color='brand.heading' mb={1}>
+          {label}
+        </Text>
+        <Text color='brand.paragraph'>{value}</Text>
+      </Box>
+    );
+  };
+
+  const formatDate = (value: string): string => {
+    const parsedDate = new Date(value);
+    if (Number.isNaN(parsedDate.getTime())) {
+      return value;
+    }
+
+    return new Intl.DateTimeFormat('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric'
+    }).format(parsedDate);
   };
 
   if (rfpItems.length === 0) {
@@ -79,11 +117,38 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems }) => {
           borderLeft='4px solid'
           borderLeftColor='brand.orange.100'
         >
-          <Stack spacing={3}>
+          <Stack spacing={4}>
             <Heading size='md' color='brand.heading'>
               Selected: {selectedItem.Name}
             </Heading>
             <Text color='brand.paragraph'>{selectedItem.Description__c}</Text>
+            {selectedItem.Tags__c && (
+              <Box>
+                <Text fontWeight='600' color='brand.heading' mb={1}>
+                  Tags
+                </Text>
+                <Wrap>
+                  {selectedItem.Tags__c.split(/[,;]+/)
+                    .map(tag => tag.trim())
+                    .filter(Boolean)
+                    .map(tag => (
+                      <WrapItem key={tag}>
+                        <Tag
+                          size='md'
+                          color='brand.heading'
+                          bg='brand.orange.10'
+                          borderRadius='full'
+                          px={3}
+                          py={1}
+                        >
+                          {tag}
+                        </Tag>
+                      </WrapItem>
+                    ))}
+                </Wrap>
+              </Box>
+            )}
+            {renderDetailSection('Ecosystem Need', selectedItem.Ecosystem_Need__c)}
             {selectedItem.Expected_Deliverables__c && (
               <Box>
                 <Text fontWeight='600' color='brand.heading' mb={1}>
@@ -92,12 +157,28 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems }) => {
                 <Text color='brand.paragraph'>{selectedItem.Expected_Deliverables__c}</Text>
               </Box>
             )}
-            {selectedItem.Requirements__c && (
+            {renderDetailSection('Requirements', selectedItem.Requirements__c)}
+            {renderDetailSection('Hard Requirements', selectedItem.Hard_Requirements__c)}
+            {renderDetailSection('Soft Requirements', selectedItem.Soft_Requirements__c)}
+            {renderDetailSection('Resources', selectedItem.Resources__c)}
+            {(selectedItem.RFP_Open_Date__c ||
+              selectedItem.RFP_Close_Date__c ||
+              selectedItem.RFP_Project_Duration__c) && (
               <Box>
                 <Text fontWeight='600' color='brand.heading' mb={1}>
-                  Requirements
+                  Timeline
                 </Text>
-                <Text color='brand.paragraph'>{selectedItem.Requirements__c}</Text>
+                <Stack spacing={1} color='brand.paragraph'>
+                  {selectedItem.RFP_Open_Date__c && (
+                    <Text>Open Date: {formatDate(selectedItem.RFP_Open_Date__c)}</Text>
+                  )}
+                  {selectedItem.RFP_Close_Date__c && (
+                    <Text>Close Date: {formatDate(selectedItem.RFP_Close_Date__c)}</Text>
+                  )}
+                  {selectedItem.RFP_Project_Duration__c && (
+                    <Text>Estimated Duration: {selectedItem.RFP_Project_Duration__c}</Text>
+                  )}
+                </Stack>
               </Box>
             )}
           </Stack>

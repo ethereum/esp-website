@@ -60,11 +60,14 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
           ? { ...baseCriteria, RecordTypeId: getRecordTypeIdForType(type) }
           : baseCriteria;
 
+      const fields =
+        'Id,Name,Description__c,RecordTypeId,Category__c,Priority__c,Expected_Deliverables__c,Skills_Required__c,Estimated_Effort__c,Requirements__c,Tags__c,Ecosystem_Need__c,Hard_Requirements__c,Soft_Requirements__c,Resources__c,RFP_Open_Date__c,RFP_Close_Date__c,RFP_Project_Duration__c,Out_of_Scope__c';
+
       conn
         .sobject('Grant_Initiative__c')
         .find<GrantInitiativeSalesforceRecord>(
           criteria,
-          'Id,Name,Description__c,RecordTypeId',
+          fields,
           (err, ret) => {
             if (err) {
               console.error(err);
@@ -77,7 +80,22 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
               acc.push({
                 Id: record.Id,
                 Name: record.Name,
-                Description__c: record.Description__c
+                Description__c: record.Description__c,
+                Category__c: record.Category__c,
+                Priority__c: record.Priority__c,
+                Expected_Deliverables__c: record.Expected_Deliverables__c,
+                Skills_Required__c: record.Skills_Required__c,
+                Estimated_Effort__c: record.Estimated_Effort__c,
+                Requirements__c: record.Requirements__c,
+                Tags__c: record.Tags__c,
+                Ecosystem_Need__c: record.Ecosystem_Need__c,
+                Hard_Requirements__c: record.Hard_Requirements__c,
+                Soft_Requirements__c: record.Soft_Requirements__c,
+                Resources__c: record.Resources__c,
+                RFP_Open_Date__c: record.RFP_Open_Date__c,
+                RFP_Close_Date__c: record.RFP_Close_Date__c,
+                RFP_Project_Duration__c: record.RFP_Project_Duration__c,
+                Out_of_Scope__c: record.Out_of_Scope__c
               });
               return acc;
             }, []);
