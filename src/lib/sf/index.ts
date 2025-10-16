@@ -64,7 +64,7 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
         .sobject('Grant_Initiative__c')
         .find<GrantInitiativeSalesforceRecord>(
           criteria,
-          'Id,Name,Description__c,RecordTypeId,RFP_HardRequirements__c,RFP_SoftRequirements__c,Tags__c,Out_of_Scope__c,Resources__c,Ecosystem_Need__c,RFP_Project_Duration__c,RFP_Close_Date__c,RFP_Open_Date__c',
+          'Id,Name,Description__c,RecordTypeId,Tags__c,Out_of_Scope__c,Resources__c',
           (err, ret) => {
             if (err) {
               console.error(err);
