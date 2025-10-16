@@ -73,22 +73,18 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
 
             const grantInitiativeItems = ret.reduce<GrantInitiative[]>((acc, record) => {
               const grantInitiativeType = getGrantInitiativeType(record.RecordTypeId);
-              if (!grantInitiativeType) return acc;
-              const requirements = [record.RFP_HardRequirements__c, record.RFP_SoftRequirements__c]
-                .filter(Boolean)
-                .join('\n\n');
+              if (!grantInitiativeType) return acc;            
               acc.push({
                 Id: record.Id,
                 Name: record.Name,
                 Description__c: record.Description__c,
-                Requirements__c: requirements || undefined,
                 Tags__c: record.Tags__c,
                 Out_of_Scope__c: record.Out_of_Scope__c,
                 Resources__c: record.Resources__c,
-                Ecosystem_Need__c: record.Ecosystem_Need__c,
-                RFP_Project_Duration__c: record.RFP_Project_Duration__c,
-                RFP_Close_Date__c: record.RFP_Close_Date__c,
-                RFP_Open_Date__c: record.RFP_Open_Date__c
+                // Ecosystem_Need__c: record.Ecosystem_Need__c,
+                // RFP_Project_Duration__c: record.RFP_Project_Duration__c,
+                // RFP_Close_Date__c: record.RFP_Close_Date__c,
+                // RFP_Open_Date__c: record.RFP_Open_Date__c
               });
               return acc;
             }, []);
