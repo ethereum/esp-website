@@ -46,7 +46,7 @@ const getFieldsForType = (type?: GrantInitiativeType): string => {
     'Id,Name,Description__c,RecordTypeId,Tags__c,Resources__c,Ecosystem_Need__c';
   const wishlistFields = ',Out_of_Scope__c';
   const rfpFields =
-    ',Hard_Requirements__c,Soft_Requirements__c,RFP_Project_Duration__c,RFP_Close_Date__c,RFP_Open_Date__c';
+    ',RFP_HardRequirements__c,RFP_SoftRequirements__c,RFP_Project_Duration__c,RFP_Close_Date__c,RFP_Open_Date__c';
 
   if (type === 'Wishlist') {
     return baseFields + wishlistFields;
@@ -93,10 +93,8 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
               const grantInitiativeType = getGrantInitiativeType(record.RecordTypeId);
               if (!grantInitiativeType) return acc;
 
-              const hardRequirements =
-                record.Hard_Requirements__c ?? record.RFP_HardRequirements__c;
-              const softRequirements =
-                record.Soft_Requirements__c ?? record.RFP_SoftRequirements__c;
+               const hardRequirements = record.RFP_HardRequirements__c;
+               const softRequirements = record.RFP_SoftRequirements__c;
 
               const grantInitiativeItem: GrantInitiative = {
                 Id: record.Id,
@@ -113,13 +111,7 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
                 }
               }
 
-              if (grantInitiativeType === 'RFP') {
-                if (hardRequirements) {
-                  grantInitiativeItem.Hard_Requirements__c = hardRequirements;
-                }
-                if (softRequirements) {
-                  grantInitiativeItem.Soft_Requirements__c = softRequirements;
-                }
+               if (grantInitiativeType === 'RFP') {
                 if (record.RFP_Project_Duration__c) {
                   grantInitiativeItem.RFP_Project_Duration__c = record.RFP_Project_Duration__c;
                 }
