@@ -46,7 +46,7 @@ const getFieldsForType = (type?: GrantInitiativeType): string => {
     'Id,Name,Description__c,RecordTypeId,Tags__c,Resources__c,Ecosystem_Need__c';
   const wishlistFields = ',Out_of_Scope__c';
   const rfpFields =
-    ',RFP_HardRequirements_Long__c,RFP_Project_Duration__c,RFP_Close_Date__c,RFP_Open_Date__c';
+    ',RFP_HardRequirements_Long__c,RFP_SoftRequirements__c,RFP_Project_Duration__c,RFP_Close_Date__c,RFP_Open_Date__c';
 
   if (type === 'Wishlist') {
     return baseFields + wishlistFields;
@@ -118,11 +118,17 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
                  if (record.RFP_HardRequirements_Long__c) {
                    grantInitiativeItem.RFP_HardRequirements_Long__c = record.RFP_HardRequirements_Long__c;
                  }
+                 if (record.RFP_SoftRequirements__c) {
+                   grantInitiativeItem.RFP_SoftRequirements__c = record.RFP_SoftRequirements__c;
+                 }
                 if (record.RFP_Close_Date__c) {
                   grantInitiativeItem.RFP_Close_Date__c = record.RFP_Close_Date__c;
                 }
                 if (record.RFP_Open_Date__c) {
                   grantInitiativeItem.RFP_Open_Date__c = record.RFP_Open_Date__c;
+                }
+                if (record.RFP_Project_Duration__c) {
+                  grantInitiativeItem.RFP_Project_Duration__c = record.RFP_Project_Duration__c;
                 }
               }
 

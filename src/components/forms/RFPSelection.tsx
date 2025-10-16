@@ -154,13 +154,13 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems }) => {
                 </Text>
               </Box>
             )}
-            {selectedItem.Hard_Requirements__c && (
+            {selectedItem.RFP_HardRequirements_Long__c && (
               <Box>
                 <Text fontWeight='600' color='brand.heading' mb={1}>
                   Hard Requirements
                 </Text>
                 <Text color='brand.paragraph' whiteSpace='pre-line'>
-                  {selectedItem.Hard_Requirements__c}
+                  {selectedItem.RFP_HardRequirements_Long__c}
                 </Text>
               </Box>
             )}
