@@ -46,7 +46,7 @@ const getFieldsForType = (type?: GrantInitiativeType): string => {
     'Id,Name,Description__c,RecordTypeId,Tags__c,Resources__c,Ecosystem_Need__c';
   const wishlistFields = ',Out_of_Scope__c';
   const rfpFields =
-    ',RFP_HardRequirements__c,RFP_SoftRequirements__c,RFP_Project_Duration__c,RFP_Close_Date__c,RFP_Open_Date__c';
+    ',RFP_Project_Duration__c,RFP_Close_Date__c,RFP_Open_Date__c';
 
   if (type === 'Wishlist') {
     return baseFields + wishlistFields;
@@ -95,8 +95,6 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
               const grantInitiativeType = getGrantInitiativeType(record.RecordTypeId);
               if (!grantInitiativeType) return acc;
 
-               const hardRequirements = record.RFP_HardRequirements__c;
-               const softRequirements = record.RFP_SoftRequirements__c;
 
               const grantInitiativeItem: GrantInitiative = {
                 Id: record.Id,
@@ -125,12 +123,6 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
                 }
               }
 
-              if (hardRequirements || softRequirements) {
-                const combinedRequirements = [hardRequirements, softRequirements]
-                  .filter(Boolean)
-                  .join('\n\n');
-                grantInitiativeItem.Requirements__c = combinedRequirements || undefined;
-              }
 
               acc.push(grantInitiativeItem);
               return acc;
