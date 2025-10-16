@@ -106,7 +106,8 @@ export const getStaticProps: GetStaticProps<RFPProps> = async () => {
   return {
     props: {
       rfpItems
-    }
+    },
+    revalidate: 3600 // Revalidate every hour (3600 seconds)
   };
 };
 
