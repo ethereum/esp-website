@@ -33,8 +33,17 @@ export const HomepageHero: FC = () => {
           We provide support to the builders of the Ethereum ecosystem.
         </PageSubheading>
 
-        <Flex justifyContent={{ base: 'center', md: 'flex-start' }}>
+        <Flex
+          justifyContent={{ base: 'center', md: 'flex-start' }}
+          gap={4}
+          flexWrap={{ base: 'wrap', md: 'nowrap' }}
+        >
           <ButtonLink label='Learn more' link={APPLICANTS_URL} width='177px' />
+          <ButtonLink
+            label='Other support'
+            link='#other-support'
+            width='fit-content'
+          />
         </Flex>
       </Stack>
       <Box>
