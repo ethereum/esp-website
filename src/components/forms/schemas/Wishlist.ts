@@ -35,4 +35,7 @@ export interface WishlistItem {
   Expected_Deliverables__c?: string;
   Skills_Required__c?: string;
   Estimated_Effort__c?: string;
+  Tags__c?: string;
+  Out_of_Scope__c?: string;
+  Resources__c?: string;
 }

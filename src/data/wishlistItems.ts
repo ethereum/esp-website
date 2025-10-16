@@ -11,7 +11,12 @@ export const wishlistItems: WishlistItem[] = [
     Expected_Deliverables__c:
       'Interactive tutorials, code examples, documentation, and video content',
     Skills_Required__c: 'ZK expertise, technical writing, web development',
-    Estimated_Effort__c: '3-6 months'
+    Estimated_Effort__c: '3-6 months',
+    Tags__c: 'Education;Zero Knowledge;Content',
+    Out_of_Scope__c:
+      'Work focused solely on centralized learning platforms or paywalled curricula is out of scope.',
+    Resources__c:
+      'https://ethereum.org/en/zero-knowledge/\nhttps://zk-learning.org/resources'
   },
   {
     Id: 'WL002',
@@ -22,7 +27,12 @@ export const wishlistItems: WishlistItem[] = [
     Priority__c: 'High',
     Expected_Deliverables__c: 'Gas optimization toolkit, comparison dashboard, integration guides',
     Skills_Required__c: 'Solidity, Layer 2 protocols, web development',
-    Estimated_Effort__c: '4-8 months'
+    Estimated_Effort__c: '4-8 months',
+    Tags__c: 'Layer 2;Gas Optimizations;Tooling',
+    Out_of_Scope__c:
+      'Standalone cost dashboards that do not provide actionable optimization guidance are out of scope.',
+    Resources__c:
+      'https://l2beat.com/\nhttps://docs.optimism.io/builders/optimism-gas-fees'
   },
   {
     Id: 'WL003',
@@ -34,7 +44,12 @@ export const wishlistItems: WishlistItem[] = [
     Expected_Deliverables__c:
       'Security analysis report, best practices documentation, audit checklist',
     Skills_Required__c: 'Security auditing, Ethereum consensus, smart contracts',
-    Estimated_Effort__c: '2-4 months'
+    Estimated_Effort__c: '2-4 months',
+    Tags__c: 'Security;Staking;Research',
+    Out_of_Scope__c:
+      'Audits focused only on single validator setups or centralized custodial pools are out of scope.',
+    Resources__c:
+      'https://ethereum.org/en/staking/\nhttps://ethereum.org/en/developers/docs/nodes-and-clients/'
   },
   {
     Id: 'WL004',
@@ -45,7 +60,12 @@ export const wishlistItems: WishlistItem[] = [
     Priority__c: 'Medium',
     Expected_Deliverables__c: 'Composability framework, integration patterns, security guidelines',
     Skills_Required__c: 'DeFi protocols, smart contracts, security analysis',
-    Estimated_Effort__c: '6-12 months'
+    Estimated_Effort__c: '6-12 months',
+    Tags__c: 'DeFi;Composability;Architecture',
+    Out_of_Scope__c:
+      'Single-protocol integrations or closed-source proprietary tooling is out of scope.',
+    Resources__c:
+      'https://ethereum.org/en/defi/\nhttps://gov.uniswap.org/\nhttps://community.aave.com/'
   },
   {
     Id: 'WL005',
@@ -56,7 +76,12 @@ export const wishlistItems: WishlistItem[] = [
     Priority__c: 'High',
     Expected_Deliverables__c: 'Monitoring dashboard, alerting system, performance metrics',
     Skills_Required__c: 'System administration, Ethereum clients, monitoring tools',
-    Estimated_Effort__c: '3-6 months'
+    Estimated_Effort__c: '3-6 months',
+    Tags__c: 'Infrastructure;Monitoring;Operations',
+    Out_of_Scope__c:
+      'Hosted SaaS monitoring offerings without an open-source component are out of scope.',
+    Resources__c:
+      'https://ethnode.org/resources\nhttps://github.com/ethereum/eth2.0-specs\nhttps://grafana.com/solutions/blockchain/'
   }
 ];
 

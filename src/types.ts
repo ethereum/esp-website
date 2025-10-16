@@ -504,14 +504,20 @@ export interface GrantInitiativeSalesforceRecord {
   Description__c: string;
   Status__c: string;
   RecordTypeId: string;
-  Tags__c: string;
-  Ecosystem_Need__c: string;
-  RFP_Project_Duration__c: string; // Estimated Project Duration
-  RFP_HardRequirements__c: string;
-  RFP_SoftRequirements__c: string;
-  Resources__c: string;
-  RFP_Close_Date__c: string;
-  RFP_Open_Date__c: string;
+  Category__c?: string;
+  Priority__c?: string;
+  Expected_Deliverables__c?: string;
+  Skills_Required__c?: string;
+  Estimated_Effort__c?: string;
+  Tags__c?: string;
+  Out_of_Scope__c?: string;
+  Resources__c?: string;
+  Ecosystem_Need__c?: string;
+  RFP_Project_Duration__c?: string; // Estimated Project Duration
+  RFP_HardRequirements__c?: string;
+  RFP_SoftRequirements__c?: string;
+  RFP_Close_Date__c?: string;
+  RFP_Open_Date__c?: string;
 }
 
 export type GrantInitiativeType = 'Wishlist' | 'RFP';
@@ -520,4 +526,13 @@ export interface GrantInitiative {
   Id: string;
   Name: string;
   Description__c: string;
+  Category__c?: string;
+  Priority__c?: string;
+  Expected_Deliverables__c?: string;
+  Skills_Required__c?: string;
+  Estimated_Effort__c?: string;
+  Requirements__c?: string;
+  Tags__c?: string;
+  Out_of_Scope__c?: string;
+  Resources__c?: string;
 }

@@ -64,7 +64,7 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
         .sobject('Grant_Initiative__c')
         .find<GrantInitiativeSalesforceRecord>(
           criteria,
-          'Id,Name,Description__c,RecordTypeId',
+          'Id,Name,Description__c,RecordTypeId,Category__c,Priority__c,Expected_Deliverables__c,Skills_Required__c,Estimated_Effort__c,RFP_HardRequirements__c,RFP_SoftRequirements__c,Tags__c,Out_of_Scope__c,Resources__c',
           (err, ret) => {
             if (err) {
               console.error(err);
@@ -74,10 +74,22 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
             const grantInitiativeItems = ret.reduce<GrantInitiative[]>((acc, record) => {
               const grantInitiativeType = getGrantInitiativeType(record.RecordTypeId);
               if (!grantInitiativeType) return acc;
+              const requirements = [record.RFP_HardRequirements__c, record.RFP_SoftRequirements__c]
+                .filter(Boolean)
+                .join('\n\n');
               acc.push({
                 Id: record.Id,
                 Name: record.Name,
-                Description__c: record.Description__c
+                Description__c: record.Description__c,
+                Category__c: record.Category__c,
+                Priority__c: record.Priority__c,
+                Expected_Deliverables__c: record.Expected_Deliverables__c,
+                Skills_Required__c: record.Skills_Required__c,
+                Estimated_Effort__c: record.Estimated_Effort__c,
+                Requirements__c: requirements || undefined,
+                Tags__c: record.Tags__c,
+                Out_of_Scope__c: record.Out_of_Scope__c,
+                Resources__c: record.Resources__c
               });
               return acc;
             }, []);

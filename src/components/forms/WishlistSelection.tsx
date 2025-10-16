@@ -1,4 +1,16 @@
-import { Box, Center, chakra, Grid, GridItem, Heading, Stack, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Center,
+  chakra,
+  Grid,
+  GridItem,
+  Heading,
+  Stack,
+  Text,
+  Wrap,
+  WrapItem,
+  Tag
+} from '@chakra-ui/react';
 import { FC, useState } from 'react';
 
 import { WishlistItem } from './schemas/Wishlist';
@@ -16,6 +28,12 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems })
   const handleSelectItem = (item: WishlistItem) => {
     setSelectedItem(item);
   };
+
+  const parseTags = (tags?: string) =>
+    tags
+      ?.split(';')
+      .map(tag => tag.trim())
+      .filter(Boolean) ?? [];
 
   if (wishlistItems.length === 0) {
     return (
@@ -90,6 +108,49 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems })
                   Expected Deliverables
                 </Text>
                 <Text color='brand.paragraph'>{selectedItem.Expected_Deliverables__c}</Text>
+              </Box>
+            )}
+            {selectedItem.Tags__c && (
+              <Box>
+                <Text fontWeight='600' color='brand.heading' mb={1}>
+                  Tags
+                </Text>
+                <Wrap spacing={2}>
+                  {parseTags(selectedItem.Tags__c).map(tag => (
+                    <WrapItem key={tag}>
+                      <Tag
+                        size='md'
+                        variant='subtle'
+                        colorScheme='orange'
+                        px={3}
+                        py={1}
+                        borderRadius='full'
+                      >
+                        {tag}
+                      </Tag>
+                    </WrapItem>
+                  ))}
+                </Wrap>
+              </Box>
+            )}
+            {selectedItem.Out_of_Scope__c && (
+              <Box>
+                <Text fontWeight='600' color='brand.heading' mb={1}>
+                  Out of Scope
+                </Text>
+                <Text color='brand.paragraph' whiteSpace='pre-line'>
+                  {selectedItem.Out_of_Scope__c}
+                </Text>
+              </Box>
+            )}
+            {selectedItem.Resources__c && (
+              <Box>
+                <Text fontWeight='600' color='brand.heading' mb={1}>
+                  Resources
+                </Text>
+                <Text color='brand.paragraph' whiteSpace='pre-line'>
+                  {selectedItem.Resources__c}
+                </Text>
               </Box>
             )}
           </Stack>
