@@ -41,6 +41,24 @@ const getRecordTypeIdForType = (type: GrantInitiativeType): string => {
   return '';
 };
 
+const getFieldsForType = (type?: GrantInitiativeType): string => {
+  const baseFields =
+    'Id,Name,Description__c,RecordTypeId,Tags__c,Resources__c,Ecosystem_Need__c';
+  const wishlistFields = ',Out_of_Scope__c';
+  const rfpFields =
+    ',Hard_Requirements__c,Soft_Requirements__c,RFP_Project_Duration__c,RFP_Close_Date__c,RFP_Open_Date__c';
+
+  if (type === 'Wishlist') {
+    return baseFields + wishlistFields;
+  }
+
+  if (type === 'RFP') {
+    return baseFields + rfpFields;
+  }
+
+  return `${baseFields}${wishlistFields}${rfpFields}`;
+};
+
 /**
  * Get all active grant initiative items
  * @param type - The type of grant initiative (Wishlist, RFP)
@@ -64,7 +82,7 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
         .sobject('Grant_Initiative__c')
         .find<GrantInitiativeSalesforceRecord>(
           criteria,
-          'Id,Name,Description__c,RecordTypeId,Tags__c,Out_of_Scope__c,Resources__c',
+          getFieldsForType(type),
           (err, ret) => {
             if (err) {
               console.error(err);
@@ -73,19 +91,54 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
 
             const grantInitiativeItems = ret.reduce<GrantInitiative[]>((acc, record) => {
               const grantInitiativeType = getGrantInitiativeType(record.RecordTypeId);
-              if (!grantInitiativeType) return acc;            
-              acc.push({
+              if (!grantInitiativeType) return acc;
+
+              const hardRequirements =
+                record.Hard_Requirements__c ?? record.RFP_HardRequirements__c;
+              const softRequirements =
+                record.Soft_Requirements__c ?? record.RFP_SoftRequirements__c;
+
+              const grantInitiativeItem: GrantInitiative = {
                 Id: record.Id,
                 Name: record.Name,
                 Description__c: record.Description__c,
                 Tags__c: record.Tags__c,
-                Out_of_Scope__c: record.Out_of_Scope__c,
                 Resources__c: record.Resources__c,
-                // Ecosystem_Need__c: record.Ecosystem_Need__c,
-                // RFP_Project_Duration__c: record.RFP_Project_Duration__c,
-                // RFP_Close_Date__c: record.RFP_Close_Date__c,
-                // RFP_Open_Date__c: record.RFP_Open_Date__c
-              });
+                Ecosystem_Need__c: record.Ecosystem_Need__c
+              };
+
+              if (grantInitiativeType === 'Wishlist') {
+                if (record.Out_of_Scope__c) {
+                  grantInitiativeItem.Out_of_Scope__c = record.Out_of_Scope__c;
+                }
+              }
+
+              if (grantInitiativeType === 'RFP') {
+                if (hardRequirements) {
+                  grantInitiativeItem.Hard_Requirements__c = hardRequirements;
+                }
+                if (softRequirements) {
+                  grantInitiativeItem.Soft_Requirements__c = softRequirements;
+                }
+                if (record.RFP_Project_Duration__c) {
+                  grantInitiativeItem.RFP_Project_Duration__c = record.RFP_Project_Duration__c;
+                }
+                if (record.RFP_Close_Date__c) {
+                  grantInitiativeItem.RFP_Close_Date__c = record.RFP_Close_Date__c;
+                }
+                if (record.RFP_Open_Date__c) {
+                  grantInitiativeItem.RFP_Open_Date__c = record.RFP_Open_Date__c;
+                }
+              }
+
+              if (hardRequirements || softRequirements) {
+                const combinedRequirements = [hardRequirements, softRequirements]
+                  .filter(Boolean)
+                  .join('\n\n');
+                grantInitiativeItem.Requirements__c = combinedRequirements || undefined;
+              }
+
+              acc.push(grantInitiativeItem);
               return acc;
             }, []);
 

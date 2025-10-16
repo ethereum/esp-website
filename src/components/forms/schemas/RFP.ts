@@ -27,4 +27,12 @@ export interface RFPItem {
   Skills_Required__c?: string;
   Estimated_Effort__c?: string;
   Requirements__c?: string;
+  Tags__c?: string;
+  Ecosystem_Need__c?: string;
+  Hard_Requirements__c?: string;
+  Soft_Requirements__c?: string;
+  Resources__c?: string;
+  RFP_Open_Date__c?: string;
+  RFP_Close_Date__c?: string;
+  RFP_Project_Duration__c?: string;
 }
