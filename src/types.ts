@@ -507,7 +507,7 @@ export interface GrantInitiativeSalesforceRecord {
   Tags__c?: string;
   Out_of_Scope__c?: string;
   Resources__c?: string;
-  RFP_HardRequirements__c?: string;
+  RFP_HardRequirements_Long__c?: string;
   RFP_SoftRequirements__c?: string;
   Hard_Requirements__c?: string;
   Soft_Requirements__c?: string;
@@ -532,6 +532,6 @@ export interface GrantInitiative {
   RFP_Project_Duration__c?: string;
   RFP_Close_Date__c?: string;
   RFP_Open_Date__c?: string;
-  RFP_HardRequirements__c?: string;
+  RFP_HardRequirements_Long__c?: string;
   RFP_SoftRequirements__c?: string;
 }
