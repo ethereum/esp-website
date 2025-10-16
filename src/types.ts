@@ -509,8 +509,6 @@ export interface GrantInitiativeSalesforceRecord {
   Resources__c?: string;
   RFP_HardRequirements_Long__c?: string;
   RFP_SoftRequirements__c?: string;
-  Hard_Requirements__c?: string;
-  Soft_Requirements__c?: string;
   Ecosystem_Need__c?: string;
   RFP_Project_Duration__c?: string; // Estimated Project Duration
   RFP_Close_Date__c?: string;

@@ -16,9 +16,9 @@ export const rfpItems: RFPItem[] = [
     Tags__c: 'Execution Clients;Performance;Research',
     Ecosystem_Need__c:
       'Maintain client diversity and operational excellence for the Ethereum network by improving client performance and resiliency.',
-    Hard_Requirements__c:
+    RFP_HardRequirements_Long__c:
       'Proven experience with at least one Ethereum execution client (Geth, Erigon, Nethermind, or Besu).\nDemonstrated track record in systems-level performance optimization.',
-    Soft_Requirements__c:
+    RFP_SoftRequirements__c:
       'Ability to collaborate with client teams and share findings openly.\nComfort presenting results to technical stakeholders.',
     Resources__c:
       'https://github.com/ethereum/execution-specs\nhttps://github.com/ethereum/pm',
@@ -41,9 +41,9 @@ export const rfpItems: RFPItem[] = [
     Tags__c: 'MEV;Consensus;Research',
     Ecosystem_Need__c:
       'Reduce centralization risks and censorship vectors in current MEV-Boost relay infrastructure.',
-    Hard_Requirements__c:
+    RFP_HardRequirements_Long__c:
       'Extensive knowledge of Ethereum consensus and MEV supply chain mechanics.\nAbility to model and analyze relay operator incentives.',
-    Soft_Requirements__c:
+    RFP_SoftRequirements__c:
       'Established relationships across MEV stakeholders and validator communities.\nStrong communication skills for cross-organizational coordination.',
     Resources__c:
       'https://github.com/flashbots/mev-boost\nhttps://ethresear.ch/c/mev/21',
@@ -66,9 +66,9 @@ export const rfpItems: RFPItem[] = [
     Tags__c: 'Layer 2;Interoperability;Protocol Design',
     Ecosystem_Need__c:
       'Improve composability and safety for cross-rollup applications and liquidity.',
-    Hard_Requirements__c:
+    RFP_HardRequirements_Long__c:
       'Hands-on experience building on multiple rollup stacks.\nSecurity reviews completed for bridge or interoperability systems.',
-    Soft_Requirements__c:
+    RFP_SoftRequirements__c:
       'Strong community engagement record with L2 teams.\nAbility to produce clear documentation for external integrators.',
     Resources__c:
       'https://l2beat.com/\nhttps://research.scroll.io/\nhttps://docs.arbitrum.io/',
@@ -91,9 +91,9 @@ export const rfpItems: RFPItem[] = [
     Tags__c: 'Zero Knowledge;Hardware;Acceleration',
     Ecosystem_Need__c:
       'Enable scalable, affordable ZK proof generation for rollups and privacy-preserving applications.',
-    Hard_Requirements__c:
+    RFP_HardRequirements_Long__c:
       'Expertise shipping FPGA or ASIC designs to production.\nDeep familiarity with contemporary ZK proving systems (PLONK, STARK, Groth16).',
-    Soft_Requirements__c:
+    RFP_SoftRequirements__c:
       'Experience collaborating with protocol and application teams.\nOpen-source ethos and willingness to upstream improvements.',
     Resources__c:
       'https://zkproof.org/\nhttps://github.com/privacy-scaling-explorations\nhttps://github.com/barretenberg/barretenberg',
@@ -116,9 +116,9 @@ export const rfpItems: RFPItem[] = [
     Tags__c: 'Infrastructure;Archive Nodes;Data',
     Ecosystem_Need__c:
       'Lower barriers for operating archive nodes while maintaining full historical data availability.',
-    Hard_Requirements__c:
+    RFP_HardRequirements_Long__c:
       'Demonstrated work with large-scale distributed storage or database engines.\nProficiency in systems programming languages (Go, Rust, or C++).',
-    Soft_Requirements__c:
+    RFP_SoftRequirements__c:
       'Ability to collaborate with node operator community.\nComfort sharing reproducible benchmarks and best practices.',
     Resources__c:
       'https://github.com/ethereum/go-ethereum\nhttps://github.com/ledgerwatch/erigon\nhttps://ethereum.org/en/developers/docs/nodes-and-clients/',

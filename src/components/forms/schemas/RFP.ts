@@ -30,7 +30,7 @@ export interface RFPItem {
   Tags__c?: string;
   Ecosystem_Need__c?: string;
   RFP_HardRequirements_Long__c?: string;
-  Soft_Requirements__c?: string;
+  RFP_SoftRequirements__c?: string;
   Resources__c?: string;
   RFP_Open_Date__c?: string;
   RFP_Close_Date__c?: string;
