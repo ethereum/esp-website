@@ -26,7 +26,7 @@ import { CloseIcon, HamburgerIcon, NavLinkIcon } from './UI/icons';
 
 import { selectedLink } from '../utils';
 
-import GrantManagementLogo from '../../public/images/grant-management-logo.png';
+import GrantManagementLogo from '../../public/images/ecosystem-support-logo.png';
 
 import { ESP_BLOG_URL, ETHEREUM_ORG_URL, HOME_URL, NAV_LINKS } from '../constants';
 
