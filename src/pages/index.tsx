@@ -34,7 +34,7 @@ const Home: NextPage = () => {
               </section>
             </Stack>
 
-            <Stack w={{ md: '90%' }} mb={{ md: 8 }}>
+            {/* <Stack w={{ md: '90%' }} mb={{ md: 8 }}>
               <section id='esp-role'>
                 <PageSection mb={6}>Ecosystem Support Program&apos;s Role</PageSection>
 
@@ -45,7 +45,7 @@ const Home: NextPage = () => {
                   standards.
                 </PageText>
               </section>
-            </Stack>
+            </Stack> */}
           </Flex>
 
           <section id='stats'>
@@ -237,21 +237,20 @@ const Home: NextPage = () => {
                 height: 298.968
               }}
               title='Our Role'
-              link={""}
-              hideLink
+              link={ABOUT_URL}
             >
               <PageText mb={6}>
-              The Ecosystem Support Program (ESP) comprises three teams: 
+              ESP comprises three teams:
               </PageText>
               <UnorderedList>
                 <ListItem mb={2}>
-                  <PageText>Grants Management - Supporting the strategic allocation of resources to projects and initiatives that are most critical to Ethereum&apos;s resilience and usability</PageText>
+                  <PageText>Grants Management: Supporting the strategic allocation of resources to projects that are most critical to Ethereum’s resilience and usability</PageText>
                 </ListItem>
                 <ListItem mb={2}>
-                  <PageText>Funding Coordination - Streamlining access to funding and resources across multiple channels to support projects that drive meaningful impact</PageText>
+                  <PageText>Funding Coordination: Streamlining access to funding and resources across multiple channels to support impactful projects</PageText>
                 </ListItem>
                 <ListItem>
-                  <PageText>Launchpad - Guiding early-stage organizations in navigating key challenges such as organizational design, identifying paths to financial sustainability, and establishing robust governance</PageText>
+                  <PageText>Launchpad: Guiding early-stage organizations in navigating key challenges (e.g. organizational design, financial sustainability, governance)</PageText>
                 </ListItem>
               </UnorderedList>
             </HomeAboutCard>
@@ -267,7 +266,7 @@ const Home: NextPage = () => {
                 height: 311.098
               }}
               title='Our Focus'
-              link={ABOUT_URL}
+              link={APPLICANTS_URL}
             >
               <PageText mb={6}>
                 We support free and open-source projects that strengthen Ethereum&apos;s
