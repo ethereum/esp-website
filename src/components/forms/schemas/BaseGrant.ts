@@ -80,7 +80,10 @@ const projectOverviewSchema = {
     'Ecosystem development',
     'Research'
   ]),
-  budgetRequest: z.coerce.number().positive(),
+  budgetRequest: z.coerce.number({ 
+    required_error: 'Budget request is required',
+    invalid_type_error: 'Please enter a valid number'
+  }).positive('Budget request must be a positive number'),
   currency: stringFieldSchema('Currency', { min: 1 })
 };
 
