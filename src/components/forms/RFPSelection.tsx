@@ -6,6 +6,9 @@ import {
   Grid,
   GridItem,
   Heading,
+  Icon,
+  List,
+  ListItem,
   Menu,
   MenuButton,
   MenuItem,
@@ -17,6 +20,7 @@ import {
   Tag
 } from '@chakra-ui/react';
 import { FC, useMemo, useState } from 'react';
+import { LayoutGrid, Rows3 } from 'lucide-react';
 
 import { RFPItem } from './schemas/RFP';
 import { ButtonLink } from '../ButtonLink';
@@ -31,6 +35,7 @@ interface RFPSelectionProps {
 export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems }) => {
   const [selectedItem, setSelectedItem] = useState<RFPItem | null>(null);
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [displayFormat, setDisplayFormat] = useState<'grid' | 'table'>('grid');
 
   const tagOptions = useMemo(() => {
     return rfpItems.reduce((acc, item) => {
@@ -75,21 +80,28 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems }) => {
 
   return (
     <Stack spacing={8}>
-      <Menu>
-        <MenuButton as={Button}>
-          <Flex gap={2} alignItems='center'>
-            {selectedTag ? selectedTag : 'Filter'}
-            <SelectArrowIcon />
-          </Flex>
-        </MenuButton>
-        <MenuList>
-          {tagOptions.map(tag => (
-            <MenuItem key={tag} onClick={() => setSelectedTag(tag)}>
-              {tag}
-            </MenuItem>
-          ))}
-        </MenuList>
-      </Menu>
+      <Flex justifyContent='space-between' width="full">
+        <Menu>
+          <MenuButton as={Button}>
+            <Flex gap={2} alignItems='center'>
+              {selectedTag ? selectedTag : 'Filter'}
+              <SelectArrowIcon />
+            </Flex>
+          </MenuButton>
+          <MenuList>
+            {tagOptions.map(tag => (
+              <MenuItem key={tag} onClick={() => setSelectedTag(tag)}>
+                {tag}
+              </MenuItem>
+            ))}
+          </MenuList>
+        </Menu>
+        <Flex gap={2}>
+            <Icon as={LayoutGrid} color={displayFormat === 'grid' ? 'brand.heading' : 'brand.divider.200'} boxSize={5} cursor="pointer" onClick={() => setDisplayFormat('grid')} _hover={{ color: 'brand.hover' }} />
+            <Icon as={Rows3} color={displayFormat === 'table' ? 'brand.heading' : 'brand.divider.200'} boxSize={5} cursor="pointer" onClick={() => setDisplayFormat('table')} _hover={{ color: 'brand.hover' }} />
+        </Flex>
+      </Flex>
+      {displayFormat === 'grid' && (
       <Grid templateColumns='repeat(auto-fit, minmax(300px, 1fr))' gap={6}>
         {rfpItems.filter(item => selectedTag ? item.Tags__c?.includes(selectedTag) : true).map(item => (
           <GridItem key={item.Id}>
@@ -129,6 +141,37 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems }) => {
           </GridItem>
         ))}
       </Grid>
+      )}
+
+      {displayFormat === 'table' && (
+        <List>
+          {rfpItems.filter(item => selectedTag ? item.Tags__c?.includes(selectedTag) : true).map(item => (
+            <ListItem
+              as={Flex}
+              flexDir="column"
+              gap={3}
+              key={item.Id} 
+              py={4}
+              px={2}
+              w="full"
+              borderBottom='1px solid'
+              borderColor='brand.border'
+              bg={selectedItem?.Id === item.Id ? 'orange.50' : 'white'}
+              _last={{ borderBottom: 'none' }}
+              onClick={() => handleSelectItem(item)} 
+              _hover={{ bg: 'orange.50' }} 
+              transition='all 0.2s'
+              cursor='pointer'
+              justifyContent='space-between'
+            >
+              <Flex flex={1}>
+                <Text fontWeight='600' color='brand.heading'>{item.Name}</Text>
+              </Flex>
+                <Flex flex='1' gap={2} justifyContent='flex-start' flexWrap='wrap'>{item.Tags__c?.split(';').map(tag => tag.trim()).map(tag => <Tag key={tag}>{tag}</Tag>)}</Flex>
+            </ListItem>
+          ))}
+        </List>
+      )}
 
       {selectedItem && (
         <Box
