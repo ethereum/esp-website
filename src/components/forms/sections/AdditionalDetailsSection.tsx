@@ -1,14 +1,16 @@
 import { Stack, Radio, RadioGroup } from '@chakra-ui/react';
 import { FC } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
+import { TextareaProps } from '@chakra-ui/react';
 
 import { PageSection, PageText } from '../../UI';
-import { TextField, Field } from '../fields';
+import { TextField, TextAreaField, Field } from '../fields';
 
 interface FieldConfig {
   label?: string;
   helpText?: string;
   isRequired?: boolean;
+  textareaProps?: Pick<TextareaProps, 'rows' | 'resize'>;
 }
 
 interface AdditionalDetailsSectionProps {
@@ -33,7 +35,11 @@ const DEFAULT_FIELDS = {
   },
   additionalInfo: {
     label: 'Additional questions or comments?',
-    isRequired: false
+    isRequired: false,
+    textareaProps: {
+      rows: 3,
+      resize: 'vertical' as const
+    }
   },
   opportunityOutreachConsent: {
     label: 'Allow contact from Ethereum Foundation about other opportunities?',
@@ -103,11 +109,12 @@ export const AdditionalDetailsSection: FC<AdditionalDetailsSectionProps> = ({ fi
       )}
 
       {additionalInfoConfig && (
-        <TextField
+        <TextAreaField
           id='additionalInfo'
           label={additionalInfoConfig.label}
           helpText={additionalInfoConfig.helpText}
           isRequired={additionalInfoConfig.isRequired}
+          textareaProps={additionalInfoConfig.textareaProps}
         />
       )}
 

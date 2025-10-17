@@ -1,12 +1,14 @@
 import React, { FC } from 'react';
-import { Textarea } from '@chakra-ui/react';
+import { Textarea, TextareaProps } from '@chakra-ui/react';
 import { useFormContext } from 'react-hook-form';
 
 import { Field, type Props as FieldProps } from './Field';
 
-interface Props extends Omit<FieldProps, 'children' | 'error'> {}
+interface Props extends Omit<FieldProps, 'children' | 'error'> {
+  textareaProps?: Omit<TextareaProps, 'id' | 'isDisabled'>;
+}
 
-export const TextAreaField: FC<Props> = ({ id, isDisabled, ...rest }) => {
+export const TextAreaField: FC<Props> = ({ id, isDisabled, textareaProps, ...rest }) => {
   const {
     register,
     formState: { errors }
@@ -26,6 +28,7 @@ export const TextAreaField: FC<Props> = ({ id, isDisabled, ...rest }) => {
         h='150px'
         mt={3}
         {...register(id)}
+        {...textareaProps}
       />
     </Field>
   );
