@@ -6,12 +6,15 @@ import {
 } from './BaseGrant';
 import { stringFieldSchema } from './utils';
 import { z } from 'zod';
+import { MAX_TEXT_LENGTH } from '../../../constants';
 
 export const RFPSchema = z.object({
   selectedRFPId: stringFieldSchema('RFP item', { min: 1 }),
   ...contactInformationSchema,
   ...projectOverviewSchema,
   ...additionalDetailsSchema,
+  // Override referral to be optional for RFP forms
+  referral: stringFieldSchema('Referral', { max: MAX_TEXT_LENGTH }).optional(),
   ...requiredSchema
 });
 

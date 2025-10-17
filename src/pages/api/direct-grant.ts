@@ -103,7 +103,7 @@ const handler = async (req: DirectGrantApiRequest, res: NextApiResponse) => {
       Application_SuccessMetric__c: result.data.successMetrics,
       Application_EcosystemFit__c: result.data.ecosystemFit,
       Application_CommunityFeedback__c: result.data.communityFeedback,
-      Application_OSSLicense__c: result.data.openSourceLicense,
+      Application_Open_Source_License_Picklist__c: result.data.openSourceLicense,
       Application_Profile__c: result.data.applicantProfile,
 
       // Additional Details

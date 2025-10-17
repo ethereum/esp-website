@@ -6,6 +6,7 @@ import {
   MAX_TEXT_LENGTH,
   MAX_TEXT_AREA_LENGTH,
   MIN_TEXT_AREA_LENGTH,
+  CUSTOM_MIN_TEXT_AREA_LENGTH,
   MAX_WISHLIST_FILE_SIZE
 } from '../../../constants';
 
@@ -80,7 +81,10 @@ const projectOverviewSchema = {
     'Ecosystem development',
     'Research'
   ]),
-  budgetRequest: z.coerce.number().positive(),
+  budgetRequest: z.coerce.number({ 
+    required_error: 'Budget request is required',
+    invalid_type_error: 'Please enter a valid number'
+  }).positive('Budget request must be a positive number'),
   currency: stringFieldSchema('Currency', { min: 1 })
 };
 
@@ -94,7 +98,7 @@ const projectDetailsSchema = {
     max: MAX_TEXT_AREA_LENGTH
   }),
   funding: stringFieldSchema('Other funding', {
-    min: MIN_TEXT_AREA_LENGTH,
+    min: CUSTOM_MIN_TEXT_AREA_LENGTH,
     max: MAX_TEXT_AREA_LENGTH
   }),
   problemBeingSolved: stringFieldSchema('Problem being solved', {
@@ -102,7 +106,7 @@ const projectDetailsSchema = {
     max: MAX_TEXT_AREA_LENGTH
   }),
   measuredImpact: stringFieldSchema('Measured impact', {
-    min: MIN_TEXT_AREA_LENGTH,
+    min: CUSTOM_MIN_TEXT_AREA_LENGTH,
     max: MAX_TEXT_AREA_LENGTH
   }),
   successMetrics: stringFieldSchema('Success metrics', {
@@ -114,7 +118,7 @@ const projectDetailsSchema = {
     max: MAX_TEXT_AREA_LENGTH
   }),
   communityFeedback: stringFieldSchema('Community feedback', {
-    min: MIN_TEXT_AREA_LENGTH,
+    min: CUSTOM_MIN_TEXT_AREA_LENGTH,
     max: MAX_TEXT_AREA_LENGTH
   }),
   openSourceLicense: stringFieldSchema('Open source license', {

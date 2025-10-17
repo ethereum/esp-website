@@ -6,7 +6,7 @@ import {
   requiredSchema
 } from './BaseGrant';
 import { z } from 'zod';
-import { MAX_WISHLIST_FILE_SIZE } from '../../../constants';
+import { MAX_WISHLIST_FILE_SIZE, MAX_TEXT_LENGTH } from '../../../constants';
 import { stringFieldSchema } from './utils';
 
 export const WishlistSchema = z.object({
@@ -15,6 +15,8 @@ export const WishlistSchema = z.object({
   ...projectOverviewSchema,
   ...projectDetailsSchema,
   ...additionalDetailsSchema,
+  // Override referral to be optional for Wishlist forms
+  referral: stringFieldSchema('Referral', { max: MAX_TEXT_LENGTH }).optional(),
   ...requiredSchema,
   // Override the file upload field as it is not required for the Wishlist form
   fileUpload: z

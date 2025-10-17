@@ -413,6 +413,8 @@ export const DOWNLOAD_APPLICATION_URL = '/projectGrantsApplication.docx';
 export const MAX_TEXT_LENGTH = 255;
 export const MAX_TEXT_AREA_LENGTH = 2000;
 export const MIN_TEXT_AREA_LENGTH = 500;
+// Todo: get clarity from Vanessa here
+export const CUSTOM_MIN_TEXT_AREA_LENGTH = 10;
 
 // proposal upload file size limit (4mb)
 export const MAX_PROPOSAL_FILE_SIZE = 4194304;

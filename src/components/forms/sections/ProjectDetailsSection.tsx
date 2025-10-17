@@ -1,8 +1,27 @@
 import { Stack } from '@chakra-ui/react';
 import { FC } from 'react';
+import { Controller, useFormContext } from 'react-hook-form';
+import { Select } from 'chakra-react-select';
 
 import { PageSection } from '../../UI';
-import { TextField, TextAreaField } from '../fields';
+import { TextField, TextAreaField, Field } from '../fields';
+import { DropdownIndicator } from '../../UI';
+import { chakraStyles } from '../selectStyles';
+
+const OPEN_SOURCE_LICENSE_OPTIONS = [
+  { value: 'MIT', label: 'MIT' },
+  { value: 'Apache-2.0', label: 'Apache-2.0' },
+  { value: 'BSD Licenses', label: 'BSD Licenses' },
+  { value: 'ISC License', label: 'ISC License' },
+  { value: 'BSL-1.0', label: 'BSL-1.0' },
+  { value: 'GPL-3.0', label: 'GPL-3.0' },
+  { value: 'GPL-2.0', label: 'GPL-2.0' },
+  { value: 'AGPL-3.0', label: 'AGPL-3.0' },
+  { value: 'Unlicense', label: 'Unlicense' },
+  { value: 'CC0-1.0', label: 'CC0-1.0' },
+  { value: 'Other', label: 'Other' },
+  { value: 'N/A', label: 'N/A' }
+];
 
 interface FieldConfig {
   label?: string;
@@ -87,6 +106,7 @@ const DEFAULT_FIELDS = {
 };
 
 export const ProjectDetailsSection: FC<ProjectDetailsSectionProps> = ({ fields }) => {
+  const { control } = useFormContext();
   // Merge provided fields config with defaults
   const projectStructureConfig =
     fields?.projectStructure === false
@@ -213,11 +233,29 @@ export const ProjectDetailsSection: FC<ProjectDetailsSectionProps> = ({ fields }
       )}
 
       {openSourceLicenseConfig && (
-        <TextField
-          id='openSourceLicense'
-          label={openSourceLicenseConfig.label}
-          helpText={openSourceLicenseConfig.helpText}
-          isRequired={openSourceLicenseConfig.isRequired}
+        <Controller
+          name='openSourceLicense'
+          control={control}
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
+            <Field
+              id='openSourceLicense'
+              label={openSourceLicenseConfig.label}
+              error={error}
+              isRequired={openSourceLicenseConfig.isRequired}
+              helpText={openSourceLicenseConfig.helpText}
+            >
+              <Select
+                value={OPEN_SOURCE_LICENSE_OPTIONS.find(option => option.value === value) || null}
+                onChange={selectedOption =>
+                  onChange((selectedOption as (typeof OPEN_SOURCE_LICENSE_OPTIONS)[number])?.value)
+                }
+                options={OPEN_SOURCE_LICENSE_OPTIONS}
+                placeholder='Select open source license'
+                components={{ DropdownIndicator }}
+                chakraStyles={chakraStyles}
+              />
+            </Field>
+          )}
         />
       )}
 

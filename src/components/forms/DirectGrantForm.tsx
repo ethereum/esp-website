@@ -58,7 +58,7 @@ export const DirectGrantForm: FC = () => {
         <UploadFile
           id='fileUpload'
           label='PDF Proposal'
-          helpText='Attach a PDF proposal that fulfills the requirements. This upload field is positioned at the bottom of the form.'
+          helpText='Attach a PDF proposal if you’d like to share additional details not covered in the application form.'
           dropzoneProps={{
             accept: ['application/pdf'],
             maxFiles: 1,

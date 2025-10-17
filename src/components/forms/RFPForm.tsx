@@ -44,7 +44,13 @@ export const RFPForm: FC<RFPFormProps> = ({ rfpItem }) => {
 
         <ProjectOverviewSection />
 
-        <AdditionalDetailsSection />
+        <AdditionalDetailsSection 
+          fields={{
+            referral: {
+              isRequired: false
+            }
+          }}
+        />
 
         <FormActions submitText='Submit Application' />
       </FormContainer>
