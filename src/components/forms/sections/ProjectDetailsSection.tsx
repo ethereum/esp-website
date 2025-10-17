@@ -9,16 +9,16 @@ import { DropdownIndicator } from '../../UI';
 import { chakraStyles } from '../selectStyles';
 
 const OPEN_SOURCE_LICENSE_OPTIONS = [
-  { value: 'MIT License', label: 'MIT License' },
-  { value: 'Apache License 2.0', label: 'Apache License 2.0' },
-  { value: 'BSD Licenses (BSD-2-Clause (Simplified) / BSD-3-Clause (Revised))', label: 'BSD Licenses (BSD-2-Clause (Simplified) / BSD-3-Clause (Revised))' },
+  { value: 'MIT', label: 'MIT' },
+  { value: 'Apache-2.0', label: 'Apache-2.0' },
+  { value: 'BSD Licenses', label: 'BSD Licenses' },
   { value: 'ISC License', label: 'ISC License' },
-  { value: 'Boost Software License (BSL-1.0)', label: 'Boost Software License (BSL-1.0)' },
-  { value: 'GNU General Public License, Version 3 (GPL-3.0)', label: 'GNU General Public License, Version 3 (GPL-3.0)' },
-  { value: 'GNU General Public License, Version 2 (GPL-2.0)', label: 'GNU General Public License, Version 2 (GPL-2.0)' },
-  { value: 'GNU Affero General Public License (AGPL-3.0)', label: 'GNU Affero General Public License (AGPL-3.0)' },
-  { value: 'The Unlicense', label: 'The Unlicense' },
-  { value: 'Creative Commons Zero (CC0) (CC0-1.0)', label: 'Creative Commons Zero (CC0) (CC0-1.0)' },
+  { value: 'BSL-1.0', label: 'BSL-1.0' },
+  { value: 'GPL-3.0', label: 'GPL-3.0' },
+  { value: 'GPL-2.0', label: 'GPL-2.0' },
+  { value: 'AGPL-3.0', label: 'AGPL-3.0' },
+  { value: 'Unlicense', label: 'Unlicense' },
+  { value: 'CC0-1.0', label: 'CC0-1.0' },
   { value: 'Other', label: 'Other' },
   { value: 'N/A', label: 'N/A' }
 ];
