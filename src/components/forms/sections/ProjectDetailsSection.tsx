@@ -1,8 +1,27 @@
 import { Stack } from '@chakra-ui/react';
 import { FC } from 'react';
+import { Controller, useFormContext } from 'react-hook-form';
+import { Select } from 'chakra-react-select';
 
 import { PageSection } from '../../UI';
-import { TextField, TextAreaField } from '../fields';
+import { TextField, TextAreaField, Field } from '../fields';
+import { DropdownIndicator } from '../../UI';
+import { chakraStyles } from '../selectStyles';
+
+const OPEN_SOURCE_LICENSE_OPTIONS = [
+  { value: 'MIT License', label: 'MIT License' },
+  { value: 'Apache License 2.0', label: 'Apache License 2.0' },
+  { value: 'BSD Licenses (BSD-2-Clause (Simplified) / BSD-3-Clause (Revised))', label: 'BSD Licenses (BSD-2-Clause (Simplified) / BSD-3-Clause (Revised))' },
+  { value: 'ISC License', label: 'ISC License' },
+  { value: 'Boost Software License (BSL-1.0)', label: 'Boost Software License (BSL-1.0)' },
+  { value: 'GNU General Public License, Version 3 (GPL-3.0)', label: 'GNU General Public License, Version 3 (GPL-3.0)' },
+  { value: 'GNU General Public License, Version 2 (GPL-2.0)', label: 'GNU General Public License, Version 2 (GPL-2.0)' },
+  { value: 'GNU Affero General Public License (AGPL-3.0)', label: 'GNU Affero General Public License (AGPL-3.0)' },
+  { value: 'The Unlicense', label: 'The Unlicense' },
+  { value: 'Creative Commons Zero (CC0) (CC0-1.0)', label: 'Creative Commons Zero (CC0) (CC0-1.0)' },
+  { value: 'Other', label: 'Other' },
+  { value: 'N/A', label: 'N/A' }
+];
 
 interface FieldConfig {
   label?: string;
@@ -87,6 +106,7 @@ const DEFAULT_FIELDS = {
 };
 
 export const ProjectDetailsSection: FC<ProjectDetailsSectionProps> = ({ fields }) => {
+  const { control } = useFormContext();
   // Merge provided fields config with defaults
   const projectStructureConfig =
     fields?.projectStructure === false
@@ -213,11 +233,29 @@ export const ProjectDetailsSection: FC<ProjectDetailsSectionProps> = ({ fields }
       )}
 
       {openSourceLicenseConfig && (
-        <TextField
-          id='openSourceLicense'
-          label={openSourceLicenseConfig.label}
-          helpText={openSourceLicenseConfig.helpText}
-          isRequired={openSourceLicenseConfig.isRequired}
+        <Controller
+          name='openSourceLicense'
+          control={control}
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
+            <Field
+              id='openSourceLicense'
+              label={openSourceLicenseConfig.label}
+              error={error}
+              isRequired={openSourceLicenseConfig.isRequired}
+              helpText={openSourceLicenseConfig.helpText}
+            >
+              <Select
+                value={OPEN_SOURCE_LICENSE_OPTIONS.find(option => option.value === value) || null}
+                onChange={selectedOption =>
+                  onChange((selectedOption as (typeof OPEN_SOURCE_LICENSE_OPTIONS)[number])?.value)
+                }
+                options={OPEN_SOURCE_LICENSE_OPTIONS}
+                placeholder='Select open source license'
+                components={{ DropdownIndicator }}
+                chakraStyles={chakraStyles}
+              />
+            </Field>
+          )}
         />
       )}
 
