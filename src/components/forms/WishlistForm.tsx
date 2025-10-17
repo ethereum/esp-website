@@ -49,7 +49,13 @@ export const WishlistForm: FC<WishlistFormProps> = ({ wishlistItem }) => {
 
         <ProjectDetailsSection />
 
-        <AdditionalDetailsSection />
+        <AdditionalDetailsSection 
+          fields={{
+            referral: {
+              isRequired: false
+            }
+          }}
+        />
 
         <UploadFile
           id='fileUpload'
