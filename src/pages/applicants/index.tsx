@@ -18,6 +18,7 @@ import softwareDevelopersSVG from '../../../public/images/software-developers-ve
 import researchersSVG from '../../../public/images/researchers-vector.svg';
 import academicsSVG from '../../../public/images/academics-vector.svg';
 import communityOrganizersSVG from '../../../public/images/community-organizers-vector.svg';
+import SupportTeamCards from '../../components/UI/common/SupportTeamCards';
 
 import {
   ESP_TWITTER_URL,
@@ -121,21 +122,8 @@ const Applicants: NextPage = () => {
                     </Stack>
                   </Flex>
                 </Center>
-                <Stack
-                  bg='brand.warning'
-                  borderRadius='10px'
-                  p={6}
-                >
-                  <PageText>
-                    Are you a founder seeking access to programs, mentorship, and visibility across the Ethereum ecosystem? Connect with the <Link href={FOUNDER_SUCCESS_URL} fontWeight={700} color='brand.orange.100' isExternal _hover={{ textDecoration: 'none' }}>Founder Success team</Link> to level up your journey. 
-                  </PageText>
-                  <PageText>
-                    Are you leading a business or enterprise looking to leverage Ethereum? Get in touch with the <Link href={ENTERPRISE_ACCELERATION_URL} fontWeight={700} color='brand.orange.100' isExternal _hover={{ textDecoration: 'none' }}>Enterprise Acceleration team</Link> to explore potential pathways and opportunities. 
-                  </PageText>
-                  <PageText>
-                    Are you organizing an event or launching a community initiative? Reach out to the <Link href={ETHEREUM_EVERYWHERE_URL} fontWeight={700} color='brand.orange.100' isExternal _hover={{ textDecoration: 'none' }}>Ethereum Everywhere team</Link> for support.
-                  </PageText>
-                </Stack>
+                
+                <SupportTeamCards />
               </section>
 
               <section id="process" ref={ref2}>

@@ -4,7 +4,6 @@ import {
   Grid,
   GridItem,
   ListItem,
-  SimpleGrid,
   Stack,
   UnorderedList
 } from '@chakra-ui/react';
@@ -12,7 +11,7 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 
 import { HomeAboutCard, PageMetadata, PageSection, PageText } from '../components/UI';
-import { ButtonLink } from '../components/ButtonLink';
+import SupportTeamCards from '../components/UI/common/SupportTeamCards';
 
 import applicantsHero from '../../public/images/applicants-hero.png';
 import smallSucculentSVG from '../../public/images/small-succulent.svg';
@@ -20,49 +19,10 @@ import mediumSucculentSVG from '../../public/images/medium-succulent.svg';
 import bigSucculentSVG from '../../public/images/big-succulent.svg';
 import whatWeSupportTree from '../../public/images/what-we-support-tree.png';
 import howWeSupportRoots from '../../public/images/how-we-support-roots.png';
-import communityOrganizersVector from '../../public/images/community-organizers-vector.svg';
-import otherGrantProgramsVector from '../../public/images/other-grant-programs-vector.svg';
-import researchersVector from '../../public/images/researchers-vector.svg';
 
-import { ABOUT_URL, APPLICANTS_URL, FOUNDER_SUCCESS_URL, ENTERPRISE_ACCELERATION_URL, ETHEREUM_EVERYWHERE_URL } from '../constants';
+import { ABOUT_URL, APPLICANTS_URL } from '../constants';
 
 const Home: NextPage = () => {
-  const otherSupportCards = [
-    {
-      title: 'Founders',
-      description:
-        "Level up your founder journey with access to programs, mentorship, and visibility across the Ethereum ecosystem.",
-      ctaLabel: 'Founder Success',
-      href: FOUNDER_SUCCESS_URL,
-      icon: {
-        src: researchersVector,
-        alt: 'Illustration representing founder success support'
-      }
-    },
-    {
-      title: 'Businesses',
-      description:
-        'Explore potential pathways and opportunities for businesses and enterprise looking to leverage Ethereum.',
-      ctaLabel: 'Enterprise Team',
-      href: ENTERPRISE_ACCELERATION_URL,
-      icon: {
-        src: otherGrantProgramsVector,
-        alt: 'Building illustration representing business growth'
-      }
-    },
-    {
-      title: 'Community Builders',
-      description:
-        'Request support for organizing an event or launching a community initiative.',
-      ctaLabel: 'Ethereum Everywhere',
-      href: ETHEREUM_EVERYWHERE_URL,
-      icon: {
-        src: communityOrganizersVector,
-        alt: 'Community illustration representing collaboration'
-      }
-    }
-  ];
-
   return (
     <>
       <PageMetadata
@@ -325,52 +285,7 @@ const Home: NextPage = () => {
           </section>
 
           <section id='other-support'>
-            <Stack spacing={6}>
-              <PageSection textAlign='left'>Other EcoDev Teams</PageSection>
-
-              <PageText>
-                Looking for different support? Connect with the team that best matches your next step in the ecosystem.
-              </PageText>
-
-              <SimpleGrid columns={{ base: 1, lg: 2, xl: 3 }} spacing={{ base: 6, md: 8 }}>
-                {otherSupportCards.map((card) => (
-                  <Stack
-                    key={card.title}
-                    bg='brand.warning'
-                    borderRadius='16px'
-                    p={{ base: 6, md: 8 }}
-                    spacing={5}
-                    align='flex-start'
-                    height='100%'
-                  >
-                    <Flex
-                      alignItems='center'
-                      justifyContent='center'
-                      flexWrap={'wrap'}
-                      bg='white'
-                      borderRadius='12px'
-                      p={4}
-                      height='80px'
-                      width='80px'
-                    >
-                      <Image src={card.icon.src} alt={card.icon.alt} width={48} height={48} />
-                    </Flex>
-
-                    <PageSection as='h4' fontSize='20px' lineHeight='28px' textAlign='left'>
-                      {card.title}
-                    </PageSection>
-
-                    <PageText flex={1}>{card.description}</PageText>
-
-                    <ButtonLink
-                      label={card.ctaLabel}
-                      link={card.href}
-                      width='fit-content'
-                    />
-                  </Stack>
-                ))}
-              </SimpleGrid>
-            </Stack>
+            <SupportTeamCards />
           </section>
         </Stack>
       </Box>
