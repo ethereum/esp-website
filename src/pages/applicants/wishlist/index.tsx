@@ -104,7 +104,8 @@ export const getStaticProps: GetStaticProps<WishlistProps> = async () => {
   }
 
   return {
-    props: { wishlistItems }
+    props: { wishlistItems },
+    revalidate: 3600 // Revalidate every hour (3600 seconds)
   };
 };
 

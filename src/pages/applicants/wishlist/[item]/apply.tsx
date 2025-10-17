@@ -59,7 +59,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false
+    fallback: "blocking"
   };
 };
 
@@ -78,7 +78,8 @@ export const getStaticProps: GetStaticProps<WishlistItemApplyProps> = async ({ p
   return {
     props: {
       wishlistItem
-    }
+    },
+    revalidate: 3600 // Revalidate every hour (3600 seconds)
   };
 };
 
