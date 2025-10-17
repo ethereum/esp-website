@@ -2,19 +2,25 @@ import {
   Box,
   Center,
   chakra,
+  Flex,
   Grid,
   GridItem,
   Heading,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Stack,
   Text,
   Wrap,
   WrapItem,
   Tag
 } from '@chakra-ui/react';
-import { FC, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 
 import { WishlistItem } from './schemas/Wishlist';
 import { ButtonLink } from '../ButtonLink';
+import { SelectArrowIcon } from '../UI/icons';
 
 const Button = chakra('button');
 
@@ -24,6 +30,16 @@ interface WishlistSelectionProps {
 
 export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems }) => {
   const [selectedItem, setSelectedItem] = useState<WishlistItem | null>(null);
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+
+  const tagOptions = useMemo(() => {
+    return wishlistItems.reduce((acc, item) => {
+      item.Tags__c?.split(';').forEach(tag => {
+        acc.push(tag);
+      });
+      return acc;
+    }, [] as string[]);
+  }, [wishlistItems]);
 
   const handleSelectItem = (item: WishlistItem) => {
     setSelectedItem(item);
@@ -48,8 +64,23 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems })
 
   return (
     <Stack spacing={8}>
+      <Menu>
+        <MenuButton as={Button}>
+          <Flex gap={2} alignItems='center'>
+            {selectedTag ? selectedTag : 'Filter'}
+            <SelectArrowIcon />
+          </Flex>
+        </MenuButton>
+        <MenuList>
+          {tagOptions.map(tag => (
+            <MenuItem key={tag} onClick={() => setSelectedTag(tag)}>
+              {tag}
+            </MenuItem>
+          ))}
+        </MenuList>
+      </Menu>
       <Grid templateColumns='repeat(auto-fit, minmax(300px, 1fr))' gap={6}>
-        {wishlistItems.map(item => (
+        {wishlistItems.filter(item => selectedTag ? item.Tags__c?.includes(selectedTag) : true).map(item => (
           <GridItem key={item.Id}>
             <Button
               p={6}

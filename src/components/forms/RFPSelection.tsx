@@ -2,19 +2,25 @@ import {
   Box,
   Center,
   chakra,
+  Flex,
   Grid,
   GridItem,
   Heading,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Stack,
   Text,
   Wrap,
   WrapItem,
   Tag
 } from '@chakra-ui/react';
-import { FC, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 
 import { RFPItem } from './schemas/RFP';
 import { ButtonLink } from '../ButtonLink';
+import { SelectArrowIcon } from '../UI/icons';
 
 const Button = chakra('button');
 
@@ -24,6 +30,16 @@ interface RFPSelectionProps {
 
 export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems }) => {
   const [selectedItem, setSelectedItem] = useState<RFPItem | null>(null);
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+
+  const tagOptions = useMemo(() => {
+    return rfpItems.reduce((acc, item) => {
+      item.Tags__c?.split(';').forEach(tag => {
+        acc.push(tag);
+      });
+      return acc;
+    }, [] as string[]);
+  }, [rfpItems]);
 
   const handleSelectItem = (item: RFPItem) => {
     setSelectedItem(item);
@@ -59,8 +75,23 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems }) => {
 
   return (
     <Stack spacing={8}>
+      <Menu>
+        <MenuButton as={Button}>
+          <Flex gap={2} alignItems='center'>
+            {selectedTag ? selectedTag : 'Filter'}
+            <SelectArrowIcon />
+          </Flex>
+        </MenuButton>
+        <MenuList>
+          {tagOptions.map(tag => (
+            <MenuItem key={tag} onClick={() => setSelectedTag(tag)}>
+              {tag}
+            </MenuItem>
+          ))}
+        </MenuList>
+      </Menu>
       <Grid templateColumns='repeat(auto-fit, minmax(300px, 1fr))' gap={6}>
-        {rfpItems.map(item => (
+        {rfpItems.filter(item => selectedTag ? item.Tags__c?.includes(selectedTag) : true).map(item => (
           <GridItem key={item.Id}>
             <Button
               p={6}
