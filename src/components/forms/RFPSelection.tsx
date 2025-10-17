@@ -1,4 +1,16 @@
-import { Box, Center, chakra, Grid, GridItem, Heading, Stack, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Center,
+  chakra,
+  Grid,
+  GridItem,
+  Heading,
+  Stack,
+  Text,
+  Wrap,
+  WrapItem,
+  Tag
+} from '@chakra-ui/react';
 import { FC, useState } from 'react';
 
 import { RFPItem } from './schemas/RFP';
@@ -15,6 +27,23 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems }) => {
 
   const handleSelectItem = (item: RFPItem) => {
     setSelectedItem(item);
+  };
+
+  const parseTags = (tags?: string) =>
+    tags
+      ?.split(';')
+      .map(tag => tag.trim())
+      .filter(Boolean) ?? [];
+
+  const formatDate = (value?: string) => {
+    if (!value) return undefined;
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return value;
+    return date.toLocaleDateString(undefined, {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
   };
 
   if (rfpItems.length === 0) {
@@ -92,12 +121,87 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems }) => {
                 <Text color='brand.paragraph'>{selectedItem.Expected_Deliverables__c}</Text>
               </Box>
             )}
-            {selectedItem.Requirements__c && (
+            {selectedItem.Tags__c && (
               <Box>
                 <Text fontWeight='600' color='brand.heading' mb={1}>
-                  Requirements
+                  Tags
                 </Text>
-                <Text color='brand.paragraph'>{selectedItem.Requirements__c}</Text>
+                <Wrap spacing={2}>
+                  {parseTags(selectedItem.Tags__c).map(tag => (
+                    <WrapItem key={tag}>
+                      <Tag
+                        size='md'
+                        variant='subtle'
+                        colorScheme='orange'
+                        px={3}
+                        py={1}
+                        borderRadius='full'
+                      >
+                        {tag}
+                      </Tag>
+                    </WrapItem>
+                  ))}
+                </Wrap>
+              </Box>
+            )}
+            {selectedItem.Ecosystem_Need__c && (
+              <Box>
+                <Text fontWeight='600' color='brand.heading' mb={1}>
+                  Ecosystem Need
+                </Text>
+                <Text color='brand.paragraph' whiteSpace='pre-line'>
+                  {selectedItem.Ecosystem_Need__c}
+                </Text>
+              </Box>
+            )}
+            {selectedItem.RFP_HardRequirements_Long__c && (
+              <Box>
+                <Text fontWeight='600' color='brand.heading' mb={1}>
+                  Hard Requirements
+                </Text>
+                <Text color='brand.paragraph' whiteSpace='pre-line'>
+                  {selectedItem.RFP_HardRequirements_Long__c}
+                </Text>
+              </Box>
+            )}
+            {selectedItem.RFP_SoftRequirements__c && (
+              <Box>
+                <Text fontWeight='600' color='brand.heading' mb={1}>
+                  Soft Requirements
+                </Text>
+                <Text color='brand.paragraph' whiteSpace='pre-line'>
+                  {selectedItem.RFP_SoftRequirements__c}
+                </Text>
+              </Box>
+            )}
+            {selectedItem.Resources__c && (
+              <Box>
+                <Text fontWeight='600' color='brand.heading' mb={1}>
+                  Resources
+                </Text>
+                <Text color='brand.paragraph' whiteSpace='pre-line'>
+                  {selectedItem.Resources__c}
+                </Text>
+              </Box>
+            )}
+            {(selectedItem.RFP_Open_Date__c ||
+              selectedItem.RFP_Close_Date__c ||
+              selectedItem.RFP_Project_Duration__c) && (
+              <Box>
+                <Text fontWeight='600' color='brand.heading' mb={1}>
+                  Timeline
+                </Text>
+                <Stack spacing={1} color='brand.paragraph' fontSize='sm'>
+                  {selectedItem.RFP_Open_Date__c && (
+                    <Text>Opens: {formatDate(selectedItem.RFP_Open_Date__c)}</Text>
+                  )}
+                  {selectedItem.RFP_Close_Date__c && (
+                    <Text>Closes: {formatDate(selectedItem.RFP_Close_Date__c)}</Text>
+                  )}
+                  {selectedItem.RFP_Project_Duration__c && (
+                    <Text>Estimated Project Duration: {selectedItem.RFP_Project_Duration__c}</Text>
+                  )}
+                </Stack>
               </Box>
             )}
           </Stack>
