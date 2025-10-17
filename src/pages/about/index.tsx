@@ -68,7 +68,7 @@ const About = () => {
                 <Stack spacing={6}>
                   <PageSubheading>Grants Management</PageSubheading>
                   <PageText>
-                    The Grants Management team focuses on allocating resources to the projects and initiatives that are most critical to Ethereum's resilience and usability. 
+                    The Grants Management team focuses on allocating resources to the projects and initiatives that are most critical to Ethereum&apos;s resilience and usability. 
                   </PageText>
                   <PageText>
                     This involves coordinating grant-making across EF teams to ensure that support is aligned and impactful. In addition, we support grantees throughout their journey by offering guidance, fostering connections across the ecosystem, and drawing insights from outcomes to guide future efforts.
