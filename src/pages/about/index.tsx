@@ -1,5 +1,6 @@
-import { Box, Flex, Link, ListItem, Stack } from '@chakra-ui/react';
+import { Box, Center, Flex, Link, ListItem, Stack } from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
+import Image from 'next/image';
 
 import { ButtonLink } from '../../components';
 import {
@@ -12,16 +13,17 @@ import {
 
 import {
   ARGOT_COLLECTIVE_URL,
-  ENTERPRISE_ACCELERATION_URL,
-  ETHEREUM_EVERYWHERE_URL,
   ETHEREUM_GRANTS_URL,
-  FOUNDER_SUCCESS_URL,
   FUNDING_COORDINATION_EMAIL,
   LAUNCHPAD_EMAIL,
   POWDR_LABS_URL,
   REMIX_LABS_URL,
   SIDEBAR_ABOUT_LINKS
 } from '../../constants';
+
+import AboutHeroImage from '../../../public/images/about-hero.png';
+import ApplicantsHeroImage from '../../../public/images/applicants-hero.png';
+import HowWeSupportRootsImage from '../../../public/images/how-we-support-roots.png';
 
 const About = () => {
     // `threshold` option allows us to control the % of visibility required before triggering the Intersection Observer
@@ -53,7 +55,7 @@ const About = () => {
                   spacing={6}
                 >
                   <PageText>
-                    ESP is an ecosystem development cluster within the EF comprising three teams: Grants Management, Funding Coordination, and Launchpad. Together, we focus on strengthening Ethereum&apos;s foundations, supporting teams across the ecosystem, and enabling future builders. 
+                    ESP is an ecosystem development cluster within the EF comprising three teams: Grants Management, Funding Coordination, and Launchpad.
                   </PageText>
                   <PageText>
                     Together, we focus on strengthening Ethereum&apos;s foundations, supporting teams across the ecosystem, and enabling future builders. The work we support is free, open-source, non-commercial, and designed to create positive sum outcomes for the community.
@@ -66,6 +68,9 @@ const About = () => {
 
               <section id='grants-management' ref={ref2}>
                 <Stack spacing={6}>
+                  <Center>
+                    <Image src={HowWeSupportRootsImage} alt='Grants Management' width={540} height={298.968} />
+                  </Center>
                   <PageSubheading>Grants Management</PageSubheading>
                   <PageText>
                     The Grants Management team focuses on allocating resources to the projects and initiatives that are most critical to Ethereum&apos;s resilience and usability. 
@@ -78,6 +83,9 @@ const About = () => {
 
               <section id='funding-coordination' ref={ref3}>
                 <Stack spacing={6}>
+                  <Center>
+                    <Image src={ApplicantsHeroImage} alt='Funding Coordination' width={540} height={298.968} />
+                  </Center>
                   <PageSubheading>Funding Coordination</PageSubheading>
                   <PageText>
                     The Funding Coordination team aims to make it simpler and faster for impactful projects to secure funding. Our work is organized around four pillars: facilitating co-funding for EF grantees, securing co-funding for EF initiatives, improving access to funding opportunities throughout the ecosystem, and expanding the overall pool of available funding.
@@ -109,6 +117,9 @@ const About = () => {
 
               <section id='launchpad' ref={ref4}>
                 <Stack spacing={6}>
+                  <Center>
+                    <Image src={AboutHeroImage} alt='Launchpad' width={540} height={298.968} />
+                  </Center>
                   <PageSubheading>Launchpad</PageSubheading>
                   <PageText>
                     The Launchpad Program supports early-stage organizations in navigating key challenges, including organizational design, identifying paths to financial sustainability, and establishing robust governance. We work with spin-outs from the EF, grantees, and other ecosystem teams that can benefit from this guidance, helping them build strong and impactful organizations.

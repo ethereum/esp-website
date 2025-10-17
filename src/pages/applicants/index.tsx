@@ -137,7 +137,7 @@ const Applicants: NextPage = () => {
                     Submit your application detailing how you plan to address the Wishlist or RFP item. Describe how your background and approach align with the project requirements by providing clear information on your methodology, timeline, and deliverables. Once submitted, you will receive a confirmation email.
                   </ProcessStep>
                   <ProcessStep title="Review">
-                    The Grants Management (GM) team reviews applications in collaboration with the EF team responsible for the corresponding Wishlist or RFP item. The evaluation process may include an interview to discuss your proposal in detail, project rescoping, or budget negotiations.
+                    The Grants Management (GM) team reviews applications in collaboration with the EF team responsible for the corresponding Wishlist or RFP item. The evaluation process may: include an interview to discuss your proposal in detail, project rescoping, or budget negotiations.
                   </ProcessStep>
                   <ProcessStep title="Decision">
                     You will be notified of funding decisions via email. If your project is selected, we will work closely with you to establish a clear grant structure with milestone-based payments. All grant recipients also complete an onboarding process, involving KYC verification and signing a legal grant agreement. 
