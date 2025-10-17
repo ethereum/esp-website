@@ -30,7 +30,7 @@ export const HomepageHero: FC = () => {
           textAlign='left'
           mb={{ base: 6, md: 10 }}
         >
-          We provide support to the builders of the Ethereum ecosystem.
+          We provide support to builders creating public goods for the Ethereum ecosystem.
         </PageSubheading>
 
         <Flex

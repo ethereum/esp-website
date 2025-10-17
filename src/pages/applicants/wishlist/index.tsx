@@ -1,4 +1,4 @@
-import { Box, Flex, ListItem, Stack } from '@chakra-ui/react';
+import { Box, Flex, Stack } from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import type { GetStaticProps, NextPage } from 'next';
 
@@ -9,7 +9,8 @@ import {
   PageSubheading,
   PageText,
   PageMetadata,
-  PrivacyPolicyAgreement
+  PrivacyPolicyAgreement,
+  ApplicationAttentionMsg
 } from '../../../components/UI';
 
 import { SIDEBAR_WISHLIST_LINKS } from '../../../constants';
@@ -52,7 +53,8 @@ const Wishlist: NextPage<WishlistProps> = ({ wishlistItems }) => {
             </Stack>
 
             <Stack spacing={10}>
-              <section id='what-are-wishlist-items' ref={ref2}>
+              <ApplicationAttentionMsg />
+              {/* <section id='what-are-wishlist-items' ref={ref2}>
                 <PageSection mb={6}>What are wishlist items?</PageSection>
 
                 <PageText mb={6}>
@@ -73,7 +75,7 @@ const Wishlist: NextPage<WishlistProps> = ({ wishlistItems }) => {
                   These items are continuously updated based on ecosystem needs, community feedback,
                   and strategic priorities.
                 </PageText>
-              </section>
+              </section> */}
 
               <section id='apply' ref={ref3}>
                 <PageSection mb={6}>Apply</PageSection>

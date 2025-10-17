@@ -49,24 +49,17 @@ const About = () => {
             <Stack spacing={10}>
               <section id='overview' ref={ref}>
                 <PageSubheading mb={6}>Overview</PageSubheading>
-
-                <PageText mb={6}>
-                  The Ecosystem Support Program (ESP) is an ecosystem development cluster within the EF comprising three teams: Grants Management, Funding Coordination, and Launchpad. Together, we focus on strengthening Ethereum&apos;s foundations, supporting teams across the ecosystem, and enabling future builders. The work we support is free, open-source, non-commercial, and designed to create positive sum outcomes for the community. Learn more about each of our teams below!
-                </PageText>
-
                 <Stack
-                  bg='brand.warning'
-                  borderRadius='10px'
-                  p={6}
+                  spacing={6}
                 >
                   <PageText>
-                    Are you a founder seeking access to programs, mentorship, and visibility across the Ethereum ecosystem? Connect with the <Link href={FOUNDER_SUCCESS_URL} fontWeight={700} color='brand.orange.100' isExternal _hover={{ textDecoration: 'none' }}>Founder Success team</Link> to level up your journey. 
+                    ESP is an ecosystem development cluster within the EF comprising three teams: Grants Management, Funding Coordination, and Launchpad. Together, we focus on strengthening Ethereum&apos;s foundations, supporting teams across the ecosystem, and enabling future builders. 
                   </PageText>
                   <PageText>
-                    Are you leading a business or enterprise looking to leverage Ethereum? Get in touch with the <Link href={ENTERPRISE_ACCELERATION_URL} fontWeight={700} color='brand.orange.100' isExternal _hover={{ textDecoration: 'none' }}>Enterprise Acceleration team</Link> to explore potential pathways and opportunities. 
+                    Together, we focus on strengthening Ethereum&apos;s foundations, supporting teams across the ecosystem, and enabling future builders. The work we support is free, open-source, non-commercial, and designed to create positive sum outcomes for the community.
                   </PageText>
                   <PageText>
-                    Are you organizing an event or launching a community initiative? Reach out to the <Link href={ETHEREUM_EVERYWHERE_URL} fontWeight={700} color='brand.orange.100' isExternal _hover={{ textDecoration: 'none' }}>Ethereum Everywhere team</Link> for support.
+                    Learn more about each of our teams below!
                   </PageText>
                 </Stack>
               </section>
@@ -75,7 +68,10 @@ const About = () => {
                 <Stack spacing={6}>
                   <PageSubheading>Grants Management</PageSubheading>
                   <PageText>
-                    The Grants Management team focuses on allocating resources to the projects and initiatives that are most critical to Ethereum&apos;s resilience and usability. This involves coordinating grant-making across EF teams to ensure that support is aligned and impactful. In addition, we support grantees throughout their journey by offering guidance, fostering connections across the ecosystem, and drawing insights from outcomes to guide future efforts.
+                    The Grants Management team focuses on allocating resources to the projects and initiatives that are most critical to Ethereum's resilience and usability. 
+                  </PageText>
+                  <PageText>
+                    This involves coordinating grant-making across EF teams to ensure that support is aligned and impactful. In addition, we support grantees throughout their journey by offering guidance, fostering connections across the ecosystem, and drawing insights from outcomes to guide future efforts.
                   </PageText>
                 </Stack>
               </section>
@@ -103,9 +99,10 @@ const About = () => {
                       Working with TradFi and compliant DeFi entities to explore crypto-native mechanisms for funding public-interest projects on Ethereum
                     </ListItem>
                   </List>
-                  <PageText>Want to learn more about the Funding Coordination team?</PageText>
+                  <PageText fontWeight={600}>Want to learn more about the Funding Coordination team?</PageText>
                   <ButtonLink label='Get in touch' link={FUNDING_COORDINATION_EMAIL} width={"auto"} display={"inline-block"} />
-                  <PageText>Looking for more support options?</PageText>
+                  {/* Todo: review bold */}
+                  <PageText fontWeight={600}>Looking for more support options?</PageText>
                   <ButtonLink label='Explore our grants directory' width={"auto"} link={ETHEREUM_GRANTS_URL} display={"inline-block"} />
                 </Stack>
               </section>
@@ -133,7 +130,7 @@ const About = () => {
                   <PageText>
                     We have worked with EF spinouts such as <Link href={ARGOT_COLLECTIVE_URL} fontWeight={700} color='brand.orange.100' isExternal _hover={{ textDecoration: 'none' }}>Argot Collective</Link>, <Link href={REMIX_LABS_URL} fontWeight={700} color='brand.orange.100' isExternal _hover={{ textDecoration: 'none' }}>Remix Labs</Link> and <Link href={POWDR_LABS_URL} fontWeight={700} color='brand.orange.100' isExternal _hover={{ textDecoration: 'none' }}>Powdr Labs</Link>, as well as several EF grantees.
                   </PageText>
-                  <PageText>
+                  <PageText fontWeight={600}>
                     Want to learn more about the Launchpad Program?
                   </PageText>
                   <ButtonLink label='Get in touch' link={`mailto:${LAUNCHPAD_EMAIL}`} width={"auto"} display={"inline-block"} />
