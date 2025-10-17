@@ -467,3 +467,18 @@ export const EPF_APPLICATION_PREVIEW_URL = 'https://esp.ethereum.foundation/imag
 
 // Thank you and apply urls
 export const GRANTS_URLS = [DEVCON_GRANTS_APPLY_URL, DEVCON_GRANTS_THANK_YOU_PAGE_URL];
+
+export const OPEN_SOURCE_LICENSE_OPTIONS = [
+  { value: 'MIT', label: 'MIT' },
+  { value: 'Apache-2.0', label: 'Apache-2.0' },
+  { value: 'BSD Licenses', label: 'BSD Licenses' },
+  { value: 'ISC License', label: 'ISC License' },
+  { value: 'BSL-1.0', label: 'BSL-1.0' },
+  { value: 'GPL-3.0', label: 'GPL-3.0' },
+  { value: 'GPL-2.0', label: 'GPL-2.0' },
+  { value: 'AGPL-3.0', label: 'AGPL-3.0' },
+  { value: 'Unlicense', label: 'Unlicense' },
+  { value: 'CC0-1.0', label: 'CC0-1.0' },
+  { value: 'Other', label: 'Other' },
+  { value: 'N/A', label: 'N/A' }
+];

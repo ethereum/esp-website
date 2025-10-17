@@ -122,8 +122,6 @@ const Applicants: NextPage = () => {
                     </Stack>
                   </Flex>
                 </Center>
-                
-                <SupportTeamCards />
               </section>
 
               <section id="process" ref={ref2}>
@@ -211,6 +209,8 @@ const Applicants: NextPage = () => {
                   </FAQItem>
                 </Accordion>
               </section>
+
+              <SupportTeamCards />
             </Stack>
           </Box>
         </Flex>
