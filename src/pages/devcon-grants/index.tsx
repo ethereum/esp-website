@@ -10,7 +10,8 @@ import {
   PageText,
   PageMetadata,
   OrderedList,
-  ReadyToApply
+  ReadyToApply,
+  BannerApplicationClosed
 } from '../../components/UI';
 
 import {
@@ -29,7 +30,6 @@ const DevconGrants: NextPage = () => {
   const [ref4, inView4] = useInView({ threshold: 0.5, initialInView: false });
   const [ref5, inView5] = useInView({ threshold: 0.3, initialInView: false });
   const [ref6, inView6] = useInView({ threshold: 0.5, initialInView: false });
-  const [ref7, inView7] = useInView({ threshold: 0.5, initialInView: false });
   return (
     <>
       <PageMetadata
@@ -50,11 +50,12 @@ const DevconGrants: NextPage = () => {
                 inView4,
                 inView5,
                 inView6,
-                inView7,
               ]}
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
+              <BannerApplicationClosed mb={12} title="Applications for Destino Devconnect Support are closed." hideDescription />
+
               <Stack mb={8} mt={{ base: 10, md: 0 }}>
                 <section id='description' ref={ref}>
                   <PageSubheading mb={8}>What is Destino Devconnect Support?</PageSubheading>
@@ -186,12 +187,6 @@ const DevconGrants: NextPage = () => {
                     </Link>
                     .
                   </PageText>
-                </section>
-
-                <section id='apply' ref={ref7}>
-                  <Stack mt={6}>
-                    <ReadyToApply link={`${DEVCON_GRANTS_APPLY_URL}`} />
-                  </Stack>
                 </section>
               </Stack>
             </Box>
