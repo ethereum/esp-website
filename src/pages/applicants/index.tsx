@@ -1,7 +1,6 @@
-import { Accordion, Box, Center, Flex, Link, ListItem, Stack } from '@chakra-ui/react';
+import { Accordion, Box, Flex, Link, ListItem, Stack } from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import type { NextPage } from 'next';
-import Image from 'next/image';
 
 import {
   ApplicantsSidebar,
@@ -14,10 +13,6 @@ import {
   ProcessStep,
 } from '../../components/UI';
 
-import softwareDevelopersSVG from '../../../public/images/software-developers-vector.svg';
-import researchersSVG from '../../../public/images/researchers-vector.svg';
-import academicsSVG from '../../../public/images/academics-vector.svg';
-import communityOrganizersSVG from '../../../public/images/community-organizers-vector.svg';
 import SupportTeamCards from '../../components/UI/common/SupportTeamCards';
 
 import {
@@ -25,10 +20,7 @@ import {
   ESP_FARCASTER_URL,
   ESP_LENS_URL,
   ESP_BLUESKY_URL,
-  FOUNDER_SUCCESS_URL,
   SIDEBAR_APPLICANTS_LINKS,
-  ENTERPRISE_ACCELERATION_URL,
-  ETHEREUM_EVERYWHERE_URL,
 } from '../../constants';
 
 const Applicants: NextPage = () => {
@@ -61,67 +53,9 @@ const Applicants: NextPage = () => {
                 <PageText mb={8}>
                 ESP provides financial and/or non-financial support to eligible projects working to improve Ethereum. We focus on work that strengthens Ethereum&apos;s foundations and enables future builders. The work we support is free, open-source, non-commercial, and designed to create positive sum outcomes for the community.
                 </PageText>
-                <PageText mb={8}>
+                <PageText>
                 Our support is generally directed toward enabling builders rather than end-users: strengthening Ethereum&apos;s infrastructure, expanding the range of tools available to those building on Ethereum, gaining a deeper understanding of cryptographic primitives, growing the builder ecosystem through education and community development, etc. 
                 </PageText>
-                <Center mb={12}>
-                  <Flex direction={{ base: 'column', md: 'row' }}>
-                    <Stack mr={{ base: 0, md: 10 }} mb={{ base: 2, md: 0 }}>
-                      <Flex>
-                        <Box mr={4} flexShrink={0}>
-                          <Image
-                            src={softwareDevelopersSVG}
-                            alt='Software and protocol developers vector'
-                            height={37}
-                            width={40}
-                          />
-                        </Box>
-                        <Flex h='37px' alignItems='center'>
-                          <PageText fontWeight={600}>Software and protocol developers</PageText>
-                        </Flex>
-                      </Flex>
-
-                      <Flex>
-                        <Box mr={4} flexShrink={0}>
-                          <Image
-                            src={researchersSVG}
-                            alt='Researchers vector'
-                            height={40}
-                            width={40}
-                          />
-                        </Box>
-                        <Flex h='40px' alignItems='center'>
-                          <PageText fontWeight={600}>Researchers</PageText>
-                        </Flex>
-                      </Flex>
-                    </Stack>
-
-                    <Stack>
-                      <Flex>
-                        <Box mr={4} flexShrink={0}>
-                          <Image src={academicsSVG} alt='Academics vector' height={36} width={40} />
-                        </Box>
-                        <Flex h='36px' alignItems='center'>
-                          <PageText fontWeight={600}>Academics</PageText>
-                        </Flex>
-                      </Flex>
-
-                      <Flex>
-                        <Box mr={4} flexShrink={0}>
-                          <Image
-                            src={communityOrganizersSVG}
-                            alt='Community organizers vector'
-                            height={36}
-                            width={40}
-                          />
-                        </Box>
-                        <Flex h='36px' alignItems='center'>
-                          <PageText fontWeight={600}>Community organizers</PageText>
-                        </Flex>
-                      </Flex>
-                    </Stack>
-                  </Flex>
-                </Center>
               </section>
 
               <section id="process" ref={ref2}>
@@ -135,7 +69,7 @@ const Applicants: NextPage = () => {
                     Submit your application detailing how you plan to address the Wishlist or RFP item. Describe how your background and approach align with the project requirements by providing clear information on your methodology, timeline, and deliverables. Once submitted, you will receive a confirmation email.
                   </ProcessStep>
                   <ProcessStep title="Review">
-                    The Grants Management (GM) team reviews applications in collaboration with the EF team responsible for the corresponding Wishlist or RFP item. The evaluation process may: include an interview to discuss your proposal in detail, project rescoping, or budget negotiations.
+                    The Grants Management (GM) team reviews applications in collaboration with the EF team responsible for the corresponding Wishlist or RFP item. The evaluation process may include: an interview to discuss your proposal in detail, project rescoping, or budget negotiations.
                   </ProcessStep>
                   <ProcessStep title="Decision">
                     You will be notified of funding decisions via email. If your project is selected, we will work closely with you to establish a clear grant structure with milestone-based payments. All grant recipients also complete an onboarding process, involving KYC verification and signing a legal grant agreement. 

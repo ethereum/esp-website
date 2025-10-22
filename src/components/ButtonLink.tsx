@@ -30,7 +30,7 @@ export const ButtonLink = ({ label, link, width, display, isApplyButton }: Props
           h='56px'
           w={width}
           position='absolute'
-          display={display || "block"}
+          display={display || "flex"}
           animate={shadowBoxControl}
         />
 
@@ -42,7 +42,7 @@ export const ButtonLink = ({ label, link, width, display, isApplyButton }: Props
           justifyContent='center'
           alignItems='center'
           position='relative'
-          display={display || "block"}
+          display={display || "flex"}
           _hover={{ bg: 'brand.hover' }}
           whileHover={{ x: -1.5, y: -1.5 }}
           onMouseEnter={() => setButtonHovered(true)}

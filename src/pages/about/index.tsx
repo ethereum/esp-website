@@ -5,8 +5,8 @@ import Image from 'next/image';
 import { ButtonLink } from '../../components';
 import {
   ApplicantsSidebar,
-  PageSubheading,
   List,
+  PageSection,
   PageText,
   PageMetadata,
 } from '../../components/UI';
@@ -50,7 +50,7 @@ const About = () => {
           <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
             <Stack spacing={10}>
               <section id='overview' ref={ref}>
-                <PageSubheading mb={6}>Overview</PageSubheading>
+                <PageSection mb={6}>Overview</PageSection>
                 <Stack
                   spacing={6}
                 >
@@ -71,7 +71,7 @@ const About = () => {
                   <Center>
                     <Image src={HowWeSupportRootsImage} alt='Grants Management' width={540} height={298.968} />
                   </Center>
-                  <PageSubheading>Grants Management</PageSubheading>
+                  <PageSection>Grants Management</PageSection>
                   <PageText>
                     The Grants Management team focuses on allocating resources to the projects and initiatives that are most critical to Ethereum&apos;s resilience and usability. 
                   </PageText>
@@ -86,7 +86,7 @@ const About = () => {
                   <Center>
                     <Image src={ApplicantsHeroImage} alt='Funding Coordination' width={540} height={298.968} />
                   </Center>
-                  <PageSubheading>Funding Coordination</PageSubheading>
+                  <PageSection>Funding Coordination</PageSection>
                   <PageText>
                     The Funding Coordination team aims to make it simpler and faster for impactful projects to secure funding. Our work is organized around four pillars: facilitating co-funding for EF grantees, securing co-funding for EF initiatives, improving access to funding opportunities throughout the ecosystem, and expanding the overall pool of available funding.
                   </PageText>
@@ -107,11 +107,10 @@ const About = () => {
                       Working with TradFi and compliant DeFi entities to explore crypto-native mechanisms for funding public-interest projects on Ethereum
                     </ListItem>
                   </List>
-                  <PageText fontWeight={600}>Want to learn more about the Funding Coordination team?</PageText>
-                  <ButtonLink label='Get in touch' link={FUNDING_COORDINATION_EMAIL} width={"auto"} display={"inline-block"} />
-                  {/* Todo: review bold */}
-                  <PageText fontWeight={600}>Looking for more support options?</PageText>
-                  <ButtonLink label='Explore our grants directory' width={"auto"} link={ETHEREUM_GRANTS_URL} display={"inline-block"} />
+                  <Center gap={2} flexDirection={{ base: 'column', md: 'row' }}>
+                    <ButtonLink label='Get in touch' link={FUNDING_COORDINATION_EMAIL} width="fit-content" />
+                    <ButtonLink label='Explore our grants directory' width="fit-content" link={ETHEREUM_GRANTS_URL} />
+                  </Center>
                 </Stack>
               </section>
 
@@ -120,7 +119,7 @@ const About = () => {
                   <Center>
                     <Image src={AboutHeroImage} alt='Launchpad' width={540} height={298.968} />
                   </Center>
-                  <PageSubheading>Launchpad</PageSubheading>
+                  <PageSection>Launchpad</PageSection>
                   <PageText>
                     The Launchpad Program supports early-stage organizations in navigating key challenges, including organizational design, identifying paths to financial sustainability, and establishing robust governance. We work with spin-outs from the EF, grantees, and other ecosystem teams that can benefit from this guidance, helping them build strong and impactful organizations.
                   </PageText>
@@ -141,10 +140,9 @@ const About = () => {
                   <PageText>
                     We have worked with EF spinouts such as <Link href={ARGOT_COLLECTIVE_URL} fontWeight={700} color='brand.orange.100' isExternal _hover={{ textDecoration: 'none' }}>Argot Collective</Link>, <Link href={REMIX_LABS_URL} fontWeight={700} color='brand.orange.100' isExternal _hover={{ textDecoration: 'none' }}>Remix Labs</Link> and <Link href={POWDR_LABS_URL} fontWeight={700} color='brand.orange.100' isExternal _hover={{ textDecoration: 'none' }}>Powdr Labs</Link>, as well as several EF grantees.
                   </PageText>
-                  <PageText fontWeight={600}>
-                    Want to learn more about the Launchpad Program?
-                  </PageText>
-                  <ButtonLink label='Get in touch' link={`mailto:${LAUNCHPAD_EMAIL}`} width={"auto"} display={"inline-block"} />
+                  <Center>
+                    <ButtonLink label='Get in touch' link={`mailto:${LAUNCHPAD_EMAIL}`} width="fit-content" />
+                  </Center>
                 </Stack>
               </section>
             </Stack>

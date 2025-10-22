@@ -38,11 +38,11 @@ export const HomepageHero: FC = () => {
           gap={4}
           flexWrap={{ base: 'wrap', md: 'nowrap' }}
         >
-          <ButtonLink label='Learn more' link={APPLICANTS_URL} width='177px' />
+          <ButtonLink label='Grant support' link={APPLICANTS_URL} width='201px' />
           <ButtonLink
             label='Other support'
             link='#other-support'
-            width='fit-content'
+            width='201px'
           />
         </Flex>
       </Stack>
