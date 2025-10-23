@@ -21,9 +21,9 @@ import {
   SIDEBAR_ABOUT_LINKS
 } from '../../constants';
 
-import AboutHeroImage from '../../../public/images/about-hero.png';
-import ApplicantsHeroImage from '../../../public/images/applicants-hero.png';
-import HowWeSupportRootsImage from '../../../public/images/how-we-support-roots.png';
+import GrantManagementLogo from '../../../public/images/grant-management-logo.png';
+import FundingCoordinationLogo from '../../../public/images/funding-coordination-logo.png';
+import LaunchpadLogo from '../../../public/images/launchpad-logo.png';
 
 const About = () => {
     // `threshold` option allows us to control the % of visibility required before triggering the Intersection Observer
@@ -67,10 +67,8 @@ const About = () => {
               </section>
 
               <section id='grants-management' ref={ref2}>
-                <Stack spacing={6}>
-                  <Center>
-                    <Image src={HowWeSupportRootsImage} alt='Grants Management' width={540} height={298.968} />
-                  </Center>
+                <Stack spacing={6} mt={8}>
+                    <Image src={GrantManagementLogo} alt='Grants Management' height={100} objectFit='contain' />
                   <PageSection>Grants Management</PageSection>
                   <PageText>
                     The Grants Management team focuses on allocating resources to the projects and initiatives that are most critical to Ethereum&apos;s resilience and usability. 
@@ -82,10 +80,8 @@ const About = () => {
               </section>
 
               <section id='funding-coordination' ref={ref3}>
-                <Stack spacing={6}>
-                  <Center>
-                    <Image src={ApplicantsHeroImage} alt='Funding Coordination' width={540} height={298.968} />
-                  </Center>
+                <Stack spacing={6} mt={8}>
+                    <Image src={FundingCoordinationLogo} alt='Funding Coordination' height={100} objectFit='contain' />
                   <PageSection>Funding Coordination</PageSection>
                   <PageText>
                     The Funding Coordination team aims to make it simpler and faster for impactful projects to secure funding. Our work is organized around four pillars: facilitating co-funding for EF grantees, securing co-funding for EF initiatives, improving access to funding opportunities throughout the ecosystem, and expanding the overall pool of available funding.
@@ -115,10 +111,8 @@ const About = () => {
               </section>
 
               <section id='launchpad' ref={ref4}>
-                <Stack spacing={6}>
-                  <Center>
-                    <Image src={AboutHeroImage} alt='Launchpad' width={540} height={298.968} />
-                  </Center>
+                <Stack spacing={6} mt={8}>
+                    <Image src={LaunchpadLogo} alt='Launchpad' height={100} objectFit='contain' />
                   <PageSection>Launchpad</PageSection>
                   <PageText>
                     The Launchpad Program supports early-stage organizations in navigating key challenges, including organizational design, identifying paths to financial sustainability, and establishing robust governance. We work with spin-outs from the EF, grantees, and other ecosystem teams that can benefit from this guidance, helping them build strong and impactful organizations.
