@@ -25,6 +25,7 @@ import { LayoutGrid, Rows3 } from 'lucide-react';
 import { RFPItem } from './schemas/RFP';
 import { ButtonLink } from '../ButtonLink';
 import { SelectArrowIcon } from '../UI/icons';
+import parseStringForUrls from '../../utils/parseStringForUrls';
 
 const Button = chakra('button');
 
@@ -38,12 +39,12 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems }) => {
   const [displayFormat, setDisplayFormat] = useState<'grid' | 'table'>('grid');
 
   const tagOptions = useMemo(() => {
-    return rfpItems.reduce((acc, item) => {
+    return Array.from(new Set(rfpItems.reduce((acc, item) => {
       item.Tags__c?.split(';').forEach(tag => {
-        acc.push(tag);
+        acc.push(tag.trim());
       });
       return acc;
-    }, [] as string[]);
+    }, [] as string[]).filter(Boolean)));
   }, [rfpItems]);
 
   const handleSelectItem = (item: RFPItem) => {
@@ -77,6 +78,11 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems }) => {
       </Stack>
     );
   }
+
+  const parseResources = (resources?: string) => {
+    if (!resources) return null;
+    return parseStringForUrls(resources)
+  };
 
   return (
     <Stack spacing={8}>
@@ -253,9 +259,9 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems }) => {
                 <Text fontWeight='600' color='brand.heading' mb={1}>
                   Resources
                 </Text>
-                <Text color='brand.paragraph' whiteSpace='pre-line'>
-                  {selectedItem.Resources__c}
-                </Text>
+                <Box color='brand.paragraph' whiteSpace='pre-line'>
+                  {parseResources(selectedItem.Resources__c)}
+                </Box>
               </Box>
             )}
             {(selectedItem.RFP_Open_Date__c ||

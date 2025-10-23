@@ -101,10 +101,6 @@ const RFP: NextPage<RFPProps> = ({ rfpItems }) => {
 export const getStaticProps: GetStaticProps<RFPProps> = async () => {
   const rfpItems = await getGrantInitiativeItems('RFP');
 
-  if (!rfpItems.length) {
-    throw new Error('No RFP items found');
-  }
-
   return {
     props: {
       rfpItems

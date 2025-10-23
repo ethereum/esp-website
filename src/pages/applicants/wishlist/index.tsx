@@ -101,10 +101,6 @@ const Wishlist: NextPage<WishlistProps> = ({ wishlistItems }) => {
 export const getStaticProps: GetStaticProps<WishlistProps> = async () => {
   const wishlistItems = await getGrantInitiativeItems('Wishlist');
 
-  if (!wishlistItems.length) {
-    throw new Error('No wishlist items found');
-  }
-
   return {
     props: { wishlistItems },
     revalidate: 3600 // Revalidate every hour (3600 seconds)

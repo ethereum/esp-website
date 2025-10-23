@@ -25,6 +25,7 @@ import { LayoutGrid, Rows3 } from 'lucide-react';
 import { WishlistItem } from './schemas/Wishlist';
 import { ButtonLink } from '../ButtonLink';
 import { SelectArrowIcon } from '../UI/icons';
+import parseStringForUrls from '../../utils/parseStringForUrls';
 
 const Button = chakra('button');
 
@@ -38,12 +39,12 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems })
   const [displayFormat, setDisplayFormat] = useState<'grid' | 'table'>('grid');
 
   const tagOptions = useMemo(() => {
-    return wishlistItems.reduce((acc, item) => {
+    return Array.from(new Set(wishlistItems.reduce((acc, item) => {
       item.Tags__c?.split(';').forEach(tag => {
-        acc.push(tag);
+        acc.push(tag.trim());
       });
       return acc;
-    }, [] as string[]);
+    }, [] as string[]).filter(Boolean)));
   }, [wishlistItems]);
 
   const handleSelectItem = (item: WishlistItem) => {
@@ -66,6 +67,11 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems })
       </Stack>
     );
   }
+
+  const parseResources = (resources?: string) => {
+    if (!resources) return null;
+    return parseStringForUrls(resources)
+  };
 
   return (
     <Stack spacing={8}>
@@ -221,7 +227,7 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems })
                   Resources
                 </Text>
                 <Text color='brand.paragraph' whiteSpace='pre-line'>
-                  {selectedItem.Resources__c}
+                  {parseResources(selectedItem.Resources__c)}
                 </Text>
               </Box>
             )}
