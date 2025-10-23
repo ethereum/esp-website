@@ -1,10 +1,10 @@
 import { Box, Flex, Stack } from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import type { GetStaticProps, NextPage } from 'next';
+import { useSearchParams } from 'next/navigation';
 
 import {
   ApplicantsSidebar,
-  List,
   PageSection,
   PageSubheading,
   PageText,
@@ -26,6 +26,8 @@ const Wishlist: NextPage<WishlistProps> = ({ wishlistItems }) => {
   const [ref, inView] = useInView({ threshold: 0.5 });
   const [ref2, inView2] = useInView({ threshold: 0.5, initialInView: false });
   const [ref3, inView3] = useInView({ threshold: 0, initialInView: false });
+
+  const tags = useSearchParams().get('tags')?.split(',');
 
   return (
     <>
@@ -88,7 +90,7 @@ const Wishlist: NextPage<WishlistProps> = ({ wishlistItems }) => {
               </section>
 
               <Box mt={8}>
-                <WishlistSelection wishlistItems={wishlistItems} />
+                <WishlistSelection wishlistItems={wishlistItems} paramTags={tags} />
               </Box>
             </Stack>
           </Box>

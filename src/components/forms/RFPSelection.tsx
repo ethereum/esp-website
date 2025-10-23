@@ -19,7 +19,7 @@ import {
   WrapItem,
   Tag
 } from '@chakra-ui/react';
-import { FC, useMemo, useState } from 'react';
+import { FC, useMemo, useState, useEffect } from 'react';
 import { LayoutGrid, Rows3 } from 'lucide-react';
 
 import { RFPItem } from './schemas/RFP';
@@ -31,11 +31,12 @@ const Button = chakra('button');
 
 interface RFPSelectionProps {
   rfpItems: RFPItem[];
+  paramTags?: string[];
 }
 
-export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems }) => {
+export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems, paramTags }) => {
   const [selectedItem, setSelectedItem] = useState<RFPItem | null>(null);
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [selectedTags, setSelectedTags] = useState<string[]>(paramTags ? paramTags : []);
   const [displayFormat, setDisplayFormat] = useState<'grid' | 'table'>('grid');
 
   const tagOptions = useMemo(() => {
@@ -46,6 +47,15 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems }) => {
       return acc;
     }, [] as string[]).filter(Boolean)));
   }, [rfpItems]);
+
+  // Sync selectedTags with paramTags when paramTags changes
+  useEffect(() => {
+    if (paramTags) {
+      // Validate paramTags against available tagOptions
+      const validTags = paramTags.filter(tag => tagOptions.includes(tag));
+      setSelectedTags(validTags);
+    }
+  }, [paramTags, tagOptions]);
 
   const handleSelectItem = (item: RFPItem) => {
     setSelectedItem(item);

@@ -1,10 +1,10 @@
-import { Box, Flex, ListItem, Stack } from '@chakra-ui/react';
+import { Box, Flex, Stack } from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import type { GetStaticProps, NextPage } from 'next';
+import { useSearchParams } from 'next/navigation';
 
 import {
   ApplicantsSidebar,
-  List,
   PageSection,
   PageSubheading,
   PageText,
@@ -26,6 +26,8 @@ const RFP: NextPage<RFPProps> = ({ rfpItems }) => {
   const [ref, inView] = useInView({ threshold: 0.5 });
   const [ref2, inView2] = useInView({ threshold: 0.5, initialInView: false });
   const [ref3, inView3] = useInView({ threshold: 0, initialInView: false });
+  
+  const tags = useSearchParams().get('tags')?.split(',');
 
   return (
     <>
@@ -88,7 +90,7 @@ const RFP: NextPage<RFPProps> = ({ rfpItems }) => {
               </section>
 
               <Box mt={8}>
-                <RFPSelection rfpItems={rfpItems} />
+                <RFPSelection rfpItems={rfpItems} paramTags={tags} />
               </Box>
             </Stack>
           </Box>

@@ -19,7 +19,7 @@ import {
   WrapItem,
   Tag,
 } from '@chakra-ui/react';
-import { FC, useMemo, useState } from 'react';
+import { FC, useMemo, useState, useEffect } from 'react';
 import { LayoutGrid, Rows3 } from 'lucide-react';
 
 import { WishlistItem } from './schemas/Wishlist';
@@ -31,11 +31,12 @@ const Button = chakra('button');
 
 interface WishlistSelectionProps {
   wishlistItems: WishlistItem[];
+  paramTags?: string[];
 }
 
-export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems }) => {
+export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems, paramTags }) => {
   const [selectedItem, setSelectedItem] = useState<WishlistItem | null>(null);
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [selectedTags, setSelectedTags] = useState<string[]>(paramTags ? paramTags : []);
   const [displayFormat, setDisplayFormat] = useState<'grid' | 'table'>('grid');
 
   const tagOptions = useMemo(() => {
@@ -46,6 +47,15 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems })
       return acc;
     }, [] as string[]).filter(Boolean)));
   }, [wishlistItems]);
+
+  // Sync selectedTags with paramTags when paramTags changes
+  useEffect(() => {
+    if (paramTags) {
+      // Validate paramTags against available tagOptions
+      const validTags = paramTags.filter(tag => tagOptions.includes(tag));
+      setSelectedTags(validTags);
+    }
+  }, [paramTags, tagOptions]);
 
   const handleSelectItem = (item: WishlistItem) => {
     setSelectedItem(item);
