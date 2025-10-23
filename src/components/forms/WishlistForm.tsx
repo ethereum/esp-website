@@ -40,6 +40,7 @@ export const WishlistForm: FC<WishlistFormProps> = ({ wishlistItem }) => {
         <SelectedItemDisplay
           selectedItem={wishlistItem}
           displayText={wishlistFormConfig.selectedItemDisplayText}
+          extraDetails={true}
         />
 
         <ContactInformationSection />

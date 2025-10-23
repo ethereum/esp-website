@@ -30,8 +30,6 @@ const WishlistApply: NextPage<WishlistItemApplyProps> = ({ wishlistItem }) => {
               Apply for {wishlistItem.Name}
             </PageSubheading>
 
-            <PageText mb={6}>{wishlistItem.Description__c}</PageText>
-
             <PageText mb={6}>
               Please review the item details carefully and explain how your background and approach
               align with the requirements. Be specific about your methodology, timeline, and

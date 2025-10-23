@@ -1,17 +1,22 @@
-import { Box, Center, Stack } from '@chakra-ui/react';
+import { Box, Center, Stack, Tag, Wrap, WrapItem } from '@chakra-ui/react';
 import { FC, ReactNode } from 'react';
 
 import { PageText } from '../../UI';
 import { SubmitButton } from '../../SubmitButton';
 import { Captcha } from '../fields';
+import parseStringForUrls from '../../../utils/parseStringForUrls';
 
 interface SelectedItemDisplayProps {
   selectedItem: {
     Id: string;
     Name: string;
     Description__c: string;
+    Tags__c?: string;
+    Out_of_Scope__c?: string;
+    Resources__c?: string;
   };
   displayText: string;
+  extraDetails?: boolean;
 }
 
 /**
@@ -19,7 +24,8 @@ interface SelectedItemDisplayProps {
  */
 export const SelectedItemDisplay: FC<SelectedItemDisplayProps> = ({
   selectedItem,
-  displayText
+  displayText,
+  extraDetails = false
 }) => (
   <Box p={6} bg='white' borderRadius='lg' borderLeft='4px solid' borderLeftColor='brand.orange.100'>
     <Stack spacing={2}>
@@ -32,6 +38,55 @@ export const SelectedItemDisplay: FC<SelectedItemDisplayProps> = ({
       <PageText fontSize='sm' color='brand.paragraph'>
         {selectedItem.Description__c}
       </PageText>
+      {extraDetails && (
+        <>
+        { selectedItem.Tags__c && (
+          <Box>
+            <PageText fontSize='sm' color='brand.helpText' fontWeight='600' mb={1}>
+              Tags
+            </PageText>
+            <Wrap spacing={2}>
+              {selectedItem.Tags__c?.split(';').map(tag => tag.trim()).filter(Boolean).map(tag => (
+                <WrapItem key={tag}>
+                  <Tag
+                    size='md'
+                    variant='subtle'
+                    colorScheme='orange'
+                    px={3}
+                    py={1}
+                    borderRadius='full'
+                  >
+                    {tag}
+                  </Tag>
+                </WrapItem>
+              ))}
+            </Wrap>
+          </Box>
+        )}
+
+        { selectedItem.Out_of_Scope__c && (
+          <Box>
+            <PageText fontSize='sm' color='brand.helpText' fontWeight='600' mb={1}>
+              Out of Scope
+            </PageText>
+            <PageText fontSize='sm' color='brand.paragraph'>
+              {selectedItem.Out_of_Scope__c}
+            </PageText>
+          </Box>
+        )}
+
+        { selectedItem.Resources__c && (
+          <Box>
+            <PageText fontSize='sm' color='brand.helpText' fontWeight='600' mb={1}>
+              Resources
+            </PageText>
+            <PageText fontSize='sm' whiteSpace='pre-line'>
+              {parseStringForUrls(selectedItem.Resources__c ?? '')}
+            </PageText>
+          </Box>
+        )}
+        </>
+      )}
     </Stack>
   </Box>
 );

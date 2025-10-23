@@ -30,8 +30,6 @@ const RFPApply: NextPage<RFPItemApplyProps> = ({ rfpItem }) => {
               Apply for {rfpItem.Name}
             </PageSubheading>
 
-            <PageText mb={6}>{rfpItem.Description__c}</PageText>
-
             <PageText mb={6}>
               Please review the RFP requirements carefully and submit a comprehensive proposal that
               demonstrates your expertise and approach. Include detailed methodology, timeline, and
