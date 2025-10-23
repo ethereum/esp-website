@@ -35,7 +35,7 @@ interface WishlistSelectionProps {
 
 export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems }) => {
   const [selectedItem, setSelectedItem] = useState<WishlistItem | null>(null);
-  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [displayFormat, setDisplayFormat] = useState<'grid' | 'table'>('grid');
 
   const tagOptions = useMemo(() => {
@@ -49,6 +49,18 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems })
 
   const handleSelectItem = (item: WishlistItem) => {
     setSelectedItem(item);
+  };
+
+  const handleToggleTag = (tag: string) => {
+    setSelectedTags(prev => 
+      prev.includes(tag) 
+        ? prev.filter(t => t !== tag)
+        : [...prev, tag]
+    );
+  };
+
+  const handleClearAllTags = () => {
+    setSelectedTags([]);
   };
 
   const parseTags = (tags?: string) =>
@@ -79,14 +91,24 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems })
         <Menu>
           <MenuButton as={Button}>
             <Flex gap={2} alignItems='center'>
-              {selectedTag ? selectedTag : 'Filter'}
+              {selectedTags.length > 0 ? `${selectedTags.length} tag${selectedTags.length > 1 ? 's' : ''} selected` : 'Filter by tags'}
               <SelectArrowIcon />
             </Flex>
           </MenuButton>
           <MenuList>
+            {selectedTags.length > 0 && (
+              <MenuItem onClick={handleClearAllTags} color="red.500">
+                Clear all tags
+              </MenuItem>
+            )}
             {tagOptions.map(tag => (
-              <MenuItem key={tag} onClick={() => setSelectedTag(tag)}>
-                {tag}
+              <MenuItem 
+                key={tag} 
+                onClick={() => handleToggleTag(tag)}
+                bg={selectedTags.includes(tag) ? 'orange.50' : 'white'}
+                color={selectedTags.includes(tag) ? 'orange.600' : 'inherit'}
+              >
+                {selectedTags.includes(tag) && '✓ '}{tag}
               </MenuItem>
             ))}
           </MenuList>
@@ -96,9 +118,41 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems })
             <Icon as={Rows3} color={displayFormat === 'table' ? 'brand.heading' : 'brand.divider.200'} boxSize={5} cursor="pointer" onClick={() => setDisplayFormat('table')} _hover={{ color: 'brand.hover' }} />
         </Flex>
       </Flex>
+      
+      {selectedTags.length > 0 && (
+        <Box>
+          <Text fontSize="sm" color="brand.helpText" mb={2}>
+            Selected tags:
+          </Text>
+          <Wrap spacing={2}>
+            {selectedTags.map(tag => (
+              <WrapItem key={tag}>
+                <Tag
+                  size="md"
+                  variant="subtle"
+                  colorScheme="orange"
+                  px={3}
+                  py={1}
+                  borderRadius="full"
+                  cursor="pointer"
+                  onClick={() => handleToggleTag(tag)}
+                  _hover={{ opacity: 0.8 }}
+                >
+                  {tag} ×
+                </Tag>
+              </WrapItem>
+            ))}
+          </Wrap>
+        </Box>
+      )}
+      
       {displayFormat === 'grid' && (
       <Grid templateColumns='repeat(auto-fit, minmax(300px, 1fr))' gap={6}>
-        {wishlistItems.filter(item => selectedTag ? item.Tags__c?.includes(selectedTag) : true).map(item => (
+        {wishlistItems.filter(item => 
+          selectedTags.length === 0 
+            ? true 
+            : selectedTags.some(tag => item.Tags__c?.includes(tag))
+        ).map(item => (
           <GridItem key={item.Id}>
             <Button
               p={6}
@@ -138,7 +192,11 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems })
       )}
       {displayFormat === 'table' && (
         <List>
-          {wishlistItems.filter(item => selectedTag ? item.Tags__c?.includes(selectedTag) : true).map(item => (
+          {wishlistItems.filter(item => 
+            selectedTags.length === 0 
+              ? true 
+              : selectedTags.some(tag => item.Tags__c?.includes(tag))
+          ).map(item => (
             <ListItem
               as={Flex}
               flexDir="column"
