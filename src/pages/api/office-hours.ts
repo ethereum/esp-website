@@ -39,7 +39,7 @@ async function handler(req: OfficeHoursNextApiRequest, res: NextApiResponse): Pr
       }
 
       // Single record creation
-      conn.sobject('Lead').create(
+      conn.sobject('Application__c').create(
         {
           FirstName: FirstName.trim(),
           LastName: LastName.trim(),
