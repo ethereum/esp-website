@@ -1,6 +1,6 @@
 import { Stack } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import { ReactNode, useState } from 'react';
+import { ReactNode, useState, useEffect } from 'react';
 
 import { Description, NavigationTabs } from '../UI';
 
@@ -11,16 +11,49 @@ import {
   APPLICANTS_TABS_MAP,
   APPLICANTS_URL,
   GRANTEE_FINANCE_URL,
-  OFFICE_HOURS_URL
+  OFFICE_HOURS_URL,
+  WISHLIST_URL,
+  RFP_URL
 } from '../../constants';
 
 type Props = {
   children: ReactNode;
 };
 
+// Helper function to get tab index for both static and dynamic routes
+const getTabIndexFromPath = (pathname: string): number => {
+  if (APPLICANTS_TABS_MAP[pathname] !== undefined) {
+    return APPLICANTS_TABS_MAP[pathname];
+  }
+
+  if (pathname.startsWith('/applicants/office-hours')) {
+    return 1;
+  }
+
+  if (pathname.startsWith('/applicants/wishlist')) {
+    return 2;
+  }
+
+  if (pathname.startsWith('/applicants/rfp')) {
+    return 3;
+  }
+
+  if (pathname.startsWith('/applicants')) {
+    return 0;
+  }
+
+  return 0;
+};
+
 export const ApplicantsLayout = ({ children }: Props) => {
   const router = useRouter();
-  const [tabIndex, setTabIndex] = useState(APPLICANTS_TABS_MAP[router.pathname]);
+  const pathname = router.pathname;
+
+  const [tabIndex, setTabIndex] = useState(getTabIndexFromPath(pathname));
+
+  useEffect(() => {
+    setTabIndex(getTabIndexFromPath(pathname));
+  }, [pathname]);
 
   const handleChange = (index: number) => {
     setTabIndex(index);
@@ -46,12 +79,32 @@ export const ApplicantsLayout = ({ children }: Props) => {
         );
         break;
 
+      case 2:
+        router.push(
+          {
+            pathname: WISHLIST_URL
+          },
+          undefined,
+          { scroll: false }
+        );
+        break;
+
+      case 3:
+        router.push(
+          {
+            pathname: RFP_URL
+          },
+          undefined,
+          { scroll: false }
+        );
+        break;
+
       default:
         break;
     }
   };
 
-  const isGranteeFinance = router.pathname === GRANTEE_FINANCE_URL;
+  const isGranteeFinance = pathname === GRANTEE_FINANCE_URL;
 
   return (
     <>

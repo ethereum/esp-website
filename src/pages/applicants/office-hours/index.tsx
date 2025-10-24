@@ -21,9 +21,10 @@ import {
   ETHEREUM_BROAD_ECOSYSTEM_URL,
   ETHEREUM_JOBS_URL,
   ETHEREUM_ORG_URL,
-  ABOUT_URL,
+  APPLICANTS_URL,
   SIDEBAR_OFFICE_HOURS_LINKS,
-  OFFICE_HOURS_APPLY_URL
+  OFFICE_HOURS_APPLY_URL,
+  FOUNDER_SUCCESS_URL
 } from '../../../constants';
 
 const OfficeHours: NextPage = () => {
@@ -77,7 +78,7 @@ const OfficeHours: NextPage = () => {
                   common call topics include:
                 </PageText>
 
-                <PageText fontWeight={700}>Project feedback or guidance</PageText>
+                <PageText fontWeight={700}>Project feedback</PageText>
                 <PageText mb={6}>
                   If you&apos;re looking to maximize the impact of your project, we may be able to
                   offer guidance such as idea validation, help thinking through a roadmap, or
@@ -85,12 +86,17 @@ const OfficeHours: NextPage = () => {
                 </PageText>
 
                 <PageText fontWeight={700}>Help navigating the Ethereum ecosystem</PageText>
-                <PageText>
+                <PageText mb={6}>
                   We like to think we know the Ethereum ecosystem pretty well. If you&apos;re
                   feeling lost, we may be able to help point you in the right direction by
                   identifying resources you might not be aware of, other projects tackling similar
                   problems, communities and events to consider participating in, or even other
                   potential sources of funding.
+                </PageText>
+
+                <PageText fontWeight={700}>Guidance on project alignment</PageText>
+                <PageText>
+                  Thinking about submitting an application for a Wishlist or RFP item, but not certain if your project fits? We&apos;d be happy to offer friendly advice and help you see if it could be a good match.
                 </PageText>
               </section>
 
@@ -116,7 +122,7 @@ const OfficeHours: NextPage = () => {
                   <Link
                     fontWeight={700}
                     color='brand.orange.100'
-                    href={ABOUT_URL}
+                    href={APPLICANTS_URL}
                     _hover={{ textDecoration: 'none' }}
                   >
                     scope
@@ -249,6 +255,9 @@ const OfficeHours: NextPage = () => {
                       click here
                     </Link>
                     .
+                  </ListItem>
+                  <ListItem>
+                    If you&apos;re a founder seeking access to programs, mentorship, and visibility across the Ethereum ecosystem: <Link href={FOUNDER_SUCCESS_URL} fontWeight={700} color='brand.orange.100' isExternal _hover={{ textDecoration: 'none' }}>click here</Link>.
                   </ListItem>
                 </List>
               </section>

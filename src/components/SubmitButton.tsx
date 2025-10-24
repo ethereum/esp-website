@@ -17,8 +17,8 @@ interface Props {
   text: string;
 }
 
-const MotionBox = motion(Box);
-const MotionButton = motion(Button);
+const MotionBox = motion.create(Box);
+const MotionButton = motion.create(Button);
 
 export const SubmitButton = ({
   id = 'submit-application',

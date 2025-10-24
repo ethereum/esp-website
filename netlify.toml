@@ -38,10 +38,6 @@
   to = "/about/"
   force = true
 [[redirects]]
-  from = "/*/wishlist/"
-  to = "/about/"
-  force = true
-[[redirects]]
   from = "/*/projects/"
   to = "/about/who-we-support/"
   force = true
@@ -144,10 +140,6 @@
 
 [[redirects]]
   from = "/support/"
-  to = "/about/"
-  force = true
-[[redirects]]
-  from = "/wishlist/"
   to = "/about/"
   force = true
 [[redirects]]
