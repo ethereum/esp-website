@@ -64,7 +64,6 @@ export const DirectGrantForm: FC = () => {
             maxFiles: 1,
             maxSize: 4194304 // 4MB
           }}
-          isRequired
         />
 
         <FormActions submitText='Submit Application' />

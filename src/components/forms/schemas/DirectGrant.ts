@@ -17,9 +17,9 @@ export const DirectGrantSchema = z.object({
   // File upload field
   fileUpload: z
     .any()
-    .refine(file => (file?.size ?? 0) <= MAX_WISHLIST_FILE_SIZE, 'Max file size is 4MB.')
-    .refine(file => (file?.type || file?.mimetype) === 'application/pdf', 'File must be a PDF')
-    .or(z.literal(''))
+    .optional()
+    .refine(file => !file || (file?.size ?? 0) <= MAX_WISHLIST_FILE_SIZE, 'Max file size is 4MB.')
+    .refine(file => !file || (file?.type || file?.mimetype) === 'application/pdf', 'File must be a PDF')
 });
 
 export type DirectGrantData = z.infer<typeof DirectGrantSchema>;

@@ -18,12 +18,12 @@ export const WishlistSchema = z.object({
   // Override referral to be optional for Wishlist forms
   referral: stringFieldSchema('Referral', { max: MAX_TEXT_LENGTH }).optional(),
   ...requiredSchema,
-  // Override the file upload field as it is not required for the Wishlist form
+  // Override file upload field as optional for the Wishlist form
   fileUpload: z
     .any()
-    .refine(file => (file?.size ?? 0) <= MAX_WISHLIST_FILE_SIZE, 'Max file size is 4MB.')
-    .refine(file => (file?.type || file?.mimetype) === 'application/pdf', 'File must be a PDF')
-    .or(z.literal(''))
+    .optional()
+    .refine(file => !file || (file?.size ?? 0) <= MAX_WISHLIST_FILE_SIZE, 'Max file size is 4MB.')
+    .refine(file => !file || (file?.type || file?.mimetype) === 'application/pdf', 'File must be a PDF')
 });
 
 export type WishlistData = z.infer<typeof WishlistSchema>;
