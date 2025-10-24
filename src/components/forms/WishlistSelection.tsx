@@ -1,6 +1,5 @@
 import {
   Box,
-  Center,
   chakra,
   Flex,
   Grid,
@@ -20,6 +19,7 @@ import {
   Tag,
 } from '@chakra-ui/react';
 import { FC, useMemo, useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { LayoutGrid, Rows3 } from 'lucide-react';
 
 import { WishlistItem } from './schemas/Wishlist';
@@ -35,7 +35,7 @@ interface WishlistSelectionProps {
 }
 
 export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems, paramTags }) => {
-  const [selectedItem, setSelectedItem] = useState<WishlistItem | null>(null);
+  const router = useRouter();
   const [selectedTags, setSelectedTags] = useState<string[]>(paramTags ? paramTags : []);
   const [displayFormat, setDisplayFormat] = useState<'grid' | 'table'>('grid');
 
@@ -57,10 +57,6 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems, p
     }
   }, [paramTags, tagOptions]);
 
-  const handleSelectItem = (item: WishlistItem) => {
-    setSelectedItem(item);
-  };
-
   const handleToggleTag = (tag: string) => {
     setSelectedTags(prev => 
       prev.includes(tag) 
@@ -71,6 +67,10 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems, p
 
   const handleClearAllTags = () => {
     setSelectedTags([]);
+  };
+
+  const handleSelectItem = (item: WishlistItem) => {
+    router.push(`/applicants/wishlist/${item.Id}`);
   };
 
   const parseTags = (tags?: string) =>
@@ -167,7 +167,7 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems, p
             <Button
               p={6}
               border='2px solid'
-              borderColor={selectedItem?.Id === item.Id ? 'brand.orange.100' : 'brand.border'}
+              borderColor={'brand.border'}
               borderRadius='lg'
               textAlign='left'
               transition='all 0.2s'
@@ -217,7 +217,7 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems, p
               w="full"
               borderBottom='1px solid'
               borderColor='brand.border'
-              bg={selectedItem?.Id === item.Id ? 'orange.50' : 'white'}
+              bg='white'
               _last={{ borderBottom: 'none' }}
               onClick={() => handleSelectItem(item)} 
               _hover={{ bg: 'orange.50' }} 
@@ -232,85 +232,6 @@ export const WishlistSelection: FC<WishlistSelectionProps> = ({ wishlistItems, p
             </ListItem>
           ))}
         </List>
-      )}
-
-      {selectedItem && (
-        <Box
-          mt={8}
-          p={6}
-          bg='brand.newsletter.bgGradient.start'
-          borderRadius='lg'
-          borderLeft='4px solid'
-          borderLeftColor='brand.orange.100'
-        >
-          <Stack spacing={3}>
-            <Heading size='md' color='brand.heading'>
-              Selected: {selectedItem.Name}
-            </Heading>
-            <Text color='brand.paragraph'>{selectedItem.Description__c}</Text>
-            {selectedItem.Expected_Deliverables__c && (
-              <Box>
-                <Text fontWeight='600' color='brand.heading' mb={1}>
-                  Expected Deliverables
-                </Text>
-                <Text color='brand.paragraph'>{selectedItem.Expected_Deliverables__c}</Text>
-              </Box>
-            )}
-            {selectedItem.Tags__c && (
-              <Box>
-                <Text fontWeight='600' color='brand.heading' mb={1}>
-                  Tags
-                </Text>
-                <Wrap spacing={2}>
-                  {parseTags(selectedItem.Tags__c).map(tag => (
-                    <WrapItem key={tag}>
-                      <Tag
-                        size='md'
-                        variant='subtle'
-                        colorScheme='orange'
-                        px={3}
-                        py={1}
-                        borderRadius='full'
-                      >
-                        {tag}
-                      </Tag>
-                    </WrapItem>
-                  ))}
-                </Wrap>
-              </Box>
-            )}
-            {selectedItem.Out_of_Scope__c && (
-              <Box>
-                <Text fontWeight='600' color='brand.heading' mb={1}>
-                  Out of Scope
-                </Text>
-                <Text color='brand.paragraph' whiteSpace='pre-line'>
-                  {selectedItem.Out_of_Scope__c}
-                </Text>
-              </Box>
-            )}
-            {selectedItem.Resources__c && (
-              <Box>
-                <Text fontWeight='600' color='brand.heading' mb={1}>
-                  Resources
-                </Text>
-                <Text color='brand.paragraph' whiteSpace='pre-line'>
-                  {parseResources(selectedItem.Resources__c)}
-                </Text>
-              </Box>
-            )}
-          </Stack>
-        </Box>
-      )}
-
-      {selectedItem && (
-        <Center mt={8}>
-          <ButtonLink
-            label='Apply'
-            link={`/applicants/wishlist/${selectedItem?.Id}/apply`}
-            width='208px'
-          />
-        </Center>
       )}
     </Stack>
   );

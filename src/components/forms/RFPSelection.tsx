@@ -1,6 +1,5 @@
 import {
   Box,
-  Center,
   chakra,
   Flex,
   Grid,
@@ -21,9 +20,9 @@ import {
 } from '@chakra-ui/react';
 import { FC, useMemo, useState, useEffect } from 'react';
 import { LayoutGrid, Rows3 } from 'lucide-react';
+import { useRouter } from 'next/router';
 
 import { RFPItem } from './schemas/RFP';
-import { ButtonLink } from '../ButtonLink';
 import { SelectArrowIcon } from '../UI/icons';
 import parseStringForUrls from '../../utils/parseStringForUrls';
 
@@ -35,7 +34,7 @@ interface RFPSelectionProps {
 }
 
 export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems, paramTags }) => {
-  const [selectedItem, setSelectedItem] = useState<RFPItem | null>(null);
+  const router = useRouter();
   const [selectedTags, setSelectedTags] = useState<string[]>(paramTags ? paramTags : []);
   const [displayFormat, setDisplayFormat] = useState<'grid' | 'table'>('grid');
 
@@ -58,7 +57,7 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems, paramTags }) => 
   }, [paramTags, tagOptions]);
 
   const handleSelectItem = (item: RFPItem) => {
-    setSelectedItem(item);
+    router.push(`/applicants/rfp/${item.Id}`);
   };
 
   const handleToggleTag = (tag: string) => {
@@ -178,11 +177,11 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems, paramTags }) => 
             <Button
               p={6}
               border='2px solid'
-              borderColor={selectedItem?.Id === item.Id ? 'brand.orange.100' : 'brand.border'}
+              borderColor={'brand.border'}
               borderRadius='lg'
               textAlign='left'
               transition='all 0.2s'
-              bg={selectedItem?.Id === item.Id ? 'brand.orange.10' : 'white'}
+              bg='white'
               _hover={{
                 borderColor: 'brand.orange.100',
                 transform: 'translateY(-2px)',
@@ -230,7 +229,7 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems, paramTags }) => 
               w="full"
               borderBottom='1px solid'
               borderColor='brand.border'
-              bg={selectedItem?.Id === item.Id ? 'orange.50' : 'white'}
+              bg='white'
               _last={{ borderBottom: 'none' }}
               onClick={() => handleSelectItem(item)} 
               _hover={{ bg: 'orange.50' }} 
@@ -245,125 +244,6 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems, paramTags }) => 
             </ListItem>
           ))}
         </List>
-      )}
-
-      {selectedItem && (
-        <Box
-          mt={8}
-          p={6}
-          bg='brand.newsletter.bgGradient.start'
-          borderRadius='lg'
-          borderLeft='4px solid'
-          borderLeftColor='brand.orange.100'
-        >
-          <Stack spacing={3}>
-            <Heading size='md' color='brand.heading'>
-              Selected: {selectedItem.Name}
-            </Heading>
-            <Text color='brand.paragraph'>{selectedItem.Description__c}</Text>
-            {selectedItem.Expected_Deliverables__c && (
-              <Box>
-                <Text fontWeight='600' color='brand.heading' mb={1}>
-                  Expected Deliverables
-                </Text>
-                <Text color='brand.paragraph'>{selectedItem.Expected_Deliverables__c}</Text>
-              </Box>
-            )}
-            {selectedItem.Tags__c && (
-              <Box>
-                <Text fontWeight='600' color='brand.heading' mb={1}>
-                  Tags
-                </Text>
-                <Wrap spacing={2}>
-                  {parseTags(selectedItem.Tags__c).map(tag => (
-                    <WrapItem key={tag}>
-                      <Tag
-                        size='md'
-                        variant='subtle'
-                        colorScheme='orange'
-                        px={3}
-                        py={1}
-                        borderRadius='full'
-                      >
-                        {tag}
-                      </Tag>
-                    </WrapItem>
-                  ))}
-                </Wrap>
-              </Box>
-            )}
-            {selectedItem.Ecosystem_Need__c && (
-              <Box>
-                <Text fontWeight='600' color='brand.heading' mb={1}>
-                  Ecosystem Need
-                </Text>
-                <Text color='brand.paragraph' whiteSpace='pre-line'>
-                  {selectedItem.Ecosystem_Need__c}
-                </Text>
-              </Box>
-            )}
-            {selectedItem.RFP_HardRequirements_Long__c && (
-              <Box>
-                <Text fontWeight='600' color='brand.heading' mb={1}>
-                  Hard Requirements
-                </Text>
-                <Text color='brand.paragraph' whiteSpace='pre-line'>
-                  {selectedItem.RFP_HardRequirements_Long__c}
-                </Text>
-              </Box>
-            )}
-            {selectedItem.RFP_SoftRequirements__c && (
-              <Box>
-                <Text fontWeight='600' color='brand.heading' mb={1}>
-                  Soft Requirements
-                </Text>
-                <Text color='brand.paragraph' whiteSpace='pre-line'>
-                  {selectedItem.RFP_SoftRequirements__c}
-                </Text>
-              </Box>
-            )}
-            {selectedItem.Resources__c && (
-              <Box>
-                <Text fontWeight='600' color='brand.heading' mb={1}>
-                  Resources
-                </Text>
-                <Box color='brand.paragraph' whiteSpace='pre-line'>
-                  {parseResources(selectedItem.Resources__c)}
-                </Box>
-              </Box>
-            )}
-            {(selectedItem.RFP_Open_Date__c ||
-              selectedItem.RFP_Close_Date__c ||
-              selectedItem.RFP_Project_Duration__c) && (
-              <Box>
-                <Text fontWeight='600' color='brand.heading' mb={1}>
-                  Timeline
-                </Text>
-                <Stack spacing={1} color='brand.paragraph' fontSize='sm'>
-                  {selectedItem.RFP_Open_Date__c && (
-                    <Text>Opens: {formatDate(selectedItem.RFP_Open_Date__c)}</Text>
-                  )}
-                  {selectedItem.RFP_Close_Date__c && (
-                    <Text>Closes: {formatDate(selectedItem.RFP_Close_Date__c)}</Text>
-                  )}
-                  {selectedItem.RFP_Project_Duration__c && (
-                    <Text>Estimated Project Duration: {selectedItem.RFP_Project_Duration__c}</Text>
-                  )}
-                </Stack>
-              </Box>
-            )}
-          </Stack>
-        </Box>
-      )}
-
-      {selectedItem && (
-        <Center mt={8}>
-          <ButtonLink
-            label='Apply'
-            link={`/applicants/rfp/${selectedItem?.Id}/apply`}
-            width='208px'
-          />
-        </Center>
       )}
     </Stack>
   );
