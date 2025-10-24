@@ -323,25 +323,6 @@ export interface SidebarLink {
 }
 
 // body request data types
-export interface OfficeHoursNextApiRequest extends NextApiRequest {
-  body: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    individualOrTeam: string;
-    company: string;
-    officeHoursRequest: string;
-    projectName: string;
-    projectDescription: string;
-    additionalInfo: string;
-    projectCategory: string;
-    otherReasonForMeeting: string;
-    howDidYouHearAboutESP: string;
-    country: string;
-    timezone: string;
-  };
-}
-
 export interface GranteeFinanceNextApiRequest extends NextApiRequest {
   body: {
     beneficiaryName: string;

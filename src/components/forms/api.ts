@@ -3,7 +3,6 @@ import {
   EcodevGrantsFormData,
   GranteeFinanceFormData,
   NewsletterFormData,
-  OfficeHoursFormData,
   PSESponsorshipsFormData,
   ProjectGrantsFormData,
   SmallGrantsFormData
@@ -50,13 +49,17 @@ const methodOptions = {
 export const api = {
   officeHours: {
     submit: (data: OfficeHoursData) => {
+      const curatedData: { [key: string]: any } = {
+        ...data,
+        // Company is a required field in SF, we're using the Name as default value if no company provided
+        company: data.company || `${data.firstName} ${data.lastName}`
+      };
+
+      const formData = createFormData(curatedData);
+
       const officeHoursRequestOptions: RequestInit = {
-        ...methodOptions,
-        body: JSON.stringify({
-          ...data,
-          // Company is a required field in SF, we're using the Name as default value if no company provided
-          company: data.company || `${data.firstName} ${data.lastName}`
-        })
+        method: 'POST',
+        body: formData
       };
 
       return fetch(API_OFFICE_HOURS, officeHoursRequestOptions);
