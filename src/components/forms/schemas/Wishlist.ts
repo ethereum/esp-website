@@ -40,4 +40,5 @@ export interface WishlistItem {
   Tags__c?: string;
   Out_of_Scope__c?: string;
   Resources__c?: string;
+  Custom_URL_Slug__c?: string;
 }

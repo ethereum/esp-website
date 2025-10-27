@@ -44,9 +44,9 @@ const getRecordTypeIdForType = (type: GrantInitiativeType): string => {
 const getFieldsForType = (type?: GrantInitiativeType): string => {
   const baseFields =
     'Id,Name,Description__c,RecordTypeId,Tags__c,Resources__c,Ecosystem_Need__c';
-  const wishlistFields = ',Out_of_Scope__c';
+  const wishlistFields = ',Out_of_Scope__c,Custom_URL_Slug__c';
   const rfpFields =
-    ',RFP_HardRequirements_Long__c,RFP_SoftRequirements__c,RFP_Project_Duration__c,RFP_Close_Date__c,RFP_Open_Date__c';
+    ',RFP_HardRequirements_Long__c,RFP_SoftRequirements__c,RFP_Project_Duration__c,RFP_Close_Date__c,RFP_Open_Date__c,Custom_URL_Slug__c';
 
   if (type === 'Wishlist') {
     return baseFields + wishlistFields;
@@ -104,6 +104,10 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
                 Resources__c: record.Resources__c,
                 Ecosystem_Need__c: record.Ecosystem_Need__c
               };
+
+              if (record.Custom_URL_Slug__c) {
+                grantInitiativeItem.Custom_URL_Slug__c = record.Custom_URL_Slug__c;
+              }
 
               if (grantInitiativeType === 'Wishlist') {
                 if (record.Out_of_Scope__c) {

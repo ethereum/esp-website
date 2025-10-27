@@ -43,4 +43,5 @@ export interface RFPItem {
   RFP_Open_Date__c?: string;
   RFP_Close_Date__c?: string;
   RFP_Project_Duration__c?: string;
+  Custom_URL_Slug__c?: string;
 }

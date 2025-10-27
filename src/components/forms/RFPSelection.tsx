@@ -6,6 +6,7 @@ import {
   GridItem,
   Heading,
   Icon,
+  Link,
   List,
   ListItem,
   Menu,
@@ -20,11 +21,9 @@ import {
 } from '@chakra-ui/react';
 import { FC, useMemo, useState, useEffect } from 'react';
 import { LayoutGrid, Rows3 } from 'lucide-react';
-import { useRouter } from 'next/router';
 
 import { RFPItem } from './schemas/RFP';
 import { SelectArrowIcon } from '../UI/icons';
-import parseStringForUrls from '../../utils/parseStringForUrls';
 
 const Button = chakra('button');
 
@@ -34,7 +33,6 @@ interface RFPSelectionProps {
 }
 
 export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems, paramTags }) => {
-  const router = useRouter();
   const [selectedTags, setSelectedTags] = useState<string[]>(paramTags ? paramTags : []);
   const [displayFormat, setDisplayFormat] = useState<'grid' | 'table'>('grid');
 
@@ -56,10 +54,6 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems, paramTags }) => 
     }
   }, [paramTags, tagOptions]);
 
-  const handleSelectItem = (item: RFPItem) => {
-    router.push(`/applicants/rfp/${item.Id}`);
-  };
-
   const handleToggleTag = (tag: string) => {
     setSelectedTags(prev => 
       prev.includes(tag) 
@@ -72,23 +66,6 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems, paramTags }) => 
     setSelectedTags([]);
   };
 
-  const parseTags = (tags?: string) =>
-    tags
-      ?.split(';')
-      .map(tag => tag.trim())
-      .filter(Boolean) ?? [];
-
-  const formatDate = (value?: string) => {
-    if (!value) return undefined;
-    const date = new Date(value);
-    if (Number.isNaN(date.getTime())) return value;
-    return date.toLocaleDateString(undefined, {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
-    });
-  };
-
   if (rfpItems.length === 0) {
     return (
       <Stack spacing={8} align='center' py={16}>
@@ -99,11 +76,6 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems, paramTags }) => 
       </Stack>
     );
   }
-
-  const parseResources = (resources?: string) => {
-    if (!resources) return null;
-    return parseStringForUrls(resources)
-  };
 
   return (
     <Stack spacing={8}>
@@ -173,8 +145,12 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems, paramTags }) => 
             ? true 
             : selectedTags.some(tag => item.Tags__c?.includes(tag))
         ).map(item => (
-          <GridItem key={item.Id}>
-            <Button
+          <GridItem key={item.Id}
+            as={Link}
+            href={item.Custom_URL_Slug__c ? `/applicants/rfp/${item.Custom_URL_Slug__c}` : `/applicants/rfp/${item.Id}`}
+            _hover={{ textDecoration: 'none' }}
+          >
+            <Stack
               p={6}
               border='2px solid'
               borderColor={'brand.border'}
@@ -185,9 +161,8 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems, paramTags }) => 
               _hover={{
                 borderColor: 'brand.orange.100',
                 transform: 'translateY(-2px)',
-                shadow: 'md'
+                shadow: 'md',
               }}
-              onClick={() => handleSelectItem(item)}
               w='full'
               h='full'
             >
@@ -206,7 +181,7 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems, paramTags }) => 
                   {item.Description__c}
                 </Text>
               </Stack>
-            </Button>
+            </Stack>
           </GridItem>
         ))}
       </Grid>
@@ -220,27 +195,31 @@ export const RFPSelection: FC<RFPSelectionProps> = ({ rfpItems, paramTags }) => 
               : selectedTags.some(tag => item.Tags__c?.includes(tag))
           ).map(item => (
             <ListItem
-              as={Flex}
-              flexDir="column"
-              gap={3}
-              key={item.Id} 
-              py={4}
-              px={2}
-              w="full"
-              borderBottom='1px solid'
-              borderColor='brand.border'
-              bg='white'
+              as={Link}
+              href={item.Custom_URL_Slug__c ? `/applicants/rfp/${item.Custom_URL_Slug__c}` : `/applicants/rfp/${item.Id}`}
+              key={item.Id}
               _last={{ borderBottom: 'none' }}
-              onClick={() => handleSelectItem(item)} 
-              _hover={{ bg: 'orange.50' }} 
-              transition='all 0.2s'
+              _hover={{ textDecoration: 'none' }}
               cursor='pointer'
-              justifyContent='space-between'
             >
-              <Flex flex={1}>
-                <Text fontWeight='600' color='brand.heading'>{item.Name}</Text>
-              </Flex>
+              <Flex flexDir="column"
+                gap={3}
+                key={item.Id} 
+                py={4}
+                px={2}
+                w="full"
+                borderBottom='1px solid'
+                borderColor='brand.border'
+                bg='white'
+                _hover={{ bg: 'orange.50' }} 
+                transition='all 0.2s'
+                justifyContent='space-between'
+              >
+                <Flex flex={1}>
+                  <Text fontWeight='600' color='brand.heading'>{item.Name}</Text>
+                </Flex>
                 <Flex flex='1' gap={2} justifyContent='flex-start' flexWrap='wrap'>{item.Tags__c?.split(';').map(tag => tag.trim()).map(tag => <Tag key={tag}>{tag}</Tag>)}</Flex>
+              </Flex>
             </ListItem>
           ))}
         </List>

@@ -494,6 +494,7 @@ export interface GrantInitiativeSalesforceRecord {
   RFP_Project_Duration__c?: string; // Estimated Project Duration
   RFP_Close_Date__c?: string;
   RFP_Open_Date__c?: string;
+  Custom_URL_Slug__c?: string;
 }
 
 export type GrantInitiativeType = 'Wishlist' | 'RFP';
@@ -513,4 +514,5 @@ export interface GrantInitiative {
   RFP_Open_Date__c?: string;
   RFP_HardRequirements_Long__c?: string;
   RFP_SoftRequirements__c?: string;
+  Custom_URL_Slug__c?: string;
 }

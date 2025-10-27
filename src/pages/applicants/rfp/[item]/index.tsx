@@ -163,7 +163,7 @@ return (
       <Center mt={8}>
         <ButtonLink
           label='Apply'
-          link={`/applicants/rfp/${rfpItem?.Id}/apply`}
+          link={`/applicants/rfp/${rfpItem?.Custom_URL_Slug__c || rfpItem?.Id}/apply`}
           width='208px'
         />
       </Center>
@@ -176,7 +176,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 const rfpItems = await getGrantInitiativeItems('RFP');
 
 const paths = rfpItems.map(item => ({
-  params: { item: item.Id }
+  params: { item: item.Custom_URL_Slug__c || item.Id }
 }));
 
 return {
@@ -189,7 +189,7 @@ export const getStaticProps: GetStaticProps<RFPItemApplyProps> = async ({ params
   const itemId = params?.item as string;
 
   const rfpItems = await getGrantInitiativeItems('RFP');
-  const rfpItem = rfpItems.find(item => item.Id === itemId);
+  const rfpItem = rfpItems.find(item => item.Custom_URL_Slug__c === itemId || item.Id === itemId);
 
   if (!rfpItem) {
     return {

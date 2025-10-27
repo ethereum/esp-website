@@ -112,7 +112,7 @@ const WishlistItemPage: NextPage<WishlistItemApplyProps> = ({ wishlistItem }) =>
         <Center mt={8}>
           <ButtonLink
             label='Apply'
-            link={`/applicants/wishlist/${wishlistItem?.Id}/apply`}
+            link={`/applicants/wishlist/${wishlistItem?.Custom_URL_Slug__c || wishlistItem?.Id}/apply`}
             width='208px'
           />
         </Center>
@@ -125,7 +125,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const wishlistItems = await getGrantInitiativeItems('Wishlist');
 
   const paths = wishlistItems.map(item => ({
-    params: { item: item.Id }
+    params: { item: item.Custom_URL_Slug__c || item.Id }
   }));
 
   return {
@@ -138,7 +138,7 @@ export const getStaticProps: GetStaticProps<WishlistItemApplyProps> = async ({ p
   const itemId = params?.item as string;
 
   const wishlistItems = await getGrantInitiativeItems('Wishlist');
-  const wishlistItem = wishlistItems.find(item => item.Id === itemId);
+  const wishlistItem = wishlistItems.find(item => item.Custom_URL_Slug__c === itemId || item.Id === itemId);
 
   if (!wishlistItem) {
     return {
