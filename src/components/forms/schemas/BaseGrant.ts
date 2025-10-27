@@ -38,7 +38,11 @@ const contactInformationSchema = {
     .optional()
     .or(z.literal('')),
   country: stringFieldSchema('Country', { min: 1, max: 2 }), // 2 character country code
-  timezone: stringFieldSchema('Time zone', { min: 1 })
+  timezone: stringFieldSchema('Time zone', { min: 1 }),
+  applicantProfile: stringFieldSchema('Applicant profile', {
+    min: MIN_TEXT_AREA_LENGTH,
+    max: MAX_TEXT_AREA_LENGTH
+  })
 };
 
 const projectOverviewSchema = {
@@ -124,10 +128,6 @@ const projectDetailsSchema = {
   openSourceLicense: stringFieldSchema('Open source license', {
     min: 1,
     max: MAX_TEXT_LENGTH
-  }),
-  applicantProfile: stringFieldSchema('Applicant profile', {
-    min: MIN_TEXT_AREA_LENGTH,
-    max: MAX_TEXT_AREA_LENGTH
   })
 };
 

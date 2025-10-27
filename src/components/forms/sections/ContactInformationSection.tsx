@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
 import { PageSection } from '../../UI';
-import { TextField, Field } from '../fields';
+import { TextField, Field, TextAreaField } from '../fields';
 import { Select } from 'chakra-react-select';
 import { DropdownIndicator } from '../../UI';
 import { chakraStyles } from '../selectStyles';
@@ -28,6 +28,7 @@ interface ContactInformationSectionProps {
     website?: FieldConfig | false;
     country?: FieldConfig | false;
     timezone?: FieldConfig | false;
+    applicantProfile?: FieldConfig | false;
   };
 }
 
@@ -73,6 +74,12 @@ const DEFAULT_FIELDS = {
   },
   timezone: {
     label: 'Time Zone',
+    isRequired: true
+  },
+  applicantProfile: {
+    label: 'Applicant Profile',
+    helpText:
+      'Briefly provide a biography of yourself and your team including relevant experience and expertise.',
     isRequired: true
   }
 };
@@ -122,6 +129,11 @@ export const ContactInformationSection: FC<ContactInformationSectionProps> = ({ 
 
   const showNameFields = firstNameConfig || lastNameConfig;
   const showLocationFields = countryConfig || timezoneConfig;
+
+  const applicantProfileConfig =
+  fields?.applicantProfile === false
+    ? null
+    : { ...DEFAULT_FIELDS.applicantProfile, ...fields?.applicantProfile };
 
   return (
     <Stack spacing={6}>
@@ -276,6 +288,15 @@ export const ContactInformationSection: FC<ContactInformationSectionProps> = ({ 
             />
           )}
         </Flex>
+      )}
+
+      {applicantProfileConfig && (
+        <TextAreaField
+          id='applicantProfile'
+          label={applicantProfileConfig.label}
+          helpText={applicantProfileConfig.helpText}
+          isRequired={applicantProfileConfig.isRequired}
+        />
       )}
     </Stack>
   );

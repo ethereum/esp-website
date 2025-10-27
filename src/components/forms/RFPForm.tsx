@@ -41,7 +41,7 @@ export const RFPForm: FC<RFPFormProps> = ({ rfpItem }) => {
           extraDetails={true}
         />
 
-        <ContactInformationSection />
+        <ContactInformationSection fields={{ applicantProfile: false }} />
 
         <ProjectOverviewSection />
 

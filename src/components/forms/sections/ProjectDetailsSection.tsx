@@ -27,7 +27,6 @@ interface ProjectDetailsSectionProps {
     ecosystemFit?: FieldConfig | false;
     communityFeedback?: FieldConfig | false;
     openSourceLicense?: FieldConfig | false;
-    applicantProfile?: FieldConfig | false;
   };
 }
 
@@ -83,12 +82,6 @@ const DEFAULT_FIELDS = {
     label: 'Open Source License',
     helpText: 'Specify which open source license you are using for this project.',
     isRequired: true
-  },
-  applicantProfile: {
-    label: 'Applicant Profile',
-    helpText:
-      'Briefly provide a biography of yourself and your team including relevant experience and expertise.',
-    isRequired: true
   }
 };
 
@@ -137,11 +130,6 @@ export const ProjectDetailsSection: FC<ProjectDetailsSectionProps> = ({ fields }
     fields?.openSourceLicense === false
       ? null
       : { ...DEFAULT_FIELDS.openSourceLicense, ...fields?.openSourceLicense };
-
-  const applicantProfileConfig =
-    fields?.applicantProfile === false
-      ? null
-      : { ...DEFAULT_FIELDS.applicantProfile, ...fields?.applicantProfile };
 
   return (
     <Stack spacing={6}>
@@ -243,15 +231,6 @@ export const ProjectDetailsSection: FC<ProjectDetailsSectionProps> = ({ fields }
               />
             </Field>
           )}
-        />
-      )}
-
-      {applicantProfileConfig && (
-        <TextAreaField
-          id='applicantProfile'
-          label={applicantProfileConfig.label}
-          helpText={applicantProfileConfig.helpText}
-          isRequired={applicantProfileConfig.isRequired}
         />
       )}
     </Stack>

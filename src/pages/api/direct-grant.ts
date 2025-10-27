@@ -21,6 +21,7 @@ interface DirectGrantApiRequest extends NextApiRequest {
     website?: string;
     country: string;
     timezone: string;
+    applicantProfile: string;
 
     // Project Overview
     projectName: string;
@@ -40,8 +41,7 @@ interface DirectGrantApiRequest extends NextApiRequest {
     successMetrics: string;
     ecosystemFit: string;
     communityFeedback: string;
-    openSourceLicense: string;
-    applicantProfile: string;
+    openSourceLicense: string
 
     // Additional Details
     repeatApplicant: boolean;
@@ -84,6 +84,7 @@ const handler = async (req: DirectGrantApiRequest, res: NextApiResponse) => {
       Application_Website__c: result.data.website,
       Application_Country__c: result.data.country,
       Application_Time_Zone__c: result.data.timezone,
+      Application_Profile__c: result.data.applicantProfile,
 
       // Project Overview
       Name: result.data.projectName,
@@ -104,7 +105,6 @@ const handler = async (req: DirectGrantApiRequest, res: NextApiResponse) => {
       Application_EcosystemFit__c: result.data.ecosystemFit,
       Application_CommunityFeedback__c: result.data.communityFeedback,
       Application_Open_Source_License_Picklist__c: result.data.openSourceLicense,
-      Application_Profile__c: result.data.applicantProfile,
 
       // Additional Details
       Application_Repeat_Applicant__c: result.data.repeatApplicant,
