@@ -11,7 +11,7 @@ import {
   PageMetadata,
   OrderedList,
   ReadyToApply,
-  BannerApplicationClosed
+  // BannerApplicationClosed
 } from '../../components/UI';
 
 import {
@@ -54,7 +54,7 @@ const DevconGrants: NextPage = () => {
             />
 
             <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
-              <BannerApplicationClosed mb={12} title="Applications for Destino Devconnect Support are closed." hideDescription />
+              {/* <BannerApplicationClosed mb={12} title="Applications for Destino Devconnect Support are closed." hideDescription /> */}
 
               <Stack mb={8} mt={{ base: 10, md: 0 }}>
                 <section id='description' ref={ref}>
@@ -68,13 +68,13 @@ const DevconGrants: NextPage = () => {
                 <PageSection mb={6}>Bring Your Community to the Ethereum World Fair</PageSection>
 
                 <PageText mb={6}>
-                  You can apply for free tickets, discounts and scholarships to join this special edition! Whether you&apos;re part of a community, representing a university or startup, organizing a side event or hacker house, or bringing your company or study group to the co-work, there&apos;s a way to join the experience
+                You can apply for free tickets and/or voucher codes for discounted tickets to join this special edition! Whether you&apos;re part of a community, representing a university or startup, organizing a side event or hacker house, or bringing your company or study group to the co-work, there&apos;s a way to join the experience
                 </PageText>
 
                 <PageSection mb={6}>Become a Devconnect Fren</PageSection>
 
                 <PageText mb={6}>
-                  Join the Devconnect Frens Program and support the Ethereum World Fair by spreading the word, collaborating with your community, gaining visibility, and connecting with the Ethereum ecosystem!
+                Join the Devconnect Frens Program and support the Ethereum World Fair by spreading the word, collaborating with your community, gaining visibility, and connecting with the Ethereum ecosystem! You can get free tickets and discounts for your community or team, visibility across official Devconnect channels, and an on-chain certificate as an official Devconnect Fren. The request for tickets and discounts will be open until tickets are sold out.
                 </PageText>
               </Stack>
 
@@ -89,33 +89,7 @@ const DevconGrants: NextPage = () => {
                   </List>
                 </section>
 
-                <section id='support-available' ref={ref3}>
-                  <PageSection mb={6}>Support available</PageSection>
-
-                  <PageText mb={6}>
-                    Scholarships Available  — Up to $1,000 USD in funding support is available for initiatives that help groups attend the Ethereum World Fair.
-                  </PageText>
-
-                  <PageText mb={6}>
-                    You also get: free tickets and discounts for your community or team, visibility across official Devconnect channels, and an on-chain certificate as an official Devconnect Fren.
-                  </PageText>
-
-                  <PageText mb={6}>
-                    Support can include transportation from distant locations, assistance with travel costs, or partial scholarships for builders attending their first Devconnect.
-                  </PageText>
-
-                  <PageText mb={6}>
-                    Note: The budget is limited. We will not provide $1,000 to support a single builder. This funding is intended for communities or initiatives that can collectively support multiple participants attending the Ethereum World Fair. We prioritize initiatives that have the greatest impact across communities.
-                  </PageText>
-
-                  <List>
-                    <ListItem><strong>Request Tickets & Discounts</strong>: Until tickets are sold out</ListItem>
-                    <ListItem><strong>Scholarship applications open</strong>: October 15</ListItem>
-                    <ListItem><strong>Scholarship announcements</strong>: October 30</ListItem>
-                  </List>
-                </section>
-
-                <section id='how-to-apply' ref={ref4}>
+                <section id='how-to-apply' ref={ref3}>
                   <PageSection mb={6}>How to apply</PageSection>
 
                   <OrderedList>
@@ -155,7 +129,7 @@ const DevconGrants: NextPage = () => {
                   </OrderedList>
                 </section>
 
-                <section id='selection-criteria' ref={ref5}>
+                <section id='selection-criteria' ref={ref4}>
                   <PageSection mb={6}>Selection criteria</PageSection>
 
                   <List>
@@ -171,7 +145,7 @@ const DevconGrants: NextPage = () => {
                   </List>
                 </section>
 
-                <section id='next-steps-and-support' ref={ref6}>
+                <section id='next-steps-and-support' ref={ref5}>
                   <PageSection mb={6}>Next steps and support</PageSection>
 
                   <PageText mb={6}>
@@ -187,6 +161,12 @@ const DevconGrants: NextPage = () => {
                     </Link>
                     .
                   </PageText>
+                </section>
+
+                <section id='apply' ref={ref6}>
+                  <Stack mt={6}>
+                    <ReadyToApply link={`${DEVCON_GRANTS_APPLY_URL}`} />
+                  </Stack>
                 </section>
               </Stack>
             </Box>

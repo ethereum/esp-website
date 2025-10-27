@@ -43,7 +43,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
 
       <ChakraProvider theme={theme}>
-        {/* <Banners /> */}
+        <Banners />
 
         <Layout
           position='relative'
