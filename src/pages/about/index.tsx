@@ -67,7 +67,13 @@ const About = () => {
               </section>
 
               <section id='grants-management' ref={ref2}>
-                <Stack spacing={6} mt={8}>
+                <Stack
+                  spacing={6}
+                  mt={8}
+                  bgGradient='linear(to-br, brand.whoWeSupport.bgGradient.start 0%, brand.whoWeSupport.bgGradient.end 100%)'
+                  p={12}
+                  borderRadius='10px'
+                >
                     <Image src={GrantManagementLogo} alt='Grants Management' height={100} objectFit='contain' />
                   <PageSection>Grants Management</PageSection>
                   <PageText>
@@ -80,7 +86,13 @@ const About = () => {
               </section>
 
               <section id='funding-coordination' ref={ref3}>
-                <Stack spacing={6} mt={8}>
+                <Stack
+                  spacing={6}
+                  mt={8}
+                  bgGradient='linear(to-br, brand.ready.bgGradient.start 10%, brand.ready.bgGradient.end 100%)'
+                  p={12}
+                  borderRadius='10px'
+                >
                     <Image src={FundingCoordinationLogo} alt='Funding Coordination' height={100} objectFit='contain' />
                   <PageSection>Funding Coordination</PageSection>
                   <PageText>
@@ -111,7 +123,13 @@ const About = () => {
               </section>
 
               <section id='launchpad' ref={ref4}>
-                <Stack spacing={6} mt={8}>
+                <Stack
+                  spacing={6}
+                  mt={8}
+                  bgGradient='linear(to-br, brand.howWeSupport.bgGradient.start 2.29%, brand.howWeSupport.bgGradient.end 101.37%)'
+                  p={12}
+                  borderRadius='10px'
+                >
                     <Image src={LaunchpadLogo} alt='Launchpad' height={100} objectFit='contain' />
                   <PageSection>Launchpad</PageSection>
                   <PageText>
