@@ -126,6 +126,48 @@ export const ProjectOverviewSection: FC<ProjectOverviewSectionProps> = ({ fields
 
   return (
     <Stack spacing={6}>
+      <PageSection mt={6}>Budget</PageSection>
+
+      {showBudgetFields && (
+        <Flex direction={{ base: 'column', md: 'row' }} gap={6}>
+          {budgetRequestConfig && (
+            <TextField
+              id='budgetRequest'
+              label={budgetRequestConfig.label}
+              helpText={budgetRequestConfig.helpText}
+              isRequired={budgetRequestConfig.isRequired}
+            />
+          )}
+
+          {currencyConfig && (
+            <Controller
+              name='currency'
+              control={control}
+              render={({ field: { onChange, value }, fieldState: { error } }) => (
+                <Field
+                  id='currency'
+                  label={currencyConfig.label}
+                  error={error}
+                  isRequired={currencyConfig.isRequired}
+                  helpText={currencyConfig.helpText}
+                >
+                  <Select
+                    value={FIAT_CURRENCY_OPTIONS.find(option => option.value === value) || null}
+                    onChange={selectedOption =>
+                      onChange((selectedOption as (typeof FIAT_CURRENCY_OPTIONS)[number])?.value)
+                    }
+                    options={FIAT_CURRENCY_OPTIONS}
+                    placeholder='Select currency'
+                    components={{ DropdownIndicator }}
+                    chakraStyles={chakraStyles}
+                  />
+                </Field>
+              )}
+            />
+          )}
+        </Flex>
+      )}
+
       <PageSection mt={12}>Project Overview</PageSection>
 
       {projectNameConfig && (
@@ -217,46 +259,6 @@ export const ProjectOverviewSection: FC<ProjectOverviewSectionProps> = ({ fields
             </Field>
           )}
         />
-      )}
-
-      {showBudgetFields && (
-        <Flex direction={{ base: 'column', md: 'row' }} gap={6}>
-          {budgetRequestConfig && (
-            <TextField
-              id='budgetRequest'
-              label={budgetRequestConfig.label}
-              helpText={budgetRequestConfig.helpText}
-              isRequired={budgetRequestConfig.isRequired}
-            />
-          )}
-
-          {currencyConfig && (
-            <Controller
-              name='currency'
-              control={control}
-              render={({ field: { onChange, value }, fieldState: { error } }) => (
-                <Field
-                  id='currency'
-                  label={currencyConfig.label}
-                  error={error}
-                  isRequired={currencyConfig.isRequired}
-                  helpText={currencyConfig.helpText}
-                >
-                  <Select
-                    value={FIAT_CURRENCY_OPTIONS.find(option => option.value === value) || null}
-                    onChange={selectedOption =>
-                      onChange((selectedOption as (typeof FIAT_CURRENCY_OPTIONS)[number])?.value)
-                    }
-                    options={FIAT_CURRENCY_OPTIONS}
-                    placeholder='Select currency'
-                    components={{ DropdownIndicator }}
-                    chakraStyles={chakraStyles}
-                  />
-                </Field>
-              )}
-            />
-          )}
-        </Flex>
       )}
     </Stack>
   );
