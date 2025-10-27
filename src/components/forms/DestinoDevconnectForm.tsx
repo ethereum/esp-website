@@ -58,7 +58,6 @@ export const DestinoDevconnectForm: FC = () => {
   const isInPerson = watch('inPerson') === 'In-person';
   const isFreeTickets = requestedSupport?.includes('Tickets');
   const isVoucherCodes = requestedSupport?.includes('Vouchers');
-  const isScholarships = requestedSupport?.includes('Scholarship');
 
   const onSubmit = async (data: DestinoDevconnectData) => {
     const payload: DestinoDevconnectData = { ...data };
@@ -218,7 +217,7 @@ export const DestinoDevconnectForm: FC = () => {
               render={({ field: { onChange, value = [] }, fieldState: { error } }) => (
                 <Field
                   id='requestedSupport'
-                  label='Do you need free tickets, voucher codes for discounted tickets, and/or scholarships?'
+                  label='Do you need free tickets, and/or voucher codes for discounted tickets?'
                   error={error}
                 >
                   <Stack direction='row' spacing={4}>
@@ -244,17 +243,6 @@ export const DestinoDevconnectForm: FC = () => {
                     >
                       <PageText fontSize='input'>Voucher codes for discounted tickets</PageText>
                     </Checkbox>
-                    <Checkbox
-                      isChecked={value.includes('Scholarship')}
-                      onChange={e => {
-                        const newValue = e.target.checked
-                          ? [...value, 'Scholarship']
-                          : value.filter(v => v !== 'Scholarship');
-                        onChange(newValue);
-                      }}
-                    >
-                      <PageText fontSize='input'>Scholarships</PageText>
-                    </Checkbox>
                   </Stack>
                 </Field>
               )}
@@ -276,43 +264,6 @@ export const DestinoDevconnectForm: FC = () => {
               />
             )}
 
-            {isScholarships && (
-              <Flex direction={{ base: 'column', md: 'row' }} gap={8}>
-                <Controller
-                  name='fiatCurrency'
-                  control={control}
-                  render={({ field: { value, onChange }, fieldState: { error } }) => (
-                    <Field
-                      id='fiatCurrency'
-                      label='Fiat Currency'
-                      error={error}
-                      isRequired={isScholarships}
-                    >
-                      <Select
-                        id='fiatCurrency'
-                        value={FIAT_CURRENCY_OPTIONS.find(option => option.value === value)}
-                        options={FIAT_CURRENCY_OPTIONS}
-                        onChange={option => {
-                          onChange((option as (typeof FIAT_CURRENCY_OPTIONS)[number]).value);
-                        }}
-                        components={{ DropdownIndicator }}
-                        placeholder='Select'
-                        closeMenuOnSelect={true}
-                        selectedOptionColor='brand.option'
-                        chakraStyles={chakraStyles}
-                      />
-                    </Field>
-                  )}
-                />
-
-                <TextField
-                  id='requestedAmount'
-                  label='Scholarship amount'
-                  isRequired={isScholarships}
-                />
-              </Flex>
-            )}
-
             {(isFreeTickets || isVoucherCodes) && (
                 <TextField
                   id='additionalSupportRequests'
@@ -330,7 +281,7 @@ export const DestinoDevconnectForm: FC = () => {
                 <TextField id='projectRepoLink' label='Project Repo Link' />
                 <TextAreaField
                   id='problemBeingSolved'
-                  label='Why do you need free tickets, vouchers or scholarships?'
+                  label='Why do you need free tickets, or vouchers?'
                   helpText='What problem, gap, or opportunity are you tackling through your initiative?'
                   isRequired
                 />

@@ -32,10 +32,10 @@ const baseSchema = z.object({
   }),
 
   requestedSupport: z
-    .array(z.enum(['Tickets', 'Vouchers', 'Scholarship']))
+    .array(z.enum(['Tickets', 'Vouchers']))
     .min(1, 'Please select at least one option'),
 
-  // Ticket / Voucher / Scholarship fields (optional at base level so refinements can access them)
+  // Ticket / Voucher fields (optional at base level so refinements can access them)
   ticketRequest: z.coerce
     .number({ invalid_type_error: 'Amount must be a number' })
     .min(1, 'Amount must be at least 1')
@@ -177,24 +177,6 @@ export const DestinoDevconnectSchema = rawSchema
       message:
         'Number of voucher codes requested is required when Voucher codes for discounted tickets is selected',
       path: ['voucherRequest']
-    }
-  )
-  // Conditional validation for scholarship fields when Scholarships is selected
-  .refine(
-    data => {
-      if (data.requestedSupport?.includes('Scholarship')) {
-        return (
-          data.fiatCurrency !== undefined &&
-          data.fiatCurrency.trim() !== '' &&
-          data.requestedAmount !== undefined &&
-          data.requestedAmount >= 1
-        );
-      }
-      return true;
-    },
-    {
-      message: 'Fiat currency and scholarship amount are required when Scholarships is selected',
-      path: ['fiatCurrency']
     }
   )
   // Conditional validation for additionalSupportRequests when tickets or vouchers are selected
