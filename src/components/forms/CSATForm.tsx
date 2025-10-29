@@ -27,7 +27,6 @@ interface CSATFormProps extends BoxProps {
 
 export const CSATForm: FC<CSATFormProps> = ({ applicationId, csatToken, ...props }) => {
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const toast = useToast();
 
   const methods = useForm<CSATData>({
@@ -59,7 +58,6 @@ export const CSATForm: FC<CSATFormProps> = ({ applicationId, csatToken, ...props
       const res = await api.csat.submit(data);
 
       if (res.ok) {
-        setIsSubmitted(true);
         toast({
           ...TOAST_OPTIONS,
           title: 'Thank you for your feedback!',
@@ -162,14 +160,6 @@ export const CSATForm: FC<CSATFormProps> = ({ applicationId, csatToken, ...props
                 Submit Feedback
               </Button>
             </Center>
-
-            {isSubmitted && (
-              <Center>
-                <Heading as='h4' size='sm' color='green.700'>
-                  Thank you for your feedback!
-                </Heading>
-              </Center>
-            )}
           </VStack>
         </form>
       </FormProvider>
