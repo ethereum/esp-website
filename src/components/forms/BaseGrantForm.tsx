@@ -44,7 +44,11 @@ export function BaseGrantForm<T extends FieldValues>({
     defaultValues: formDefaultValues
   });
 
-  const { handleSubmit, reset } = methods;
+  const {
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = methods;
 
   const onSubmit: SubmitHandler<T> = async data => {
     return submitFunction(data)

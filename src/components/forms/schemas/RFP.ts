@@ -17,7 +17,10 @@ export const RFPSchema = z.object({
   referral: stringFieldSchema('Referral', { max: MAX_TEXT_LENGTH }).optional(),
   fileUpload: z
     .any()
-    .refine(file => !!file, 'For RFP: Attach a PDF proposal that fulfills the requirements of the Request for Proposals.')
+    .refine(
+      file => !!file,
+      'For RFP: Attach a PDF proposal that fulfills the requirements of the Request for Proposals.'
+    )
     .refine(file => (file?.size ?? 0) <= MAX_WISHLIST_FILE_SIZE, 'Max file size is 4MB.')
     .refine(file => (file?.type || file?.mimetype) === 'application/pdf', 'File must be a PDF'),
   ...requiredSchema

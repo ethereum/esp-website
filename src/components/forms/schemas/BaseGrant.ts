@@ -38,11 +38,7 @@ const contactInformationSchema = {
     .optional()
     .or(z.literal('')),
   country: stringFieldSchema('Country', { min: 1, max: 2 }), // 2 character country code
-  timezone: stringFieldSchema('Time zone', { min: 1 }),
-  applicantProfile: stringFieldSchema('Applicant profile', {
-    min: MIN_TEXT_AREA_LENGTH,
-    max: MAX_TEXT_AREA_LENGTH
-  })
+  timezone: stringFieldSchema('Time zone', { min: 1 })
 };
 
 const projectOverviewSchema = {
@@ -85,10 +81,12 @@ const projectOverviewSchema = {
     'Ecosystem development',
     'Research'
   ]),
-  budgetRequest: z.coerce.number({ 
-    required_error: 'Budget request is required',
-    invalid_type_error: 'Please enter a valid number'
-  }).positive('Budget request must be a positive number'),
+  budgetRequest: z.coerce
+    .number({
+      required_error: 'Budget request is required',
+      invalid_type_error: 'Please enter a valid number'
+    })
+    .positive('Budget request must be a positive number'),
   currency: stringFieldSchema('Currency', { min: 1 })
 };
 
