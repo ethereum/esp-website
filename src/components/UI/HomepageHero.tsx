@@ -42,7 +42,7 @@ export const HomepageHero: FC = () => {
           <ButtonLink
             label='Ecosystem support'
             link='#other-support'
-            width='201px'
+            width='247px'
           />
         </Flex>
       </Stack>
