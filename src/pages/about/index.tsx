@@ -55,7 +55,7 @@ const About = () => {
                   spacing={6}
                 >
                   <PageText>
-                    ESP is an ecosystem development cluster within the EF comprising three teams: Grants Management, Funding Coordination, and Launchpad.
+                    ESP is an ecosystem development cluster within the EF comprising three teams: Grant Management, Funding Coordination, and Launchpad.
                   </PageText>
                   <PageText>
                     Together, we focus on strengthening Ethereum&apos;s foundations, supporting teams across the ecosystem, and enabling future builders. The work we support is free, open-source, non-commercial, and designed to create positive sum outcomes for the community.
@@ -66,7 +66,7 @@ const About = () => {
                 </Stack>
               </section>
 
-              <section id='grants-management' ref={ref2}>
+              <section id='grant-management' ref={ref2}>
                 <Stack
                   spacing={6}
                   mt={8}
@@ -74,10 +74,10 @@ const About = () => {
                   p={12}
                   borderRadius='10px'
                 >
-                    <Image src={GrantManagementLogo} alt='Grants Management' height={100} objectFit='contain' />
-                  <PageSection>Grants Management</PageSection>
+                    <Image src={GrantManagementLogo} alt='Grant Management' height={100} objectFit='contain' />
+                  <PageSection>Grant Management</PageSection>
                   <PageText>
-                    The Grants Management team focuses on allocating resources to the projects and initiatives that are most critical to Ethereum&apos;s resilience and usability. 
+                    The Grant Management team focuses on allocating resources to the projects and initiatives that are most critical to Ethereum&apos;s resilience and usability. 
                   </PageText>
                   <PageText>
                     This involves coordinating grant-making across EF teams to ensure that support is aligned and impactful. In addition, we support grantees throughout their journey by offering guidance, fostering connections across the ecosystem, and drawing insights from outcomes to guide future efforts.
@@ -116,7 +116,7 @@ const About = () => {
                     </ListItem>
                   </List>
                   <Center gap={2} flexDirection={{ base: 'column', md: 'row' }}>
-                    <ButtonLink label='Get in touch' link={FUNDING_COORDINATION_EMAIL} width="fit-content" />
+                    <ButtonLink label='Get in touch' link={`mailto:${FUNDING_COORDINATION_EMAIL}`} width="fit-content" />
                     <ButtonLink label='Explore our grants directory' width="fit-content" link={ETHEREUM_GRANTS_URL} />
                   </Center>
                 </Stack>

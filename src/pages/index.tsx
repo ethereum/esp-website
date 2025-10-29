@@ -27,7 +27,7 @@ const Home: NextPage = () => {
     <>
       <PageMetadata
         title='Home'
-        description='The Ecosystem Support Program provides support to the builders of the Ethereum ecosystem.'
+        description='The Ecosystem Support Program provides support to builders creating public goods for the Ethereum ecosystem.'
       />
 
       <Box mx={{ md: 12 }} bg='white' position='relative'>
@@ -38,7 +38,7 @@ const Home: NextPage = () => {
                 <PageSection mb={6}>Our Mission</PageSection>
 
                 <PageText fontSize='stats' fontWeight={100} lineHeight='32px'>
-                  The Ecosystem Support Program is an ecosystem development cluster within the Ethereum Foundation comprising three teams: Grants Management, Funding Coordination, and Launchpad. Together, we focus on strengthening Ethereum&apos;s foundations, supporting teams across the ecosystem, and enabling future builders.
+                  The Ecosystem Support Program is an ecosystem development cluster within the Ethereum Foundation comprising three teams: Grant Management, Funding Coordination, and Launchpad. Together, we focus on strengthening Ethereum&apos;s foundations, supporting teams across the ecosystem, and enabling future builders.
                 </PageText>
               </section>
             </Stack>
@@ -233,7 +233,7 @@ const Home: NextPage = () => {
               </PageText>
               <UnorderedList>
                 <ListItem mb={2}>
-                  <PageText>Grants Management: Supporting the strategic allocation of resources to projects that are most critical to Ethereum’s resilience and usability</PageText>
+                  <PageText>Grant Management: Supporting the strategic allocation of resources to projects that are most critical to Ethereum’s resilience and usability</PageText>
                 </ListItem>
                 <ListItem mb={2}>
                   <PageText>Funding Coordination: Streamlining access to funding and resources across multiple channels to support impactful projects</PageText>

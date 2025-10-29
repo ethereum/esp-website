@@ -40,7 +40,7 @@ export const HomepageHero: FC = () => {
         >
           <ButtonLink label='Grant support' link={APPLICANTS_URL} width='201px' />
           <ButtonLink
-            label='Other support'
+            label='Ecosystem support'
             link='#other-support'
             width='201px'
           />

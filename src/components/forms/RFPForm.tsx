@@ -38,7 +38,6 @@ export const RFPForm: FC<RFPFormProps> = ({ rfpItem }) => {
         <SelectedItemDisplay
           selectedItem={rfpItem}
           displayText={rfpFormConfig.selectedItemDisplayText}
-          extraDetails={true}
         />
 
         <ContactInformationSection fields={{ applicantProfile: false }} />
