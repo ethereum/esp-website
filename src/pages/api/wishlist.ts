@@ -5,7 +5,7 @@ import { sanitizeFields } from '../../middlewares/sanitizeFields';
 import { verifyCaptcha } from '../../middlewares/verifyCaptcha';
 import { MAX_WISHLIST_FILE_SIZE } from '../../constants';
 import { WishlistSchema } from '../../components/forms/schemas/Wishlist';
-import { createSalesforceRecord, uploadFileToSalesforce } from '../../lib/sf';
+import { createSalesforceRecord, uploadFileToSalesforce, generateCSATToken } from '../../lib/sf';
 import type { File } from 'formidable';
 
 interface WishlistApiRequest extends NextApiRequest {
@@ -127,7 +127,7 @@ const handler = async (req: WishlistApiRequest, res: NextApiResponse) => {
     // Handle file upload if present
     if (result.data.fileUpload) {
       const uploadProposal = result.data.fileUpload as File;
-      
+
       // Validate file object has required properties
       if (!uploadProposal.filepath || !uploadProposal.originalFilename) {
         console.error('Invalid file object:', uploadProposal);
@@ -158,10 +158,13 @@ const handler = async (req: WishlistApiRequest, res: NextApiResponse) => {
       salesforceId: salesforceResult.id
     });
 
+    const csatToken = generateCSATToken(salesforceResult.id);
+
     res.status(200).json({
       success: true,
       message: 'Wishlist application submitted successfully',
-      applicationId: salesforceResult.id
+      applicationId: salesforceResult.id,
+      csatToken
     });
   } catch (error) {
     console.error('Error submitting wishlist application:', error);

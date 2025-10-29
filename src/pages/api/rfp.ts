@@ -5,7 +5,7 @@ import { sanitizeFields } from '../../middlewares/sanitizeFields';
 import { verifyCaptcha } from '../../middlewares/verifyCaptcha';
 import { MAX_WISHLIST_FILE_SIZE } from '../../constants';
 import { RFPSchema } from '../../components/forms/schemas/RFP';
-import { createSalesforceRecord, uploadFileToSalesforce } from '../../lib/sf';
+import { createSalesforceRecord, uploadFileToSalesforce, generateCSATToken } from '../../lib/sf';
 import type { File } from 'formidable';
 
 interface RFPApIRequest extends NextApiRequest {
@@ -103,7 +103,7 @@ const handler = async (req: RFPApIRequest, res: NextApiResponse) => {
     // Handle file upload if present
     if (result.data.fileUpload) {
       const uploadProposal = result.data.fileUpload as File;
-      
+
       // Validate file object has required properties
       if (!uploadProposal.filepath || !uploadProposal.originalFilename) {
         console.error('Invalid file object:', uploadProposal);
@@ -134,10 +134,13 @@ const handler = async (req: RFPApIRequest, res: NextApiResponse) => {
       salesforceId: salesforceResult.id
     });
 
+    const csatToken = generateCSATToken(salesforceResult.id);
+
     res.status(200).json({
       success: true,
       message: 'RFP application submitted successfully',
-      applicationId: salesforceResult.id
+      applicationId: salesforceResult.id,
+      csatToken
     });
   } catch (error) {
     console.error('Error submitting RFP application:', error);

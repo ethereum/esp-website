@@ -22,9 +22,10 @@ import { TOAST_OPTIONS } from '../../constants';
 
 interface CSATFormProps extends BoxProps {
   applicationId: string;
+  csatToken: string;
 }
 
-export const CSATForm: FC<CSATFormProps> = ({ applicationId, ...props }) => {
+export const CSATForm: FC<CSATFormProps> = ({ applicationId, csatToken, ...props }) => {
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const toast = useToast();
@@ -34,6 +35,7 @@ export const CSATForm: FC<CSATFormProps> = ({ applicationId, ...props }) => {
     mode: 'onSubmit',
     defaultValues: {
       applicationId,
+      csatToken,
       csatRating: undefined,
       csatComments: '',
       captchaToken: ''
@@ -65,10 +67,11 @@ export const CSATForm: FC<CSATFormProps> = ({ applicationId, ...props }) => {
           status: 'success'
         });
       } else {
+        const errorData = await res.json();
         toast({
           ...TOAST_OPTIONS,
-          title: 'Something went wrong',
-          description: 'Please try again later.',
+          title: 'Unable to submit feedback',
+          description: errorData.error || 'Please try again later.',
           status: 'error'
         });
       }
@@ -82,23 +85,6 @@ export const CSATForm: FC<CSATFormProps> = ({ applicationId, ...props }) => {
       });
     }
   };
-
-  if (isSubmitted) {
-    return (
-      <Box
-        bg='gray.50'
-        borderRadius='md'
-        p={8}
-        textAlign='center'
-        border='1px solid'
-        borderColor='gray.200'
-      >
-        <Heading as='h3' size='md' color='brand.heading' mb={2}>
-          Thank you for your feedback!
-        </Heading>
-      </Box>
-    );
-  }
 
   return (
     <Box p={8} mt={12} {...props}>
@@ -176,6 +162,14 @@ export const CSATForm: FC<CSATFormProps> = ({ applicationId, ...props }) => {
                 Submit Feedback
               </Button>
             </Center>
+
+            {isSubmitted && (
+              <Center>
+                <Heading as='h4' size='sm' color='green.700'>
+                  Thank you for your feedback!
+                </Heading>
+              </Center>
+            )}
           </VStack>
         </form>
       </FormProvider>

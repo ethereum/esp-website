@@ -5,7 +5,7 @@ import { sanitizeFields } from '../../middlewares/sanitizeFields';
 import { verifyCaptcha } from '../../middlewares/verifyCaptcha';
 import { MAX_WISHLIST_FILE_SIZE } from '../../constants';
 import { DirectGrantSchema } from '../../components/forms/schemas/DirectGrant';
-import { createSalesforceRecord, uploadFileToSalesforce } from '../../lib/sf';
+import { createSalesforceRecord, uploadFileToSalesforce, generateCSATToken } from '../../lib/sf';
 import type { File } from 'formidable';
 
 interface DirectGrantApiRequest extends NextApiRequest {
@@ -41,7 +41,7 @@ interface DirectGrantApiRequest extends NextApiRequest {
     successMetrics: string;
     ecosystemFit: string;
     communityFeedback: string;
-    openSourceLicense: string
+    openSourceLicense: string;
 
     // Additional Details
     repeatApplicant: boolean;
@@ -123,7 +123,7 @@ const handler = async (req: DirectGrantApiRequest, res: NextApiResponse) => {
     // Handle file upload if present
     if (result.data.fileUpload) {
       const uploadProposal = result.data.fileUpload as File;
-      
+
       // Validate file object has required properties
       if (!uploadProposal.filepath || !uploadProposal.originalFilename) {
         console.error('Invalid file object:', uploadProposal);
@@ -153,10 +153,13 @@ const handler = async (req: DirectGrantApiRequest, res: NextApiResponse) => {
       salesforceId: salesforceResult.id
     });
 
+    const csatToken = generateCSATToken(salesforceResult.id);
+
     res.status(200).json({
       success: true,
       message: 'Direct grant application submitted successfully',
-      applicationId: salesforceResult.id
+      applicationId: salesforceResult.id,
+      csatToken
     });
   } catch (error) {
     console.error('Error submitting direct grant application:', error);

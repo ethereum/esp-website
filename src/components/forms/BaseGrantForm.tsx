@@ -52,14 +52,16 @@ export function BaseGrantForm<T extends FieldValues>({
         if (res.ok) {
           reset();
 
-          // Parse response to get applicationId
+          // Parse response to get applicationId and csatToken
           try {
             const responseData = await res.json();
-            const applicationId = responseData.applicationId;
+            const { applicationId, csatToken } = responseData;
 
-            // Navigate to thank you page with applicationId as query parameter
-            if (applicationId) {
-              router.push(`${config.thankYouPageUrl}?applicationId=${applicationId}`);
+            // Navigate to thank you page with applicationId and CSAT token
+            if (applicationId && csatToken) {
+              router.push(
+                `${config.thankYouPageUrl}?applicationId=${applicationId}&csatToken=${csatToken}`
+              );
             } else {
               router.push(config.thankYouPageUrl);
             }

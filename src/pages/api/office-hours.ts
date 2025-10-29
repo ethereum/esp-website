@@ -6,7 +6,7 @@ import { sanitizeFields } from '../../middlewares/sanitizeFields';
 import { verifyCaptcha } from '../../middlewares/verifyCaptcha';
 import { MAX_WISHLIST_FILE_SIZE } from '../../constants';
 import { OfficeHoursSchema } from '../../components/forms/schemas/OfficeHours';
-import { createSalesforceRecord, uploadFileToSalesforce } from '../../lib/sf';
+import { createSalesforceRecord, uploadFileToSalesforce, generateCSATToken } from '../../lib/sf';
 
 interface OfficeHoursAPIRequest extends NextApiRequest {
   body: {
@@ -140,10 +140,13 @@ const handler = async (req: OfficeHoursAPIRequest, res: NextApiResponse) => {
       salesforceId: salesforceResult.id
     });
 
+    const csatToken = generateCSATToken(salesforceResult.id);
+
     res.status(200).json({
       success: true,
       message: 'Office Hours application submitted successfully',
-      applicationId: salesforceResult.id
+      applicationId: salesforceResult.id,
+      csatToken
     });
   } catch (error) {
     console.error('Error submitting Office Hours application:', error);

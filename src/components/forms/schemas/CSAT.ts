@@ -5,6 +5,9 @@ export const CSATSchema = z.object({
   // Salesforce Application ID reference
   applicationId: stringFieldSchema('Application ID', { min: 1 }),
 
+  // CSAT Token for security
+  csatToken: stringFieldSchema('CSAT Token', { min: 1 }),
+
   // CSAT Rating (1-5)
   csatRating: z.coerce
     .number({

@@ -8,7 +8,7 @@ import { CSATForm } from '../../../components/forms';
 
 const WishlistThankYou: NextPage = () => {
   const router = useRouter();
-  const { applicationId } = router.query;
+  const { applicationId, csatToken } = router.query;
 
   return (
     <>
@@ -69,8 +69,13 @@ const WishlistThankYou: NextPage = () => {
         </Stack>
 
         {/* CSAT Survey */}
-        {applicationId && typeof applicationId === 'string' && (
-          <CSATForm maxW='container.md' mx='auto' applicationId={applicationId} />
+        {applicationId && csatToken && (
+          <CSATForm
+            maxW='container.md'
+            mx='auto'
+            applicationId={applicationId as string}
+            csatToken={csatToken as string}
+          />
         )}
       </Flex>
     </>

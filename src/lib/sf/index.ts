@@ -1,15 +1,53 @@
 import fs from 'fs';
 import jsforce from 'jsforce';
+import jwt from 'jsonwebtoken';
 import type { File } from 'formidable';
 
 import { GrantInitiative, GrantInitiativeSalesforceRecord, GrantInitiativeType } from '../../types';
 import { truncateString } from '../../utils/truncateString';
 
-const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
-  process.env;
+const {
+  SF_PROD_LOGIN_URL,
+  SF_PROD_USERNAME,
+  SF_PROD_PASSWORD,
+  SF_PROD_SECURITY_TOKEN,
+  CSAT_JWT_SECRET
+} = process.env;
 
 export const WISHLIST_RECORD_TYPE_ID = '012Vj000008tfPKIAY';
 export const RFP_RECORD_TYPE_ID = '012Vj000008tfPJIAY';
+
+/**
+ * Generate a JWT token for CSAT submission
+ * @param applicationId - The Salesforce Application ID
+ * @returns JWT token valid for 7 days
+ */
+export const generateCSATToken = (applicationId: string): string => {
+  if (!CSAT_JWT_SECRET) {
+    throw new Error('CSAT_JWT_SECRET environment variable is not set');
+  }
+
+  return jwt.sign({ applicationId }, CSAT_JWT_SECRET, { expiresIn: '7d' });
+};
+
+/**
+ * Verify and decode a CSAT JWT token
+ * @param token - The JWT token to verify
+ * @returns Decoded payload with applicationId, or null if invalid
+ */
+export const verifyCSATToken = (token: string): { applicationId: string } | null => {
+  if (!CSAT_JWT_SECRET) {
+    throw new Error('CSAT_JWT_SECRET environment variable is not set');
+  }
+
+  try {
+    const decoded = jwt.verify(token, CSAT_JWT_SECRET) as { applicationId: string };
+    return decoded;
+  } catch (error) {
+    console.error('JWT verification failed:', error);
+    return null;
+  }
+};
 
 const createConnection = (): jsforce.Connection => {
   return new jsforce.Connection({

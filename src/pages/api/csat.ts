@@ -3,11 +3,12 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { sanitizeFields } from '../../middlewares/sanitizeFields';
 import { verifyCaptcha } from '../../middlewares/verifyCaptcha';
 import { CSATSchema } from '../../components/forms/schemas/CSAT';
-import { updateSalesforceRecord } from '../../lib/sf';
+import { updateSalesforceRecord, verifyCSATToken } from '../../lib/sf';
 
 interface CSATAPIRequest extends NextApiRequest {
   body: {
     applicationId: string;
+    csatToken: string;
     csatRating: number;
     csatComments?: string;
     captchaToken: string;
@@ -30,6 +31,20 @@ const handler = async (req: CSATAPIRequest, res: NextApiResponse) => {
   }
 
   try {
+    // Verify JWT token
+    const decoded = verifyCSATToken(result.data.csatToken);
+
+    if (!decoded) {
+      console.error('Invalid or expired CSAT token');
+      return res.status(401).json({ error: 'Invalid or expired token' });
+    }
+
+    // Verify that token's applicationId matches the one in the request
+    if (decoded.applicationId !== result.data.applicationId) {
+      console.error('Token applicationId mismatch');
+      return res.status(401).json({ error: 'Token does not match application' });
+    }
+
     // Update the Application record with CSAT fields
     const updateData = {
       Application_CSAT_Rating__c: result.data.csatRating,
