@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { stringFieldSchema } from './utils';
+import { MAX_TEXT_AREA_LENGTH } from '../../../constants';
 
 export const CSATSchema = z.object({
   // Salesforce Application ID reference
@@ -19,7 +20,7 @@ export const CSATSchema = z.object({
     .max(5, 'Rating must be between 1 and 5'),
 
   // CSAT Comments (optional)
-  csatComments: stringFieldSchema('Comments', { max: 32768 }).optional(),
+  csatComments: stringFieldSchema('Comments', { max: MAX_TEXT_AREA_LENGTH }).optional(),
 
   // Captcha token
   captchaToken: stringFieldSchema('Captcha', { min: 1 })
