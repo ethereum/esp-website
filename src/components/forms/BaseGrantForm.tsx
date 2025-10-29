@@ -1,19 +1,9 @@
-import { Box, Center, Stack, useToast } from '@chakra-ui/react';
+import { Stack, useToast } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FC, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { FormProvider, useForm, FieldValues, SubmitHandler, DefaultValues } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import * as z from 'zod';
-
-import { PageText } from '../UI';
-import { SubmitButton } from '../SubmitButton';
-import { Captcha } from './fields';
-import {
-  ContactInformationSection,
-  ProjectOverviewSection,
-  ProjectDetailsSection,
-  AdditionalDetailsSection
-} from './sections';
 
 import { TOAST_OPTIONS } from '../../constants';
 import { FormConfig } from './schemas/BaseGrant';
@@ -54,18 +44,30 @@ export function BaseGrantForm<T extends FieldValues>({
     defaultValues: formDefaultValues
   });
 
-  const {
-    handleSubmit,
-    formState: { isSubmitting },
-    reset
-  } = methods;
+  const { handleSubmit, reset } = methods;
 
   const onSubmit: SubmitHandler<T> = async data => {
     return submitFunction(data)
-      .then(res => {
+      .then(async res => {
         if (res.ok) {
           reset();
-          router.push(config.thankYouPageUrl);
+
+          // Parse response to get applicationId
+          try {
+            const responseData = await res.json();
+            const applicationId = responseData.applicationId;
+
+            // Navigate to thank you page with applicationId as query parameter
+            if (applicationId) {
+              router.push(`${config.thankYouPageUrl}?applicationId=${applicationId}`);
+            } else {
+              router.push(config.thankYouPageUrl);
+            }
+          } catch (error) {
+            // If parsing fails, navigate without applicationId
+            console.error('Error parsing response:', error);
+            router.push(config.thankYouPageUrl);
+          }
         } else {
           toast({
             ...TOAST_OPTIONS,

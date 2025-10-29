@@ -1,9 +1,14 @@
 import { NextPage } from 'next';
 import { Box, Text, VStack, Link } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 
 import { PageMetadata, PageSubheading } from '../../../components/UI';
+import { CSATForm } from '../../../components/forms';
 
 const DirectGrantThankYouPage: NextPage = () => {
+  const router = useRouter();
+  const { applicationId } = router.query;
+
   return (
     <>
       <PageMetadata
@@ -42,6 +47,11 @@ const DirectGrantThankYouPage: NextPage = () => {
             </Link>
           </Box>
         </VStack>
+
+        {/* CSAT Survey */}
+        {applicationId && typeof applicationId === 'string' && (
+          <CSATForm maxW='container.md' mx='auto' applicationId={applicationId} />
+        )}
       </Box>
     </>
   );

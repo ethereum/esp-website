@@ -42,8 +42,7 @@ const getRecordTypeIdForType = (type: GrantInitiativeType): string => {
 };
 
 const getFieldsForType = (type?: GrantInitiativeType): string => {
-  const baseFields =
-    'Id,Name,Description__c,RecordTypeId,Tags__c,Resources__c,Ecosystem_Need__c';
+  const baseFields = 'Id,Name,Description__c,RecordTypeId,Tags__c,Resources__c,Ecosystem_Need__c';
   const wishlistFields = ',Out_of_Scope__c,Custom_URL_Slug__c';
   const rfpFields =
     ',RFP_HardRequirements_Long__c,RFP_SoftRequirements__c,RFP_Project_Duration__c,RFP_Close_Date__c,RFP_Open_Date__c,Custom_URL_Slug__c';
@@ -56,7 +55,7 @@ const getFieldsForType = (type?: GrantInitiativeType): string => {
     return baseFields + rfpFields;
   }
 
-  console.log('Type is,', type)
+  console.log('Type is,', type);
 
   return baseFields;
 };
@@ -82,68 +81,63 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
 
       conn
         .sobject('Grant_Initiative__c')
-        .find<GrantInitiativeSalesforceRecord>(
-          criteria,
-          getFieldsForType(type),
-          (err, ret) => {
-            if (err) {
-              console.error(err);
-              return reject(err);
+        .find<GrantInitiativeSalesforceRecord>(criteria, getFieldsForType(type), (err, ret) => {
+          if (err) {
+            console.error(err);
+            return reject(err);
+          }
+
+          const grantInitiativeItems = ret.reduce<GrantInitiative[]>((acc, record) => {
+            const grantInitiativeType = getGrantInitiativeType(record.RecordTypeId);
+            if (!grantInitiativeType) return acc;
+
+            const grantInitiativeItem: GrantInitiative = {
+              Id: record.Id,
+              Name: record.Name,
+              Description__c: record.Description__c,
+              Tags__c: record.Tags__c,
+              Resources__c: record.Resources__c,
+              Ecosystem_Need__c: record.Ecosystem_Need__c
+            };
+
+            if (record.Custom_URL_Slug__c) {
+              grantInitiativeItem.Custom_URL_Slug__c = record.Custom_URL_Slug__c;
             }
 
-            const grantInitiativeItems = ret.reduce<GrantInitiative[]>((acc, record) => {
-              const grantInitiativeType = getGrantInitiativeType(record.RecordTypeId);
-              if (!grantInitiativeType) return acc;
-
-
-              const grantInitiativeItem: GrantInitiative = {
-                Id: record.Id,
-                Name: record.Name,
-                Description__c: record.Description__c,
-                Tags__c: record.Tags__c,
-                Resources__c: record.Resources__c,
-                Ecosystem_Need__c: record.Ecosystem_Need__c
-              };
-
-              if (record.Custom_URL_Slug__c) {
-                grantInitiativeItem.Custom_URL_Slug__c = record.Custom_URL_Slug__c;
+            if (grantInitiativeType === 'Wishlist') {
+              if (record.Out_of_Scope__c) {
+                grantInitiativeItem.Out_of_Scope__c = record.Out_of_Scope__c;
               }
+            }
 
-              if (grantInitiativeType === 'Wishlist') {
-                if (record.Out_of_Scope__c) {
-                  grantInitiativeItem.Out_of_Scope__c = record.Out_of_Scope__c;
-                }
+            if (grantInitiativeType === 'RFP') {
+              if (record.RFP_Project_Duration__c) {
+                grantInitiativeItem.RFP_Project_Duration__c = record.RFP_Project_Duration__c;
               }
-
-               if (grantInitiativeType === 'RFP') {
-                if (record.RFP_Project_Duration__c) {
-                  grantInitiativeItem.RFP_Project_Duration__c = record.RFP_Project_Duration__c;
-                }
-                 if (record.RFP_HardRequirements_Long__c) {
-                   grantInitiativeItem.RFP_HardRequirements_Long__c = record.RFP_HardRequirements_Long__c;
-                 }
-                 if (record.RFP_SoftRequirements__c) {
-                   grantInitiativeItem.RFP_SoftRequirements__c = record.RFP_SoftRequirements__c;
-                 }
-                if (record.RFP_Close_Date__c) {
-                  grantInitiativeItem.RFP_Close_Date__c = record.RFP_Close_Date__c;
-                }
-                if (record.RFP_Open_Date__c) {
-                  grantInitiativeItem.RFP_Open_Date__c = record.RFP_Open_Date__c;
-                }
-                if (record.RFP_Project_Duration__c) {
-                  grantInitiativeItem.RFP_Project_Duration__c = record.RFP_Project_Duration__c;
-                }
+              if (record.RFP_HardRequirements_Long__c) {
+                grantInitiativeItem.RFP_HardRequirements_Long__c =
+                  record.RFP_HardRequirements_Long__c;
               }
+              if (record.RFP_SoftRequirements__c) {
+                grantInitiativeItem.RFP_SoftRequirements__c = record.RFP_SoftRequirements__c;
+              }
+              if (record.RFP_Close_Date__c) {
+                grantInitiativeItem.RFP_Close_Date__c = record.RFP_Close_Date__c;
+              }
+              if (record.RFP_Open_Date__c) {
+                grantInitiativeItem.RFP_Open_Date__c = record.RFP_Open_Date__c;
+              }
+              if (record.RFP_Project_Duration__c) {
+                grantInitiativeItem.RFP_Project_Duration__c = record.RFP_Project_Duration__c;
+              }
+            }
 
+            acc.push(grantInitiativeItem);
+            return acc;
+          }, []);
 
-              acc.push(grantInitiativeItem);
-              return acc;
-            }, []);
-
-            return resolve(grantInitiativeItems);
-          }
-        );
+          return resolve(grantInitiativeItems);
+        });
     } catch (error) {
       return reject(error);
     }
@@ -177,6 +171,40 @@ export const createSalesforceRecord = async (
       });
     } catch (error) {
       console.error(`Error in create${objectType}:`, error);
+      reject(error);
+    }
+  });
+};
+
+/**
+ * Generic function to update any Salesforce object
+ * @param objectType - The Salesforce object type (e.g., 'Lead', 'Application__c')
+ * @param id - The ID of the record to update
+ * @param data - The data to be updated
+ * @returns Promise with the update result
+ */
+export const updateSalesforceRecord = async (
+  objectType: string,
+  id: string,
+  data: Record<string, any>
+): Promise<{ id: string; success: boolean }> => {
+  return new Promise(async (resolve, reject) => {
+    const conn = createConnection();
+
+    try {
+      await loginToSalesforce(conn);
+
+      conn.sobject(objectType).update({ Id: id, ...data }, (err, ret) => {
+        if (err || !ret.success) {
+          console.error(`Error updating ${objectType}:`, err);
+          return reject(err || new Error(`${objectType} update failed`));
+        }
+
+        console.log(`${objectType} with ID: ${ret.id} has been updated!`);
+        resolve({ id: ret.id, success: ret.success });
+      });
+    } catch (error) {
+      console.error(`Error in update${objectType}:`, error);
       reject(error);
     }
   });

@@ -27,7 +27,8 @@ import {
   API_TEN_YEAR_ANNIVERSARY,
   API_WISHLIST,
   API_RFP,
-  API_DIRECT_GRANT
+  API_DIRECT_GRANT,
+  API_CSAT
 } from './constants';
 
 import type { EPFData } from './schemas/EPFApplication';
@@ -40,6 +41,7 @@ import type { WishlistData } from './schemas/Wishlist';
 import type { RFPData } from './schemas/RFP';
 import type { DirectGrantData } from './schemas/DirectGrant';
 import type { OfficeHoursData } from './schemas/OfficeHours';
+import type { CSATData } from './schemas/CSAT';
 
 const methodOptions = {
   method: 'POST',
@@ -326,6 +328,16 @@ export const api = {
       };
 
       return fetch(API_DIRECT_GRANT, directGrantRequestOptions);
+    }
+  },
+  csat: {
+    submit: (data: CSATData) => {
+      const csatRequestOptions: RequestInit = {
+        ...methodOptions,
+        body: JSON.stringify(data)
+      };
+
+      return fetch(API_CSAT, csatRequestOptions);
     }
   }
 };

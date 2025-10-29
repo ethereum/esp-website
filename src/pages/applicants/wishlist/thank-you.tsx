@@ -1,10 +1,15 @@
 import { Flex, Stack, Link } from '@chakra-ui/react';
 import type { NextPage } from 'next';
+import { useRouter } from 'next/router';
 
 import { PageMetadata, PageSubheading, PageText } from '../../../components/UI';
 import { APPLICANTS_URL, ESP_EMAIL_ADDRESS } from '../../../constants';
+import { CSATForm } from '../../../components/forms';
 
 const WishlistThankYou: NextPage = () => {
+  const router = useRouter();
+  const { applicationId } = router.query;
+
   return (
     <>
       <PageMetadata
@@ -28,11 +33,14 @@ const WishlistThankYou: NextPage = () => {
           </PageSubheading>
 
           <PageText fontSize='xl' mb={8}>
-            We have received your Wishlist application and appreciate your interest in contributing to the Ethereum ecosystem.
+            We have received your Wishlist application and appreciate your interest in contributing
+            to the Ethereum ecosystem.
           </PageText>
 
           <PageText mb={6}>
-            You&apos;ll receive a confirmation email shortly. Our team will review your application and reach out via email in due course. You can learn more about the evaluation process on our{' '}
+            You&apos;ll receive a confirmation email shortly. Our team will review your application
+            and reach out via email in due course. You can learn more about the evaluation process
+            on our{' '}
             <Link
               fontWeight={700}
               color='brand.orange.100'
@@ -43,9 +51,10 @@ const WishlistThankYou: NextPage = () => {
             </Link>
             .
           </PageText>
-          
+
           <PageText>
-            If you have any questions about your application or the review process, please don&apos;t hesitate to contact us at{' '}
+            If you have any questions about your application or the review process, please
+            don&apos;t hesitate to contact us at{' '}
             <Link
               fontWeight={700}
               color='brand.orange.100'
@@ -58,6 +67,11 @@ const WishlistThankYou: NextPage = () => {
             .
           </PageText>
         </Stack>
+
+        {/* CSAT Survey */}
+        {applicationId && typeof applicationId === 'string' && (
+          <CSATForm maxW='container.md' mx='auto' applicationId={applicationId} />
+        )}
       </Flex>
     </>
   );
