@@ -55,7 +55,7 @@ const About = () => {
                   spacing={6}
                 >
                   <PageText>
-                    ESP is an ecosystem development cluster within the EF comprising three teams: Grant Management, Funding Coordination, and Launchpad.
+                    ESP is an ecosystem development cluster within the EF comprising two teams: Grant Management and Funding Coordination.
                   </PageText>
                   <PageText>
                     Together, we focus on strengthening Ethereum&apos;s foundations, supporting teams across the ecosystem, and enabling future builders. The work we support is free, open-source, non-commercial, and designed to create positive sum outcomes for the community.
@@ -118,42 +118,6 @@ const About = () => {
                   <Center gap={2} flexDirection={{ base: 'column', md: 'row' }}>
                     <ButtonLink label='Get in touch' link={`mailto:${FUNDING_COORDINATION_EMAIL}`} width="fit-content" />
                     <ButtonLink label='Explore our grants directory' width="fit-content" link={ETHEREUM_GRANTS_URL} />
-                  </Center>
-                </Stack>
-              </section>
-
-              <section id='launchpad' ref={ref4}>
-                <Stack
-                  spacing={6}
-                  mt={8}
-                  bgGradient='linear(to-br, brand.howWeSupport.bgGradient.start 2.29%, brand.howWeSupport.bgGradient.end 101.37%)'
-                  p={12}
-                  borderRadius='10px'
-                >
-                    <Image src={LaunchpadLogo} alt='Launchpad' height={100} objectFit='contain' />
-                  <PageSection>Launchpad</PageSection>
-                  <PageText>
-                    The Launchpad Program supports early-stage organizations in navigating key challenges, including organizational design, identifying paths to financial sustainability, and establishing robust governance. We work with spin-outs from the EF, grantees, and other ecosystem teams that can benefit from this guidance, helping them build strong and impactful organizations.
-                  </PageText>
-                  <PageText>
-                    Think of Launchpad as a sparring partner that helps you get your organization off the ground in multiple different ways:
-                  </PageText>
-                  <List>
-                    <ListItem>
-                      <strong>Strategic Guidance</strong> - Best practices and lessons learned from other early-stage organizations in the ecosystem
-                    </ListItem>
-                    <ListItem>
-                      <strong>Operational Toolkit</strong> - Tailored roadmaps, checklists, and other resources that helps facilitate the process of building out a new organization
-                    </ListItem>
-                    <ListItem>
-                      <strong>Hands-on Support</strong> - Direct assistance in critical areas, including strategic vision, governance, hiring, and operational setup.
-                    </ListItem>
-                  </List>
-                  <PageText>
-                    We have worked with EF spinouts such as <Link href={ARGOT_COLLECTIVE_URL} fontWeight={700} color='brand.orange.100' isExternal _hover={{ textDecoration: 'none' }}>Argot Collective</Link>, <Link href={REMIX_LABS_URL} fontWeight={700} color='brand.orange.100' isExternal _hover={{ textDecoration: 'none' }}>Remix Labs</Link> and <Link href={POWDR_LABS_URL} fontWeight={700} color='brand.orange.100' isExternal _hover={{ textDecoration: 'none' }}>Powdr Labs</Link>, as well as several EF grantees.
-                  </PageText>
-                  <Center>
-                    <ButtonLink label='Get in touch' link={`mailto:${LAUNCHPAD_EMAIL}`} width="fit-content" />
                   </Center>
                 </Stack>
               </section>

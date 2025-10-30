@@ -38,7 +38,7 @@ const Home: NextPage = () => {
                 <PageSection mb={6}>Our Mission</PageSection>
 
                 <PageText fontSize='stats' fontWeight={100} lineHeight='32px'>
-                  The Ecosystem Support Program is an ecosystem development cluster within the Ethereum Foundation comprising three teams: Grant Management, Funding Coordination, and Launchpad. Together, we focus on strengthening Ethereum&apos;s foundations, supporting teams across the ecosystem, and enabling future builders.
+                The Ecosystem Support Program is an ecosystem development cluster within the Ethereum Foundation comprising two teams: Grant Management and Funding Coordination. Together, we focus on strengthening Ethereum&apos;s foundations, supporting teams across the ecosystem, and enabling future builders.
                 </PageText>
               </section>
             </Stack>
@@ -229,7 +229,7 @@ const Home: NextPage = () => {
               link={ABOUT_URL}
             >
               <PageText mb={6}>
-              ESP comprises three teams:
+              ESP comprises two teams:
               </PageText>
               <UnorderedList>
                 <ListItem mb={2}>
@@ -237,9 +237,6 @@ const Home: NextPage = () => {
                 </ListItem>
                 <ListItem mb={2}>
                   <PageText>Funding Coordination: Streamlining access to funding and resources across multiple channels to support impactful projects</PageText>
-                </ListItem>
-                <ListItem>
-                  <PageText>Launchpad: Guiding early-stage organizations in navigating key challenges (e.g. organizational design, financial sustainability, governance)</PageText>
                 </ListItem>
               </UnorderedList>
             </HomeAboutCard>
