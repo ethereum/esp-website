@@ -7,11 +7,19 @@ import { PageText } from '../../UI';
 export const Captcha: FC = () => {
   const captchaRef = useRef<HCaptcha>(null);
   const { register, setValue, formState, resetField } = useFormContext();
-  const { errors } = formState;
+  const { errors, isSubmitSuccessful, isSubmitting } = formState;
 
   useEffect(() => {
     register('captchaToken', { required: true });
   }, [register]);
+
+  // Automatically reset captcha after form submission
+  useEffect(() => {
+    if (isSubmitSuccessful && !isSubmitting) {
+      captchaRef.current?.resetCaptcha();
+      resetField('captchaToken');
+    }
+  }, [isSubmitSuccessful, isSubmitting, resetField]);
 
   const onVerify = useCallback(
     (token: string) => {
