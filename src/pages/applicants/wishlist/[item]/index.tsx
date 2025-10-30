@@ -1,18 +1,7 @@
-import {
-    Box,
-    Center,
-    Heading,
-    Stack,
-    Text,
-    Wrap,
-    WrapItem,
-    Tag,
-  } from '@chakra-ui/react';
+import { Box, Center, Heading, Stack, Text, Wrap, WrapItem, Tag } from '@chakra-ui/react';
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 
-import {
-  PageMetadata,
-} from '../../../../components/UI';
+import { PageMetadata } from '../../../../components/UI';
 import { WishlistItem } from '../../../../components/forms/schemas/Wishlist';
 import { ButtonLink } from '../../../../components/ButtonLink';
 import { getGrantInitiativeItems } from '../../../../lib/sf';
@@ -24,10 +13,10 @@ interface WishlistItemApplyProps {
 
 const WishlistItemPage: NextPage<WishlistItemApplyProps> = ({ wishlistItem }) => {
   const parseResources = (resources?: string) => {
-      if (!resources) return null;
-      return parseStringForUrls(resources)
-    };
-  
+    if (!resources) return null;
+    return parseStringForUrls(resources);
+  };
+
   const parseTags = (tags?: string) =>
     tags
       ?.split(';')
@@ -52,7 +41,7 @@ const WishlistItemPage: NextPage<WishlistItemApplyProps> = ({ wishlistItem }) =>
         >
           <Stack spacing={3}>
             <Heading size='md' color='brand.heading'>
-              Selected: {wishlistItem.Name}
+              {wishlistItem.Name}
             </Heading>
             <Text color='brand.paragraph'>{wishlistItem.Description__c}</Text>
             {wishlistItem.Expected_Deliverables__c && (
@@ -130,7 +119,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: "blocking"
+    fallback: 'blocking'
   };
 };
 
@@ -138,7 +127,9 @@ export const getStaticProps: GetStaticProps<WishlistItemApplyProps> = async ({ p
   const itemId = params?.item as string;
 
   const wishlistItems = await getGrantInitiativeItems('Wishlist');
-  const wishlistItem = wishlistItems.find(item => item.Custom_URL_Slug__c === itemId || item.Id === itemId);
+  const wishlistItem = wishlistItems.find(
+    item => item.Custom_URL_Slug__c === itemId || item.Id === itemId
+  );
 
   if (!wishlistItem) {
     return {
