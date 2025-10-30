@@ -31,6 +31,32 @@ const baseSchema = z.object({
     max: MAX_TEXT_AREA_LENGTH
   }),
 
+  requestedSupport: z
+    .array(z.enum(['Tickets', 'Vouchers']))
+    .min(1, 'Please select at least one option'),
+
+  // Ticket / Voucher fields (optional at base level so refinements can access them)
+  ticketRequest: z.coerce
+    .number({ invalid_type_error: 'Amount must be a number' })
+    .min(1, 'Amount must be at least 1')
+    .optional(),
+  voucherRequest: z.coerce
+    .number({ invalid_type_error: 'Amount must be a number' })
+    .min(1, 'Amount must be at least 1')
+    .optional(),
+  fiatCurrency: stringFieldSchema('Fiat Currency', { min: 1 }).optional(),
+  requestedAmount: z.coerce
+    .number({ invalid_type_error: 'Amount must be a number' })
+    .min(1, 'Amount must be at least 1')
+    .optional(),
+  additionalSupportRequests: stringFieldSchema(
+    'How will the tickets be distributed, and who will be receiving these tickets?',
+    {
+      min: 1,
+      max: MAX_TEXT_AREA_LENGTH
+    }
+  ).optional(),
+
   // Additional Details
   referralSource: stringFieldSchema('How did you hear about this grant round?', { min: 1 }),
   referrals: stringFieldSchema(
@@ -52,13 +78,6 @@ const baseSchema = z.object({
 
 const communityInitiativeSchema = baseSchema.extend({
   category: z.literal('Community Initiative'),
-
-  // Requested Amount
-  fiatCurrency: stringFieldSchema('Fiat Currency', { min: 1 }),
-  requestedAmount: z.coerce
-    .number({ invalid_type_error: 'Amount must be a number' })
-    .min(1, 'Amount must be at least 1'),
-
   // Project Details (if Community Initiative)
   projectName: stringFieldSchema('Project name', { min: 1, max: MAX_TEXT_LENGTH }),
   projectDescription: stringFieldSchema('Project Summary', {
@@ -76,65 +95,7 @@ const communityInitiativeSchema = baseSchema.extend({
   impact: stringFieldSchema('Why is your project important?', {
     min: 1,
     max: MAX_TEXT_AREA_LENGTH
-  }),
-  howIsItDifferent: stringFieldSchema('How does your project differ from similar ones?', {
-    min: 1,
-    max: MAX_TEXT_AREA_LENGTH
-  }),
-  isItPublicGood: stringFieldSchema('Is your project a public good?', {
-    min: 1,
-    max: MAX_TEXT_AREA_LENGTH
-  }),
-  isItOpenSource: stringFieldSchema('Is your project open source?', {
-    min: 1,
-    max: MAX_TEXT_AREA_LENGTH
-  }),
-  sustainabilityPlan: stringFieldSchema('What are your plans after the grant is completed?', {
-    min: 1,
-    max: MAX_TEXT_AREA_LENGTH
-  }),
-  otherProjects: stringFieldSchema(
-    "If you didn't work on this project, what would you work on instead?",
-    {
-      min: 1,
-      max: MAX_TEXT_AREA_LENGTH
-    }
-  )
-});
-
-const communityEventSchema = baseSchema.extend({
-  category: z.literal('Community Event'),
-
-  // Requested Amount
-  fiatCurrency: stringFieldSchema('Fiat Currency', { min: 1 }),
-  requestedAmount: z.coerce
-    .number({ invalid_type_error: 'Amount must be a number' })
-    .min(1, 'Amount must be at least 1'),
-
-  // Event Details (if Community Event)
-  eventName: stringFieldSchema('Event Name', { min: 1, max: MAX_TEXT_LENGTH }),
-  eventDate: z.string(),
-  eventLink: z.string(),
-  eventDescription: stringFieldSchema('Event Summary', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
-  eventTopics: stringFieldSchema('Event topics', { min: 1, max: MAX_TEXT_AREA_LENGTH }),
-  typeOfEvent: stringFieldSchema('What type of event is this?', {
-    min: 1,
-    max: MAX_TEXT_LENGTH
-  }),
-  inPerson: stringFieldSchema('Is your event in-person or online?', { min: 1 }),
-  eventLocation: z.string().optional(),
-  estimatedAttendees: z.coerce
-    .number({
-      invalid_type_error: 'Estimated attendees must be a number'
-    })
-    .min(1, 'Estimated attendees must be at least 1'),
-  targetAudience: stringFieldSchema('Target audience', { min: 1, max: MAX_TEXT_LENGTH }),
-  confirmedSpeakers: stringFieldSchema('Confirmed speakers', {
-    max: MAX_TEXT_AREA_LENGTH
-  }).optional(),
-  confirmedSponsors: stringFieldSchema('Confirmed sponsors', {
-    max: MAX_TEXT_AREA_LENGTH
-  }).optional()
+  })
 });
 
 const nonFinancialSchema = baseSchema.extend({
@@ -173,7 +134,7 @@ const nonFinancialSchema = baseSchema.extend({
 // Define the union with explicit discriminator and add team validation
 const rawSchema = z.discriminatedUnion(
   'category',
-  [communityEventSchema, communityInitiativeSchema, nonFinancialSchema],
+  [communityInitiativeSchema, nonFinancialSchema],
   {
     errorMap: () => ({
       message: 'Category is required'
@@ -191,18 +152,61 @@ export const DestinoDevconnectSchema = rawSchema
       path: ['company']
     }
   )
-  // Event location validation for in-person events
+  // Conditional validation for ticketRequest when Free tickets is selected
   .refine(
     data => {
-      return (
-        data.category !== 'Community Event' ||
-        data.inPerson !== 'In-person' ||
-        (data.eventLocation && data.eventLocation.trim() !== '')
-      );
+      if (data.requestedSupport?.includes('Tickets')) {
+        return data.ticketRequest !== undefined && data.ticketRequest >= 1;
+      }
+      return true;
     },
     {
-      message: 'Event location is required for in-person events',
-      path: ['eventLocation']
+      message: 'Number of tickets requested is required when Free tickets is selected',
+      path: ['ticketRequest']
+    }
+  )
+  // Conditional validation for voucherRequest when Voucher codes is selected
+  .refine(
+    data => {
+      if (data.requestedSupport?.includes('Vouchers')) {
+        return data.voucherRequest !== undefined && data.voucherRequest >= 1;
+      }
+      return true;
+    },
+    {
+      message:
+        'Number of voucher codes requested is required when Voucher codes for discounted tickets is selected',
+      path: ['voucherRequest']
+    }
+  )
+  // Conditional validation for additionalSupportRequests when tickets or vouchers are selected
+  .refine(
+    data => {
+      if (
+        data.requestedSupport?.includes('Tickets') ||
+        data.requestedSupport?.includes('Vouchers')
+      ) {
+        return (
+          data.additionalSupportRequests !== undefined &&
+          data.additionalSupportRequests.trim() !== ''
+        );
+      }
+      return true;
+    },
+    {
+      message:
+        'Additional support requests details are required when requesting tickets or vouchers',
+      path: ['additionalSupportRequests']
+    }
+  )
+  // Require at least one requestedSupport option on submit
+  .refine(
+    data => {
+      return Array.isArray(data.requestedSupport) && data.requestedSupport.length > 0;
+    },
+    {
+      message: 'Please select at least one option',
+      path: ['requestedSupport']
     }
   );
 

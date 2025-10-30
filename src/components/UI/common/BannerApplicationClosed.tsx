@@ -9,9 +9,10 @@ interface Props extends ChakraProps {
   children?: React.ReactNode;
   title?: React.ReactNode;
   description?: React.ReactNode;
+  hideDescription?: boolean;
 }
 
-export const BannerApplicationClosed: FC<Props> = ({ children, title, description, ...props }) => {
+export const BannerApplicationClosed: FC<Props> = ({ children, title, description, hideDescription, ...props }) => {
   return (
     <Banner
       bgGradient='linear(to-br, brand.closedBanner.bgGradient.start 10%, brand.closedBanner.bgGradient.end 100%)'
@@ -20,14 +21,15 @@ export const BannerApplicationClosed: FC<Props> = ({ children, title, descriptio
       borderRadius='xl'
       flexDirection='column'
       textAlign='center'
+      gap={2}
       {...props}
     >
-      <Heading fontSize='h4' fontWeight={700} mb={2}>
+      <Heading fontSize='h4' fontWeight={700}>
         {title || 'Applications for this grant wave are closed.'}
       </Heading>
 
       <Text fontSize='paragraph' fontWeight={300}>
-        {description || (
+        {!hideDescription && (description || (
           <>
             If you&apos;re still interested in pursuing grants for a project, you can still go
             through our{' '}
@@ -41,7 +43,7 @@ export const BannerApplicationClosed: FC<Props> = ({ children, title, descriptio
             </Link>
             .
           </>
-        )}
+        ))}
       </Text>
 
       {children}

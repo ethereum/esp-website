@@ -8,7 +8,7 @@ const DevconGrantsApply: NextPage = () => {
   return (
     <>
       <PageMetadata
-        title='Apply for Destino Devconnect Grants'
+        title='Apply for Destino Devconnect Support'
         description='A local grant round to bring Argentina onchain.'
         image={ACADEMIC_GRANTS_PREVIEW_URL}
       />
@@ -23,7 +23,7 @@ const DevconGrantsApply: NextPage = () => {
         <Stack>
           <section id='description'>
             <PageSubheading mb={8} textAlign='center'>
-              Apply for Destino Devconnect Grants
+              Apply for Destino Devconnect Support
             </PageSubheading>
 
             <PageText textAlign='center'>
