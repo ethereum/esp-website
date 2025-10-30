@@ -43,7 +43,9 @@ const WishlistItemPage: NextPage<WishlistItemApplyProps> = ({ wishlistItem }) =>
             <Heading size='md' color='brand.heading'>
               {wishlistItem.Name}
             </Heading>
-            <Text color='brand.paragraph'>{wishlistItem.Description__c}</Text>
+            <Text color='brand.paragraph' whiteSpace='pre-line'>
+              {wishlistItem.Description__c}
+            </Text>
             {wishlistItem.Expected_Deliverables__c && (
               <Box>
                 <Text fontWeight='600' color='brand.heading' mb={1}>

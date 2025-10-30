@@ -54,7 +54,9 @@ const RFPItemPage: NextPage<RFPItemApplyProps> = ({ rfpItem }) => {
             <Heading size='md' color='brand.heading'>
               {rfpItem.Name}
             </Heading>
-            <Text color='brand.paragraph'>{rfpItem.Description__c}</Text>
+            <Text color='brand.paragraph' whiteSpace='pre-line'>
+              {rfpItem.Description__c}
+            </Text>
             {rfpItem.Expected_Deliverables__c && (
               <Box>
                 <Text fontWeight='600' color='brand.heading' mb={1}>

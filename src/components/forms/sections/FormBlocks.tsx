@@ -35,56 +35,59 @@ export const SelectedItemDisplay: FC<SelectedItemDisplayProps> = ({
       <PageText fontSize='lg' fontWeight='700' color='brand.heading'>
         {selectedItem.Name}
       </PageText>
-      <PageText fontSize='sm' color='brand.paragraph'>
+      <PageText fontSize='sm' color='brand.paragraph' whiteSpace='pre-line'>
         {selectedItem.Description__c}
       </PageText>
       {extraDetails && (
         <>
-        { selectedItem.Tags__c && (
-          <Box>
-            <PageText fontSize='sm' color='brand.helpText' fontWeight='600' mb={1}>
-              Tags
-            </PageText>
-            <Wrap spacing={2}>
-              {selectedItem.Tags__c?.split(';').map(tag => tag.trim()).filter(Boolean).map(tag => (
-                <WrapItem key={tag}>
-                  <Tag
-                    size='md'
-                    variant='subtle'
-                    colorScheme='orange'
-                    px={3}
-                    py={1}
-                    borderRadius='full'
-                  >
-                    {tag}
-                  </Tag>
-                </WrapItem>
-              ))}
-            </Wrap>
-          </Box>
-        )}
+          {selectedItem.Tags__c && (
+            <Box>
+              <PageText fontSize='sm' color='brand.helpText' fontWeight='600' mb={1}>
+                Tags
+              </PageText>
+              <Wrap spacing={2}>
+                {selectedItem.Tags__c?.split(';')
+                  .map(tag => tag.trim())
+                  .filter(Boolean)
+                  .map(tag => (
+                    <WrapItem key={tag}>
+                      <Tag
+                        size='md'
+                        variant='subtle'
+                        colorScheme='orange'
+                        px={3}
+                        py={1}
+                        borderRadius='full'
+                      >
+                        {tag}
+                      </Tag>
+                    </WrapItem>
+                  ))}
+              </Wrap>
+            </Box>
+          )}
 
-        { selectedItem.Out_of_Scope__c && (
-          <Box>
-            <PageText fontSize='sm' color='brand.helpText' fontWeight='600' mb={1}>
-              Out of Scope
-            </PageText>
-            <PageText fontSize='sm' color='brand.paragraph'>
-              {selectedItem.Out_of_Scope__c}
-            </PageText>
-          </Box>
-        )}
+          {selectedItem.Out_of_Scope__c && (
+            <Box>
+              <PageText fontSize='sm' color='brand.helpText' fontWeight='600' mb={1}>
+                Out of Scope
+              </PageText>
+              <PageText fontSize='sm' color='brand.paragraph'>
+                {selectedItem.Out_of_Scope__c}
+              </PageText>
+            </Box>
+          )}
 
-        { selectedItem.Resources__c && (
-          <Box>
-            <PageText fontSize='sm' color='brand.helpText' fontWeight='600' mb={1}>
-              Resources
-            </PageText>
-            <PageText fontSize='sm' whiteSpace='pre-line'>
-              {parseStringForUrls(selectedItem.Resources__c ?? '')}
-            </PageText>
-          </Box>
-        )}
+          {selectedItem.Resources__c && (
+            <Box>
+              <PageText fontSize='sm' color='brand.helpText' fontWeight='600' mb={1}>
+                Resources
+              </PageText>
+              <PageText fontSize='sm' whiteSpace='pre-line'>
+                {parseStringForUrls(selectedItem.Resources__c ?? '')}
+              </PageText>
+            </Box>
+          )}
         </>
       )}
     </Stack>
