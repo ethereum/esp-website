@@ -1,10 +1,15 @@
 import { Box, Heading, Link, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 import { PageMetadata, PageSubheading, PageText } from '../../../components/UI';
+import { CSATForm } from '../../../components/forms';
 
 const OfficeHoursThankYou: NextPage = () => {
+  const router = useRouter();
+  const { applicationId, csatToken } = router.query;
+
   return (
     <>
       <PageMetadata title='Thank you' description='Thank you for applying to Office Hours.' />
@@ -40,9 +45,20 @@ const OfficeHoursThankYou: NextPage = () => {
                 _hover={{ textDecoration: 'none' }}
               >
                 Office Hours About page
-              </Link>.
+              </Link>
+              .
             </PageText>
           </section>
+
+          {/* CSAT Survey */}
+          {applicationId && csatToken && (
+            <CSATForm
+              maxW='container.md'
+              mx='auto'
+              applicationId={applicationId as string}
+              csatToken={csatToken as string}
+            />
+          )}
         </Stack>
       </Box>
     </>

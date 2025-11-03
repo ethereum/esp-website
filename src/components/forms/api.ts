@@ -3,7 +3,6 @@ import {
   EcodevGrantsFormData,
   GranteeFinanceFormData,
   NewsletterFormData,
-  OfficeHoursFormData,
   PSESponsorshipsFormData,
   ProjectGrantsFormData,
   SmallGrantsFormData
@@ -25,7 +24,11 @@ import {
   API_EPF_APPLICATION,
   API_PSE_APPLICATION,
   API_ACADEMIC_GRANTS,
-  API_TEN_YEAR_ANNIVERSARY
+  API_TEN_YEAR_ANNIVERSARY,
+  API_WISHLIST,
+  API_RFP,
+  API_DIRECT_GRANT,
+  API_CSAT
 } from './constants';
 
 import type { EPFData } from './schemas/EPFApplication';
@@ -34,6 +37,11 @@ import type { AcademicGrantsData } from './schemas/AcademicGrants';
 import type { PectraPGRData } from './schemas/PectraPGR';
 import type { DestinoDevconnectData } from './schemas/DestinoDevconnect';
 import type { TenYearAnniversaryData } from './schemas/TenYearAnniversary';
+import type { WishlistData } from './schemas/Wishlist';
+import type { RFPData } from './schemas/RFP';
+import type { DirectGrantData } from './schemas/DirectGrant';
+import type { OfficeHoursData } from './schemas/OfficeHours';
+import type { CSATData } from './schemas/CSAT';
 
 const methodOptions = {
   method: 'POST',
@@ -42,18 +50,18 @@ const methodOptions = {
 
 export const api = {
   officeHours: {
-    submit: (data: OfficeHoursFormData) => {
+    submit: (data: OfficeHoursData) => {
+      const curatedData: { [key: string]: any } = {
+        ...data,
+        // Company is a required field in SF, we're using the Name as default value if no company provided
+        company: data.company || `${data.firstName} ${data.lastName}`
+      };
+
+      const formData = createFormData(curatedData);
+
       const officeHoursRequestOptions: RequestInit = {
-        ...methodOptions,
-        body: JSON.stringify({
-          ...data,
-          // Company is a required field in SF, we're using the Name as default value if no company provided
-          company: data.company === '' ? `${data.firstName} ${data.lastName}` : data.company,
-          projectCategory: data.projectCategory.value,
-          howDidYouHearAboutESP: data.howDidYouHearAboutESP.value,
-          country: data.country.value,
-          timezone: data.timezone.value
-        })
+        method: 'POST',
+        body: formData
       };
 
       return fetch(API_OFFICE_HOURS, officeHoursRequestOptions);
@@ -269,6 +277,67 @@ export const api = {
         },
         body: JSON.stringify(data)
       });
+    }
+  },
+  wishlist: {
+    submit: (data: WishlistData) => {
+      const curatedData: { [key: string]: any } = {
+        ...data,
+        company: data.company || `${data.firstName} ${data.lastName}`
+      };
+
+      const formData = createFormData(curatedData);
+
+      const wishlistRequestOptions: RequestInit = {
+        method: 'POST',
+        body: formData
+      };
+
+      return fetch(API_WISHLIST, wishlistRequestOptions);
+    }
+  },
+  rfp: {
+    submit: (data: RFPData) => {
+      const curatedData: { [key: string]: any } = {
+        ...data,
+        company: data.company || `${data.firstName} ${data.lastName}`
+      };
+
+      const formData = createFormData(curatedData);
+
+      const rfpRequestOptions: RequestInit = {
+        method: 'POST',
+        body: formData
+      };
+
+      return fetch(API_RFP, rfpRequestOptions);
+    }
+  },
+  directGrant: {
+    submit: (data: DirectGrantData) => {
+      const curatedData: { [key: string]: any } = {
+        ...data,
+        company: data.company || `${data.firstName} ${data.lastName}`
+      };
+
+      const formData = createFormData(curatedData);
+
+      const directGrantRequestOptions: RequestInit = {
+        method: 'POST',
+        body: formData
+      };
+
+      return fetch(API_DIRECT_GRANT, directGrantRequestOptions);
+    }
+  },
+  csat: {
+    submit: (data: CSATData) => {
+      const csatRequestOptions: RequestInit = {
+        ...methodOptions,
+        body: JSON.stringify(data)
+      };
+
+      return fetch(API_CSAT, csatRequestOptions);
     }
   }
 };

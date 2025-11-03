@@ -323,25 +323,6 @@ export interface SidebarLink {
 }
 
 // body request data types
-export interface OfficeHoursNextApiRequest extends NextApiRequest {
-  body: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    individualOrTeam: string;
-    company: string;
-    officeHoursRequest: string;
-    projectName: string;
-    projectDescription: string;
-    additionalInfo: string;
-    projectCategory: string;
-    otherReasonForMeeting: string;
-    howDidYouHearAboutESP: string;
-    country: string;
-    timezone: string;
-  };
-}
-
 export interface GranteeFinanceNextApiRequest extends NextApiRequest {
   body: {
     beneficiaryName: string;
@@ -496,4 +477,42 @@ export interface PSESponsorshipsNextApiRequest extends NextApiRequest {
     contactTelegram: string;
     whyEthereum: string;
   };
+}
+
+export interface GrantInitiativeSalesforceRecord {
+  Id: string;
+  Name: string;
+  Description__c: string;
+  Status__c: string;
+  RecordTypeId: string;
+  Tags__c?: string;
+  Out_of_Scope__c?: string;
+  Resources__c?: string;
+  RFP_HardRequirements_Long__c?: string;
+  RFP_SoftRequirements__c?: string;
+  Ecosystem_Need__c?: string;
+  RFP_Project_Duration__c?: string; // Estimated Project Duration
+  RFP_Close_Date__c?: string;
+  RFP_Open_Date__c?: string;
+  Custom_URL_Slug__c?: string;
+}
+
+export type GrantInitiativeType = 'Wishlist' | 'RFP';
+
+export interface GrantInitiative {
+  Id: string;
+  Name: string;
+  Description__c: string;
+  Expected_Deliverables__c?: string;
+  Requirements__c?: string;
+  Tags__c?: string;
+  Out_of_Scope__c?: string;
+  Resources__c?: string;
+  Ecosystem_Need__c?: string;
+  RFP_Project_Duration__c?: string;
+  RFP_Close_Date__c?: string;
+  RFP_Open_Date__c?: string;
+  RFP_HardRequirements_Long__c?: string;
+  RFP_SoftRequirements__c?: string;
+  Custom_URL_Slug__c?: string;
 }

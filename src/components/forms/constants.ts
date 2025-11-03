@@ -1687,6 +1687,9 @@ export const COMMITMENT_OPTIONS = [
 
 // API routes
 export const API_OFFICE_HOURS = '/api/office-hours';
+export const API_WISHLIST = '/api/wishlist';
+export const API_RFP = '/api/rfp';
+export const API_DIRECT_GRANT = '/api/direct-grant';
 export const API_PROJECT_GRANTS = '/api/project-grants';
 export const API_SMALL_GRANTS_PROJECT = '/api/small-grants/project';
 export const API_SMALL_GRANTS_EVENT = '/api/small-grants/event';
@@ -1701,6 +1704,7 @@ export const API_NEWSLETTER_SIGNUP_URL = '/api/newsletter-signup';
 export const API_PSE_APPLICATION = '/api/pse-grants';
 export const API_PECTRA_PGR = '/api/pectra-pgr';
 export const API_TEN_YEAR_ANNIVERSARY = '/api/10-year-anniversary';
+export const API_CSAT = '/api/csat';
 
 export const CATEGORY_OPTIONS = [
   { value: 'Community Event', label: 'Community Event' },
@@ -1731,4 +1735,43 @@ export const REFERRAL_SOURCE_OPTIONS = [
   { value: 'Other team/project in ecosystem', label: 'Other team/project in ecosystem' },
   { value: 'Social Media', label: 'Social Media' },
   { value: 'Other', label: 'Other' }
+];
+
+export const PROFILE_TYPE_OPTIONS = [
+  { value: 'Individual', label: 'Individual' },
+  { value: 'Team', label: 'Team' },
+  { value: 'Company', label: 'Company' },
+  { value: 'Organization', label: 'Organization' },
+  { value: 'University', label: 'University' },
+  { value: 'Consortium of Universities', label: 'Consortium of Universities' },
+  { value: 'Research Center', label: 'Research Center' },
+  { value: 'Other', label: 'Other' }
+];
+
+export const DOMAIN_OPTIONS = [
+  { value: 'Application layer', label: 'Application layer' },
+  { value: 'Cryptography', label: 'Cryptography' },
+  { value: 'DAOs/Governance', label: 'DAOs/Governance' },
+  { value: 'Decentralized Identity', label: 'Decentralized Identity' },
+  { value: 'DeFi', label: 'DeFi' },
+  { value: 'Economics', label: 'Economics' },
+  { value: 'Ethereum Protocol', label: 'Ethereum Protocol' },
+  { value: 'Government', label: 'Government' },
+  { value: 'Layer 2', label: 'Layer 2' },
+  { value: 'NFTs / Digital Art', label: 'NFTs / Digital Art' },
+  { value: 'Nodes and Clients', label: 'Nodes and Clients' },
+  { value: 'Privacy', label: 'Privacy' },
+  { value: 'Security', label: 'Security' },
+  { value: 'Society and Regulatory', label: 'Society and Regulatory' },
+  { value: 'UX/UI', label: 'UX/UI' },
+  { value: 'Zero-knowledge Proofs', label: 'Zero-knowledge Proofs' },
+  { value: 'Other', label: 'Other' }
+];
+
+export const OUTPUT_OPTIONS = [
+  { value: 'Application', label: 'Application' },
+  { value: 'Dashboard', label: 'Dashboard' },
+  { value: 'Developer tooling', label: 'Developer tooling' },
+  { value: 'Ecosystem development', label: 'Ecosystem development' },
+  { value: 'Research', label: 'Research' }
 ];

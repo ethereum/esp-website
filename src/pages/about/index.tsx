@@ -1,8 +1,38 @@
-import { Box, Link, Stack } from '@chakra-ui/react';
+import { Box, Center, Flex, Link, ListItem, Stack } from '@chakra-ui/react';
+import { useInView } from 'react-intersection-observer';
+import Image from 'next/image';
 
-import { PageSection, PageText, PageMetadata } from '../../components/UI';
+import { ButtonLink } from '../../components';
+import {
+  ApplicantsSidebar,
+  List,
+  PageSection,
+  PageText,
+  PageMetadata,
+} from '../../components/UI';
+
+import {
+  ARGOT_COLLECTIVE_URL,
+  ETHEREUM_GRANTS_URL,
+  FUNDING_COORDINATION_EMAIL,
+  LAUNCHPAD_EMAIL,
+  POWDR_LABS_URL,
+  REMIX_LABS_URL,
+  SIDEBAR_ABOUT_LINKS
+} from '../../constants';
+
+import GrantManagementLogo from '../../../public/images/grant-management-logo.png';
+import FundingCoordinationLogo from '../../../public/images/funding-coordination-logo.png';
+import LaunchpadLogo from '../../../public/images/launchpad-logo.png';
 
 const About = () => {
+    // `threshold` option allows us to control the % of visibility required before triggering the Intersection Observer
+  // https://react-intersection-observer.vercel.app/?path=/story/introduction--page#options
+  const [ref, inView] = useInView({ threshold: 0.3 });
+  const [ref2, inView2] = useInView({ threshold: 0, initialInView: false });
+  const [ref3, inView3] = useInView({ threshold: 0, initialInView: false });
+  const [ref4, inView4] = useInView({ threshold: 0, initialInView: false });
+
   return (
     <>
       <PageMetadata
@@ -10,67 +40,90 @@ const About = () => {
         description="We provide support for open source projects that strengthen Ethereum's foundations, with a particular focus on builder tools, infrastructure, research and public goods."
       />
 
-      <Box bg='white' position='relative' px={{ md: 20, lg: 60 }} py={{ md: 12 }}>
-        <Stack mb={12} spacing={10}>
-          <section id='our-scope'>
-            <PageSection mb={6} textAlign='center'>
-              Our scope
-            </PageSection>
+      <Box bg='white' position='relative' py={{ md: 12 }}>
+        <Flex>
+          <ApplicantsSidebar
+            sidebarLinks={SIDEBAR_ABOUT_LINKS}
+            sectionsInView={[inView, inView2, inView3, inView4]}
+          />
 
-            <PageText mb={6}>
-              ESP focuses on strengthening Ethereum&apos;s foundations and enabling future builders:
-              improving infrastructure, expanding the range of tools available to those building on
-              Ethereum, deepening our understanding of cryptographic primitives, and growing the
-              builder ecosystem through education and community development. The work we support is
-              free, open-source, non-commercial, and built for positive sum outcomes.
-            </PageText>
+          <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
+            <Stack spacing={10}>
+              <section id='overview' ref={ref}>
+                <PageSection mb={6}>Overview</PageSection>
+                <Stack
+                  spacing={6}
+                >
+                  <PageText>
+                    ESP is an ecosystem development cluster within the EF comprising two teams: Grant Management and Funding Coordination.
+                  </PageText>
+                  <PageText>
+                    Together, we focus on strengthening Ethereum&apos;s foundations, supporting teams across the ecosystem, and enabling future builders. The work we support is free, open-source, non-commercial, and designed to create positive sum outcomes for the community.
+                  </PageText>
+                  <PageText>
+                    Learn more about each of our teams below!
+                  </PageText>
+                </Stack>
+              </section>
 
-            <PageText mb={6}>
-              ESP is in the process of refining our priorities and approach, aligning with the
-              Ethereum Foundation&apos;s updated{' '}
-              <Link
-                fontWeight={700}
-                color='brand.orange.100'
-                href='https://blog.ethereum.org/2025/07/10/future-of-ecodev'
-                isExternal
-                _hover={{ textDecoration: 'none' }}
-              >
-                ecosystem development strategy
-              </Link>
-              . Learn more in our{' '}
-              <Link
-                fontWeight={700}
-                color='brand.orange.100'
-                href='https://blog.ethereum.org/2025/08/29/esp-next-chapter'
-                isExternal
-                _hover={{ textDecoration: 'none' }}
-              >
-                blog post
-              </Link>{' '}
-              and stay tuned for news on ESP&apos;s revised strategy, coming Q4 2025!
-            </PageText>
-          </section>
+              <section id='grant-management' ref={ref2}>
+                <Stack
+                  spacing={6}
+                  mt={8}
+                  bgGradient='linear(to-br, brand.whoWeSupport.bgGradient.start 0%, brand.whoWeSupport.bgGradient.end 100%)'
+                  p={12}
+                  borderRadius='10px'
+                >
+                    <Image src={GrantManagementLogo} alt='Grant Management' height={100} objectFit='contain' />
+                  <PageSection>Grant Management</PageSection>
+                  <PageText>
+                    The Grant Management team focuses on allocating resources to the projects and initiatives that are most critical to Ethereum&apos;s resilience and usability. 
+                  </PageText>
+                  <PageText>
+                    This involves coordinating grant-making across EF teams to ensure that support is aligned and impactful. In addition, we support grantees throughout their journey by offering guidance, fostering connections across the ecosystem, and drawing insights from outcomes to guide future efforts.
+                  </PageText>
+                </Stack>
+              </section>
 
-          <section id='supporting-builders'>
-            <PageSection mb={6} textAlign='center'>
-              Supporting Builders
-            </PageSection>
-
-            <PageText mb={6}>
-              ESP support is generally directed towards builders rather than directly impacting end
-              users. We don&apos;t often support dapps or front-end platforms, although this is not
-              a hard rule and there are exceptions—for example, where an application serves as a
-              research or educational tool, or a reference implementation of a new standard.
-            </PageText>
-
-            <PageText mb={6}>
-              We have supported individuals and teams from all over the world representing different
-              backgrounds, disciplines, and levels of experience. This includes companies, DAOs,
-              non-profits, institutions, academics, developers, educators, community organizers, and
-              more.
-            </PageText>
-          </section>
-        </Stack>
+              <section id='funding-coordination' ref={ref3}>
+                <Stack
+                  spacing={6}
+                  mt={8}
+                  bgGradient='linear(to-br, brand.ready.bgGradient.start 10%, brand.ready.bgGradient.end 100%)'
+                  p={12}
+                  borderRadius='10px'
+                >
+                    <Image src={FundingCoordinationLogo} alt='Funding Coordination' height={100} objectFit='contain' />
+                  <PageSection>Funding Coordination</PageSection>
+                  <PageText>
+                    The Funding Coordination team aims to make it simpler and faster for impactful projects to secure funding. Our work is organized around four pillars: facilitating co-funding for EF grantees, securing co-funding for EF initiatives, improving access to funding opportunities throughout the ecosystem, and expanding the overall pool of available funding.
+                  </PageText>
+                  <PageText>
+                    We execute this vision in various ways, including:
+                  </PageText>
+                  <List>
+                    <ListItem>
+                      Working with Octant, Gitcoin, ENS DAO, and others to co-curate funding domains and align co-funding opportunities for EF grantees
+                    </ListItem>
+                    <ListItem>
+                      Providing coordination and resource support for EF-led initiatives such as the Proximity Prize, Noir Acceleration, and proactive grants rounds
+                    </ListItem>
+                    <ListItem>
+                      Improving access to information and processes for builders and projects to secure funding from existing grant sources
+                    </ListItem>
+                    <ListItem>
+                      Working with TradFi and compliant DeFi entities to explore crypto-native mechanisms for funding public-interest projects on Ethereum
+                    </ListItem>
+                  </List>
+                  <Center gap={2} flexDirection={{ base: 'column', md: 'row' }}>
+                    <ButtonLink label='Get in touch' link={`mailto:${FUNDING_COORDINATION_EMAIL}`} width="fit-content" />
+                    <ButtonLink label='Explore our grants directory' width="fit-content" link={ETHEREUM_GRANTS_URL} />
+                  </Center>
+                </Stack>
+              </section>
+            </Stack>
+          </Box>
+        </Flex>
       </Box>
     </>
   );

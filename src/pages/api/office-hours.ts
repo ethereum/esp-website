@@ -1,78 +1,165 @@
-import jsforce from 'jsforce';
-import { NextApiResponse } from 'next';
+import type { NextApiRequest, NextApiResponse } from 'next';
+import type { File } from 'formidable';
 
-import { verifyCaptcha, sanitizeFields } from '../../middlewares';
+import { multipartyParse } from '../../middlewares/multipartyParse';
+import { sanitizeFields } from '../../middlewares/sanitizeFields';
+import { verifyCaptcha } from '../../middlewares/verifyCaptcha';
+import { MAX_WISHLIST_FILE_SIZE } from '../../constants';
+import { OfficeHoursSchema } from '../../components/forms/schemas/OfficeHours';
+import { createSalesforceRecord, uploadFileToSalesforce, generateCSATToken } from '../../lib/sf';
 
-import { OfficeHoursNextApiRequest } from '../../types';
+interface OfficeHoursAPIRequest extends NextApiRequest {
+  body: {
+    // Contact Information
+    firstName: string;
+    lastName: string;
+    email: string;
+    company?: string;
+    profileType: string;
+    otherProfileType?: string;
+    alternativeContact?: string;
+    country: string;
+    timezone: string;
 
-async function handler(req: OfficeHoursNextApiRequest, res: NextApiResponse): Promise<void> {
-  return new Promise(resolve => {
-    const { body } = req;
-    const {
-      firstName: FirstName,
-      lastName: LastName,
-      email: Email,
-      individualOrTeam: Individual_or_Team__c,
-      company: Company,
-      officeHoursRequest: Office_Hours_Request__c,
-      projectName: Project_Name__c,
-      projectDescription: Project_Description__c,
-      additionalInfo: Additional_Information__c,
-      projectCategory: Category__c,
-      otherReasonForMeeting: Reason_for_meeting_if_Other__c,
-      howDidYouHearAboutESP: Referral_Source__c,
-      country: npsp__CompanyCountry__c,
-      timezone: Time_Zone__c
-    } = body;
-    const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
-      process.env;
+    // Office Hours Request
+    officeHoursRequest: 'Advice' | 'Project Feedback';
+    officeHoursReason: string;
 
-    const conn = new jsforce.Connection({
-      // you can change loginUrl to connect to sandbox or prerelease env.
-      loginUrl: SF_PROD_LOGIN_URL
-    });
+    // Project Feedback specific (conditional)
+    projectName?: string;
+    projectSummary?: string;
+    projectRepo?: string;
+    domain?: string;
+    additionalInfo?: string;
 
-    conn.login(SF_PROD_USERNAME!, `${SF_PROD_PASSWORD}${SF_PROD_SECURITY_TOKEN}`, err => {
-      if (err) {
-        console.error(err);
-        return resolve();
-      }
+    // Additional Details
+    repeatApplicant: boolean;
+    opportunityOutreachConsent: boolean;
 
-      // Single record creation
-      conn.sobject('Lead').create(
-        {
-          FirstName: FirstName.trim(),
-          LastName: LastName.trim(),
-          Email: Email.trim(),
-          Individual_or_Team__c: Individual_or_Team__c.trim(),
-          Company: Company.trim(),
-          Office_Hours_Request__c: Office_Hours_Request__c.trim(),
-          Project_Name__c: Project_Name__c.trim(),
-          Project_Description__c: Project_Description__c.trim(),
-          Additional_Information__c: Additional_Information__c.trim(),
-          Category__c: Category__c.trim(),
-          Reason_for_meeting_if_Other__c: Reason_for_meeting_if_Other__c.trim(),
-          Referral_Source__c: Referral_Source__c.trim(),
-          npsp__CompanyCountry__c: npsp__CompanyCountry__c.trim(),
-          Time_Zone__c: Time_Zone__c.trim(),
-          LeadSource: 'Webform',
-          RecordTypeId: process.env.SF_RECORD_TYPE_OFFICE_HOURS
-        },
-        (err, ret) => {
-          if (err || !ret.success) {
-            console.error(err);
-            res.status(400).json({ status: 'fail' });
-            return resolve();
-          } else {
-            console.log(`Office Hours Lead with ID: ${ret.id} has been created!`);
-
-            res.status(200).json({ status: 'ok' });
-            return resolve();
-          }
-        }
-      );
-    });
-  });
+    // Required for submission
+    captchaToken: string;
+  };
 }
 
-export default sanitizeFields(verifyCaptcha(handler));
+const handler = async (req: OfficeHoursAPIRequest, res: NextApiResponse) => {
+  const fields = { ...req.fields, ...req.files };
+
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  // Validate fields against the schema
+  const result = OfficeHoursSchema.safeParse(fields);
+  if (!result.success) {
+    const formatted = result.error.format();
+    console.error('Validation error:', formatted);
+
+    res.status(400).json({ error: 'Validation failed', details: formatted });
+    return;
+  }
+
+  try {
+    // For "Advice" requests, Application Name is "First Name, Last Name"
+    // For "Project Feedback" requests, Application Name is the project name
+    const applicationName =
+      result.data.officeHoursRequest === 'Advice'
+        ? `${result.data.firstName}, ${result.data.lastName}`
+        : result.data.projectName;
+
+    const applicationData = {
+      // Contact Information
+      Application_FirstName__c: result.data.firstName,
+      Application_LastName__c: result.data.lastName,
+      Application_Email__c: result.data.email,
+      Application_Company__c: result.data.company || 'N/A',
+      Application_ProfileType__c: result.data.profileType,
+      Application_Other_ProfileType__c: result.data.otherProfileType,
+      Application_Alternative_Contact__c: result.data.alternativeContact,
+      Application_Country__c: result.data.country,
+      Application_Time_Zone__c: result.data.timezone,
+
+      // Office Hours Request
+      Application_OfficeHours_RequestType__c: result.data.officeHoursRequest,
+      Application_OfficeHours_Reason__c: result.data.officeHoursReason,
+
+      // Project Feedback specific fields (only present if Project Feedback)
+      Name: applicationName,
+      ...(result.data.officeHoursRequest === 'Project Feedback' && {
+        Application_ProjectDescription__c: result.data.projectSummary,
+        Application_ProjectRepo__c: result.data.projectRepo,
+        Application_Domain__c: result.data.domain,
+        Application_AdditionalInformation__c: result.data.additionalInfo
+      }),
+
+      // Additional Details
+      Application_Repeat_Applicant__c: result.data.repeatApplicant,
+      Application_OutreachConsent__c: result.data.opportunityOutreachConsent,
+
+      // Hardwired fields
+      Application_Stage__c: 'New',
+      Application_Source__c: 'Webform',
+      RecordTypeId: '012Vj000008z3fVIAQ'
+    };
+
+    const salesforceResult = await createSalesforceRecord('Application__c', applicationData);
+
+    // Handle file upload if present (only for Project Feedback)
+    if (
+      result.data.officeHoursRequest === 'Project Feedback' &&
+      'fileUpload' in result.data &&
+      result.data.fileUpload
+    ) {
+      const uploadFile = result.data.fileUpload as File;
+
+      // Validate file object has required properties
+      if (!uploadFile.filepath || !uploadFile.originalFilename) {
+        console.error('Invalid file object:', uploadFile);
+        res.status(400).json({ error: 'Invalid file upload' });
+        return;
+      }
+
+      try {
+        await uploadFileToSalesforce(
+          uploadFile,
+          salesforceResult.id,
+          '[PROPOSAL]',
+          result.data.projectName
+        );
+        console.log('File uploaded successfully');
+      } catch (error) {
+        console.error('Error uploading file:', error);
+        res.status(500).json({ error: 'Failed to upload file' });
+        return;
+      }
+    }
+
+    console.log('Office Hours application submitted:', {
+      officeHoursRequest: result.data.officeHoursRequest,
+      applicant: `${result.data.firstName} ${result.data.lastName}`,
+      email: result.data.email,
+      salesforceId: salesforceResult.id
+    });
+
+    const csatToken = generateCSATToken(salesforceResult.id);
+
+    res.status(200).json({
+      success: true,
+      message: 'Office Hours application submitted successfully',
+      applicationId: salesforceResult.id,
+      csatToken
+    });
+  } catch (error) {
+    console.error('Error submitting Office Hours application:', error);
+    res.status(500).json({ error: 'Failed to submit application' });
+  }
+};
+
+export const config = {
+  api: {
+    bodyParser: false
+  }
+};
+
+export default multipartyParse(sanitizeFields(verifyCaptcha(handler)), {
+  maxFileSize: MAX_WISHLIST_FILE_SIZE
+});

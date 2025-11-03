@@ -12,12 +12,20 @@ export const HOME_URL = '/';
 export const ABOUT_URL = '/about';
 export const WHO_WE_SUPPORT_URL = '/about/who-we-support';
 export const HOW_WE_SUPPORT_URL = '/about/how-we-support';
+export const SIDEBAR_ABOUT_LINKS: SidebarLink[] = [
+  { text: 'Overview', href: `${ABOUT_URL}/#overview` },
+  { text: 'Grant Management', href: `${ABOUT_URL}/#grant-management` },
+  { text: 'Funding Coordination', href: `${ABOUT_URL}/#funding-coordination` },
+  { text: 'Launchpad', href: `${ABOUT_URL}/#launchpad` }
+];
 
 // applicants
 export const APPLICANTS_URL = '/applicants';
 export const SIDEBAR_APPLICANTS_LINKS: SidebarLink[] = [
   { text: 'Mission and Scope', href: `${APPLICANTS_URL}/#mission-and-scope` },
-  { text: 'How we support', href: `${APPLICANTS_URL}/#how-we-support` }
+  { text: 'Process', href: `${APPLICANTS_URL}/#process` },
+  { text: 'Selection criteria', href: `${APPLICANTS_URL}/#selection-criteria` },
+  { text: 'FAQ', href: `${APPLICANTS_URL}/#faq` }
 ];
 
 export const OFFICE_HOURS_URL = '/applicants/office-hours';
@@ -30,6 +38,20 @@ export const SIDEBAR_OFFICE_HOURS_LINKS: SidebarLink[] = [
   { text: 'Before submitting', href: `${OFFICE_HOURS_URL}/#before-submitting` },
   { text: 'FAQ', href: `${OFFICE_HOURS_URL}/#faq` },
   { text: 'Apply', href: `${OFFICE_HOURS_URL}/#apply` }
+];
+
+export const WISHLIST_URL = '/applicants/wishlist';
+export const SIDEBAR_WISHLIST_LINKS: SidebarLink[] = [
+  { text: 'Summary', href: `${WISHLIST_URL}/#description` },
+  // { text: 'What are wishlist items', href: `${WISHLIST_URL}/#what-are-wishlist-items` },
+  { text: 'Apply', href: `${WISHLIST_URL}/#apply` }
+];
+
+export const RFP_URL = '/applicants/rfp';
+export const SIDEBAR_RFP_LINKS: SidebarLink[] = [
+  { text: 'Summary', href: `${RFP_URL}/#description` },
+  // { text: 'What are RFPs', href: `${RFP_URL}/#what-are-rfps` },
+  { text: 'Apply', href: `${RFP_URL}/#apply` }
 ];
 
 export const PROJECT_GRANTS_URL = '/applicants/project-grants';
@@ -271,6 +293,8 @@ export const ZK_GRANTS_LINKS: SidebarLink[] = [
 // apply forms
 export const PROJECT_GRANTS_APPLY_URL = '/applicants/project-grants/apply';
 export const OFFICE_HOURS_APPLY_URL = '/applicants/office-hours/apply';
+export const WISHLIST_APPLY_URL = '/applicants/wishlist/apply';
+export const RFP_APPLY_URL = '/applicants/rfp/apply';
 export const SMALL_GRANTS_APPLY_URL = '/applicants/small-grants/apply';
 export const ACADEMIC_GRANTS_APPLY_URL = '/academic-grants/apply';
 export const DEVCON_GRANTS_APPLY_URL = '/devcon-grants/apply';
@@ -289,7 +313,10 @@ export const GRANTEE_FINANCE_URL = '/applicants/grantee-finance';
 // thank you pages
 export const PROJECT_GRANTS_THANK_YOU_PAGE_URL = '/applicants/project-grants/thank-you';
 export const OFFICE_HOURS_THANK_YOU_PAGE_URL = '/applicants/office-hours/thank-you';
+export const WISHLIST_THANK_YOU_PAGE_URL = '/applicants/wishlist/thank-you';
+export const RFP_THANK_YOU_PAGE_URL = '/applicants/rfp/thank-you';
 export const SMALL_GRANTS_THANK_YOU_PAGE_URL = '/applicants/small-grants/thank-you';
+export const DIRECT_GRANT_THANK_YOU_PAGE_URL = '/form-direct/apply/thank-you';
 export const GRANTEE_FINANCE_THANK_YOU_PAGE_URL = '/applicants/grantee-finance/thank-you';
 export const ACADEMIC_GRANTS_THANK_YOU_PAGE_URL = '/academic-grants/thank-you';
 export const DEVCON_GRANTS_THANK_YOU_PAGE_URL = '/devcon-grants/thank-you';
@@ -333,13 +360,28 @@ export const LAYER_2_GRANTS_EMAIL_ADDRESS = 'layer2grants@ethereum.org';
 export const ACCOUNT_ABSTRACTION_GRANTS_EMAIL_ADDRESS = 'account-abstraction@ethereum.org';
 export const GRANTS_EMAIL_ADDRESS = 'grant-rounds@ethereum.org';
 export const PECTRA_PGR_EMAIL_ADDRESS = 'grant-rounds@ethereum.org';
+export const FOUNDER_SUCCESS_URL = 'https://ethereum.org/founders/';
+export const ENTERPRISE_ACCELERATION_URL = 'https://institutions.ethereum.org/';
+export const ETHEREUM_EVERYWHERE_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeA-W8iy2PJxrY3TD4lMYXyky_wLd4QB_7NRwqSxCd0e19MUg/viewform';
+export const FUNDING_COORDINATION_EMAIL = 'vinay.vasanji@ethereum.org';
+export const ARGOT_COLLECTIVE_URL = 'https://www.argot.org/';
+export const REMIX_LABS_URL = 'https://remix-project.org/';
+export const POWDR_LABS_URL = 'https://www.powdr.org/';
+export const LAUNCHPAD_EMAIL = 'martin.hansen@ethereum.org';
+
 // applicants tabs
-export const APPLICANTS_TABS = ['Overview', 'Office Hours'];
+export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Wishlist', 'RFPs'];
 export const APPLICANTS_TABS_MAP: TabsMap = {
   [APPLICANTS_URL]: 0,
   [OFFICE_HOURS_URL]: 1,
   [OFFICE_HOURS_APPLY_URL]: 1,
-  [OFFICE_HOURS_THANK_YOU_PAGE_URL]: 1
+  [OFFICE_HOURS_THANK_YOU_PAGE_URL]: 1,
+  [WISHLIST_URL]: 2,
+  [WISHLIST_APPLY_URL]: 2,
+  [WISHLIST_THANK_YOU_PAGE_URL]: 2,
+  [RFP_URL]: 3,
+  [RFP_APPLY_URL]: 3,
+  [RFP_THANK_YOU_PAGE_URL]: 3
 };
 
 // about tabs
@@ -368,10 +410,15 @@ export const DOWNLOAD_APPLICATION_URL = '/projectGrantsApplication.docx';
 export const MAX_TEXT_LENGTH = 255;
 export const MAX_TEXT_AREA_LENGTH = 2000;
 export const MIN_TEXT_AREA_LENGTH = 500;
+// Todo: get clarity from Vanessa here
+export const CUSTOM_MIN_TEXT_AREA_LENGTH = 10;
 
 // proposal upload file size limit (4mb)
 export const MAX_PROPOSAL_FILE_SIZE = 4194304;
 export const MAX_PROPOSAL_FILE_COUNT = 5;
+
+// wishlist upload file size limit (4mb)
+export const MAX_WISHLIST_FILE_SIZE = 4194304;
 
 // toast options
 export const TOAST_OPTIONS: UseToastOptions = {
@@ -417,3 +464,18 @@ export const EPF_APPLICATION_PREVIEW_URL = 'https://esp.ethereum.foundation/imag
 
 // Thank you and apply urls
 export const GRANTS_URLS = [DEVCON_GRANTS_APPLY_URL, DEVCON_GRANTS_THANK_YOU_PAGE_URL];
+
+export const OPEN_SOURCE_LICENSE_OPTIONS = [
+  { value: 'MIT', label: 'MIT' },
+  { value: 'Apache-2.0', label: 'Apache-2.0' },
+  { value: 'BSD Licenses', label: 'BSD Licenses' },
+  { value: 'ISC License', label: 'ISC License' },
+  { value: 'BSL-1.0', label: 'BSL-1.0' },
+  { value: 'GPL-3.0', label: 'GPL-3.0' },
+  { value: 'GPL-2.0', label: 'GPL-2.0' },
+  { value: 'AGPL-3.0', label: 'AGPL-3.0' },
+  { value: 'Unlicense', label: 'Unlicense' },
+  { value: 'CC0-1.0', label: 'CC0-1.0' },
+  { value: 'Other', label: 'Other' },
+  { value: 'N/A', label: 'N/A' }
+];
