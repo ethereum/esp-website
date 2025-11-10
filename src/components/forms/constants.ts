@@ -1750,6 +1750,7 @@ export const PROFILE_TYPE_OPTIONS = [
 
 export const DOMAIN_OPTIONS = [
   { value: 'Application layer', label: 'Application layer' },
+  { value: 'Application Infrastructure', label: 'Application Infrastructure' },
   { value: 'Cryptography', label: 'Cryptography' },
   { value: 'DAOs/Governance', label: 'DAOs/Governance' },
   { value: 'Decentralized Identity', label: 'Decentralized Identity' },
