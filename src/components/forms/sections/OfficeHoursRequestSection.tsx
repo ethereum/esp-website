@@ -1,4 +1,4 @@
-import { Box, Fade, Radio, RadioGroup, Stack } from '@chakra-ui/react';
+import { Fade, Radio, RadioGroup, Stack } from '@chakra-ui/react';
 import { FC } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { Select } from 'chakra-react-select';
@@ -58,7 +58,7 @@ export const OfficeHoursRequestSection: FC = () => {
         )}
       />
 
-      <Box display={isRequestingProjectFeedback ? 'block' : 'none'}>
+      {isRequestingProjectFeedback && (
         <Fade in={isRequestingProjectFeedback} delay={0.25}>
           <Stack spacing={6}>
             <TextField
@@ -129,9 +129,9 @@ export const OfficeHoursRequestSection: FC = () => {
             />
           </Stack>
         </Fade>
-      </Box>
+      )}
 
-      <Box display={!isRequestingProjectFeedback ? 'block' : 'none'}>
+      {!isRequestingProjectFeedback && (
         <Fade in={!isRequestingProjectFeedback} delay={0.25}>
           <TextAreaField
             id='officeHoursReason'
@@ -140,7 +140,7 @@ export const OfficeHoursRequestSection: FC = () => {
             isRequired={!isRequestingProjectFeedback}
           />
         </Fade>
-      </Box>
+      )}
     </Stack>
   );
 };
