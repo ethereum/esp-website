@@ -9,6 +9,7 @@ import {
   CUSTOM_MIN_TEXT_AREA_LENGTH,
   MAX_WISHLIST_FILE_SIZE
 } from '../../../constants';
+import { DOMAIN_OPTIONS } from '../constants';
 
 const contactInformationSchema = {
   firstName: stringFieldSchema('First name', { min: 1, max: 20 }).refine(
@@ -55,25 +56,7 @@ const projectOverviewSchema = {
   projectRepo: stringFieldSchema('Project repo', { max: MAX_TEXT_LENGTH })
     .url({ message: 'Invalid URL' })
     .or(z.literal('')),
-  domain: z.enum([
-    'Application layer',
-    'Cryptography',
-    'DAOs/Governance',
-    'Decentralized Identity',
-    'DeFi',
-    'Economics',
-    'Ethereum Protocol',
-    'Government',
-    'Layer 2',
-    'NFTs / Digital Art',
-    'Nodes and Clients',
-    'Privacy',
-    'Security',
-    'Society and Regulatory',
-    'UX/UI',
-    'Zero-knowledge Proofs',
-    'Other'
-  ]),
+  domain: z.enum(DOMAIN_OPTIONS.map(option => option.value) as [string, ...string[]]),
   output: z.enum([
     'Application',
     'Dashboard',

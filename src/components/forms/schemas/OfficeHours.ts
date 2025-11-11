@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { stringFieldSchema } from './utils';
 import { containURL } from '../../../utils';
 import { MAX_TEXT_AREA_LENGTH, MAX_TEXT_LENGTH, MAX_WISHLIST_FILE_SIZE } from '../../../constants';
+import { DOMAIN_OPTIONS } from '../constants';
 
 const baseContactSchema = {
   firstName: stringFieldSchema('First name', { min: 1, max: 20 }).refine(
@@ -79,25 +80,7 @@ const projectFeedbackSchema = baseOfficeHoursSchema.extend({
   projectRepo: stringFieldSchema('Project repo', { max: MAX_TEXT_LENGTH }).url({
     message: 'Invalid URL'
   }),
-  domain: z.enum([
-    'Application layer',
-    'Cryptography',
-    'DAOs/Governance',
-    'Decentralized Identity',
-    'DeFi',
-    'Economics',
-    'Ethereum Protocol',
-    'Government',
-    'Layer 2',
-    'NFTs / Digital Art',
-    'Nodes and Clients',
-    'Privacy',
-    'Security',
-    'Society and Regulatory',
-    'UX/UI',
-    'Zero-knowledge Proofs',
-    'Other'
-  ]),
+  domain: z.enum(DOMAIN_OPTIONS.map(option => option.value) as [string, ...string[]]),
   additionalInfo: stringFieldSchema('Additional information', {
     max: MAX_TEXT_AREA_LENGTH
   }).optional()
