@@ -35,7 +35,6 @@ import type { EPFData } from './schemas/EPFApplication';
 import type { PSEData } from './schemas/PSEGrants';
 import type { AcademicGrantsData } from './schemas/AcademicGrants';
 import type { PectraPGRData } from './schemas/PectraPGR';
-import type { DestinoDevconnectData } from './schemas/DestinoDevconnect';
 import type { TenYearAnniversaryData } from './schemas/TenYearAnniversary';
 import type { WishlistData } from './schemas/Wishlist';
 import type { RFPData } from './schemas/RFP';
@@ -255,17 +254,6 @@ export const api = {
       };
 
       return fetch(API_NEWSLETTER_SIGNUP_URL, newsletterRequestOptions);
-    }
-  },
-  destinoDevconnect: {
-    submit: async (data: DestinoDevconnectData) => {
-      return fetch('/api/destino-devconnect', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      });
     }
   },
   tenYearAnniversary: {
