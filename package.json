@@ -78,6 +78,7 @@
     "pretty-bytes": "^7.0.0",
     "typescript": "^5.3.3",
     "validator": "^13.9.0",
+    "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^4.0.6",
     "zod": "^3.22.3"
   },

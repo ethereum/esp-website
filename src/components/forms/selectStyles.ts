@@ -1,4 +1,4 @@
-import { ChakraStylesConfig } from 'chakra-react-select';
+import type { ChakraStylesConfig } from 'chakra-react-select';
 
 export const chakraStyles: ChakraStylesConfig = {
   container: provided => ({

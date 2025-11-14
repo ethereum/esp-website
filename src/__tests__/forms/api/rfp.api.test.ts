@@ -1,13 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import * as sfLib from '../../../lib/sf';
-import {
-  validRFPData,
-  validFileUpload,
-  validContactInfo,
-  validProjectOverview,
-  validAdditionalDetails
-} from './fixtures';
+import { validRFPData, validFileUpload } from './fixtures';
 
 // Mock the Salesforce library
 vi.mock('../../../lib/sf', () => ({
