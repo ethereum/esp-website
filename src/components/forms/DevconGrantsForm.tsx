@@ -579,7 +579,7 @@ export const DevconGrantsForm: FC = () => {
                     components={{ DropdownIndicator }}
                     placeholder='Select'
                     closeMenuOnSelect={true}
-                    selectedOptionColor='brand.option'
+                    selectedOptionColorScheme='brand.option'
                     chakraStyles={chakraStyles}
                   />
                 </FormControl>
@@ -612,7 +612,7 @@ export const DevconGrantsForm: FC = () => {
                     components={{ DropdownIndicator }}
                     placeholder='Select'
                     closeMenuOnSelect={true}
-                    selectedOptionColor='brand.option'
+                    selectedOptionColorScheme='brand.option'
                     chakraStyles={chakraStyles}
                   />
 
@@ -994,7 +994,7 @@ export const DevconGrantsForm: FC = () => {
                   components={{ DropdownIndicator }}
                   placeholder='Select'
                   closeMenuOnSelect={true}
-                  selectedOptionColor='brand.option'
+                  selectedOptionColorScheme='brand.option'
                   chakraStyles={chakraStyles}
                 />
 

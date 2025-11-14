@@ -518,7 +518,7 @@ export const ProjectGrantsForm: FC = () => {
                     components={{ DropdownIndicator }}
                     placeholder='Select'
                     closeMenuOnSelect={true}
-                    selectedOptionColor='brand.option'
+                    selectedOptionColorScheme='brand.option'
                     chakraStyles={chakraStyles}
                   />
 
@@ -749,7 +749,7 @@ export const ProjectGrantsForm: FC = () => {
                         components={{ DropdownIndicator }}
                         placeholder='Select'
                         closeMenuOnSelect={true}
-                        selectedOptionColor='brand.option'
+                        selectedOptionColorScheme='brand.option'
                         chakraStyles={chakraStyles}
                       />
 
@@ -1327,7 +1327,7 @@ export const ProjectGrantsForm: FC = () => {
                       components={{ DropdownIndicator }}
                       placeholder='Select'
                       closeMenuOnSelect={true}
-                      selectedOptionColor='brand.option'
+                      selectedOptionColorScheme='brand.option'
                       chakraStyles={chakraStyles}
                     />
 
@@ -1373,7 +1373,7 @@ export const ProjectGrantsForm: FC = () => {
                     components={{ DropdownIndicator }}
                     placeholder='Select'
                     closeMenuOnSelect={true}
-                    selectedOptionColor='brand.option'
+                    selectedOptionColorScheme='brand.option'
                     chakraStyles={chakraStyles}
                   />
                 </Box>
@@ -1408,7 +1408,7 @@ export const ProjectGrantsForm: FC = () => {
                   components={{ DropdownIndicator }}
                   placeholder='Select'
                   closeMenuOnSelect={true}
-                  selectedOptionColor='brand.option'
+                  selectedOptionColorScheme='brand.option'
                   chakraStyles={chakraStyles}
                   onChange={(selected: any) => {
                     onChange(selected);

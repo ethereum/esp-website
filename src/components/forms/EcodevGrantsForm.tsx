@@ -545,7 +545,7 @@ export const EcodevGrantsForm: FC = () => {
                     components={{ DropdownIndicator }}
                     placeholder='Select'
                     closeMenuOnSelect={true}
-                    selectedOptionColor='brand.option'
+                    selectedOptionColorScheme='brand.option'
                     chakraStyles={chakraStyles}
                   />
 
@@ -1294,7 +1294,7 @@ export const EcodevGrantsForm: FC = () => {
                       components={{ DropdownIndicator }}
                       placeholder='Select'
                       closeMenuOnSelect={true}
-                      selectedOptionColor='brand.option'
+                      selectedOptionColorScheme='brand.option'
                       chakraStyles={chakraStyles}
                     />
                   </FormControl>
@@ -1335,7 +1335,7 @@ export const EcodevGrantsForm: FC = () => {
                     components={{ DropdownIndicator }}
                     placeholder='Select'
                     closeMenuOnSelect={true}
-                    selectedOptionColor='brand.option'
+                    selectedOptionColorScheme='brand.option'
                     chakraStyles={chakraStyles}
                   />
                 </Box>

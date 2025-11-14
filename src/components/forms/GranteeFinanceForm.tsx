@@ -373,7 +373,7 @@ export const GranteeFinanceForm: FC = () => {
                             components={{ DropdownIndicator }}
                             placeholder='Select'
                             closeMenuOnSelect={true}
-                            selectedOptionColor='brand.option'
+                            selectedOptionColorScheme='brand.option'
                             chakraStyles={chakraStyles}
                           />
                         </Box>

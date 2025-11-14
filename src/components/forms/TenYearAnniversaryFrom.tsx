@@ -104,7 +104,7 @@ export const TenYearAnniversaryFrom: FC = () => {
                       components={{ DropdownIndicator }}
                       placeholder='Select'
                       closeMenuOnSelect={true}
-                      selectedOptionColor='brand.option'
+                      selectedOptionColorScheme='brand.option'
                       chakraStyles={chakraStyles}
                     />
                   </Field>
@@ -125,7 +125,7 @@ export const TenYearAnniversaryFrom: FC = () => {
                       components={{ DropdownIndicator }}
                       placeholder='Select'
                       closeMenuOnSelect={true}
-                      selectedOptionColor='brand.option'
+                      selectedOptionColorScheme='brand.option'
                       chakraStyles={chakraStyles}
                     />
                   </Field>
@@ -164,7 +164,7 @@ export const TenYearAnniversaryFrom: FC = () => {
                       components={{ DropdownIndicator }}
                       placeholder='Select'
                       closeMenuOnSelect={true}
-                      selectedOptionColor='brand.option'
+                      selectedOptionColorScheme='brand.option'
                       chakraStyles={chakraStyles}
                     />
                   </Field>
@@ -194,7 +194,7 @@ export const TenYearAnniversaryFrom: FC = () => {
                     components={{ DropdownIndicator }}
                     placeholder='Select'
                     closeMenuOnSelect={true}
-                    selectedOptionColor='brand.option'
+                    selectedOptionColorScheme='brand.option'
                     chakraStyles={chakraStyles}
                   />
                 </Field>

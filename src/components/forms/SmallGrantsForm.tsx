@@ -441,7 +441,7 @@ export const SmallGrantsForm: FC = () => {
                       components={{ DropdownIndicator }}
                       placeholder='Select'
                       closeMenuOnSelect={true}
-                      selectedOptionColor='brand.option'
+                      selectedOptionColorScheme='brand.option'
                       chakraStyles={chakraStyles}
                     />
 
@@ -560,7 +560,7 @@ export const SmallGrantsForm: FC = () => {
                   components={{ DropdownIndicator }}
                   placeholder='Select'
                   closeMenuOnSelect={true}
-                  selectedOptionColor='brand.option'
+                  selectedOptionColorScheme='brand.option'
                   chakraStyles={chakraStyles}
                 />
 
@@ -914,7 +914,7 @@ export const SmallGrantsForm: FC = () => {
                             components={{ DropdownIndicator }}
                             placeholder='Select'
                             closeMenuOnSelect={true}
-                            selectedOptionColor='brand.option'
+                            selectedOptionColorScheme='brand.option'
                             chakraStyles={chakraStyles}
                           />
 
@@ -1617,7 +1617,7 @@ export const SmallGrantsForm: FC = () => {
                         components={{ DropdownIndicator }}
                         placeholder='Select'
                         closeMenuOnSelect={true}
-                        selectedOptionColor='brand.option'
+                        selectedOptionColorScheme='brand.option'
                         chakraStyles={chakraStyles}
                       />
 
@@ -1657,7 +1657,7 @@ export const SmallGrantsForm: FC = () => {
                         components={{ DropdownIndicator }}
                         placeholder='Select'
                         closeMenuOnSelect={true}
-                        selectedOptionColor='brand.option'
+                        selectedOptionColorScheme='brand.option'
                         chakraStyles={chakraStyles}
                       />
 
@@ -1980,7 +1980,7 @@ export const SmallGrantsForm: FC = () => {
                             components={{ DropdownIndicator }}
                             placeholder='Select'
                             closeMenuOnSelect={true}
-                            selectedOptionColor='brand.option'
+                            selectedOptionColorScheme='brand.option'
                             chakraStyles={chakraStyles}
                           />
 
@@ -2066,7 +2066,7 @@ export const SmallGrantsForm: FC = () => {
                   components={{ DropdownIndicator }}
                   placeholder='Select'
                   closeMenuOnSelect={true}
-                  selectedOptionColor='brand.option'
+                  selectedOptionColorScheme='brand.option'
                   chakraStyles={chakraStyles}
                 />
 
