@@ -120,6 +120,13 @@ const getFieldsForType = (type?: GrantInitiativeType): string => {
  */
 export function getGrantInitiativeItems(type?: GrantInitiativeType) {
   return new Promise<GrantInitiative[]>(async (resolve, reject) => {
+    // During build time, credentials may not be available
+    // Return empty array to allow build to succeed with fallback: 'blocking'
+    if (!SF_PROD_USERNAME || !SF_PROD_PASSWORD || !SF_PROD_SECURITY_TOKEN) {
+      console.warn('Salesforce credentials not configured, returning empty grant initiatives (build-time fallback)');
+      return resolve([]);
+    }
+
     const conn = createConnection();
 
     try {
