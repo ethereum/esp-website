@@ -9,6 +9,11 @@ import {
   getSalesforceFieldsForForm,
   type FormType
 } from '../../lib/sf-field-mappings';
+import {
+  PROFILE_TYPE_OPTIONS,
+  DOMAIN_OPTIONS,
+  OUTPUT_OPTIONS
+} from '../../components/forms/constants';
 
 /**
  * Salesforce Contract Tests
@@ -16,9 +21,7 @@ import {
  * These tests validate form field mappings against actual Salesforce schema.
  * They query the Salesforce metadata API to ensure:
  * - All mapped fields exist in Salesforce
- * - Required fields are properly mapped
  * - Picklist values are valid
- * - RecordTypeId values are valid
  */
 
 describe('Salesforce Contract Tests - Application__c', () => {
@@ -55,6 +58,44 @@ describe('Salesforce Contract Tests - Application__c', () => {
   };
 
   /**
+   * Validate that form picklist values match Salesforce picklist options
+   * @param sfFieldName - Salesforce field name (e.g., 'Application_ProfileType__c')
+   * @param formValues - Array of form values to validate
+   * @param fieldDisplayName - Optional display name for error messages (defaults to sfFieldName)
+   * @returns Validation result with any invalid values found
+   */
+  const validatePicklistValues = (
+    sfFieldName: string,
+    formValues: string[],
+    fieldDisplayName?: string
+  ): {
+    field: string;
+    invalidValues: string[];
+    validSFValues: string[];
+  } => {
+    const fieldMetadata = getFieldMetadata(sfFieldName);
+    if (!fieldMetadata) {
+      throw new Error(`Field ${sfFieldName} not found in Salesforce metadata`);
+    }
+
+    if (!fieldMetadata.picklistValues) {
+      throw new Error(`Field ${sfFieldName} is not a picklist field`);
+    }
+
+    // Get active picklist values from Salesforce
+    const validSFValues = fieldMetadata.picklistValues.filter(pv => pv.active).map(pv => pv.value);
+
+    // Find invalid form values
+    const invalidValues = formValues.filter(formValue => !validSFValues.includes(formValue));
+
+    return {
+      field: fieldDisplayName || sfFieldName,
+      invalidValues,
+      validSFValues
+    };
+  };
+
+  /**
    * Test suite for RFP form mappings
    */
   describe('RFP Form', () => {
@@ -78,31 +119,32 @@ describe('Salesforce Contract Tests - Application__c', () => {
       expect(missingFields).toEqual([]);
     });
 
-    it('should validate picklist values match SF options', async () => {
+    it('should validate picklist values match SF options', () => {
       if (!applicationMetadata) {
         console.warn('Skipping test: Salesforce metadata not available');
         return;
       }
 
-      // Test picklist fields
-      const picklistFields = [
+      const profileTypeResult = validatePicklistValues(
         'Application_ProfileType__c',
+        PROFILE_TYPE_OPTIONS.map(opt => opt.value),
+        'Profile Type'
+      );
+      expect(profileTypeResult.invalidValues.length).toBe(0);
+
+      const domainResult = validatePicklistValues(
         'Application_Domain__c',
-        'Application_Output__c'
-      ];
+        DOMAIN_OPTIONS.map(opt => opt.value),
+        'Domain'
+      );
+      expect(domainResult.invalidValues.length).toBe(0);
 
-      for (const fieldName of picklistFields) {
-        const fieldMetadata = getFieldMetadata(fieldName);
-        if (!fieldMetadata || !fieldMetadata.picklistValues) {
-          continue;
-        }
-
-        const validValues = fieldMetadata.picklistValues
-          .filter(pv => pv.active)
-          .map(pv => pv.value);
-
-        expect(validValues.length).toBeGreaterThan(0);
-      }
+      const outputResult = validatePicklistValues(
+        'Application_Output__c',
+        OUTPUT_OPTIONS.map(opt => opt.value),
+        'Output'
+      );
+      expect(outputResult.invalidValues.length).toBe(0);
     });
   });
 
@@ -194,6 +236,24 @@ describe('Salesforce Contract Tests - Application__c', () => {
       for (const fieldName of officeHoursFields) {
         expect(fieldExists(fieldName)).toBe(true);
       }
+    });
+
+    it('should validate Office Hours picklist values match SF options', () => {
+      if (!applicationMetadata) {
+        console.warn('Skipping test: Salesforce metadata not available');
+        return;
+      }
+
+      // Office Hours request type values from the schema
+      const officeHoursRequestValues = ['Advice', 'Project Feedback'];
+
+      const result = validatePicklistValues(
+        'Application_OfficeHours_RequestType__c',
+        officeHoursRequestValues,
+        'Office Hours Request Type'
+      );
+
+      expect(result.invalidValues.length).toBe(0);
     });
   });
 

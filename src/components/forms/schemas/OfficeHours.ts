@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { stringFieldSchema } from './utils';
 import { containURL } from '../../../utils';
 import { MAX_TEXT_AREA_LENGTH, MAX_TEXT_LENGTH, MAX_WISHLIST_FILE_SIZE } from '../../../constants';
-import { DOMAIN_OPTIONS } from '../constants';
+import { DOMAIN_OPTIONS, PROFILE_TYPE_OPTIONS } from '../constants';
 
 const baseContactSchema = {
   firstName: stringFieldSchema('First name', { min: 1, max: 20 }).refine(
@@ -15,16 +15,7 @@ const baseContactSchema = {
   ),
   email: z.string().email({ message: 'Invalid email address' }),
   company: stringFieldSchema('Company', { max: 50 }).optional().or(z.literal('')),
-  profileType: z.enum([
-    'Individual',
-    'Team',
-    'Company',
-    'Organization',
-    'University',
-    'Consortium of Universities',
-    'Research Center',
-    'Other'
-  ]),
+  profileType: z.enum(PROFILE_TYPE_OPTIONS.map(option => option.value) as [string, ...string[]]),
   otherProfileType: stringFieldSchema('Other profile type', { max: 50 }).optional(),
   alternativeContact: stringFieldSchema('Alternative contact', { max: 50 }).optional(),
   country: stringFieldSchema('Country', { min: 1, max: 2 }), // 2 character country code
