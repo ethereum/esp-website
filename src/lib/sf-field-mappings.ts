@@ -244,26 +244,6 @@ export const mapFormDataToSalesforce = (
       continue;
     }
 
-    // Handle special cases for Office Hours form
-    if (formType === 'officeHours') {
-      // For Office Hours, Name field is conditional
-      if (formField === 'projectName' && formData.officeHoursRequest === 'Advice') {
-        // For Advice requests, Name is set to "FirstName, LastName" in the API route
-        // This is handled in the API route, not here
-        continue;
-      }
-
-      // Only include Project Feedback fields if request type is Project Feedback
-      if (
-        formData.officeHoursRequest !== 'Project Feedback' &&
-        ['projectName', 'projectSummary', 'projectRepo', 'domain', 'additionalInfo'].includes(
-          formField
-        )
-      ) {
-        continue;
-      }
-    }
-
     if (typeof sfField === 'string') {
       salesforceData[sfField] = formValue;
     }
