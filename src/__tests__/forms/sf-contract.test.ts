@@ -12,7 +12,10 @@ import {
 import {
   PROFILE_TYPE_OPTIONS,
   DOMAIN_OPTIONS,
-  OUTPUT_OPTIONS
+  OUTPUT_OPTIONS,
+  COUNTRY_OPTIONS,
+  TIMEZONE_OPTIONS,
+  FIAT_CURRENCY_OPTIONS
 } from '../../components/forms/constants';
 
 /**
@@ -118,34 +121,6 @@ describe('Salesforce Contract Tests - Application__c', () => {
 
       expect(missingFields).toEqual([]);
     });
-
-    it('should validate picklist values match SF options', () => {
-      if (!applicationMetadata) {
-        console.warn('Skipping test: Salesforce metadata not available');
-        return;
-      }
-
-      const profileTypeResult = validatePicklistValues(
-        'Application_ProfileType__c',
-        PROFILE_TYPE_OPTIONS.map(opt => opt.value),
-        'Profile Type'
-      );
-      expect(profileTypeResult.invalidValues.length).toBe(0);
-
-      const domainResult = validatePicklistValues(
-        'Application_Domain__c',
-        DOMAIN_OPTIONS.map(opt => opt.value),
-        'Domain'
-      );
-      expect(domainResult.invalidValues.length).toBe(0);
-
-      const outputResult = validatePicklistValues(
-        'Application_Output__c',
-        OUTPUT_OPTIONS.map(opt => opt.value),
-        'Output'
-      );
-      expect(outputResult.invalidValues.length).toBe(0);
-    });
   });
 
   /**
@@ -222,22 +197,6 @@ describe('Salesforce Contract Tests - Application__c', () => {
       expect(missingFields).toEqual([]);
     });
 
-    it('should validate Office Hours specific fields exist', () => {
-      if (!applicationMetadata) {
-        console.warn('Skipping test: Salesforce metadata not available');
-        return;
-      }
-
-      const officeHoursFields = [
-        'Application_OfficeHours_RequestType__c',
-        'Application_OfficeHours_Reason__c'
-      ];
-
-      for (const fieldName of officeHoursFields) {
-        expect(fieldExists(fieldName)).toBe(true);
-      }
-    });
-
     it('should validate Office Hours picklist values match SF options', () => {
       if (!applicationMetadata) {
         console.warn('Skipping test: Salesforce metadata not available');
@@ -300,6 +259,76 @@ describe('Salesforce Contract Tests - Application__c', () => {
       for (const fieldName of commonFields) {
         expect(fieldExists(fieldName)).toBe(true);
       }
+    });
+
+    it('should validate profile type picklist values match SF options', () => {
+      if (!applicationMetadata) {
+        console.warn('Skipping test: Salesforce metadata not available');
+        return;
+      }
+
+      const profileTypeResult = validatePicklistValues(
+        'Application_ProfileType__c',
+        PROFILE_TYPE_OPTIONS.map(opt => opt.value),
+        'Profile Type'
+      );
+      expect(profileTypeResult.invalidValues.length).toBe(0);
+    });
+
+    it('should validate domain picklist values match SF options', () => {
+      if (!applicationMetadata) {
+        console.warn('Skipping test: Salesforce metadata not available');
+        return;
+      }
+
+      const domainResult = validatePicklistValues(
+        'Application_Domain__c',
+        DOMAIN_OPTIONS.map(opt => opt.value),
+        'Domain'
+      );
+      expect(domainResult.invalidValues.length).toBe(0);
+    });
+
+    it('should validate output picklist values match SF options', () => {
+      if (!applicationMetadata) {
+        console.warn('Skipping test: Salesforce metadata not available');
+        return;
+      }
+
+      const outputResult = validatePicklistValues(
+        'Application_Output__c',
+        OUTPUT_OPTIONS.map(opt => opt.value),
+        'Output'
+      );
+      expect(outputResult.invalidValues.length).toBe(0);
+    });
+
+    it('should validate timezone picklist values match SF options', () => {
+      if (!applicationMetadata) {
+        console.warn('Skipping test: Salesforce metadata not available');
+        return;
+      }
+
+      const timezoneResult = validatePicklistValues(
+        'Application_Time_Zone__c',
+        TIMEZONE_OPTIONS.map(opt => opt.value),
+        'Timezone'
+      );
+      expect(timezoneResult.invalidValues.length).toBe(0);
+    });
+
+    it('should validate currency picklist values match SF options', () => {
+      if (!applicationMetadata) {
+        console.warn('Skipping test: Salesforce metadata not available');
+        return;
+      }
+
+      const currencyResult = validatePicklistValues(
+        'CurrencyIsoCode',
+        FIAT_CURRENCY_OPTIONS.map(opt => opt.value),
+        'Currency'
+      );
+      expect(currencyResult.invalidValues.length).toBe(0);
     });
   });
 });
