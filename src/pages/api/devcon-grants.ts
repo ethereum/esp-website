@@ -41,12 +41,17 @@ async function handler(req: DevconGrantsNextApiRequest, res: NextApiResponse): P
     const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
       process.env;
 
+    if (!SF_PROD_USERNAME || !SF_PROD_PASSWORD || !SF_PROD_SECURITY_TOKEN) {
+      res.status(500).json({ status: 'fail', error: 'Server configuration error' });
+      return resolve();
+    }
+
     const conn = new jsforce.Connection({
-      // you can change loginUrl to connect to sandbox or prerelease env.
       loginUrl: SF_PROD_LOGIN_URL
     });
 
-    conn.login(SF_PROD_USERNAME!, `${SF_PROD_PASSWORD}${SF_PROD_SECURITY_TOKEN}`, err => {
+    const credentials = `${SF_PROD_PASSWORD}${SF_PROD_SECURITY_TOKEN}`;
+    conn.login(SF_PROD_USERNAME, credentials, err => {
       if (err) {
         console.error(err);
         res.status(500).end();
@@ -103,8 +108,8 @@ async function handler(req: DevconGrantsNextApiRequest, res: NextApiResponse): P
             application
           );
         } catch (err) {
-          // as this is something internal we don't want to show this error to the user
-          console.log(err);
+          console.error('[CRITICAL] Google Sheets sync failed for Lead ID:', ret.id, err);
+          // Alert monitoring systems but don't fail the user request
         }
 
         console.log(`Devcon Grants Lead with ID: ${ret.id} has been created!`);
