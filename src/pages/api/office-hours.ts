@@ -7,41 +7,9 @@ import { verifyCaptcha } from '../../middlewares/verifyCaptcha';
 import { MAX_WISHLIST_FILE_SIZE } from '../../constants';
 import { OfficeHoursSchema } from '../../components/forms/schemas/OfficeHours';
 import { createSalesforceRecord, uploadFileToSalesforce, generateCSATToken } from '../../lib/sf';
+import { mapFormDataToSalesforce } from '../../lib/sf-field-mappings';
 
-interface OfficeHoursAPIRequest extends NextApiRequest {
-  body: {
-    // Contact Information
-    firstName: string;
-    lastName: string;
-    email: string;
-    company?: string;
-    profileType: string;
-    otherProfileType?: string;
-    alternativeContact?: string;
-    country: string;
-    timezone: string;
-
-    // Office Hours Request
-    officeHoursRequest: 'Advice' | 'Project Feedback';
-    officeHoursReason: string;
-
-    // Project Feedback specific (conditional)
-    projectName?: string;
-    projectSummary?: string;
-    projectRepo?: string;
-    domain?: string;
-    additionalInfo?: string;
-
-    // Additional Details
-    repeatApplicant: boolean;
-    opportunityOutreachConsent: boolean;
-
-    // Required for submission
-    captchaToken: string;
-  };
-}
-
-const handler = async (req: OfficeHoursAPIRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const fields = { ...req.fields, ...req.files };
 
   if (req.method !== 'POST') {
@@ -59,47 +27,38 @@ const handler = async (req: OfficeHoursAPIRequest, res: NextApiResponse) => {
   }
 
   try {
-    // For "Advice" requests, Application Name is "First Name, Last Name"
-    // For "Project Feedback" requests, Application Name is the project name
-    const applicationName =
-      result.data.officeHoursRequest === 'Advice'
-        ? `${result.data.firstName}, ${result.data.lastName}`
-        : result.data.projectName;
+    // Get base mapped data
+    const baseApplicationData = mapFormDataToSalesforce(result.data, 'officeHours');
 
-    const applicationData = {
-      // Contact Information
-      Application_FirstName__c: result.data.firstName,
-      Application_LastName__c: result.data.lastName,
-      Application_Email__c: result.data.email,
-      Application_Company__c: result.data.company || 'N/A',
-      Application_ProfileType__c: result.data.profileType,
-      Application_Other_ProfileType__c: result.data.otherProfileType,
-      Application_Alternative_Contact__c: result.data.alternativeContact,
-      Application_Country__c: result.data.country,
-      Application_Time_Zone__c: result.data.timezone,
+    // Apply Office Hours-specific logic
+    const applicationData: Record<string, any> = { ...baseApplicationData };
 
-      // Office Hours Request
-      Application_OfficeHours_RequestType__c: result.data.officeHoursRequest,
-      Application_OfficeHours_Reason__c: result.data.officeHoursReason,
+    // Handle Name field logic
+    if (result.data.officeHoursRequest === 'Advice') {
+      // For Advice requests, Name is set to "FirstName, LastName"
+      if (result.data.firstName && result.data.lastName) {
+        applicationData.Name = `${result.data.firstName}, ${result.data.lastName}`;
+      }
+    } else if (result.data.officeHoursRequest === 'Project Feedback') {
+      // For Project Feedback, use projectName (already mapped, but ensure it's set)
+      if (result.data.projectName) {
+        applicationData.Name = result.data.projectName;
+      }
+    }
 
-      // Project Feedback specific fields (only present if Project Feedback)
-      Name: applicationName,
-      ...(result.data.officeHoursRequest === 'Project Feedback' && {
-        Application_ProjectDescription__c: result.data.projectSummary,
-        Application_ProjectRepo__c: result.data.projectRepo,
-        Application_Domain__c: result.data.domain,
-        Application_AdditionalInformation__c: result.data.additionalInfo
-      }),
+    // Remove Project Feedback fields if request type is Advice
+    if (result.data.officeHoursRequest === 'Advice') {
+      delete applicationData.Application_ProjectDescription__c;
+      delete applicationData.Application_ProjectRepo__c;
+      delete applicationData.Application_Domain__c;
+      delete applicationData.Application_AdditionalInformation__c;
+    }
 
-      // Additional Details
-      Application_Repeat_Applicant__c: result.data.repeatApplicant,
-      Application_OutreachConsent__c: result.data.opportunityOutreachConsent,
-
-      // Hardwired fields
-      Application_Stage__c: 'New',
-      Application_Source__c: 'Webform',
-      RecordTypeId: '012Vj000008z3fVIAQ'
-    };
+    // Handle company fallback: use 'N/A' instead of firstName + lastName
+    // Override the default company fallback logic from mapFormDataToSalesforce
+    if (!result.data.company || result.data.company === '') {
+      applicationData.Application_Company__c = 'N/A';
+    }
 
     const salesforceResult = await createSalesforceRecord('Application__c', applicationData);
 
