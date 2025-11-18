@@ -5,7 +5,50 @@
  * for each form type. It also includes hardwired field values that are set for each form.
  */
 
+import type { RFPData } from '../components/forms/schemas/RFP';
+import type { DirectGrantData } from '../components/forms/schemas/DirectGrant';
+import type { WishlistData } from '../components/forms/schemas/Wishlist';
+import type { OfficeHoursData } from '../components/forms/schemas/OfficeHours';
+
 export type FormType = 'rfp' | 'directGrant' | 'wishlist' | 'officeHours';
+
+/**
+ * System fields that should not be mapped to Salesforce
+ * - captchaToken: Used for bot protection, not stored in SF
+ * - fileUpload: Handled as separate ContentVersion upload, not a regular SF field
+ */
+type SystemFields = 'captchaToken' | 'fileUpload';
+
+/**
+ * Extract mappable fields from a schema type
+ * Excludes system fields that shouldn't be mapped to Salesforce
+ */
+type MappableFields<T> = Exclude<keyof T, SystemFields>;
+
+/**
+ * Extract all possible keys from a discriminated union type
+ * Used for Office Hours form which has conditional fields
+ */
+type UnionKeys<T> = T extends any ? keyof T : never;
+
+/**
+ * Create a record type with all possible keys from a discriminated union
+ * Used for Office Hours form mapping validation
+ */
+type AllUnionFields<T> = Record<UnionKeys<T>, any>;
+
+/**
+ * Type-safe field mapping helper
+ * Ensures the mapping object contains all required fields from the schema
+ *
+ * @param mapping - Object mapping form field names to Salesforce field names
+ * @returns The same mapping object with type safety enforced
+ */
+function createTypedMapping<T extends Record<string, any>>(
+  mapping: Record<MappableFields<T>, string>
+): Record<MappableFields<T>, string> {
+  return mapping;
+}
 
 /**
  * Field mapping configuration
@@ -28,7 +71,7 @@ export interface HardwiredFields {
 /**
  * Field mappings for RFP form
  */
-const rfpMapping: FieldMapping = {
+const rfpMapping = createTypedMapping<RFPData>({
   // Contact Information
   firstName: 'Application_FirstName__c',
   lastName: 'Application_LastName__c',
@@ -58,12 +101,12 @@ const rfpMapping: FieldMapping = {
 
   // RFP-specific
   selectedRFPId: 'Grant_Initiative__c'
-};
+});
 
 /**
  * Field mappings for Direct Grant form
  */
-const directGrantMapping: FieldMapping = {
+const directGrantMapping = createTypedMapping<DirectGrantData>({
   // Contact Information
   firstName: 'Application_FirstName__c',
   lastName: 'Application_LastName__c',
@@ -102,12 +145,12 @@ const directGrantMapping: FieldMapping = {
   referral: 'Application_Referral__c',
   additionalInfo: 'Application_AdditionalInformation__c',
   opportunityOutreachConsent: 'Application_OutreachConsent__c'
-};
+});
 
 /**
  * Field mappings for Wishlist form
  */
-const wishlistMapping: FieldMapping = {
+const wishlistMapping = createTypedMapping<WishlistData>({
   // Contact Information
   firstName: 'Application_FirstName__c',
   lastName: 'Application_LastName__c',
@@ -149,12 +192,13 @@ const wishlistMapping: FieldMapping = {
 
   // Wishlist-specific
   selectedWishlistId: 'Grant_Initiative__c'
-};
+});
 
 /**
  * Field mappings for Office Hours form
+ * Note: OfficeHoursData is a discriminated union, so we map all fields from both variants
  */
-const officeHoursMapping: FieldMapping = {
+const officeHoursMapping = createTypedMapping<AllUnionFields<OfficeHoursData>>({
   // Contact Information
   firstName: 'Application_FirstName__c',
   lastName: 'Application_LastName__c',
@@ -170,7 +214,7 @@ const officeHoursMapping: FieldMapping = {
   officeHoursRequest: 'Application_OfficeHours_RequestType__c',
   officeHoursReason: 'Application_OfficeHours_Reason__c',
 
-  // Project Feedback specific (conditional)
+  // Project Feedback specific (conditional - only present in Project Feedback variant)
   projectName: 'Name',
   projectSummary: 'Application_ProjectDescription__c',
   projectRepo: 'Application_ProjectRepo__c',
@@ -180,7 +224,7 @@ const officeHoursMapping: FieldMapping = {
   // Additional Details
   repeatApplicant: 'Application_Repeat_Applicant__c',
   opportunityOutreachConsent: 'Application_OutreachConsent__c'
-};
+});
 
 /**
  * Hardwired field values for each form type
