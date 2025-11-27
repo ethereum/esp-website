@@ -9,7 +9,7 @@ import {
   CUSTOM_MIN_TEXT_AREA_LENGTH,
   MAX_WISHLIST_FILE_SIZE
 } from '../../../constants';
-import { DOMAIN_OPTIONS } from '../constants';
+import { DOMAIN_OPTIONS, OUTPUT_OPTIONS, PROFILE_TYPE_OPTIONS } from '../constants';
 
 const contactInformationSchema = {
   firstName: stringFieldSchema('First name', { min: 1, max: 20 }).refine(
@@ -22,16 +22,7 @@ const contactInformationSchema = {
   ),
   email: z.string().email({ message: 'Invalid email address' }),
   company: stringFieldSchema('Company', { min: 1, max: 50 }),
-  profileType: z.enum([
-    'Individual',
-    'Team',
-    'Company',
-    'Organization',
-    'University',
-    'Consortium of Universities',
-    'Research Center',
-    'Other'
-  ]),
+  profileType: z.enum(PROFILE_TYPE_OPTIONS.map(option => option.value) as [string, ...string[]]),
   otherProfileType: stringFieldSchema('Other profile type', { max: 50 }).optional(),
   alternativeContact: stringFieldSchema('Alternative contact', { max: 50 }).optional(),
   website: stringFieldSchema('Website', { max: MAX_TEXT_LENGTH })
@@ -57,13 +48,7 @@ const projectOverviewSchema = {
     .url({ message: 'Invalid URL' })
     .or(z.literal('')),
   domain: z.enum(DOMAIN_OPTIONS.map(option => option.value) as [string, ...string[]]),
-  output: z.enum([
-    'Application',
-    'Dashboard',
-    'Developer tooling',
-    'Ecosystem development',
-    'Research'
-  ]),
+  output: z.enum(OUTPUT_OPTIONS.map(option => option.value) as [string, ...string[]]),
   budgetRequest: z.coerce
     .number({
       required_error: 'Budget request is required',
