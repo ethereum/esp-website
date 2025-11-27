@@ -18,6 +18,20 @@ export const WISHLIST_RECORD_TYPE_ID = '012Vj000008tfPKIAY';
 export const RFP_RECORD_TYPE_ID = '012Vj000008tfPJIAY';
 
 /**
+ * Get Salesforce credentials securely
+ * @throws Error if credentials are not configured
+ */
+const getSalesforceCredentials = () => {
+  if (!SF_PROD_USERNAME || !SF_PROD_PASSWORD || !SF_PROD_SECURITY_TOKEN) {
+    throw new Error('Salesforce credentials not configured');
+  }
+  return {
+    username: SF_PROD_USERNAME,
+    password: `${SF_PROD_PASSWORD}${SF_PROD_SECURITY_TOKEN}`
+  };
+};
+
+/**
  * Generate a JWT token for CSAT submission
  * @param applicationId - The Salesforce Application ID
  * @returns JWT token valid for 7 days
@@ -57,7 +71,8 @@ const createConnection = (): jsforce.Connection => {
 
 const loginToSalesforce = (conn: jsforce.Connection): Promise<void> => {
   return new Promise((resolve, reject) => {
-    conn.login(SF_PROD_USERNAME!, `${SF_PROD_PASSWORD}${SF_PROD_SECURITY_TOKEN}`, err => {
+    const { username, password } = getSalesforceCredentials();
+    conn.login(username, password, err => {
       if (err) {
         console.error('Salesforce login error:', err);
         return reject(err);
@@ -105,6 +120,13 @@ const getFieldsForType = (type?: GrantInitiativeType): string => {
  */
 export function getGrantInitiativeItems(type?: GrantInitiativeType) {
   return new Promise<GrantInitiative[]>(async (resolve, reject) => {
+    // During build time, credentials may not be available
+    // Return empty array to allow build to succeed with fallback: 'blocking'
+    if (!SF_PROD_USERNAME || !SF_PROD_PASSWORD || !SF_PROD_SECURITY_TOKEN) {
+      console.warn('Salesforce credentials not configured, returning empty grant initiatives (build-time fallback)');
+      return resolve([]);
+    }
+
     const conn = createConnection();
 
     try {

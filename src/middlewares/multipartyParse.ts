@@ -7,13 +7,21 @@ import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 export const multipartyParse =
   (handler: NextApiHandler, options: formidable.Options) =>
   (req: NextApiRequest, res: NextApiResponse) => {
+    const maxSize = options.maxFileSize || 10 * 1024 * 1024;
+    const contentLength = parseInt(req.headers['content-length'] || '0', 10);
+    
+    if (contentLength > maxSize) {
+      res.status(413).json({ status: 'fail', error: 'File too large' });
+      return Promise.resolve();
+    }
+
     const form = formidable(options);
 
     return new Promise<void>(resolve => {
       form.parse(req, async (err, fields, files) => {
         if (err) {
-          console.error(err);
-          res.status(400).json({ status: 'fail' });
+          console.error('Form parsing error:', err);
+          res.status(400).json({ status: 'fail', error: 'Invalid form data' });
           return resolve();
         }
 
