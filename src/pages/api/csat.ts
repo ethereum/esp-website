@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { sanitizeFields } from '../../middlewares/sanitizeFields';
-import { verifyCaptcha } from '../../middlewares/verifyCaptcha';
 import { CSATSchema } from '../../components/forms/schemas/CSAT';
 import { updateSalesforceRecord, verifyCSATToken } from '../../lib/sf';
 
@@ -11,7 +10,6 @@ interface CSATAPIRequest extends NextApiRequest {
     csatToken: string;
     csatRating: number;
     csatComments?: string;
-    captchaToken: string;
   };
 }
 
@@ -69,4 +67,4 @@ const handler = async (req: CSATAPIRequest, res: NextApiResponse) => {
   }
 };
 
-export default sanitizeFields(verifyCaptcha(handler));
+export default sanitizeFields(handler);
