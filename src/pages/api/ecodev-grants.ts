@@ -26,8 +26,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
     const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
       process.env;
 
+    if (!SF_PROD_USERNAME || !SF_PROD_PASSWORD || !SF_PROD_SECURITY_TOKEN) {
+      res.status(500).json({ status: 'fail', error: 'Server configuration error' });
+      return resolve();
+    }
+
     const conn = new jsforce.Connection({
-      // you can change loginUrl to connect to sandbox or prerelease env.
       loginUrl: SF_PROD_LOGIN_URL
     });
 
@@ -67,9 +71,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void>
       RecordTypeId: process.env.SF_RECORD_TYPE_GENERALIST_ECODEV
     };
 
-    conn.login(SF_PROD_USERNAME!, `${SF_PROD_PASSWORD}${SF_PROD_SECURITY_TOKEN}`, err => {
+    const credentials = `${SF_PROD_PASSWORD}${SF_PROD_SECURITY_TOKEN}`;
+    conn.login(SF_PROD_USERNAME, credentials, err => {
       if (err) {
-        return console.error(err);
+        console.error('Salesforce authentication error:', err);
+        res.status(500).json({ status: 'fail', error: 'Authentication failed' });
+        return resolve();
       }
 
       let createdLeadID: string;
