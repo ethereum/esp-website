@@ -10,7 +10,6 @@ import {
   APPLICANTS_TABS,
   APPLICANTS_TABS_MAP,
   APPLICANTS_URL,
-  GRANTEE_FINANCE_URL,
   OFFICE_HOURS_URL,
   WISHLIST_URL,
   RFP_URL
@@ -104,11 +103,9 @@ export const ApplicantsLayout = ({ children }: Props) => {
     }
   };
 
-  const isGranteeFinance = pathname === GRANTEE_FINANCE_URL;
-
   return (
     <>
-      <Stack mb={5} px={{ base: 5, md: 12 }} py={3} display={!isGranteeFinance ? 'block' : 'none'}>
+      <Stack mb={5} px={{ base: 5, md: 12 }} py={3}>
         <section id='hero'>
           <Description
             title='How to Apply'
@@ -122,7 +119,7 @@ export const ApplicantsLayout = ({ children }: Props) => {
 
       <NavigationTabs tabIndex={tabIndex} handleChange={handleChange} tabsList={APPLICANTS_TABS} />
 
-      <Stack px={{ base: !isGranteeFinance ? 5 : 0, md: 12 }}>
+      <Stack px={{ base: 5, md: 12 }}>
         <Stack mb={8}>{children}</Stack>
       </Stack>
     </>
