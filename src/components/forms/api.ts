@@ -1,8 +1,9 @@
-import { NewsletterFormData } from './../../types';
+import { GranteeFinanceFormData, NewsletterFormData } from './../../types';
 
 import { createFormData } from '../../utils';
 
 import {
+  API_GRANTEE_FINANCE,
   API_NEWSLETTER_SIGNUP_URL,
   API_OFFICE_HOURS,
   API_WISHLIST,
@@ -112,6 +113,22 @@ export const api = {
       };
 
       return fetch(API_CSAT, csatRequestOptions);
+    }
+  },
+  granteeFinance: {
+    submit: (data: GranteeFinanceFormData) => {
+      const granteeFinanceRequestOptions: RequestInit = {
+        ...methodOptions,
+        method: 'PUT',
+        body: JSON.stringify({
+          ...data,
+          l2Payment: data.l2Payment === 'Yes',
+          l2Network: data.l2Network ?? '',
+          isCentralizedExchange: data.isCentralizedExchange === 'Yes'
+        })
+      };
+
+      return fetch(API_GRANTEE_FINANCE, granteeFinanceRequestOptions);
     }
   }
 };
