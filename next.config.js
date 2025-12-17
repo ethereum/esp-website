@@ -6,9 +6,6 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      // Grantee Finance (deprecated)
-      { source: '/applicants/grantee-finance', destination: '/', permanent: true },
-      { source: '/applicants/grantee-finance/thank-you', destination: '/', permanent: true },
       // Academic Grants - keep 2022, 2023, 2024 redirects but keep main page
       { source: '/academic-grants-2022', destination: '/', permanent: true },
       { source: '/academic-grants-2023', destination: '/', permanent: true },

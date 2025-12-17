@@ -72,6 +72,10 @@ export const OFFICE_HOURS_APPLY_URL = '/applicants/office-hours/apply';
 export const WISHLIST_APPLY_URL = '/applicants/wishlist/apply';
 export const RFP_APPLY_URL = '/applicants/rfp/apply';
 
+// grantee finance
+export const GRANTEE_FINANCE_URL = '/applicants/grantee-finance';
+export const GRANTEE_FINANCE_THANK_YOU_PAGE_URL = '/applicants/grantee-finance/thank-you';
+
 // thank you pages
 export const OFFICE_HOURS_THANK_YOU_PAGE_URL = '/applicants/office-hours/thank-you';
 export const WISHLIST_THANK_YOU_PAGE_URL = '/applicants/wishlist/thank-you';
