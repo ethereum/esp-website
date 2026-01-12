@@ -149,3 +149,11 @@ Use hCaptcha testing keys from `.env.local.example`:
 - Field names defined in `src/types.ts`
 - Checkbox fields must be boolean (`true`/`false`)
 - Picklist values must match Salesforce configuration
+
+## Skills
+
+Specialized guidance available in `.claude/skills/`:
+
+- **form-creator** - Step-by-step workflow for creating new forms with correct architecture
+- **salesforce-mapping** - Field mapping, data type conversions, and debugging Salesforce errors
+- **chakra-theme** - Extending the Chakra UI theme with custom colors, components, and patterns
