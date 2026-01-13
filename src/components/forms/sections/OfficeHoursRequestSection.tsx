@@ -70,7 +70,7 @@ export const OfficeHoursRequestSection: FC = () => {
             <TextAreaField
               id='projectSummary'
               label='Project summary'
-              helpText='Describe your project in a few sentences, incuding what is being built and why it matters. Provide links to any existing public or published work.'
+              helpText='Describe your project in a few sentences, including what is being built and why it matters. Provide links to any existing public or published work.'
               isRequired={isRequestingProjectFeedback}
             />
 

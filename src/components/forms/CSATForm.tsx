@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   Circle,
-  Flex,
   Heading,
   Textarea,
   useToast,
@@ -17,7 +16,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { CSATSchema, CSATData } from './schemas/CSAT';
 import { api } from './api';
-import { Captcha } from './fields/Captcha';
 import { TOAST_OPTIONS } from '../../constants';
 
 interface CSATFormProps extends BoxProps {
@@ -36,8 +34,7 @@ export const CSATForm: FC<CSATFormProps> = ({ applicationId, csatToken, ...props
       applicationId,
       csatToken,
       csatRating: undefined,
-      csatComments: '',
-      captchaToken: ''
+      csatComments: ''
     }
   });
 
@@ -140,11 +137,6 @@ export const CSATForm: FC<CSATFormProps> = ({ applicationId, csatToken, ...props
                 </Box>
               )}
             </Box>
-
-            {/* Captcha */}
-            <Flex justify='center'>
-              <Captcha />
-            </Flex>
 
             {/* Submit Button */}
             <Center>
