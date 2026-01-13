@@ -49,13 +49,13 @@ export const verifyCSATToken = (token: string): { applicationId: string } | null
   }
 };
 
-const createConnection = (): jsforce.Connection => {
+export const createConnection = (): jsforce.Connection => {
   return new jsforce.Connection({
     loginUrl: SF_PROD_LOGIN_URL
   });
 };
 
-const loginToSalesforce = (conn: jsforce.Connection): Promise<void> => {
+export const loginToSalesforce = (conn: jsforce.Connection): Promise<void> => {
   return new Promise((resolve, reject) => {
     conn.login(SF_PROD_USERNAME!, `${SF_PROD_PASSWORD}${SF_PROD_SECURITY_TOKEN}`, err => {
       if (err) {
