@@ -31,22 +31,41 @@ export const GrantsHero: FC<Props> = ({
   subheading,
   children
 }) => {
+  // Nav height to account for floating nav overlay
+  const navHeight = { base: '80px', md: '120px' };
+
   return (
-    <Stack mb={{ base: -2, md: -60, xl: -72 }}>
-      <Center h={{ md: '445px' }} alignItems={{ md: 'center' }}>
-        <Stack
-          px={{ base: 10, md: 9 }}
-          py={{ base: 3, md: 12 }}
-          mb={{ base: 7, md: 0 }}
-          bg={{ md: `brand.${colorBrandConstant}.titleWhiteBox` }}
-          maxW={{ md: '702px' }}
-          zIndex={1}
-        >
+    <Box>
+      {/* Mobile Layout */}
+      <Box display={{ base: 'block', md: 'none' }} position='relative'>
+        {/* Background image behind content */}
+        <Box position='absolute' top={0} left={0} right={0} bottom={0}>
+          <Image
+            src={mobileImage.src}
+            alt={mobileImage.alt}
+            fill
+            placeholder='blur'
+            quality={mobileImage.quality}
+            sizes='100vw'
+            style={{ objectFit: 'cover' }}
+          />
+          {/* Gradient overlay for readability */}
+          <Box
+            position='absolute'
+            top={0}
+            left={0}
+            right={0}
+            bottom={0}
+            bg='rgba(255, 255, 255, 0.85)'
+          />
+        </Box>
+
+        <Stack px={10} pt={navHeight.base} pb={6} position='relative'>
           <PageSubheading
             as='h1'
-            fontSize={{ base: 'homepage', md: 'h1' }}
+            fontSize='homepage'
             fontWeight={100}
-            lineHeight={{ base: '36px', md: '48px' }}
+            lineHeight='36px'
             textAlign='center'
             mb={3}
           >
@@ -61,48 +80,68 @@ export const GrantsHero: FC<Props> = ({
 
           <PageText textAlign='center'>{children}</PageText>
         </Stack>
-      </Center>
-
-      <Box>
-        <Box display={{ base: 'block', md: 'none' }}>
-          <Image
-            src={mobileImage.src}
-            alt={mobileImage.alt}
-            width={450}
-            height={276}
-            placeholder='blur'
-            quality={mobileImage.quality}
-            sizes='100vw'
-            style={{
-              objectFit: 'cover',
-              width: '100%',
-              height: 'auto'
-            }}
-          />
-        </Box>
-
-        <Box display={{ base: 'none', md: 'block' }}>
-          <Box maxW={1400}>
-            <Image
-              src={desktopImage.src}
-              alt={desktopImage.alt}
-              placeholder='blur'
-              fill
-              quality={desktopImage.quality}
-              sizes='100vw'
-              style={{
-                objectFit: 'cover'
-              }}
-            />
-          </Box>
-
-          <Box
-            mt={{ lg: 40 }}
-            h={52}
-            bgGradient={`linear(to-b, brand.${colorBrandConstant}.bgGradient.start 0%, brand.${colorBrandConstant}.bgGradient.end 100%)`}
-          />
-        </Box>
       </Box>
-    </Stack>
+
+      {/* Desktop Layout */}
+      <Box display={{ base: 'none', md: 'block' }} position='relative'>
+        {/* Background Image Container */}
+        <Box position='relative' h={{ md: '500px', lg: '580px' }}>
+          <Image
+            src={desktopImage.src}
+            alt={desktopImage.alt}
+            placeholder='blur'
+            fill
+            quality={desktopImage.quality}
+            sizes='100vw'
+            style={{ objectFit: 'cover' }}
+          />
+
+          {/* Gradient Overlay */}
+          <Box
+            position='absolute'
+            bottom={0}
+            left={0}
+            right={0}
+            h='200px'
+            bgGradient={`linear(to-b, transparent 0%, brand.${colorBrandConstant}.bgGradient.start 50%, brand.${colorBrandConstant}.bgGradient.end 100%)`}
+          />
+        </Box>
+
+        {/* Content Box - Positioned over the image, accounting for nav */}
+        <Center
+          position='absolute'
+          top={navHeight.md}
+          left={0}
+          right={0}
+          bottom={0}
+        >
+          <Stack
+            px={9}
+            py={12}
+            bg={`brand.${colorBrandConstant}.titleWhiteBox`}
+            maxW='702px'
+          >
+            <PageSubheading
+              as='h1'
+              fontSize='h1'
+              fontWeight={100}
+              lineHeight='48px'
+              textAlign='center'
+              mb={3}
+            >
+              {title}
+            </PageSubheading>
+
+            {subheading && (
+              <PageText textAlign='center' fontWeight={700} mb={2}>
+                {subheading}
+              </PageText>
+            )}
+
+            <PageText textAlign='center'>{children}</PageText>
+          </Stack>
+        </Center>
+      </Box>
+    </Box>
   );
 };

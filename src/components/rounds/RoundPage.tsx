@@ -66,14 +66,14 @@ export const RoundPage: FC<RoundPageProps> = ({
           {description}
         </GrantsHero>
 
-        <Box bg='white' position='relative' py={{ md: 12 }}>
+        <Box bg='white' py={{ base: 8, md: 12 }}>
           <Flex>
             <ApplicantsSidebar
               sidebarLinks={links}
               sectionsInView={links.map(() => false)}
             />
 
-            <Box w={{ lg: '70%' }} px={{ md: 20 }} pr={{ lg: 12 }}>
+            <Box w={{ lg: '70%' }} px={{ base: 5, md: 20 }} pr={{ lg: 12 }}>
               {status === 'closed' && (
                 <BannerApplicationClosed mb={8} />
               )}

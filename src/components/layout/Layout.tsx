@@ -43,6 +43,11 @@ export const Layout = ({ children, ...props }: ContainerProps) => {
   // Don't show banner on the round page itself
   const showBanner = activeRound && !router.pathname.startsWith(ROUNDS_URL);
 
+  // Pages where nav floats over hero image
+  const isHeroPage =
+    router.pathname === ACADEMIC_GRANTS_URL ||
+    router.pathname.startsWith(ROUNDS_URL);
+
   const renderContent = (): ReactNode => {
     if (router.pathname === HOME_URL) {
       return (
@@ -76,20 +81,14 @@ export const Layout = ({ children, ...props }: ContainerProps) => {
 
     if (router.pathname === ACADEMIC_GRANTS_URL) {
       return (
-        <Box mt={{ md: -10, lg: 0 }}>
-          <main>
-            <AcademicGrantsLayout>{children}</AcademicGrantsLayout>
-          </main>
-        </Box>
+        <main>
+          <AcademicGrantsLayout>{children}</AcademicGrantsLayout>
+        </main>
       );
     }
 
     if (router.pathname.startsWith(ROUNDS_URL)) {
-      return (
-        <Box mt={{ md: -10, lg: 0 }}>
-          <main>{children}</main>
-        </Box>
-      );
+      return <main>{children}</main>;
     }
 
     return children;
@@ -99,9 +98,25 @@ export const Layout = ({ children, ...props }: ContainerProps) => {
     <Container maxW='100%' p={0} {...props}>
       {showBanner && <ActiveRoundBanner round={activeRound} />}
 
-      <Box px={{ base: 5, md: 12 }} py={{ base: 3, md: 8 }}>
-        <Nav />
-      </Box>
+      {!isHeroPage && (
+        <Box px={{ base: 5, md: 12 }} py={{ base: 3, md: 8 }}>
+          <Nav />
+        </Box>
+      )}
+
+      {isHeroPage && (
+        <Box
+          position='absolute'
+          top={showBanner ? '48px' : 0}
+          left={0}
+          right={0}
+          zIndex='banner'
+          px={{ base: 5, md: 12 }}
+          py={{ base: 3, md: 8 }}
+        >
+          <Nav />
+        </Box>
+      )}
 
       {renderContent()}
 
