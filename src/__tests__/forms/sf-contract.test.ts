@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeAll } from 'vitest';
+import { describe, it, expect, beforeAll, beforeEach } from 'vitest';
 import {
   getSalesforceObjectMetadata,
   type SalesforceObjectMetadata,
@@ -13,7 +13,6 @@ import {
   PROFILE_TYPE_OPTIONS,
   DOMAIN_OPTIONS,
   OUTPUT_OPTIONS,
-  COUNTRY_OPTIONS,
   TIMEZONE_OPTIONS,
   FIAT_CURRENCY_OPTIONS
 } from '../../components/forms/constants';
@@ -38,6 +37,18 @@ describe('Salesforce Contract Tests - Application__c', () => {
       throw error;
     }
   }, 30000); // 30 second timeout for SF API call
+
+  /**
+   * Ensure metadata is available before each test
+   * Throws an error if metadata fetch failed, making test failures explicit in CI/CD
+   */
+  beforeEach(() => {
+    if (!applicationMetadata) {
+      throw new Error(
+        'Salesforce metadata not available. Ensure SF credentials are configured in .env.local'
+      );
+    }
+  });
 
   /**
    * Helper function to get field metadata by name
@@ -99,111 +110,32 @@ describe('Salesforce Contract Tests - Application__c', () => {
   };
 
   /**
-   * Test suite for RFP form mappings
+   * Form type configurations for parameterized tests
    */
-  describe('RFP Form', () => {
-    const formType: FormType = 'rfp';
+  const formTypeConfigs: Array<{ formType: FormType; displayName: string }> = [
+    { formType: 'rfp', displayName: 'RFP' },
+    { formType: 'directGrant', displayName: 'Direct Grant' },
+    { formType: 'wishlist', displayName: 'Wishlist' },
+    { formType: 'officeHours', displayName: 'Office Hours' }
+  ];
 
+  /**
+   * Parameterized test suite for all form type field mappings
+   */
+  describe.each(formTypeConfigs)('$displayName Form', ({ formType }) => {
     it('should map all fields to existing Salesforce fields', () => {
-      if (!applicationMetadata) {
-        console.warn('Skipping test: Salesforce metadata not available');
-        return;
-      }
-
       const mappedFields = getMappedFields(formType);
-      const missingFields: string[] = [];
-
-      for (const fieldName of mappedFields) {
-        if (!fieldExists(fieldName)) {
-          missingFields.push(fieldName);
-        }
-      }
+      const missingFields = mappedFields.filter(fieldName => !fieldExists(fieldName));
 
       expect(missingFields).toEqual([]);
     });
   });
 
   /**
-   * Test suite for Direct Grant form mappings
+   * Office Hours specific picklist validation
    */
-  describe('Direct Grant Form', () => {
-    const formType: FormType = 'directGrant';
-
-    it('should map all fields to existing Salesforce fields', () => {
-      if (!applicationMetadata) {
-        console.warn('Skipping test: Salesforce metadata not available');
-        return;
-      }
-
-      const mappedFields = getMappedFields(formType);
-      const missingFields: string[] = [];
-
-      for (const fieldName of mappedFields) {
-        if (!fieldExists(fieldName)) {
-          missingFields.push(fieldName);
-        }
-      }
-
-      expect(missingFields).toEqual([]);
-    });
-  });
-
-  /**
-   * Test suite for Wishlist form mappings
-   */
-  describe('Wishlist Form', () => {
-    const formType: FormType = 'wishlist';
-
-    it('should map all fields to existing Salesforce fields', () => {
-      if (!applicationMetadata) {
-        console.warn('Skipping test: Salesforce metadata not available');
-        return;
-      }
-
-      const mappedFields = getMappedFields(formType);
-      const missingFields: string[] = [];
-
-      for (const fieldName of mappedFields) {
-        if (!fieldExists(fieldName)) {
-          missingFields.push(fieldName);
-        }
-      }
-
-      expect(missingFields).toEqual([]);
-    });
-  });
-
-  /**
-   * Test suite for Office Hours form mappings
-   */
-  describe('Office Hours Form', () => {
-    const formType: FormType = 'officeHours';
-
-    it('should map all fields to existing Salesforce fields', () => {
-      if (!applicationMetadata) {
-        console.warn('Skipping test: Salesforce metadata not available');
-        return;
-      }
-
-      const mappedFields = getMappedFields(formType);
-      const missingFields: string[] = [];
-
-      for (const fieldName of mappedFields) {
-        if (!fieldExists(fieldName)) {
-          missingFields.push(fieldName);
-        }
-      }
-
-      expect(missingFields).toEqual([]);
-    });
-
-    it('should validate Office Hours picklist values match SF options', () => {
-      if (!applicationMetadata) {
-        console.warn('Skipping test: Salesforce metadata not available');
-        return;
-      }
-
-      // Office Hours request type values from the schema
+  describe('Office Hours Form - Picklist Validation', () => {
+    it('should validate Office Hours request type picklist values match SF options', () => {
       const officeHoursRequestValues = ['Advice', 'Project Feedback'];
 
       const result = validatePicklistValues(
@@ -221,11 +153,6 @@ describe('Salesforce Contract Tests - Application__c', () => {
    */
   describe('Cross-Form Validation', () => {
     it('should validate all hardwired fields exist', () => {
-      if (!applicationMetadata) {
-        console.warn('Skipping test: Salesforce metadata not available');
-        return;
-      }
-
       const allFormTypes: FormType[] = ['rfp', 'directGrant', 'wishlist', 'officeHours'];
       const missingFields: Array<{ formType: FormType; field: string }> = [];
 
@@ -242,11 +169,6 @@ describe('Salesforce Contract Tests - Application__c', () => {
     });
 
     it('should validate common fields exist across all forms', () => {
-      if (!applicationMetadata) {
-        console.warn('Skipping test: Salesforce metadata not available');
-        return;
-      }
-
       const commonFields = [
         'Application_FirstName__c',
         'Application_LastName__c',
@@ -262,11 +184,6 @@ describe('Salesforce Contract Tests - Application__c', () => {
     });
 
     it('should validate profile type picklist values match SF options', () => {
-      if (!applicationMetadata) {
-        console.warn('Skipping test: Salesforce metadata not available');
-        return;
-      }
-
       const profileTypeResult = validatePicklistValues(
         'Application_ProfileType__c',
         PROFILE_TYPE_OPTIONS.map(opt => opt.value),
@@ -276,11 +193,6 @@ describe('Salesforce Contract Tests - Application__c', () => {
     });
 
     it('should validate domain picklist values match SF options', () => {
-      if (!applicationMetadata) {
-        console.warn('Skipping test: Salesforce metadata not available');
-        return;
-      }
-
       const domainResult = validatePicklistValues(
         'Application_Domain__c',
         DOMAIN_OPTIONS.map(opt => opt.value),
@@ -290,11 +202,6 @@ describe('Salesforce Contract Tests - Application__c', () => {
     });
 
     it('should validate output picklist values match SF options', () => {
-      if (!applicationMetadata) {
-        console.warn('Skipping test: Salesforce metadata not available');
-        return;
-      }
-
       const outputResult = validatePicklistValues(
         'Application_Output__c',
         OUTPUT_OPTIONS.map(opt => opt.value),
@@ -304,11 +211,6 @@ describe('Salesforce Contract Tests - Application__c', () => {
     });
 
     it('should validate timezone picklist values match SF options', () => {
-      if (!applicationMetadata) {
-        console.warn('Skipping test: Salesforce metadata not available');
-        return;
-      }
-
       const timezoneResult = validatePicklistValues(
         'Application_Time_Zone__c',
         TIMEZONE_OPTIONS.map(opt => opt.value),
@@ -318,11 +220,6 @@ describe('Salesforce Contract Tests - Application__c', () => {
     });
 
     it('should validate currency picklist values match SF options', () => {
-      if (!applicationMetadata) {
-        console.warn('Skipping test: Salesforce metadata not available');
-        return;
-      }
-
       const currencyResult = validatePicklistValues(
         'CurrencyIsoCode',
         FIAT_CURRENCY_OPTIONS.map(opt => opt.value),
