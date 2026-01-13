@@ -53,6 +53,9 @@ export const SIDEBAR_RFP_LINKS: SidebarLink[] = [
   { text: 'Apply', href: `${RFP_URL}/#apply` }
 ];
 
+// rounds
+export const ROUNDS_URL = '/rounds';
+
 export const ACADEMIC_GRANTS_URL = '/academic-grants';
 export const SIDEBAR_ACADEMIC_GRANTS_LINKS: SidebarLink[] = [
   { text: 'Summary', href: `${ACADEMIC_GRANTS_URL}/#introduction` },

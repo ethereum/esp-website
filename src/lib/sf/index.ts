@@ -99,6 +99,58 @@ const getFieldsForType = (type?: GrantInitiativeType): string => {
 };
 
 /**
+ * Transform Salesforce records into GrantInitiative objects
+ */
+const transformGrantInitiativeRecords = (
+  records: GrantInitiativeSalesforceRecord[]
+): GrantInitiative[] => {
+  return records.reduce<GrantInitiative[]>((acc, record) => {
+    const grantInitiativeType = getGrantInitiativeType(record.RecordTypeId);
+    if (!grantInitiativeType) return acc;
+
+    const grantInitiativeItem: GrantInitiative = {
+      Id: record.Id,
+      Name: record.Name,
+      Description__c: record.Description__c,
+      Tags__c: record.Tags__c,
+      Resources__c: record.Resources__c,
+      Ecosystem_Need__c: record.Ecosystem_Need__c
+    };
+
+    if (record.Custom_URL_Slug__c) {
+      grantInitiativeItem.Custom_URL_Slug__c = record.Custom_URL_Slug__c;
+    }
+
+    if (grantInitiativeType === 'Wishlist') {
+      if (record.Out_of_Scope__c) {
+        grantInitiativeItem.Out_of_Scope__c = record.Out_of_Scope__c;
+      }
+    }
+
+    if (grantInitiativeType === 'RFP') {
+      if (record.RFP_Project_Duration__c) {
+        grantInitiativeItem.RFP_Project_Duration__c = record.RFP_Project_Duration__c;
+      }
+      if (record.RFP_HardRequirements_Long__c) {
+        grantInitiativeItem.RFP_HardRequirements_Long__c = record.RFP_HardRequirements_Long__c;
+      }
+      if (record.RFP_SoftRequirements__c) {
+        grantInitiativeItem.RFP_SoftRequirements__c = record.RFP_SoftRequirements__c;
+      }
+      if (record.RFP_Close_Date__c) {
+        grantInitiativeItem.RFP_Close_Date__c = record.RFP_Close_Date__c;
+      }
+      if (record.RFP_Open_Date__c) {
+        grantInitiativeItem.RFP_Open_Date__c = record.RFP_Open_Date__c;
+      }
+    }
+
+    acc.push(grantInitiativeItem);
+    return acc;
+  }, []);
+};
+
+/**
  * Get all active grant initiative items
  * @param type - The type of grant initiative (Wishlist, RFP)
  * @returns Promise with the grant initiative items
@@ -110,7 +162,6 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
     try {
       await loginToSalesforce(conn);
 
-      // TODO: Change to `Active` before deploying to production
       const baseCriteria: Partial<GrantInitiativeSalesforceRecord> = { Status__c: 'Active' };
       const criteria =
         type != null
@@ -125,56 +176,52 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
             return reject(err);
           }
 
-          const grantInitiativeItems = ret.reduce<GrantInitiative[]>((acc, record) => {
-            const grantInitiativeType = getGrantInitiativeType(record.RecordTypeId);
-            if (!grantInitiativeType) return acc;
+          return resolve(transformGrantInitiativeRecords(ret));
+        });
+    } catch (error) {
+      return reject(error);
+    }
+  });
+}
 
-            const grantInitiativeItem: GrantInitiative = {
-              Id: record.Id,
-              Name: record.Name,
-              Description__c: record.Description__c,
-              Tags__c: record.Tags__c,
-              Resources__c: record.Resources__c,
-              Ecosystem_Need__c: record.Ecosystem_Need__c
-            };
+/**
+ * Get grant initiative items filtered by tag
+ * @param type - The type of grant initiative (Wishlist, RFP)
+ * @param tag - The tag to filter by (e.g., "AGR26")
+ * @returns Promise with the filtered grant initiative items
+ */
+export function getGrantInitiativeItemsByTag(
+  type: GrantInitiativeType,
+  tag: string
+): Promise<GrantInitiative[]> {
+  return new Promise<GrantInitiative[]>(async (resolve, reject) => {
+    const conn = createConnection();
 
-            if (record.Custom_URL_Slug__c) {
-              grantInitiativeItem.Custom_URL_Slug__c = record.Custom_URL_Slug__c;
-            }
+    try {
+      await loginToSalesforce(conn);
 
-            if (grantInitiativeType === 'Wishlist') {
-              if (record.Out_of_Scope__c) {
-                grantInitiativeItem.Out_of_Scope__c = record.Out_of_Scope__c;
-              }
-            }
+      const criteria: Partial<GrantInitiativeSalesforceRecord> = {
+        Status__c: 'Active',
+        RecordTypeId: getRecordTypeIdForType(type)
+      };
 
-            if (grantInitiativeType === 'RFP') {
-              if (record.RFP_Project_Duration__c) {
-                grantInitiativeItem.RFP_Project_Duration__c = record.RFP_Project_Duration__c;
-              }
-              if (record.RFP_HardRequirements_Long__c) {
-                grantInitiativeItem.RFP_HardRequirements_Long__c =
-                  record.RFP_HardRequirements_Long__c;
-              }
-              if (record.RFP_SoftRequirements__c) {
-                grantInitiativeItem.RFP_SoftRequirements__c = record.RFP_SoftRequirements__c;
-              }
-              if (record.RFP_Close_Date__c) {
-                grantInitiativeItem.RFP_Close_Date__c = record.RFP_Close_Date__c;
-              }
-              if (record.RFP_Open_Date__c) {
-                grantInitiativeItem.RFP_Open_Date__c = record.RFP_Open_Date__c;
-              }
-              if (record.RFP_Project_Duration__c) {
-                grantInitiativeItem.RFP_Project_Duration__c = record.RFP_Project_Duration__c;
-              }
-            }
+      conn
+        .sobject('Grant_Initiative__c')
+        .find<GrantInitiativeSalesforceRecord>(criteria, getFieldsForType(type), (err, ret) => {
+          if (err) {
+            console.error(err);
+            return reject(err);
+          }
 
-            acc.push(grantInitiativeItem);
-            return acc;
-          }, []);
+          // Filter records that contain the tag in their Tags__c field
+          // Tags__c is a semicolon-separated string
+          const filteredRecords = ret.filter(record => {
+            if (!record.Tags__c) return false;
+            const tags = record.Tags__c.split(';').map(t => t.trim());
+            return tags.includes(tag);
+          });
 
-          return resolve(grantInitiativeItems);
+          return resolve(transformGrantInitiativeRecords(filteredRecords));
         });
     } catch (error) {
       return reject(error);

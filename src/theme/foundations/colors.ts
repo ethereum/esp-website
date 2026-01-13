@@ -163,6 +163,18 @@ export const colors = {
         start: '#e078611a',
         end: '#e06361'
       }
+    },
+    academicGrants2026Hero: {
+      titleWhiteBox: 'rgba(255, 255, 255, 0.6)',
+      bgGradient: {
+        start: '#cc9eb0',
+        end: 'rgba(235, 209, 251, 0)'
+      }
+    },
+    activeRoundBanner: {
+      bg: '#e8f4fd',
+      text: '#1a365d',
+      border: '#bee3f8'
     }
   }
 };

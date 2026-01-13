@@ -516,3 +516,23 @@ export interface GrantInitiative {
   RFP_SoftRequirements__c?: string;
   Custom_URL_Slug__c?: string;
 }
+
+export type RoundStatus = 'active' | 'closed';
+
+export interface RoundFrontmatter {
+  slug: string;
+  name: string;
+  description: string;
+  status: RoundStatus;
+  itemType: GrantInitiativeType;
+  tag: string;
+  heroImage: string;
+  colorBrand: string;
+  startDate: string;
+  endDate: string;
+  sidebarLinks?: SidebarLink[];
+}
+
+export interface Round extends RoundFrontmatter {
+  content: string;
+}
