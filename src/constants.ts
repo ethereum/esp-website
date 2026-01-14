@@ -53,6 +53,12 @@ export const SIDEBAR_RFP_LINKS: SidebarLink[] = [
   { text: 'Apply', href: `${RFP_URL}/#apply` }
 ];
 
+export const OPEN_ROUNDS_URL = '/applicants/open-rounds';
+export const SIDEBAR_OPEN_ROUNDS_LINKS: SidebarLink[] = [
+  { text: 'Summary', href: `${OPEN_ROUNDS_URL}/#description` },
+  { text: 'Active Rounds', href: `${OPEN_ROUNDS_URL}/#active-rounds` }
+];
+
 // rounds
 export const ROUNDS_URL = '/rounds';
 
@@ -120,18 +126,19 @@ export const REMIX_LABS_URL = 'https://remix-project.org/';
 export const POWDR_LABS_URL = 'https://www.powdr.org/';
 
 // applicants tabs
-export const APPLICANTS_TABS = ['Overview', 'Office Hours', 'Wishlist', 'RFPs'];
+export const APPLICANTS_TABS = ['Overview', 'Open Rounds', 'Office Hours', 'Wishlist', 'RFPs'];
 export const APPLICANTS_TABS_MAP: TabsMap = {
   [APPLICANTS_URL]: 0,
-  [OFFICE_HOURS_URL]: 1,
-  [OFFICE_HOURS_APPLY_URL]: 1,
-  [OFFICE_HOURS_THANK_YOU_PAGE_URL]: 1,
-  [WISHLIST_URL]: 2,
-  [WISHLIST_APPLY_URL]: 2,
-  [WISHLIST_THANK_YOU_PAGE_URL]: 2,
-  [RFP_URL]: 3,
-  [RFP_APPLY_URL]: 3,
-  [RFP_THANK_YOU_PAGE_URL]: 3
+  [OPEN_ROUNDS_URL]: 1,
+  [OFFICE_HOURS_URL]: 2,
+  [OFFICE_HOURS_APPLY_URL]: 2,
+  [OFFICE_HOURS_THANK_YOU_PAGE_URL]: 2,
+  [WISHLIST_URL]: 3,
+  [WISHLIST_APPLY_URL]: 3,
+  [WISHLIST_THANK_YOU_PAGE_URL]: 3,
+  [RFP_URL]: 4,
+  [RFP_APPLY_URL]: 4,
+  [RFP_THANK_YOU_PAGE_URL]: 4
 };
 
 // about tabs

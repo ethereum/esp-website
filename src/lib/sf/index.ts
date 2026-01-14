@@ -1,10 +1,41 @@
 import fs from 'fs';
+import path from 'path';
 import jsforce from 'jsforce';
 import jwt from 'jsonwebtoken';
+import matter from 'gray-matter';
 import type { File } from 'formidable';
 
 import { GrantInitiative, GrantInitiativeSalesforceRecord, GrantInitiativeType } from '../../types';
 import { truncateString } from '../../utils/truncateString';
+
+/**
+ * Get all tags used by rounds (e.g., "AGR26")
+ * These tags should be excluded from regular RFP/Wishlist listings
+ */
+function getRoundTags(): string[] {
+  const roundsDirectory = path.join(process.cwd(), 'content/rounds');
+
+  if (!fs.existsSync(roundsDirectory)) {
+    return [];
+  }
+
+  const files = fs.readdirSync(roundsDirectory);
+  const tags: string[] = [];
+
+  for (const file of files) {
+    if (file.endsWith('.mdx')) {
+      const filePath = path.join(roundsDirectory, file);
+      const fileContents = fs.readFileSync(filePath, 'utf8');
+      const { data } = matter(fileContents);
+
+      if (data.tag) {
+        tags.push(data.tag);
+      }
+    }
+  }
+
+  return tags;
+}
 
 const {
   SF_PROD_LOGIN_URL,
@@ -163,9 +194,14 @@ const transformGrantInitiativeRecords = (
 /**
  * Get all active grant initiative items
  * @param type - The type of grant initiative (Wishlist, RFP)
+ * @param options - Optional configuration
+ * @param options.excludeRoundItems - If true, excludes items that belong to grant rounds (default: true)
  * @returns Promise with the grant initiative items
  */
-export function getGrantInitiativeItems(type?: GrantInitiativeType) {
+export function getGrantInitiativeItems(
+  type?: GrantInitiativeType,
+  options: { excludeRoundItems?: boolean } = { excludeRoundItems: true }
+) {
   return new Promise<GrantInitiative[]>(async (resolve, reject) => {
     const conn = createConnection();
 
@@ -186,7 +222,23 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
             return reject(err);
           }
 
-          return resolve(transformGrantInitiativeRecords(ret));
+          let records = ret;
+
+          // Filter out items that belong to grant rounds
+          if (options.excludeRoundItems !== false) {
+            const roundTags = getRoundTags();
+
+            if (roundTags.length > 0) {
+              records = ret.filter(record => {
+                if (!record.Tags__c) return true;
+                const itemTags = record.Tags__c.split(';').map(t => t.trim());
+                // Exclude if any of the item's tags match a round tag
+                return !itemTags.some(tag => roundTags.includes(tag));
+              });
+            }
+          }
+
+          return resolve(transformGrantInitiativeRecords(records));
         });
     } catch (error) {
       return reject(error);

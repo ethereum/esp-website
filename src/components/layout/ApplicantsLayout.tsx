@@ -11,6 +11,7 @@ import {
   APPLICANTS_TABS_MAP,
   APPLICANTS_URL,
   GRANTEE_FINANCE_URL,
+  OPEN_ROUNDS_URL,
   OFFICE_HOURS_URL,
   WISHLIST_URL,
   RFP_URL
@@ -26,16 +27,20 @@ const getTabIndexFromPath = (pathname: string): number => {
     return APPLICANTS_TABS_MAP[pathname];
   }
 
-  if (pathname.startsWith('/applicants/office-hours')) {
+  if (pathname.startsWith('/applicants/open-rounds')) {
     return 1;
   }
 
-  if (pathname.startsWith('/applicants/wishlist')) {
+  if (pathname.startsWith('/applicants/office-hours')) {
     return 2;
   }
 
-  if (pathname.startsWith('/applicants/rfp')) {
+  if (pathname.startsWith('/applicants/wishlist')) {
     return 3;
+  }
+
+  if (pathname.startsWith('/applicants/rfp')) {
+    return 4;
   }
 
   if (pathname.startsWith('/applicants')) {
@@ -72,7 +77,7 @@ export const ApplicantsLayout = ({ children }: Props) => {
       case 1:
         router.push(
           {
-            pathname: OFFICE_HOURS_URL
+            pathname: OPEN_ROUNDS_URL
           },
           undefined,
           { scroll: false }
@@ -82,7 +87,7 @@ export const ApplicantsLayout = ({ children }: Props) => {
       case 2:
         router.push(
           {
-            pathname: WISHLIST_URL
+            pathname: OFFICE_HOURS_URL
           },
           undefined,
           { scroll: false }
@@ -90,6 +95,16 @@ export const ApplicantsLayout = ({ children }: Props) => {
         break;
 
       case 3:
+        router.push(
+          {
+            pathname: WISHLIST_URL
+          },
+          undefined,
+          { scroll: false }
+        );
+        break;
+
+      case 4:
         router.push(
           {
             pathname: RFP_URL
