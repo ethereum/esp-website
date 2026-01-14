@@ -1,28 +1,44 @@
-import { FC } from 'react';
-// import { useRouter } from 'next/router';
+import { FC, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { Box, Flex, Icon } from '@chakra-ui/react';
+import { ChevronRightIcon } from '@chakra-ui/icons';
 
-// import { Banner } from './UI';
+import { BannerClickeable } from './UI';
+import { RoundFrontmatter } from '../types';
+import { ROUNDS_URL } from '../constants';
 
-// TODO: Add banner content
 export const Banners: FC = () => {
-  // const router = useRouter();
+  const router = useRouter();
+  const [activeRound, setActiveRound] = useState<RoundFrontmatter | null>(null);
 
-  // if (
-  //   !router.pathname.includes(TEN_YEAR_ANNIVERSARY_URL) &&
-  //   !router.pathname.includes(DEVCON_GRANTS_URL)
-  // ) {
-  //   return (
-  //     <Banner>
-  //       <Box fontSize='paragraph' textAlign='center'>
-  //         Applications for the{' '}
-  //         <Link href={DEVCON_GRANTS_URL} fontWeight={700}>
-  //           Destino Devconnect Support
-  //         </Link>{' '}
-  //         are now open!
-  //       </Box>
-  //     </Banner>
-  //   );
-  // }
+  useEffect(() => {
+    const fetchActiveRound = async () => {
+      try {
+        const response = await fetch('/api/active-round');
+        const data = await response.json();
+        setActiveRound(data.round);
+      } catch (error) {
+        console.error('Failed to fetch active round:', error);
+      }
+    };
 
-  return null;
+    fetchActiveRound();
+  }, []);
+
+  // Don't show banner on the round page itself
+  if (!activeRound || router.pathname.startsWith(ROUNDS_URL)) {
+    return null;
+  }
+
+  return (
+    <BannerClickeable to={`${ROUNDS_URL}/${activeRound.slug}`}>
+      <Flex alignItems='center' gap={2} fontSize='sm'>
+        <Box fontWeight={600}>{activeRound.name} is now open!</Box>
+        <Flex alignItems='center' fontWeight={600} _hover={{ textDecoration: 'underline' }}>
+          Apply now
+          <Icon as={ChevronRightIcon} ml={1} />
+        </Flex>
+      </Flex>
+    </BannerClickeable>
+  );
 };

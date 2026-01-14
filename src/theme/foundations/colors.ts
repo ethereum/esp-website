@@ -170,11 +170,6 @@ export const colors = {
         start: '#cc9eb0',
         end: 'rgba(235, 209, 251, 0)'
       }
-    },
-    activeRoundBanner: {
-      bg: '#e8f4fd',
-      text: '#1a365d',
-      border: '#bee3f8'
     }
   }
 };

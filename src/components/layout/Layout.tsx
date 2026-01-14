@@ -1,8 +1,8 @@
 import { Box, Container, ContainerProps } from '@chakra-ui/react';
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode } from 'react';
 import { useRouter } from 'next/router';
 
-import { Footer, FooterBackgroundImage, HomepageHero, ActiveRoundBanner } from '../UI';
+import { Footer, FooterBackgroundImage, HomepageHero } from '../UI';
 import { Forms } from '../forms';
 
 import {
@@ -19,29 +19,9 @@ import {
   HOME_URL,
   ROUNDS_URL
 } from '../../constants';
-import { RoundFrontmatter } from '../../types';
 
 export const Layout = ({ children, ...props }: ContainerProps) => {
   const router = useRouter();
-  const [activeRound, setActiveRound] = useState<RoundFrontmatter | null>(null);
-
-  // Fetch active round for banner
-  useEffect(() => {
-    const fetchActiveRound = async () => {
-      try {
-        const response = await fetch('/api/active-round');
-        const data = await response.json();
-        setActiveRound(data.round);
-      } catch (error) {
-        console.error('Failed to fetch active round:', error);
-      }
-    };
-
-    fetchActiveRound();
-  }, []);
-
-  // Don't show banner on the round page itself
-  const showBanner = activeRound && !router.pathname.startsWith(ROUNDS_URL);
 
   // Pages where nav floats over hero image
   const isHeroPage =
@@ -96,8 +76,6 @@ export const Layout = ({ children, ...props }: ContainerProps) => {
 
   return (
     <Container maxW='100%' p={0} {...props}>
-      {showBanner && <ActiveRoundBanner round={activeRound} />}
-
       {!isHeroPage && (
         <Box px={{ base: 5, md: 12 }} py={{ base: 3, md: 8 }}>
           <Nav />
@@ -107,7 +85,7 @@ export const Layout = ({ children, ...props }: ContainerProps) => {
       {isHeroPage && (
         <Box
           position='absolute'
-          top={showBanner ? '48px' : 0}
+          top={0}
           left={0}
           right={0}
           zIndex='banner'
