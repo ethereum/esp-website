@@ -17,6 +17,12 @@ const {
 export const WISHLIST_RECORD_TYPE_ID = '012Vj000008tfPKIAY';
 export const RFP_RECORD_TYPE_ID = '012Vj000008tfPJIAY';
 
+const SALESFORCE_ENABLED = !!(SF_PROD_LOGIN_URL && SF_PROD_USERNAME && SF_PROD_PASSWORD && SF_PROD_SECURITY_TOKEN);
+
+if (!SALESFORCE_ENABLED) {
+  console.warn('Salesforce credentials not configured. See .env.local.example for required variables.');
+}
+
 /**
  * Generate a JWT token for CSAT submission
  * @param applicationId - The Salesforce Application ID
@@ -57,6 +63,10 @@ export const createConnection = (): jsforce.Connection => {
 
 export const loginToSalesforce = (conn: jsforce.Connection): Promise<void> => {
   return new Promise((resolve, reject) => {
+    if (!SALESFORCE_ENABLED) {
+      return reject(new Error('Salesforce integration disabled'));
+    }
+
     conn.login(SF_PROD_USERNAME!, `${SF_PROD_PASSWORD}${SF_PROD_SECURITY_TOKEN}`, err => {
       if (err) {
         console.error('Salesforce login error:', err);
@@ -177,6 +187,9 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
           return resolve(grantInitiativeItems);
         });
     } catch (error) {
+      if (!SALESFORCE_ENABLED) {
+        return resolve([]);
+      }
       return reject(error);
     }
   });
@@ -208,6 +221,9 @@ export const createSalesforceRecord = async (
         resolve({ id: ret.id, success: ret.success });
       });
     } catch (error) {
+      if (!SALESFORCE_ENABLED) {
+        return resolve({ id: `MOCK_${objectType}_${Date.now()}`, success: true });
+      }
       console.error(`Error in create${objectType}:`, error);
       reject(error);
     }
@@ -242,6 +258,9 @@ export const updateSalesforceRecord = async (
         resolve({ id: ret.id, success: ret.success });
       });
     } catch (error) {
+      if (!SALESFORCE_ENABLED) {
+        return resolve({ id, success: true });
+      }
       console.error(`Error in update${objectType}:`, error);
       reject(error);
     }
@@ -325,6 +344,9 @@ export const uploadFileToSalesforce = async (
         }
       );
     } catch (error) {
+      if (!SALESFORCE_ENABLED) {
+        return resolve({ success: true, contentDocumentId: `MOCK_DOC_${Date.now()}` });
+      }
       console.error('Error in uploadFileToSalesforce:', error);
       reject(error);
     }
