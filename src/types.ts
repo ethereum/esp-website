@@ -530,7 +530,6 @@ export interface RoundFrontmatter {
   colorBrand: string;
   startDate: string;
   endDate: string;
-  sidebarLinks?: SidebarLink[];
 }
 
 export interface Round extends RoundFrontmatter {

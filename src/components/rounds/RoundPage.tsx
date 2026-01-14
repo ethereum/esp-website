@@ -27,22 +27,17 @@ interface RoundPageProps {
     desktop: StaticImageData;
     mobile: StaticImageData;
   };
+  sidebarLinks: SidebarLink[];
 }
 
 export const RoundPage: FC<RoundPageProps> = ({
   frontmatter,
   mdxSource,
   items,
-  heroImages
+  heroImages,
+  sidebarLinks
 }) => {
-  const { name, description, status, itemType, tag, colorBrand, sidebarLinks } = frontmatter;
-
-  const defaultSidebarLinks: SidebarLink[] = [
-    { text: 'Summary', href: '#summary' },
-    { text: 'Apply', href: '#apply' }
-  ];
-
-  const links = sidebarLinks || defaultSidebarLinks;
+  const { name, description, status, itemType, tag, colorBrand } = frontmatter;
 
   return (
     <>
@@ -69,8 +64,8 @@ export const RoundPage: FC<RoundPageProps> = ({
         <Box mx={{ md: 12 }} mt={{ base: 0, md: -12 }} bg='white' position='relative' py={{ base: 8, md: 12 }}>
           <Flex>
             <ApplicantsSidebar
-              sidebarLinks={links}
-              sectionsInView={links.map(() => false)}
+              sidebarLinks={sidebarLinks}
+              sectionsInView={sidebarLinks.map(() => false)}
             />
 
             <Box w={{ lg: '70%' }} px={{ base: 5, md: 20 }} pr={{ lg: 12 }}>

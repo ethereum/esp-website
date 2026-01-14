@@ -10,31 +10,9 @@ import {
   Code
 } from '@chakra-ui/react';
 
-/**
- * Generate a URL-friendly slug from text
- */
-const slugify = (text: string): string => {
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '');
-};
-
-/**
- * Extract text content from React children
- */
-const getTextContent = (children: ReactNode): string => {
-  if (typeof children === 'string') return children;
-  if (typeof children === 'number') return String(children);
-  if (Array.isArray(children)) return children.map(getTextContent).join('');
-  if (children && typeof children === 'object' && 'props' in children) {
-    return getTextContent((children as { props: { children: ReactNode } }).props.children);
-  }
-  return '';
-};
-
 interface MDXComponentProps {
   children?: ReactNode;
+  id?: string;
 }
 
 interface MDXLinkProps extends MDXComponentProps {
@@ -42,84 +20,73 @@ interface MDXLinkProps extends MDXComponentProps {
 }
 
 /**
- * MDX components with Chakra UI styling and automatic heading IDs
+ * MDX components with Chakra UI styling.
+ * IDs are added by rehype-slug plugin.
  */
 export const mdxComponents = {
-  h1: ({ children }: MDXComponentProps) => {
-    const id = slugify(getTextContent(children));
-    return (
-      <Heading
-        as="h1"
-        id={id}
-        color="brand.heading"
-        fontSize="h1"
-        fontWeight={400}
-        lineHeight="48px"
-        mb={6}
-        mt={8}
-        scrollMarginTop="100px"
-      >
-        {children}
-      </Heading>
-    );
-  },
+  h1: ({ children, id }: MDXComponentProps) => (
+    <Heading
+      as="h1"
+      id={id}
+      color="brand.heading"
+      fontSize="h1"
+      fontWeight={400}
+      lineHeight="48px"
+      mb={6}
+      mt={8}
+      scrollMarginTop="100px"
+    >
+      {children}
+    </Heading>
+  ),
 
-  h2: ({ children }: MDXComponentProps) => {
-    const id = slugify(getTextContent(children));
-    return (
-      <Heading
-        as="h2"
-        id={id}
-        color="brand.heading"
-        fontSize="h2"
-        fontWeight={400}
-        lineHeight="29px"
-        mb={4}
-        mt={8}
-        scrollMarginTop="100px"
-      >
-        {children}
-      </Heading>
-    );
-  },
+  h2: ({ children, id }: MDXComponentProps) => (
+    <Heading
+      as="h2"
+      id={id}
+      color="brand.heading"
+      fontSize="h2"
+      fontWeight={400}
+      lineHeight="29px"
+      mb={4}
+      mt={8}
+      scrollMarginTop="100px"
+    >
+      {children}
+    </Heading>
+  ),
 
-  h3: ({ children }: MDXComponentProps) => {
-    const id = slugify(getTextContent(children));
-    return (
-      <Heading
-        as="h3"
-        id={id}
-        color="brand.heading"
-        fontSize="22px"
-        fontWeight={700}
-        lineHeight="29px"
-        mb={3}
-        mt={6}
-        scrollMarginTop="100px"
-      >
-        {children}
-      </Heading>
-    );
-  },
+  h3: ({ children, id }: MDXComponentProps) => (
+    <Heading
+      as="h3"
+      id={id}
+      color="brand.heading"
+      fontSize="22px"
+      fontWeight={700}
+      lineHeight="29px"
+      mb={3}
+      mt={6}
+      scrollMarginTop="100px"
+    >
+      {children}
+    </Heading>
+  ),
 
-  h4: ({ children }: MDXComponentProps) => {
-    const id = slugify(getTextContent(children));
-    return (
-      <Heading
-        as="h4"
-        id={id}
-        color="brand.heading"
-        fontSize="18px"
-        fontWeight={700}
-        lineHeight="24px"
-        mb={2}
-        mt={4}
-        scrollMarginTop="100px"
-      >
-        {children}
-      </Heading>
-    );
-  },
+  h4: ({ children, id }: MDXComponentProps) => (
+    <Heading
+      as="h4"
+      id={id}
+      color="brand.heading"
+      fontSize="18px"
+      fontWeight={700}
+      lineHeight="24px"
+      mb={2}
+      mt={4}
+      scrollMarginTop="100px"
+    >
+      {children}
+    </Heading>
+  ),
 
   p: ({ children }: MDXComponentProps) => (
     <Text

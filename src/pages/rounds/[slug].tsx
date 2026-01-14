@@ -3,10 +3,13 @@ import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { StaticImageData } from 'next/image';
 
+import rehypeSlug from 'rehype-slug';
+
 import { RoundPage } from '../../components/rounds';
 import { getAllRoundSlugs, getRoundBySlug } from '../../lib/rounds';
 import { getGrantInitiativeItemsByTag } from '../../lib/sf';
-import { GrantInitiative, RoundFrontmatter } from '../../types';
+import { extractHeadings, headingsToSidebarLinks } from '../../lib/extractHeadings';
+import { GrantInitiative, RoundFrontmatter, SidebarLink } from '../../types';
 
 // Placeholder hero images - use existing images as fallback
 import academicGrantsHero from '../../../public/images/academic-grants-hero.png';
@@ -31,9 +34,15 @@ interface RoundPageProps {
   frontmatter: RoundFrontmatter;
   mdxSource: MDXRemoteSerializeResult;
   items: GrantInitiative[];
+  sidebarLinks: SidebarLink[];
 }
 
-const RoundPageRoute: NextPage<RoundPageProps> = ({ frontmatter, mdxSource, items }) => {
+const RoundPageRoute: NextPage<RoundPageProps> = ({
+  frontmatter,
+  mdxSource,
+  items,
+  sidebarLinks
+}) => {
   const images = heroImages[frontmatter.slug] || defaultHeroImages;
 
   return (
@@ -42,6 +51,7 @@ const RoundPageRoute: NextPage<RoundPageProps> = ({ frontmatter, mdxSource, item
       mdxSource={mdxSource}
       items={items}
       heroImages={images}
+      sidebarLinks={sidebarLinks}
     />
   );
 };
@@ -69,8 +79,19 @@ export const getStaticProps: GetStaticProps<RoundPageProps> = async ({ params })
 
   const { content, ...frontmatter } = round;
 
-  // Serialize MDX content
-  const mdxSource = await serialize(content);
+  // Extract headings from markdown content
+  const headings = extractHeadings(content);
+  const sidebarLinks = headingsToSidebarLinks(headings, {
+    includeDepths: [2, 3],
+    addApplyLink: true
+  });
+
+  // Serialize MDX with rehype-slug to add IDs to headings
+  const mdxSource = await serialize(content, {
+    mdxOptions: {
+      rehypePlugins: [rehypeSlug]
+    }
+  });
 
   // Fetch items from Salesforce filtered by tag
   const items = await getGrantInitiativeItemsByTag(frontmatter.itemType, frontmatter.tag);
@@ -79,7 +100,8 @@ export const getStaticProps: GetStaticProps<RoundPageProps> = async ({ params })
     props: {
       frontmatter,
       mdxSource,
-      items
+      items,
+      sidebarLinks
     },
     revalidate: 3600 // Revalidate every hour
   };
