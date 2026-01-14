@@ -40,3 +40,6 @@ pnpm-error.log*
 # cursor
 .cursorrules
 .cursor
+
+# playwright mcp
+.playwright-mcp/
