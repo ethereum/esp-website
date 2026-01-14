@@ -26,13 +26,7 @@ const methodOptions = {
 export const api = {
   officeHours: {
     submit: (data: OfficeHoursData) => {
-      const curatedData: { [key: string]: any } = {
-        ...data,
-        // Company is a required field in SF, we're using the Name as default value if no company provided
-        company: data.company || `${data.firstName} ${data.lastName}`
-      };
-
-      const formData = createFormData(curatedData);
+      const formData = createFormData(data);
 
       const officeHoursRequestOptions: RequestInit = {
         method: 'POST',
@@ -56,12 +50,7 @@ export const api = {
   },
   wishlist: {
     submit: (data: WishlistData) => {
-      const curatedData: { [key: string]: any } = {
-        ...data,
-        company: data.company || `${data.firstName} ${data.lastName}`
-      };
-
-      const formData = createFormData(curatedData);
+      const formData = createFormData(data);
 
       const wishlistRequestOptions: RequestInit = {
         method: 'POST',
@@ -73,12 +62,7 @@ export const api = {
   },
   rfp: {
     submit: (data: RFPData) => {
-      const curatedData: { [key: string]: any } = {
-        ...data,
-        company: data.company || `${data.firstName} ${data.lastName}`
-      };
-
-      const formData = createFormData(curatedData);
+      const formData = createFormData(data);
 
       const rfpRequestOptions: RequestInit = {
         method: 'POST',
@@ -90,12 +74,7 @@ export const api = {
   },
   directGrant: {
     submit: (data: DirectGrantData) => {
-      const curatedData: { [key: string]: any } = {
-        ...data,
-        company: data.company || `${data.firstName} ${data.lastName}`
-      };
-
-      const formData = createFormData(curatedData);
+      const formData = createFormData(data);
 
       const directGrantRequestOptions: RequestInit = {
         method: 'POST',
