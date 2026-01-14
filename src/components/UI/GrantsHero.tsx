@@ -85,7 +85,7 @@ export const GrantsHero: FC<Props> = ({
       {/* Desktop Layout */}
       <Box display={{ base: 'none', md: 'block' }} position='relative'>
         {/* Background Image Container */}
-        <Box position='relative' h={{ md: '500px', lg: '580px' }}>
+        <Box position='relative' h={{ md: '560px', lg: '640px' }}>
           <Image
             src={desktopImage.src}
             alt={desktopImage.alt}
@@ -96,24 +96,24 @@ export const GrantsHero: FC<Props> = ({
             style={{ objectFit: 'cover' }}
           />
 
-          {/* Gradient Overlay */}
+          {/* Gradient Overlay - fades to white for smooth transition to content */}
           <Box
             position='absolute'
             bottom={0}
             left={0}
             right={0}
-            h='200px'
-            bgGradient={`linear(to-b, transparent 0%, brand.${colorBrandConstant}.bgGradient.start 50%, brand.${colorBrandConstant}.bgGradient.end 100%)`}
+            h='250px'
+            bgGradient='linear(to-b, transparent 0%, rgba(255,255,255,0.5) 50%, white 100%)'
           />
         </Box>
 
-        {/* Content Box - Positioned over the image, accounting for nav */}
+        {/* Content Box - Positioned over the image, accounting for nav and content overlap */}
         <Center
           position='absolute'
           top={navHeight.md}
           left={0}
           right={0}
-          bottom={0}
+          bottom={12}
         >
           <Stack
             px={9}

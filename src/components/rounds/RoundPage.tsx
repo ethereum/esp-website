@@ -66,7 +66,7 @@ export const RoundPage: FC<RoundPageProps> = ({
           {description}
         </GrantsHero>
 
-        <Box bg='white' py={{ base: 8, md: 12 }}>
+        <Box mx={{ md: 12 }} mt={{ base: 0, md: -12 }} bg='white' position='relative' py={{ base: 8, md: 12 }}>
           <Flex>
             <ApplicantsSidebar
               sidebarLinks={links}
