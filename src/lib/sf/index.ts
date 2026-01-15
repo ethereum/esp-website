@@ -248,14 +248,10 @@ export function getGrantInitiativeItems(
 
 /**
  * Get grant initiative items filtered by tag
- * @param type - The type of grant initiative (Wishlist, RFP)
  * @param tag - The tag to filter by (e.g., "AGR26")
  * @returns Promise with the filtered grant initiative items
  */
-export function getGrantInitiativeItemsByTag(
-  type: GrantInitiativeType,
-  tag: string
-): Promise<GrantInitiative[]> {
+export function getGrantInitiativeItemsByTag(tag: string): Promise<GrantInitiative[]> {
   return new Promise<GrantInitiative[]>(async (resolve, reject) => {
     const conn = createConnection();
 
@@ -263,13 +259,12 @@ export function getGrantInitiativeItemsByTag(
       await loginToSalesforce(conn);
 
       const criteria: Partial<GrantInitiativeSalesforceRecord> = {
-        Status__c: 'Active',
-        RecordTypeId: getRecordTypeIdForType(type)
+        Status__c: 'Active'
       };
 
       conn
         .sobject('Grant_Initiative__c')
-        .find<GrantInitiativeSalesforceRecord>(criteria, getFieldsForType(type), (err, ret) => {
+        .find<GrantInitiativeSalesforceRecord>(criteria, getFieldsForType(), (err, ret) => {
           if (err) {
             console.error(err);
             return reject(err);

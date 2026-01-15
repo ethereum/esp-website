@@ -10,14 +10,19 @@ import {
   PrivacyPolicyAgreement
 } from '../UI';
 
-import { RFPSelection } from '../forms/RFPSelection';
-import { WishlistSelection } from '../forms/WishlistSelection';
+import { GrantInitiativeSelection } from '../forms/GrantInitiativeSelection';
 import { GrantsHero } from '../UI/GrantsHero';
 import { GrantInitiative, RoundFrontmatter, SidebarLink } from '../../types';
-import { RFPItem } from '../forms/schemas/RFP';
-import { WishlistItem } from '../forms/schemas/Wishlist';
 import { StaticImageData } from 'next/image';
 import { mdxComponents } from './mdxComponents';
+
+const isRFPItem = (item: GrantInitiative): boolean =>
+  item.RFP_Close_Date__c != null || item.RFP_Open_Date__c != null;
+
+const getItemUrl = (item: GrantInitiative): string => {
+  const type = isRFPItem(item) ? 'rfp' : 'wishlist';
+  return `/applicants/${type}/${item.Custom_URL_Slug__c || item.Id}`;
+};
 
 interface RoundPageProps {
   frontmatter: RoundFrontmatter;
@@ -37,7 +42,7 @@ export const RoundPage: FC<RoundPageProps> = ({
   heroImages,
   sidebarLinks
 }) => {
-  const { name, description, status, itemType, tag, colorBrand } = frontmatter;
+  const { name, description, status, tag, colorBrand } = frontmatter;
 
   return (
     <>
@@ -86,17 +91,11 @@ export const RoundPage: FC<RoundPageProps> = ({
                   <PrivacyPolicyAgreement />
 
                   <Box mt={8}>
-                    {itemType === 'RFP' ? (
-                      <RFPSelection
-                        rfpItems={items as RFPItem[]}
-                        paramTags={[tag]}
-                      />
-                    ) : (
-                      <WishlistSelection
-                        wishlistItems={items as WishlistItem[]}
-                        paramTags={[tag]}
-                      />
-                    )}
+                    <GrantInitiativeSelection
+                      items={items}
+                      getItemUrl={getItemUrl}
+                      paramTags={[tag]}
+                    />
                   </Box>
                 </section>
               </Stack>

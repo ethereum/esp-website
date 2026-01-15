@@ -94,7 +94,7 @@ export const getStaticProps: GetStaticProps<RoundPageProps> = async ({ params })
   });
 
   // Fetch items from Salesforce filtered by tag
-  const items = await getGrantInitiativeItemsByTag(frontmatter.itemType, frontmatter.tag);
+  const items = await getGrantInitiativeItemsByTag(frontmatter.tag);
 
   return {
     props: {

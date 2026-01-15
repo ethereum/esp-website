@@ -524,7 +524,6 @@ export interface RoundFrontmatter {
   name: string;
   description: string;
   status: RoundStatus;
-  itemType: GrantInitiativeType;
   tag: string;
   heroImage: string;
   colorBrand: string;

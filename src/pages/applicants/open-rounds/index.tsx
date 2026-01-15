@@ -1,4 +1,4 @@
-import { Box, Flex, Stack, Text, Badge } from '@chakra-ui/react';
+import { Box, Flex, Stack, Text } from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import type { GetStaticProps, NextPage } from 'next';
 
@@ -20,7 +20,7 @@ interface OpenRoundsProps {
 }
 
 const RoundCard = ({ round }: { round: RoundFrontmatter }) => {
-  const { slug, name, description, itemType, endDate } = round;
+  const { slug, name, description, endDate } = round;
   const roundUrl = `${ROUNDS_URL}/${slug}`;
 
   // Format the end date
@@ -45,20 +45,16 @@ const RoundCard = ({ round }: { round: RoundFrontmatter }) => {
         py={10}
       >
         <Stack mb={{ base: 6, md: 0 }} mr={{ base: 0, md: 12 }} flex={1}>
-          <Flex alignItems='center' gap={3} mb={2}>
-            <Text
-              as='h3'
-              fontSize='xl'
-              fontWeight='bold'
-              color='brand.heading'
-              textAlign={{ base: 'center', md: 'left' }}
-            >
-              {name}
-            </Text>
-            <Badge colorScheme='green' fontSize='xs'>
-              {itemType}
-            </Badge>
-          </Flex>
+          <Text
+            as='h3'
+            fontSize='xl'
+            fontWeight='bold'
+            color='brand.heading'
+            textAlign={{ base: 'center', md: 'left' }}
+            mb={2}
+          >
+            {name}
+          </Text>
 
           <PageText mb={2}>{description}</PageText>
 
