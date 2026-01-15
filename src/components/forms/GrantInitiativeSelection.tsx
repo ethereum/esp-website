@@ -85,12 +85,33 @@ export const GrantInitiativeSelection: FC<GrantInitiativeSelectionProps> = ({
 
   if (items.length === 0) {
     return (
-      <Stack spacing={8} align='center' py={16}>
-        <Heading size='lg' color='brand.heading'>
-          {emptyStateTitle}
-        </Heading>
-        <Text>{emptyStateMessage}</Text>
-      </Stack>
+      <Box
+        borderRadius='2xl'
+        bgGradient='linear(135deg, brand.ready.bgGradient.start 0%, brand.ready.bgGradient.end 50%, brand.option 100%)'
+        py={12}
+        px={8}
+      >
+        <Flex direction='column' align='center' gap={3}>
+          <Stack spacing={2} align='center' maxW='320px'>
+            <Text
+              fontSize='md'
+              fontWeight='600'
+              color='brand.paragraph'
+              letterSpacing='-0.01em'
+            >
+              {emptyStateTitle}
+            </Text>
+            <Text
+              fontSize='sm'
+              color='brand.helpText'
+              textAlign='center'
+              lineHeight='1.6'
+            >
+              {emptyStateMessage}
+            </Text>
+          </Stack>
+        </Flex>
+      </Box>
     );
   }
 
