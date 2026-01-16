@@ -27,19 +27,19 @@ const getTabIndexFromPath = (pathname: string): number => {
     return APPLICANTS_TABS_MAP[pathname];
   }
 
-  if (pathname.startsWith('/applicants/open-rounds')) {
+  if (pathname.startsWith('/applicants/office-hours')) {
     return 1;
   }
 
-  if (pathname.startsWith('/applicants/office-hours')) {
+  if (pathname.startsWith('/applicants/wishlist')) {
     return 2;
   }
 
-  if (pathname.startsWith('/applicants/wishlist')) {
+  if (pathname.startsWith('/applicants/rfp')) {
     return 3;
   }
 
-  if (pathname.startsWith('/applicants/rfp')) {
+  if (pathname.startsWith('/applicants/open-rounds')) {
     return 4;
   }
 
@@ -77,7 +77,7 @@ export const ApplicantsLayout = ({ children }: Props) => {
       case 1:
         router.push(
           {
-            pathname: OPEN_ROUNDS_URL
+            pathname: OFFICE_HOURS_URL
           },
           undefined,
           { scroll: false }
@@ -87,7 +87,7 @@ export const ApplicantsLayout = ({ children }: Props) => {
       case 2:
         router.push(
           {
-            pathname: OFFICE_HOURS_URL
+            pathname: WISHLIST_URL
           },
           undefined,
           { scroll: false }
@@ -97,7 +97,7 @@ export const ApplicantsLayout = ({ children }: Props) => {
       case 3:
         router.push(
           {
-            pathname: WISHLIST_URL
+            pathname: RFP_URL
           },
           undefined,
           { scroll: false }
@@ -107,7 +107,7 @@ export const ApplicantsLayout = ({ children }: Props) => {
       case 4:
         router.push(
           {
-            pathname: RFP_URL
+            pathname: OPEN_ROUNDS_URL
           },
           undefined,
           { scroll: false }
