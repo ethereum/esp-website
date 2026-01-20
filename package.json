@@ -45,6 +45,7 @@
     "react-hook-form": "^7.22.1",
     "react-intersection-observer": "^8.33.1",
     "react-markdown": "^8.0.0",
+    "recharts": "^3.6.0",
     "redaxios": "^0.4.1",
     "sharp": "^0.33.2"
   },
