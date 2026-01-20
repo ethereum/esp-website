@@ -37,32 +37,38 @@ export async function getPublicGrants(): Promise<GrantRecord[]> {
   const recordTypesFilter = PUBLIC_RECORD_TYPES.map(t => `'${t}'`).join(', ');
   const stagesFilter = EXCLUDED_STAGES.map(s => `'${s}'`).join(', ');
 
-  // NOTE: Field names need to be verified against actual SF schema
-  // Current fields based on provided mapping - may need adjustment
   const query = `
     SELECT
       Id,
       Name,
-      Project_Description_Public__c,
+      Project_Description__c,
       Opportunity_Domain__c,
       Opportunity_Output__c,
       Grantee_Contact_Details__c,
       Project_Repo__c,
-      Opportunity_Activated_Date__c
+      CloseDate
     FROM Opportunity
     WHERE
       RecordType.Name IN (${recordTypesFilter})
       AND Type != 'Impact Gift'
-      AND Opportunity_Activated_Date__c != NULL
-      AND Opportunity_Activated_Date__c >= ${twoFYAgo}
+      AND CloseDate != NULL
+      AND CloseDate >= ${twoFYAgo}
       AND StageName NOT IN (${stagesFilter})
-    ORDER BY Opportunity_Activated_Date__c DESC
+    ORDER BY CloseDate DESC
   `;
 
   try {
-    const result = await conn.query<SFOpportunityRecord>(query);
+    let allRecords: SFOpportunityRecord[] = [];
+    let result = await conn.query<SFOpportunityRecord>(query);
+    allRecords.push(...result.records);
 
-    return result.records
+    // Paginate through all results (default batch is ~2000)
+    while (!result.done && result.nextRecordsUrl) {
+      result = await conn.queryMore<SFOpportunityRecord>(result.nextRecordsUrl);
+      allRecords.push(...result.records);
+    }
+
+    return allRecords
       .map(mapSFRecordToGrant)
       .filter((r): r is GrantRecord => r !== null);
   } catch (error) {
@@ -141,20 +147,20 @@ function getMockGrants(): GrantRecord[] {
  * Handles null fields gracefully
  */
 function mapSFRecordToGrant(record: SFOpportunityRecord): GrantRecord | null {
-  if (!record.Opportunity_Activated_Date__c) {
-    console.warn(`Grant ${record.Id} excluded: missing activated date`);
+  if (!record.CloseDate) {
+    console.warn(`Grant ${record.Id} excluded: missing close date`);
     return null;
   }
 
   return {
     id: record.Id,
     projectName: record.Name,
-    description: record.Project_Description_Public__c || null,
+    description: record.Project_Description__c || null,
     domain: record.Opportunity_Domain__c || null,
     output: record.Opportunity_Output__c || null,
     publicContact: record.Grantee_Contact_Details__c || null,
     projectRepo: record.Project_Repo__c || null,
-    activatedDate: record.Opportunity_Activated_Date__c,
-    fiscalQuarter: deriveFiscalQuarter(record.Opportunity_Activated_Date__c)
+    activatedDate: record.CloseDate,
+    fiscalQuarter: deriveFiscalQuarter(record.CloseDate)
   };
 }

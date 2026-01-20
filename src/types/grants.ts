@@ -21,10 +21,10 @@ export interface GrantRecord {
 export interface SFOpportunityRecord {
   Id: string;
   Name: string;
-  Project_Description_Public__c: string | null;
+  Project_Description__c: string | null;
   Opportunity_Domain__c: string | null;
   Opportunity_Output__c: string | null;
   Grantee_Contact_Details__c: string | null;
   Project_Repo__c: string | null;
-  Opportunity_Activated_Date__c: string | null;
+  CloseDate: string | null;
 }
