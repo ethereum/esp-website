@@ -85,10 +85,9 @@ export async function getPublicGrants(): Promise<GrantRecord[]> {
 
 /**
  * Private fields to include for internal grants view
- * Note: Field API names should be verified against actual Salesforce schema
+ * Matching June's exact query (Jan 2026)
  */
 const PRIVATE_FIELDS = [
-  // Standard fields from public query
   'Id',
   'Name',
   'Project_Description__c',
@@ -97,18 +96,21 @@ const PRIVATE_FIELDS = [
   'Grantee_Contact_Details__c',
   'Project_Repo__c',
   'CloseDate',
-  // Private fields - verify exact names in Salesforce
-  'Cost_Center_Lookup__c.Name',
-  'Opportunity_Grant_Evaluator_Lookup__c.Name',
-  'Proactive_Community_Grants_Round__c',
+  'Cost_Center_Lookup__r.Name',
+  'Opportunity_Grant_Evaluator_Lookup__r.Name',
   'Amount',
   'StageName'
 ];
 
 /**
+ * Record types to exclude from internal grants view
+ */
+const EXCLUDED_RECORD_TYPES = ['Private Grant', 'Non-Financial Support'];
+
+/**
  * Get all grants with private fields from Salesforce
  * For internal use only - requires authentication
- * Includes additional stages like 'In Progress' and 'Pending'
+ * Uses exclusion list rather than whitelist for broader coverage
  */
 export async function getPrivateGrants(): Promise<PrivateGrantRecord[]> {
   const conn = createConnection();
@@ -120,23 +122,17 @@ export async function getPrivateGrants(): Promise<PrivateGrantRecord[]> {
     return getMockPrivateGrants();
   }
 
-  const twoFYAgo = getFiscalYearStart(2);
-  const recordTypesFilter = PUBLIC_RECORD_TYPES.map(t => `'${t}'`).join(', ');
-
-  // Internal query includes more stages
-  const internalStagesFilter = ['Prospecting'];
-  const stagesExclude = internalStagesFilter.map(s => `'${s}'`).join(', ');
+  const excludedTypesFilter = EXCLUDED_RECORD_TYPES.map(t => `'${t}'`).join(', ');
 
   const query = `
     SELECT
       ${PRIVATE_FIELDS.join(',\n      ')}
     FROM Opportunity
     WHERE
-      RecordType.Name IN (${recordTypesFilter})
+      RecordType.Name NOT IN (${excludedTypesFilter})
       AND Type != 'Impact Gift'
       AND CloseDate != NULL
-      AND CloseDate >= ${twoFYAgo}
-      AND StageName NOT IN (${stagesExclude})
+      AND CloseDate >= 2024-01-01
     ORDER BY CloseDate DESC
   `;
 
@@ -151,9 +147,12 @@ export async function getPrivateGrants(): Promise<PrivateGrantRecord[]> {
       allRecords.push(...result.records);
     }
 
-    return allRecords
+    console.log(`Raw Salesforce records: ${allRecords.length}`);
+    const grants = allRecords
       .map(mapSFRecordToPrivateGrant)
       .filter((r): r is PrivateGrantRecord => r !== null);
+    console.log(`After filtering: ${grants.length} private grants`);
+    return grants;
   } catch (error) {
     console.error('Salesforce query failed:', error);
     console.warn('Returning mock private grants for development');
@@ -181,9 +180,9 @@ function mapSFRecordToPrivateGrant(record: SFPrivateOpportunityRecord): PrivateG
     activatedDate: record.CloseDate,
     fiscalQuarter: deriveFiscalQuarter(record.CloseDate),
     // Private fields
-    costCenter: record.Cost_Center_Lookup__c?.Name || null,
-    grantEvaluator: record.Opportunity_Grant_Evaluator_Lookup__c?.Name || null,
-    grantRound: record.Proactive_Community_Grants_Round__c || null,
+    costCenter: record.Cost_Center_Lookup__r?.Name || null,
+    grantEvaluator: record.Opportunity_Grant_Evaluator_Lookup__r?.Name || null,
+    grantRound: null,
     budgetAmount: record.Amount || null,
     status: record.StageName || null
   };

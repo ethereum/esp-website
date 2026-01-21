@@ -49,13 +49,19 @@ export interface SFOpportunityRecord {
 
 /**
  * Extended Salesforce record with private fields
- * Note: Field API names should be verified against actual Salesforce schema
+ * Matching June's exact query (Jan 2026)
  */
-export interface SFPrivateOpportunityRecord extends SFOpportunityRecord {
-  // Private fields - verify exact API names in Salesforce
-  Cost_Center_Lookup__c?: { Name: string } | null;
-  Opportunity_Grant_Evaluator_Lookup__c?: { Name: string } | null;
-  Proactive_Community_Grants_Round__c: string | null;
+export interface SFPrivateOpportunityRecord {
+  Id: string;
+  Name: string;
+  Project_Description__c: string | null;
+  Opportunity_Domain__c: string | null;
+  Opportunity_Output__c: string | null;
+  Grantee_Contact_Details__c: string | null;
+  Project_Repo__c: string | null;
+  CloseDate: string | null;
+  Cost_Center_Lookup__r?: { Name: string } | null;
+  Opportunity_Grant_Evaluator_Lookup__r?: { Name: string } | null;
   Amount: number | null;
   StageName: string | null;
 }
