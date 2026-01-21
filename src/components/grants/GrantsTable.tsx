@@ -22,7 +22,7 @@ import {
 import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Search } from 'lucide-react';
 import { FC, useMemo, useRef, useState } from 'react';
 
-import { GrantRecord } from '../../types/grants';
+import { GrantRecord, PrivateGrantRecord } from '../../types/grants';
 import { SelectArrowIcon } from '../UI/icons';
 
 const Button = chakra('button');
@@ -30,7 +30,7 @@ const Button = chakra('button');
 const PAGE_SIZE = 15;
 
 interface GrantsTableProps {
-  grants: GrantRecord[];
+  grants: GrantRecord[] | PrivateGrantRecord[];
   searchQuery: string;
   onSearchChange: (query: string) => void;
   domainFilter: string | null;
@@ -42,9 +42,10 @@ interface GrantsTableProps {
   yearFilter: string | null;
   onYearFilterChange: (year: string | null) => void;
   yearOptions: string[];
-  onGrantClick: (grant: GrantRecord) => void;
+  onGrantClick: (grant: GrantRecord | PrivateGrantRecord) => void;
   currentPage: number;
   onPageChange: (page: number) => void;
+  showPrivateFields?: boolean;
 }
 
 export const GrantsTable: FC<GrantsTableProps> = ({
@@ -62,7 +63,8 @@ export const GrantsTable: FC<GrantsTableProps> = ({
   yearOptions,
   onGrantClick,
   currentPage,
-  onPageChange
+  onPageChange,
+  showPrivateFields = false
 }) => {
   const tableRef = useRef<HTMLDivElement>(null);
   const [sortColumn, setSortColumn] = useState<keyof GrantRecord | null>(null);
@@ -215,10 +217,25 @@ export const GrantsTable: FC<GrantsTableProps> = ({
       <Box overflowX='auto' border='1px solid' borderColor='brand.divider.100' borderRadius='lg'>
         <Table variant='simple' sx={{ tableLayout: 'fixed' }}>
           <colgroup>
-            <col style={{ width: '45%' }} />
-            <col style={{ width: '20%' }} />
-            <col style={{ width: '20%' }} />
-            <col style={{ width: '15%' }} />
+            {showPrivateFields ? (
+              <>
+                <col style={{ width: '25%' }} />
+                <col style={{ width: '12%' }} />
+                <col style={{ width: '12%' }} />
+                <col style={{ width: '10%' }} />
+                <col style={{ width: '12%' }} />
+                <col style={{ width: '10%' }} />
+                <col style={{ width: '10%' }} />
+                <col style={{ width: '9%' }} />
+              </>
+            ) : (
+              <>
+                <col style={{ width: '45%' }} />
+                <col style={{ width: '20%' }} />
+                <col style={{ width: '20%' }} />
+                <col style={{ width: '15%' }} />
+              </>
+            )}
           </colgroup>
           <Thead bg='gray.50'>
             <Tr>
@@ -270,12 +287,28 @@ export const GrantsTable: FC<GrantsTableProps> = ({
                   <SortIcon column='fiscalQuarter' />
                 </Flex>
               </Th>
+              {showPrivateFields && (
+                <>
+                  <Th color='brand.paragraph' fontWeight='600'>
+                    Cost Center
+                  </Th>
+                  <Th color='brand.paragraph' fontWeight='600'>
+                    Evaluator
+                  </Th>
+                  <Th color='brand.paragraph' fontWeight='600' isNumeric>
+                    Budget
+                  </Th>
+                  <Th color='brand.paragraph' fontWeight='600'>
+                    Status
+                  </Th>
+                </>
+              )}
             </Tr>
           </Thead>
           <Tbody>
             {paginatedGrants.length === 0 ? (
               <Tr>
-                <Td colSpan={4} textAlign='center' py={8}>
+                <Td colSpan={showPrivateFields ? 8 : 4} textAlign='center' py={8}>
                   <Text color='brand.helpText'>No projects found matching your criteria</Text>
                 </Td>
               </Tr>
@@ -330,6 +363,32 @@ export const GrantsTable: FC<GrantsTableProps> = ({
                       {grant.fiscalQuarter}
                     </Text>
                   </Td>
+                  {showPrivateFields && (
+                    <>
+                      <Td>
+                        <Text color='brand.helpText' fontSize='sm' noOfLines={1}>
+                          {(grant as PrivateGrantRecord).costCenter || '-'}
+                        </Text>
+                      </Td>
+                      <Td>
+                        <Text color='brand.helpText' fontSize='sm' noOfLines={1}>
+                          {(grant as PrivateGrantRecord).grantEvaluator || '-'}
+                        </Text>
+                      </Td>
+                      <Td isNumeric>
+                        <Text color='brand.helpText' fontSize='sm'>
+                          {(grant as PrivateGrantRecord).budgetAmount
+                            ? `$${(grant as PrivateGrantRecord).budgetAmount!.toLocaleString()}`
+                            : '-'}
+                        </Text>
+                      </Td>
+                      <Td>
+                        <Text color='brand.helpText' fontSize='sm' noOfLines={1}>
+                          {(grant as PrivateGrantRecord).status || '-'}
+                        </Text>
+                      </Td>
+                    </>
+                  )}
                 </Tr>
               ))
             )}

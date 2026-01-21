@@ -1,16 +1,17 @@
 import { Box, Stack, useDisclosure } from '@chakra-ui/react';
 import { FC, useEffect, useMemo, useState } from 'react';
 
-import { GrantRecord } from '../../types/grants';
+import { GrantRecord, PrivateGrantRecord } from '../../types/grants';
 import { GrantsDashboard } from './GrantsDashboard';
 import { GrantsTable } from './GrantsTable';
 import { GrantDetailModal } from './GrantDetailModal';
 
 interface GrantsExplorerProps {
-  grants: GrantRecord[];
+  grants: GrantRecord[] | PrivateGrantRecord[];
+  showPrivateFields?: boolean;
 }
 
-export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
+export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants, showPrivateFields = false }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [domainFilter, setDomainFilter] = useState<string | null>(null);
   const [outputFilter, setOutputFilter] = useState<string | null>(null);
@@ -88,10 +89,16 @@ export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
           onGrantClick={handleGrantClick}
           currentPage={currentPage}
           onPageChange={setCurrentPage}
+          showPrivateFields={showPrivateFields}
         />
       </Box>
 
-      <GrantDetailModal grant={selectedGrant} isOpen={isOpen} onClose={handleCloseModal} />
+      <GrantDetailModal
+        grant={selectedGrant}
+        isOpen={isOpen}
+        onClose={handleCloseModal}
+        showPrivateFields={showPrivateFields}
+      />
     </Stack>
   );
 };

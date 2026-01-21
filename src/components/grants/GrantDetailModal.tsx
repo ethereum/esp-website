@@ -17,15 +17,21 @@ import {
 import { ExternalLink, Github, Mail } from 'lucide-react';
 import { FC } from 'react';
 
-import { GrantRecord } from '../../types/grants';
+import { GrantRecord, PrivateGrantRecord } from '../../types/grants';
 
 interface GrantDetailModalProps {
-  grant: GrantRecord | null;
+  grant: GrantRecord | PrivateGrantRecord | null;
   isOpen: boolean;
   onClose: () => void;
+  showPrivateFields?: boolean;
 }
 
-export const GrantDetailModal: FC<GrantDetailModalProps> = ({ grant, isOpen, onClose }) => {
+export const GrantDetailModal: FC<GrantDetailModalProps> = ({
+  grant,
+  isOpen,
+  onClose,
+  showPrivateFields = false
+}) => {
   if (!grant) return null;
 
   const activatedDate = new Date(grant.activatedDate).toLocaleDateString('en-US', {
@@ -81,6 +87,64 @@ export const GrantDetailModal: FC<GrantDetailModalProps> = ({ grant, isOpen, onC
                 </Text>
               </Flex>
             </Stack>
+
+            {showPrivateFields && (
+              <>
+                <Divider borderColor='brand.divider.100' />
+                <Stack spacing={3}>
+                  <Text fontWeight='600' color='brand.heading' fontSize='sm'>
+                    Internal Information
+                  </Text>
+
+                  <Flex gap={4}>
+                    <Text fontWeight='500' color='brand.helpText' minW='100px' fontSize='sm'>
+                      Cost Center
+                    </Text>
+                    <Text color='brand.paragraph' fontSize='sm'>
+                      {(grant as PrivateGrantRecord).costCenter || '-'}
+                    </Text>
+                  </Flex>
+
+                  <Flex gap={4}>
+                    <Text fontWeight='500' color='brand.helpText' minW='100px' fontSize='sm'>
+                      Evaluator
+                    </Text>
+                    <Text color='brand.paragraph' fontSize='sm'>
+                      {(grant as PrivateGrantRecord).grantEvaluator || '-'}
+                    </Text>
+                  </Flex>
+
+                  <Flex gap={4}>
+                    <Text fontWeight='500' color='brand.helpText' minW='100px' fontSize='sm'>
+                      Grant Round
+                    </Text>
+                    <Text color='brand.paragraph' fontSize='sm'>
+                      {(grant as PrivateGrantRecord).grantRound || '-'}
+                    </Text>
+                  </Flex>
+
+                  <Flex gap={4}>
+                    <Text fontWeight='500' color='brand.helpText' minW='100px' fontSize='sm'>
+                      Budget
+                    </Text>
+                    <Text color='brand.paragraph' fontSize='sm'>
+                      {(grant as PrivateGrantRecord).budgetAmount
+                        ? `$${(grant as PrivateGrantRecord).budgetAmount!.toLocaleString()}`
+                        : '-'}
+                    </Text>
+                  </Flex>
+
+                  <Flex gap={4}>
+                    <Text fontWeight='500' color='brand.helpText' minW='100px' fontSize='sm'>
+                      Status
+                    </Text>
+                    <Text color='brand.paragraph' fontSize='sm'>
+                      {(grant as PrivateGrantRecord).status || '-'}
+                    </Text>
+                  </Flex>
+                </Stack>
+              </>
+            )}
 
             <HStack spacing={3} pt={2}>
               {grant.projectRepo && (
