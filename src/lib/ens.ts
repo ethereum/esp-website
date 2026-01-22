@@ -9,11 +9,11 @@ import {
 import { mainnet } from 'viem/chains';
 import { normalize } from 'viem/ens';
 
-// Private RPC with fallbacks for reliability and privacy
+// RPC fallback for when metadata API fails
 const transport = fallback([
-  http('https://cloudflare-eth.com'), // Privacy-focused
-  http('https://eth.llamarpc.com'), // Fallback
-  http(), // Public RPC last resort
+  http('https://eth.drpc.org'),
+  http('https://rpc.ankr.com/eth'),
+  http('https://cloudflare-eth.com'),
 ]);
 
 export const publicClient = createPublicClient({
@@ -22,7 +22,7 @@ export const publicClient = createPublicClient({
   batch: { multicall: true },
 });
 
-const ENS_TIMEOUT_MS = 10000;
+const ENS_TIMEOUT_MS = 4000;
 
 export interface EnsResolutionResult {
   success: boolean;
@@ -53,6 +53,63 @@ export function isAvatarSafe(url: string): boolean {
   }
 }
 
+// Fast path: Use ENS APIs (much faster than RPC)
+async function resolveViaApi(name: string): Promise<{ address: Address; avatar?: string } | null> {
+  try {
+    // Run address and avatar checks in parallel
+    const [addrResponse, avatarResponse] = await Promise.all([
+      fetch(`https://api.ensideas.com/ens/resolve/${name}`, {
+        signal: AbortSignal.timeout(2000)
+      }),
+      fetch(`https://metadata.ens.domains/mainnet/avatar/${name}`, {
+        method: 'HEAD',
+        signal: AbortSignal.timeout(2000)
+      }).catch(() => null), // Don't fail if avatar check fails
+    ]);
+
+    if (addrResponse.ok) {
+      const data = await addrResponse.json();
+      if (data.address && isAddress(data.address)) {
+        return {
+          address: getAddress(data.address),
+          avatar: avatarResponse?.ok ? `https://metadata.ens.domains/mainnet/avatar/${name}` : undefined,
+        };
+      }
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+// Slow path: Direct RPC resolution
+async function resolveViaRpc(name: string): Promise<{ address: Address; avatar?: string } | null> {
+  const address = await Promise.race([
+    publicClient.getEnsAddress({ name }),
+    new Promise<null>((_, reject) =>
+      setTimeout(() => reject(new Error('timeout')), ENS_TIMEOUT_MS)
+    ),
+  ]);
+
+  if (!address) return null;
+
+  // Quick avatar check with short timeout
+  let avatar: string | undefined;
+  try {
+    const avatarUrl = await Promise.race([
+      publicClient.getEnsAvatar({ name }),
+      new Promise<null>((resolve) => setTimeout(() => resolve(null), 1500)),
+    ]);
+    if (avatarUrl && isAvatarSafe(avatarUrl)) {
+      avatar = avatarUrl;
+    }
+  } catch {
+    // Avatar fetch failed, continue without
+  }
+
+  return { address, avatar };
+}
+
 export async function resolveAddressOrEns(
   input: string
 ): Promise<EnsResolutionResult> {
@@ -62,7 +119,7 @@ export async function resolveAddressOrEns(
     return { success: false, error: 'Empty input', inputType: 'invalid' };
   }
 
-  // Direct hex address
+  // Direct hex address - instant
   if (isAddress(trimmed)) {
     return {
       success: true,
@@ -76,31 +133,17 @@ export async function resolveAddressOrEns(
     try {
       const normalized = normalize(trimmed);
 
-      // Resolution with timeout
-      const address = await Promise.race([
-        publicClient.getEnsAddress({ name: normalized }),
-        new Promise<null>((_, reject) =>
-          setTimeout(
-            () => reject(new Error('ENS resolution timeout')),
-            ENS_TIMEOUT_MS
-          )
-        ),
-      ]);
+      // Try fast API first, fall back to RPC
+      const result = await resolveViaApi(normalized)
+        || await resolveViaRpc(normalized);
 
-      if (address) {
-        // Fetch avatar (non-blocking, best-effort)
-        let avatar: string | undefined;
-        try {
-          const avatarUrl = await publicClient.getEnsAvatar({
-            name: normalized,
-          });
-          if (avatarUrl && isAvatarSafe(avatarUrl)) {
-            avatar = avatarUrl;
-          }
-        } catch {
-          // Avatar fetch failed, continue without it
-        }
-        return { success: true, address, avatar, inputType: 'ens' };
+      if (result) {
+        return {
+          success: true,
+          address: result.address,
+          avatar: result.avatar,
+          inputType: 'ens'
+        };
       }
       return { success: false, error: 'ENS name not found', inputType: 'ens' };
     } catch (err) {

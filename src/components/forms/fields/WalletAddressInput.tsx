@@ -51,7 +51,7 @@ export const WalletAddressInput: FC<Props> = ({
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
 
-  const debouncedInput = useDebounce(inputValue.trim(), 300);
+  const debouncedInput = useDebounce(inputValue.trim(), 200);
   const resolutionIdRef = useRef(0);
 
   // Hidden field names for form submission
