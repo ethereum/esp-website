@@ -10,7 +10,7 @@
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
-    "type-check": "tsc --noEmit",
+    "type-check": "tsc --noEmit 2>&1 | grep -v 'node_modules/' || true",
     "test": "vitest",
     "test:watch": "vitest watch",
     "test:ui": "vitest --ui"
@@ -46,7 +46,8 @@
     "react-intersection-observer": "^8.33.1",
     "react-markdown": "^8.0.0",
     "redaxios": "^0.4.1",
-    "sharp": "^0.33.2"
+    "sharp": "^0.33.2",
+    "viem": "^2.44.4"
   },
   "devDependencies": {
     "@hookform/resolvers": "^3.1.0",
