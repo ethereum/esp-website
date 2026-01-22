@@ -68,13 +68,15 @@ async function handler(req: GranteeFinanceNextApiRequest, res: NextApiResponse):
     }
 
     // Map new fields to legacy Salesforce fields for backward compatibility
-    let ETH_Address__c = '';
-    let DAI_Address__c = '';
-    let Layer2_Payment__c = false;
-    let Layer_2_Network__c = '';
+    // Only set address fields that should be updated (prevents data loss)
+    let ETH_Address__c: string | undefined;
+    let DAI_Address__c: string | undefined;
+    let Layer2_Payment__c: boolean | undefined;
+    let Layer_2_Network__c: string | undefined;
 
     if (verifiedAddress && token) {
-      // Set address based on token preference
+      // Only update the address field for the selected token
+      // Do NOT overwrite the other token's address with empty string
       if (token === 'ETH') {
         ETH_Address__c = verifiedAddress;
       } else if (token === 'DAI') {
@@ -82,9 +84,14 @@ async function handler(req: GranteeFinanceNextApiRequest, res: NextApiResponse):
       }
 
       // Set L2 fields based on network selection
-      if (network && network !== 'Ethereum Mainnet') {
-        Layer2_Payment__c = true;
-        Layer_2_Network__c = network;
+      if (network) {
+        if (network !== 'Ethereum Mainnet') {
+          Layer2_Payment__c = true;
+          Layer_2_Network__c = network;
+        } else {
+          Layer2_Payment__c = false;
+          Layer_2_Network__c = '';
+        }
       }
     }
 
@@ -117,27 +124,40 @@ async function handler(req: GranteeFinanceNextApiRequest, res: NextApiResponse):
 
           console.log(`Contract ID: ${Contract_ID__c} found! Proceeding to update the record...`);
 
+          // Build update payload - only include crypto fields if they're being updated
+          // This prevents overwriting existing addresses with empty strings
+          const updatePayload: Record<string, unknown> = {
+            // SF expects an `Id` field, with the id of the object you want to update as value
+            Id: Contract_ID__c.trim(),
+            Beneficiary_Name__c: Beneficiary_Name__c.trim(),
+            User_Email__c: User_Email__c.trim(),
+            Transfer_Notes__c: Transfer_Notes__c.trim(),
+            Beneficiary_Address__c: Beneficiary_Address__c.trim(),
+            Fiat_Currency__c: Fiat_Currency__c.trim(),
+            Bank_Name__c: Bank_Name__c.trim(),
+            Bank_Address__c: Bank_Address__c.trim(),
+            IBAN_Account_Number__c: IBAN_Account_Number__c.trim(),
+            SWIFT_Code_BIC__c: SWIFT_Code_BIC__c.trim(),
+            Centralized_Exchange_Address__c
+          };
+
+          // Only add crypto fields if they're being updated (prevents data loss)
+          if (ETH_Address__c !== undefined) {
+            updatePayload.ETH_Address__c = ETH_Address__c.trim();
+          }
+          if (DAI_Address__c !== undefined) {
+            updatePayload.DAI_Address__c = DAI_Address__c.trim();
+          }
+          if (Layer2_Payment__c !== undefined) {
+            updatePayload.Layer2_Payment__c = Layer2_Payment__c;
+          }
+          if (Layer_2_Network__c !== undefined) {
+            updatePayload.Layer_2_Network__c = Layer_2_Network__c.trim();
+          }
+
           // Single record update
           conn.sobject('Contract').update(
-            {
-              // SF expects an `Id` field, with the id of the object you want to update as value
-              // We're updating the Contract object in this case, so `Id` should be `Contract_ID__c`
-              Id: Contract_ID__c.trim(),
-              Beneficiary_Name__c: Beneficiary_Name__c.trim(),
-              User_Email__c: User_Email__c.trim(),
-              Transfer_Notes__c: Transfer_Notes__c.trim(),
-              ETH_Address__c: ETH_Address__c.trim(),
-              DAI_Address__c: DAI_Address__c.trim(),
-              Beneficiary_Address__c: Beneficiary_Address__c.trim(),
-              Fiat_Currency__c: Fiat_Currency__c.trim(),
-              Bank_Name__c: Bank_Name__c.trim(),
-              Bank_Address__c: Bank_Address__c.trim(),
-              IBAN_Account_Number__c: IBAN_Account_Number__c.trim(),
-              SWIFT_Code_BIC__c: SWIFT_Code_BIC__c.trim(),
-              Layer2_Payment__c, // this is a boolean value, no trim applied
-              Layer_2_Network__c: Layer_2_Network__c.trim(),
-              Centralized_Exchange_Address__c
-            },
+            updatePayload,
             (err, ret) => {
               if (err || !ret.success) {
                 console.error(err);
