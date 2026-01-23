@@ -6,6 +6,7 @@ import { PageMetadata } from '../../components/UI';
 import { GrantsExplorer } from '../../components/grants';
 import { getPrivateGrants } from '../../lib/sf/grants';
 import { PrivateGrantRecord } from '../../types/grants';
+import { verifyAuthToken, isAuthorizedEmail, AUTH_COOKIE_NAME } from '../../lib/auth/internal';
 
 interface InternalGrantsPageProps {
   grants: PrivateGrantRecord[];
@@ -59,8 +60,20 @@ const InternalGrants: NextPage<InternalGrantsPageProps> = ({ grants, userEmail }
 };
 
 export const getServerSideProps: GetServerSideProps<InternalGrantsPageProps> = async ({ req }) => {
-  // Verify auth cookie (middleware should have already checked, but double-check)
-  const authCookie = req.cookies['esp-internal-auth'];
+  // Get auth secret (must be set)
+  const authSecret = process.env.INTERNAL_AUTH_SECRET;
+  if (!authSecret) {
+    console.error('INTERNAL_AUTH_SECRET environment variable not set');
+    return {
+      redirect: {
+        destination: '/grants/internal/unauthorized?error=config',
+        permanent: false
+      }
+    };
+  }
+
+  // Get and verify auth cookie
+  const authCookie = req.cookies[AUTH_COOKIE_NAME];
 
   if (!authCookie) {
     return {
@@ -71,15 +84,25 @@ export const getServerSideProps: GetServerSideProps<InternalGrantsPageProps> = a
     };
   }
 
-  // Decode the auth cookie to get user email
-  let userEmail = '';
-  try {
-    const decoded = JSON.parse(Buffer.from(authCookie, 'base64').toString());
-    userEmail = decoded.email || '';
-  } catch {
+  // Verify token signature (prevents forgery)
+  const verification = verifyAuthToken(authCookie, authSecret);
+
+  if (!verification.valid || !verification.payload) {
+    console.warn('Invalid auth token:', verification.error);
     return {
       redirect: {
         destination: '/api/auth/google',
+        permanent: false
+      }
+    };
+  }
+
+  // Double-check email domain authorization
+  if (!isAuthorizedEmail(verification.payload.email)) {
+    console.warn('Unauthorized email domain:', verification.payload.email);
+    return {
+      redirect: {
+        destination: '/grants/internal/unauthorized?error=invalid_domain',
         permanent: false
       }
     };
@@ -90,7 +113,7 @@ export const getServerSideProps: GetServerSideProps<InternalGrantsPageProps> = a
   return {
     props: {
       grants,
-      userEmail
+      userEmail: verification.payload.email
     }
   };
 };
