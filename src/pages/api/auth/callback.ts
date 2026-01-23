@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { signAuthToken, isAuthorizedEmail, AUTH_COOKIE_NAME } from '../../../lib/auth/internal';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { code, error } = req.query;
@@ -46,20 +47,29 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const user = await userRes.json();
 
-    // Verify domain
-    if (!user.email?.endsWith('@ethereum.org')) {
+    // Verify domain using secure validation
+    if (!isAuthorizedEmail(user.email)) {
       return res.redirect('/grants/internal/unauthorized?error=invalid_domain');
     }
 
+    // Get signing secret (must be set in production)
+    const authSecret = process.env.INTERNAL_AUTH_SECRET;
+    if (!authSecret) {
+      console.error('INTERNAL_AUTH_SECRET environment variable not set');
+      return res.redirect('/grants/internal/unauthorized?error=config');
+    }
+
+    // Create signed auth token (not forgeable like plain base64)
+    const signedToken = signAuthToken(
+      { email: user.email, name: user.name },
+      authSecret
+    );
+
     // Set auth cookie (httpOnly, secure in production, 7 days)
     const isProduction = process.env.NODE_ENV === 'production';
-    const cookieValue = Buffer.from(
-      JSON.stringify({ email: user.email, name: user.name })
-    ).toString('base64');
-
     res.setHeader(
       'Set-Cookie',
-      `esp-internal-auth=${cookieValue}; HttpOnly; ${isProduction ? 'Secure; ' : ''}Path=/; Max-Age=604800; SameSite=Lax`
+      `${AUTH_COOKIE_NAME}=${signedToken}; HttpOnly; ${isProduction ? 'Secure; ' : ''}Path=/; Max-Age=604800; SameSite=Lax`
     );
 
     res.redirect('/grants/internal');
