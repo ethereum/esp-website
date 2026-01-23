@@ -14,21 +14,13 @@ import { isAddress, getAddress, type Address } from 'viem';
 
 import { PageText } from '../../UI';
 import { resolveAddressOrEns, isAvatarSafe } from '../../../lib/ens';
+import { useDebounce } from '../../../hooks/useDebounce';
 
 interface Props {
   id: string;
   label: string;
   helpText?: React.ReactNode;
   isRequired?: boolean;
-}
-
-function useDebounce<T>(value: T, delay: number): T {
-  const [debouncedValue, setDebouncedValue] = useState(value);
-  useEffect(() => {
-    const timer = setTimeout(() => setDebouncedValue(value), delay);
-    return () => clearTimeout(timer);
-  }, [value, delay]);
-  return debouncedValue;
 }
 
 export const WalletAddressInput: FC<Props> = ({
