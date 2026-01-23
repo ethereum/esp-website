@@ -162,8 +162,9 @@ export async function getPrivateGrants(): Promise<PrivateGrantRecord[]> {
 
 /**
  * Map Salesforce record to frontend PrivateGrantRecord
+ * @internal Exported for testing
  */
-function mapSFRecordToPrivateGrant(record: SFPrivateOpportunityRecord): PrivateGrantRecord | null {
+export function mapSFRecordToPrivateGrant(record: SFPrivateOpportunityRecord): PrivateGrantRecord | null {
   if (!record.CloseDate) {
     console.warn(`Grant ${record.Id} excluded: missing close date`);
     return null;
@@ -270,8 +271,9 @@ function getMockGrants(): GrantRecord[] {
 /**
  * Map Salesforce record to frontend GrantRecord
  * Handles null fields gracefully
+ * @internal Exported for testing
  */
-function mapSFRecordToGrant(record: SFOpportunityRecord): GrantRecord | null {
+export function mapSFRecordToGrant(record: SFOpportunityRecord): GrantRecord | null {
   if (!record.CloseDate) {
     console.warn(`Grant ${record.Id} excluded: missing close date`);
     return null;
