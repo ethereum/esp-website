@@ -87,29 +87,42 @@ export const WalletAddressInput: FC<Props> = ({
       setStatus('resolving');
       setAvatarUrl(null);
 
-      resolveAddressOrEns(debouncedInput).then(result => {
-        // Check if this resolution is still current
-        if (currentId !== resolutionIdRef.current) return;
+      resolveAddressOrEns(debouncedInput)
+        .then(result => {
+          // Check if this resolution is still current
+          if (currentId !== resolutionIdRef.current) return;
 
-        if (result.success && result.address) {
-          setStatus('resolved');
-          setResolvedAddress(result.address);
-          setValue(resolvedFieldName, result.address, { shouldValidate: true });
-          setValue(inputTypeFieldName, 'ens', { shouldValidate: false });
-          setErrorMessage('');
+          if (result.success && result.address) {
+            setStatus('resolved');
+            setResolvedAddress(result.address);
+            setValue(resolvedFieldName, result.address, { shouldValidate: true });
+            setValue(inputTypeFieldName, 'ens', { shouldValidate: false });
+            setErrorMessage('');
 
-          // Set avatar if available and safe
-          if (result.avatar && isAvatarSafe(result.avatar)) {
-            setAvatarUrl(result.avatar);
+            // Set avatar if available and safe
+            if (result.avatar && isAvatarSafe(result.avatar)) {
+              setAvatarUrl(result.avatar);
+            }
+          } else {
+            setStatus('error');
+            setResolvedAddress(null);
+            setValue(resolvedFieldName, '', { shouldValidate: true });
+            setValue(inputTypeFieldName, '', { shouldValidate: false });
+            setErrorMessage(result.error || 'Resolution failed');
           }
-        } else {
+        })
+        .catch(err => {
+          // Check if this resolution is still current
+          if (currentId !== resolutionIdRef.current) return;
+
+          console.error('ENS resolution error:', err);
           setStatus('error');
           setResolvedAddress(null);
+          setAvatarUrl(null);
           setValue(resolvedFieldName, '', { shouldValidate: true });
           setValue(inputTypeFieldName, '', { shouldValidate: false });
-          setErrorMessage(result.error || 'Resolution failed');
-        }
-      });
+          setErrorMessage('Network error - please try again');
+        });
     } else {
       setStatus('error');
       setResolvedAddress(null);

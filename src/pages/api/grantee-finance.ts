@@ -38,6 +38,14 @@ async function handler(req: GranteeFinanceNextApiRequest, res: NextApiResponse):
     // Server-side address validation for crypto payments
     let verifiedAddress = '';
     if (walletAddressResolved) {
+      // Validate input type to prevent bypass attacks
+      const validInputTypes = ['ens', 'address'] as const;
+      if (!validInputTypes.includes(walletAddressInputType as typeof validInputTypes[number])) {
+        console.error('Invalid wallet address input type:', walletAddressInputType);
+        res.status(400).json({ status: 'fail', error: 'Invalid input type' });
+        return resolve();
+      }
+
       if (walletAddressInputType === 'ens') {
         // Re-verify ENS resolution on server for security
         const result = await resolveAddressOrEns(walletAddress);
