@@ -8,8 +8,8 @@ import { ROUNDS_URL } from '../constants';
 
 // TODO: Replace with server components when available
 const ACTIVE_ROUND = {
-  slug: 'agr26',
-  name: 'Academic Grants Round 2026'
+  slug: 'phdfp26',
+  name: 'PhD Fellowship Program'
 };
 
 export const Banners: FC = () => {
