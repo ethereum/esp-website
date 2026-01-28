@@ -16,14 +16,6 @@ import { GrantInitiative, RoundFrontmatter, SidebarLink } from '../../types';
 import { StaticImageData } from 'next/image';
 import { mdxComponents } from './mdxComponents';
 
-const isRFPItem = (item: GrantInitiative): boolean =>
-  item.RFP_Close_Date__c != null || item.RFP_Open_Date__c != null;
-
-const getItemUrl = (item: GrantInitiative): string => {
-  const type = isRFPItem(item) ? 'rfp' : 'wishlist';
-  return `/applicants/${type}/${item.Custom_URL_Slug__c || item.Id}`;
-};
-
 interface RoundPageProps {
   frontmatter: RoundFrontmatter;
   mdxSource: MDXRemoteSerializeResult;
@@ -42,7 +34,12 @@ export const RoundPage: FC<RoundPageProps> = ({
   heroImages,
   sidebarLinks
 }) => {
-  const { name, description, status, tags, colorBrand } = frontmatter;
+  const { slug, name, description, status, tags, colorBrand } = frontmatter;
+
+  // Generate URLs for round items using round-specific routes
+  const getItemUrl = (item: GrantInitiative): string => {
+    return `/rounds/${slug}/${item.Custom_URL_Slug__c || item.Id}`;
+  };
 
   return (
     <>

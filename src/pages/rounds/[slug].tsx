@@ -1,39 +1,15 @@
 import type { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
-import { StaticImageData } from 'next/image';
 
 import rehypeSlug from 'rehype-slug';
 
 import { RoundPage } from '../../components/rounds';
 import { getAllRoundSlugs, getRoundBySlug } from '../../lib/rounds';
+import { getHeroImages, HeroImages } from '../../lib/rounds/heroImages';
 import { getGrantInitiativeItemsByTag } from '../../lib/sf';
 import { extractHeadings, headingsToSidebarLinks } from '../../lib/extractHeadings';
 import { GrantInitiative, RoundFrontmatter, SidebarLink } from '../../types';
-
-// Placeholder hero images - use existing images as fallback
-import academicGrantsHero from '../../../public/images/academic-grants-hero.png';
-import academicGrantsHeroMobile from '../../../public/images/academic-grants-hero-mobile.png';
-import academicGrants25Hero from '../../../public/images/academic-grants-25-hero.jpeg';
-import phdFellowship26Hero from '../../../public/images/phd-fellowship-26-hero.jpeg';
-
-// Hero image mapping - add new rounds here as they're created
-const heroImages: Record<string, { desktop: StaticImageData; mobile: StaticImageData }> = {
-  agr26: {
-    desktop: academicGrants25Hero,
-    mobile: academicGrantsHeroMobile
-  },
-  phdfp26: {
-    desktop: phdFellowship26Hero,
-    mobile: academicGrantsHeroMobile
-  }
-};
-
-// Default images for rounds without specific hero images
-const defaultHeroImages = {
-  desktop: academicGrantsHero,
-  mobile: academicGrantsHeroMobile
-};
 
 interface RoundPageProps {
   frontmatter: RoundFrontmatter;
@@ -48,14 +24,12 @@ const RoundPageRoute: NextPage<RoundPageProps> = ({
   items,
   sidebarLinks
 }) => {
-  const images = heroImages[frontmatter.slug] || defaultHeroImages;
-
   return (
     <RoundPage
       frontmatter={frontmatter}
       mdxSource={mdxSource}
       items={items}
-      heroImages={images}
+      heroImages={getHeroImages(frontmatter.slug)}
       sidebarLinks={sidebarLinks}
     />
   );
