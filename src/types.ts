@@ -524,7 +524,7 @@ export interface RoundFrontmatter {
   name: string;
   description: string;
   status: RoundStatus;
-  tag: string;
+  tags: string[];
   heroImage: string;
   colorBrand: string;
   startDate: string;

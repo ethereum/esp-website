@@ -170,6 +170,13 @@ export const colors = {
         start: '#cc9eb0',
         end: 'rgba(235, 209, 251, 0)'
       }
+    },
+    phdFellowship2026Hero: {
+      titleWhiteBox: 'rgba(255, 255, 255, 0.6)',
+      bgGradient: {
+        start: '#d4a5b8',
+        end: 'rgba(235, 209, 251, 0)'
+      }
     }
   }
 };

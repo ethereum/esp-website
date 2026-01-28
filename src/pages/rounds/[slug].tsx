@@ -15,11 +15,16 @@ import { GrantInitiative, RoundFrontmatter, SidebarLink } from '../../types';
 import academicGrantsHero from '../../../public/images/academic-grants-hero.png';
 import academicGrantsHeroMobile from '../../../public/images/academic-grants-hero-mobile.png';
 import academicGrants25Hero from '../../../public/images/academic-grants-25-hero.jpeg';
+import phdFellowship26Hero from '../../../public/images/phd-fellowship-26-hero.jpeg';
 
 // Hero image mapping - add new rounds here as they're created
 const heroImages: Record<string, { desktop: StaticImageData; mobile: StaticImageData }> = {
   agr26: {
     desktop: academicGrants25Hero,
+    mobile: academicGrantsHeroMobile
+  },
+  phdfp26: {
+    desktop: phdFellowship26Hero,
     mobile: academicGrantsHeroMobile
   }
 };
@@ -93,8 +98,8 @@ export const getStaticProps: GetStaticProps<RoundPageProps> = async ({ params })
     }
   });
 
-  // Fetch items from Salesforce filtered by tag
-  const items = await getGrantInitiativeItemsByTag(frontmatter.tag);
+  // Fetch items from Salesforce filtered by tags
+  const items = await getGrantInitiativeItemsByTag(frontmatter.tags);
 
   return {
     props: {

@@ -9,7 +9,7 @@ import { GrantInitiative, GrantInitiativeSalesforceRecord, GrantInitiativeType }
 import { truncateString } from '../../utils/truncateString';
 
 /**
- * Get all tags used by rounds (e.g., "AGR26")
+ * Get all tags used by rounds (e.g., ["AGR26"] or ["PhDFP", "Research"])
  * These tags should be excluded from regular RFP/Wishlist listings
  */
 function getRoundTags(): string[] {
@@ -28,8 +28,8 @@ function getRoundTags(): string[] {
       const fileContents = fs.readFileSync(filePath, 'utf8');
       const { data } = matter(fileContents);
 
-      if (data.tag) {
-        tags.push(data.tag);
+      if (data.tags && Array.isArray(data.tags)) {
+        tags.push(...data.tags);
       }
     }
   }
@@ -122,21 +122,21 @@ const getRecordTypeIdForType = (type: GrantInitiativeType): string => {
 
 const getFieldsForType = (type?: GrantInitiativeType): string => {
   const baseFields = 'Id,Name,Description__c,RecordTypeId,Tags__c,Resources__c,Ecosystem_Need__c';
-  const wishlistFields = ',Out_of_Scope__c,Custom_URL_Slug__c';
+  const wishlistFields = ',Out_of_Scope__c';
   const rfpFields =
-    ',RFP_HardRequirements_Long__c,RFP_SoftRequirements__c,RFP_Project_Duration__c,RFP_Close_Date__c,RFP_Open_Date__c,Custom_URL_Slug__c';
+    ',RFP_HardRequirements_Long__c,RFP_SoftRequirements__c,RFP_Project_Duration__c,RFP_Close_Date__c,RFP_Open_Date__c';
+  const sharedFields = ',Custom_URL_Slug__c';
 
   if (type === 'Wishlist') {
-    return baseFields + wishlistFields;
+    return baseFields + wishlistFields + sharedFields;
   }
 
   if (type === 'RFP') {
-    return baseFields + rfpFields;
+    return baseFields + rfpFields + sharedFields;
   }
 
-  console.log('Type is,', type);
-
-  return baseFields;
+  // When no type specified, include all fields to support mixed queries
+  return baseFields + wishlistFields + rfpFields + sharedFields;
 };
 
 /**
@@ -247,11 +247,11 @@ export function getGrantInitiativeItems(
 }
 
 /**
- * Get grant initiative items filtered by tag
- * @param tag - The tag to filter by (e.g., "AGR26")
- * @returns Promise with the filtered grant initiative items
+ * Get grant initiative items filtered by tags
+ * @param tags - The tags to filter by (e.g., ["AGR26"] or ["PhDFP", "Research"])
+ * @returns Promise with the filtered grant initiative items (matches ANY of the provided tags)
  */
-export function getGrantInitiativeItemsByTag(tag: string): Promise<GrantInitiative[]> {
+export function getGrantInitiativeItemsByTag(tags: string[]): Promise<GrantInitiative[]> {
   return new Promise<GrantInitiative[]>(async (resolve, reject) => {
     const conn = createConnection();
 
@@ -270,12 +270,12 @@ export function getGrantInitiativeItemsByTag(tag: string): Promise<GrantInitiati
             return reject(err);
           }
 
-          // Filter records that contain the tag in their Tags__c field
+          // Filter records that contain ANY of the tags in their Tags__c field
           // Tags__c is a semicolon-separated string
           const filteredRecords = ret.filter(record => {
             if (!record.Tags__c) return false;
-            const tags = record.Tags__c.split(';').map(t => t.trim());
-            return tags.includes(tag);
+            const recordTags = record.Tags__c.split(';').map(t => t.trim());
+            return tags.some(tag => recordTags.includes(tag));
           });
 
           return resolve(transformGrantInitiativeRecords(filteredRecords));

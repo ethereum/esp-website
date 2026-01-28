@@ -42,7 +42,7 @@ export const RoundPage: FC<RoundPageProps> = ({
   heroImages,
   sidebarLinks
 }) => {
-  const { name, description, status, tag, colorBrand } = frontmatter;
+  const { name, description, status, tags, colorBrand } = frontmatter;
 
   return (
     <>
@@ -94,7 +94,7 @@ export const RoundPage: FC<RoundPageProps> = ({
                     <GrantInitiativeSelection
                       items={items}
                       getItemUrl={getItemUrl}
-                      paramTags={[tag]}
+                      paramTags={tags}
                     />
                   </Box>
                 </section>
