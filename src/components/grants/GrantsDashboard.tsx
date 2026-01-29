@@ -4,20 +4,22 @@ import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, PieChart, Pie, Cell, 
 
 import { GrantRecord } from '../../types/grants';
 import { extractFiscalYear } from '../../utils/fiscalYear';
+import { colors } from '../../theme/foundations/colors';
 
 interface GrantsDashboardProps {
   grants: GrantRecord[];
 }
 
+// Derived from brand tokens — recharts requires raw hex strings
 const CHART_COLORS = [
-  '#e44550',
-  '#ff4d15',
-  '#f87045',
-  '#fb7971',
-  '#232264',
-  '#7c7ba1',
-  '#a9a9b8',
-  '#30354b'
+  colors.brand.heading,
+  colors.brand.orange[100],
+  colors.brand.orange[200],
+  colors.brand.hover,
+  colors.brand.paragraph,
+  colors.brand.helpText,
+  colors.brand.border,
+  colors.brand.ready.text
 ];
 
 export const GrantsDashboard: FC<GrantsDashboardProps> = ({ grants }) => {
@@ -69,7 +71,7 @@ export const GrantsDashboard: FC<GrantsDashboardProps> = ({ grants }) => {
               <XAxis dataKey='name' tick={{ fontSize: 12 }} />
               <YAxis tick={{ fontSize: 12 }} />
               <Tooltip />
-              <Bar dataKey='count' fill='#e44550' radius={[4, 4, 0, 0]} />
+              <Bar dataKey='count' fill={colors.brand.heading} radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </Box>

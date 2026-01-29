@@ -6,6 +6,11 @@
 export function deriveFiscalQuarter(dateStr: string): string {
   const [year, month] = dateStr.split('-').map(Number);
 
+  if (isNaN(year) || isNaN(month) || month < 1 || month > 12) {
+    console.warn(`Invalid date for fiscal quarter derivation: "${dateStr}"`);
+    return 'Unknown';
+  }
+
   let quarter: number;
   if (month >= 1 && month <= 3) quarter = 1;
   else if (month >= 4 && month <= 6) quarter = 2;
