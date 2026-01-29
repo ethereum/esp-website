@@ -13,10 +13,9 @@ const PUBLIC_RECORD_TYPES = [
 ];
 
 /**
- * Stages that represent definitively awarded grants.
- * Allow-list ensures unknown or newly-added stages are excluded by default.
+ * Stages to exclude from public view
  */
-const PUBLIC_STAGES = ['Closed Won'];
+const EXCLUDED_STAGES = ['In Progress', 'Prospecting'];
 
 /**
  * Get all public grants from Salesforce
@@ -43,7 +42,7 @@ export async function getPublicGrants(): Promise<GrantRecord[]> {
   const twoFYAgo = getFiscalYearStart(2);
 
   const recordTypesFilter = PUBLIC_RECORD_TYPES.map(t => `'${t}'`).join(', ');
-  const stagesFilter = PUBLIC_STAGES.map(s => `'${s}'`).join(', ');
+  const stagesFilter = EXCLUDED_STAGES.map(s => `'${s}'`).join(', ');
 
   const query = `
     SELECT
@@ -62,7 +61,7 @@ export async function getPublicGrants(): Promise<GrantRecord[]> {
       AND Type != 'Impact Gift'
       AND CloseDate != NULL
       AND CloseDate >= ${twoFYAgo}
-      AND StageName IN (${stagesFilter})
+      AND StageName NOT IN (${stagesFilter})
     ORDER BY CloseDate DESC
   `;
 
