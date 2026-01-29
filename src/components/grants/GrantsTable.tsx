@@ -174,7 +174,7 @@ export const GrantsTable: FC<GrantsTableProps> = ({
           />
         </InputGroup>
 
-        <Flex gap={2}>
+        <Flex gap={2} flexWrap='wrap'>
           <FilterMenu
             label='All Domains'
             value={domainFilter}
