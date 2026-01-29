@@ -93,7 +93,7 @@ function getMockGrants(): GrantRecord[] {
       publicContact: 'contact@example.com',
       projectRepo: 'https://github.com/example/zkevm',
       activatedDate: '2025-01-15',
-      fiscalQuarter: 'FY25 Q3'
+      fiscalQuarter: '2025 Q1'
     },
     {
       id: '2',
@@ -104,7 +104,7 @@ function getMockGrants(): GrantRecord[] {
       publicContact: null,
       projectRepo: 'https://github.com/example/beacon-tools',
       activatedDate: '2024-11-20',
-      fiscalQuarter: 'FY25 Q2'
+      fiscalQuarter: '2024 Q4'
     },
     {
       id: '3',
@@ -115,7 +115,7 @@ function getMockGrants(): GrantRecord[] {
       publicContact: 'edu@example.org',
       projectRepo: null,
       activatedDate: '2024-08-10',
-      fiscalQuarter: 'FY25 Q1'
+      fiscalQuarter: '2024 Q3'
     },
     {
       id: '4',
@@ -126,7 +126,7 @@ function getMockGrants(): GrantRecord[] {
       publicContact: null,
       projectRepo: 'https://github.com/example/defi-audit',
       activatedDate: '2024-05-22',
-      fiscalQuarter: 'FY24 Q4'
+      fiscalQuarter: '2024 Q2'
     },
     {
       id: '5',
@@ -137,7 +137,7 @@ function getMockGrants(): GrantRecord[] {
       publicContact: 'bridges@example.io',
       projectRepo: null,
       activatedDate: '2024-02-14',
-      fiscalQuarter: 'FY24 Q3'
+      fiscalQuarter: '2024 Q1'
     }
   ];
 }
