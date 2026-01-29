@@ -70,10 +70,6 @@
   to = "/"
   force = true
 [[redirects]]
-  from = "/*/grants/"
-  to = "/"
-  force = true
-[[redirects]]
   from = "/*/guide/"
   to = "/applicants/"
   force = true
@@ -172,10 +168,6 @@
   force = true
 [[redirects]]
   from = "/faq/"
-  to = "/"
-  force = true
-[[redirects]]
-  from = "/grants/"
   to = "/"
   force = true
 [[redirects]]
