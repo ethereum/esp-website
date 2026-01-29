@@ -197,12 +197,12 @@ export const GrantsTable: FC<GrantsTableProps> = ({
       </Text>
 
       <Box overflowX='auto' border='1px solid' borderColor='brand.divider.100' borderRadius='lg'>
-        <Table variant='simple' sx={{ tableLayout: 'fixed' }}>
+        <Table variant='simple' sx={{ tableLayout: 'fixed', minWidth: '640px' }}>
           <colgroup>
-            <col style={{ width: '45%' }} />
-            <col style={{ width: '20%' }} />
-            <col style={{ width: '20%' }} />
-            <col style={{ width: '15%' }} />
+            <col style={{ width: '40%' }} />
+            <col style={{ width: '22%' }} />
+            <col style={{ width: '22%' }} />
+            <col style={{ width: '16%' }} />
           </colgroup>
           <Thead bg='gray.50'>
             <Tr>

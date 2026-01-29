@@ -77,9 +77,18 @@ export async function getPublicGrants(): Promise<GrantRecord[]> {
     allRecords.push(...result.records);
   }
 
-  return allRecords
+  const grants = allRecords
     .map(mapSFRecordToGrant)
     .filter((r): r is GrantRecord => r !== null);
+
+  // In development, fall back to mock data when the query returns nothing
+  // (e.g. stage filters or date range don't match any records).
+  if (grants.length === 0 && process.env.NODE_ENV === 'development') {
+    console.warn('No grants returned from Salesforce, using mock data for development');
+    return getMockGrants();
+  }
+
+  return grants;
 }
 
 /**
