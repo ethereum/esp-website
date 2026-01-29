@@ -91,7 +91,8 @@ export const RoundPage: FC<RoundPageProps> = ({
                     <GrantInitiativeSelection
                       items={items}
                       getItemUrl={getItemUrl}
-                      paramTags={tags}
+                      paramTags={[]}
+                      hiddenTags={tags}
                     />
                   </Box>
                 </section>

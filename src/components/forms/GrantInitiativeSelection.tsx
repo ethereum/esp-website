@@ -31,6 +31,7 @@ interface GrantInitiativeSelectionProps {
   items: GrantInitiative[];
   getItemUrl: (item: GrantInitiative) => string;
   paramTags?: string[];
+  hiddenTags?: string[];
   emptyStateTitle?: string;
   emptyStateMessage?: string;
 }
@@ -39,6 +40,7 @@ export const GrantInitiativeSelection: FC<GrantInitiativeSelectionProps> = ({
   items,
   getItemUrl,
   paramTags,
+  hiddenTags = [],
   emptyStateTitle = 'No Items Available',
   emptyStateMessage = 'There are currently no active items available for application.'
 }) => {
@@ -51,8 +53,8 @@ export const GrantInitiativeSelection: FC<GrantInitiativeSelectionProps> = ({
         acc.push(tag.trim());
       });
       return acc;
-    }, [] as string[]).filter(Boolean)));
-  }, [items]);
+    }, [] as string[]).filter(Boolean))).filter(tag => !hiddenTags.includes(tag));
+  }, [items, hiddenTags]);
 
   // Sync selectedTags with paramTags when paramTags changes
   useEffect(() => {
