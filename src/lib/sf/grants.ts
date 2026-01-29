@@ -54,7 +54,8 @@ export async function getPublicGrants(): Promise<GrantRecord[]> {
       Opportunity_Output__c,
       Grantee_Contact_Details__c,
       Project_Repo__c,
-      CloseDate
+      CloseDate,
+      Proactive_Community_Grants_Round__c
     FROM Opportunity
     WHERE
       RecordType.Name IN (${recordTypesFilter})
@@ -101,6 +102,7 @@ function getMockGrants(): GrantRecord[] {
       description: 'Developing novel zero-knowledge proof techniques for EVM compatibility and scaling solutions.',
       domain: 'Zero-knowledge Proofs',
       output: 'Research',
+      grantRound: 'Academic Grants Round 2025',
       publicContact: 'contact@example.com',
       projectRepo: 'https://github.com/example/zkevm',
       activatedDate: '2025-01-15',
@@ -112,6 +114,7 @@ function getMockGrants(): GrantRecord[] {
       description: 'Building comprehensive monitoring and analytics tools for Ethereum consensus layer.',
       domain: 'Ethereum Protocol',
       output: 'Developer tooling',
+      grantRound: 'Academic Grants Round 2024',
       publicContact: null,
       projectRepo: 'https://github.com/example/beacon-tools',
       activatedDate: '2024-11-20',
@@ -123,6 +126,7 @@ function getMockGrants(): GrantRecord[] {
       description: 'Creating educational resources and workshops for new Ethereum developers.',
       domain: 'Community and education',
       output: 'Ecosystem Development',
+      grantRound: null,
       publicContact: 'edu@example.org',
       projectRepo: null,
       activatedDate: '2024-08-10',
@@ -134,6 +138,7 @@ function getMockGrants(): GrantRecord[] {
       description: 'Open-source framework for automated smart contract security analysis.',
       domain: 'Security',
       output: 'Developer tooling',
+      grantRound: 'Academic Grants Round 2024',
       publicContact: null,
       projectRepo: 'https://github.com/example/defi-audit',
       activatedDate: '2024-05-22',
@@ -145,6 +150,7 @@ function getMockGrants(): GrantRecord[] {
       description: 'Research and specification work on cross-L2 bridge standards and interoperability.',
       domain: 'Layer 2',
       output: 'Research',
+      grantRound: 'Academic Grants Round 2025',
       publicContact: 'bridges@example.io',
       projectRepo: null,
       activatedDate: '2024-02-14',
@@ -197,6 +203,7 @@ function mapSFRecordToGrant(record: SFOpportunityRecord): GrantRecord | null {
     description: record.Project_Description__c || null,
     domain: record.Opportunity_Domain__c || null,
     output: record.Opportunity_Output__c || null,
+    grantRound: record.Proactive_Community_Grants_Round__c || null,
     publicContact: sanitizeContact(record.Grantee_Contact_Details__c || null),
     projectRepo: sanitizeUrl(record.Project_Repo__c || null),
     activatedDate: record.CloseDate,

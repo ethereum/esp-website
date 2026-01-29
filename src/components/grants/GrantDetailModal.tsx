@@ -75,6 +75,17 @@ export const GrantDetailModal: FC<GrantDetailModalProps> = ({ grant, isOpen, onC
                 </Text>
               </Flex>
 
+              {grant.grantRound && (
+                <Flex gap={4}>
+                  <Text fontWeight='500' color='brand.helpText' minW='80px' fontSize='sm'>
+                    Round
+                  </Text>
+                  <Text color='brand.paragraph' fontSize='sm'>
+                    {grant.grantRound}
+                  </Text>
+                </Flex>
+              )}
+
               <Flex gap={4}>
                 <Text fontWeight='500' color='brand.helpText' minW='80px' fontSize='sm'>
                   Date

@@ -19,6 +19,7 @@ export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [domainFilter, setDomainFilter] = useState<string | null>(null);
   const [outputFilter, setOutputFilter] = useState<string | null>(null);
+  const [grantRoundFilter, setGrantRoundFilter] = useState<string | null>(null);
   const [yearFilter, setYearFilter] = useState<string | null>(null);
   const [selectedGrant, setSelectedGrant] = useState<GrantRecord | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,7 +28,7 @@ export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
   // Reset to page 1 when filters change
   useEffect(() => {
     setCurrentPage(1);
-  }, [searchQuery, domainFilter, outputFilter, yearFilter]);
+  }, [searchQuery, domainFilter, outputFilter, grantRoundFilter, yearFilter]);
 
   const domainOptions = useMemo(() => {
     const domains = Array.from(new Set(grants.map(g => g.domain).filter((d): d is string => d !== null)));
@@ -40,6 +41,10 @@ export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
 
   const outputOptions = useMemo(() => {
     return Array.from(new Set(grants.map(g => g.output).filter((o): o is string => o !== null))).sort();
+  }, [grants]);
+
+  const grantRoundOptions = useMemo(() => {
+    return Array.from(new Set(grants.map(g => g.grantRound).filter((r): r is string => r !== null))).sort();
   }, [grants]);
 
   const yearOptions = useMemo(() => {
@@ -57,11 +62,12 @@ export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
 
       const matchesDomain = domainFilter === null || grant.domain === domainFilter;
       const matchesOutput = outputFilter === null || grant.output === outputFilter;
+      const matchesGrantRound = grantRoundFilter === null || grant.grantRound === grantRoundFilter;
       const matchesYear = yearFilter === null || grant.fiscalQuarter.startsWith(yearFilter);
 
-      return matchesSearch && matchesDomain && matchesOutput && matchesYear;
+      return matchesSearch && matchesDomain && matchesOutput && matchesGrantRound && matchesYear;
     });
-  }, [grants, searchQuery, domainFilter, outputFilter, yearFilter]);
+  }, [grants, searchQuery, domainFilter, outputFilter, grantRoundFilter, yearFilter]);
 
   const handleGrantClick = (grant: GrantRecord) => {
     setSelectedGrant(grant);
@@ -88,6 +94,9 @@ export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
           outputFilter={outputFilter}
           onOutputFilterChange={setOutputFilter}
           outputOptions={outputOptions}
+          grantRoundFilter={grantRoundFilter}
+          onGrantRoundFilterChange={setGrantRoundFilter}
+          grantRoundOptions={grantRoundOptions}
           yearFilter={yearFilter}
           onYearFilterChange={setYearFilter}
           yearOptions={yearOptions}

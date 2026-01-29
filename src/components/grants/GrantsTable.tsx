@@ -71,6 +71,9 @@ interface GrantsTableProps {
   outputFilter: string | null;
   onOutputFilterChange: (output: string | null) => void;
   outputOptions: string[];
+  grantRoundFilter: string | null;
+  onGrantRoundFilterChange: (round: string | null) => void;
+  grantRoundOptions: string[];
   yearFilter: string | null;
   onYearFilterChange: (year: string | null) => void;
   yearOptions: string[];
@@ -89,6 +92,9 @@ export const GrantsTable: FC<GrantsTableProps> = ({
   outputFilter,
   onOutputFilterChange,
   outputOptions,
+  grantRoundFilter,
+  onGrantRoundFilterChange,
+  grantRoundOptions,
   yearFilter,
   onYearFilterChange,
   yearOptions,
@@ -181,6 +187,13 @@ export const GrantsTable: FC<GrantsTableProps> = ({
             value={outputFilter}
             options={outputOptions}
             onChange={onOutputFilterChange}
+          />
+          <FilterMenu
+            label='All Rounds'
+            value={grantRoundFilter}
+            options={grantRoundOptions}
+            onChange={onGrantRoundFilterChange}
+            maxH='300px'
           />
           <FilterMenu
             label='All Years'
