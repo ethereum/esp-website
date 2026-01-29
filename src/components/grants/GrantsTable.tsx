@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Flex,
   IconButton,
   Input,
@@ -16,16 +17,13 @@ import {
   Text,
   Th,
   Thead,
-  Tr,
-  chakra
+  Tr
 } from '@chakra-ui/react';
 import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Search } from 'lucide-react';
 import { FC, useMemo, useRef, useState } from 'react';
 
 import { GrantRecord } from '../../types/grants';
 import { SelectArrowIcon } from '../UI/icons';
-
-const Button = chakra('button');
 
 const PAGE_SIZE = 15;
 
@@ -138,7 +136,7 @@ export const GrantsTable: FC<GrantsTableProps> = ({
 
         <Flex gap={2}>
           <Menu>
-            <MenuButton as={Button} minW='140px'>
+            <MenuButton as={Button} variant='outline' size='sm' minW='140px'>
               <Flex gap={2} alignItems='center' justifyContent='space-between'>
                 <Text noOfLines={1}>{domainFilter || 'All Domains'}</Text>
                 <SelectArrowIcon />
@@ -161,7 +159,7 @@ export const GrantsTable: FC<GrantsTableProps> = ({
           </Menu>
 
           <Menu>
-            <MenuButton as={Button} minW='140px'>
+            <MenuButton as={Button} variant='outline' size='sm' minW='140px'>
               <Flex gap={2} alignItems='center' justifyContent='space-between'>
                 <Text noOfLines={1}>{outputFilter || 'All Outputs'}</Text>
                 <SelectArrowIcon />
@@ -184,7 +182,7 @@ export const GrantsTable: FC<GrantsTableProps> = ({
           </Menu>
 
           <Menu>
-            <MenuButton as={Button} minW='100px'>
+            <MenuButton as={Button} variant='outline' size='sm' minW='100px'>
               <Flex gap={2} alignItems='center' justifyContent='space-between'>
                 <Text noOfLines={1}>{yearFilter || 'All Years'}</Text>
                 <SelectArrowIcon />
