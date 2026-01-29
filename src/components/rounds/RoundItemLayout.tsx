@@ -45,7 +45,7 @@ export const RoundItemLayout: FC<RoundItemLayoutProps> = ({
           {frontmatter.description}
         </GrantsHero>
 
-        <Box mx={{ md: 12 }} mt={{ base: 0, md: -12 }} bg='white' position='relative' py={{ base: 8, md: 12 }} px={{ md: 24, lg: 32, xl: 72 }}>
+        <Box mx={{ md: 12 }} mt={{ base: 0, md: -12 }} bg='white' position='relative' py={{ base: 8, md: 12 }} px={{ base: 6, md: 24, lg: 32, xl: 72 }}>
           {children}
         </Box>
       </Box>
