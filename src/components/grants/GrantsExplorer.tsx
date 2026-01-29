@@ -1,10 +1,15 @@
 import { Box, Stack, useDisclosure } from '@chakra-ui/react';
+import dynamic from 'next/dynamic';
 import { FC, useEffect, useMemo, useState } from 'react';
 
 import { GrantRecord } from '../../types/grants';
-import { GrantsDashboard } from './GrantsDashboard';
 import { GrantsTable } from './GrantsTable';
 import { GrantDetailModal } from './GrantDetailModal';
+
+const GrantsDashboard = dynamic(
+  () => import('./GrantsDashboard').then(m => ({ default: m.GrantsDashboard })),
+  { ssr: false }
+);
 
 interface GrantsExplorerProps {
   grants: GrantRecord[];
@@ -38,7 +43,7 @@ export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
   }, [grants]);
 
   const yearOptions = useMemo(() => {
-    // Extract fiscal year from fiscalQuarter (e.g., "FY25 Q3" -> "FY25")
+    // Extract year from fiscalQuarter (e.g., "2025 Q1" -> "2025")
     return Array.from(new Set(grants.map(g => g.fiscalQuarter.split(' ')[0]))).sort().reverse();
   }, [grants]);
 

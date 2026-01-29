@@ -1,7 +1,8 @@
 /**
- * Derive fiscal quarter from activation date
- * Calendar year: January - December
- * Q1 = Jan-Mar, Q2 = Apr-Jun, Q3 = Jul-Sep, Q4 = Oct-Dec
+ * Derive calendar quarter from a date string.
+ * Uses calendar-year quarters (EF fiscal year is calendar-aligned):
+ *   Q1 = Jan-Mar, Q2 = Apr-Jun, Q3 = Jul-Sep, Q4 = Oct-Dec
+ * Output format: "YYYY QN" (e.g., "2025 Q1")
  */
 export function deriveFiscalQuarter(dateStr: string): string {
   const [year, month] = dateStr.split('-').map(Number);

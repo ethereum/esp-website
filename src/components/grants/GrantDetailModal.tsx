@@ -32,6 +32,9 @@ export const GrantDetailModal: FC<GrantDetailModalProps> = ({ grant, isOpen, onC
     year: 'numeric',
     month: 'long'
   });
+  const isEmail = grant.publicContact
+    ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(grant.publicContact)
+    : false;
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size='lg' isCentered>
@@ -74,7 +77,7 @@ export const GrantDetailModal: FC<GrantDetailModalProps> = ({ grant, isOpen, onC
 
               <Flex gap={4}>
                 <Text fontWeight='500' color='brand.helpText' minW='80px' fontSize='sm'>
-                  Awarded
+                  Date
                 </Text>
                 <Text color='brand.paragraph' fontSize='sm'>
                   {activatedDate}
@@ -99,25 +102,21 @@ export const GrantDetailModal: FC<GrantDetailModalProps> = ({ grant, isOpen, onC
                 </Button>
               )}
 
-              {(() => {
-                if (!grant.publicContact) return null;
-                const isEmail = grant.publicContact.includes('@');
-                return (
-                  <Button
-                    as={Link}
-                    href={isEmail ? `mailto:${grant.publicContact}` : grant.publicContact}
-                    isExternal={!isEmail}
-                    size='sm'
-                    variant='outline'
-                    borderColor='brand.heading'
-                    color='brand.heading'
-                    leftIcon={isEmail ? <Mail size={16} /> : <ExternalLink size={16} />}
-                    _hover={{ bg: 'orange.50', textDecoration: 'none' }}
-                  >
-                    Contact
-                  </Button>
-                );
-              })()}
+              {grant.publicContact && (
+                <Button
+                  as={Link}
+                  href={isEmail ? `mailto:${grant.publicContact}` : grant.publicContact}
+                  isExternal={!isEmail}
+                  size='sm'
+                  variant='outline'
+                  borderColor='brand.heading'
+                  color='brand.heading'
+                  leftIcon={isEmail ? <Mail size={16} /> : <ExternalLink size={16} />}
+                  _hover={{ bg: 'orange.50', textDecoration: 'none' }}
+                >
+                  Contact
+                </Button>
+              )}
             </HStack>
           </Stack>
         </ModalBody>

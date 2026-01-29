@@ -279,10 +279,10 @@ export const GrantsTable: FC<GrantsTableProps> = ({
                   </Td>
                   <Td>
                     <Text
-                      color='brand.helpText'
+                      color={grant.domain ? 'brand.heading' : 'brand.helpText'}
                       fontSize='sm'
                       cursor={grant.domain ? 'pointer' : 'default'}
-                      _hover={grant.domain ? { color: 'brand.heading' } : {}}
+                      _hover={grant.domain ? { textDecoration: 'underline' } : {}}
                       onClick={e => {
                         if (grant.domain) {
                           e.stopPropagation();
@@ -295,10 +295,10 @@ export const GrantsTable: FC<GrantsTableProps> = ({
                   </Td>
                   <Td>
                     <Text
-                      color='brand.helpText'
+                      color={grant.output ? 'brand.heading' : 'brand.helpText'}
                       fontSize='sm'
                       cursor={grant.output ? 'pointer' : 'default'}
-                      _hover={grant.output ? { color: 'brand.heading' } : {}}
+                      _hover={grant.output ? { textDecoration: 'underline' } : {}}
                       onClick={e => {
                         if (grant.output) {
                           e.stopPropagation();

@@ -51,12 +51,12 @@ const Grants: NextPage<GrantsPageProps> = ({ grants }) => {
 };
 
 export const getStaticProps: GetStaticProps<GrantsPageProps> = async () => {
+  // Let errors propagate — ISR serves the previously cached page on
+  // revalidation failure, which is better than showing an empty page.
   const grants = await getPublicGrants();
 
   return {
-    props: {
-      grants
-    },
+    props: { grants },
     revalidate: 3600
   };
 };

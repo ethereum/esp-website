@@ -13,9 +13,10 @@ const PUBLIC_RECORD_TYPES = [
 ];
 
 /**
- * Stages to exclude from public view
+ * Stages that represent definitively awarded grants.
+ * Allow-list ensures unknown or newly-added stages are excluded by default.
  */
-const EXCLUDED_STAGES = ['In Progress', 'Prospecting'];
+const PUBLIC_STAGES = ['Closed Won'];
 
 /**
  * Get all public grants from Salesforce
@@ -43,7 +44,7 @@ export async function getPublicGrants(): Promise<GrantRecord[]> {
   const currentFYStart = getFiscalYearStart(0);
 
   const recordTypesFilter = PUBLIC_RECORD_TYPES.map(t => `'${t}'`).join(', ');
-  const stagesFilter = EXCLUDED_STAGES.map(s => `'${s}'`).join(', ');
+  const stagesFilter = PUBLIC_STAGES.map(s => `'${s}'`).join(', ');
 
   const query = `
     SELECT
@@ -62,7 +63,7 @@ export async function getPublicGrants(): Promise<GrantRecord[]> {
       AND CloseDate != NULL
       AND CloseDate >= ${twoFYAgo}
       AND CloseDate < ${currentFYStart}
-      AND StageName NOT IN (${stagesFilter})
+      AND StageName IN (${stagesFilter})
     ORDER BY CloseDate DESC
   `;
 
@@ -163,9 +164,13 @@ function sanitizeUrl(value: string | null): string | null {
 /**
  * Validate that a contact value is either an email address or a safe URL.
  */
+function isValidEmail(value: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
 function sanitizeContact(value: string | null): string | null {
   if (!value) return null;
-  if (value.includes('@')) return value;
+  if (isValidEmail(value)) return value;
   return sanitizeUrl(value);
 }
 
