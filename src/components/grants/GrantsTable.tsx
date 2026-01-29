@@ -27,6 +27,40 @@ import { SelectArrowIcon } from '../UI/icons';
 
 const PAGE_SIZE = 15;
 
+interface FilterMenuProps {
+  label: string;
+  value: string | null;
+  options: string[];
+  onChange: (value: string | null) => void;
+  minW?: string;
+  maxH?: string;
+}
+
+const FilterMenu: FC<FilterMenuProps> = ({ label, value, options, onChange, minW = '140px', maxH }) => (
+  <Menu>
+    <MenuButton as={Button} variant='outline' size='sm' minW={minW}>
+      <Flex gap={2} alignItems='center' justifyContent='space-between'>
+        <Text noOfLines={1}>{value || label}</Text>
+        <SelectArrowIcon />
+      </Flex>
+    </MenuButton>
+    <MenuList maxH={maxH} overflowY={maxH ? 'auto' : undefined}>
+      <MenuItem onClick={() => onChange(null)} fontWeight={!value ? 'bold' : 'normal'}>
+        {label}
+      </MenuItem>
+      {options.map(option => (
+        <MenuItem
+          key={option}
+          onClick={() => onChange(option)}
+          fontWeight={value === option ? 'bold' : 'normal'}
+        >
+          {option}
+        </MenuItem>
+      ))}
+    </MenuList>
+  </Menu>
+);
+
 interface GrantsTableProps {
   grants: GrantRecord[];
   searchQuery: string;
@@ -135,74 +169,26 @@ export const GrantsTable: FC<GrantsTableProps> = ({
         </InputGroup>
 
         <Flex gap={2}>
-          <Menu>
-            <MenuButton as={Button} variant='outline' size='sm' minW='140px'>
-              <Flex gap={2} alignItems='center' justifyContent='space-between'>
-                <Text noOfLines={1}>{domainFilter || 'All Domains'}</Text>
-                <SelectArrowIcon />
-              </Flex>
-            </MenuButton>
-            <MenuList maxH='300px' overflowY='auto'>
-              <MenuItem onClick={() => onDomainFilterChange(null)} fontWeight={!domainFilter ? 'bold' : 'normal'}>
-                All Domains
-              </MenuItem>
-              {domainOptions.map(domain => (
-                <MenuItem
-                  key={domain}
-                  onClick={() => onDomainFilterChange(domain)}
-                  fontWeight={domainFilter === domain ? 'bold' : 'normal'}
-                >
-                  {domain}
-                </MenuItem>
-              ))}
-            </MenuList>
-          </Menu>
-
-          <Menu>
-            <MenuButton as={Button} variant='outline' size='sm' minW='140px'>
-              <Flex gap={2} alignItems='center' justifyContent='space-between'>
-                <Text noOfLines={1}>{outputFilter || 'All Outputs'}</Text>
-                <SelectArrowIcon />
-              </Flex>
-            </MenuButton>
-            <MenuList>
-              <MenuItem onClick={() => onOutputFilterChange(null)} fontWeight={!outputFilter ? 'bold' : 'normal'}>
-                All Outputs
-              </MenuItem>
-              {outputOptions.map(output => (
-                <MenuItem
-                  key={output}
-                  onClick={() => onOutputFilterChange(output)}
-                  fontWeight={outputFilter === output ? 'bold' : 'normal'}
-                >
-                  {output}
-                </MenuItem>
-              ))}
-            </MenuList>
-          </Menu>
-
-          <Menu>
-            <MenuButton as={Button} variant='outline' size='sm' minW='100px'>
-              <Flex gap={2} alignItems='center' justifyContent='space-between'>
-                <Text noOfLines={1}>{yearFilter || 'All Years'}</Text>
-                <SelectArrowIcon />
-              </Flex>
-            </MenuButton>
-            <MenuList>
-              <MenuItem onClick={() => onYearFilterChange(null)} fontWeight={!yearFilter ? 'bold' : 'normal'}>
-                All Years
-              </MenuItem>
-              {yearOptions.map(year => (
-                <MenuItem
-                  key={year}
-                  onClick={() => onYearFilterChange(year)}
-                  fontWeight={yearFilter === year ? 'bold' : 'normal'}
-                >
-                  {year}
-                </MenuItem>
-              ))}
-            </MenuList>
-          </Menu>
+          <FilterMenu
+            label='All Domains'
+            value={domainFilter}
+            options={domainOptions}
+            onChange={onDomainFilterChange}
+            maxH='300px'
+          />
+          <FilterMenu
+            label='All Outputs'
+            value={outputFilter}
+            options={outputOptions}
+            onChange={onOutputFilterChange}
+          />
+          <FilterMenu
+            label='All Years'
+            value={yearFilter}
+            options={yearOptions}
+            onChange={onYearFilterChange}
+            minW='100px'
+          />
         </Flex>
       </Flex>
 

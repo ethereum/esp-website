@@ -43,11 +43,12 @@ export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
   }, [grants]);
 
   const filteredGrants = useMemo(() => {
+    const lowerQuery = searchQuery.toLowerCase();
     return grants.filter(grant => {
       const matchesSearch =
         searchQuery === '' ||
-        grant.projectName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        grant.description?.toLowerCase().includes(searchQuery.toLowerCase());
+        grant.projectName.toLowerCase().includes(lowerQuery) ||
+        grant.description?.toLowerCase().includes(lowerQuery);
 
       const matchesDomain = domainFilter === null || grant.domain === domainFilter;
       const matchesOutput = outputFilter === null || grant.output === outputFilter;
