@@ -15,7 +15,7 @@ const Grants: NextPage<GrantsPageProps> = ({ grants }) => {
     <>
       <PageMetadata
         title='Funded Projects'
-        description='Explore the projects and teams that have received support from the Ethereum Foundation through the Ecosystem Support Program.'
+        description='Explore projects supported by the Ethereum Foundation Ecosystem Support Program — spanning research, tooling, infrastructure, and community across the Ethereum ecosystem.'
       />
 
       <Box
@@ -36,9 +36,9 @@ const Grants: NextPage<GrantsPageProps> = ({ grants }) => {
                 Funded Projects
               </Heading>
               <Text color='brand.paragraph' maxW='3xl'>
-                Explore grants awarded by the Ethereum Foundation Ecosystem Support Program.
-                These projects span research, development, community building, and more across
-                the Ethereum ecosystem.
+                The Ecosystem Support Program funds teams and individuals building the next
+                generation of Ethereum infrastructure, research, developer tooling, and community
+                resources. Browse the projects we&apos;ve supported below.
               </Text>
             </Box>
 
