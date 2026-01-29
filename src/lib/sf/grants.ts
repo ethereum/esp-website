@@ -20,7 +20,7 @@ const EXCLUDED_STAGES = ['In Progress', 'Prospecting'];
 /**
  * Get all public grants from Salesforce
  * Fetches Opportunity records with whitelisted record types
- * from the last 2 fiscal years
+ * from the previous 2 fiscal years (excludes current year)
  */
 export async function getPublicGrants(): Promise<GrantRecord[]> {
   const conn = createConnection();
@@ -40,6 +40,7 @@ export async function getPublicGrants(): Promise<GrantRecord[]> {
   }
 
   const twoFYAgo = getFiscalYearStart(2);
+  const currentFYStart = getFiscalYearStart(0);
 
   const recordTypesFilter = PUBLIC_RECORD_TYPES.map(t => `'${t}'`).join(', ');
   const stagesFilter = EXCLUDED_STAGES.map(s => `'${s}'`).join(', ');
@@ -60,6 +61,7 @@ export async function getPublicGrants(): Promise<GrantRecord[]> {
       AND Type != 'Impact Gift'
       AND CloseDate != NULL
       AND CloseDate >= ${twoFYAgo}
+      AND CloseDate < ${currentFYStart}
       AND StageName NOT IN (${stagesFilter})
     ORDER BY CloseDate DESC
   `;
