@@ -27,9 +27,16 @@ export async function getPublicGrants(): Promise<GrantRecord[]> {
 
   try {
     await loginToSalesforce(conn);
-  } catch {
-    console.warn('Salesforce login failed, returning mock grants for development');
-    return getMockGrants();
+  } catch (error) {
+    // loginToSalesforce rejects with 'Salesforce integration disabled' when
+    // credentials are not configured — expected in development / CI builds.
+    if (error instanceof Error && error.message === 'Salesforce integration disabled') {
+      console.warn('Salesforce not configured, returning mock grants for development');
+      return getMockGrants();
+    }
+    // Real login failure (expired creds, network issue) — throw so ISR
+    // serves the previously cached page instead of fake data.
+    throw error;
   }
 
   const twoFYAgo = getFiscalYearStart(2);
@@ -57,30 +64,24 @@ export async function getPublicGrants(): Promise<GrantRecord[]> {
     ORDER BY CloseDate DESC
   `;
 
-  try {
-    let allRecords: SFOpportunityRecord[] = [];
-    let result = await conn.query<SFOpportunityRecord>(query);
+  const allRecords: SFOpportunityRecord[] = [];
+  let result = await conn.query<SFOpportunityRecord>(query);
+  allRecords.push(...result.records);
+
+  // Paginate through all results (default batch is ~2000)
+  while (!result.done && result.nextRecordsUrl) {
+    result = await conn.queryMore<SFOpportunityRecord>(result.nextRecordsUrl);
     allRecords.push(...result.records);
-
-    // Paginate through all results (default batch is ~2000)
-    while (!result.done && result.nextRecordsUrl) {
-      result = await conn.queryMore<SFOpportunityRecord>(result.nextRecordsUrl);
-      allRecords.push(...result.records);
-    }
-
-    return allRecords
-      .map(mapSFRecordToGrant)
-      .filter((r): r is GrantRecord => r !== null);
-  } catch (error) {
-    console.error('Salesforce query failed:', error);
-    console.warn('Returning mock grants for development');
-    return getMockGrants();
   }
+
+  return allRecords
+    .map(mapSFRecordToGrant)
+    .filter((r): r is GrantRecord => r !== null);
 }
 
 /**
- * Mock grants data for development and build
- * Used when SF is not configured or query fails
+ * Mock grants data for development and CI builds.
+ * Only used when Salesforce credentials are not configured.
  */
 function getMockGrants(): GrantRecord[] {
   return [
