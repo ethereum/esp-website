@@ -128,17 +128,16 @@ export interface GranteeFinanceFormData extends CaptchaForm {
   contractID: string; // SF API: Contract_ID__c
   securityID: string; // SF API: Security_ID__c
 
-  // ETH/DAI
-  tokenPreference: TokenPreference;
-  l2Payment: L2PaymentPreference; // SF API: Layer2_Payment__c
-  l2Network: string; // SF API: Layer_2_Network__c
+  // Cryptocurrency payment fields
+  walletAddress: string; // User input (ENS name or address)
+  walletAddressResolved: string; // Resolved address (hidden field from WalletAddressInput)
+  walletAddressInputType: 'address' | 'ens' | ''; // How user entered address
+  token: TokenPreference | ''; // ETH or DAI dropdown
+  network: string; // Ethereum Mainnet, Arbitrum, Optimism
   isCentralizedExchange: string; // SF API: Centralized_Exchange_Address__c
 
-  // ETH
-  ethAddress: string; // SF API: ETH_Address__c
-
-  // DAI
-  daiAddress: string; // SF API: DAI_Address__c
+  // Legacy fields (still sent to SF for backward compatibility)
+  // tokenPreference, l2Payment, l2Network, ethAddress, daiAddress are derived in API
 
   // FIAT
   beneficiaryAddress: string; // SF API: Beneficiary_Address__c
@@ -328,18 +327,22 @@ export interface GranteeFinanceNextApiRequest extends NextApiRequest {
     beneficiaryName: string;
     contactEmail: string;
     notes: string;
-    ethAddress: string;
-    daiAddress: string;
+    // New unified crypto fields
+    walletAddress: string;
+    walletAddressResolved: string;
+    walletAddressInputType: 'address' | 'ens' | '';
+    token: 'ETH' | 'DAI' | '';
+    network: string;
+    // Fiat fields
     beneficiaryAddress: string;
     fiatCurrencyCode: string;
     bankName: string;
     bankAddress: string;
     IBAN: string;
     SWIFTCode: string;
+    // Common fields
     contractID: string;
     securityID: string;
-    l2Payment: boolean;
-    l2Network: string;
     isCentralizedExchange: boolean;
   };
 }
