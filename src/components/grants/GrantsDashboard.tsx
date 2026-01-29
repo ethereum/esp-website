@@ -88,6 +88,7 @@ export const GrantsDashboard: FC<GrantsDashboardProps> = ({ grants }) => {
         flexDirection='column'
         alignItems='center'
         justifyContent='center'
+        h='100%'
       >
         <Stat textAlign='center'>
           <StatLabel color='brand.helpText' fontSize='sm'>
@@ -97,7 +98,7 @@ export const GrantsDashboard: FC<GrantsDashboardProps> = ({ grants }) => {
             {activeThisMonth}
           </StatNumber>
           <Text fontSize='sm' color='brand.paragraph'>
-            new contracts
+            new grants
           </Text>
         </Stat>
       </Box>
