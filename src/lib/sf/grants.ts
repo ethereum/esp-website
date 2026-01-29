@@ -143,6 +143,30 @@ function getMockGrants(): GrantRecord[] {
 }
 
 /**
+ * Validate that a URL uses a safe protocol (http or https).
+ * Rejects javascript:, data:, vbscript:, and other dangerous schemes.
+ */
+function sanitizeUrl(value: string | null): string | null {
+  if (!value) return null;
+  try {
+    const url = new URL(value);
+    if (url.protocol === 'http:' || url.protocol === 'https:') return value;
+  } catch {
+    // Not a valid URL
+  }
+  return null;
+}
+
+/**
+ * Validate that a contact value is either an email address or a safe URL.
+ */
+function sanitizeContact(value: string | null): string | null {
+  if (!value) return null;
+  if (value.includes('@')) return value;
+  return sanitizeUrl(value);
+}
+
+/**
  * Map Salesforce record to frontend GrantRecord
  * Handles null fields gracefully
  */
@@ -158,8 +182,8 @@ function mapSFRecordToGrant(record: SFOpportunityRecord): GrantRecord | null {
     description: record.Project_Description__c || null,
     domain: record.Opportunity_Domain__c || null,
     output: record.Opportunity_Output__c || null,
-    publicContact: record.Grantee_Contact_Details__c || null,
-    projectRepo: record.Project_Repo__c || null,
+    publicContact: sanitizeContact(record.Grantee_Contact_Details__c || null),
+    projectRepo: sanitizeUrl(record.Project_Repo__c || null),
     activatedDate: record.CloseDate,
     fiscalQuarter: deriveFiscalQuarter(record.CloseDate)
   };

@@ -99,25 +99,25 @@ export const GrantDetailModal: FC<GrantDetailModalProps> = ({ grant, isOpen, onC
                 </Button>
               )}
 
-              {grant.publicContact && (
-                <Button
-                  as={Link}
-                  href={
-                    grant.publicContact.includes('@')
-                      ? `mailto:${grant.publicContact}`
-                      : grant.publicContact
-                  }
-                  isExternal={!grant.publicContact.includes('@')}
-                  size='sm'
-                  variant='outline'
-                  borderColor='brand.heading'
-                  color='brand.heading'
-                  leftIcon={grant.publicContact.includes('@') ? <Mail size={16} /> : <ExternalLink size={16} />}
-                  _hover={{ bg: 'orange.50', textDecoration: 'none' }}
-                >
-                  Contact
-                </Button>
-              )}
+              {(() => {
+                if (!grant.publicContact) return null;
+                const isEmail = grant.publicContact.includes('@');
+                return (
+                  <Button
+                    as={Link}
+                    href={isEmail ? `mailto:${grant.publicContact}` : grant.publicContact}
+                    isExternal={!isEmail}
+                    size='sm'
+                    variant='outline'
+                    borderColor='brand.heading'
+                    color='brand.heading'
+                    leftIcon={isEmail ? <Mail size={16} /> : <ExternalLink size={16} />}
+                    _hover={{ bg: 'orange.50', textDecoration: 'none' }}
+                  >
+                    Contact
+                  </Button>
+                );
+              })()}
             </HStack>
           </Stack>
         </ModalBody>
