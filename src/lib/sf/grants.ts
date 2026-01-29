@@ -41,7 +41,6 @@ export async function getPublicGrants(): Promise<GrantRecord[]> {
   }
 
   const twoFYAgo = getFiscalYearStart(2);
-  const currentFYStart = getFiscalYearStart(0);
 
   const recordTypesFilter = PUBLIC_RECORD_TYPES.map(t => `'${t}'`).join(', ');
   const stagesFilter = PUBLIC_STAGES.map(s => `'${s}'`).join(', ');
@@ -62,7 +61,6 @@ export async function getPublicGrants(): Promise<GrantRecord[]> {
       AND Type != 'Impact Gift'
       AND CloseDate != NULL
       AND CloseDate >= ${twoFYAgo}
-      AND CloseDate < ${currentFYStart}
       AND StageName IN (${stagesFilter})
     ORDER BY CloseDate DESC
   `;
