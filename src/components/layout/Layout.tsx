@@ -16,11 +16,17 @@ import {
   ABOUT_URL,
   ACADEMIC_GRANTS_URL,
   APPLICANTS_URL,
-  HOME_URL
+  HOME_URL,
+  ROUNDS_URL
 } from '../../constants';
 
 export const Layout = ({ children, ...props }: ContainerProps) => {
   const router = useRouter();
+
+  // Pages where nav floats over hero image
+  const isHeroPage =
+    router.pathname === ACADEMIC_GRANTS_URL ||
+    router.pathname.startsWith(ROUNDS_URL);
 
   const renderContent = (): ReactNode => {
     if (router.pathname === HOME_URL) {
@@ -55,12 +61,14 @@ export const Layout = ({ children, ...props }: ContainerProps) => {
 
     if (router.pathname === ACADEMIC_GRANTS_URL) {
       return (
-        <Box mt={{ md: -10, lg: 0 }}>
-          <main>
-            <AcademicGrantsLayout>{children}</AcademicGrantsLayout>
-          </main>
-        </Box>
+        <main>
+          <AcademicGrantsLayout>{children}</AcademicGrantsLayout>
+        </main>
       );
+    }
+
+    if (router.pathname.startsWith(ROUNDS_URL)) {
+      return <main>{children}</main>;
     }
 
     return children;
@@ -68,9 +76,25 @@ export const Layout = ({ children, ...props }: ContainerProps) => {
 
   return (
     <Container maxW='100%' p={0} {...props}>
-      <Box px={{ base: 5, md: 12 }} py={{ base: 3, md: 8 }}>
-        <Nav />
-      </Box>
+      {!isHeroPage && (
+        <Box px={{ base: 5, md: 12 }} py={{ base: 3, md: 8 }}>
+          <Nav />
+        </Box>
+      )}
+
+      {isHeroPage && (
+        <Box
+          position='absolute'
+          top={0}
+          left={0}
+          right={0}
+          zIndex='banner'
+          px={{ base: 5, md: 12 }}
+          py={{ base: 3, md: 8 }}
+        >
+          <Nav />
+        </Box>
+      )}
 
       {renderContent()}
 

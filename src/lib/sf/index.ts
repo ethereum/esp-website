@@ -1,10 +1,41 @@
 import fs from 'fs';
+import path from 'path';
 import jsforce from 'jsforce';
 import jwt from 'jsonwebtoken';
+import matter from 'gray-matter';
 import type { File } from 'formidable';
 
 import { GrantInitiative, GrantInitiativeSalesforceRecord, GrantInitiativeType } from '../../types';
 import { truncateString } from '../../utils/truncateString';
+
+/**
+ * Get all tags used by rounds (e.g., ["AGR26"] or ["PhDFP", "Research"])
+ * These tags should be excluded from regular RFP/Wishlist listings
+ */
+function getRoundTags(): string[] {
+  const roundsDirectory = path.join(process.cwd(), 'content/rounds');
+
+  if (!fs.existsSync(roundsDirectory)) {
+    return [];
+  }
+
+  const files = fs.readdirSync(roundsDirectory);
+  const tags: string[] = [];
+
+  for (const file of files) {
+    if (file.endsWith('.mdx')) {
+      const filePath = path.join(roundsDirectory, file);
+      const fileContents = fs.readFileSync(filePath, 'utf8');
+      const { data } = matter(fileContents);
+
+      if (data.tags && Array.isArray(data.tags)) {
+        tags.push(...data.tags);
+      }
+    }
+  }
+
+  return tags;
+}
 
 const {
   SF_PROD_LOGIN_URL,
@@ -91,36 +122,92 @@ const getRecordTypeIdForType = (type: GrantInitiativeType): string => {
 
 const getFieldsForType = (type?: GrantInitiativeType): string => {
   const baseFields = 'Id,Name,Description__c,RecordTypeId,Tags__c,Resources__c,Ecosystem_Need__c';
-  const wishlistFields = ',Out_of_Scope__c,Custom_URL_Slug__c';
+  const wishlistFields = ',Out_of_Scope__c';
   const rfpFields =
-    ',RFP_HardRequirements_Long__c,RFP_SoftRequirements__c,RFP_Project_Duration__c,RFP_Close_Date__c,RFP_Open_Date__c,Custom_URL_Slug__c';
+    ',RFP_HardRequirements_Long__c,RFP_SoftRequirements__c,RFP_Project_Duration__c,RFP_Close_Date__c,RFP_Open_Date__c';
+  const sharedFields = ',Custom_URL_Slug__c';
 
   if (type === 'Wishlist') {
-    return baseFields + wishlistFields;
+    return baseFields + wishlistFields + sharedFields;
   }
 
   if (type === 'RFP') {
-    return baseFields + rfpFields;
+    return baseFields + rfpFields + sharedFields;
   }
 
-  console.log('Type is,', type);
+  // When no type specified, include all fields to support mixed queries
+  return baseFields + wishlistFields + rfpFields + sharedFields;
+};
 
-  return baseFields;
+/**
+ * Transform Salesforce records into GrantInitiative objects
+ */
+const transformGrantInitiativeRecords = (
+  records: GrantInitiativeSalesforceRecord[]
+): GrantInitiative[] => {
+  return records.reduce<GrantInitiative[]>((acc, record) => {
+    const grantInitiativeType = getGrantInitiativeType(record.RecordTypeId);
+    if (!grantInitiativeType) return acc;
+
+    const grantInitiativeItem: GrantInitiative = {
+      Id: record.Id,
+      Name: record.Name,
+      Description__c: record.Description__c,
+      Tags__c: record.Tags__c,
+      Resources__c: record.Resources__c,
+      Ecosystem_Need__c: record.Ecosystem_Need__c
+    };
+
+    if (record.Custom_URL_Slug__c) {
+      grantInitiativeItem.Custom_URL_Slug__c = record.Custom_URL_Slug__c;
+    }
+
+    if (grantInitiativeType === 'Wishlist') {
+      if (record.Out_of_Scope__c) {
+        grantInitiativeItem.Out_of_Scope__c = record.Out_of_Scope__c;
+      }
+    }
+
+    if (grantInitiativeType === 'RFP') {
+      if (record.RFP_Project_Duration__c) {
+        grantInitiativeItem.RFP_Project_Duration__c = record.RFP_Project_Duration__c;
+      }
+      if (record.RFP_HardRequirements_Long__c) {
+        grantInitiativeItem.RFP_HardRequirements_Long__c = record.RFP_HardRequirements_Long__c;
+      }
+      if (record.RFP_SoftRequirements__c) {
+        grantInitiativeItem.RFP_SoftRequirements__c = record.RFP_SoftRequirements__c;
+      }
+      if (record.RFP_Close_Date__c) {
+        grantInitiativeItem.RFP_Close_Date__c = record.RFP_Close_Date__c;
+      }
+      if (record.RFP_Open_Date__c) {
+        grantInitiativeItem.RFP_Open_Date__c = record.RFP_Open_Date__c;
+      }
+    }
+
+    acc.push(grantInitiativeItem);
+    return acc;
+  }, []);
 };
 
 /**
  * Get all active grant initiative items
  * @param type - The type of grant initiative (Wishlist, RFP)
+ * @param options - Optional configuration
+ * @param options.excludeRoundItems - If true, excludes items that belong to grant rounds (default: true)
  * @returns Promise with the grant initiative items
  */
-export function getGrantInitiativeItems(type?: GrantInitiativeType) {
+export function getGrantInitiativeItems(
+  type?: GrantInitiativeType,
+  options: { excludeRoundItems?: boolean } = { excludeRoundItems: true }
+) {
   return new Promise<GrantInitiative[]>(async (resolve, reject) => {
     const conn = createConnection();
 
     try {
       await loginToSalesforce(conn);
 
-      // TODO: Change to `Active` before deploying to production
       const baseCriteria: Partial<GrantInitiativeSalesforceRecord> = { Status__c: 'Active' };
       const criteria =
         type != null
@@ -135,56 +222,63 @@ export function getGrantInitiativeItems(type?: GrantInitiativeType) {
             return reject(err);
           }
 
-          const grantInitiativeItems = ret.reduce<GrantInitiative[]>((acc, record) => {
-            const grantInitiativeType = getGrantInitiativeType(record.RecordTypeId);
-            if (!grantInitiativeType) return acc;
+          let records = ret;
 
-            const grantInitiativeItem: GrantInitiative = {
-              Id: record.Id,
-              Name: record.Name,
-              Description__c: record.Description__c,
-              Tags__c: record.Tags__c,
-              Resources__c: record.Resources__c,
-              Ecosystem_Need__c: record.Ecosystem_Need__c
-            };
+          // Filter out items that belong to grant rounds
+          if (options.excludeRoundItems !== false) {
+            const roundTags = getRoundTags();
 
-            if (record.Custom_URL_Slug__c) {
-              grantInitiativeItem.Custom_URL_Slug__c = record.Custom_URL_Slug__c;
+            if (roundTags.length > 0) {
+              records = ret.filter(record => {
+                if (!record.Tags__c) return true;
+                const itemTags = record.Tags__c.split(';').map(t => t.trim());
+                // Exclude if any of the item's tags match a round tag
+                return !itemTags.some(tag => roundTags.includes(tag));
+              });
             }
+          }
 
-            if (grantInitiativeType === 'Wishlist') {
-              if (record.Out_of_Scope__c) {
-                grantInitiativeItem.Out_of_Scope__c = record.Out_of_Scope__c;
-              }
-            }
+          return resolve(transformGrantInitiativeRecords(records));
+        });
+    } catch (error) {
+      return reject(error);
+    }
+  });
+}
 
-            if (grantInitiativeType === 'RFP') {
-              if (record.RFP_Project_Duration__c) {
-                grantInitiativeItem.RFP_Project_Duration__c = record.RFP_Project_Duration__c;
-              }
-              if (record.RFP_HardRequirements_Long__c) {
-                grantInitiativeItem.RFP_HardRequirements_Long__c =
-                  record.RFP_HardRequirements_Long__c;
-              }
-              if (record.RFP_SoftRequirements__c) {
-                grantInitiativeItem.RFP_SoftRequirements__c = record.RFP_SoftRequirements__c;
-              }
-              if (record.RFP_Close_Date__c) {
-                grantInitiativeItem.RFP_Close_Date__c = record.RFP_Close_Date__c;
-              }
-              if (record.RFP_Open_Date__c) {
-                grantInitiativeItem.RFP_Open_Date__c = record.RFP_Open_Date__c;
-              }
-              if (record.RFP_Project_Duration__c) {
-                grantInitiativeItem.RFP_Project_Duration__c = record.RFP_Project_Duration__c;
-              }
-            }
+/**
+ * Get grant initiative items filtered by tags
+ * @param tags - The tags to filter by (e.g., ["AGR26"] or ["PhDFP", "Research"])
+ * @returns Promise with the filtered grant initiative items (matches ANY of the provided tags)
+ */
+export function getGrantInitiativeItemsByTag(tags: string[]): Promise<GrantInitiative[]> {
+  return new Promise<GrantInitiative[]>(async (resolve, reject) => {
+    const conn = createConnection();
 
-            acc.push(grantInitiativeItem);
-            return acc;
-          }, []);
+    try {
+      await loginToSalesforce(conn);
 
-          return resolve(grantInitiativeItems);
+      const criteria: Partial<GrantInitiativeSalesforceRecord> = {
+        Status__c: 'Active'
+      };
+
+      conn
+        .sobject('Grant_Initiative__c')
+        .find<GrantInitiativeSalesforceRecord>(criteria, getFieldsForType(), (err, ret) => {
+          if (err) {
+            console.error(err);
+            return reject(err);
+          }
+
+          // Filter records that contain ANY of the tags in their Tags__c field
+          // Tags__c is a semicolon-separated string
+          const filteredRecords = ret.filter(record => {
+            if (!record.Tags__c) return false;
+            const recordTags = record.Tags__c.split(';').map(t => t.trim());
+            return tags.some(tag => recordTags.includes(tag));
+          });
+
+          return resolve(transformGrantInitiativeRecords(filteredRecords));
         });
     } catch (error) {
       if (!SALESFORCE_ENABLED) {
