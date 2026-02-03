@@ -85,20 +85,22 @@ export const RoundPage: FC<RoundPageProps> = ({
                   </Box>
                 </section>
 
-                <section id='apply'>
-                  <PageSection mb={6}>Apply</PageSection>
+                {status === 'active' && (
+                  <section id='apply'>
+                    <PageSection mb={6}>Apply</PageSection>
 
-                  <PrivacyPolicyAgreement />
+                    <PrivacyPolicyAgreement />
 
-                  <Box mt={8}>
-                    <GrantInitiativeSelection
-                      items={items}
-                      getItemUrl={getItemUrl}
-                      paramTags={[]}
-                      hiddenTags={tags}
-                    />
-                  </Box>
-                </section>
+                    <Box mt={8}>
+                      <GrantInitiativeSelection
+                        items={items}
+                        getItemUrl={getItemUrl}
+                        paramTags={[]}
+                        hiddenTags={tags}
+                      />
+                    </Box>
+                  </section>
+                )}
               </Stack>
             </Box>
           </Flex>
