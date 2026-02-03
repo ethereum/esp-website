@@ -5,7 +5,7 @@ import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import rehypeSlug from 'rehype-slug';
 
 import { RoundPage } from '../../components/rounds';
-import { getAllRoundSlugs, getRoundBySlug } from '../../lib/rounds';
+import { getAllRoundSlugs, getRoundBySlug, computeRoundStatus, RoundStatus } from '../../lib/rounds';
 import { getHeroImages, HeroImages } from '../../lib/rounds/heroImages';
 import { getGrantInitiativeItemsByTag } from '../../lib/sf';
 import { extractHeadings, headingsToSidebarLinks } from '../../lib/extractHeadings';
@@ -13,6 +13,7 @@ import { GrantInitiative, RoundFrontmatter, SidebarLink } from '../../types';
 
 interface RoundPageProps {
   frontmatter: RoundFrontmatter;
+  status: RoundStatus;
   mdxSource: MDXRemoteSerializeResult;
   items: GrantInitiative[];
   sidebarLinks: SidebarLink[];
@@ -20,6 +21,7 @@ interface RoundPageProps {
 
 const RoundPageRoute: NextPage<RoundPageProps> = ({
   frontmatter,
+  status,
   mdxSource,
   items,
   sidebarLinks
@@ -27,6 +29,7 @@ const RoundPageRoute: NextPage<RoundPageProps> = ({
   return (
     <RoundPage
       frontmatter={frontmatter}
+      status={status}
       mdxSource={mdxSource}
       items={items}
       heroImages={getHeroImages(frontmatter.slug)}
@@ -75,9 +78,18 @@ export const getStaticProps: GetStaticProps<RoundPageProps> = async ({ params })
   // Fetch items from Salesforce filtered by tags
   const items = await getGrantInitiativeItemsByTag(frontmatter.tags);
 
+  // Compute round status from dates using AoE timezone
+  const status = computeRoundStatus(
+    frontmatter.startDate,
+    frontmatter.endDate,
+    frontmatter.effectiveStartDate,
+    frontmatter.effectiveEndDate
+  );
+
   return {
     props: {
       frontmatter,
+      status,
       mdxSource,
       items,
       sidebarLinks

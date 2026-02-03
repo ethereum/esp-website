@@ -13,11 +13,13 @@ import {
 import { GrantInitiativeSelection } from '../forms/GrantInitiativeSelection';
 import { GrantsHero } from '../UI/GrantsHero';
 import { GrantInitiative, RoundFrontmatter, SidebarLink } from '../../types';
+import { RoundStatus } from '../../lib/rounds';
 import { StaticImageData } from 'next/image';
 import { mdxComponents } from './mdxComponents';
 
 interface RoundPageProps {
   frontmatter: RoundFrontmatter;
+  status: RoundStatus;
   mdxSource: MDXRemoteSerializeResult;
   items: GrantInitiative[];
   heroImages: {
@@ -29,12 +31,13 @@ interface RoundPageProps {
 
 export const RoundPage: FC<RoundPageProps> = ({
   frontmatter,
+  status,
   mdxSource,
   items,
   heroImages,
   sidebarLinks
 }) => {
-  const { slug, name, description, status, tags, colorBrand } = frontmatter;
+  const { slug, name, description, tags, colorBrand } = frontmatter;
 
   // Generate URLs for round items using round-specific routes
   const getItemUrl = (item: GrantInitiative): string => {

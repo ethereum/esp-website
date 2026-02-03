@@ -517,18 +517,17 @@ export interface GrantInitiative {
   Custom_URL_Slug__c?: string;
 }
 
-export type RoundStatus = 'active' | 'closed';
-
 export interface RoundFrontmatter {
   slug: string;
   name: string;
   description: string;
-  status: RoundStatus;
   tags: string[];
   heroImage: string;
   colorBrand: string;
   startDate: string;
   endDate: string;
+  effectiveStartDate?: string;
+  effectiveEndDate?: string;
 }
 
 export interface Round extends RoundFrontmatter {
