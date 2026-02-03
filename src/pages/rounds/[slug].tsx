@@ -61,11 +61,19 @@ export const getStaticProps: GetStaticProps<RoundPageProps> = async ({ params })
 
   const { content, ...frontmatter } = round;
 
+  // Compute round status from dates using AoE timezone
+  const status = computeRoundStatus(
+    frontmatter.startDate,
+    frontmatter.endDate,
+    frontmatter.effectiveStartDate,
+    frontmatter.effectiveEndDate
+  );
+
   // Extract headings from markdown content
   const headings = extractHeadings(content);
   const sidebarLinks = headingsToSidebarLinks(headings, {
     includeDepths: [2, 3],
-    addApplyLink: true
+    addApplyLink: status === 'active' // Only show Apply link when round is active
   });
 
   // Serialize MDX with rehype-slug to add IDs to headings
@@ -77,14 +85,6 @@ export const getStaticProps: GetStaticProps<RoundPageProps> = async ({ params })
 
   // Fetch items from Salesforce filtered by tags
   const items = await getGrantInitiativeItemsByTag(frontmatter.tags);
-
-  // Compute round status from dates using AoE timezone
-  const status = computeRoundStatus(
-    frontmatter.startDate,
-    frontmatter.endDate,
-    frontmatter.effectiveStartDate,
-    frontmatter.effectiveEndDate
-  );
 
   return {
     props: {
