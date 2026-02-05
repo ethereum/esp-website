@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Box, Flex, Icon, Link } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
@@ -14,6 +14,8 @@ interface BannersProps {
 
 export const Banners: FC<BannersProps> = ({ rounds = [] }) => {
   const router = useRouter();
+  // Preserve server-provided rounds across client navigations
+  const [activeRounds] = useState(rounds);
 
   // Don't show banners on round pages
   if (router.pathname.startsWith(ROUNDS_URL)) {
@@ -21,13 +23,13 @@ export const Banners: FC<BannersProps> = ({ rounds = [] }) => {
   }
 
   // Don't show banners if no active rounds
-  if (rounds.length === 0) {
+  if (activeRounds.length === 0) {
     return null;
   }
 
   // Single round: clickable banner linking to that round
-  if (rounds.length === 1) {
-    const round = rounds[0];
+  if (activeRounds.length === 1) {
+    const round = activeRounds[0];
     return (
       <BannerClickeable to={`${ROUNDS_URL}/${round.slug}`}>
         <Flex alignItems='center' gap={2} fontSize='sm'>
@@ -46,7 +48,7 @@ export const Banners: FC<BannersProps> = ({ rounds = [] }) => {
     <Banner>
       <Flex alignItems='center' gap={2} fontSize='sm' flexWrap='wrap' justifyContent='center'>
         <Box fontWeight={600}>
-          {rounds.map((round, index) => (
+          {activeRounds.map((round, index) => (
             <span key={round.slug}>
               <Link
                 as={NextLink}
@@ -56,8 +58,8 @@ export const Banners: FC<BannersProps> = ({ rounds = [] }) => {
               >
                 {round.name}
               </Link>
-              {index < rounds.length - 2 && ', '}
-              {index === rounds.length - 2 && ' and '}
+              {index < activeRounds.length - 2 && ', '}
+              {index === activeRounds.length - 2 && ' and '}
             </span>
           ))}
           {' '}are now open!
