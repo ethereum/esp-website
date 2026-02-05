@@ -6,9 +6,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const activeRounds = getActiveRounds();
+  try {
+    const activeRounds = getActiveRounds();
 
-  // Cache for 1 hour (same as ISR revalidation)
-  res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate');
-  res.status(200).json(activeRounds);
+    // Cache for 1 hour (same as ISR revalidation)
+    res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate');
+    res.status(200).json(activeRounds);
+  } catch (error) {
+    console.error('Failed to fetch active rounds:', error);
+    res.status(500).json({ error: 'Failed to fetch rounds' });
+  }
 }
