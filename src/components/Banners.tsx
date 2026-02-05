@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 import { useRouter } from 'next/router';
 import { Box, Flex, Icon, Link } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
@@ -8,20 +8,12 @@ import { BannerClickeable, Banner } from './UI';
 import { ROUNDS_URL } from '../constants';
 import { RoundFrontmatter } from '../types';
 
-export const Banners: FC = () => {
-  const router = useRouter();
-  const [activeRounds, setActiveRounds] = useState<RoundFrontmatter[]>([]);
+interface BannersProps {
+  rounds?: RoundFrontmatter[];
+}
 
-  useEffect(() => {
-    fetch('/api/active-rounds')
-      .then(res => res.json())
-      .then((rounds: RoundFrontmatter[]) => {
-        setActiveRounds(rounds);
-      })
-      .catch(() => {
-        // Silently fail - banners just won't show
-      });
-  }, []);
+export const Banners: FC<BannersProps> = ({ rounds = [] }) => {
+  const router = useRouter();
 
   // Don't show banners on round pages
   if (router.pathname.startsWith(ROUNDS_URL)) {
@@ -29,13 +21,13 @@ export const Banners: FC = () => {
   }
 
   // Don't show banners if no active rounds
-  if (activeRounds.length === 0) {
+  if (rounds.length === 0) {
     return null;
   }
 
   // Single round: clickable banner linking to that round
-  if (activeRounds.length === 1) {
-    const round = activeRounds[0];
+  if (rounds.length === 1) {
+    const round = rounds[0];
     return (
       <BannerClickeable to={`${ROUNDS_URL}/${round.slug}`}>
         <Flex alignItems='center' gap={2} fontSize='sm'>
@@ -54,7 +46,7 @@ export const Banners: FC = () => {
     <Banner>
       <Flex alignItems='center' gap={2} fontSize='sm' flexWrap='wrap' justifyContent='center'>
         <Box fontWeight={600}>
-          {activeRounds.map((round, index) => (
+          {rounds.map((round, index) => (
             <span key={round.slug}>
               <Link
                 as={NextLink}
@@ -64,8 +56,8 @@ export const Banners: FC = () => {
               >
                 {round.name}
               </Link>
-              {index < activeRounds.length - 2 && ', '}
-              {index === activeRounds.length - 2 && ' and '}
+              {index < rounds.length - 2 && ', '}
+              {index === rounds.length - 2 && ' and '}
             </span>
           ))}
           {' '}are now open!
