@@ -43,3 +43,6 @@ pnpm-error.log*
 
 # playwright mcp
 .playwright-mcp/
+
+# generated sitemaps (next-sitemap)
+public/sitemap*.xml
