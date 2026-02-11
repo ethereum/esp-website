@@ -40,3 +40,9 @@ pnpm-error.log*
 # cursor
 .cursorrules
 .cursor
+
+# playwright mcp
+.playwright-mcp/
+
+# generated sitemaps (next-sitemap)
+public/sitemap*.xml

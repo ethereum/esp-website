@@ -11,6 +11,7 @@ import {
   APPLICANTS_TABS_MAP,
   APPLICANTS_URL,
   GRANTEE_FINANCE_URL,
+  OPEN_ROUNDS_URL,
   OFFICE_HOURS_URL,
   WISHLIST_URL,
   RFP_URL
@@ -36,6 +37,10 @@ const getTabIndexFromPath = (pathname: string): number => {
 
   if (pathname.startsWith('/applicants/rfp')) {
     return 3;
+  }
+
+  if (pathname.startsWith('/applicants/open-rounds')) {
+    return 4;
   }
 
   if (pathname.startsWith('/applicants')) {
@@ -93,6 +98,16 @@ export const ApplicantsLayout = ({ children }: Props) => {
         router.push(
           {
             pathname: RFP_URL
+          },
+          undefined,
+          { scroll: false }
+        );
+        break;
+
+      case 4:
+        router.push(
+          {
+            pathname: OPEN_ROUNDS_URL
           },
           undefined,
           { scroll: false }

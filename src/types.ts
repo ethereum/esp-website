@@ -516,3 +516,20 @@ export interface GrantInitiative {
   RFP_SoftRequirements__c?: string;
   Custom_URL_Slug__c?: string;
 }
+
+export interface RoundFrontmatter {
+  slug: string;
+  name: string;
+  description: string;
+  tags: string[];
+  heroImage: string;
+  colorBrand: string;
+  startDate: string;
+  endDate: string;
+  effectiveStartDate?: string;
+  effectiveEndDate?: string;
+}
+
+export interface Round extends RoundFrontmatter {
+  content: string;
+}
