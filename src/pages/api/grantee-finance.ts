@@ -75,31 +75,21 @@ async function handler(req: GranteeFinanceNextApiRequest, res: NextApiResponse):
       }
     }
 
-    // Map new fields to legacy Salesforce fields for backward compatibility
-    // Only set address fields that should be updated (prevents data loss)
-    let ETH_Address__c: string | undefined;
-    let DAI_Address__c: string | undefined;
-    let Layer2_Payment__c: boolean | undefined;
-    let Layer_2_Network__c: string | undefined;
+    // Map form fields to new dedicated Salesforce fields
+    // See: https://github.com/ethereum/esp-website/issues/495#issuecomment-3814046232
+    let Contract_Wallet_Address__c: string | undefined;
+    let Contract_Token__c: string | undefined;
+    let Contract_Network__c: string | undefined;
+    let ENS__c: string | undefined;
 
     if (verifiedAddress && token) {
-      // Only update the address field for the selected token
-      // Do NOT overwrite the other token's address with empty string
-      if (token === 'ETH') {
-        ETH_Address__c = verifiedAddress;
-      } else if (token === 'DAI') {
-        DAI_Address__c = verifiedAddress;
-      }
+      Contract_Wallet_Address__c = verifiedAddress;
+      Contract_Token__c = token;
+      Contract_Network__c = network;
 
-      // Set L2 fields based on network selection
-      if (network) {
-        if (network !== 'Ethereum Mainnet') {
-          Layer2_Payment__c = true;
-          Layer_2_Network__c = network;
-        } else {
-          Layer2_Payment__c = false;
-          Layer_2_Network__c = '';
-        }
+      // Store original ENS name if user submitted an ENS (not a direct address)
+      if (walletAddressInputType === 'ens' && walletAddress) {
+        ENS__c = walletAddress;
       }
     }
 
@@ -150,17 +140,17 @@ async function handler(req: GranteeFinanceNextApiRequest, res: NextApiResponse):
           };
 
           // Only add crypto fields if they're being updated (prevents data loss)
-          if (ETH_Address__c !== undefined) {
-            updatePayload.ETH_Address__c = ETH_Address__c.trim();
+          if (Contract_Wallet_Address__c !== undefined) {
+            updatePayload.Contract_Wallet_Address__c = Contract_Wallet_Address__c.trim();
           }
-          if (DAI_Address__c !== undefined) {
-            updatePayload.DAI_Address__c = DAI_Address__c.trim();
+          if (Contract_Token__c !== undefined) {
+            updatePayload.Contract_Token__c = Contract_Token__c;
           }
-          if (Layer2_Payment__c !== undefined) {
-            updatePayload.Layer2_Payment__c = Layer2_Payment__c;
+          if (Contract_Network__c !== undefined) {
+            updatePayload.Contract_Network__c = Contract_Network__c;
           }
-          if (Layer_2_Network__c !== undefined) {
-            updatePayload.Layer_2_Network__c = Layer_2_Network__c.trim();
+          if (ENS__c !== undefined) {
+            updatePayload.ENS__c = ENS__c.trim();
           }
 
           // Single record update

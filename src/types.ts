@@ -129,15 +129,12 @@ export interface GranteeFinanceFormData extends CaptchaForm {
   securityID: string; // SF API: Security_ID__c
 
   // Cryptocurrency payment fields
-  walletAddress: string; // User input (ENS name or address)
-  walletAddressResolved: string; // Resolved address (hidden field from WalletAddressInput)
-  walletAddressInputType: 'address' | 'ens' | ''; // How user entered address
-  token: TokenPreference | ''; // ETH or DAI dropdown
-  network: string; // Ethereum Mainnet, Arbitrum, Optimism
+  walletAddress: string; // User input (ENS name or address) - stored in ENS__c if ENS
+  walletAddressResolved: string; // SF API: Contract_Wallet_Address__c (verified hex address)
+  walletAddressInputType: 'address' | 'ens' | ''; // Used to determine if ENS__c should be populated
+  token: TokenPreference | ''; // SF API: Contract_Token__c (ETH or DAI)
+  network: string; // SF API: Contract_Network__c (Ethereum Mainnet, Arbitrum, Optimism)
   isCentralizedExchange: string; // SF API: Centralized_Exchange_Address__c
-
-  // Legacy fields (still sent to SF for backward compatibility)
-  // tokenPreference, l2Payment, l2Network, ethAddress, daiAddress are derived in API
 
   // FIAT
   beneficiaryAddress: string; // SF API: Beneficiary_Address__c
