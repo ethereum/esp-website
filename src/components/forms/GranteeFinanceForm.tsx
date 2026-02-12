@@ -54,7 +54,7 @@ export const GranteeFinanceForm: FC = () => {
   } = methods;
 
   const hasPaymentPreferenceSet = paymentPreference !== '';
-  const receivesCrypto = paymentPreference === 'ETH/DAI';
+  const receivesCrypto = paymentPreference === 'Cryptocurrency';
   const receivesFiat = paymentPreference === 'Fiat';
 
   // for conditional fields, get the current values
@@ -156,7 +156,7 @@ export const GranteeFinanceForm: FC = () => {
                   colorScheme='white'
                 >
                   <Stack direction='row'>
-                    <Radio size='lg' name='ethDaiOrFiat' value='ETH/DAI' mr={8}>
+                    <Radio size='lg' name='ethDaiOrFiat' value='Cryptocurrency' mr={8}>
                       <PageText fontSize='input'>Receive Cryptocurrency</PageText>
                     </Radio>
 

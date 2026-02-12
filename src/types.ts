@@ -265,7 +265,7 @@ export type RepeatApplicant = 'Yes' | 'No';
 
 export type L2PaymentPreference = RepeatApplicant;
 
-export type PaymentPreference = 'ETH/DAI' | 'Fiat' | '';
+export type PaymentPreference = 'Cryptocurrency' | 'Fiat' | '';
 
 export type TokenPreference = 'ETH' | 'DAI';
 
@@ -324,6 +324,7 @@ export interface GranteeFinanceNextApiRequest extends NextApiRequest {
     beneficiaryName: string;
     contactEmail: string;
     notes: string;
+    paymentPreference: PaymentPreference;
     // New unified crypto fields
     walletAddress: string;
     walletAddressResolved: string;

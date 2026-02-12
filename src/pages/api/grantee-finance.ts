@@ -14,6 +14,7 @@ async function handler(req: GranteeFinanceNextApiRequest, res: NextApiResponse):
       beneficiaryName: Beneficiary_Name__c,
       contactEmail: User_Email__c,
       notes: Transfer_Notes__c,
+      paymentPreference: Contract_Payment_Method__c,
       // New unified crypto fields
       walletAddress,
       walletAddressResolved,
@@ -32,6 +33,7 @@ async function handler(req: GranteeFinanceNextApiRequest, res: NextApiResponse):
       securityID: Security_ID__c,
       isCentralizedExchange: Centralized_Exchange_Address__c
     } = body;
+
     const { SF_PROD_LOGIN_URL, SF_PROD_USERNAME, SF_PROD_PASSWORD, SF_PROD_SECURITY_TOKEN } =
       process.env;
 
@@ -130,6 +132,7 @@ async function handler(req: GranteeFinanceNextApiRequest, res: NextApiResponse):
             Beneficiary_Name__c: Beneficiary_Name__c.trim(),
             User_Email__c: User_Email__c.trim(),
             Transfer_Notes__c: Transfer_Notes__c.trim(),
+            Contract_Payment_Method__c: Contract_Payment_Method__c.trim(),
             Beneficiary_Address__c: Beneficiary_Address__c.trim(),
             Fiat_Currency__c: Fiat_Currency__c.trim(),
             Bank_Name__c: Bank_Name__c.trim(),
