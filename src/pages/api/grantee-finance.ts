@@ -89,9 +89,12 @@ async function handler(req: GranteeFinanceNextApiRequest, res: NextApiResponse):
       Contract_Token__c = token;
       Contract_Network__c = network;
 
-      // Store original ENS name if user submitted an ENS (not a direct address)
+      // Store original ENS name if user submitted an ENS, clear it if they switched to direct address
       if (walletAddressInputType === 'ens' && walletAddress) {
         ENS__c = walletAddress;
+      } else if (walletAddressInputType === 'address') {
+        // Clear ENS field when user submits a direct address (they may have previously used ENS)
+        ENS__c = '';
       }
     }
 
