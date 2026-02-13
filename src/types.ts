@@ -128,17 +128,13 @@ export interface GranteeFinanceFormData extends CaptchaForm {
   contractID: string; // SF API: Contract_ID__c
   securityID: string; // SF API: Security_ID__c
 
-  // ETH/DAI
-  tokenPreference: TokenPreference;
-  l2Payment: L2PaymentPreference; // SF API: Layer2_Payment__c
-  l2Network: string; // SF API: Layer_2_Network__c
+  // Cryptocurrency payment fields
+  walletAddress: string; // User input (ENS name or address) - stored in ENS__c if ENS
+  walletAddressResolved: string; // SF API: Contract_Wallet_Address__c (verified hex address)
+  walletAddressInputType: 'address' | 'ens' | ''; // Used to determine if ENS__c should be populated
+  token: TokenPreference | ''; // SF API: Contract_Token__c (ETH or DAI)
+  network: string; // SF API: Contract_Network__c (Ethereum Mainnet, Arbitrum, Optimism)
   isCentralizedExchange: string; // SF API: Centralized_Exchange_Address__c
-
-  // ETH
-  ethAddress: string; // SF API: ETH_Address__c
-
-  // DAI
-  daiAddress: string; // SF API: DAI_Address__c
 
   // FIAT
   beneficiaryAddress: string; // SF API: Beneficiary_Address__c
@@ -269,7 +265,7 @@ export type RepeatApplicant = 'Yes' | 'No';
 
 export type L2PaymentPreference = RepeatApplicant;
 
-export type PaymentPreference = 'ETH/DAI' | 'Fiat' | '';
+export type PaymentPreference = 'Cryptocurrency' | 'Fiat' | '';
 
 export type TokenPreference = 'ETH' | 'DAI';
 
@@ -328,18 +324,23 @@ export interface GranteeFinanceNextApiRequest extends NextApiRequest {
     beneficiaryName: string;
     contactEmail: string;
     notes: string;
-    ethAddress: string;
-    daiAddress: string;
+    paymentPreference: PaymentPreference;
+    // New unified crypto fields
+    walletAddress: string;
+    walletAddressResolved: string;
+    walletAddressInputType: 'address' | 'ens' | '';
+    token: 'ETH' | 'DAI' | '';
+    network: string;
+    // Fiat fields
     beneficiaryAddress: string;
     fiatCurrencyCode: string;
     bankName: string;
     bankAddress: string;
     IBAN: string;
     SWIFTCode: string;
+    // Common fields
     contractID: string;
     securityID: string;
-    l2Payment: boolean;
-    l2Network: string;
     isCentralizedExchange: boolean;
   };
 }

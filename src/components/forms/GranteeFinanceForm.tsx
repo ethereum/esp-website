@@ -19,7 +19,7 @@ import { Select } from 'chakra-react-select';
 
 import { PageText, DropdownIndicator } from '../UI';
 import { SubmitButton } from '../SubmitButton';
-import { Captcha } from '.';
+import { Captcha, WalletAddressInput } from '.';
 
 import { api } from './api';
 
@@ -33,12 +33,11 @@ import {
 
 import { chakraStyles } from './selectStyles';
 
-import { GranteeFinanceFormData, TokenPreference, PaymentPreference } from '../../types';
-import { SUPPORTED_LAYERS_2_OPTIONS } from './constants';
+import { GranteeFinanceFormData, PaymentPreference } from '../../types';
+import { TOKEN_OPTIONS, NETWORK_OPTIONS } from './constants';
 
 export const GranteeFinanceForm: FC = () => {
   const [paymentPreference, setPaymentPreference] = useState<PaymentPreference>('');
-  const [tokenPreference, setTokenPreference] = useState<TokenPreference>('ETH');
   const router = useRouter();
   const toast = useToast();
   const methods = useForm<GranteeFinanceFormData>({
@@ -55,15 +54,12 @@ export const GranteeFinanceForm: FC = () => {
   } = methods;
 
   const hasPaymentPreferenceSet = paymentPreference !== '';
-  const receivesCrypto = paymentPreference === 'ETH/DAI';
+  const receivesCrypto = paymentPreference === 'Cryptocurrency';
   const receivesFiat = paymentPreference === 'Fiat';
-  const preferETH = receivesCrypto && tokenPreference === 'ETH';
-  const preferDAI = receivesCrypto && tokenPreference === 'DAI';
 
   // for conditional fields, get the current values
   const bankAddress = watch('bankAddress');
   const fiatCurrencyCode = watch('fiatCurrencyCode');
-  const isL2Selected = watch('l2Payment')?.includes('Yes');
 
   // if the bank address contains the string 'India' or the fiat currency code
   // is 'INR', alert for IFSC code within Notes field
@@ -148,10 +144,11 @@ export const GranteeFinanceForm: FC = () => {
                       bankAddress: '',
                       IBAN: '',
                       SWIFTCode: '',
-                      tokenPreference: 'ETH',
-                      l2Payment: 'No',
-                      ethAddress: '',
-                      daiAddress: ''
+                      walletAddress: '',
+                      walletAddressResolved: '',
+                      walletAddressInputType: '',
+                      token: '',
+                      network: ''
                     });
                   }}
                   value={value}
@@ -159,8 +156,8 @@ export const GranteeFinanceForm: FC = () => {
                   colorScheme='white'
                 >
                   <Stack direction='row'>
-                    <Radio size='lg' name='ethDaiOrFiat' value='ETH/DAI' mr={8}>
-                      <PageText fontSize='input'>Receive ETH/DAI</PageText>
+                    <Radio size='lg' name='ethDaiOrFiat' value='Cryptocurrency' mr={8}>
+                      <PageText fontSize='input'>Receive Cryptocurrency</PageText>
                     </Radio>
 
                     <Radio size='lg' name='ethDaiOrFiat' value='Fiat'>
@@ -257,258 +254,111 @@ export const GranteeFinanceForm: FC = () => {
           <Box display={receivesCrypto ? 'block' : 'none'}>
             <Fade in={receivesCrypto} delay={0.25}>
               <Controller
-                name='tokenPreference'
+                name='token'
                 control={control}
-                rules={{ required: receivesCrypto }}
-                defaultValue='ETH'
-                render={({ field: { onChange, value } }) => (
-                  <FormControl id='token-preference-control' isRequired={receivesCrypto} mb={8}>
-                    <FormLabel htmlFor='tokenPreference' mb={4}>
+                rules={{
+                  required: receivesCrypto,
+                  validate: value => value !== ''
+                }}
+                defaultValue=''
+                render={({ field: { onChange }, fieldState: { error } }) => (
+                  <FormControl id='token-control' isRequired={receivesCrypto} mb={8}>
+                    <FormLabel htmlFor='token' mb={1}>
                       <PageText display='inline' fontSize='input'>
-                        Token payment preference
+                        Token
                       </PageText>
                     </FormLabel>
 
-                    <RadioGroup
-                      id='tokenPreference'
-                      onChange={(value: TokenPreference) => {
-                        onChange(value);
-                        setTokenPreference(value);
-                        reset({
-                          // keep paymentPreference, beneficiaryName, contactEmail, notes and contractID
-                          // reset the other fields
-                          ...getValues(),
-                          ethAddress: '',
-                          daiAddress: ''
-                        });
-                      }}
-                      value={value}
-                      fontSize='input'
-                      colorScheme='white'
-                    >
-                      <Stack direction='row'>
-                        <Radio size='lg' name='tokenPreference' value='ETH' mr={8}>
-                          <PageText fontSize='input'>Receive ETH</PageText>
-                        </Radio>
+                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
+                      Select the cryptocurrency you would like to receive.
+                    </PageText>
 
-                        <Radio size='lg' name='tokenPreference' value='DAI'>
-                          <PageText fontSize='input'>Receive DAI</PageText>
-                        </Radio>
-                      </Stack>
-                    </RadioGroup>
+                    <Box mt={3}>
+                      <Select
+                        id='token'
+                        options={TOKEN_OPTIONS}
+                        onChange={option =>
+                          onChange((option as (typeof TOKEN_OPTIONS)[number]).value)
+                        }
+                        components={{ DropdownIndicator }}
+                        placeholder='Select token'
+                        closeMenuOnSelect={true}
+                        selectedOptionColor='brand.option'
+                        chakraStyles={chakraStyles}
+                      />
+                    </Box>
+
+                    {error && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Token selection is required.
+                        </PageText>
+                      </Box>
+                    )}
                   </FormControl>
                 )}
               />
 
               <Controller
-                name='l2Payment'
+                name='network'
                 control={control}
-                rules={{ required: receivesCrypto }}
-                defaultValue='No'
-                render={({ field: { onChange, value } }) => (
-                  <FormControl id='l2Payment-control' isRequired={receivesCrypto} mb={8}>
-                    <FormLabel htmlFor='l2Payment' mb={1}>
+                rules={{
+                  required: receivesCrypto,
+                  validate: value => value !== ''
+                }}
+                defaultValue=''
+                render={({ field: { onChange }, fieldState: { error } }) => (
+                  <FormControl id='network-control' isRequired={receivesCrypto} mb={8}>
+                    <FormLabel htmlFor='network' mb={1}>
                       <PageText display='inline' fontSize='input'>
-                        Layer 2 Payment
+                        Network
                       </PageText>
                     </FormLabel>
 
                     <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                      Select &lsquo;Yes&rsquo; if you would like your payment to be processed on a
-                      Layer 2 network, versus the Ethereum Mainnet.
+                      Select the network on which you would like to receive payment.
                     </PageText>
 
-                    <RadioGroup
-                      id='l2Payment'
-                      onChange={onChange}
-                      value={value}
-                      fontSize='input'
-                      colorScheme='white'
-                      mt={3}
-                    >
-                      <Stack direction='row'>
-                        <Radio size='lg' name='l2Payment' value='Yes' mr={8}>
-                          <PageText fontSize='input'>Yes</PageText>
-                        </Radio>
+                    <Box mt={3}>
+                      <Select
+                        id='network'
+                        options={NETWORK_OPTIONS}
+                        onChange={option =>
+                          onChange((option as (typeof NETWORK_OPTIONS)[number]).value)
+                        }
+                        components={{ DropdownIndicator }}
+                        placeholder='Select network'
+                        closeMenuOnSelect={true}
+                        selectedOptionColor='brand.option'
+                        chakraStyles={chakraStyles}
+                      />
+                    </Box>
 
-                        <Radio size='lg' name='l2Payment' value='No'>
-                          <PageText fontSize='input'>No</PageText>
-                        </Radio>
-                      </Stack>
-                    </RadioGroup>
+                    {error && (
+                      <Box mt={1}>
+                        <PageText as='small' fontSize='helpText' color='red.500'>
+                          Network selection is required.
+                        </PageText>
+                      </Box>
+                    )}
                   </FormControl>
                 )}
               />
 
-              <Box display={isL2Selected ? 'block' : 'none'}>
-                <Fade in={isL2Selected} delay={0.25}>
-                  <Controller
-                    name='l2Network'
-                    control={control}
-                    rules={{
-                      required: isL2Selected,
-                      validate: value => value !== ''
-                    }}
-                    render={({ field: { onChange }, fieldState: { error } }) => (
-                      <FormControl id='l2Network-control' isRequired={receivesCrypto} mb={8}>
-                        <FormLabel htmlFor='l2Network' mb={1}>
-                          <PageText display='inline' fontSize='input'>
-                            Which Layer 2 Network?
-                          </PageText>
-                        </FormLabel>
-
-                        <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                          These are the networks we currently support.
-                        </PageText>
-
-                        <Box mt={3}>
-                          <Select
-                            id='l2Network'
-                            options={SUPPORTED_LAYERS_2_OPTIONS}
-                            onChange={option =>
-                              onChange(
-                                (option as (typeof SUPPORTED_LAYERS_2_OPTIONS)[number]).value
-                              )
-                            }
-                            components={{ DropdownIndicator }}
-                            placeholder='Select'
-                            closeMenuOnSelect={true}
-                            selectedOptionColor='brand.option'
-                            chakraStyles={chakraStyles}
-                          />
-                        </Box>
-
-                        {error && (
-                          <Box mt={1}>
-                            <PageText as='small' fontSize='helpText' color='red.500'>
-                              Layer 2 network is required.
-                            </PageText>
-                          </Box>
-                        )}
-                      </FormControl>
-                    )}
-                  />
-                </Fade>
+              <Box mb={8}>
+                <WalletAddressInput
+                  id='walletAddress'
+                  label='Wallet Address'
+                  helpText={
+                    <>
+                      Enter an Ethereum address (0x...) or ENS name (e.g., name.eth) to receive
+                      payment. Make sure it&apos;s a secured wallet that you control.
+                    </>
+                  }
+                  isRequired={receivesCrypto}
+                />
               </Box>
-            </Fade>
-          </Box>
 
-          <Box display={preferETH ? 'block' : 'none'}>
-            <Fade in={preferETH} delay={0.25}>
-              <FormControl id='eth-address-control' isRequired={preferETH} mb={8}>
-                <FormLabel htmlFor='ethAddress' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    ETH Address
-                  </PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Ethereum address to receive ETH. Make sure it&apos;s a secured wallet that you
-                  control.
-                </PageText>
-
-                <Input
-                  id='ethAddress'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  mt={3}
-                  {...register('ethAddress', {
-                    required: preferETH,
-                    maxLength: 50,
-                    pattern: /^(0x){1}[0-9a-fA-F]{40}$/
-                  })}
-                />
-
-                {errors?.ethAddress?.type === 'required' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      ETH address is required.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.ethAddress?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      ETH address cannot exceed 50 characters.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.ethAddress?.type === 'pattern' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      ETH address must have a valid format.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
-            </Fade>
-          </Box>
-
-          <Box display={preferDAI ? 'block' : 'none'}>
-            <Fade in={preferDAI} delay={0.25}>
-              <FormControl id='dai-address-control' isRequired={preferDAI} mb={8}>
-                <FormLabel htmlFor='daiAddress' mb={1}>
-                  <PageText display='inline' fontSize='input'>
-                    DAI Address
-                  </PageText>
-                </FormLabel>
-
-                <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                  Ethereum address to receive DAI. Make sure it&apos;s a secured wallet that you
-                  control.
-                </PageText>
-
-                <Input
-                  id='daiAddress'
-                  type='text'
-                  bg='white'
-                  borderRadius={0}
-                  borderColor='brand.border'
-                  h='56px'
-                  _placeholder={{ fontSize: 'input' }}
-                  color='brand.paragraph'
-                  fontSize='input'
-                  mt={3}
-                  {...register('daiAddress', {
-                    required: preferDAI,
-                    maxLength: 50,
-                    pattern: /^(0x){1}[0-9a-fA-F]{40}$/
-                  })}
-                />
-
-                {errors?.daiAddress?.type === 'required' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      ETH address is required.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.daiAddress?.type === 'maxLength' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      ETH address cannot exceed 50 characters.
-                    </PageText>
-                  </Box>
-                )}
-                {errors?.daiAddress?.type === 'pattern' && (
-                  <Box mt={1}>
-                    <PageText as='small' fontSize='helpText' color='red.500'>
-                      DAI address must have a valid format.
-                    </PageText>
-                  </Box>
-                )}
-              </FormControl>
-            </Fade>
-          </Box>
-
-          <Box display={receivesCrypto ? 'block' : 'none'}>
-            <Fade in={receivesCrypto} delay={0.25}>
               <Controller
                 name='isCentralizedExchange'
                 control={control}
