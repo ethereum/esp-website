@@ -258,7 +258,7 @@ export const GranteeFinanceForm: FC = () => {
                 control={control}
                 rules={{
                   required: receivesCrypto,
-                  validate: value => value !== ''
+                  validate: value => !receivesCrypto || value !== ''
                 }}
                 defaultValue=''
                 render={({ field: { onChange }, fieldState: { error } }) => (
@@ -304,7 +304,7 @@ export const GranteeFinanceForm: FC = () => {
                 control={control}
                 rules={{
                   required: receivesCrypto,
-                  validate: value => value !== ''
+                  validate: value => !receivesCrypto || value !== ''
                 }}
                 defaultValue=''
                 render={({ field: { onChange }, fieldState: { error } }) => (
