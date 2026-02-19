@@ -35,6 +35,7 @@ import { chakraStyles } from './selectStyles';
 
 import { GranteeFinanceFormData, PaymentPreference } from '../../types';
 import { TOKEN_OPTIONS, NETWORK_OPTIONS } from './constants';
+import { createCryptoFieldRules } from './granteeFinanceValidation';
 
 export const GranteeFinanceForm: FC = () => {
   const [paymentPreference, setPaymentPreference] = useState<PaymentPreference>('');
@@ -256,10 +257,7 @@ export const GranteeFinanceForm: FC = () => {
               <Controller
                 name='token'
                 control={control}
-                rules={{
-                  required: receivesCrypto,
-                  validate: value => !receivesCrypto || value !== ''
-                }}
+                rules={createCryptoFieldRules(paymentPreference)}
                 defaultValue=''
                 render={({ field: { onChange }, fieldState: { error } }) => (
                   <FormControl id='token-control' isRequired={receivesCrypto} mb={8}>
@@ -302,10 +300,7 @@ export const GranteeFinanceForm: FC = () => {
               <Controller
                 name='network'
                 control={control}
-                rules={{
-                  required: receivesCrypto,
-                  validate: value => !receivesCrypto || value !== ''
-                }}
+                rules={createCryptoFieldRules(paymentPreference)}
                 defaultValue=''
                 render={({ field: { onChange }, fieldState: { error } }) => (
                   <FormControl id='network-control' isRequired={receivesCrypto} mb={8}>
