@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Flex,
+  Grid,
   IconButton,
   Input,
   InputGroup,
@@ -17,10 +18,9 @@ import {
   Text,
   Th,
   Thead,
-  Tooltip,
   Tr
 } from '@chakra-ui/react';
-import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Info, Search } from 'lucide-react';
+import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Search } from 'lucide-react';
 import { FC, useMemo, useRef, useState } from 'react';
 
 import { GrantRecord } from '../../types/grants';
@@ -106,36 +106,27 @@ const RoundsFilterMenu: FC<RoundsFilterMenuProps> = ({ value, options, onChange 
         <SelectArrowIcon />
       </Flex>
     </MenuButton>
-    <MenuList maxH='300px' overflowY='auto'>
+    <MenuList maxH='400px' overflowY='auto' maxW={{ base: 'calc(100vw - 40px)', md: '400px' }}>
       <MenuItem onClick={() => onChange(null)} fontWeight={!value ? 'bold' : 'normal'}>
         All Rounds
       </MenuItem>
       {options.map(option => {
         const description = getRoundDescription(option);
         return (
-          <Tooltip
+          <MenuItem
             key={option}
-            label={description}
-            placement='right'
-            hasArrow
-            isDisabled={!description}
-            bg='brand.paragraph'
-            color='white'
-            p={3}
-            borderRadius='md'
-            maxW='250px'
-            openDelay={300}
+            onClick={() => onChange(option)}
+            py={description ? 2 : undefined}
           >
-            <MenuItem
-              onClick={() => onChange(option)}
-              fontWeight={value === option ? 'bold' : 'normal'}
-            >
-              <Flex align='center' gap={2} w='100%' justify='space-between'>
-                <Text>{option}</Text>
-                {description && <Info size={14} color='#7c7ba1' />}
-              </Flex>
-            </MenuItem>
-          </Tooltip>
+            <Box>
+              <Text fontWeight={value === option ? 'bold' : 'normal'}>{option}</Text>
+              {description && (
+                <Text fontSize='xs' color='brand.helpText' mt={0.5} whiteSpace='normal'>
+                  {description}
+                </Text>
+              )}
+            </Box>
+          </MenuItem>
         );
       })}
     </MenuList>
@@ -246,9 +237,9 @@ export const GrantsTable: FC<GrantsTableProps> = ({
         gap={4}
         flexDirection={{ base: 'column', md: 'row' }}
         justifyContent='space-between'
-        alignItems={{ base: 'stretch', md: 'center' }}
+        alignItems={{ base: 'stretch', md: 'start' }}
       >
-        <InputGroup maxW={{ md: '320px' }}>
+        <InputGroup maxW={{ md: '320px' }} >
           <InputLeftElement pointerEvents='none'>
             <Search size={18} color='#7c7ba1' />
           </InputLeftElement>
@@ -261,7 +252,7 @@ export const GrantsTable: FC<GrantsTableProps> = ({
           />
         </InputGroup>
 
-        <Flex gap={2} flexWrap='wrap'>
+        <Box display={{ base: 'grid', md: 'flex' }} gridTemplateColumns={{ base: 'repeat(2, 1fr)', md: 'none' }} gap={2} flexWrap='wrap'>
           <FilterMenu
             label='All Domains'
             value={domainFilter}
@@ -295,7 +286,7 @@ export const GrantsTable: FC<GrantsTableProps> = ({
             minW='120px'
             maxH='300px'
           />
-        </Flex>
+        </Box>
       </Flex>
 
       <Text fontSize='sm' color='brand.helpText'>
