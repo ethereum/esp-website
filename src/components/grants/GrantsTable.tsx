@@ -33,12 +33,24 @@ const PAGE_SIZE = 15;
  * Keys can be exact matches or pattern prefixes (checked with startsWith).
  */
 const GRANT_ROUND_DESCRIPTIONS: Record<string, string> = {
+  '10 Years of Ethereum Meet Ups': 'Community events celebrating Ethereum\'s 10th anniversary.',
+  '4844 Data Challenge': 'Projects exploring blob data and EIP-4844 use cases.',
   'Academic Grants Round': 'Funding for academic research advancing Ethereum protocol, cryptography, and ecosystem understanding.',
-  'Layer 2 Grants': 'Supporting projects building scaling solutions and Layer 2 infrastructure.',
-  'Data Collection Grants': 'Projects gathering and analyzing Ethereum network data and metrics.',
-  'Devcon Scholars': 'Supporting underrepresented builders to attend Devcon conferences.',
-  'Run A Node Grants': 'Encouraging node operation diversity and decentralization.',
-  'EPF': 'Ethereum Protocol Fellowship — cohort-based program for core protocol contributors.'
+  'Data Collection': 'Projects gathering and analyzing Ethereum network data and metrics.',
+  'Destino Devconnect': 'Travel support for builders attending Devconnect.',
+  'Devcon SEA Dashboard Quadratic Voting': 'Community voting initiative for Devcon Southeast Asia.',
+  'ETHRangers': 'Program supporting Ethereum ecosystem contributors.',
+  'EcoDev Research Fellowship': 'Fellowship for ecosystem development research.',
+  'Ethereum Protocol Fellowship': 'Cohort-based program for aspiring core protocol contributors.',
+  'Next Billion Fellowship': 'Supporting builders focused on onboarding the next billion users.',
+  'PSE Core Program': 'Privacy & Scaling Explorations team core grants.',
+  'Pectra': 'Projects related to the Pectra network upgrade.',
+  'Poseidon Initiative': 'Grants advancing the Poseidon hash function and related cryptography.',
+  'Road to Devcon': 'Supporting community initiatives leading up to Devcon.',
+  'Season of Internships': 'Internship program for emerging Ethereum developers.',
+  'Summer of Protocols': 'Research program exploring protocol design and governance.',
+  'Women in Ethereum Protocol': 'Supporting women contributors to Ethereum core development.',
+  'ZK Grant Round': 'Funding for zero-knowledge proof research and tooling.'
 };
 
 /**
