@@ -64,7 +64,7 @@ export const GrantsDashboard: FC<GrantsDashboardProps> = ({ grants }) => {
   }, [grants]);
 
   return (
-    <Grid templateColumns={{ base: '1fr', md: 'repeat(4, 1fr)' }} gap={6} alignItems='stretch'>
+    <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(4, 1fr)' }} gap={6} alignItems='stretch'>
       <Box
         p={6}
         bg='white'

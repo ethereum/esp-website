@@ -10,6 +10,9 @@ export const HOME_URL = '/';
 
 // about
 export const ABOUT_URL = '/about';
+
+// grants explorer
+export const GRANTS_URL = '/grants';
 export const WHO_WE_SUPPORT_URL = '/about/who-we-support';
 export const HOW_WE_SUPPORT_URL = '/about/how-we-support';
 export const SIDEBAR_ABOUT_LINKS: SidebarLink[] = [

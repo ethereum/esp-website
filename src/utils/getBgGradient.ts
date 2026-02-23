@@ -2,6 +2,7 @@ import {
   ABOUT_URL,
   ACADEMIC_GRANTS_URL,
   APPLICANTS_URL,
+  GRANTS_URL,
   HOME_URL
 } from '../constants';
 
@@ -18,6 +19,11 @@ export const getBgGradient = (path: string) => {
 
   // about page gradient
   if (path.startsWith(ABOUT_URL)) {
+    return 'linear(to-b, brand.about.bgGradient.start 0%, brand.about.bgGradient.end 77.6%, brand.about.rgba 100%)';
+  }
+
+  // grants explorer gradient (same as about)
+  if (path.startsWith(GRANTS_URL)) {
     return 'linear(to-b, brand.about.bgGradient.start 0%, brand.about.bgGradient.end 77.6%, brand.about.rgba 100%)';
   }
 
