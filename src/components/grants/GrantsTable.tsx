@@ -17,15 +17,46 @@ import {
   Text,
   Th,
   Thead,
+  Tooltip,
   Tr
 } from '@chakra-ui/react';
-import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Search } from 'lucide-react';
+import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Info, Search } from 'lucide-react';
 import { FC, useMemo, useRef, useState } from 'react';
 
 import { GrantRecord } from '../../types/grants';
 import { SelectArrowIcon } from '../UI/icons';
 
 const PAGE_SIZE = 15;
+
+/**
+ * Grant round descriptions for the filter dropdown.
+ * Keys can be exact matches or pattern prefixes (checked with startsWith).
+ */
+const GRANT_ROUND_DESCRIPTIONS: Record<string, string> = {
+  'Academic Grants Round': 'Funding for academic research advancing Ethereum protocol, cryptography, and ecosystem understanding.',
+  'Layer 2 Grants': 'Supporting projects building scaling solutions and Layer 2 infrastructure.',
+  'Data Collection Grants': 'Projects gathering and analyzing Ethereum network data and metrics.',
+  'Devcon Scholars': 'Supporting underrepresented builders to attend Devcon conferences.',
+  'Run A Node Grants': 'Encouraging node operation diversity and decentralization.',
+  'EPF': 'Ethereum Protocol Fellowship — cohort-based program for core protocol contributors.'
+};
+
+/**
+ * Get description for a grant round by matching exact name or prefix pattern.
+ */
+function getRoundDescription(roundName: string): string | null {
+  // Check exact match first
+  if (GRANT_ROUND_DESCRIPTIONS[roundName]) {
+    return GRANT_ROUND_DESCRIPTIONS[roundName];
+  }
+  // Check prefix patterns (e.g., "Academic Grants Round 2024" matches "Academic Grants Round")
+  for (const [pattern, description] of Object.entries(GRANT_ROUND_DESCRIPTIONS)) {
+    if (roundName.startsWith(pattern)) {
+      return description;
+    }
+  }
+  return null;
+}
 
 interface FilterMenuProps {
   label: string;
@@ -61,6 +92,56 @@ const FilterMenu: FC<FilterMenuProps> = ({ label, value, options, onChange, minW
   </Menu>
 );
 
+interface RoundsFilterMenuProps {
+  value: string | null;
+  options: string[];
+  onChange: (value: string | null) => void;
+}
+
+const RoundsFilterMenu: FC<RoundsFilterMenuProps> = ({ value, options, onChange }) => (
+  <Menu>
+    <MenuButton as={Button} variant='outline' size='sm' minW='140px'>
+      <Flex gap={2} alignItems='center' justifyContent='space-between'>
+        <Text noOfLines={1}>{value || 'All Rounds'}</Text>
+        <SelectArrowIcon />
+      </Flex>
+    </MenuButton>
+    <MenuList maxH='300px' overflowY='auto'>
+      <MenuItem onClick={() => onChange(null)} fontWeight={!value ? 'bold' : 'normal'}>
+        All Rounds
+      </MenuItem>
+      {options.map(option => {
+        const description = getRoundDescription(option);
+        return (
+          <Tooltip
+            key={option}
+            label={description}
+            placement='right'
+            hasArrow
+            isDisabled={!description}
+            bg='brand.paragraph'
+            color='white'
+            p={3}
+            borderRadius='md'
+            maxW='250px'
+            openDelay={300}
+          >
+            <MenuItem
+              onClick={() => onChange(option)}
+              fontWeight={value === option ? 'bold' : 'normal'}
+            >
+              <Flex align='center' gap={2} w='100%' justify='space-between'>
+                <Text>{option}</Text>
+                {description && <Info size={14} color='#7c7ba1' />}
+              </Flex>
+            </MenuItem>
+          </Tooltip>
+        );
+      })}
+    </MenuList>
+  </Menu>
+);
+
 interface GrantsTableProps {
   grants: GrantRecord[];
   searchQuery: string;
@@ -77,6 +158,9 @@ interface GrantsTableProps {
   yearFilter: string | null;
   onYearFilterChange: (year: string | null) => void;
   yearOptions: string[];
+  quarterFilter: string | null;
+  onQuarterFilterChange: (quarter: string | null) => void;
+  quarterOptions: string[];
   onGrantClick: (grant: GrantRecord) => void;
   currentPage: number;
   onPageChange: (page: number) => void;
@@ -98,6 +182,9 @@ export const GrantsTable: FC<GrantsTableProps> = ({
   yearFilter,
   onYearFilterChange,
   yearOptions,
+  quarterFilter,
+  onQuarterFilterChange,
+  quarterOptions,
   onGrantClick,
   currentPage,
   onPageChange
@@ -188,12 +275,10 @@ export const GrantsTable: FC<GrantsTableProps> = ({
             options={outputOptions}
             onChange={onOutputFilterChange}
           />
-          <FilterMenu
-            label='All Rounds'
+          <RoundsFilterMenu
             value={grantRoundFilter}
             options={grantRoundOptions}
             onChange={onGrantRoundFilterChange}
-            maxH='300px'
           />
           <FilterMenu
             label='All Years'
@@ -201,6 +286,14 @@ export const GrantsTable: FC<GrantsTableProps> = ({
             options={yearOptions}
             onChange={onYearFilterChange}
             minW='100px'
+          />
+          <FilterMenu
+            label='All Quarters'
+            value={quarterFilter}
+            options={quarterOptions}
+            onChange={onQuarterFilterChange}
+            minW='120px'
+            maxH='300px'
           />
         </Flex>
       </Flex>

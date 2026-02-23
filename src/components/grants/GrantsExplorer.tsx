@@ -21,6 +21,7 @@ export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
   const [outputFilter, setOutputFilter] = useState<string | null>(null);
   const [grantRoundFilter, setGrantRoundFilter] = useState<string | null>(null);
   const [yearFilter, setYearFilter] = useState<string | null>(null);
+  const [quarterFilter, setQuarterFilter] = useState<string | null>(null);
   const [selectedGrant, setSelectedGrant] = useState<GrantRecord | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -28,7 +29,7 @@ export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
   // Reset to page 1 when filters change
   useEffect(() => {
     setCurrentPage(1);
-  }, [searchQuery, domainFilter, outputFilter, grantRoundFilter, yearFilter]);
+  }, [searchQuery, domainFilter, outputFilter, grantRoundFilter, yearFilter, quarterFilter]);
 
   const domainOptions = useMemo(() => {
     const domains = Array.from(new Set(grants.map(g => g.domain).filter((d): d is string => d !== null)));
@@ -52,6 +53,11 @@ export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
     return Array.from(new Set(grants.map(g => g.fiscalQuarter.split(' ')[0]))).sort().reverse();
   }, [grants]);
 
+  const quarterOptions = useMemo(() => {
+    // Full fiscal quarters (e.g., "2025 Q1", "2024 Q4")
+    return Array.from(new Set(grants.map(g => g.fiscalQuarter))).sort().reverse();
+  }, [grants]);
+
   const filteredGrants = useMemo(() => {
     const lowerQuery = searchQuery.toLowerCase();
     return grants.filter(grant => {
@@ -64,10 +70,11 @@ export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
       const matchesOutput = outputFilter === null || grant.output === outputFilter;
       const matchesGrantRound = grantRoundFilter === null || grant.grantRound === grantRoundFilter;
       const matchesYear = yearFilter === null || grant.fiscalQuarter.startsWith(yearFilter);
+      const matchesQuarter = quarterFilter === null || grant.fiscalQuarter === quarterFilter;
 
-      return matchesSearch && matchesDomain && matchesOutput && matchesGrantRound && matchesYear;
+      return matchesSearch && matchesDomain && matchesOutput && matchesGrantRound && matchesYear && matchesQuarter;
     });
-  }, [grants, searchQuery, domainFilter, outputFilter, grantRoundFilter, yearFilter]);
+  }, [grants, searchQuery, domainFilter, outputFilter, grantRoundFilter, yearFilter, quarterFilter]);
 
   const handleGrantClick = (grant: GrantRecord) => {
     setSelectedGrant(grant);
@@ -100,6 +107,9 @@ export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
           yearFilter={yearFilter}
           onYearFilterChange={setYearFilter}
           yearOptions={yearOptions}
+          quarterFilter={quarterFilter}
+          onQuarterFilterChange={setQuarterFilter}
+          quarterOptions={quarterOptions}
           onGrantClick={handleGrantClick}
           currentPage={currentPage}
           onPageChange={setCurrentPage}
