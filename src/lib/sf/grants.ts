@@ -3,19 +3,14 @@ import { deriveFiscalQuarter, getFiscalYearStart } from '../../utils/fiscalYear'
 import { createConnection, loginToSalesforce } from './index';
 
 /**
- * Whitelist of record types to show in public grants explorer
+ * Record types to exclude from public grants explorer
  */
-const PUBLIC_RECORD_TYPES = [
-  'Sponsorships',
-  'Proactive community grants',
-  'Financial support',
-  'Matching funds'
-];
+const EXCLUDED_RECORD_TYPES = ['Private Grant', 'Non-Financial Support'];
 
 /**
- * Stages to exclude from public view
+ * Stages to include in public view
  */
-const EXCLUDED_STAGES = ['In Progress', 'Prospecting'];
+const ALLOWED_STAGES = ['Active', 'Completed'];
 
 /**
  * Get all public grants from Salesforce
@@ -41,28 +36,28 @@ export async function getPublicGrants(): Promise<GrantRecord[]> {
 
   const twoFYAgo = getFiscalYearStart(2);
 
-  const recordTypesFilter = PUBLIC_RECORD_TYPES.map(t => `'${t}'`).join(', ');
-  const stagesFilter = EXCLUDED_STAGES.map(s => `'${s}'`).join(', ');
+  const recordTypesFilter = EXCLUDED_RECORD_TYPES.map(t => `'${t}'`).join(', ');
+  const stagesFilter = ALLOWED_STAGES.map(s => `'${s}'`).join(', ');
 
   const query = `
     SELECT
       Id,
       Name,
-      Project_Description__c,
+      Project_Description_Public__c,
       Opportunity_Domain__c,
       Opportunity_Output__c,
       Grantee_Contact_Details__c,
       Project_Repo__c,
-      CloseDate,
+      Opportunity_Active_Date__c,
       Proactive_Community_Grants_Round__c
     FROM Opportunity
     WHERE
-      RecordType.Name IN (${recordTypesFilter})
+      RecordType.Name NOT IN (${recordTypesFilter})
       AND Type != 'Impact Gift'
-      AND CloseDate != NULL
-      AND CloseDate >= ${twoFYAgo}
-      AND StageName NOT IN (${stagesFilter})
-    ORDER BY CloseDate DESC
+      AND Opportunity_Active_Date__c != NULL
+      AND Opportunity_Active_Date__c >= ${twoFYAgo}
+      AND StageName IN (${stagesFilter})
+    ORDER BY Opportunity_Active_Date__c DESC
   `;
 
   const allRecords: SFOpportunityRecord[] = [];
@@ -191,21 +186,21 @@ function sanitizeContact(value: string | null): string | null {
  * Handles null fields gracefully
  */
 function mapSFRecordToGrant(record: SFOpportunityRecord): GrantRecord | null {
-  if (!record.CloseDate) {
-    console.warn(`Grant ${record.Id} excluded: missing close date`);
+  if (!record.Opportunity_Active_Date__c) {
+    console.warn(`Grant ${record.Id} excluded: missing active date`);
     return null;
   }
 
   return {
     id: record.Id,
     projectName: record.Name,
-    description: record.Project_Description__c || null,
+    description: record.Project_Description_Public__c || null,
     domain: record.Opportunity_Domain__c || null,
     output: record.Opportunity_Output__c || null,
     grantRound: record.Proactive_Community_Grants_Round__c || null,
     publicContact: sanitizeContact(record.Grantee_Contact_Details__c || null),
     projectRepo: sanitizeUrl(record.Project_Repo__c || null),
-    activatedDate: record.CloseDate,
-    fiscalQuarter: deriveFiscalQuarter(record.CloseDate)
+    activatedDate: record.Opportunity_Active_Date__c,
+    fiscalQuarter: deriveFiscalQuarter(record.Opportunity_Active_Date__c)
   };
 }
