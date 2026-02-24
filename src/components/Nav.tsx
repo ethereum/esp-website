@@ -36,17 +36,18 @@ export const Nav: FC = () => {
 
   return (
     <header>
-      <Flex justifyContent='space-between' mb={12}>
+      <Flex justifyContent='space-between' mb={12} position='relative'>
         <Box
           onClick={isOpen ? undefined : () => router.push(HOME_URL)}
           cursor={isOpen ? 'default' : 'pointer'}
           sx={isOpen ? { transitionDelay: '0.15s', filter: 'brightness(10)' } : undefined}
-          zIndex={9999}
+          position='relative'
+          zIndex='modal'
         >
           <Image src={GrantManagementLogo} alt='Ecosystem Support Program logo' height={80} width={200} />
         </Box>
 
-        <Box display={{ base: 'block', md: 'none' }} zIndex={9999}>
+        <Box display={{ base: 'block', md: 'none' }} position='relative' zIndex='modal'>
           <Box mt={2}>
             <Menu id='menu-button'>
               {!isOpen && (
@@ -85,7 +86,7 @@ export const Nav: FC = () => {
                     ))}
 
                     <Center>
-                      <Divider borderColor='brand.divider.100' opacity={1} w={72} mt={1} mb={-2} />
+                      <Divider borderColor='brand.divider.100' opacity={1} w={72} my={2} />
                     </Center>
 
                     <Link href={ETHEREUM_ORG_URL} isExternal _hover={{ textDecoration: 'none' }}>

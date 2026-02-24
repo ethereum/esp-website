@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
-import type { AppProps } from 'next/app';
+import App, { AppContext, type AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { init } from '@socialgouv/matomo-next';
+
+import { RoundFrontmatter } from '../types';
 
 import { Layout } from '../components/layout';
 import { Banners } from '../components';
@@ -23,7 +25,11 @@ import favicon from '../../public/images/favicon.ico';
 import favicon16 from '../../public/images/favicon-16x16.png';
 import favicon32 from '../../public/images/favicon-32x32.png';
 
-function MyApp({ Component, pageProps }: AppProps) {
+interface MyAppProps extends AppProps {
+  activeRounds: RoundFrontmatter[];
+}
+
+function MyApp({ Component, pageProps, activeRounds }: MyAppProps) {
   const router = useRouter();
 
   useEffect(() => {
@@ -43,7 +49,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
 
       <ChakraProvider theme={theme}>
-        <Banners />
+        <Banners rounds={activeRounds} />
 
         <Layout
           position='relative'
@@ -57,5 +63,19 @@ function MyApp({ Component, pageProps }: AppProps) {
     </>
   );
 }
+
+MyApp.getInitialProps = async (appContext: AppContext) => {
+  const appProps = await App.getInitialProps(appContext);
+
+  let activeRounds: RoundFrontmatter[] = [];
+
+  // Only fetch on server - getActiveRounds uses fs
+  if (typeof window === 'undefined') {
+    const { getActiveRounds } = await import('../lib/rounds');
+    activeRounds = getActiveRounds();
+  }
+
+  return { ...appProps, activeRounds };
+};
 
 export default MyApp;

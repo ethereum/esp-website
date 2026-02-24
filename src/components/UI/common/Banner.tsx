@@ -15,6 +15,8 @@ export const Banner: FC<Props> = ({ children, ...props }) => {
       alignItems='center'
       bg='brand.accent'
       color='white'
+      position='relative'
+      zIndex='banner'
       {...props}
     >
       {children}
