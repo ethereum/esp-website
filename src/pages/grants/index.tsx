@@ -1,5 +1,6 @@
-import { Box, Container, Stack } from '@chakra-ui/react';
+import { Box, Grid, Skeleton, SkeletonCircle, Stack } from '@chakra-ui/react';
 import type { GetStaticProps, NextPage } from 'next';
+import dynamic from 'next/dynamic';
 
 import { Description, PageMetadata } from '../../components/UI';
 import { GrantsExplorer } from '../../components/grants';
@@ -7,6 +8,83 @@ import { getPublicGrants } from '../../lib/sf/grants';
 import { GrantRecord } from '../../types/grants';
 
 import aboutHero from '../../../public/images/about-hero.png';
+
+const DashboardSkeleton = () => (
+  <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(4, 1fr)' }} gap={6} alignItems='stretch'>
+    <Box
+      p={6}
+      bg='white'
+      borderRadius='lg'
+      border='1px solid'
+      borderColor='brand.divider.100'
+      shadow='sm'
+      display='flex'
+      flexDirection='column'
+      justifyContent='center'
+    >
+      <Skeleton height='20px' width='120px' mx='auto' mb={4} />
+      <Box h='180px' display='flex' alignItems='flex-end' justifyContent='space-around' px={2}>
+        {[60, 80, 100, 70, 90, 50].map((h, i) => (
+          <Skeleton key={i} width='12%' height={`${h}%`} borderRadius='4px 4px 0 0' />
+        ))}
+      </Box>
+    </Box>
+    <Box
+      p={6}
+      bg='white'
+      borderRadius='lg'
+      border='1px solid'
+      borderColor='brand.divider.100'
+      shadow='sm'
+      display='flex'
+      flexDirection='column'
+      justifyContent='center'
+    >
+      <Skeleton height='20px' width='140px' mx='auto' mb={4} />
+      <Box h='180px' display='flex' flexDirection='column' alignItems='center' justifyContent='center'>
+        <Skeleton height='60px' width='80px' mb={2} />
+        <Skeleton height='14px' width='40px' />
+      </Box>
+    </Box>
+    <Box
+      p={6}
+      bg='white'
+      borderRadius='lg'
+      border='1px solid'
+      borderColor='brand.divider.100'
+      shadow='sm'
+      display='flex'
+      flexDirection='column'
+      justifyContent='center'
+    >
+      <Skeleton height='20px' width='80px' mx='auto' mb={4} />
+      <Box h='180px' display='flex' alignItems='center' justifyContent='center'>
+        <SkeletonCircle size='140px' />
+      </Box>
+    </Box>
+    <Box
+      p={6}
+      bg='white'
+      borderRadius='lg'
+      border='1px solid'
+      borderColor='brand.divider.100'
+      shadow='sm'
+      display='flex'
+      flexDirection='column'
+      justifyContent='center'
+    >
+      <Skeleton height='20px' width='80px' mx='auto' mb={4} />
+      <Box h='180px' display='flex' alignItems='center' justifyContent='center'>
+        <SkeletonCircle size='140px' />
+      </Box>
+    </Box>
+  </Grid>
+);
+
+const GrantsDashboard = dynamic(
+  () => import('../../components/grants/GrantsDashboard').then(m => ({ default: m.GrantsDashboard })),
+  { ssr: false, loading: () => <DashboardSkeleton /> }
+);
 
 interface GrantsPageProps {
   grants: GrantRecord[];
@@ -34,11 +112,10 @@ const Grants: NextPage<GrantsPageProps> = ({ grants }) => {
         </section>
       </Stack>
 
-      <Stack px={{ base: 5, md: 12 }}>
-        <Stack mb={8}>
-          <Box bg='white' position='relative' py={{ md: 12 }} px={{ lg: 12 }}>
-            <GrantsExplorer grants={grants} />
-          </Box>
+      <Stack px={{ base: 5, md: 12, lg: 24 }} spacing={10}>
+        <GrantsDashboard grants={grants} />
+        <Stack mb={8} py={{ md: 12 }}>
+          <GrantsExplorer grants={grants} />
         </Stack>
       </Stack>
 
