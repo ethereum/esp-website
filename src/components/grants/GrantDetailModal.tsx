@@ -42,7 +42,7 @@ export const GrantDetailModal: FC<GrantDetailModalProps> = ({ grant, isOpen, onC
       <ModalOverlay bg='blackAlpha.300' backdropFilter='blur(2px)' />
       <ModalContent mx={4}>
         <ModalCloseButton />
-        <ModalBody py={8} px={6}>
+        <ModalBody pb={8} px={6} pt={10}>
           <Stack spacing={6}>
             <Box>
               <Heading size='md' color='brand.heading' mb={2}>
