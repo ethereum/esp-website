@@ -203,13 +203,29 @@ function sanitizeEmail(value: string | null): string | null {
 }
 
 /**
- * Sanitize social handle - strips @ prefix and validates basic format.
+ * Sanitize social handle - extracts handle from URLs or strips @ prefix.
  * Returns null for empty or clearly invalid values.
  */
 function sanitizeHandle(value: string | null): string | null {
   if (!value) return null;
-  // Remove @ prefix if present, trim whitespace
-  const handle = value.trim().replace(/^@/, '');
+  let handle = value.trim();
+
+  // Extract handle from full URLs (e.g., "https://x.com/summit_defi" -> "summit_defi")
+  const urlPatterns = [
+    /^https?:\/\/(?:www\.)?(?:twitter\.com|x\.com)\/([^/?#]+)/i,
+    /^https?:\/\/(?:www\.)?t\.me\/([^/?#]+)/i
+  ];
+  for (const pattern of urlPatterns) {
+    const match = handle.match(pattern);
+    if (match) {
+      handle = match[1];
+      break;
+    }
+  }
+
+  // Remove @ prefix if present
+  handle = handle.replace(/^@/, '');
+
   // Basic validation: non-empty, no spaces, reasonable length
   if (!handle || handle.includes(' ') || handle.length > 100) return null;
   return handle;
