@@ -5,6 +5,7 @@ import {
   Flex,
   Heading,
   HStack,
+  IconButton,
   Link,
   Modal,
   ModalBody,
@@ -12,9 +13,10 @@ import {
   ModalContent,
   ModalOverlay,
   Stack,
-  Text
+  Text,
+  Tooltip
 } from '@chakra-ui/react';
-import { ExternalLink, Github, Mail } from 'lucide-react';
+import { Github, Mail, MessageCircle, Twitter } from 'lucide-react';
 import { FC } from 'react';
 
 import { GrantRecord } from '../../types/grants';
@@ -32,9 +34,8 @@ export const GrantDetailModal: FC<GrantDetailModalProps> = ({ grant, isOpen, onC
     year: 'numeric',
     month: 'long'
   });
-  const isEmail = grant.publicContact
-    ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(grant.publicContact)
-    : false;
+
+  const hasContacts = grant.email || grant.telegram || grant.twitter || grant.projectRepo;
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size='lg' isCentered>
@@ -80,9 +81,16 @@ export const GrantDetailModal: FC<GrantDetailModalProps> = ({ grant, isOpen, onC
                   <Text fontWeight='500' color='brand.helpText' minW='80px' fontSize='sm'>
                     Round
                   </Text>
-                  <Text color='brand.paragraph' fontSize='sm'>
-                    {grant.grantRound}
-                  </Text>
+                  <Box>
+                    <Text color='brand.paragraph' fontSize='sm'>
+                      {grant.grantRound}
+                    </Text>
+                    {grant.grantRoundDescription && (
+                      <Text color='brand.helpText' fontSize='xs' mt={1}>
+                        {grant.grantRoundDescription}
+                      </Text>
+                    )}
+                  </Box>
                 </Flex>
               )}
 
@@ -96,39 +104,76 @@ export const GrantDetailModal: FC<GrantDetailModalProps> = ({ grant, isOpen, onC
               </Flex>
             </Stack>
 
-            <HStack spacing={3} pt={2}>
-              {grant.projectRepo && (
-                <Button
-                  as={Link}
-                  href={grant.projectRepo}
-                  isExternal
-                  size='sm'
-                  variant='outline'
-                  borderColor='brand.heading'
-                  color='brand.heading'
-                  leftIcon={<Github size={16} />}
-                  _hover={{ bg: 'orange.50', textDecoration: 'none' }}
-                >
-                  GitHub
-                </Button>
-              )}
+            {hasContacts && (
+              <HStack spacing={2} pt={2}>
+                {grant.projectRepo && (
+                  <Tooltip label='GitHub' hasArrow>
+                    <IconButton
+                      as={Link}
+                      href={grant.projectRepo}
+                      isExternal
+                      aria-label='GitHub repository'
+                      size='sm'
+                      variant='outline'
+                      borderColor='brand.heading'
+                      color='brand.heading'
+                      icon={<Github size={16} />}
+                      _hover={{ bg: 'orange.50', textDecoration: 'none' }}
+                    />
+                  </Tooltip>
+                )}
 
-              {grant.publicContact && (
-                <Button
-                  as={Link}
-                  href={isEmail ? `mailto:${grant.publicContact}` : grant.publicContact}
-                  isExternal={!isEmail}
-                  size='sm'
-                  variant='outline'
-                  borderColor='brand.heading'
-                  color='brand.heading'
-                  leftIcon={isEmail ? <Mail size={16} /> : <ExternalLink size={16} />}
-                  _hover={{ bg: 'orange.50', textDecoration: 'none' }}
-                >
-                  Contact
-                </Button>
-              )}
-            </HStack>
+                {grant.email && (
+                  <Tooltip label='Email' hasArrow>
+                    <IconButton
+                      as={Link}
+                      href={`mailto:${grant.email}`}
+                      aria-label='Email contact'
+                      size='sm'
+                      variant='outline'
+                      borderColor='brand.heading'
+                      color='brand.heading'
+                      icon={<Mail size={16} />}
+                      _hover={{ bg: 'orange.50', textDecoration: 'none' }}
+                    />
+                  </Tooltip>
+                )}
+
+                {grant.telegram && (
+                  <Tooltip label='Telegram' hasArrow>
+                    <IconButton
+                      as={Link}
+                      href={`https://t.me/${grant.telegram}`}
+                      isExternal
+                      aria-label='Telegram contact'
+                      size='sm'
+                      variant='outline'
+                      borderColor='brand.heading'
+                      color='brand.heading'
+                      icon={<MessageCircle size={16} />}
+                      _hover={{ bg: 'orange.50', textDecoration: 'none' }}
+                    />
+                  </Tooltip>
+                )}
+
+                {grant.twitter && (
+                  <Tooltip label='X (Twitter)' hasArrow>
+                    <IconButton
+                      as={Link}
+                      href={`https://x.com/${grant.twitter}`}
+                      isExternal
+                      aria-label='X (Twitter) profile'
+                      size='sm'
+                      variant='outline'
+                      borderColor='brand.heading'
+                      color='brand.heading'
+                      icon={<Twitter size={16} />}
+                      _hover={{ bg: 'orange.50', textDecoration: 'none' }}
+                    />
+                  </Tooltip>
+                )}
+              </HStack>
+            )}
           </Stack>
         </ModalBody>
       </ModalContent>

@@ -9,7 +9,10 @@ export interface GrantRecord {
   domain: string | null;
   output: string | null;
   grantRound: string | null;
-  publicContact: string | null;
+  grantRoundDescription: string | null;
+  email: string | null;
+  telegram: string | null;
+  twitter: string | null;
   projectRepo: string | null;
   activatedDate: string;
   fiscalQuarter: string;
@@ -25,8 +28,13 @@ export interface SFOpportunityRecord {
   Project_Description_Public__c: string | null;
   Opportunity_Domain__c: string | null;
   Opportunity_Output__c: string | null;
-  Grantee_Contact_Details__c: string | null;
   Project_Repo__c: string | null;
   Opportunity_Active_Date__c: string | null;
-  Proactive_Community_Grants_Round__c?: string | null;
+  Opportunity_Public_Email__c: string | null;
+  Opportunity_Telegram_Handle__c: string | null;
+  Opportunity_Twitter_Handle__c: string | null;
+  Opportunity_Grant_Round__r?: {
+    Name: string | null;
+    Grant_Round_Public_Description__c: string | null;
+  } | null;
 }

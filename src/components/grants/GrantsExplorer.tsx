@@ -39,7 +39,15 @@ export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
   }, [grants]);
 
   const grantRoundOptions = useMemo(() => {
-    return Array.from(new Set(grants.map(g => g.grantRound).filter((r): r is string => r !== null))).sort();
+    const roundMap = new Map<string, string | null>();
+    for (const grant of grants) {
+      if (grant.grantRound && !roundMap.has(grant.grantRound)) {
+        roundMap.set(grant.grantRound, grant.grantRoundDescription);
+      }
+    }
+    return Array.from(roundMap.entries())
+      .map(([name, description]) => ({ name, description }))
+      .sort((a, b) => a.name.localeCompare(b.name));
   }, [grants]);
 
   const yearOptions = useMemo(() => {

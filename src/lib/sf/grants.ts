@@ -46,10 +46,13 @@ export async function getPublicGrants(): Promise<GrantRecord[]> {
       Project_Description_Public__c,
       Opportunity_Domain__c,
       Opportunity_Output__c,
-      Grantee_Contact_Details__c,
       Project_Repo__c,
       Opportunity_Active_Date__c,
-      Proactive_Community_Grants_Round__c
+      Opportunity_Public_Email__c,
+      Opportunity_Telegram_Handle__c,
+      Opportunity_Twitter_Handle__c,
+      Opportunity_Grant_Round__r.Name,
+      Opportunity_Grant_Round__r.Grant_Round_Public_Description__c
     FROM Opportunity
     WHERE
       RecordType.Name NOT IN (${recordTypesFilter})
@@ -97,7 +100,10 @@ function getMockGrants(): GrantRecord[] {
       domain: 'Zero-knowledge Proofs',
       output: 'Research',
       grantRound: 'Academic Grants Round 2025',
-      publicContact: 'contact@example.com',
+      grantRoundDescription: 'Supporting academic research advancing Ethereum technology.',
+      email: 'contact@example.com',
+      telegram: 'zkevmresearch',
+      twitter: 'zkevmproject',
       projectRepo: 'https://github.com/example/zkevm',
       activatedDate: '2025-01-15',
       fiscalQuarter: '2025 Q1'
@@ -109,7 +115,10 @@ function getMockGrants(): GrantRecord[] {
       domain: 'Ethereum Protocol',
       output: 'Developer tooling',
       grantRound: 'Academic Grants Round 2024',
-      publicContact: null,
+      grantRoundDescription: 'Supporting academic research advancing Ethereum technology.',
+      email: null,
+      telegram: null,
+      twitter: 'beacontools',
       projectRepo: 'https://github.com/example/beacon-tools',
       activatedDate: '2024-11-20',
       fiscalQuarter: '2024 Q4'
@@ -121,7 +130,10 @@ function getMockGrants(): GrantRecord[] {
       domain: 'Community and education',
       output: 'Ecosystem Development',
       grantRound: null,
-      publicContact: 'edu@example.org',
+      grantRoundDescription: null,
+      email: 'edu@example.org',
+      telegram: 'ethdevworkshops',
+      twitter: null,
       projectRepo: null,
       activatedDate: '2024-08-10',
       fiscalQuarter: '2024 Q3'
@@ -133,7 +145,10 @@ function getMockGrants(): GrantRecord[] {
       domain: 'Security',
       output: 'Developer tooling',
       grantRound: 'Academic Grants Round 2024',
-      publicContact: null,
+      grantRoundDescription: 'Supporting academic research advancing Ethereum technology.',
+      email: null,
+      telegram: null,
+      twitter: null,
       projectRepo: 'https://github.com/example/defi-audit',
       activatedDate: '2024-05-22',
       fiscalQuarter: '2024 Q2'
@@ -145,7 +160,10 @@ function getMockGrants(): GrantRecord[] {
       domain: 'Layer 2',
       output: 'Research',
       grantRound: 'Academic Grants Round 2025',
-      publicContact: 'bridges@example.io',
+      grantRoundDescription: 'Supporting academic research advancing Ethereum technology.',
+      email: 'bridges@example.io',
+      telegram: null,
+      twitter: 'l2bridges',
       projectRepo: null,
       activatedDate: '2024-02-14',
       fiscalQuarter: '2024 Q1'
@@ -169,16 +187,32 @@ function sanitizeUrl(value: string | null): string | null {
 }
 
 /**
- * Validate that a contact value is either an email address or a safe URL.
+ * Validate that a value is a valid email address.
  */
 function isValidEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
-function sanitizeContact(value: string | null): string | null {
+/**
+ * Sanitize email field - only returns valid emails.
+ */
+function sanitizeEmail(value: string | null): string | null {
   if (!value) return null;
-  if (isValidEmail(value)) return value;
-  return sanitizeUrl(value);
+  const trimmed = value.trim();
+  return isValidEmail(trimmed) ? trimmed : null;
+}
+
+/**
+ * Sanitize social handle - strips @ prefix and validates basic format.
+ * Returns null for empty or clearly invalid values.
+ */
+function sanitizeHandle(value: string | null): string | null {
+  if (!value) return null;
+  // Remove @ prefix if present, trim whitespace
+  const handle = value.trim().replace(/^@/, '');
+  // Basic validation: non-empty, no spaces, reasonable length
+  if (!handle || handle.includes(' ') || handle.length > 100) return null;
+  return handle;
 }
 
 /**
@@ -197,8 +231,11 @@ function mapSFRecordToGrant(record: SFOpportunityRecord): GrantRecord | null {
     description: record.Project_Description_Public__c || null,
     domain: record.Opportunity_Domain__c || null,
     output: record.Opportunity_Output__c || null,
-    grantRound: record.Proactive_Community_Grants_Round__c || null,
-    publicContact: sanitizeContact(record.Grantee_Contact_Details__c || null),
+    grantRound: record.Opportunity_Grant_Round__r?.Name || null,
+    grantRoundDescription: record.Opportunity_Grant_Round__r?.Grant_Round_Public_Description__c || null,
+    email: sanitizeEmail(record.Opportunity_Public_Email__c),
+    telegram: sanitizeHandle(record.Opportunity_Telegram_Handle__c),
+    twitter: sanitizeHandle(record.Opportunity_Twitter_Handle__c),
     projectRepo: sanitizeUrl(record.Project_Repo__c || null),
     activatedDate: record.Opportunity_Active_Date__c,
     fiscalQuarter: deriveFiscalQuarter(record.Opportunity_Active_Date__c)

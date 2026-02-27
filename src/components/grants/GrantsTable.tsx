@@ -28,48 +28,6 @@ import { SelectArrowIcon } from '../UI/icons';
 
 const PAGE_SIZE = 15;
 
-/**
- * Grant round descriptions for the filter dropdown.
- * Keys can be exact matches or pattern prefixes (checked with startsWith).
- */
-const GRANT_ROUND_DESCRIPTIONS: Record<string, string> = {
-  '10 Years of Ethereum Meet Ups': 'Community events celebrating Ethereum\'s 10th anniversary.',
-  '4844 Data Challenge': 'Projects exploring blob data and EIP-4844 use cases.',
-  'Academic Grants Round': 'Funding for academic research advancing Ethereum protocol, cryptography, and ecosystem understanding.',
-  'Data Collection': 'Projects gathering and analyzing Ethereum network data and metrics.',
-  'Destino Devconnect': 'Travel support for builders attending Devconnect.',
-  'Devcon SEA Dashboard Quadratic Voting': 'Community voting initiative for Devcon Southeast Asia.',
-  'ETHRangers': 'Program supporting Ethereum ecosystem contributors.',
-  'EcoDev Research Fellowship': 'Fellowship for ecosystem development research.',
-  'Ethereum Protocol Fellowship': 'Cohort-based program for aspiring core protocol contributors.',
-  'Next Billion Fellowship': 'Supporting builders focused on onboarding the next billion users.',
-  'PSE Core Program': 'Privacy & Scaling Explorations team core grants.',
-  'Pectra': 'Projects related to the Pectra network upgrade.',
-  'Poseidon Initiative': 'Grants advancing the Poseidon hash function and related cryptography.',
-  'Road to Devcon': 'Supporting community initiatives leading up to Devcon.',
-  'Season of Internships': 'Internship program for emerging Ethereum developers.',
-  'Summer of Protocols': 'Research program exploring protocol design and governance.',
-  'Women in Ethereum Protocol': 'Supporting women contributors to Ethereum core development.',
-  'ZK Grant Round': 'Funding for zero-knowledge proof research and tooling.'
-};
-
-/**
- * Get description for a grant round by matching exact name or prefix pattern.
- */
-function getRoundDescription(roundName: string): string | null {
-  // Check exact match first
-  if (GRANT_ROUND_DESCRIPTIONS[roundName]) {
-    return GRANT_ROUND_DESCRIPTIONS[roundName];
-  }
-  // Check prefix patterns (e.g., "Academic Grants Round 2024" matches "Academic Grants Round")
-  for (const [pattern, description] of Object.entries(GRANT_ROUND_DESCRIPTIONS)) {
-    if (roundName.startsWith(pattern)) {
-      return description;
-    }
-  }
-  return null;
-}
-
 interface FilterMenuProps {
   label: string;
   value: string | null;
@@ -104,9 +62,14 @@ const FilterMenu: FC<FilterMenuProps> = ({ label, value, options, onChange, minW
   </Menu>
 );
 
+export interface GrantRoundOption {
+  name: string;
+  description: string | null;
+}
+
 interface RoundsFilterMenuProps {
   value: string | null;
-  options: string[];
+  options: GrantRoundOption[];
   onChange: (value: string | null) => void;
 }
 
@@ -122,25 +85,22 @@ const RoundsFilterMenu: FC<RoundsFilterMenuProps> = ({ value, options, onChange 
       <MenuItem onClick={() => onChange(null)} fontWeight={!value ? 'bold' : 'normal'}>
         All Rounds
       </MenuItem>
-      {options.map(option => {
-        const description = getRoundDescription(option);
-        return (
-          <MenuItem
-            key={option}
-            onClick={() => onChange(option)}
-            py={description ? 2 : undefined}
-          >
-            <Box>
-              <Text fontWeight={value === option ? 'bold' : 'normal'}>{option}</Text>
-              {description && (
-                <Text fontSize='xs' color='brand.helpText' mt={0.5} whiteSpace='normal'>
-                  {description}
-                </Text>
-              )}
-            </Box>
-          </MenuItem>
-        );
-      })}
+      {options.map(({ name, description }) => (
+        <MenuItem
+          key={name}
+          onClick={() => onChange(name)}
+          py={description ? 2 : undefined}
+        >
+          <Box>
+            <Text fontWeight={value === name ? 'bold' : 'normal'}>{name}</Text>
+            {description && (
+              <Text fontSize='xs' color='brand.helpText' mt={0.5} whiteSpace='normal'>
+                {description}
+              </Text>
+            )}
+          </Box>
+        </MenuItem>
+      ))}
     </MenuList>
   </Menu>
 );
@@ -157,7 +117,7 @@ interface GrantsTableProps {
   outputOptions: string[];
   grantRoundFilter: string | null;
   onGrantRoundFilterChange: (round: string | null) => void;
-  grantRoundOptions: string[];
+  grantRoundOptions: GrantRoundOption[];
   yearFilter: string | null;
   onYearFilterChange: (year: string | null) => void;
   yearOptions: string[];
