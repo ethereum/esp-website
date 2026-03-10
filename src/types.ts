@@ -15,7 +15,7 @@ import {
   PSE_SPONSORSHIP_CATEGORY_OPTIONS,
   FIAT_CURRENCY_OPTIONS
 } from './components/forms/constants';
-import { ABOUT_URL, APPLICANTS_URL, ESP_BLOG_URL, HOME_URL } from './constants';
+import { ABOUT_URL, APPLICANTS_URL, ESP_BLOG_URL, GRANTS_URL, HOME_URL } from './constants';
 
 export interface TabsMap {
   [name: string]: number;
@@ -298,7 +298,7 @@ export type Timezone = (typeof TIMEZONE_OPTIONS)[number];
 
 export type ApplyingAs = (typeof APPLYING_AS_OPTIONS)[number];
 
-export type Href = typeof HOME_URL | typeof APPLICANTS_URL | typeof ABOUT_URL | typeof ESP_BLOG_URL;
+export type Href = typeof HOME_URL | typeof GRANTS_URL | typeof APPLICANTS_URL | typeof ABOUT_URL | typeof ESP_BLOG_URL;
 
 export interface NavLink {
   href: Href;
