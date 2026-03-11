@@ -28,6 +28,15 @@ import { SelectArrowIcon } from '../UI/icons';
 
 const PAGE_SIZE = 15;
 
+const SortIcon: FC<{
+  column: keyof GrantRecord;
+  sortColumn: keyof GrantRecord | null;
+  sortDirection: 'asc' | 'desc';
+}> = ({ column, sortColumn, sortDirection }) => {
+  if (sortColumn !== column) return null;
+  return sortDirection === 'asc' ? <ChevronUp size={14} /> : <ChevronDown size={14} />;
+};
+
 interface FilterMenuProps {
   label: string;
   value: string | null;
@@ -186,11 +195,6 @@ export const GrantsTable: FC<GrantsTableProps> = ({
     onPageChange(1); // Reset to first page on sort
   };
 
-  const SortIcon = ({ column }: { column: keyof GrantRecord }) => {
-    if (sortColumn !== column) return null;
-    return sortDirection === 'asc' ? <ChevronUp size={14} /> : <ChevronDown size={14} />;
-  };
-
   // Pagination calculations
   const totalPages = Math.max(1, Math.ceil(sortedGrants.length / PAGE_SIZE));
   const safePage = Math.min(currentPage, totalPages);
@@ -284,7 +288,7 @@ export const GrantsTable: FC<GrantsTableProps> = ({
               >
                 <Flex align='center' gap={1}>
                   Project Name
-                  <SortIcon column='projectName' />
+                  <SortIcon column='projectName' sortColumn={sortColumn} sortDirection={sortDirection} />
                 </Flex>
               </Th>
               <Th
@@ -296,7 +300,7 @@ export const GrantsTable: FC<GrantsTableProps> = ({
               >
                 <Flex align='center' gap={1}>
                   Domain
-                  <SortIcon column='domain' />
+                  <SortIcon column='domain' sortColumn={sortColumn} sortDirection={sortDirection} />
                 </Flex>
               </Th>
               <Th
@@ -308,7 +312,7 @@ export const GrantsTable: FC<GrantsTableProps> = ({
               >
                 <Flex align='center' gap={1}>
                   Output
-                  <SortIcon column='output' />
+                  <SortIcon column='output' sortColumn={sortColumn} sortDirection={sortDirection} />
                 </Flex>
               </Th>
               <Th
@@ -320,7 +324,7 @@ export const GrantsTable: FC<GrantsTableProps> = ({
               >
                 <Flex align='center' gap={1}>
                   Date
-                  <SortIcon column='fiscalQuarter' />
+                  <SortIcon column='fiscalQuarter' sortColumn={sortColumn} sortDirection={sortDirection} />
                 </Flex>
               </Th>
             </Tr>
