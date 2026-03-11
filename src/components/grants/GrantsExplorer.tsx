@@ -1,5 +1,5 @@
 import { Stack, useDisclosure } from '@chakra-ui/react';
-import { FC, useEffect, useMemo, useState } from 'react';
+import { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { GrantRecord } from '../../types/grants';
 import { GrantsTable } from './GrantsTable';
@@ -11,6 +11,7 @@ interface GrantsExplorerProps {
 
 export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [debouncedSearch, setDebouncedSearch] = useState('');
   const [domainFilter, setDomainFilter] = useState<string | null>(null);
   const [outputFilter, setOutputFilter] = useState<string | null>(null);
   const [grantRoundFilter, setGrantRoundFilter] = useState<string | null>(null);
@@ -19,11 +20,21 @@ export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
   const [selectedGrant, setSelectedGrant] = useState<GrantRecord | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const debounceRef = useRef<ReturnType<typeof setTimeout>>();
+
+  const handleSearchChange = useCallback((query: string) => {
+    setSearchQuery(query);
+    clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => setDebouncedSearch(query), 250);
+  }, []);
+
+  // Cleanup timeout on unmount
+  useEffect(() => () => clearTimeout(debounceRef.current), []);
 
   // Reset to page 1 when filters change
   useEffect(() => {
     setCurrentPage(1);
-  }, [searchQuery, domainFilter, outputFilter, grantRoundFilter, yearFilter, quarterFilter]);
+  }, [debouncedSearch, domainFilter, outputFilter, grantRoundFilter, yearFilter, quarterFilter]);
 
   const domainOptions = useMemo(() => {
     const domains = Array.from(new Set(grants.map(g => g.domain).filter((d): d is string => d !== null)));
@@ -60,13 +71,19 @@ export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
     return Array.from(new Set(grants.map(g => g.fiscalQuarter))).sort().reverse();
   }, [grants]);
 
+  // Pre-compute lowercase fields once to avoid repeated allocations during search
+  const searchableGrants = useMemo(
+    () => grants.map(g => ({ ...g, _searchName: g.projectName.toLowerCase(), _searchDesc: g.description?.toLowerCase() ?? '' })),
+    [grants]
+  );
+
   const filteredGrants = useMemo(() => {
-    const lowerQuery = searchQuery.toLowerCase();
-    return grants.filter(grant => {
+    const lowerQuery = debouncedSearch.toLowerCase();
+    return searchableGrants.filter(grant => {
       const matchesSearch =
-        searchQuery === '' ||
-        grant.projectName.toLowerCase().includes(lowerQuery) ||
-        grant.description?.toLowerCase().includes(lowerQuery);
+        debouncedSearch === '' ||
+        grant._searchName.includes(lowerQuery) ||
+        grant._searchDesc.includes(lowerQuery);
 
       const matchesDomain = domainFilter === null || grant.domain === domainFilter;
       const matchesOutput = outputFilter === null || grant.output === outputFilter;
@@ -76,7 +93,7 @@ export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
 
       return matchesSearch && matchesDomain && matchesOutput && matchesGrantRound && matchesYear && matchesQuarter;
     });
-  }, [grants, searchQuery, domainFilter, outputFilter, grantRoundFilter, yearFilter, quarterFilter]);
+  }, [searchableGrants, debouncedSearch, domainFilter, outputFilter, grantRoundFilter, yearFilter, quarterFilter]);
 
   const handleGrantClick = (grant: GrantRecord) => {
     setSelectedGrant(grant);
@@ -93,7 +110,7 @@ export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
       <GrantsTable
           grants={filteredGrants}
           searchQuery={searchQuery}
-          onSearchChange={setSearchQuery}
+          onSearchChange={handleSearchChange}
           domainFilter={domainFilter}
           onDomainFilterChange={setDomainFilter}
           domainOptions={domainOptions}
