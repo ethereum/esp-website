@@ -2,73 +2,66 @@ import { Stack, useDisclosure } from '@chakra-ui/react';
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { GrantRecord } from '../../types/grants';
-import { GrantsTable } from './GrantsTable';
+import { GrantsTable, FilterState } from './GrantsTable';
 import { GrantDetailModal } from './GrantDetailModal';
 
 interface GrantsExplorerProps {
   grants: GrantRecord[];
 }
 
+const INITIAL_FILTERS: FilterState = {
+  searchQuery: '',
+  domain: null,
+  output: null,
+  grantRound: null,
+  year: null,
+  quarter: null,
+};
+
 export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [filters, setFilters] = useState<FilterState>(INITIAL_FILTERS);
   const [debouncedSearch, setDebouncedSearch] = useState('');
-  const [domainFilter, setDomainFilter] = useState<string | null>(null);
-  const [outputFilter, setOutputFilter] = useState<string | null>(null);
-  const [grantRoundFilter, setGrantRoundFilter] = useState<string | null>(null);
-  const [yearFilter, setYearFilter] = useState<string | null>(null);
-  const [quarterFilter, setQuarterFilter] = useState<string | null>(null);
   const [selectedGrant, setSelectedGrant] = useState<GrantRecord | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const debounceRef = useRef<ReturnType<typeof setTimeout>>();
+  const debounceRef = useRef<NodeJS.Timeout | null>(null);
 
-  const handleSearchChange = useCallback((query: string) => {
-    setSearchQuery(query);
-    clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(() => setDebouncedSearch(query), 250);
+  const handleFilterChange = useCallback((key: keyof FilterState, value: string | null) => {
+    setFilters(prev => ({ ...prev, [key]: value }));
+    if (key === 'searchQuery') {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+      debounceRef.current = setTimeout(() => setDebouncedSearch(value ?? ''), 250);
+    }
   }, []);
 
   // Cleanup timeout on unmount
-  useEffect(() => () => clearTimeout(debounceRef.current), []);
+  useEffect(() => () => { if (debounceRef.current) clearTimeout(debounceRef.current); }, []);
 
   // Reset to page 1 when filters change
   useEffect(() => {
     setCurrentPage(1);
-  }, [debouncedSearch, domainFilter, outputFilter, grantRoundFilter, yearFilter, quarterFilter]);
+  }, [debouncedSearch, filters.domain, filters.output, filters.grantRound, filters.year, filters.quarter]);
 
-  const domainOptions = useMemo(() => {
+  const filterOptions = useMemo(() => {
     const domains = Array.from(new Set(grants.map(g => g.domain).filter((d): d is string => d !== null)));
-    // Ensure "Other" is always available
-    if (!domains.includes('Other')) {
-      domains.push('Other');
-    }
-    return domains.sort();
-  }, [grants]);
+    if (!domains.includes('Other')) domains.push('Other');
 
-  const outputOptions = useMemo(() => {
-    return Array.from(new Set(grants.map(g => g.output).filter((o): o is string => o !== null))).sort();
-  }, [grants]);
-
-  const grantRoundOptions = useMemo(() => {
     const roundMap = new Map<string, string | null>();
     for (const grant of grants) {
       if (grant.grantRound && !roundMap.has(grant.grantRound)) {
         roundMap.set(grant.grantRound, grant.grantRoundDescription);
       }
     }
-    return Array.from(roundMap.entries())
-      .map(([name, description]) => ({ name, description }))
-      .sort((a, b) => a.name.localeCompare(b.name));
-  }, [grants]);
 
-  const yearOptions = useMemo(() => {
-    // Extract year from fiscalQuarter (e.g., "2025 Q1" -> "2025")
-    return Array.from(new Set(grants.map(g => g.fiscalQuarter.split(' ')[0]))).sort().reverse();
-  }, [grants]);
-
-  const quarterOptions = useMemo(() => {
-    // Full fiscal quarters (e.g., "2025 Q1", "2024 Q4")
-    return Array.from(new Set(grants.map(g => g.fiscalQuarter))).sort().reverse();
+    return {
+      domains: domains.sort(),
+      outputs: Array.from(new Set(grants.map(g => g.output).filter((o): o is string => o !== null))).sort(),
+      grantRounds: Array.from(roundMap.entries())
+        .map(([name, description]) => ({ name, description }))
+        .sort((a, b) => a.name.localeCompare(b.name)),
+      years: Array.from(new Set(grants.map(g => g.fiscalQuarter.split(' ')[0]))).sort().reverse(),
+      quarters: Array.from(new Set(grants.map(g => g.fiscalQuarter))).sort().reverse(),
+    };
   }, [grants]);
 
   // Pre-compute lowercase fields once to avoid repeated allocations during search
@@ -85,15 +78,15 @@ export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
         grant._searchName.includes(lowerQuery) ||
         grant._searchDesc.includes(lowerQuery);
 
-      const matchesDomain = domainFilter === null || grant.domain === domainFilter;
-      const matchesOutput = outputFilter === null || grant.output === outputFilter;
-      const matchesGrantRound = grantRoundFilter === null || grant.grantRound === grantRoundFilter;
-      const matchesYear = yearFilter === null || grant.fiscalQuarter.startsWith(yearFilter);
-      const matchesQuarter = quarterFilter === null || grant.fiscalQuarter === quarterFilter;
+      const matchesDomain = filters.domain === null || grant.domain === filters.domain;
+      const matchesOutput = filters.output === null || grant.output === filters.output;
+      const matchesGrantRound = filters.grantRound === null || grant.grantRound === filters.grantRound;
+      const matchesYear = filters.year === null || grant.fiscalQuarter.startsWith(filters.year);
+      const matchesQuarter = filters.quarter === null || grant.fiscalQuarter === filters.quarter;
 
       return matchesSearch && matchesDomain && matchesOutput && matchesGrantRound && matchesYear && matchesQuarter;
     });
-  }, [searchableGrants, debouncedSearch, domainFilter, outputFilter, grantRoundFilter, yearFilter, quarterFilter]);
+  }, [searchableGrants, debouncedSearch, filters.domain, filters.output, filters.grantRound, filters.year, filters.quarter]);
 
   const handleGrantClick = (grant: GrantRecord) => {
     setSelectedGrant(grant);
@@ -109,23 +102,9 @@ export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
     <Stack spacing={10}>
       <GrantsTable
           grants={filteredGrants}
-          searchQuery={searchQuery}
-          onSearchChange={handleSearchChange}
-          domainFilter={domainFilter}
-          onDomainFilterChange={setDomainFilter}
-          domainOptions={domainOptions}
-          outputFilter={outputFilter}
-          onOutputFilterChange={setOutputFilter}
-          outputOptions={outputOptions}
-          grantRoundFilter={grantRoundFilter}
-          onGrantRoundFilterChange={setGrantRoundFilter}
-          grantRoundOptions={grantRoundOptions}
-          yearFilter={yearFilter}
-          onYearFilterChange={setYearFilter}
-          yearOptions={yearOptions}
-          quarterFilter={quarterFilter}
-          onQuarterFilterChange={setQuarterFilter}
-          quarterOptions={quarterOptions}
+          filters={filters}
+          filterOptions={filterOptions}
+          onFilterChange={handleFilterChange}
           onGrantClick={handleGrantClick}
           currentPage={currentPage}
           onPageChange={setCurrentPage}

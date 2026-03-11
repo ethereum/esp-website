@@ -114,25 +114,28 @@ const RoundsFilterMenu: FC<RoundsFilterMenuProps> = ({ value, options, onChange 
   </Menu>
 );
 
+export interface FilterState {
+  searchQuery: string;
+  domain: string | null;
+  output: string | null;
+  grantRound: string | null;
+  year: string | null;
+  quarter: string | null;
+}
+
+export interface FilterOptions {
+  domains: string[];
+  outputs: string[];
+  grantRounds: GrantRoundOption[];
+  years: string[];
+  quarters: string[];
+}
+
 interface GrantsTableProps {
   grants: GrantRecord[];
-  searchQuery: string;
-  onSearchChange: (query: string) => void;
-  domainFilter: string | null;
-  onDomainFilterChange: (domain: string | null) => void;
-  domainOptions: string[];
-  outputFilter: string | null;
-  onOutputFilterChange: (output: string | null) => void;
-  outputOptions: string[];
-  grantRoundFilter: string | null;
-  onGrantRoundFilterChange: (round: string | null) => void;
-  grantRoundOptions: GrantRoundOption[];
-  yearFilter: string | null;
-  onYearFilterChange: (year: string | null) => void;
-  yearOptions: string[];
-  quarterFilter: string | null;
-  onQuarterFilterChange: (quarter: string | null) => void;
-  quarterOptions: string[];
+  filters: FilterState;
+  filterOptions: FilterOptions;
+  onFilterChange: (key: keyof FilterState, value: string | null) => void;
   onGrantClick: (grant: GrantRecord) => void;
   currentPage: number;
   onPageChange: (page: number) => void;
@@ -140,23 +143,9 @@ interface GrantsTableProps {
 
 export const GrantsTable: FC<GrantsTableProps> = ({
   grants,
-  searchQuery,
-  onSearchChange,
-  domainFilter,
-  onDomainFilterChange,
-  domainOptions,
-  outputFilter,
-  onOutputFilterChange,
-  outputOptions,
-  grantRoundFilter,
-  onGrantRoundFilterChange,
-  grantRoundOptions,
-  yearFilter,
-  onYearFilterChange,
-  yearOptions,
-  quarterFilter,
-  onQuarterFilterChange,
-  quarterOptions,
+  filters,
+  filterOptions,
+  onFilterChange,
   onGrantClick,
   currentPage,
   onPageChange
@@ -221,8 +210,8 @@ export const GrantsTable: FC<GrantsTableProps> = ({
           </InputLeftElement>
           <Input
             placeholder='Search projects...'
-            value={searchQuery}
-            onChange={e => onSearchChange(e.target.value)}
+            value={filters.searchQuery}
+            onChange={e => onFilterChange('searchQuery', e.target.value)}
             borderColor='brand.border'
             _focus={{ borderColor: 'brand.heading', boxShadow: 'none' }}
           />
@@ -231,34 +220,34 @@ export const GrantsTable: FC<GrantsTableProps> = ({
         <Box display={{ base: 'grid', md: 'flex' }} gridTemplateColumns={{ base: 'repeat(2, 1fr)', md: 'none' }} gap={2} flexWrap='wrap'>
           <FilterMenu
             label='All Domains'
-            value={domainFilter}
-            options={domainOptions}
-            onChange={onDomainFilterChange}
+            value={filters.domain}
+            options={filterOptions.domains}
+            onChange={v => onFilterChange('domain', v)}
             maxH='300px'
           />
           <FilterMenu
             label='All Outputs'
-            value={outputFilter}
-            options={outputOptions}
-            onChange={onOutputFilterChange}
+            value={filters.output}
+            options={filterOptions.outputs}
+            onChange={v => onFilterChange('output', v)}
           />
           <RoundsFilterMenu
-            value={grantRoundFilter}
-            options={grantRoundOptions}
-            onChange={onGrantRoundFilterChange}
+            value={filters.grantRound}
+            options={filterOptions.grantRounds}
+            onChange={v => onFilterChange('grantRound', v)}
           />
           <FilterMenu
             label='All Years'
-            value={yearFilter}
-            options={yearOptions}
-            onChange={onYearFilterChange}
+            value={filters.year}
+            options={filterOptions.years}
+            onChange={v => onFilterChange('year', v)}
             minW='100px'
           />
           <FilterMenu
             label='All Quarters'
-            value={quarterFilter}
-            options={quarterOptions}
-            onChange={onQuarterFilterChange}
+            value={filters.quarter}
+            options={filterOptions.quarters}
+            onChange={v => onFilterChange('quarter', v)}
             minW='120px'
             maxH='300px'
           />
@@ -359,7 +348,7 @@ export const GrantsTable: FC<GrantsTableProps> = ({
                       onClick={e => {
                         if (grant.domain) {
                           e.stopPropagation();
-                          onDomainFilterChange(grant.domain);
+                          onFilterChange('domain', grant.domain);
                         }
                       }}
                     >
@@ -375,7 +364,7 @@ export const GrantsTable: FC<GrantsTableProps> = ({
                       onClick={e => {
                         if (grant.output) {
                           e.stopPropagation();
-                          onOutputFilterChange(grant.output);
+                          onFilterChange('output', grant.output);
                         }
                       }}
                     >
