@@ -1,4 +1,4 @@
-import { Box, Stack, useDisclosure } from '@chakra-ui/react';
+import { Stack, useDisclosure } from '@chakra-ui/react';
 import { FC, useEffect, useMemo, useState } from 'react';
 
 import { GrantRecord } from '../../types/grants';
@@ -90,8 +90,7 @@ export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
 
   return (
     <Stack spacing={10}>
-      <Box>
-        <GrantsTable
+      <GrantsTable
           grants={filteredGrants}
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
@@ -113,8 +112,7 @@ export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
           onGrantClick={handleGrantClick}
           currentPage={currentPage}
           onPageChange={setCurrentPage}
-        />
-      </Box>
+      />
 
       <GrantDetailModal grant={selectedGrant} isOpen={isOpen} onClose={handleCloseModal} />
     </Stack>

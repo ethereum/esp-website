@@ -30,10 +30,3 @@ export function getFiscalYearStart(yearsAgo: number = 0): string {
   const targetYear = now.getFullYear() - yearsAgo;
   return `${targetYear}-01-01`;
 }
-
-/**
- * Extract year from a fiscal quarter string (e.g., "2025 Q1" -> "2025")
- */
-export function extractFiscalYear(fiscalQuarter: string): string {
-  return fiscalQuarter.split(' ')[0];
-}
