@@ -22,11 +22,12 @@ import { GrantRecord } from '../../types/grants';
 
 interface GrantDetailModalProps {
   grant: GrantRecord | null;
+  grantRoundDescriptions: Record<string, string>;
   isOpen: boolean;
   onClose: () => void;
 }
 
-export const GrantDetailModal: FC<GrantDetailModalProps> = ({ grant, isOpen, onClose }) => {
+export const GrantDetailModal: FC<GrantDetailModalProps> = ({ grant, grantRoundDescriptions, isOpen, onClose }) => {
   if (!grant) return null;
 
   const activatedDate = new Date(grant.activatedDate).toLocaleDateString('en-US', {
@@ -84,9 +85,9 @@ export const GrantDetailModal: FC<GrantDetailModalProps> = ({ grant, isOpen, onC
                     <Text color='brand.paragraph' fontSize='sm'>
                       {grant.grantRound}
                     </Text>
-                    {grant.grantRoundDescription && (
+                    {grant.grantRound && grantRoundDescriptions[grant.grantRound] && (
                       <Text color='brand.helpText' fontSize='xs' mt={1}>
-                        {grant.grantRoundDescription}
+                        {grantRoundDescriptions[grant.grantRound]}
                       </Text>
                     )}
                   </Box>

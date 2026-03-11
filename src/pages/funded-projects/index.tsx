@@ -88,9 +88,10 @@ const GrantsDashboard = dynamic(
 
 interface GrantsPageProps {
   grants: GrantRecord[];
+  grantRoundDescriptions: Record<string, string>;
 }
 
-const Grants: NextPage<GrantsPageProps> = ({ grants }) => {
+const Grants: NextPage<GrantsPageProps> = ({ grants, grantRoundDescriptions }) => {
   return (
     <>
       <PageMetadata
@@ -115,7 +116,7 @@ const Grants: NextPage<GrantsPageProps> = ({ grants }) => {
       <Stack px={{ base: 5, md: 12, lg: 24 }} spacing={10}>
         <GrantsDashboard grants={grants} />
         <Stack mb={8} py={{ md: 12 }}>
-          <GrantsExplorer grants={grants} />
+          <GrantsExplorer grants={grants} grantRoundDescriptions={grantRoundDescriptions} />
         </Stack>
       </Stack>
 
@@ -127,10 +128,10 @@ const Grants: NextPage<GrantsPageProps> = ({ grants }) => {
 export const getStaticProps: GetStaticProps<GrantsPageProps> = async () => {
   // Let errors propagate — ISR serves the previously cached page on
   // revalidation failure, which is better than showing an empty page.
-  const grants = await getPublicGrants();
+  const { grants, grantRoundDescriptions } = await getPublicGrants();
 
   return {
-    props: { grants },
+    props: { grants, grantRoundDescriptions },
     revalidate: 3600
   };
 };

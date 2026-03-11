@@ -7,6 +7,7 @@ import { GrantDetailModal } from './GrantDetailModal';
 
 interface GrantsExplorerProps {
   grants: GrantRecord[];
+  grantRoundDescriptions: Record<string, string>;
 }
 
 const INITIAL_FILTERS: FilterState = {
@@ -18,7 +19,7 @@ const INITIAL_FILTERS: FilterState = {
   quarter: null,
 };
 
-export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
+export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants, grantRoundDescriptions }) => {
   const [filters, setFilters] = useState<FilterState>(INITIAL_FILTERS);
   const [debouncedSearch, setDebouncedSearch] = useState('');
   const [selectedGrant, setSelectedGrant] = useState<GrantRecord | null>(null);
@@ -46,23 +47,18 @@ export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
     const domains = Array.from(new Set(grants.map(g => g.domain).filter((d): d is string => d !== null)));
     if (!domains.includes('Other')) domains.push('Other');
 
-    const roundMap = new Map<string, string | null>();
-    for (const grant of grants) {
-      if (grant.grantRound && !roundMap.has(grant.grantRound)) {
-        roundMap.set(grant.grantRound, grant.grantRoundDescription);
-      }
-    }
+    const roundNames = Array.from(new Set(grants.map(g => g.grantRound).filter((r): r is string => r !== null)));
 
     return {
       domains: domains.sort(),
       outputs: Array.from(new Set(grants.map(g => g.output).filter((o): o is string => o !== null))).sort(),
-      grantRounds: Array.from(roundMap.entries())
-        .map(([name, description]) => ({ name, description }))
+      grantRounds: roundNames
+        .map(name => ({ name, description: grantRoundDescriptions[name] ?? null }))
         .sort((a, b) => a.name.localeCompare(b.name)),
       years: Array.from(new Set(grants.map(g => g.fiscalQuarter.split(' ')[0]))).sort().reverse(),
       quarters: Array.from(new Set(grants.map(g => g.fiscalQuarter))).sort().reverse(),
     };
-  }, [grants]);
+  }, [grants, grantRoundDescriptions]);
 
   // Pre-compute lowercase fields once to avoid repeated allocations during search
   const searchableGrants = useMemo(
@@ -110,7 +106,7 @@ export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants }) => {
           onPageChange={setCurrentPage}
       />
 
-      <GrantDetailModal grant={selectedGrant} isOpen={isOpen} onClose={handleCloseModal} />
+      <GrantDetailModal grant={selectedGrant} grantRoundDescriptions={grantRoundDescriptions} isOpen={isOpen} onClose={handleCloseModal} />
     </Stack>
   );
 };

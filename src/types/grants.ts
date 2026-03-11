@@ -9,7 +9,6 @@ export interface GrantRecord {
   domain: string | null;
   output: string | null;
   grantRound: string | null;
-  grantRoundDescription: string | null;
   email: string | null;
   telegram: string | null;
   twitter: string | null;
