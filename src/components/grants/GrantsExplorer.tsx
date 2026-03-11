@@ -1,8 +1,8 @@
 import { Stack, useDisclosure } from '@chakra-ui/react';
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { GrantRecord } from '../../types/grants';
-import { GrantsTable, FilterState } from './GrantsTable';
+import { FilterState, GrantRecord } from '../../types/grants';
+import { GrantsTable } from './GrantsTable';
 import { GrantDetailModal } from './GrantDetailModal';
 
 interface GrantsExplorerProps {

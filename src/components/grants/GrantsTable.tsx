@@ -23,7 +23,7 @@ import {
 import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Search } from 'lucide-react';
 import { FC, useMemo, useRef, useState } from 'react';
 
-import { GrantRecord } from '../../types/grants';
+import { FilterOptions, FilterState, GrantRecord, GrantRoundOption } from '../../types/grants';
 import { SelectArrowIcon } from '../UI/icons';
 
 const PAGE_SIZE = 15;
@@ -78,11 +78,6 @@ const FilterMenu: FC<FilterMenuProps> = ({ label, value, options, onChange, minW
   </Menu>
 );
 
-export interface GrantRoundOption {
-  name: string;
-  description: string | null;
-}
-
 interface RoundsFilterMenuProps {
   value: string | null;
   options: GrantRoundOption[];
@@ -120,23 +115,6 @@ const RoundsFilterMenu: FC<RoundsFilterMenuProps> = ({ value, options, onChange 
     </MenuList>
   </Menu>
 );
-
-export interface FilterState {
-  searchQuery: string;
-  domain: string | null;
-  output: string | null;
-  grantRound: string | null;
-  year: string | null;
-  quarter: string | null;
-}
-
-export interface FilterOptions {
-  domains: string[];
-  outputs: string[];
-  grantRounds: GrantRoundOption[];
-  years: string[];
-  quarters: string[];
-}
 
 interface GrantsTableProps {
   grants: GrantRecord[];

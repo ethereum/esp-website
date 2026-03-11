@@ -18,6 +18,31 @@ export interface GrantRecord {
 }
 
 /**
+ * Filter types for the Grants Explorer UI
+ */
+export interface GrantRoundOption {
+  name: string;
+  description: string | null;
+}
+
+export interface FilterState {
+  searchQuery: string;
+  domain: string | null;
+  output: string | null;
+  grantRound: string | null;
+  year: string | null;
+  quarter: string | null;
+}
+
+export interface FilterOptions {
+  domains: string[];
+  outputs: string[];
+  grantRounds: GrantRoundOption[];
+  years: string[];
+  quarters: string[];
+}
+
+/**
  * Raw Salesforce Opportunity record
  * Maps directly to SF API fields
  */
