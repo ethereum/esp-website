@@ -10,6 +10,30 @@ interface GrantsDashboardProps {
   grants: GrantRecord[];
 }
 
+export const cardStyle = {
+  p: 6,
+  bg: 'white',
+  borderRadius: 'lg',
+  border: '1px solid',
+  borderColor: 'brand.divider.100',
+  shadow: 'sm',
+  display: 'flex',
+  flexDirection: 'column' as const,
+  justifyContent: 'center' as const,
+};
+
+function countByField(grants: GrantRecord[], field: keyof GrantRecord, limit: number) {
+  const counts: Record<string, number> = {};
+  for (const grant of grants) {
+    const key = (grant[field] as string | null) || 'Other';
+    counts[key] = (counts[key] || 0) + 1;
+  }
+  return Object.entries(counts)
+    .sort(([, a], [, b]) => b - a)
+    .slice(0, limit)
+    .map(([name, value]) => ({ name, value }));
+}
+
 // Derived from brand tokens — recharts requires raw hex strings
 const CHART_COLORS = [
   colors.brand.heading,
@@ -39,43 +63,12 @@ export const GrantsDashboard: FC<GrantsDashboardProps> = ({ grants }) => {
     return grants.filter(grant => grant.fiscalQuarter === currentQuarter).length;
   }, [grants]);
 
-  const domainData = useMemo(() => {
-    const counts: Record<string, number> = {};
-    grants.forEach(grant => {
-      const domain = grant.domain || 'Other';
-      counts[domain] = (counts[domain] || 0) + 1;
-    });
-    return Object.entries(counts)
-      .sort(([, a], [, b]) => b - a)
-      .slice(0, 8)
-      .map(([name, value]) => ({ name, value }));
-  }, [grants]);
-
-  const outputData = useMemo(() => {
-    const counts: Record<string, number> = {};
-    grants.forEach(grant => {
-      const output = grant.output || 'Other';
-      counts[output] = (counts[output] || 0) + 1;
-    });
-    return Object.entries(counts)
-      .sort(([, a], [, b]) => b - a)
-      .slice(0, 8)
-      .map(([name, value]) => ({ name, value }));
-  }, [grants]);
+  const domainData = useMemo(() => countByField(grants, 'domain', 8), [grants]);
+  const outputData = useMemo(() => countByField(grants, 'output', 8), [grants]);
 
   return (
     <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(4, 1fr)' }} gap={6} alignItems='stretch'>
-      <Box
-        p={6}
-        bg='white'
-        borderRadius='lg'
-        border='1px solid'
-        borderColor='brand.divider.100'
-        shadow='sm'
-        display='flex'
-        flexDirection='column'
-        justifyContent='center'
-      >
+      <Box {...cardStyle}>
         <Heading size='sm' color='brand.heading' mb={4} textAlign='center'>
           Grants by Quarter
         </Heading>
@@ -91,17 +84,7 @@ export const GrantsDashboard: FC<GrantsDashboardProps> = ({ grants }) => {
         </Box>
       </Box>
 
-      <Box
-        p={6}
-        bg='white'
-        borderRadius='lg'
-        border='1px solid'
-        borderColor='brand.divider.100'
-        shadow='sm'
-        display='flex'
-        flexDirection='column'
-        justifyContent='center'
-      >
+      <Box {...cardStyle}>
         <Heading size='sm' color='brand.heading' mb={4} textAlign='center'>
           Awarded This Quarter
         </Heading>
@@ -115,17 +98,7 @@ export const GrantsDashboard: FC<GrantsDashboardProps> = ({ grants }) => {
         </Box>
       </Box>
 
-      <Box
-        p={6}
-        bg='white'
-        borderRadius='lg'
-        border='1px solid'
-        borderColor='brand.divider.100'
-        shadow='sm'
-        display='flex'
-        flexDirection='column'
-        justifyContent='center'
-      >
+      <Box {...cardStyle}>
         <Heading size='sm' color='brand.heading' mb={4} textAlign='center'>
           By Domain
         </Heading>
@@ -167,17 +140,7 @@ export const GrantsDashboard: FC<GrantsDashboardProps> = ({ grants }) => {
         </Box>
       </Box>
 
-      <Box
-        p={6}
-        bg='white'
-        borderRadius='lg'
-        border='1px solid'
-        borderColor='brand.divider.100'
-        shadow='sm'
-        display='flex'
-        flexDirection='column'
-        justifyContent='center'
-      >
+      <Box {...cardStyle}>
         <Heading size='sm' color='brand.heading' mb={4} textAlign='center'>
           By Output
         </Heading>

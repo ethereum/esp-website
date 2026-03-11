@@ -28,6 +28,13 @@ import { SelectArrowIcon } from '../UI/icons';
 
 const PAGE_SIZE = 15;
 
+const TABLE_COLUMNS: { key: keyof GrantRecord; label: string }[] = [
+  { key: 'projectName', label: 'Project Name' },
+  { key: 'domain', label: 'Domain' },
+  { key: 'output', label: 'Output' },
+  { key: 'fiscalQuarter', label: 'Date' },
+];
+
 const SortIcon: FC<{
   column: keyof GrantRecord;
   sortColumn: keyof GrantRecord | null;
@@ -268,54 +275,21 @@ export const GrantsTable: FC<GrantsTableProps> = ({
           </colgroup>
           <Thead bg='gray.50'>
             <Tr>
-              <Th
-                color='brand.paragraph'
-                fontWeight='600'
-                cursor='pointer'
-                onClick={() => handleSort('projectName')}
-                _hover={{ color: 'brand.heading' }}
-              >
-                <Flex align='center' gap={1}>
-                  Project Name
-                  <SortIcon column='projectName' sortColumn={sortColumn} sortDirection={sortDirection} />
-                </Flex>
-              </Th>
-              <Th
-                color='brand.paragraph'
-                fontWeight='600'
-                cursor='pointer'
-                onClick={() => handleSort('domain')}
-                _hover={{ color: 'brand.heading' }}
-              >
-                <Flex align='center' gap={1}>
-                  Domain
-                  <SortIcon column='domain' sortColumn={sortColumn} sortDirection={sortDirection} />
-                </Flex>
-              </Th>
-              <Th
-                color='brand.paragraph'
-                fontWeight='600'
-                cursor='pointer'
-                onClick={() => handleSort('output')}
-                _hover={{ color: 'brand.heading' }}
-              >
-                <Flex align='center' gap={1}>
-                  Output
-                  <SortIcon column='output' sortColumn={sortColumn} sortDirection={sortDirection} />
-                </Flex>
-              </Th>
-              <Th
-                color='brand.paragraph'
-                fontWeight='600'
-                cursor='pointer'
-                onClick={() => handleSort('fiscalQuarter')}
-                _hover={{ color: 'brand.heading' }}
-              >
-                <Flex align='center' gap={1}>
-                  Date
-                  <SortIcon column='fiscalQuarter' sortColumn={sortColumn} sortDirection={sortDirection} />
-                </Flex>
-              </Th>
+              {TABLE_COLUMNS.map(({ key, label }) => (
+                <Th
+                  key={key}
+                  color='brand.paragraph'
+                  fontWeight='600'
+                  cursor='pointer'
+                  onClick={() => handleSort(key)}
+                  _hover={{ color: 'brand.heading' }}
+                >
+                  <Flex align='center' gap={1}>
+                    {label}
+                    <SortIcon column={key} sortColumn={sortColumn} sortDirection={sortDirection} />
+                  </Flex>
+                </Th>
+              ))}
             </Tr>
           </Thead>
           <Tbody>
