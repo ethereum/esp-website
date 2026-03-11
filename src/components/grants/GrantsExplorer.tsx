@@ -84,15 +84,15 @@ export const GrantsExplorer: FC<GrantsExplorerProps> = ({ grants, grantRoundDesc
     });
   }, [searchableGrants, debouncedSearch, filters.domain, filters.output, filters.grantRound, filters.year, filters.quarter]);
 
-  const handleGrantClick = (grant: GrantRecord) => {
+  const handleGrantClick = useCallback((grant: GrantRecord) => {
     setSelectedGrant(grant);
     onOpen();
-  };
+  }, [onOpen]);
 
-  const handleCloseModal = () => {
+  const handleCloseModal = useCallback(() => {
     setSelectedGrant(null);
     onClose();
-  };
+  }, [onClose]);
 
   return (
     <Stack spacing={10}>
