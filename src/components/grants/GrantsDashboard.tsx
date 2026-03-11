@@ -1,0 +1,218 @@
+import { Box, Grid, Heading, Skeleton, SkeletonCircle, Text } from '@chakra-ui/react';
+import { FC, useMemo } from 'react';
+import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from 'recharts';
+
+import { GrantRecord } from '../../types/grants';
+import { deriveFiscalQuarter } from '../../utils/fiscalYear';
+import { colors } from '../../theme/foundations/colors';
+
+interface GrantsDashboardProps {
+  grants: GrantRecord[];
+}
+
+export const cardStyle = {
+  p: 6,
+  bg: 'white',
+  borderRadius: 'lg',
+  border: '1px solid',
+  borderColor: 'brand.divider.100',
+  shadow: 'sm',
+  display: 'flex',
+  flexDirection: 'column' as const,
+  justifyContent: 'center' as const,
+};
+
+function countByField(grants: GrantRecord[], field: keyof GrantRecord, limit: number) {
+  const counts: Record<string, number> = {};
+  for (const grant of grants) {
+    const key = (grant[field] as string | null) || 'Other';
+    counts[key] = (counts[key] || 0) + 1;
+  }
+  return Object.entries(counts)
+    .sort(([, a], [, b]) => b - a)
+    .slice(0, limit)
+    .map(([name, value]) => ({ name, value }));
+}
+
+// Derived from brand tokens — recharts requires raw hex strings
+const CHART_COLORS = [
+  colors.brand.heading,
+  colors.brand.orange[100],
+  colors.brand.orange[200],
+  colors.brand.hover,
+  colors.brand.paragraph,
+  colors.brand.helpText,
+  colors.brand.border,
+  colors.brand.ready.text
+];
+
+export const GrantsDashboard: FC<GrantsDashboardProps> = ({ grants }) => {
+  const fiscalQuarterData = useMemo(() => {
+    const counts: Record<string, number> = {};
+    grants.forEach(grant => {
+      const fq = grant.fiscalQuarter;
+      counts[fq] = (counts[fq] || 0) + 1;
+    });
+    return Object.entries(counts)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([name, count]) => ({ name, count }));
+  }, [grants]);
+
+  const awardedThisQuarter = useMemo(() => {
+    const currentQuarter = deriveFiscalQuarter(new Date().toISOString().slice(0, 10));
+    return grants.filter(grant => grant.fiscalQuarter === currentQuarter).length;
+  }, [grants]);
+
+  const domainData = useMemo(() => countByField(grants, 'domain', 8), [grants]);
+  const outputData = useMemo(() => countByField(grants, 'output', 8), [grants]);
+
+  return (
+    <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(4, 1fr)' }} gap={6} alignItems='stretch'>
+      <Box {...cardStyle}>
+        <Heading size='sm' color='brand.heading' mb={4} textAlign='center'>
+          Grants by Quarter
+        </Heading>
+        <Box h='180px'>
+          <ResponsiveContainer width='100%' height='100%'>
+            <BarChart data={fiscalQuarterData} margin={{ left: 10, right: 10 }}>
+              <XAxis dataKey='name' tick={{ fontSize: 11 }} />
+              <YAxis hide />
+              <Tooltip wrapperStyle={{ zIndex: 10 }} />
+              <Bar dataKey='count' fill={colors.brand.heading} radius={[4, 4, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </Box>
+      </Box>
+
+      <Box {...cardStyle}>
+        <Heading size='sm' color='brand.heading' mb={4} textAlign='center'>
+          Awarded This Quarter
+        </Heading>
+        <Box h='180px' display='flex' flexDirection='column' alignItems='center' justifyContent='center'>
+          <Text color='brand.heading' fontSize='5xl' fontWeight='bold' lineHeight='1'>
+            {awardedThisQuarter}
+          </Text>
+          <Text fontSize='sm' color='brand.paragraph' mt={1}>
+            grants
+          </Text>
+        </Box>
+      </Box>
+
+      <Box {...cardStyle}>
+        <Heading size='sm' color='brand.heading' mb={4} textAlign='center'>
+          By Domain
+        </Heading>
+        <Box h='180px' position='relative'>
+          <ResponsiveContainer width='100%' height='100%'>
+            <PieChart>
+              <Pie
+                data={domainData}
+                cx='50%'
+                cy='50%'
+                innerRadius={50}
+                outerRadius={70}
+                dataKey='value'
+                paddingAngle={2}
+              >
+                {domainData.map((_, index) => (
+                  <Cell key={`cell-domain-${index}`} fill={CHART_COLORS[index % CHART_COLORS.length]} />
+                ))}
+              </Pie>
+              <Tooltip wrapperStyle={{ zIndex: 10 }} />
+            </PieChart>
+          </ResponsiveContainer>
+          <Box
+            position='absolute'
+            top='50%'
+            left='50%'
+            transform='translate(-50%, -50%)'
+            textAlign='center'
+            pointerEvents='none'
+            zIndex={1}
+          >
+            <Text fontSize='xl' fontWeight='bold' color='brand.paragraph'>
+              {grants.length.toLocaleString()}
+            </Text>
+            <Text fontSize='xs' color='brand.helpText'>
+              total
+            </Text>
+          </Box>
+        </Box>
+      </Box>
+
+      <Box {...cardStyle}>
+        <Heading size='sm' color='brand.heading' mb={4} textAlign='center'>
+          By Output
+        </Heading>
+        <Box h='180px' position='relative'>
+          <ResponsiveContainer width='100%' height='100%'>
+            <PieChart>
+              <Pie
+                data={outputData}
+                cx='50%'
+                cy='50%'
+                innerRadius={50}
+                outerRadius={70}
+                dataKey='value'
+                paddingAngle={2}
+              >
+                {outputData.map((_, index) => (
+                  <Cell key={`cell-output-${index}`} fill={CHART_COLORS[index % CHART_COLORS.length]} />
+                ))}
+              </Pie>
+              <Tooltip wrapperStyle={{ zIndex: 10 }} />
+            </PieChart>
+          </ResponsiveContainer>
+          <Box
+            position='absolute'
+            top='50%'
+            left='50%'
+            transform='translate(-50%, -50%)'
+            textAlign='center'
+            pointerEvents='none'
+            zIndex={1}
+          >
+            <Text fontSize='xl' fontWeight='bold' color='brand.paragraph'>
+              {grants.length.toLocaleString()}
+            </Text>
+            <Text fontSize='xs' color='brand.helpText'>
+              total
+            </Text>
+          </Box>
+        </Box>
+      </Box>
+    </Grid>
+  );
+};
+
+export const DashboardSkeleton = () => (
+  <Grid templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(4, 1fr)' }} gap={6} alignItems='stretch'>
+    <Box {...cardStyle}>
+      <Skeleton height='20px' width='120px' mx='auto' mb={4} />
+      <Box h='180px' display='flex' alignItems='flex-end' justifyContent='space-around' px={2}>
+        {[60, 80, 100, 70, 90, 50].map((h, i) => (
+          <Skeleton key={i} width='12%' height={`${h}%`} borderRadius='4px 4px 0 0' />
+        ))}
+      </Box>
+    </Box>
+    <Box {...cardStyle}>
+      <Skeleton height='20px' width='140px' mx='auto' mb={4} />
+      <Box h='180px' display='flex' flexDirection='column' alignItems='center' justifyContent='center'>
+        <Skeleton height='60px' width='80px' mb={2} />
+        <Skeleton height='14px' width='40px' />
+      </Box>
+    </Box>
+    <Box {...cardStyle}>
+      <Skeleton height='20px' width='80px' mx='auto' mb={4} />
+      <Box h='180px' display='flex' alignItems='center' justifyContent='center'>
+        <SkeletonCircle size='140px' />
+      </Box>
+    </Box>
+    <Box {...cardStyle}>
+      <Skeleton height='20px' width='80px' mx='auto' mb={4} />
+      <Box h='180px' display='flex' alignItems='center' justifyContent='center'>
+        <SkeletonCircle size='140px' />
+      </Box>
+    </Box>
+  </Grid>
+);

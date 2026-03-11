@@ -1,0 +1,274 @@
+import { GrantRecord, SFOpportunityRecord } from '../../types/grants';
+import { deriveFiscalQuarter, getFiscalYearStart } from '../../utils/fiscalYear';
+import { createConnection, loginToSalesforce } from './index';
+
+/**
+ * Record types to exclude from public grants explorer
+ */
+const EXCLUDED_RECORD_TYPES = ['Private Grant', 'Non-Financial Support'];
+
+/**
+ * Stages to include in public view
+ */
+const ALLOWED_STAGES = ['Active', 'Completed'];
+
+/**
+ * Get all public grants from Salesforce
+ * Fetches Opportunity records with whitelisted record types
+ * from the previous 2 fiscal years (excludes current year)
+ */
+export interface PublicGrantsResult {
+  grants: GrantRecord[];
+  grantRoundDescriptions: Record<string, string>;
+}
+
+export async function getPublicGrants(): Promise<PublicGrantsResult> {
+  const conn = createConnection();
+
+  try {
+    await loginToSalesforce(conn);
+  } catch (error) {
+    // loginToSalesforce rejects with 'Salesforce integration disabled' when
+    // credentials are not configured — expected in development / CI builds.
+    if (error instanceof Error && error.message === 'Salesforce integration disabled') {
+      console.warn('Salesforce not configured, returning mock grants for development');
+      return getMockGrantsResult();
+    }
+    // Real login failure (expired creds, network issue) — throw so ISR
+    // serves the previously cached page instead of fake data.
+    throw error;
+  }
+
+  const twoFYAgo = getFiscalYearStart(2);
+
+  const recordTypesFilter = EXCLUDED_RECORD_TYPES.map(t => `'${t}'`).join(', ');
+  const stagesFilter = ALLOWED_STAGES.map(s => `'${s}'`).join(', ');
+
+  const query = `
+    SELECT
+      Id,
+      Name,
+      Project_Description_Public__c,
+      Opportunity_Domain__c,
+      Opportunity_Output__c,
+      Project_Repo__c,
+      Opportunity_Active_Date__c,
+      Opportunity_Public_Email__c,
+      Opportunity_Telegram_Handle__c,
+      Opportunity_Twitter_Handle__c,
+      Opportunity_Grant_Round__r.Name,
+      Opportunity_Grant_Round__r.Grant_Round_Public_Description__c
+    FROM Opportunity
+    WHERE
+      RecordType.Name NOT IN (${recordTypesFilter})
+      AND Type != 'Impact Gift'
+      AND Opportunity_Active_Date__c != NULL
+      AND Opportunity_Active_Date__c >= ${twoFYAgo}
+      AND StageName IN (${stagesFilter})
+    ORDER BY Opportunity_Active_Date__c DESC
+  `;
+
+  const allRecords: SFOpportunityRecord[] = [];
+  let result = await conn.query<SFOpportunityRecord>(query);
+  allRecords.push(...result.records);
+
+  // Paginate through all results (default batch is ~2000)
+  while (!result.done && result.nextRecordsUrl) {
+    result = await conn.queryMore<SFOpportunityRecord>(result.nextRecordsUrl);
+    allRecords.push(...result.records);
+  }
+
+  // Build round descriptions lookup (deduplicated)
+  const grantRoundDescriptions: Record<string, string> = {};
+  for (const record of allRecords) {
+    const name = record.Opportunity_Grant_Round__r?.Name;
+    const desc = record.Opportunity_Grant_Round__r?.Grant_Round_Public_Description__c;
+    if (name && desc && !(name in grantRoundDescriptions)) {
+      grantRoundDescriptions[name] = desc;
+    }
+  }
+
+  const grants = allRecords
+    .map(mapSFRecordToGrant)
+    .filter((r): r is GrantRecord => r !== null);
+
+  // In development, fall back to mock data when the query returns nothing
+  // (e.g. stage filters or date range don't match any records).
+  if (grants.length === 0 && process.env.NODE_ENV === 'development') {
+    console.warn('No grants returned from Salesforce, using mock data for development');
+    return getMockGrantsResult();
+  }
+
+  return { grants, grantRoundDescriptions };
+}
+
+/**
+ * Mock grants data for development and CI builds.
+ * Only used when Salesforce credentials are not configured.
+ */
+function getMockGrantsResult(): PublicGrantsResult {
+  return {
+    grantRoundDescriptions: {
+      'Academic Grants Round 2025': 'Supporting academic research advancing Ethereum technology.',
+      'Academic Grants Round 2024': 'Supporting academic research advancing Ethereum technology.',
+    },
+    grants: [
+      {
+        id: '1',
+        projectName: 'zkEVM Research Initiative',
+        description: 'Developing novel zero-knowledge proof techniques for EVM compatibility and scaling solutions.',
+        domain: 'Zero-knowledge Proofs',
+        output: 'Research',
+        grantRound: 'Academic Grants Round 2025',
+        email: 'contact@example.com',
+        telegram: 'zkevmresearch',
+        twitter: 'zkevmproject',
+        projectRepo: 'https://github.com/example/zkevm',
+        activatedDate: '2025-01-15',
+        fiscalQuarter: '2025 Q1'
+      },
+      {
+        id: '2',
+        projectName: 'Beacon Chain Monitoring Tools',
+        description: 'Building comprehensive monitoring and analytics tools for Ethereum consensus layer.',
+        domain: 'Ethereum Protocol',
+        output: 'Developer tooling',
+        grantRound: 'Academic Grants Round 2024',
+        email: null,
+        telegram: null,
+        twitter: 'beacontools',
+        projectRepo: 'https://github.com/example/beacon-tools',
+        activatedDate: '2024-11-20',
+        fiscalQuarter: '2024 Q4'
+      },
+      {
+        id: '3',
+        projectName: 'Ethereum Developer Education',
+        description: 'Creating educational resources and workshops for new Ethereum developers.',
+        domain: 'Community and education',
+        output: 'Ecosystem Development',
+        grantRound: null,
+        email: 'edu@example.org',
+        telegram: 'ethdevworkshops',
+        twitter: null,
+        projectRepo: null,
+        activatedDate: '2024-08-10',
+        fiscalQuarter: '2024 Q3'
+      },
+      {
+        id: '4',
+        projectName: 'DeFi Security Auditing Framework',
+        description: 'Open-source framework for automated smart contract security analysis.',
+        domain: 'Security',
+        output: 'Developer tooling',
+        grantRound: 'Academic Grants Round 2024',
+        email: null,
+        telegram: null,
+        twitter: null,
+        projectRepo: 'https://github.com/example/defi-audit',
+        activatedDate: '2024-05-22',
+        fiscalQuarter: '2024 Q2'
+      },
+      {
+        id: '5',
+        projectName: 'Layer 2 Bridge Standards',
+        description: 'Research and specification work on cross-L2 bridge standards and interoperability.',
+        domain: 'Layer 2',
+        output: 'Research',
+        grantRound: 'Academic Grants Round 2025',
+        email: 'bridges@example.io',
+        telegram: null,
+        twitter: 'l2bridges',
+        projectRepo: null,
+        activatedDate: '2024-02-14',
+        fiscalQuarter: '2024 Q1'
+      }
+    ]
+  };
+}
+
+/**
+ * Validate that a URL uses a safe protocol (http or https).
+ * Rejects javascript:, data:, vbscript:, and other dangerous schemes.
+ */
+function sanitizeUrl(value: string | null): string | null {
+  if (!value) return null;
+  try {
+    const url = new URL(value);
+    if (url.protocol === 'http:' || url.protocol === 'https:') return value;
+  } catch {
+    // Not a valid URL
+  }
+  return null;
+}
+
+/**
+ * Validate that a value is a valid email address.
+ */
+function isValidEmail(value: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+/**
+ * Sanitize email field - only returns valid emails.
+ */
+function sanitizeEmail(value: string | null): string | null {
+  if (!value) return null;
+  const trimmed = value.trim();
+  return isValidEmail(trimmed) ? trimmed : null;
+}
+
+/**
+ * Sanitize social handle - extracts handle from URLs or strips @ prefix.
+ * Returns null for empty or clearly invalid values.
+ */
+function sanitizeHandle(value: string | null): string | null {
+  if (!value) return null;
+  let handle = value.trim();
+
+  // Extract handle from full URLs (e.g., "https://x.com/summit_defi" -> "summit_defi")
+  const urlPatterns = [
+    /^https?:\/\/(?:www\.)?(?:twitter\.com|x\.com)\/([^/?#]+)/i,
+    /^https?:\/\/(?:www\.)?t\.me\/([^/?#]+)/i
+  ];
+  for (const pattern of urlPatterns) {
+    const match = handle.match(pattern);
+    if (match) {
+      handle = match[1];
+      break;
+    }
+  }
+
+  // Remove @ prefix if present
+  handle = handle.replace(/^@/, '');
+
+  // Basic validation: non-empty, no spaces, reasonable length
+  if (!handle || handle.includes(' ') || handle.length > 100) return null;
+  return handle;
+}
+
+/**
+ * Map Salesforce record to frontend GrantRecord
+ * Handles null fields gracefully
+ */
+function mapSFRecordToGrant(record: SFOpportunityRecord): GrantRecord | null {
+  if (!record.Opportunity_Active_Date__c) {
+    console.warn(`Grant ${record.Id} excluded: missing active date`);
+    return null;
+  }
+
+  return {
+    id: record.Id,
+    projectName: record.Name,
+    description: record.Project_Description_Public__c || null,
+    domain: record.Opportunity_Domain__c || null,
+    output: record.Opportunity_Output__c || null,
+    grantRound: record.Opportunity_Grant_Round__r?.Name || null,
+    email: sanitizeEmail(record.Opportunity_Public_Email__c),
+    telegram: sanitizeHandle(record.Opportunity_Telegram_Handle__c),
+    twitter: sanitizeHandle(record.Opportunity_Twitter_Handle__c),
+    projectRepo: sanitizeUrl(record.Project_Repo__c || null),
+    activatedDate: record.Opportunity_Active_Date__c,
+    fiscalQuarter: deriveFiscalQuarter(record.Opportunity_Active_Date__c)
+  };
+}

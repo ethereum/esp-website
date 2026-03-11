@@ -10,6 +10,9 @@ export const HOME_URL = '/';
 
 // about
 export const ABOUT_URL = '/about';
+
+// grants explorer
+export const GRANTS_URL = '/funded-projects';
 export const WHO_WE_SUPPORT_URL = '/about/who-we-support';
 export const HOW_WE_SUPPORT_URL = '/about/how-we-support';
 export const SIDEBAR_ABOUT_LINKS: SidebarLink[] = [
@@ -151,6 +154,7 @@ export const ABOUT_TABS_MAP: TabsMap = {
 export const NAV_LINKS: NavLink[] = [
   { href: HOME_URL, text: 'Home' },
   { href: APPLICANTS_URL, text: 'How to Apply' },
+  { href: GRANTS_URL, text: 'Funded Projects' },
   { href: ABOUT_URL, text: 'About ESP' },
   { href: ESP_BLOG_URL, text: 'Blog' }
 ];

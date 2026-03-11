@@ -70,10 +70,6 @@
   to = "/"
   force = true
 [[redirects]]
-  from = "/*/grants/"
-  to = "/"
-  force = true
-[[redirects]]
   from = "/*/guide/"
   to = "/applicants/"
   force = true
@@ -175,10 +171,6 @@
   to = "/"
   force = true
 [[redirects]]
-  from = "/grants/"
-  to = "/"
-  force = true
-[[redirects]]
   from = "/guide/"
   to = "/applicants/"
   force = true
@@ -269,4 +261,14 @@
 [[redirects]]
   from = "/data-challenge-4844/apply/"
   to = "/data-challenge-4844/"
+  force = true
+
+# Redirect old /grants/ URLs to /funded-projects
+[[redirects]]
+  from = "/grants/"
+  to = "/funded-projects"
+  force = true
+[[redirects]]
+  from = "/*/grants/"
+  to = "/funded-projects"
   force = true
