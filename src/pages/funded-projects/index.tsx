@@ -1,4 +1,4 @@
-import { Stack } from '@chakra-ui/react';
+import { Stack, Text } from '@chakra-ui/react';
 import type { GetStaticProps, NextPage } from 'next';
 import dynamic from 'next/dynamic';
 
@@ -38,6 +38,10 @@ const Grants: NextPage<GrantsPageProps> = ({ grants, grantRoundDescriptions }) =
             The Ecosystem Support Program funds teams and individuals building the next generation
             of Ethereum infrastructure, research, developer tooling, and community resources.
             Browse the projects we&apos;ve supported below.
+            <br /><br />
+            <Text as='span' fontSize='sm' opacity={0.5}>
+              Showing grants from 2024 onward.
+            </Text>
           </Description>
         </section>
       </Stack>
