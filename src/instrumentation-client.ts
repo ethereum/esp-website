@@ -7,9 +7,6 @@ if (SENTRY_DSN) {
     dsn: SENTRY_DSN,
     tracesSampleRate: 1,
     enableLogs: true,
-    replaysOnErrorSampleRate: 1.0,
-    replaysSessionSampleRate: 0.1,
-
   });
 }
 
