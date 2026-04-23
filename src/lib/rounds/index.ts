@@ -8,14 +8,23 @@ const ROUNDS_DIRECTORY = path.join(process.cwd(), 'content/rounds');
 export type RoundStatus = 'active' | 'closed' | 'upcoming';
 
 /**
- * Convert a date string to AoE (Anywhere on Earth) timestamp.
- * AoE is UTC-12, the last timezone on Earth.
- * @param dateStr - Date in YYYY-MM-DD format
- * @param startOfDay - If true, returns 00:00:00 AoE; if false, returns 23:59:59 AoE
+ * Resolve a round date string to a UTC epoch-ms.
+ *
+ * Accepts two formats:
+ *   - Date only `YYYY-MM-DD`: interpreted in AoE (UTC-12) as either
+ *     00:00:00 (startOfDay=true) or 23:59:59 (startOfDay=false).
+ *   - Full ISO datetime containing `T` (e.g. `2026-04-24T01:00:00Z`):
+ *     parsed literally. AoE and `startOfDay` are ignored.
+ *
+ * Use the datetime form when a specific wall-clock close time is needed
+ * (e.g. a short grace period that does not align to AoE day boundaries).
  */
-function toAoETimestamp(dateStr: string, startOfDay: boolean): number {
+function resolveRoundTimestamp(value: string, startOfDay: boolean): number {
+  if (value.includes('T')) {
+    return new Date(value).getTime();
+  }
   const time = startOfDay ? '00:00:00' : '23:59:59';
-  return new Date(`${dateStr}T${time}-12:00`).getTime();
+  return new Date(`${value}T${time}-12:00`).getTime();
 }
 
 /**
@@ -29,11 +38,11 @@ export function computeRoundStatus(
   effectiveEndDate?: string
 ): RoundStatus {
   const now = Date.now();
-  const startAoE = toAoETimestamp(effectiveStartDate || startDate, true);
-  const endAoE = toAoETimestamp(effectiveEndDate || endDate, false);
+  const start = resolveRoundTimestamp(effectiveStartDate || startDate, true);
+  const end = resolveRoundTimestamp(effectiveEndDate || endDate, false);
 
-  if (now < startAoE) return 'upcoming';
-  if (now > endAoE) return 'closed';
+  if (now < start) return 'upcoming';
+  if (now > end) return 'closed';
   return 'active';
 }
 

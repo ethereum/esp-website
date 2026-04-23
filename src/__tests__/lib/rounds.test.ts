@@ -123,6 +123,59 @@ describe('computeRoundStatus', () => {
     });
   });
 
+  describe('ISO datetime format', () => {
+    const startDate = '2026-02-02';
+    const endDate = '2026-04-01';
+
+    it('should treat effectiveEndDate with ISO datetime as a literal UTC instant', () => {
+      // Grace period closing at 01:00:00 UTC on Apr 24th, not AoE end-of-day
+      const effectiveEndDate = '2026-04-24T01:00:00Z';
+
+      // 1 second before close
+      mockCurrentTime('2026-04-24T00:59:59Z');
+      expect(computeRoundStatus(startDate, endDate, undefined, effectiveEndDate)).toBe('active');
+
+      // 1 second after close
+      mockCurrentTime('2026-04-24T01:00:01Z');
+      expect(computeRoundStatus(startDate, endDate, undefined, effectiveEndDate)).toBe('closed');
+    });
+
+    it('should treat effectiveStartDate with ISO datetime as a literal UTC instant', () => {
+      const effectiveStartDate = '2026-02-02T09:30:00Z';
+
+      // Before the precise start instant
+      mockCurrentTime('2026-02-02T09:29:59Z');
+      expect(computeRoundStatus(startDate, endDate, effectiveStartDate)).toBe('upcoming');
+
+      // At the precise start instant
+      mockCurrentTime('2026-02-02T09:30:00Z');
+      expect(computeRoundStatus(startDate, endDate, effectiveStartDate)).toBe('active');
+    });
+
+    it('should honour timezone offsets in ISO datetimes', () => {
+      // 01:00 -05:00 == 06:00 UTC
+      const effectiveEndDate = '2026-04-24T01:00:00-05:00';
+
+      mockCurrentTime('2026-04-24T05:59:59Z');
+      expect(computeRoundStatus(startDate, endDate, undefined, effectiveEndDate)).toBe('active');
+
+      mockCurrentTime('2026-04-24T06:00:01Z');
+      expect(computeRoundStatus(startDate, endDate, undefined, effectiveEndDate)).toBe('closed');
+    });
+
+    it('should allow mixing date-only display dates with ISO datetime effective dates', () => {
+      // Public endDate is a date (AoE), grace period overrides with precise UTC instant
+      const effectiveEndDate = '2026-04-02T03:00:00Z';
+
+      // Past the date-only AoE close (11:59 UTC Apr 2nd), still before effective instant
+      mockCurrentTime('2026-04-02T02:59:59Z');
+      expect(computeRoundStatus(startDate, endDate, undefined, effectiveEndDate)).toBe('active');
+
+      mockCurrentTime('2026-04-02T03:00:01Z');
+      expect(computeRoundStatus(startDate, endDate, undefined, effectiveEndDate)).toBe('closed');
+    });
+  });
+
   describe('edge cases', () => {
     it('should handle same start and end date (single day round)', () => {
       const singleDay = '2026-03-15';

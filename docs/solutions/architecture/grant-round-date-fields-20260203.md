@@ -68,6 +68,13 @@ These control:
 - Visibility on Open Rounds page
 - "Applications Closed" banner display
 
+### Accepted Value Formats
+
+Any of the four date fields accepts either:
+
+- **Date only**, `YYYY-MM-DD` (e.g. `'2026-04-22'`) — interpreted as AoE, 00:00:00 for start dates and 23:59:59 for end dates. This is the default for public-facing deadlines.
+- **ISO datetime**, any string containing `T` (e.g. `'2026-04-24T01:00:00Z'`, `'2026-04-24T01:00:00-05:00'`) — parsed as a literal UTC instant. AoE is ignored. Use this when a round must open or close at a specific wall-clock time that does not fall on an AoE day boundary.
+
 ## How It Works
 
 ```typescript
@@ -79,12 +86,14 @@ export function computeRoundStatus(
   effectiveEndDate?: string     // Optional override
 ): RoundStatus {
   const now = Date.now();
-  // Use effective dates if provided, otherwise fall back to display dates
-  const startAoE = toAoETimestamp(effectiveStartDate || startDate, true);
-  const endAoE = toAoETimestamp(effectiveEndDate || endDate, false);
+  // Use effective dates if provided, otherwise fall back to display dates.
+  // resolveRoundTimestamp accepts either AoE date-only values or literal
+  // ISO datetimes — see "Accepted Value Formats" above.
+  const start = resolveRoundTimestamp(effectiveStartDate || startDate, true);
+  const end = resolveRoundTimestamp(effectiveEndDate || endDate, false);
 
-  if (now < startAoE) return 'upcoming';
-  if (now > endAoE) return 'closed';
+  if (now < start) return 'upcoming';
+  if (now > end) return 'closed';
   return 'active';
 }
 ```
@@ -114,7 +123,19 @@ effectiveEndDate: '2026-04-02'  # Actually closes April 2nd
 
 **Result:** Users see "April 1st" deadline, but applications accepted until Apr 2nd 23:59:59 AoE.
 
-### 3. Delayed Opening
+### 3. Short Grace Period (Precise UTC Close Time)
+
+When a short grace period is needed and an extra AoE day would over-extend by many hours, use the ISO datetime form on `effectiveEndDate`:
+
+```yaml
+startDate: '2026-02-02'
+endDate: '2026-04-22'                        # Users still see April 22nd
+effectiveEndDate: '2026-04-24T01:00:00Z'     # Actually closes 01:00 UTC April 24th
+```
+
+**Result:** Public deadline stays April 22nd, form quietly stays open until the exact instant. Used for the 2026 PhD Fellowship grace period (PR #524).
+
+### 4. Delayed Opening
 
 Announce a round early but don't accept applications until later:
 
@@ -126,7 +147,7 @@ endDate: '2026-04-01'
 
 **Result:** Round page is accessible, but not shown in "Open Rounds" until Feb 5th.
 
-### 4. Both Overrides
+### 5. Both Overrides
 
 ```yaml
 startDate: '2026-02-01'
@@ -139,7 +160,7 @@ effectiveEndDate: '2026-04-03'
 
 ## AoE Timezone
 
-All dates use **AoE (Anywhere on Earth)** timezone (UTC-12):
+Date-only values use **AoE (Anywhere on Earth)** timezone (UTC-12):
 
 | Date | AoE Time | UTC Equivalent |
 |------|----------|----------------|
@@ -147,6 +168,8 @@ All dates use **AoE (Anywhere on Earth)** timezone (UTC-12):
 | End: `'2026-04-01'` | 23:59:59 AoE Apr 1 | 11:59:59 UTC Apr 2 |
 
 This ensures applicants in any timezone have until the end of the stated day.
+
+ISO datetime values bypass AoE and are honored literally — use them only when a precise wall-clock close time is required (see Use Case 3).
 
 ## Type Definition
 
@@ -159,6 +182,7 @@ export interface RoundFrontmatter {
   tags: string[];
   heroImage: string;
   colorBrand: string;
+  // Dates accept "YYYY-MM-DD" (AoE) or any ISO datetime containing "T" (literal UTC instant)
   startDate: string;              // Required - display
   endDate: string;                // Required - display
   effectiveStartDate?: string;    // Optional - override
@@ -200,6 +224,7 @@ Covers:
 - AoE timezone conversion boundaries
 - Status computation for all states
 - Effective date override behavior
+- ISO datetime format (precise UTC close, non-UTC offsets, mixed date/datetime)
 - Edge cases (single-day rounds, year boundaries)
 
 ## Summary

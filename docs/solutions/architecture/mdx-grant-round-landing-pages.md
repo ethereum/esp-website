@@ -231,8 +231,8 @@ TypeScript won't catch missing fields because `gray-matter` returns untyped data
 | `tags` | Yes | Array matching Salesforce `Tags__c` |
 | `heroImage` | Yes | Path to public image |
 | `colorBrand` | Yes | Must exist in theme colors |
-| `startDate` | Yes | ISO format `YYYY-MM-DD` |
-| `endDate` | Yes | ISO format `YYYY-MM-DD` |
+| `startDate` | Yes | `YYYY-MM-DD` (AoE) or ISO datetime with `T` (literal UTC). See `grant-round-date-fields-20260203.md`. |
+| `endDate` | Yes | `YYYY-MM-DD` (AoE) or ISO datetime with `T` (literal UTC). See `grant-round-date-fields-20260203.md`. |
 
 ### 2. Hero Images Require Manual Registration
 
