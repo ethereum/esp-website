@@ -182,12 +182,6 @@ export const TOKEN_OPTIONS = [
   { value: 'DAI', label: 'DAI' },
 ];
 
-export const NETWORK_OPTIONS = [
-  { value: 'Ethereum Mainnet', label: 'Ethereum Mainnet' },
-  { value: 'Arbitrum', label: 'Arbitrum' },
-  { value: 'Optimism', label: 'Optimism' },
-];
-
 // countries
 export const COUNTRY_OPTIONS = [
   {
