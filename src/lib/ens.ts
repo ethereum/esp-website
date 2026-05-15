@@ -7,7 +7,12 @@ import {
   type Address,
 } from 'viem';
 import { mainnet } from 'viem/chains';
-import { normalize } from 'viem/ens';
+// Imported directly from @adraffy/ens-normalize (rather than via viem/ens) to
+// work around a Next 15 SWC minifier bug that inlines the viem wrapper chain
+// — `viem/ens.normalize` → `ox/Ens.normalize` (namespace import) → `ens_normalize`
+// — to `undefined`, causing ENS resolution to fetch /resolve/undefined and
+// downstream "Cannot read properties of undefined (reading 'replace')" errors.
+import { ens_normalize as normalize } from '@adraffy/ens-normalize';
 
 // RPC fallback for when metadata API fails
 const transport = fallback([

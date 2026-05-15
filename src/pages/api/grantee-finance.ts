@@ -20,7 +20,6 @@ async function handler(req: GranteeFinanceNextApiRequest, res: NextApiResponse):
       walletAddressResolved,
       walletAddressInputType,
       token,
-      network,
       // Fiat fields
       beneficiaryAddress: Beneficiary_Address__c,
       fiatCurrencyCode: Fiat_Currency__c,
@@ -87,7 +86,7 @@ async function handler(req: GranteeFinanceNextApiRequest, res: NextApiResponse):
     if (verifiedAddress && token) {
       Contract_Wallet_Address__c = verifiedAddress;
       Contract_Token__c = token;
-      Contract_Network__c = network;
+      Contract_Network__c = 'Ethereum Mainnet';
 
       // Store original ENS name if user submitted an ENS, clear it if they switched to direct address
       if (walletAddressInputType === 'ens' && walletAddress) {

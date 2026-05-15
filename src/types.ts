@@ -133,7 +133,6 @@ export interface GranteeFinanceFormData extends CaptchaForm {
   walletAddressResolved: string; // SF API: Contract_Wallet_Address__c (verified hex address)
   walletAddressInputType: 'address' | 'ens' | ''; // Used to determine if ENS__c should be populated
   token: TokenPreference | ''; // SF API: Contract_Token__c (ETH or DAI)
-  network: string; // SF API: Contract_Network__c (Ethereum Mainnet, Arbitrum, Optimism)
   isCentralizedExchange: string; // SF API: Centralized_Exchange_Address__c
 
   // FIAT
@@ -330,7 +329,6 @@ export interface GranteeFinanceNextApiRequest extends NextApiRequest {
     walletAddressResolved: string;
     walletAddressInputType: 'address' | 'ens' | '';
     token: 'ETH' | 'DAI' | '';
-    network: string;
     // Fiat fields
     beneficiaryAddress: string;
     fiatCurrencyCode: string;

@@ -34,7 +34,7 @@ import {
 import { chakraStyles } from './selectStyles';
 
 import { GranteeFinanceFormData, PaymentPreference } from '../../types';
-import { TOKEN_OPTIONS, NETWORK_OPTIONS } from './constants';
+import { TOKEN_OPTIONS } from './constants';
 
 export const GranteeFinanceForm: FC = () => {
   const [paymentPreference, setPaymentPreference] = useState<PaymentPreference>('');
@@ -147,8 +147,7 @@ export const GranteeFinanceForm: FC = () => {
                       walletAddress: '',
                       walletAddressResolved: '',
                       walletAddressInputType: '',
-                      token: '',
-                      network: ''
+                      token: ''
                     });
                   }}
                   value={value}
@@ -165,6 +164,13 @@ export const GranteeFinanceForm: FC = () => {
                     </Radio>
                   </Stack>
                 </RadioGroup>
+
+                {receivesCrypto && (
+                  <PageText as='small' fontSize='helpText' color='brand.orange.100' mt={3}>
+                    <strong>Please note:</strong> All cryptocurrency transactions are processed
+                    exclusively on the Ethereum Mainnet.
+                  </PageText>
+                )}
               </FormControl>
             )}
           />
@@ -292,52 +298,6 @@ export const GranteeFinanceForm: FC = () => {
                       <Box mt={1}>
                         <PageText as='small' fontSize='helpText' color='red.500'>
                           Token selection is required.
-                        </PageText>
-                      </Box>
-                    )}
-                  </FormControl>
-                )}
-              />
-
-              <Controller
-                name='network'
-                control={control}
-                rules={{
-                  required: receivesCrypto,
-                  validate: value => !receivesCrypto || value !== ''
-                }}
-                defaultValue=''
-                render={({ field: { onChange }, fieldState: { error } }) => (
-                  <FormControl id='network-control' isRequired={receivesCrypto} mb={8}>
-                    <FormLabel htmlFor='network' mb={1}>
-                      <PageText display='inline' fontSize='input'>
-                        Network
-                      </PageText>
-                    </FormLabel>
-
-                    <PageText as='small' fontSize='helpText' color='brand.helpText'>
-                      Select the network on which you would like to receive payment.
-                    </PageText>
-
-                    <Box mt={3}>
-                      <Select
-                        id='network'
-                        options={NETWORK_OPTIONS}
-                        onChange={option =>
-                          onChange((option as (typeof NETWORK_OPTIONS)[number]).value)
-                        }
-                        components={{ DropdownIndicator }}
-                        placeholder='Select network'
-                        closeMenuOnSelect={true}
-                        selectedOptionColor='brand.option'
-                        chakraStyles={chakraStyles}
-                      />
-                    </Box>
-
-                    {error && (
-                      <Box mt={1}>
-                        <PageText as='small' fontSize='helpText' color='red.500'>
-                          Network selection is required.
                         </PageText>
                       </Box>
                     )}
