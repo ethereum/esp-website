@@ -149,7 +149,7 @@ const leadData: LeadFields = {
 
 1. **Check API route logs** - Add console.log for curatedData
 2. **Verify field names** - Match exactly with Salesforce API names
-3. **Test in Salesforce sandbox** - Use SF_PROD_LOGIN_URL for sandbox URL
+3. **Test in Salesforce sandbox** - Set `SF_PROD_LOGIN_URL` to the sandbox My Domain URL
 4. **Check JSforce response** - Log the full error object
 
 ```typescript

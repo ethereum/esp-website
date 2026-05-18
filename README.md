@@ -99,10 +99,9 @@ Finally, capture the **Consumer Key** and **Consumer Secret** from the app's man
 
 | Variable | Description |
 | --- | --- |
+| `SF_PROD_LOGIN_URL` | Org's My Domain URL (e.g. `https://ef-esp.my.salesforce.com`) — Client Credentials must hit My Domain, not `login.salesforce.com`. Use the sandbox My Domain when testing against a sandbox. |
 | `SF_PROD_CONSUMER_KEY` | Connected App Consumer Key (`client_id`) |
 | `SF_PROD_CONSUMER_SECRET` | Connected App Consumer Secret (`client_secret`) |
-
-The login URL is hardcoded in `src/lib/sf/index.ts` — Client Credentials must hit the org's My Domain URL (not `login.salesforce.com`), and there's only one production org.
 
 ### Common issues
 
