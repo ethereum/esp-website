@@ -1,4 +1,4 @@
-import { createConnection, loginToSalesforce } from '.';
+import { getAuthenticatedConnection } from '.';
 
 /**
  * Salesforce field metadata structure
@@ -84,10 +84,8 @@ export const getSalesforceObjectMetadata = async (
     return metadataCache.get(objectType)!;
   }
 
-  const conn = createConnection();
-
   try {
-    await loginToSalesforce(conn);
+    const conn = await getAuthenticatedConnection();
 
     // Use describe() to get object metadata
     const describeResult = await conn.sobject(objectType).describe();
