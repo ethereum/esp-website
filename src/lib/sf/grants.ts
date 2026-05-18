@@ -1,6 +1,6 @@
 import { GrantRecord, SFOpportunityRecord } from '../../types/grants';
 import { deriveFiscalQuarter, getFiscalYearStart } from '../../utils/fiscalYear';
-import { createConnection, loginToSalesforce } from './index';
+import { getAuthenticatedConnection } from './index';
 
 /**
  * Record types to exclude from public grants explorer
@@ -23,18 +23,17 @@ export interface PublicGrantsResult {
 }
 
 export async function getPublicGrants(): Promise<PublicGrantsResult> {
-  const conn = createConnection();
-
+  let conn;
   try {
-    await loginToSalesforce(conn);
+    conn = await getAuthenticatedConnection();
   } catch (error) {
-    // loginToSalesforce rejects with 'Salesforce integration disabled' when
+    // getAuthenticatedConnection rejects with 'Salesforce integration disabled' when
     // credentials are not configured — expected in development / CI builds.
     if (error instanceof Error && error.message === 'Salesforce integration disabled') {
       console.warn('Salesforce not configured, returning mock grants for development');
       return getMockGrantsResult();
     }
-    // Real login failure (expired creds, network issue) — throw so ISR
+    // Real auth failure (expired creds, network issue) — throw so ISR
     // serves the previously cached page instead of fake data.
     throw error;
   }

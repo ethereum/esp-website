@@ -76,23 +76,32 @@ For the custom integration with the Salesforce API, we rely on the [JSforce](htt
 
 The Salesforce API field names (listed on `types.ts`) are defined in Salesforce for each corresponding object (Lead, Contract, etc).
 
-### Connected App
+### Connected App (OAuth 2.0 Client Credentials flow)
 
-To enable a custom API integration with Salesforce, you need to create a [Connected App](https://help.salesforce.com/s/articleView?id=sf.connected_app_overview.htm&type=5). You'll need an account with admin permissions. Go to `Setup > App Manager > New connected app` to create a new one.
+Auth uses the [OAuth 2.0 Client Credentials flow](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_client_credentials_flow.htm&type=5) — server-to-server with a client ID and secret, no user interaction.
 
-#### Configuration
+#### One-time setup (Salesforce admin)
 
-Check that your Connected App is configured with the following parameters
+In Salesforce, go to `Setup > App Manager > New Connected App` (or edit the existing one):
 
-- **Callback URL:** https://salesforce.com
-- **Selected OAuth Scopes:**
-  - Manage user data via APIs (api)
-  - Manage user data via Web browsers (web)
-  - Perform requests at any time (refresh_token, offline_access)
-- **Connected App policies:**
-  - IP Relaxation: Relax IP Restrictions
-  - Permitted Users: All users may self-authorized
-  - Refresh Token Policy: Refresh token is valid until revoked
+- **OAuth Settings:** Enabled
+- **Enable Client Credentials Flow:** Enabled
+- **Selected OAuth Scopes:** Manage user data via APIs (`api`)
+- **Callback URL:** any placeholder (unused by Client Credentials)
+
+Then under `Manage > Edit Policies`:
+
+- **Run As:** select the integration user that the connected app will act as
+
+Finally, capture the **Consumer Key** and **Consumer Secret** from the app's manage page.
+
+#### Local / deployment env vars
+
+| Variable | Description |
+| --- | --- |
+| `SF_PROD_LOGIN_URL` | Org's My Domain URL (e.g. `https://ef-esp.my.salesforce.com`) — Client Credentials must hit My Domain, not `login.salesforce.com`. Use the sandbox My Domain when testing against a sandbox. |
+| `SF_PROD_CONSUMER_KEY` | Connected App Consumer Key (`client_id`) |
+| `SF_PROD_CONSUMER_SECRET` | Connected App Consumer Secret (`client_secret`) |
 
 ### Common issues
 

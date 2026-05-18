@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import jsforce from 'jsforce';
+import { Connection } from 'jsforce';
 import jwt from 'jsonwebtoken';
 import matter from 'gray-matter';
 import type { File } from 'formidable';
@@ -37,21 +37,18 @@ function getRoundTags(): string[] {
   return tags;
 }
 
-const {
-  SF_PROD_LOGIN_URL,
-  SF_PROD_USERNAME,
-  SF_PROD_PASSWORD,
-  SF_PROD_SECURITY_TOKEN,
-  CSAT_JWT_SECRET
-} = process.env;
+const { SF_PROD_LOGIN_URL, SF_PROD_CONSUMER_KEY, SF_PROD_CONSUMER_SECRET, CSAT_JWT_SECRET } =
+  process.env;
 
 export const WISHLIST_RECORD_TYPE_ID = '012Vj000008tfPKIAY';
 export const RFP_RECORD_TYPE_ID = '012Vj000008tfPJIAY';
 
-const SALESFORCE_ENABLED = !!(SF_PROD_LOGIN_URL && SF_PROD_USERNAME && SF_PROD_PASSWORD && SF_PROD_SECURITY_TOKEN);
+const SALESFORCE_ENABLED = !!(SF_PROD_LOGIN_URL && SF_PROD_CONSUMER_KEY && SF_PROD_CONSUMER_SECRET);
 
 if (!SALESFORCE_ENABLED) {
-  console.warn('Salesforce credentials not configured. See .env.local.example for required variables.');
+  console.warn(
+    'Salesforce credentials not configured. See .env.local.example for required variables.'
+  );
 }
 
 /**
@@ -86,26 +83,41 @@ export const verifyCSATToken = (token: string): { applicationId: string } | null
   }
 };
 
-export const createConnection = (): jsforce.Connection => {
-  return new jsforce.Connection({
-    loginUrl: SF_PROD_LOGIN_URL
+const CLIENT_CREDENTIALS_PARAMS = { grant_type: 'client_credentials' };
+
+// Module-scoped, lazily authorized connection. jsforce's `refreshFn` is
+// invoked automatically on 401 (INVALID_SESSION_ID) and transparently retries
+// the in-flight request, so we don't need a manual retry wrapper.
+let connPromise: Promise<Connection> | null = null;
+
+const buildConnection = async (): Promise<Connection> => {
+  const conn = new Connection({
+    oauth2: {
+      loginUrl: SF_PROD_LOGIN_URL,
+      clientId: SF_PROD_CONSUMER_KEY,
+      clientSecret: SF_PROD_CONSUMER_SECRET
+    },
+    refreshFn: (refreshConn, callback) => {
+      refreshConn
+        .authorize(CLIENT_CREDENTIALS_PARAMS)
+        .then(() => callback(null, refreshConn.accessToken ?? undefined))
+        .catch(err => callback(err as Error));
+    }
   });
+  await conn.authorize(CLIENT_CREDENTIALS_PARAMS);
+  return conn;
 };
 
-export const loginToSalesforce = (conn: jsforce.Connection): Promise<void> => {
-  return new Promise((resolve, reject) => {
-    if (!SALESFORCE_ENABLED) {
-      return reject(new Error('Salesforce integration disabled'));
-    }
-
-    conn.login(SF_PROD_USERNAME!, `${SF_PROD_PASSWORD}${SF_PROD_SECURITY_TOKEN}`, err => {
-      if (err) {
-        console.error('Salesforce login error:', err);
-        return reject(err);
-      }
-      resolve();
+export const getAuthenticatedConnection = async (): Promise<Connection> => {
+  if (!SALESFORCE_ENABLED) throw new Error('Salesforce integration disabled');
+  if (!connPromise) {
+    connPromise = buildConnection().catch(err => {
+      // Allow retry on next call after a failed initial auth
+      connPromise = null;
+      throw err;
     });
-  });
+  }
+  return connPromise;
 };
 
 const getGrantInitiativeType = (recordTypeId: string): GrantInitiativeType | null => {
@@ -198,52 +210,36 @@ const transformGrantInitiativeRecords = (
  * @param options.excludeRoundItems - If true, excludes items that belong to grant rounds (default: true)
  * @returns Promise with the grant initiative items
  */
-export function getGrantInitiativeItems(
+export async function getGrantInitiativeItems(
   type?: GrantInitiativeType,
   options: { excludeRoundItems?: boolean } = { excludeRoundItems: true }
-) {
-  return new Promise<GrantInitiative[]>(async (resolve, reject) => {
-    const conn = createConnection();
+): Promise<GrantInitiative[]> {
+  if (!SALESFORCE_ENABLED) return [];
 
-    try {
-      await loginToSalesforce(conn);
+  const conn = await getAuthenticatedConnection();
 
-      const baseCriteria: Partial<GrantInitiativeSalesforceRecord> = { Status__c: 'Active' };
-      const criteria =
-        type != null
-          ? { ...baseCriteria, RecordTypeId: getRecordTypeIdForType(type) }
-          : baseCriteria;
+  const baseCriteria: Partial<GrantInitiativeSalesforceRecord> = { Status__c: 'Active' };
+  const criteria =
+    type != null ? { ...baseCriteria, RecordTypeId: getRecordTypeIdForType(type) } : baseCriteria;
 
-      conn
-        .sobject('Grant_Initiative__c')
-        .find<GrantInitiativeSalesforceRecord>(criteria, getFieldsForType(type), (err, ret) => {
-          if (err) {
-            console.error(err);
-            return reject(err);
-          }
+  let records = await conn
+    .sobject('Grant_Initiative__c')
+    .find<GrantInitiativeSalesforceRecord>(criteria, getFieldsForType(type));
 
-          let records = ret;
+  if (options.excludeRoundItems !== false) {
+    const roundTags = getRoundTags();
 
-          // Filter out items that belong to grant rounds
-          if (options.excludeRoundItems !== false) {
-            const roundTags = getRoundTags();
-
-            if (roundTags.length > 0) {
-              records = ret.filter(record => {
-                if (!record.Tags__c) return true;
-                const itemTags = record.Tags__c.split(';').map(t => t.trim());
-                // Exclude if any of the item's tags match a round tag
-                return !itemTags.some(tag => roundTags.includes(tag));
-              });
-            }
-          }
-
-          return resolve(transformGrantInitiativeRecords(records));
-        });
-    } catch (error) {
-      return reject(error);
+    if (roundTags.length > 0) {
+      records = records.filter(record => {
+        if (!record.Tags__c) return true;
+        const itemTags = record.Tags__c.split(';').map(t => t.trim());
+        // Exclude if any of the item's tags match a round tag
+        return !itemTags.some(tag => roundTags.includes(tag));
+      });
     }
-  });
+  }
+
+  return transformGrantInitiativeRecords(records);
 }
 
 /**
@@ -251,42 +247,26 @@ export function getGrantInitiativeItems(
  * @param tags - The tags to filter by (e.g., ["AGR26"] or ["PhDFP", "Research"])
  * @returns Promise with the filtered grant initiative items (matches ANY of the provided tags)
  */
-export function getGrantInitiativeItemsByTag(tags: string[]): Promise<GrantInitiative[]> {
-  return new Promise<GrantInitiative[]>(async (resolve, reject) => {
-    const conn = createConnection();
+export async function getGrantInitiativeItemsByTag(tags: string[]): Promise<GrantInitiative[]> {
+  if (!SALESFORCE_ENABLED) return [];
 
-    try {
-      await loginToSalesforce(conn);
+  const conn = await getAuthenticatedConnection();
 
-      const criteria: Partial<GrantInitiativeSalesforceRecord> = {
-        Status__c: 'Active'
-      };
+  const criteria: Partial<GrantInitiativeSalesforceRecord> = { Status__c: 'Active' };
 
-      conn
-        .sobject('Grant_Initiative__c')
-        .find<GrantInitiativeSalesforceRecord>(criteria, getFieldsForType(), (err, ret) => {
-          if (err) {
-            console.error(err);
-            return reject(err);
-          }
+  const records = await conn
+    .sobject('Grant_Initiative__c')
+    .find<GrantInitiativeSalesforceRecord>(criteria, getFieldsForType());
 
-          // Filter records that contain ANY of the tags in their Tags__c field
-          // Tags__c is a semicolon-separated string
-          const filteredRecords = ret.filter(record => {
-            if (!record.Tags__c) return false;
-            const recordTags = record.Tags__c.split(';').map(t => t.trim());
-            return tags.some(tag => recordTags.includes(tag));
-          });
-
-          return resolve(transformGrantInitiativeRecords(filteredRecords));
-        });
-    } catch (error) {
-      if (!SALESFORCE_ENABLED) {
-        return resolve([]);
-      }
-      return reject(error);
-    }
+  // Filter records that contain ANY of the tags in their Tags__c field
+  // Tags__c is a semicolon-separated string
+  const filteredRecords = records.filter(record => {
+    if (!record.Tags__c) return false;
+    const recordTags = record.Tags__c.split(';').map(t => t.trim());
+    return tags.some(tag => recordTags.includes(tag));
   });
+
+  return transformGrantInitiativeRecords(filteredRecords);
 }
 
 /**
@@ -299,29 +279,20 @@ export const createSalesforceRecord = async (
   objectType: string,
   data: Record<string, any>
 ): Promise<{ id: string; success: boolean }> => {
-  return new Promise(async (resolve, reject) => {
-    const conn = createConnection();
+  if (!SALESFORCE_ENABLED) {
+    return { id: `MOCK_${objectType}_${Date.now()}`, success: true };
+  }
 
-    try {
-      await loginToSalesforce(conn);
+  const conn = await getAuthenticatedConnection();
+  const ret = await conn.sobject(objectType).create(data);
 
-      conn.sobject(objectType).create(data, (err, ret) => {
-        if (err || !ret.success) {
-          console.error(`Error creating ${objectType}:`, err);
-          return reject(err || new Error(`${objectType} creation failed`));
-        }
+  if (!ret.success) {
+    console.error(`Error creating ${objectType}:`, ret.errors);
+    throw new Error(`${objectType} creation failed`);
+  }
 
-        console.log(`${objectType} with ID: ${ret.id} has been created!`);
-        resolve({ id: ret.id, success: ret.success });
-      });
-    } catch (error) {
-      if (!SALESFORCE_ENABLED) {
-        return resolve({ id: `MOCK_${objectType}_${Date.now()}`, success: true });
-      }
-      console.error(`Error in create${objectType}:`, error);
-      reject(error);
-    }
-  });
+  console.log(`${objectType} with ID: ${ret.id} has been created!`);
+  return { id: ret.id, success: true };
 };
 
 /**
@@ -336,29 +307,20 @@ export const updateSalesforceRecord = async (
   id: string,
   data: Record<string, any>
 ): Promise<{ id: string; success: boolean }> => {
-  return new Promise(async (resolve, reject) => {
-    const conn = createConnection();
+  if (!SALESFORCE_ENABLED) {
+    return { id, success: true };
+  }
 
-    try {
-      await loginToSalesforce(conn);
+  const conn = await getAuthenticatedConnection();
+  const ret = await conn.sobject(objectType).update({ Id: id, ...data });
 
-      conn.sobject(objectType).update({ Id: id, ...data }, (err, ret) => {
-        if (err || !ret.success) {
-          console.error(`Error updating ${objectType}:`, err);
-          return reject(err || new Error(`${objectType} update failed`));
-        }
+  if (!ret.success) {
+    console.error(`Error updating ${objectType}:`, ret.errors);
+    throw new Error(`${objectType} update failed`);
+  }
 
-        console.log(`${objectType} with ID: ${ret.id} has been updated!`);
-        resolve({ id: ret.id, success: ret.success });
-      });
-    } catch (error) {
-      if (!SALESFORCE_ENABLED) {
-        return resolve({ id, success: true });
-      }
-      console.error(`Error in update${objectType}:`, error);
-      reject(error);
-    }
-  });
+  console.log(`${objectType} with ID: ${ret.id} has been updated!`);
+  return { id: ret.id, success: true };
 };
 
 /**
@@ -375,74 +337,44 @@ export const uploadFileToSalesforce = async (
   titlePrefix: string = '[DOCUMENT]',
   projectName?: string
 ): Promise<{ success: boolean; contentDocumentId?: string }> => {
-  return new Promise(async (resolve, reject) => {
-    const conn = createConnection();
+  if (!SALESFORCE_ENABLED) {
+    return { success: true, contentDocumentId: `MOCK_DOC_${Date.now()}` };
+  }
 
-    try {
-      await loginToSalesforce(conn);
+  const conn = await getAuthenticatedConnection();
 
-      // Read file content as base64
-      let fileContent: string;
-      try {
-        fileContent = fs.readFileSync(file.filepath, { encoding: 'base64' });
-      } catch (error) {
-        console.error('Error reading file:', error);
-        return reject(new Error('Failed to read file content'));
-      }
+  const fileContent = fs.readFileSync(file.filepath, { encoding: 'base64' });
 
-      // Create the file title
-      const baseTitle = projectName
-        ? `${titlePrefix} ${truncateString(projectName, 200)} - ${linkedEntityId}`
-        : `${titlePrefix} ${linkedEntityId}`;
+  const baseTitle = projectName
+    ? `${titlePrefix} ${truncateString(projectName, 200)} - ${linkedEntityId}`
+    : `${titlePrefix} ${linkedEntityId}`;
 
-      // Upload file to Salesforce
-      conn.sobject('ContentVersion').create(
-        {
-          Title: baseTitle,
-          PathOnClient: file.originalFilename,
-          VersionData: fileContent
-        },
-        async (err, uploadResult) => {
-          if (err || !uploadResult.success) {
-            console.error('Error uploading file to Salesforce:', err);
-            return reject(err || new Error('File upload failed'));
-          }
-
-          console.log('File uploaded successfully:', uploadResult);
-
-          try {
-            // Get the ContentDocumentId from the uploaded file
-            const contentDocument = await conn
-              .sobject<{
-                Id: string;
-                ContentDocumentId: string;
-              }>('ContentVersion')
-              .retrieve(uploadResult.id);
-
-            // Link the document to the specified entity
-            await conn.sobject('ContentDocumentLink').create({
-              ContentDocumentId: contentDocument.ContentDocumentId,
-              LinkedEntityId: linkedEntityId,
-              ShareType: 'V'
-            });
-
-            console.log(`File successfully linked to entity ${linkedEntityId}`);
-            resolve({
-              success: true,
-              contentDocumentId: contentDocument.ContentDocumentId
-            });
-          } catch (linkError) {
-            console.error('Error linking file to entity:', linkError);
-            reject(new Error('Failed to link file to entity'));
-          }
-        }
-      );
-    } catch (error) {
-      if (!SALESFORCE_ENABLED) {
-        return resolve({ success: true, contentDocumentId: `MOCK_DOC_${Date.now()}` });
-      }
-      console.error('Error in uploadFileToSalesforce:', error);
-      reject(error);
-    }
+  const uploadResult = await conn.sobject('ContentVersion').create({
+    Title: baseTitle,
+    PathOnClient: file.originalFilename,
+    VersionData: fileContent
   });
+
+  if (!uploadResult.success) {
+    console.error('Error uploading file to Salesforce:', uploadResult.errors);
+    throw new Error('File upload failed');
+  }
+
+  console.log('File uploaded successfully:', uploadResult);
+
+  const contentDocument = (await conn
+    .sobject('ContentVersion')
+    .retrieve(uploadResult.id)) as { Id: string; ContentDocumentId: string };
+
+  await conn.sobject('ContentDocumentLink').create({
+    ContentDocumentId: contentDocument.ContentDocumentId,
+    LinkedEntityId: linkedEntityId,
+    ShareType: 'V'
+  });
+
+  console.log(`File successfully linked to entity ${linkedEntityId}`);
+  return {
+    success: true,
+    contentDocumentId: contentDocument.ContentDocumentId
+  };
 };
