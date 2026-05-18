@@ -218,6 +218,8 @@ export async function getGrantInitiativeItems(
   type?: GrantInitiativeType,
   options: { excludeRoundItems?: boolean } = { excludeRoundItems: true }
 ): Promise<GrantInitiative[]> {
+  if (!SALESFORCE_ENABLED) return [];
+
   const conn = await getAuthenticatedConnection();
 
   const baseCriteria: Partial<GrantInitiativeSalesforceRecord> = { Status__c: 'Active' };
