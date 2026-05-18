@@ -93,15 +93,7 @@ const curatedData = {
 
 ### Record Type
 
-Different forms use different Salesforce record types. Set via environment variables:
-
-```
-SF_RECORD_TYPE_OFFICE_HOURS
-SF_RECORD_TYPE_PROJECT_GRANTS
-SF_RECORD_TYPE_SMALL_GRANTS
-SF_RECORD_TYPE_SPONSORSHIPS
-SF_RECORD_TYPE_GRANTS_ROUND
-```
+Different forms use different Salesforce record types. Record type IDs are hardcoded in `src/lib/sf-field-mappings.ts` (per-form `HARDWIRED_FIELDS.RecordTypeId`) and `src/lib/sf/index.ts` (`WISHLIST_RECORD_TYPE_ID`, `RFP_RECORD_TYPE_ID`).
 
 ## Common Salesforce Errors
 

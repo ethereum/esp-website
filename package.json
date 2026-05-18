@@ -35,7 +35,6 @@
     "formidable": "^2.0.1",
     "framer-motion": "^11.0.5",
     "github-slugger": "^2.0.0",
-    "google-spreadsheet": "^3.2.0",
     "gray-matter": "^4.0.3",
     "jsforce": "^3.10.0",
     "jsonwebtoken": "^9.0.2",
@@ -59,7 +58,6 @@
   "devDependencies": {
     "@hookform/resolvers": "^3.1.0",
     "@types/formidable": "^2.0.4",
-    "@types/google-spreadsheet": "^3.1.5",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/mailchimp__mailchimp_marketing": "^3.0.3",
     "@types/node": "17.0.0",
