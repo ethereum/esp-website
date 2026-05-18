@@ -36,7 +36,6 @@ jobs:
 
       - name: Run tests
         env:
-          SF_PROD_LOGIN_URL: ${{ secrets.SF_PROD_LOGIN_URL }}
           SF_PROD_CONSUMER_KEY: ${{ secrets.SF_PROD_CONSUMER_KEY }}
           SF_PROD_CONSUMER_SECRET: ${{ secrets.SF_PROD_CONSUMER_SECRET }}
         run: pnpm test

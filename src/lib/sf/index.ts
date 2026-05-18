@@ -37,21 +37,17 @@ function getRoundTags(): string[] {
   return tags;
 }
 
-const {
-  SF_PROD_LOGIN_URL,
-  SF_PROD_CONSUMER_KEY,
-  SF_PROD_CONSUMER_SECRET,
-  CSAT_JWT_SECRET
-} = process.env;
+const { SF_PROD_CONSUMER_KEY, SF_PROD_CONSUMER_SECRET, CSAT_JWT_SECRET } = process.env;
+
+// Client Credentials flow must hit the org's My Domain URL — not
+// login.salesforce.com — and there is only one production org, so this is
+// hardcoded rather than env-driven.
+const SF_LOGIN_URL = 'https://ef-esp.my.salesforce.com';
 
 export const WISHLIST_RECORD_TYPE_ID = '012Vj000008tfPKIAY';
 export const RFP_RECORD_TYPE_ID = '012Vj000008tfPJIAY';
 
-const SALESFORCE_ENABLED = !!(
-  SF_PROD_LOGIN_URL &&
-  SF_PROD_CONSUMER_KEY &&
-  SF_PROD_CONSUMER_SECRET
-);
+const SALESFORCE_ENABLED = !!(SF_PROD_CONSUMER_KEY && SF_PROD_CONSUMER_SECRET);
 
 if (!SALESFORCE_ENABLED) {
   console.warn(
@@ -101,7 +97,7 @@ let connPromise: Promise<Connection> | null = null;
 const buildConnection = async (): Promise<Connection> => {
   const conn = new Connection({
     oauth2: {
-      loginUrl: SF_PROD_LOGIN_URL,
+      loginUrl: SF_LOGIN_URL,
       clientId: SF_PROD_CONSUMER_KEY,
       clientSecret: SF_PROD_CONSUMER_SECRET
     },

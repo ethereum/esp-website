@@ -99,9 +99,10 @@ Finally, capture the **Consumer Key** and **Consumer Secret** from the app's man
 
 | Variable | Description |
 | --- | --- |
-| `SF_PROD_LOGIN_URL` | e.g. `https://login.salesforce.com` |
 | `SF_PROD_CONSUMER_KEY` | Connected App Consumer Key (`client_id`) |
 | `SF_PROD_CONSUMER_SECRET` | Connected App Consumer Secret (`client_secret`) |
+
+The login URL is hardcoded in `src/lib/sf/index.ts` — Client Credentials must hit the org's My Domain URL (not `login.salesforce.com`), and there's only one production org.
 
 ### Common issues
 
