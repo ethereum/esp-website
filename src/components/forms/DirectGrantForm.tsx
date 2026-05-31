@@ -10,7 +10,7 @@ import {
   FormContainer
 } from './sections';
 import { DIRECT_GRANT_THANK_YOU_PAGE_URL } from '../../constants';
-import { UploadFile } from './fields';
+import { UploadFile, PaymentAcknowledgement } from './fields';
 import { api } from './api';
 import { FormConfig } from './schemas/BaseGrant';
 import { DirectGrantSchema, DirectGrantData } from './schemas/DirectGrant';
@@ -65,6 +65,8 @@ export const DirectGrantForm: FC = () => {
             maxSize: 4194304 // 4MB
           }}
         />
+
+        <PaymentAcknowledgement />
 
         <FormActions submitText='Submit Application' />
       </FormContainer>

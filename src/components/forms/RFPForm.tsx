@@ -13,6 +13,7 @@ import {
   AdditionalDetailsSection,
   FormActions
 } from './sections';
+import { PaymentAcknowledgement } from './fields';
 
 interface RFPFormProps {
   rfpItem: RFPItem;
@@ -51,6 +52,8 @@ export const RFPForm: FC<RFPFormProps> = ({ rfpItem }) => {
             }
           }}
         />
+
+        <PaymentAcknowledgement />
 
         <FormActions submitText='Submit Application' />
       </FormContainer>

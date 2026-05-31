@@ -3,7 +3,8 @@ import {
   projectOverviewSchema,
   projectDetailsSchema,
   additionalDetailsSchema,
-  requiredSchema
+  requiredSchema,
+  paymentAcknowledgementSchema
 } from './BaseGrant';
 import { z } from 'zod';
 import { MAX_TEXT_AREA_LENGTH, MAX_WISHLIST_FILE_SIZE } from '../../../constants';
@@ -33,7 +34,8 @@ export const DirectGrantSchema = z.object({
     .refine(
       file => !file || (file?.type || file?.mimetype) === 'application/pdf',
       'File must be a PDF'
-    )
+    ),
+  ...paymentAcknowledgementSchema
 });
 
 export type DirectGrantData = z.infer<typeof DirectGrantSchema>;

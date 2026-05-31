@@ -3,7 +3,8 @@ import {
   projectOverviewSchema,
   projectDetailsSchema,
   additionalDetailsSchema,
-  requiredSchema
+  requiredSchema,
+  paymentAcknowledgementSchema
 } from './BaseGrant';
 import { z } from 'zod';
 import {
@@ -35,7 +36,8 @@ export const WishlistSchema = z.object({
     .refine(
       file => !file || (file?.type || file?.mimetype) === 'application/pdf',
       'File must be a PDF'
-    )
+    ),
+  ...paymentAcknowledgementSchema
 });
 
 export type WishlistData = z.infer<typeof WishlistSchema>;

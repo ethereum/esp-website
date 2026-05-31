@@ -108,6 +108,16 @@ const requiredSchema = {
   captchaToken: stringFieldSchema('Captcha', { min: 1 })
 };
 
+// Grant payment acknowledgement that must be checked (true) to submit the application.
+// Client-side gate only: this field is intentionally not mapped to Salesforce.
+const paymentAcknowledgementSchema = {
+  paymentAcknowledgement: z.literal(true, {
+    errorMap: () => ({
+      message: 'You must acknowledge the grant payment terms to submit your application.'
+    })
+  })
+};
+
 export const BaseGrantSchema = z.object({
   ...contactInformationSchema,
   ...projectOverviewSchema,
@@ -121,7 +131,8 @@ export {
   projectOverviewSchema,
   projectDetailsSchema,
   additionalDetailsSchema,
-  requiredSchema
+  requiredSchema,
+  paymentAcknowledgementSchema
 };
 
 export type BaseGrantData = z.infer<typeof BaseGrantSchema>;
