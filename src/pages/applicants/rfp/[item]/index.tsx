@@ -148,6 +148,14 @@ const RFPItemPage: NextPage<RFPItemApplyProps> = ({ rfpItem }) => {
                 </Stack>
               </Box>
             )}
+            <Box>
+              <Text fontWeight='600' color='brand.heading' mb={1}>
+                Grant Payment Information
+              </Text>
+              <Text color='brand.paragraph'>
+                Approved grants under this initiative are paid on-chain in ETH by default.
+              </Text>
+            </Box>
           </Stack>
         </Box>
 

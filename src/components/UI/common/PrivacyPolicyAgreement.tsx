@@ -12,7 +12,7 @@ export const PrivacyPolicyAgreement: React.FC<TextProps> = props => (
       _hover={{ textDecoration: 'none' }}
     >
       Privacy Policy
-    </Link>
-    .
+    </Link>{' '}
+    and that approved grants are paid on-chain in ETH by default.
   </PageText>
 );
