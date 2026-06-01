@@ -177,11 +177,6 @@ export const SUPPORTED_LAYERS_2_OPTIONS = [
   { value: 'ZKSync', label: 'ZKSync' }
 ];
 
-export const TOKEN_OPTIONS = [
-  { value: 'ETH', label: 'ETH' },
-  { value: 'DAI', label: 'DAI' },
-];
-
 // countries
 export const COUNTRY_OPTIONS = [
   {

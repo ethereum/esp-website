@@ -45,7 +45,7 @@ async function handler(req: GranteeFinanceNextApiRequest, res: NextApiResponse):
 
     if (walletAddressInputType === 'ens') {
       // Re-verify ENS resolution on server for security
-      const result = await resolveAddressOrEns(walletAddress);
+      const result = await resolveAddressOrEns(walletAddress ?? '');
       if (!result.success || !result.address) {
         console.error('ENS resolution failed on server:', result.error);
         res.status(400).json({ status: 'fail', error: 'ENS resolution failed' });
@@ -122,23 +122,37 @@ async function handler(req: GranteeFinanceNextApiRequest, res: NextApiResponse):
 
   console.log(`Contract ID: ${Contract_ID__c} found! Proceeding to update the record...`);
 
-  // Build update payload - only include crypto fields if they're being updated
-  // This prevents overwriting existing addresses with empty strings
+  // Build update payload - common fields are always written; crypto and fiat fields are
+  // only written when present, so a crypto submission doesn't wipe stored fiat details
+  // (and vice versa). Each form sends only the keys relevant to its payment method.
   const updatePayload: Record<string, unknown> = {
     // SF expects an `Id` field, with the id of the object you want to update as value
     Id: Contract_ID__c.trim(),
-    Beneficiary_Name__c: Beneficiary_Name__c.trim(),
-    User_Email__c: User_Email__c.trim(),
-    Transfer_Notes__c: Transfer_Notes__c.trim(),
-    Contract_Payment_Method__c: Contract_Payment_Method__c.trim(),
-    Beneficiary_Address__c: Beneficiary_Address__c.trim(),
-    Fiat_Currency__c: Fiat_Currency__c.trim(),
-    Bank_Name__c: Bank_Name__c.trim(),
-    Bank_Address__c: Bank_Address__c.trim(),
-    IBAN_Account_Number__c: IBAN_Account_Number__c.trim(),
-    SWIFT_Code_BIC__c: SWIFT_Code_BIC__c.trim(),
-    Centralized_Exchange_Address__c
+    Beneficiary_Name__c: Beneficiary_Name__c?.trim() ?? '',
+    User_Email__c: User_Email__c?.trim() ?? '',
+    Transfer_Notes__c: Transfer_Notes__c?.trim() ?? '',
+    Contract_Payment_Method__c: Contract_Payment_Method__c?.trim() ?? ''
   };
+
+  // Only add fiat fields if they're being updated (prevents overwriting with empty strings)
+  if (Beneficiary_Address__c !== undefined) {
+    updatePayload.Beneficiary_Address__c = Beneficiary_Address__c.trim();
+  }
+  if (Fiat_Currency__c !== undefined) {
+    updatePayload.Fiat_Currency__c = Fiat_Currency__c.trim();
+  }
+  if (Bank_Name__c !== undefined) {
+    updatePayload.Bank_Name__c = Bank_Name__c.trim();
+  }
+  if (Bank_Address__c !== undefined) {
+    updatePayload.Bank_Address__c = Bank_Address__c.trim();
+  }
+  if (IBAN_Account_Number__c !== undefined) {
+    updatePayload.IBAN_Account_Number__c = IBAN_Account_Number__c.trim();
+  }
+  if (SWIFT_Code_BIC__c !== undefined) {
+    updatePayload.SWIFT_Code_BIC__c = SWIFT_Code_BIC__c.trim();
+  }
 
   // Only add crypto fields if they're being updated (prevents data loss)
   if (Contract_Wallet_Address__c !== undefined) {
@@ -152,6 +166,9 @@ async function handler(req: GranteeFinanceNextApiRequest, res: NextApiResponse):
   }
   if (ENS__c !== undefined) {
     updatePayload.ENS__c = ENS__c.trim();
+  }
+  if (Centralized_Exchange_Address__c !== undefined) {
+    updatePayload.Centralized_Exchange_Address__c = Centralized_Exchange_Address__c;
   }
 
   try {

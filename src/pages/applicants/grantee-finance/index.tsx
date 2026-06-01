@@ -1,8 +1,10 @@
-import { Box, Stack } from '@chakra-ui/react';
+import { Box, Link, Stack } from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
 import { PageMetadata, PageSubheading, PageText } from '../../../components/UI';
+
+import { ETHEREUM_WALLETS_URL } from '../../../constants';
 
 const GranteeFinancePage: NextPage = () => {
   return (
@@ -31,21 +33,29 @@ const GranteeFinancePage: NextPage = () => {
             </PageSubheading>
 
             <PageText mb={6}>
-              Please submit your bank or wallet details using this secure form. The Ethereum
-              Foundation can remit payment in DAI, ETH, or the fiat currency of your choosing.
+              Please submit your wallet details using this secure form. The Ethereum Foundation
+              disburses grant payments in ETH and transactions are processed exclusively on the
+              Ethereum Mainnet.
             </PageText>
 
             <PageText mb={6}>
-              <strong>If you choose to be paid in any fiat currency</strong>, the payment will be
-              sent from our account on the following Monday and should arrive in your account in
-              roughly 10 business days. Please note this will be an international wire transfer, so
-              please provide international banking details.
+              Once your grant tranche is ready for disbursement, someone from the Ethereum
+              Foundation will contact you via email to confirm your address with a test amount
+              before sending the entirety of the funds.
             </PageText>
 
             <PageText>
-              <strong>If you choose to be paid in ETH or DAI</strong>, someone from the Ethereum
-              Foundation will contact you via email to confirm your address with a test amount
-              before sending the entirety of the funds.
+              For best practices on selecting and securing an Ethereum wallet, visit{' '}
+              <Link
+                fontWeight={700}
+                color='brand.orange.100'
+                href={ETHEREUM_WALLETS_URL}
+                isExternal
+                _hover={{ textDecoration: 'none' }}
+              >
+                ethereum.org/wallets
+              </Link>
+              .
             </PageText>
           </section>
         </Stack>
