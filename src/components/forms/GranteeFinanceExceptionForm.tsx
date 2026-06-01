@@ -1,6 +1,7 @@
 import { Box, Center, Fade, FormControl, FormLabel, Radio, RadioGroup, Stack, useToast } from '@chakra-ui/react';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { FC, useState } from 'react';
-import { Controller, FormProvider, useForm } from 'react-hook-form';
+import { Controller, FormProvider, Resolver, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 
 import { PageText } from '../UI';
@@ -12,6 +13,7 @@ import {
   GranteeFinanceFiatFields,
   GranteeFinanceRecordFields
 } from './granteeFinance';
+import { granteeFinanceExceptionSchema } from './schemas/GranteeFinance';
 
 import { api } from './api';
 
@@ -27,6 +29,7 @@ export const GranteeFinanceExceptionForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
   const methods = useForm<GranteeFinanceFormData>({
+    resolver: zodResolver(granteeFinanceExceptionSchema) as Resolver<GranteeFinanceFormData>,
     mode: 'onBlur'
   });
   const {

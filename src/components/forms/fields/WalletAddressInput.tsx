@@ -16,11 +16,17 @@ import { PageText } from '../../UI';
 import { resolveAddressOrEns, isAvatarSafe } from '../../../lib/ens';
 import { useDebounce } from '../../../hooks/useDebounce';
 
+// Shown as live feedback while typing whenever the input can't be read as a direct address or a
+// resolvable ENS name (bad format, failed/empty ENS resolution). Overridable per form.
+const DEFAULT_INVALID_INPUT_MESSAGE = 'Enter a valid address (0x...) or ENS name';
+
 interface Props {
   id: string;
   label: string;
   helpText?: React.ReactNode;
   isRequired?: boolean;
+  // Message shown for unparseable input; defaults to a generic address/ENS hint.
+  invalidInputMessage?: string;
 }
 
 export const WalletAddressInput: FC<Props> = ({
@@ -28,14 +34,19 @@ export const WalletAddressInput: FC<Props> = ({
   label,
   helpText,
   isRequired = true,
+  invalidInputMessage = DEFAULT_INVALID_INPUT_MESSAGE,
 }) => {
   const {
     register,
     setValue,
-    formState: { errors },
+    formState: { errors, submitCount },
   } = useFormContext();
 
   const [inputValue, setInputValue] = useState('');
+  // Gate the "required" error so it doesn't flash on mount: the field validates immediately
+  // (to keep the submit button disabled), but we only surface the message once the user has
+  // engaged the input or attempted to submit.
+  const [hasInteracted, setHasInteracted] = useState(false);
   const [status, setStatus] = useState<
     'empty' | 'typing' | 'resolving' | 'resolved' | 'valid-address' | 'error'
   >('empty');
@@ -100,7 +111,9 @@ export const WalletAddressInput: FC<Props> = ({
             setResolvedAddress(null);
             setValue(resolvedFieldName, '', { shouldValidate: true });
             setValue(inputTypeFieldName, '', { shouldValidate: false });
-            setErrorMessage(result.error || 'Resolution failed');
+            // Surface a friendly message rather than the raw ENS normalization error
+            // (e.g. 'Invalid label "": empty label' for inputs like "vit.").
+            setErrorMessage(invalidInputMessage);
           }
         })
         .catch(err => {
@@ -120,9 +133,9 @@ export const WalletAddressInput: FC<Props> = ({
       setResolvedAddress(null);
       setValue(resolvedFieldName, '', { shouldValidate: true });
       setValue(inputTypeFieldName, '', { shouldValidate: false });
-      setErrorMessage('Enter a valid address (0x...) or ENS name');
+      setErrorMessage(invalidInputMessage);
     }
-  }, [debouncedInput, setValue, resolvedFieldName, inputTypeFieldName]);
+  }, [debouncedInput, setValue, resolvedFieldName, inputTypeFieldName, invalidInputMessage]);
 
   // Sync raw input value to form
   useEffect(() => {
@@ -161,7 +174,10 @@ export const WalletAddressInput: FC<Props> = ({
         <Input
           id={id}
           value={inputValue}
-          onChange={e => setInputValue(e.target.value)}
+          onChange={e => {
+            setInputValue(e.target.value);
+            setHasInteracted(true);
+          }}
           placeholder='0x... or name.eth'
           bg='white'
           borderRadius={0}
@@ -209,7 +225,9 @@ export const WalletAddressInput: FC<Props> = ({
         </Box>
       )}
 
-      {error && (
+      {/* Only surface the schema-level error when the component isn't already showing its own
+          more specific status message (e.g. "Enter a valid address..." for invalid input). */}
+      {error && status !== 'error' && (hasInteracted || submitCount > 0) && (
         <Box mt={1}>
           <PageText as='small' fontSize='helpText' color='red.500'>
             {(error as any).message}

@@ -1,6 +1,7 @@
 import { Center, Stack, useToast } from '@chakra-ui/react';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FormProvider, Resolver, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 
 import { SubmitButton } from '../SubmitButton';
@@ -10,6 +11,7 @@ import {
   GranteeFinanceCryptoFields,
   GranteeFinanceRecordFields
 } from './granteeFinance';
+import { granteeFinanceSchema } from './schemas/GranteeFinance';
 
 import { api } from './api';
 
@@ -24,6 +26,7 @@ export const GranteeFinanceForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
   const methods = useForm<GranteeFinanceFormData>({
+    resolver: zodResolver(granteeFinanceSchema) as Resolver<GranteeFinanceFormData>,
     mode: 'onBlur',
     defaultValues: {
       paymentPreference: 'Cryptocurrency',

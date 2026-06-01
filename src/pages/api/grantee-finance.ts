@@ -4,10 +4,20 @@ import { isAddress, getAddress } from 'viem';
 import { sanitizeFields, verifyCaptcha } from '../../middlewares';
 import { resolveAddressOrEns } from '../../lib/ens';
 import { getAuthenticatedConnection } from '../../lib/sf';
+import { granteeFinanceServerSchema } from '../../components/forms/schemas/GranteeFinance';
 
 import { GranteeFinanceNextApiRequest } from '../../types';
 
 async function handler(req: GranteeFinanceNextApiRequest, res: NextApiResponse): Promise<void> {
+  // Validate the request body shape/types before touching Salesforce. Method-specific fields are
+  // optional, so this guards both the default (ETH) and exception (DAI/Fiat) submissions.
+  const parsed = granteeFinanceServerSchema.safeParse(req.body);
+  if (!parsed.success) {
+    console.error('Grantee finance validation failed:', parsed.error.format());
+    res.status(400).json({ status: 'fail', error: 'Invalid submission' });
+    return;
+  }
+
   const { body } = req;
   const {
     beneficiaryName: Beneficiary_Name__c,
