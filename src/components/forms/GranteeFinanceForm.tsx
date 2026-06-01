@@ -27,7 +27,8 @@ export const GranteeFinanceForm: FC = () => {
   const toast = useToast();
   const methods = useForm<GranteeFinanceFormData>({
     resolver: zodResolver(granteeFinanceSchema) as Resolver<GranteeFinanceFormData>,
-    mode: 'onBlur',
+    mode: 'all',
+    shouldFocusError: true,
     defaultValues: {
       paymentPreference: 'Cryptocurrency',
       token: 'ETH',
@@ -36,7 +37,7 @@ export const GranteeFinanceForm: FC = () => {
   });
   const {
     handleSubmit,
-    formState: { isValid, isSubmitting },
+    formState: { isSubmitting },
     reset
   } = methods;
 
@@ -91,7 +92,7 @@ export const GranteeFinanceForm: FC = () => {
 
           <Center>
             <SubmitButton
-              isValid={isValid}
+              isValid
               isSubmitting={isSubmitting}
               height='56px'
               width='190px'

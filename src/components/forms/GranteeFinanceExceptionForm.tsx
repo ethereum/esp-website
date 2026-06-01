@@ -30,12 +30,13 @@ export const GranteeFinanceExceptionForm: FC = () => {
   const toast = useToast();
   const methods = useForm<GranteeFinanceFormData>({
     resolver: zodResolver(granteeFinanceExceptionSchema) as Resolver<GranteeFinanceFormData>,
-    mode: 'onBlur'
+    mode: 'all',
+    shouldFocusError: true
   });
   const {
     handleSubmit,
     control,
-    formState: { isValid, isSubmitting },
+    formState: { isSubmitting },
     reset,
     getValues,
     watch
@@ -240,7 +241,7 @@ export const GranteeFinanceExceptionForm: FC = () => {
 
               <Center>
                 <SubmitButton
-                  isValid={isValid}
+                  isValid
                   isSubmitting={isSubmitting}
                   height='56px'
                   width='190px'
