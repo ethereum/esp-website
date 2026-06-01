@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
-import { Box, Checkbox, Stack } from '@chakra-ui/react';
+import { Checkbox } from '@chakra-ui/react';
 import { useFormContext } from 'react-hook-form';
 
+import { Field } from './Field';
 import { PageText } from '../../UI';
 
 /**
@@ -15,15 +16,18 @@ export const PaymentAcknowledgement: FC = () => {
     formState: { errors }
   } = useFormContext();
 
-  const error = errors.paymentAcknowledgement;
-
   return (
-    <Stack spacing={3}>
-      <PageText fontWeight={700}>Grant Payment Acknowledgement</PageText>
-
+    <Field
+      id='paymentAcknowledgement'
+      label='Grant Payment Acknowledgement'
+      isRequired
+      error={errors.paymentAcknowledgement as any}
+    >
       <Checkbox
         id='paymentAcknowledgement'
         alignItems='flex-start'
+        // center the control on the first line of the label (line-height 24px, control 16px)
+        sx={{ '.chakra-checkbox__control': { mt: '4px' } }}
         {...register('paymentAcknowledgement')}
       >
         <PageText fontSize='input'>
@@ -33,14 +37,6 @@ export const PaymentAcknowledgement: FC = () => {
           circumstances and remain at the Ethereum Foundation&apos;s discretion.
         </PageText>
       </Checkbox>
-
-      {error && (
-        <Box>
-          <PageText as='small' fontSize='helpText' color='red.500'>
-            {error.message as string}
-          </PageText>
-        </Box>
-      )}
-    </Stack>
+    </Field>
   );
 };
