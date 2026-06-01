@@ -20,6 +20,7 @@ import {
   ESP_FARCASTER_URL,
   ESP_LENS_URL,
   ESP_BLUESKY_URL,
+  ETHEREUM_WALLETS_URL,
   SIDEBAR_APPLICANTS_LINKS,
 } from '../../constants';
 
@@ -145,8 +146,21 @@ const Applicants: NextPage = () => {
                     <PageText mb={4}>
                       Ethereum Foundation grants are paid on-chain in ETH by default. Applicants should ensure they are able to securely receive and manage ETH payments.
                     </PageText>
-                    <PageText>
+                    <PageText mb={4}>
                       Exceptions may be considered in limited cases where legal, regulatory, or operational constraints prevent receiving ETH.
+                    </PageText>
+                    <PageText>
+                      For best practices on selecting and securing an Ethereum wallet, visit{' '}
+                      <Link
+                        href={ETHEREUM_WALLETS_URL}
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        isExternal
+                        _hover={{ textDecoration: 'none' }}
+                      >
+                        ethereum.org/wallets
+                      </Link>
+                      .
                     </PageText>
                   </FAQItem>
                 </Accordion>
