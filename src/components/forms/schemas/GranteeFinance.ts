@@ -31,7 +31,8 @@ const cryptoFieldsSchema = {
   walletAddressResolved: stringFieldSchema('Wallet address', { min: 1 }),
   // Live input feedback (the "valid address / ENS" hint) is owned by WalletAddressInput; this
   // only gates submission and its message is never rendered, so no custom errorMap is needed.
-  walletAddressInputType: z.enum(['address', 'ens']),
+  // '' is the empty/cleared state WalletAddressInput writes before a valid address resolves.
+  walletAddressInputType: z.enum(['address', 'ens', '']),
   // Boolean end-to-end; the radio renders Yes/No words but stores true/false.
   isCentralizedExchange: z.boolean()
 };
@@ -62,56 +63,30 @@ export const granteeFinanceSchema = z.object({
 
 export type GranteeFinanceFormData = z.infer<typeof granteeFinanceSchema>;
 
-// Exception form: a single flat schema so react-hook-form can watch/reset individual fields. The
-// relabeled radio (Stablecoin/Fiat) maps to the SF picklist values 'Cryptocurrency' / 'Fiat', which
-// drive which method fields are required (enforced by superRefine). token is injected at submit
-// time (DAI), so it is not a field here.
-export const granteeFinanceExceptionSchema = z
-  .object({
-    // '' is the initial (unselected) radio state; a real choice is gated by the hidden submit
-    // button and re-validated server-side, where only 'Cryptocurrency' / 'Fiat' are accepted.
-    paymentPreference: z.enum(['Cryptocurrency', 'Fiat', '']),
-    ...contactFieldsSchema,
-    ...recordFieldsSchema,
-    ...captchaSchema,
-    // Crypto path — required when paymentPreference === 'Cryptocurrency' (see superRefine).
-    walletAddress: z.string().optional(),
-    walletAddressResolved: z.string().optional(),
-    walletAddressInputType: z.enum(['address', 'ens', '']).optional(),
-    isCentralizedExchange: z.boolean().optional(),
-    // Fiat path — required when paymentPreference === 'Fiat' (see superRefine).
-    beneficiaryAddress: z.string().max(MAX_TEXT_LENGTH).optional(),
-    fiatCurrencyCode: z.string().max(3).optional(),
-    bankName: z.string().max(100).optional(),
-    bankAddress: z.string().max(MAX_TEXT_LENGTH).optional(),
-    IBAN: z.string().max(50).optional(),
-    SWIFTCode: z.string().max(100).optional()
-  })
-  .superRefine((data, ctx) => {
-    if (data.paymentPreference === 'Cryptocurrency') {
-      if (!data.walletAddressResolved) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ['walletAddressResolved'],
-          message: 'Wallet address is required'
-        });
-      }
-    } else if (data.paymentPreference === 'Fiat') {
-      const requiredFiatFields: Record<string, string> = {
-        beneficiaryAddress: 'Beneficiary address is required',
-        fiatCurrencyCode: 'Currency code is required',
-        bankName: 'Bank name is required',
-        bankAddress: 'Bank address is required',
-        IBAN: 'IBAN is required',
-        SWIFTCode: 'SWIFT code is required'
-      };
-      for (const [field, message] of Object.entries(requiredFiatFields)) {
-        if (!data[field as keyof typeof data]) {
-          ctx.addIssue({ code: z.ZodIssueCode.custom, path: [field], message });
-        }
-      }
-    }
-  });
+// Exception form: one schema per payment path, combined into a discriminated union keyed on the
+// (relabeled) radio. The SF picklist values are 'Cryptocurrency' / 'Fiat'; zod selects the matching
+// branch, so each path only validates its own fields. token is injected at submit time (DAI), so it
+// is not a field here; the network is set server-side.
+const granteeFinanceStablecoinSchema = z.object({
+  paymentPreference: z.literal('Cryptocurrency'),
+  ...contactFieldsSchema,
+  ...cryptoFieldsSchema,
+  ...recordFieldsSchema,
+  ...captchaSchema
+});
+
+const granteeFinanceFiatSchema = z.object({
+  paymentPreference: z.literal('Fiat'),
+  ...contactFieldsSchema,
+  ...fiatFieldsSchema,
+  ...recordFieldsSchema,
+  ...captchaSchema
+});
+
+export const granteeFinanceExceptionSchema = z.discriminatedUnion('paymentPreference', [
+  granteeFinanceStablecoinSchema,
+  granteeFinanceFiatSchema
+]);
 
 export type GranteeFinanceExceptionData = z.infer<typeof granteeFinanceExceptionSchema>;
 

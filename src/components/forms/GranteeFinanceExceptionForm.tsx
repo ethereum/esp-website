@@ -51,7 +51,6 @@ export const GranteeFinanceExceptionForm: FC = () => {
     control,
     formState: { isSubmitting },
     reset,
-    getValues,
     watch
   } = methods;
 
@@ -94,37 +93,44 @@ export const GranteeFinanceExceptionForm: FC = () => {
   );
 
   const onSubmit = async (data: GranteeFinanceExceptionData) => {
-    const {
-      // crypto-only keys
-      walletAddress,
-      walletAddressResolved,
-      walletAddressInputType,
-      isCentralizedExchange,
-      // fiat-only keys
-      beneficiaryAddress,
-      fiatCurrencyCode,
-      bankName,
-      bankAddress,
-      IBAN,
-      SWIFTCode,
-      ...common
-    } = data;
+    // Fields shared by both payment paths.
+    const base = {
+      beneficiaryName: data.beneficiaryName,
+      contactEmail: data.contactEmail,
+      notes: data.notes,
+      contractID: data.contractID,
+      securityID: data.securityID,
+      captchaToken: data.captchaToken
+    };
 
-    // Send only the keys relevant to the selected payment method. The hidden path's
-    // fields are still mounted (and reset to ''), so including them would let the
-    // server's presence guards overwrite the other method's stored values with empties.
-    const methodFields = receivesStablecoin
-      ? {
-          walletAddress,
-          walletAddressResolved,
-          walletAddressInputType,
-          isCentralizedExchange,
-          token: 'DAI' as const
-        }
-      : { beneficiaryAddress, fiatCurrencyCode, bankName, bankAddress, IBAN, SWIFTCode };
+    // Send only the keys relevant to the selected payment method — zod's discriminated union lets
+    // us narrow on paymentPreference. The hidden path's fields are still mounted, so including them
+    // would let the server's presence guards overwrite the other method's stored values with
+    // empties. token is injected here (DAI) rather than being a form field.
+    const payload =
+      data.paymentPreference === 'Cryptocurrency'
+        ? {
+            ...base,
+            paymentPreference: data.paymentPreference,
+            walletAddress: data.walletAddress,
+            walletAddressResolved: data.walletAddressResolved,
+            walletAddressInputType: data.walletAddressInputType,
+            isCentralizedExchange: data.isCentralizedExchange,
+            token: 'DAI' as const
+          }
+        : {
+            ...base,
+            paymentPreference: data.paymentPreference,
+            beneficiaryAddress: data.beneficiaryAddress,
+            fiatCurrencyCode: data.fiatCurrencyCode,
+            bankName: data.bankName,
+            bankAddress: data.bankAddress,
+            IBAN: data.IBAN,
+            SWIFTCode: data.SWIFTCode
+          };
 
     return api.granteeFinance
-      .submit({ ...common, ...methodFields })
+      .submit(payload)
       .then(res => {
         if (res.ok) {
           reset();
@@ -167,7 +173,6 @@ export const GranteeFinanceExceptionForm: FC = () => {
             name='paymentPreference'
             control={control}
             rules={{ required: true }}
-            defaultValue=''
             render={({ field: { onChange, value } }) => (
               <FormControl
                 id='stablecoin-or-fiat-control'
@@ -185,22 +190,8 @@ export const GranteeFinanceExceptionForm: FC = () => {
                   onChange={(value: PaymentPreference) => {
                     onChange(value);
                     setPaymentPreference(value);
-                    reset({
-                      // keep paymentPreference, beneficiaryName, contactEmail, notes and contractID
-                      // reset the other fields
-                      ...getValues(),
-                      beneficiaryAddress: '',
-                      fiatCurrencyCode: '',
-                      bankName: '',
-                      bankAddress: '',
-                      IBAN: '',
-                      SWIFTCode: '',
-                      walletAddress: '',
-                      walletAddressResolved: '',
-                      walletAddressInputType: ''
-                    });
                   }}
-                  value={value}
+                  value={value ?? ''}
                   fontSize='input'
                   colorScheme='white'
                 >
