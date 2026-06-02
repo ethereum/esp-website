@@ -119,30 +119,9 @@ export interface SmallGrantsFormData extends CaptchaForm {
   uploadProposal: File;
 }
 
-export interface GranteeFinanceFormData extends CaptchaForm {
-  // these fields map to SF's Contract object fields
-  paymentPreference: PaymentPreference;
-  beneficiaryName: string; // SF API: Beneficiary_Name__c
-  contactEmail: string; // SF API: User_Email__c
-  notes: string; // SF API: Transfer_Notes__c
-  contractID: string; // SF API: Contract_ID__c
-  securityID: string; // SF API: Security_ID__c
-
-  // Cryptocurrency payment fields (only present on crypto submissions)
-  walletAddress?: string; // User input (ENS name or address) - stored in ENS__c if ENS
-  walletAddressResolved?: string; // SF API: Contract_Wallet_Address__c (verified hex address)
-  walletAddressInputType?: 'address' | 'ens' | ''; // Used to determine if ENS__c should be populated
-  token?: TokenPreference | ''; // SF API: Contract_Token__c (ETH or DAI)
-  isCentralizedExchange?: boolean; // SF API: Centralized_Exchange_Address__c
-
-  // FIAT (only present on fiat submissions)
-  beneficiaryAddress?: string; // SF API: Beneficiary_Address__c
-  fiatCurrencyCode?: string; // SF API: CurrencyIsoCode
-  bankName?: string; // SF API: Bank_Name__c
-  bankAddress?: string; // SF API: Bank_Address__c
-  IBAN?: string; // SF API: IBAN_Account_Number__c
-  SWIFTCode?: string; // SF API: SWIFT_Code_BIC__c
-}
+// Inferred from the zod schema so the form-values type can't drift from validation.
+// See src/components/forms/schemas/GranteeFinance.ts for the field-level mapping to SF.
+export type { GranteeFinanceFormData } from './components/forms/schemas/GranteeFinance';
 
 export interface OfficeHoursFormData extends CaptchaForm {
   firstName: string; // SF API: FirstName

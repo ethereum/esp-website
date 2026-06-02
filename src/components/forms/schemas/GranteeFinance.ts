@@ -84,6 +84,33 @@ export const granteeFinanceExceptionSchema = z.discriminatedUnion('paymentPrefer
 
 export type GranteeFinanceExceptionData = z.infer<typeof granteeFinanceExceptionSchema>;
 
+// Loose superset used as the react-hook-form field-values type (and the client api submit input)
+// for BOTH forms. Common fields reuse the validated groups above so they can't drift; the
+// method-specific groups are optional (only one payment path renders per form) and a few
+// system-controlled fields stay loose because the forms set/reset them to '' directly. This is a
+// type source only — it is never used to parse; per-form validation is done by the schemas above.
+const granteeFinanceFormDataSchema = z.object({
+  ...contactFieldsSchema,
+  ...recordFieldsSchema,
+  ...captchaSchema,
+  paymentPreference: z.enum(['Cryptocurrency', 'Fiat', '']),
+  // Crypto path (optional)
+  walletAddress: z.string().optional(),
+  walletAddressResolved: z.string().optional(),
+  walletAddressInputType: z.enum(['address', 'ens', '']).optional(),
+  token: z.enum(['ETH', 'DAI', '']).optional(),
+  isCentralizedExchange: z.boolean().optional(),
+  // Fiat path (optional)
+  beneficiaryAddress: z.string().optional(),
+  fiatCurrencyCode: z.string().optional(),
+  bankName: z.string().optional(),
+  bankAddress: z.string().optional(),
+  IBAN: z.string().optional(),
+  SWIFTCode: z.string().optional()
+});
+
+export type GranteeFinanceFormData = z.infer<typeof granteeFinanceFormDataSchema>;
+
 // Server schema: validates the request body for BOTH forms. Method-specific fields are
 // optional because each form sends only the keys relevant to its payment method, and the handler
 // writes each field only when present. Unknown keys (e.g. captchaToken) are stripped by default.
