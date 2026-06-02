@@ -32,7 +32,8 @@ const cryptoFieldsSchema = {
   // Live input feedback (the "valid address / ENS" hint) is owned by WalletAddressInput; this
   // only gates submission and its message is never rendered, so no custom errorMap is needed.
   walletAddressInputType: z.enum(['address', 'ens']),
-  isCentralizedExchange: z.enum(['Yes', 'No'])
+  // Boolean end-to-end; the radio renders Yes/No words but stores true/false.
+  isCentralizedExchange: z.boolean()
 };
 
 const fiatFieldsSchema = {
@@ -83,8 +84,7 @@ export const granteeFinanceExceptionSchema = z.discriminatedUnion('paymentPrefer
 
 export type GranteeFinanceExceptionData = z.infer<typeof granteeFinanceExceptionSchema>;
 
-// Server schema: validates the request body for BOTH forms after the client's in-flight
-// transform (isCentralizedExchange is a boolean here, not 'Yes'/'No'). Method-specific fields are
+// Server schema: validates the request body for BOTH forms. Method-specific fields are
 // optional because each form sends only the keys relevant to its payment method, and the handler
 // writes each field only when present. Unknown keys (e.g. captchaToken) are stripped by default.
 export const granteeFinanceServerSchema = z.object({

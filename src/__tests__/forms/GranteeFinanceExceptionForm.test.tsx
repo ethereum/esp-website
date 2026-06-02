@@ -183,10 +183,13 @@ describe('GranteeFinanceExceptionForm — fiat submission', () => {
       captchaToken: 'test-captcha-token'
     });
 
-    // Crypto-only keys must not leak into a fiat submission.
+    // Crypto-only keys must not leak into a fiat submission. `isCentralizedExchange` in
+    // particular used to leak as `false` (the api layer coerced an absent value), which would
+    // overwrite the stored Centralized_Exchange_Address__c on a fiat update.
     expect(body).not.toHaveProperty('walletAddress');
     expect(body).not.toHaveProperty('walletAddressResolved');
     expect(body).not.toHaveProperty('walletAddressInputType');
+    expect(body).not.toHaveProperty('isCentralizedExchange');
 
     await waitFor(() => expect(pushMock).toHaveBeenCalledWith(GRANTEE_FINANCE_THANK_YOU_PAGE_URL));
   });

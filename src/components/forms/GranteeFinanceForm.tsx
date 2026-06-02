@@ -32,7 +32,7 @@ export const GranteeFinanceForm: FC = () => {
     defaultValues: {
       paymentPreference: 'Cryptocurrency',
       token: 'ETH',
-      isCentralizedExchange: 'No'
+      isCentralizedExchange: false
     }
   });
   const {

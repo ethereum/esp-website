@@ -47,8 +47,7 @@ export const GranteeFinanceCryptoFields: FC<Props> = ({ token, isRequired = true
       <Controller
         name='isCentralizedExchange'
         control={control}
-        rules={{ required: isRequired }}
-        defaultValue='No'
+        defaultValue={false}
         render={({ field: { onChange, value } }) => (
           <FormControl id='isCentralizedExchange-control' isRequired={isRequired} mb={8}>
             <FormLabel htmlFor='isCentralizedExchange' mb={1}>
@@ -57,10 +56,11 @@ export const GranteeFinanceCryptoFields: FC<Props> = ({ token, isRequired = true
               </PageText>
             </FormLabel>
 
+            {/* Value is a boolean; the radio renders Yes/No words but stores true/false. */}
             <RadioGroup
               id='isCentralizedExchange'
-              onChange={onChange}
-              value={value}
+              onChange={val => onChange(val === 'Yes')}
+              value={value ? 'Yes' : 'No'}
               fontSize='input'
               colorScheme='white'
               mt={3}

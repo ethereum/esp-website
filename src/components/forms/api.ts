@@ -99,10 +99,7 @@ export const api = {
       const granteeFinanceRequestOptions: RequestInit = {
         ...methodOptions,
         method: 'PUT',
-        body: JSON.stringify({
-          ...data,
-          isCentralizedExchange: data.isCentralizedExchange === 'Yes'
-        })
+        body: JSON.stringify(data)
       };
 
       return fetch(API_GRANTEE_FINANCE, granteeFinanceRequestOptions);
