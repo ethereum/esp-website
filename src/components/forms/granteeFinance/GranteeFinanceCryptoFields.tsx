@@ -1,27 +1,19 @@
 import { Box, FormControl, FormLabel, Radio, RadioGroup, Stack } from '@chakra-ui/react';
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
 import { PageText } from '../../UI';
 import { WalletAddressInput } from '..';
 
-import { GranteeFinanceFormData, TokenPreference } from '../../../types';
-
 interface Props {
-  // Token is hardcoded per form: ETH for the default form, DAI for the exception form.
-  token: TokenPreference;
   isRequired?: boolean;
 }
 
-// Wallet address + centralized-exchange question. Token is fixed via the `token` prop
-// (no selector) and the network is hardcoded to Ethereum Mainnet server-side.
-export const GranteeFinanceCryptoFields: FC<Props> = ({ token, isRequired = true }) => {
-  const { control, setValue } = useFormContext<GranteeFinanceFormData>();
-
-  // Keep the hidden `token` value in sync with the form variant.
-  useEffect(() => {
-    setValue('token', token);
-  }, [token, setValue]);
+// Wallet address + centralized-exchange question. The token is fixed per form and injected at
+// submit time (ETH default / DAI exception); the network is hardcoded to Ethereum Mainnet
+// server-side, so neither is a field here.
+export const GranteeFinanceCryptoFields: FC<Props> = ({ isRequired = true }) => {
+  const { control } = useFormContext();
 
   return (
     <>

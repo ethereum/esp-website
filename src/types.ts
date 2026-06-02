@@ -119,10 +119,6 @@ export interface SmallGrantsFormData extends CaptchaForm {
   uploadProposal: File;
 }
 
-// Inferred from the zod schema so the form-values type can't drift from validation.
-// See src/components/forms/schemas/GranteeFinance.ts for the field-level mapping to SF.
-export type { GranteeFinanceFormData } from './components/forms/schemas/GranteeFinance';
-
 export interface OfficeHoursFormData extends CaptchaForm {
   firstName: string; // SF API: FirstName
   lastName: string; // SF API: LastName

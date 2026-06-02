@@ -23,13 +23,16 @@ import {
   GranteeFinanceFiatFields,
   GranteeFinanceRecordFields
 } from './granteeFinance';
-import { granteeFinanceExceptionSchema } from './schemas/GranteeFinance';
+import {
+  granteeFinanceExceptionSchema,
+  GranteeFinanceExceptionData
+} from './schemas/GranteeFinance';
 
 import { api } from './api';
 
 import { GRANTEE_FINANCE_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
 
-import { GranteeFinanceFormData, PaymentPreference } from '../../types';
+import { PaymentPreference } from '../../types';
 
 // Exception grantee finance form: only sent in pre-approved cases by the Grant Management
 // team. Grantees choose between a stablecoin (DAI) payment or a fiat wire transfer. The
@@ -38,7 +41,7 @@ export const GranteeFinanceExceptionForm: FC = () => {
   const [paymentPreference, setPaymentPreference] = useState<PaymentPreference>('');
   const router = useRouter();
   const toast = useToast();
-  const methods = useForm<GranteeFinanceFormData>({
+  const methods = useForm<GranteeFinanceExceptionData>({
     resolver: zodResolver(granteeFinanceExceptionSchema),
     mode: 'all',
     shouldFocusError: true
@@ -90,7 +93,7 @@ export const GranteeFinanceExceptionForm: FC = () => {
     </>
   );
 
-  const onSubmit = async (data: GranteeFinanceFormData) => {
+  const onSubmit = async (data: GranteeFinanceExceptionData) => {
     const {
       // crypto-only keys
       walletAddress,
@@ -194,8 +197,7 @@ export const GranteeFinanceExceptionForm: FC = () => {
                       SWIFTCode: '',
                       walletAddress: '',
                       walletAddressResolved: '',
-                      walletAddressInputType: '',
-                      token: ''
+                      walletAddressInputType: ''
                     });
                   }}
                   value={value}
@@ -224,7 +226,7 @@ export const GranteeFinanceExceptionForm: FC = () => {
 
           <Box display={receivesStablecoin ? 'block' : 'none'}>
             <Fade in={receivesStablecoin} delay={0.25}>
-              <GranteeFinanceCryptoFields token='DAI' isRequired={receivesStablecoin} />
+              <GranteeFinanceCryptoFields isRequired={receivesStablecoin} />
             </Fade>
           </Box>
 

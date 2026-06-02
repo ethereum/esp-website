@@ -11,13 +11,11 @@ import {
   GranteeFinanceCryptoFields,
   GranteeFinanceRecordFields
 } from './granteeFinance';
-import { granteeFinanceSchema } from './schemas/GranteeFinance';
+import { granteeFinanceSchema, GranteeFinanceFormData } from './schemas/GranteeFinance';
 
 import { api } from './api';
 
 import { GRANTEE_FINANCE_THANK_YOU_PAGE_URL, TOAST_OPTIONS } from '../../constants';
-
-import { GranteeFinanceFormData } from '../../types';
 
 // Default grantee finance form: Ethereum Foundation grants are paid on-chain in ETH by
 // default. Payment preference is fixed to crypto/ETH (no selector) and processed exclusively
@@ -43,7 +41,7 @@ export const GranteeFinanceForm: FC = () => {
 
   const onSubmit = async (data: GranteeFinanceFormData) => {
     return api.granteeFinance
-      .submit({ ...data, paymentPreference: 'Cryptocurrency', token: 'ETH' })
+      .submit(data)
       .then(res => {
         if (res.ok) {
           reset();
@@ -82,7 +80,7 @@ export const GranteeFinanceForm: FC = () => {
         <form id='grantee-finance-form' onSubmit={handleSubmit(onSubmit)}>
           <GranteeFinanceContactFields />
 
-          <GranteeFinanceCryptoFields token='ETH' />
+          <GranteeFinanceCryptoFields />
 
           <GranteeFinanceRecordFields />
 

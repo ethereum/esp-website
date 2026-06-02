@@ -1,4 +1,8 @@
-import { GranteeFinanceFormData, NewsletterFormData } from './../../types';
+import { NewsletterFormData } from './../../types';
+import {
+  GranteeFinanceFormData,
+  GranteeFinanceExceptionData
+} from './schemas/GranteeFinance';
 
 import { createFormData } from '../../utils';
 
@@ -95,7 +99,7 @@ export const api = {
     }
   },
   granteeFinance: {
-    submit: (data: GranteeFinanceFormData) => {
+    submit: (data: GranteeFinanceFormData | GranteeFinanceExceptionData) => {
       const granteeFinanceRequestOptions: RequestInit = {
         ...methodOptions,
         method: 'PUT',
