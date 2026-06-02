@@ -156,6 +156,14 @@ export const WalletAddressInput: FC<Props> = ({
 
   const error = errors[resolvedFieldName];
 
+  // Surface the schema "required" error only when the box is genuinely empty and the user has
+  // engaged the field (or tried to submit). While there's pending input — debouncing, resolving, or
+  // unparseable — the status messages above own the feedback, so showing "required" would flash an
+  // error under a field the user just filled.
+  const isEmpty = !inputValue.trim();
+  const userEngaged = hasInteracted || submitCount > 0;
+  const showRequiredError = Boolean(error) && status !== 'error' && isEmpty && userEngaged;
+
   return (
     <FormControl id={`${id}-control`} isRequired={isRequired}>
       <FormLabel htmlFor={id}>
@@ -225,9 +233,7 @@ export const WalletAddressInput: FC<Props> = ({
         </Box>
       )}
 
-      {/* Only surface the schema-level error when the component isn't already showing its own
-          more specific status message (e.g. "Enter a valid address..." for invalid input). */}
-      {error && status !== 'error' && (hasInteracted || submitCount > 0) && (
+      {showRequiredError && (
         <Box mt={1}>
           <PageText as='small' fontSize='helpText' color='red.500'>
             {(error as any).message}
