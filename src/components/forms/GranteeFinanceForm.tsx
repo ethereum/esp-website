@@ -1,7 +1,7 @@
 import { Center, Stack, useToast } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FC } from 'react';
-import { FormProvider, Resolver, useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 
 import { SubmitButton } from '../SubmitButton';
@@ -26,7 +26,7 @@ export const GranteeFinanceForm: FC = () => {
   const router = useRouter();
   const toast = useToast();
   const methods = useForm<GranteeFinanceFormData>({
-    resolver: zodResolver(granteeFinanceSchema) as Resolver<GranteeFinanceFormData>,
+    resolver: zodResolver(granteeFinanceSchema),
     mode: 'all',
     shouldFocusError: true,
     defaultValues: {
