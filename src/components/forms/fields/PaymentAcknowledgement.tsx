@@ -32,9 +32,9 @@ export const PaymentAcknowledgement: FC = () => {
       >
         <PageText fontSize='input'>
           I understand that Ethereum Foundation grants are paid in ETH by default, and that
-          recipients are responsible for managing wallet access, accounting, and any required
-          conversion to local currency. I also understand that exceptions are limited to specific
-          circumstances and remain at the Ethereum Foundation&apos;s discretion.
+          recipients are responsible for managing wallet access, accounting, and any conversions. I
+          also understand that exceptions are limited to specific circumstances and remain at the
+          Ethereum Foundation&apos;s discretion.
         </PageText>
       </Checkbox>
     </Field>

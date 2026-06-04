@@ -73,7 +73,7 @@ const Applicants: NextPage = () => {
                     The Grant Management (GM) team reviews applications in collaboration with the EF team responsible for the corresponding Wishlist or RFP item. The evaluation process may include: an interview to discuss your proposal in detail, project rescoping, or budget negotiations.
                   </ProcessStep>
                   <ProcessStep title="Decision">
-                    You will be notified of funding decisions by email. If your project is selected, we will work closely with you to establish a clear grant structure with milestone-based payments. <strong>Ethereum Foundation grants are paid on-chain in ETH by default</strong> so we ask that grant recipients are prepared to receive and manage ETH payments. All grant recipients will complete an onboarding process, involving KYC verification and a legal grant agreement.
+                    You will be notified of funding decisions by email. If your project is selected, we will work closely with you to establish a clear grant structure with milestone-based payments. <strong>Ethereum Foundation grants are paid on-chain in ETH by default</strong>, so we ask that grant recipients are prepared to receive and manage ETH payments. All grant recipients are required to complete an onboarding process, involving identity verification and a formal grant letter.
                   </ProcessStep>
                   <ProcessStep title="Execute">
                     Begin work on your project with ongoing support from the GM team. You will be paired with a Grant Evaluator for regular check-ins, milestone reviews, and support as you progress.
@@ -147,7 +147,7 @@ const Applicants: NextPage = () => {
                       Ethereum Foundation grants are paid on-chain in ETH by default. Applicants should ensure they are able to securely receive and manage ETH payments.
                     </PageText>
                     <PageText mb={4}>
-                      Exceptions may be considered in limited cases where legal, regulatory, or operational constraints prevent receiving ETH.
+                      Exceptions may be considered in limited cases where legal or operational constraints prevent the applicant from receiving ETH.
                     </PageText>
                     <PageText>
                       For best practices on selecting and securing an Ethereum wallet, visit{' '}
