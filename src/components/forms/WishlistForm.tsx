@@ -11,7 +11,7 @@ import {
   FormContainer
 } from './sections';
 import { WISHLIST_THANK_YOU_PAGE_URL } from '../../constants';
-import { UploadFile } from './fields';
+import { UploadFile, PaymentAcknowledgement } from './fields';
 import { api } from './api';
 import { FormConfig } from './schemas/BaseGrant';
 import { WishlistSchema, WishlistItem, WishlistData } from './schemas/Wishlist';
@@ -67,6 +67,8 @@ export const WishlistForm: FC<WishlistFormProps> = ({ wishlistItem }) => {
             maxSize: 4194304 // 4MB
           }}
         />
+
+        <PaymentAcknowledgement />
 
         <FormActions submitText='Submit Application' />
       </FormContainer>

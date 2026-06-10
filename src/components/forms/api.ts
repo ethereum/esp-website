@@ -1,4 +1,8 @@
-import { GranteeFinanceFormData, NewsletterFormData } from './../../types';
+import { NewsletterFormData } from './../../types';
+import {
+  GranteeFinanceFormData,
+  GranteeFinanceExceptionData
+} from './schemas/GranteeFinance';
 
 import { createFormData } from '../../utils';
 
@@ -95,14 +99,11 @@ export const api = {
     }
   },
   granteeFinance: {
-    submit: (data: GranteeFinanceFormData) => {
+    submit: (data: GranteeFinanceFormData | GranteeFinanceExceptionData) => {
       const granteeFinanceRequestOptions: RequestInit = {
         ...methodOptions,
         method: 'PUT',
-        body: JSON.stringify({
-          ...data,
-          isCentralizedExchange: data.isCentralizedExchange === 'Yes'
-        })
+        body: JSON.stringify(data)
       };
 
       return fetch(API_GRANTEE_FINANCE, granteeFinanceRequestOptions);

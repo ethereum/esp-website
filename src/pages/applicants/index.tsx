@@ -20,6 +20,7 @@ import {
   ESP_FARCASTER_URL,
   ESP_LENS_URL,
   ESP_BLUESKY_URL,
+  ETHEREUM_WALLETS_URL,
   SIDEBAR_APPLICANTS_LINKS,
 } from '../../constants';
 
@@ -72,7 +73,7 @@ const Applicants: NextPage = () => {
                     The Grant Management (GM) team reviews applications in collaboration with the EF team responsible for the corresponding Wishlist or RFP item. The evaluation process may include: an interview to discuss your proposal in detail, project rescoping, or budget negotiations.
                   </ProcessStep>
                   <ProcessStep title="Decision">
-                    You will be notified of funding decisions via email. If your project is selected, we will work closely with you to establish a clear grant structure with milestone-based payments. All grant recipients also complete an onboarding process, involving KYC verification and signing a legal grant agreement. 
+                    You will be notified of funding decisions by email. If your project is selected, we will work closely with you to establish a clear grant structure with milestone-based payments. <strong>Ethereum Foundation grants are paid on-chain in ETH by default</strong>, so we ask that grant recipients are prepared to receive and manage ETH payments. All grant recipients are required to complete an onboarding process, involving identity verification and a formal grant letter.
                   </ProcessStep>
                   <ProcessStep title="Execute">
                     Begin work on your project with ongoing support from the GM team. You will be paired with a Grant Evaluator for regular check-ins, milestone reviews, and support as you progress.
@@ -138,7 +139,28 @@ const Applicants: NextPage = () => {
                   </FAQItem>
                   <FAQItem question="What is the typical funding range for a grant awarded through the Wishlist or RFP?">
                     <PageText>
-                      Grant funding is determined based on the scope and complexity of the proposal, unless otherwise specified in the posted Wishlist or RFP item. Where applicable, RFPs may include budget guidance estimates. The GM team will work with applicants to determine final grant amounts. 
+                      Grant funding is determined based on the scope and complexity of the proposal, unless otherwise specified in the posted Wishlist or RFP item. Where applicable, RFPs may include budget guidance estimates. The GM team will work with applicants to determine final grant amounts.
+                    </PageText>
+                  </FAQItem>
+                  <FAQItem question="How are grants paid?">
+                    <PageText mb={4}>
+                      Ethereum Foundation grants are paid on-chain in ETH by default. Applicants should ensure they are able to securely receive and manage ETH payments.
+                    </PageText>
+                    <PageText mb={4}>
+                      Exceptions may be considered in limited cases where legal or operational constraints prevent the applicant from receiving ETH.
+                    </PageText>
+                    <PageText>
+                      For best practices on selecting and securing an Ethereum wallet, visit{' '}
+                      <Link
+                        href={ETHEREUM_WALLETS_URL}
+                        fontWeight={700}
+                        color='brand.orange.100'
+                        isExternal
+                        _hover={{ textDecoration: 'none' }}
+                      >
+                        ethereum.org/wallets
+                      </Link>
+                      .
                     </PageText>
                   </FAQItem>
                 </Accordion>

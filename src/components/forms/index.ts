@@ -1,5 +1,6 @@
 export * from './Forms';
 export * from './GranteeFinanceForm';
+export * from './GranteeFinanceExceptionForm';
 export * from './NewsletterSignup';
 export * from './OfficeHoursForm';
 export * from './WishlistForm';

@@ -86,6 +86,7 @@ export const RFP_APPLY_URL = '/applicants/rfp/apply';
 
 // grantee finance
 export const GRANTEE_FINANCE_URL = '/applicants/grantee-finance';
+export const GRANTEE_FINANCE_EXCEPTION_URL = '/applicants/grantee-finance-excp';
 export const GRANTEE_FINANCE_THANK_YOU_PAGE_URL = '/applicants/grantee-finance/thank-you';
 
 // thank you pages
@@ -105,6 +106,7 @@ export const ETHEREUM_COMMUNITY_URL = 'https://ethereum.org/en/community/';
 export const ETHEREUM_BROAD_ECOSYSTEM_URL =
   'https://ethereum.org/en/community/grants/#broad-ethereum-ecosystem';
 export const ETHEREUM_GRANTS_URL = 'https://ethereum.org/en/community/grants/';
+export const ETHEREUM_WALLETS_URL = 'https://ethereum.org/en/wallets/';
 
 // EF
 export const EF_PHILOSOPHY_URL = 'https://ethereum.foundation/philosophy/';

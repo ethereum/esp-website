@@ -128,9 +128,7 @@ const RFPItemPage: NextPage<RFPItemApplyProps> = ({ rfpItem }) => {
                 </Box>
               </Box>
             )}
-            {(rfpItem.RFP_Open_Date__c ||
-              rfpItem.RFP_Close_Date__c ||
-              rfpItem.RFP_Project_Duration__c) && (
+            {(rfpItem.RFP_Open_Date__c || rfpItem.RFP_Close_Date__c) && (
               <Box>
                 <Text fontWeight='600' color='brand.heading' mb={1}>
                   Timeline
@@ -142,12 +140,25 @@ const RFPItemPage: NextPage<RFPItemApplyProps> = ({ rfpItem }) => {
                   {rfpItem.RFP_Close_Date__c && (
                     <Text>Closes: {formatDate(rfpItem.RFP_Close_Date__c)}</Text>
                   )}
-                  {rfpItem.RFP_Project_Duration__c && (
-                    <Text>Estimated Project Duration: {rfpItem.RFP_Project_Duration__c}</Text>
-                  )}
                 </Stack>
               </Box>
             )}
+            {rfpItem.RFP_Project_Duration__c && (
+              <Box>
+                <Text fontWeight='600' color='brand.heading' mb={1}>
+                  Estimated Project Duration
+                </Text>
+                <Text color='brand.paragraph'>{rfpItem.RFP_Project_Duration__c}</Text>
+              </Box>
+            )}
+            <Box>
+              <Text fontWeight='600' color='brand.heading' mb={1}>
+                Grant Payment Information
+              </Text>
+              <Text color='brand.paragraph'>
+                Approved grants under this initiative are paid on-chain in ETH by default.
+              </Text>
+            </Box>
           </Stack>
         </Box>
 

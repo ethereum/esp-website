@@ -16,8 +16,9 @@ export type FormType = 'rfp' | 'directGrant' | 'wishlist' | 'officeHours';
  * System fields that should not be mapped to Salesforce
  * - captchaToken: Used for bot protection, not stored in SF
  * - fileUpload: Handled as separate ContentVersion upload, not a regular SF field
+ * - paymentAcknowledgement: Client-side submit gate only, not stored in SF
  */
-type SystemFields = 'captchaToken' | 'fileUpload';
+type SystemFields = 'captchaToken' | 'fileUpload' | 'paymentAcknowledgement';
 
 /**
  * Extract mappable fields from a schema type

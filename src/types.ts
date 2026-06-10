@@ -119,31 +119,6 @@ export interface SmallGrantsFormData extends CaptchaForm {
   uploadProposal: File;
 }
 
-export interface GranteeFinanceFormData extends CaptchaForm {
-  // these fields map to SF's Contract object fields
-  paymentPreference: PaymentPreference;
-  beneficiaryName: string; // SF API: Beneficiary_Name__c
-  contactEmail: string; // SF API: User_Email__c
-  notes: string; // SF API: Transfer_Notes__c
-  contractID: string; // SF API: Contract_ID__c
-  securityID: string; // SF API: Security_ID__c
-
-  // Cryptocurrency payment fields
-  walletAddress: string; // User input (ENS name or address) - stored in ENS__c if ENS
-  walletAddressResolved: string; // SF API: Contract_Wallet_Address__c (verified hex address)
-  walletAddressInputType: 'address' | 'ens' | ''; // Used to determine if ENS__c should be populated
-  token: TokenPreference | ''; // SF API: Contract_Token__c (ETH or DAI)
-  isCentralizedExchange: string; // SF API: Centralized_Exchange_Address__c
-
-  // FIAT
-  beneficiaryAddress: string; // SF API: Beneficiary_Address__c
-  fiatCurrencyCode: string; // SF API: CurrencyIsoCode
-  bankName: string; // SF API: Bank_Name__c
-  bankAddress: string; // SF API: Bank_Address__c
-  IBAN: string; // SF API: IBAN_Account_Number__c
-  SWIFTCode: string; // SF API: SWIFT_Code_BIC__c
-}
-
 export interface OfficeHoursFormData extends CaptchaForm {
   firstName: string; // SF API: FirstName
   lastName: string; // SF API: LastName
@@ -324,22 +299,22 @@ export interface GranteeFinanceNextApiRequest extends NextApiRequest {
     contactEmail: string;
     notes: string;
     paymentPreference: PaymentPreference;
-    // New unified crypto fields
-    walletAddress: string;
-    walletAddressResolved: string;
-    walletAddressInputType: 'address' | 'ens' | '';
-    token: 'ETH' | 'DAI' | '';
-    // Fiat fields
-    beneficiaryAddress: string;
-    fiatCurrencyCode: string;
-    bankName: string;
-    bankAddress: string;
-    IBAN: string;
-    SWIFTCode: string;
+    // New unified crypto fields (only present on crypto submissions)
+    walletAddress?: string;
+    walletAddressResolved?: string;
+    walletAddressInputType?: 'address' | 'ens' | '';
+    token?: 'ETH' | 'DAI' | '';
+    // Fiat fields (only present on fiat submissions)
+    beneficiaryAddress?: string;
+    fiatCurrencyCode?: string;
+    bankName?: string;
+    bankAddress?: string;
+    IBAN?: string;
+    SWIFTCode?: string;
     // Common fields
     contractID: string;
     securityID: string;
-    isCentralizedExchange: boolean;
+    isCentralizedExchange?: boolean;
   };
 }
 

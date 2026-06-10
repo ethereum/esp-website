@@ -2,7 +2,8 @@ import {
   contactInformationSchema,
   projectOverviewSchema,
   additionalDetailsSchema,
-  requiredSchema
+  requiredSchema,
+  paymentAcknowledgementSchema
 } from './BaseGrant';
 import { stringFieldSchema } from './utils';
 import { z } from 'zod';
@@ -23,7 +24,8 @@ export const RFPSchema = z.object({
     )
     .refine(file => (file?.size ?? 0) <= MAX_WISHLIST_FILE_SIZE, 'Max file size is 4MB.')
     .refine(file => (file?.type || file?.mimetype) === 'application/pdf', 'File must be a PDF'),
-  ...requiredSchema
+  ...requiredSchema,
+  ...paymentAcknowledgementSchema
 });
 
 export type RFPData = z.infer<typeof RFPSchema>;
