@@ -26,6 +26,7 @@ interface ContactInformationSectionProps {
     otherProfileType?: FieldConfig | false;
     alternativeContact?: FieldConfig | false;
     website?: FieldConfig | false;
+    city?: FieldConfig | false;
     country?: FieldConfig | false;
     timezone?: FieldConfig | false;
     applicantProfile?: FieldConfig | false;
@@ -66,6 +67,10 @@ const DEFAULT_FIELDS = {
   },
   website: {
     label: 'Website',
+    isRequired: false
+  },
+  city: {
+    label: 'City',
     isRequired: false
   },
   country: {
@@ -120,6 +125,9 @@ export const ContactInformationSection: FC<ContactInformationSectionProps> = ({ 
 
   const websiteConfig =
     fields?.website === false ? null : { ...DEFAULT_FIELDS.website, ...fields?.website };
+
+  const cityConfig =
+    fields?.city === false ? null : { ...DEFAULT_FIELDS.city, ...fields?.city };
 
   const countryConfig =
     fields?.country === false ? null : { ...DEFAULT_FIELDS.country, ...fields?.country };
@@ -229,6 +237,15 @@ export const ContactInformationSection: FC<ContactInformationSectionProps> = ({ 
           label={websiteConfig.label}
           helpText={websiteConfig.helpText}
           isRequired={websiteConfig.isRequired}
+        />
+      )}
+
+      {cityConfig && (
+        <TextField
+          id='city'
+          label={cityConfig.label}
+          helpText={cityConfig.helpText}
+          isRequired={cityConfig.isRequired}
         />
       )}
 
