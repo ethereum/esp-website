@@ -82,6 +82,7 @@ const rfpMapping = createTypedMapping<RFPData>({
   otherProfileType: 'Application_Other_ProfileType__c',
   alternativeContact: 'Application_Alternative_Contact__c',
   website: 'Application_Website__c',
+  city: 'Application_City__c',
   country: 'Application_Country__c',
   timezone: 'Application_Time_Zone__c',
 
@@ -117,6 +118,7 @@ const directGrantMapping = createTypedMapping<DirectGrantData>({
   otherProfileType: 'Application_Other_ProfileType__c',
   alternativeContact: 'Application_Alternative_Contact__c',
   website: 'Application_Website__c',
+  city: 'Application_City__c',
   country: 'Application_Country__c',
   timezone: 'Application_Time_Zone__c',
   applicantProfile: 'Application_Profile__c',
@@ -161,6 +163,7 @@ const wishlistMapping = createTypedMapping<WishlistData>({
   otherProfileType: 'Application_Other_ProfileType__c',
   alternativeContact: 'Application_Alternative_Contact__c',
   website: 'Application_Website__c',
+  city: 'Application_City__c',
   country: 'Application_Country__c',
   timezone: 'Application_Time_Zone__c',
   applicantProfile: 'Application_Profile__c',

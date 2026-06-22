@@ -29,6 +29,7 @@ const contactInformationSchema = {
     .url({ message: 'Invalid URL' })
     .optional()
     .or(z.literal('')),
+  city: stringFieldSchema('City', { max: MAX_TEXT_LENGTH }).optional().or(z.literal('')),
   country: stringFieldSchema('Country', { min: 1, max: 2 }), // 2 character country code
   timezone: stringFieldSchema('Time zone', { min: 1 })
 };

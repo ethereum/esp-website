@@ -28,6 +28,14 @@ export const RFPSchema = z.object({
   ...paymentAcknowledgementSchema
 });
 
+// Custom URL slug of the RFP item whose application form requires the City field.
+export const COMMUNITY_HUBS_RFP_SLUG = 'community-hubs';
+
+// Community Hubs applications require the City field, so override it to be required.
+export const RFPCommunityHubsSchema = RFPSchema.extend({
+  city: stringFieldSchema('City', { min: 1, max: MAX_TEXT_LENGTH })
+});
+
 export type RFPData = z.infer<typeof RFPSchema>;
 
 export interface RFPItem {
