@@ -4,7 +4,13 @@ import { BaseGrantForm } from './BaseGrantForm';
 import { RFP_THANK_YOU_PAGE_URL } from '../../constants';
 import { api } from './api';
 import { FormConfig } from './schemas/BaseGrant';
-import { RFPSchema, RFPItem, RFPData } from './schemas/RFP';
+import {
+  RFPSchema,
+  RFPCommunityHubsSchema,
+  COMMUNITY_HUBS_RFP_SLUG,
+  RFPItem,
+  RFPData
+} from './schemas/RFP';
 import {
   ContactInformationSection,
   FormContainer,
@@ -28,10 +34,12 @@ const rfpFormConfig: FormConfig = {
 };
 
 export const RFPForm: FC<RFPFormProps> = ({ rfpItem }) => {
+  const isCommunityHubs = rfpItem.Custom_URL_Slug__c === COMMUNITY_HUBS_RFP_SLUG;
+
   return (
     <BaseGrantForm<RFPData>
       config={rfpFormConfig}
-      schema={RFPSchema}
+      schema={isCommunityHubs ? RFPCommunityHubsSchema : RFPSchema}
       selectedItem={rfpItem}
       onSubmit={api.rfp.submit}
     >
@@ -41,7 +49,12 @@ export const RFPForm: FC<RFPFormProps> = ({ rfpItem }) => {
           displayText={rfpFormConfig.selectedItemDisplayText}
         />
 
-        <ContactInformationSection fields={{ applicantProfile: false }} />
+        <ContactInformationSection
+          fields={{
+            applicantProfile: false,
+            ...(isCommunityHubs && { city: { isRequired: true } })
+          }}
+        />
 
         <ProjectOverviewSection />
 
