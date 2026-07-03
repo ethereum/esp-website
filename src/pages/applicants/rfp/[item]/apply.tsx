@@ -68,7 +68,9 @@ export const getStaticProps: GetStaticProps<RFPItemApplyProps> = async ({ params
 
   if (!rfpItem) {
     return {
-      notFound: true
+      notFound: true,
+      // Self-heal a stale 404; without revalidate Next.js caches it until redeploy.
+      revalidate: 60
     };
   }
 

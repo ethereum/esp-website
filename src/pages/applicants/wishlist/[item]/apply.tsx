@@ -69,7 +69,9 @@ export const getStaticProps: GetStaticProps<WishlistItemApplyProps> = async ({ p
 
   if (!wishlistItem) {
     return {
-      notFound: true
+      notFound: true,
+      // Self-heal a stale 404; without revalidate Next.js caches it until redeploy.
+      revalidate: 60
     };
   }
 
