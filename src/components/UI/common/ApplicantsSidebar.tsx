@@ -13,7 +13,7 @@ interface Props {
 
 export const ApplicantsSidebar: FC<Props> = ({ sidebarLinks, sectionsInView }) => {
   // mark a sidebar link as active if previous one is not visible
-  // (by the iIntersection Observer) only, to avoid having more than 1 active link
+  // (by the Intersection Observer) only, to avoid having more than 1 active link
   const isActiveLink = (idx: number) => sectionsInView[idx] && !sectionsInView[idx - 1];
 
   return (
