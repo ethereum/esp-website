@@ -1,7 +1,10 @@
 import { Link, type TextProps } from '@chakra-ui/react';
 import { PageText } from '..';
 
-export const PrivacyPolicyAgreement: React.FC<TextProps> = props => (
+export const PrivacyPolicyAgreement: React.FC<TextProps & { showPaymentNote?: boolean }> = ({
+  showPaymentNote = true,
+  ...props
+}) => (
   <PageText {...props}>
     By submitting this application, you confirm that you have read and agree to our{' '}
     <Link
@@ -12,7 +15,7 @@ export const PrivacyPolicyAgreement: React.FC<TextProps> = props => (
       _hover={{ textDecoration: 'none' }}
     >
       Privacy Policy
-    </Link>{' '}
-    and that approved grants are paid on-chain in ETH by default.
+    </Link>
+    {showPaymentNote ? ' and that approved grants are paid on-chain in ETH by default.' : '.'}
   </PageText>
 );

@@ -34,10 +34,12 @@ const About = () => {
                 <PageSection mb={6}>Overview</PageSection>
                 <Stack spacing={6}>
                   <PageText>
-                    ESP is an ecosystem development cluster within the EF focused on strengthening
+                    The Ecosystem Support Program (ESP) is an initiative run by the Grant Management
+                    team within the Ethereum Foundation. ESP is focused on strengthening
                     Ethereum&apos;s foundations, supporting teams across the ecosystem, and enabling
-                    future builders. The work we support is free, open-source, non-commercial, and
-                    designed to create positive sum outcomes for the community.
+                    future builders. The work we support is open-source, non-commercial, and aligned
+                    with CROPS principles (Censorship Resistance, Open Source, Privacy, and
+                    Security) to create positive-sum outcomes for the community.
                   </PageText>
                   <PageText>Learn more about our work below!</PageText>
                 </Stack>
@@ -59,14 +61,15 @@ const About = () => {
                   />
                   <PageSection>Grant Management</PageSection>
                   <PageText>
-                    The Grant Management team focuses on allocating resources to the projects and
-                    initiatives that are most critical to Ethereum&apos;s resilience and usability.
+                    The Grant Management team focuses on allocating financial and non-financial
+                    resources to projects and initiatives critical to Ethereum&apos;s resilience,
+                    security, and usability.
                   </PageText>
                   <PageText>
-                    This involves coordinating grant-making across EF teams to ensure that support
-                    is aligned and impactful. In addition, we support grantees throughout their
-                    journey by offering guidance, fostering connections across the ecosystem, and
-                    drawing insights from outcomes to guide future efforts.
+                    We coordinate grant-making across EF teams to ensure support is aligned with the
+                    EF Mandate and CROPS principles. In addition, we support grantees throughout
+                    their journey by offering guidance, fostering connections across the ecosystem,
+                    and drawing insights from outcomes to inform future funding efforts.
                   </PageText>
                 </Stack>
               </section>

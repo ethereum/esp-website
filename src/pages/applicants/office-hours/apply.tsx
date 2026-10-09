@@ -33,7 +33,7 @@ const OfficeHoursApply: NextPage = () => {
               For feedback about whether your project is eligible for a grant, click the Project Feedback button.
             </PageText>
 
-            <PrivacyPolicyAgreement />
+            <PrivacyPolicyAgreement showPaymentNote={false} />
           </section>
         </Stack>
       </Box>
