@@ -18,7 +18,7 @@ const About = () => {
     <>
       <PageMetadata
         title='About'
-        description="We provide support for open source projects that strengthen Ethereum's foundations, with a particular focus on builder tools, infrastructure, research and public goods."
+        description='We support open-source public goods aligned with the EF Mandate and CROPS principles, focused on infrastructure, research, builder tools, and community resources.'
       />
 
       <Box bg='white' position='relative' py={{ md: 12 }}>
