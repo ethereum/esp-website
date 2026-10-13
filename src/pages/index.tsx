@@ -82,39 +82,7 @@ const Home: NextPage = () => {
                   <Box>
                     <Image
                       src={smallSucculentSVG}
-                      alt='small succulent plant representing allocation in 2021'
-                    />
-                  </Box>
-                </GridItem>
-                <GridItem alignSelf='center' mr={{ lg: 20, xl: 12 }}>
-                  <Stack>
-                    <PageSection as='h4' textAlign='left' mb={2}>
-                      2021
-                    </PageSection>
-
-                    <Box>
-                      <PageText
-                        fontSize={{ base: 'allocations', md: 'h1' }}
-                        fontWeight={200}
-                        mb={1}
-                      >
-                        136{' '}
-                        <PageText as='span' fontSize='stats'>
-                          projects
-                        </PageText>
-                      </PageText>
-                    </Box>
-
-                    <PageText fontSize='faq.question' fontWeight={400} mb={1}>
-                      $26.9 million
-                    </PageText>
-                  </Stack>
-                </GridItem>
-                <GridItem alignSelf='center' justifySelf='center' mr={{ lg: 6, xl: 0, xl2: -16 }}>
-                  <Box>
-                    <Image
-                      src={mediumSucculentSVG}
-                      alt='medium succulent plant representing allocation in 2022'
+                      alt='small succulent plant representing allocation in 2022'
                     />
                   </Box>
                 </GridItem>
@@ -150,7 +118,7 @@ const Home: NextPage = () => {
                     />
                   </Box>
                 </GridItem>
-                <GridItem alignSelf='center' mb={{ base: 8, lg: 0 }}>
+                <GridItem alignSelf='center' mr={{ lg: 20, xl: 12 }}>
                   <Stack>
                     <PageSection as='h4' textAlign='left' mb={2}>
                       2023
@@ -174,16 +142,11 @@ const Home: NextPage = () => {
                     </PageText>
                   </Stack>
                 </GridItem>
-                <GridItem
-                  alignSelf='center'
-                  justifySelf='center'
-                  mr={{ lg: 6, xl: 0, xl2: -12 }}
-                  mb={{ base: 8, lg: 0 }}
-                >
+                <GridItem alignSelf='center' justifySelf='center' mr={{ lg: 6, xl: 0, xl2: -16 }}>
                   <Box>
                     <Image
-                      src={bigSucculentSVG}
-                      alt='big opened succulent plant representing allocation in 2024'
+                      src={mediumSucculentSVG}
+                      alt='medium succulent plant representing allocation in 2024'
                     />
                   </Box>
                 </GridItem>
@@ -208,6 +171,43 @@ const Home: NextPage = () => {
 
                     <PageText fontSize='faq.question' fontWeight={400} mb={1}>
                       $44.4 million
+                    </PageText>
+                  </Stack>
+                </GridItem>
+                <GridItem
+                  alignSelf='center'
+                  justifySelf='center'
+                  mr={{ lg: 6, xl: 0, xl2: -12 }}
+                  mb={{ base: 8, lg: 0 }}
+                >
+                  <Box>
+                    <Image
+                      src={bigSucculentSVG}
+                      alt='big opened succulent plant representing allocation in 2025'
+                    />
+                  </Box>
+                </GridItem>
+                <GridItem alignSelf='center' mb={{ base: 8, lg: 0 }}>
+                  <Stack>
+                    <PageSection as='h4' textAlign='left' mb={2}>
+                      2025
+                    </PageSection>
+
+                    <Box>
+                      <PageText
+                        fontSize={{ base: 'allocations', md: 'h1' }}
+                        fontWeight={200}
+                        mb={1}
+                      >
+                        388{' '}
+                        <PageText as='span' fontSize='stats'>
+                          projects
+                        </PageText>
+                      </PageText>
+                    </Box>
+
+                    <PageText fontSize='faq.question' fontWeight={400} mb={1}>
+                      $29.1 million
                     </PageText>
                   </Stack>
                 </GridItem>
