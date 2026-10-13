@@ -50,7 +50,7 @@ const Applicants: NextPage = () => {
                 <PageSubheading mb={6}>Mission and Scope</PageSubheading>
               
                 <PageText mb={8}>
-                ESP provides financial and/or non-financial support to eligible projects working to improve Ethereum. We focus on work that strengthens Ethereum&apos;s foundations and enables future builders. The work we support is free, open-source, non-commercial, and designed to create positive sum outcomes for the community.
+                ESP provides financial and non-financial support to eligible projects working to improve Ethereum. We focus on work that strengthens Ethereum&apos;s foundations and enables future builders. The work we support is open-source, non-commercial, and aligned with CROPS principles (Censorship Resistance, Open Source, Privacy, and Security) to create positive-sum outcomes for the community.
                 </PageText>
                 <PageText>
                 Our support is generally directed toward enabling builders rather than end-users: strengthening Ethereum&apos;s infrastructure, expanding the range of tools available to those building on Ethereum, gaining a deeper understanding of cryptographic primitives, growing the builder ecosystem through education and community development, etc. 

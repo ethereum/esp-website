@@ -3,6 +3,7 @@ import {
   Flex,
   Grid,
   GridItem,
+  Link,
   Stack
 } from '@chakra-ui/react';
 import type { NextPage } from 'next';
@@ -81,39 +82,7 @@ const Home: NextPage = () => {
                   <Box>
                     <Image
                       src={smallSucculentSVG}
-                      alt='small succulent plant representing allocation in 2019'
-                    />
-                  </Box>
-                </GridItem>
-                <GridItem alignSelf='center' mr={{ lg: 20, xl: 12 }}>
-                  <Stack>
-                    <PageSection as='h4' textAlign='left' mb={2}>
-                      2021
-                    </PageSection>
-
-                    <Box>
-                      <PageText
-                        fontSize={{ base: 'allocations', md: 'h1' }}
-                        fontWeight={200}
-                        mb={1}
-                      >
-                        136{' '}
-                        <PageText as='span' fontSize='stats'>
-                          projects
-                        </PageText>
-                      </PageText>
-                    </Box>
-
-                    <PageText fontSize='faq.question' fontWeight={400} mb={1}>
-                      $26.9 million
-                    </PageText>
-                  </Stack>
-                </GridItem>
-                <GridItem alignSelf='center' justifySelf='center' mr={{ lg: 6, xl: 0, xl2: -16 }}>
-                  <Box>
-                    <Image
-                      src={mediumSucculentSVG}
-                      alt='medium succulent plant representing allocation in 2020'
+                      alt='small succulent plant representing allocation in 2022'
                     />
                   </Box>
                 </GridItem>
@@ -145,11 +114,11 @@ const Home: NextPage = () => {
                   <Box>
                     <Image
                       src={mediumSucculentSVG}
-                      alt='medium succulent plant representing allocation in 2020'
+                      alt='medium succulent plant representing allocation in 2023'
                     />
                   </Box>
                 </GridItem>
-                <GridItem alignSelf='center' mb={{ base: 8, lg: 0 }}>
+                <GridItem alignSelf='center' mr={{ lg: 20, xl: 12 }}>
                   <Stack>
                     <PageSection as='h4' textAlign='left' mb={2}>
                       2023
@@ -173,16 +142,11 @@ const Home: NextPage = () => {
                     </PageText>
                   </Stack>
                 </GridItem>
-                <GridItem
-                  alignSelf='center'
-                  justifySelf='center'
-                  mr={{ lg: 6, xl: 0, xl2: -12 }}
-                  mb={{ base: 8, lg: 0 }}
-                >
+                <GridItem alignSelf='center' justifySelf='center' mr={{ lg: 6, xl: 0, xl2: -16 }}>
                   <Box>
                     <Image
-                      src={bigSucculentSVG}
-                      alt='big opened succulent plant representing allocation in 2021'
+                      src={mediumSucculentSVG}
+                      alt='medium succulent plant representing allocation in 2024'
                     />
                   </Box>
                 </GridItem>
@@ -210,6 +174,43 @@ const Home: NextPage = () => {
                     </PageText>
                   </Stack>
                 </GridItem>
+                <GridItem
+                  alignSelf='center'
+                  justifySelf='center'
+                  mr={{ lg: 6, xl: 0, xl2: -12 }}
+                  mb={{ base: 8, lg: 0 }}
+                >
+                  <Box>
+                    <Image
+                      src={bigSucculentSVG}
+                      alt='big opened succulent plant representing allocation in 2025'
+                    />
+                  </Box>
+                </GridItem>
+                <GridItem alignSelf='center' mb={{ base: 8, lg: 0 }}>
+                  <Stack>
+                    <PageSection as='h4' textAlign='left' mb={2}>
+                      2025
+                    </PageSection>
+
+                    <Box>
+                      <PageText
+                        fontSize={{ base: 'allocations', md: 'h1' }}
+                        fontWeight={200}
+                        mb={1}
+                      >
+                        388{' '}
+                        <PageText as='span' fontSize='stats'>
+                          projects
+                        </PageText>
+                      </PageText>
+                    </Box>
+
+                    <PageText fontSize='faq.question' fontWeight={400} mb={1}>
+                      $29.1 million
+                    </PageText>
+                  </Stack>
+                </GridItem>
               </Grid>
             </Box>
           </section>
@@ -227,10 +228,10 @@ const Home: NextPage = () => {
               link={ABOUT_URL}
             >
               <PageText mb={6}>
-                ESP provides financial and non-financial support to projects that strengthen
-                Ethereum&apos;s foundations and enable future builders through Grant Management:
-                supporting the strategic allocation of resources to projects that are most
-                critical to Ethereum&apos;s resilience and usability.
+                The Ecosystem Support Program (ESP) is an initiative of the Ethereum
+                Foundation&apos;s Grant Management team. We provide both financial and
+                non-financial support to projects focused on strengthening the Ethereum protocol
+                and supporting builders.
               </PageText>
             </HomeAboutCard>
           </section>
@@ -248,10 +249,19 @@ const Home: NextPage = () => {
               link={APPLICANTS_URL}
             >
               <PageText mb={6}>
-                We support free and open-source projects that strengthen Ethereum&apos;s
-                foundations, with a particular focus on builder tools, infrastructure, research,
-                community resources, and other public goods. Our support is generally directed
-                towards builders, rather than end users.
+                We support free and open-source public goods aligned with the{' '}
+                <Link
+                  href='https://ethereum.foundation/ef-mandate.pdf'
+                  isExternal
+                  fontWeight={700}
+                  color='brand.orange.100'
+                  _hover={{ textDecoration: 'none' }}
+                >
+                  EF Mandate
+                </Link>{' '}
+                and CROPS principles (Censorship Resistance, Open Source, Privacy, and Security).
+                Our focus centers on infrastructure, research, builder tools, and community
+                resources that strengthen Ethereum&apos;s protocol and foundations.
               </PageText>
             </HomeAboutCard>
           </section>
@@ -269,7 +279,7 @@ const Home: NextPage = () => {
               link={APPLICANTS_URL}
             >
               <PageText>
-                Financial support is offered through our Wishlist and RFPs, which highlight funding opportunities curated by EF teams. Non-financial support is available through Office Hours, where builders can receive project feedback, guidance on navigating the ecosystem, or advice on aligning their project with a Wishlist or RFP item.
+                Financial support is offered through our Wishlist and RFPs, which highlight funding opportunities curated by EF teams. Non-financial support is available through Office Hours, where builders can receive direct project feedback and guidance on navigating the Ethereum ecosystem.
               </PageText>
             </HomeAboutCard>
           </section>
